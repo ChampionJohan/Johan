@@ -1,0 +1,44 @@
+name: build-site
+
+on:
+  push:
+    branches: ["**"]
+    paths: ["writing/posts/**", "tools/**", ".github/workflows/build-site.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 사이트 빌드
+        run: python3 tools/build.py
+      - name: 매체별 원고 내보내기
+        run: python3 tools/export.py --all
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: writing/site
+
+  deploy:
+    # Pages 를 켠 저장소에서만 배포한다. 설정 > Pages > Source 를 GitHub Actions 로.
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
