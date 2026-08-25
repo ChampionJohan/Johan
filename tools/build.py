@@ -66,6 +66,9 @@ table{border-collapse:collapse;width:100%;font-size:.9rem}
 th,td{border-bottom:1px solid var(--line);padding:.55rem .7rem;text-align:left}
 th{font-weight:650}
 hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul.checklist{list-style:none;padding-left:.2rem}
+ul.checklist li{margin:.5rem 0}
+ul.checklist input{margin-right:.5rem;accent-color:var(--accent)}
 footer.site{border-top:1px solid var(--line);margin:4rem 0 0;padding:1.75rem 0 3rem;
   color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer.site a{color:var(--muted)}

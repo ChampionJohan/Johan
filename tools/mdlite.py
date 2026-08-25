@@ -145,6 +145,7 @@ def render(text):
         if bullet:
             ordered = bool(re.match(r"\d+\.", stripped))
             tag = "ol" if ordered else "ul"
+            checklist = bool(re.match(r"[-*+]\s+\[[ xX]\]\s", stripped))
             items = []
             while i < n and lines[i].strip():
                 m = re.match(r"\s*([-*+]|\d+\.)\s+(.*)", lines[i])
@@ -155,7 +156,16 @@ def render(text):
                 else:
                     break
                 i += 1
-            out.append("<%s>%s</%s>" % (tag, "".join("<li>%s</li>" % it for it in items), tag))
+            cls = ' class="checklist"' if checklist else ""
+            rendered = []
+            for item in items:
+                box = re.match(r"\[([ xX])\]\s*(.*)", item, re.DOTALL)
+                if box:
+                    done = box.group(1).lower() == "x"
+                    item = '<input type="checkbox" disabled%s> %s' % (
+                        " checked" if done else "", box.group(2))
+                rendered.append("<li>%s</li>" % item)
+            out.append("<%s%s>%s</%s>" % (tag, cls, "".join(rendered), tag))
             continue
 
         buf = []
@@ -179,6 +189,8 @@ def to_plain(text):
     text = re.sub(r"\*\*([^*]+)\*\*", r"\1", text)
     text = re.sub(r"(?<!\*)\*([^*\n]+)\*(?!\*)", r"\1", text)
     text = re.sub(r"`([^`]+)`", r"\1", text)
+    text = re.sub(r"^(\s*)[-*+]\s+\[ \]\s+", r"\1□ ", text, flags=re.MULTILINE)
+    text = re.sub(r"^(\s*)[-*+]\s+\[[xX]\]\s+", r"\1☑ ", text, flags=re.MULTILINE)
     text = re.sub(r"^>\s?", "", text, flags=re.MULTILINE)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
