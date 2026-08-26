@@ -20,4 +20,6 @@
 
 ---
 
-*디자인 포스터(HTML)는 [poster.html](./poster.html) 참고.*
+![말레이시아 사역 포스터](./poster.png)
+
+*원본 디자인은 [poster.html](./poster.html), 다운로드용 이미지는 [poster.png](./poster.png) 참고.*
