@@ -136,6 +136,19 @@ book/
 `<!-- 확인: … 출처 -->` 를 남기고, `--stat` 이 남은 건수를 센다.
 **확인과 TODO 가 둘 다 0 이어야 발행할 수 있다.**
 
+## 청소년판 — 『돈 버는 머리는 따로 있다』
+
+성인판과 같은 다섯 칸 틀을 10대 눈높이로 완전히 새로 쓴 책. `book-teen/` 아래
+같은 방식으로 굴러간다.
+
+```
+python3 tools/book_teen.py            # book-teen/site/index.html
+python3 tools/book_teen.py --stat     # 분량·확인 항목
+```
+
+`book/STYLE.md` 를 그대로 따르되 문체만 다르다 — 2인칭으로 "너"에게 말을
+거는 방식. `book-teen/plan.md` 에 문체를 이렇게 정한 이유가 적혀 있다.
+
 ## 매체별 내보내기 규칙
 
 | 매체 | front matter `target` | 형식 |
