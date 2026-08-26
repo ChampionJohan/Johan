@@ -4,3 +4,5 @@ __pycache__/
 .DS_Store
 video/export/
 .youtube.json
+video/render/
+video/voice/

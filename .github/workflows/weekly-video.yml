@@ -87,20 +87,25 @@ jobs:
           대본: \`$SCRIPT\`
           그래픽: \`video/assets/\` (썸네일 · BM 5칸 · 구간 카드). 5칸을 채우고 다시 돌리면 그래픽에 내용이 박힙니다.
 
-          자동화가 끝난 지점은 여기까지입니다. 아래는 사람이 합니다.
+          자동화가 끝난 지점은 여기까지입니다. 리서치와 대본 문장만 사람이 하면
+          \`video_render.py\` 가 다섯 편을 mp4 로 뽑아냅니다.
 
-          - [ ] **월** 리서치. 1차 출처 3개 이상, 숫자에 연도 붙이기 (2h)
-          - [ ] **화** 대본 3,000~3,400자. TODO 없이 끝까지 (2h)
-          - [ ] **수** 나레이션 녹음 + 자막 (1h)
-          - [ ] **목** 편집. 자체 그래픽 먼저, B롤은 빈칸 메우기 (3h)
-          - [ ] **금** 썸네일 문구를 front matter \`thumb:\` 에 넣고 \`video_assets.py\` 재실행 → 예약 업로드 (1h)
-          - [ ] **토** 같은 대본에서 숏폼 3편 잘라내기 (1.5h)
+          - [ ] **월** 리서치. 1차 출처 3개 이상, 숫자에 연도 붙이기, BM 5칸 채우기 (2h)
+          - [ ] **화** 롱폼 대본 3,000~3,400자. TODO 없이 끝까지 (2h)
+          - [ ] **수** 중폼(900~1,100자) + 숏폼 3편 대본. 롱폼에서 잘라낸다, 새로 쓰지 않는다 (1h)
+          - [ ] **목** 나레이션 녹음 → \`video_render.py <대본> --all --voice\` 로 5편 렌더 (1.5h)
+          - [ ] **금** 롱폼만 편집기에서 B롤 얹기 + 썸네일 (3h)
+          - [ ] **토** 중폼·숏폼은 렌더 그대로. 5편 예약 업로드 (1h)
+
+          발행: 화 숏폼1 · 수 중폼 · 목 숏폼2 · 토 숏폼3 · **일 19:00 롱폼**
 
           끝나면:
           \`\`\`
           # front matter 의 status 를 ready 로 바꾼 뒤
-          python3 tools/video_assets.py --latest
-          python3 tools/video_export.py
+          python3 tools/video_render.py --check          # 처음 한 번만
+          python3 tools/video_assets.py --latest         # 썸네일·5칸 그래픽
+          python3 tools/video_render.py video/scripts/<대본>.md --all --voice
+          python3 tools/video_export.py                  # 설명란·챕터·태그
           \`\`\`
 
           큐에 $LEFT 편 남았습니다.
