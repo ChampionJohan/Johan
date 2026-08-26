@@ -21,7 +21,7 @@ adult.MANUSCRIPT = os.path.join(adult.ROOT, "book-teen", "manuscript")
 adult.SITE = os.path.join(adult.ROOT, "book-teen", "site")
 adult.TITLE = "돈 버는 머리는 따로 있다"
 adult.SUBTITLE = "10대를 위한 사업 해부학 — 용돈부터 창업까지"
-adult.SERIES = "10대 창업 시리즈 · 첫째 권"
+adult.SERIES = "『돈의 해부학』 청소년판 · 10대 창업 시리즈 첫째 권"
 adult.TARGET = 60000
 adult.MARK = "★"
 
