@@ -113,9 +113,10 @@ OPF = """<?xml version="1.0" encoding="utf-8"?>
   <manifest>
     <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
     <item id="css" href="css/style.css" media-type="text/css"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
 %(manifest)s%(cover_item)s
   </manifest>
-  <spine>
+  <spine toc="ncx">
 %(spine)s
   </spine>
 </package>
