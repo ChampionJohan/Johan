@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>말레이시아 사역 단기선교</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b3a2e;
+    --gold: #c8973a;
+    --gold-light: #e8c774;
+    --paper: #faf6ec;
+    --paper-2: #f2ead4;
+    --green-deep: #0f2e22;
+    --green: #1f5c46;
+    --hibiscus: #c1442c;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d2bd;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .poster {
+    width: 794px;
+    min-height: 1123px;
+    margin: 24px auto;
+    background: linear-gradient(160deg, var(--paper) 0%, var(--paper-2) 100%);
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    border: 10px solid var(--green-deep);
+  }
+
+  .poster::before,
+  .poster::after {
+    content: "";
+    position: absolute;
+    border: 2px solid var(--gold);
+    pointer-events: none;
+  }
+  .poster::before { inset: 18px; }
+  .poster::after { inset: 24px; border-width: 1px; opacity: .6; }
+
+  .deco-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 260px;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(200,151,58,0.25), transparent 55%),
+      radial-gradient(circle at 85% 10%, rgba(31,92,70,0.35), transparent 50%),
+      linear-gradient(180deg, var(--green-deep) 0%, var(--green) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%);
+  }
+
+  .compass {
+    position: absolute;
+    top: 34px; right: 40px;
+    width: 90px; height: 90px;
+    opacity: 0.9;
+  }
+
+  .batik-band {
+    height: 22px;
+    background:
+      repeating-linear-gradient(135deg,
+        var(--gold) 0 3px,
+        transparent 3px 20px),
+      repeating-linear-gradient(45deg,
+        var(--hibiscus) 0 3px,
+        transparent 3px 20px);
+    opacity: 0.55;
+    margin: -4px -64px 26px;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    padding: 56px 64px 44px;
+  }
+
+  .eyebrow {
+    color: var(--gold-light);
+    font-family: 'Noto Serif KR', serif;
+    letter-spacing: 0.35em;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+
+  .title {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 900;
+    color: #fff;
+    font-size: 58px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+
+  .subtitle {
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 700;
+    color: var(--gold-light);
+    font-size: 26px;
+    margin: 0 0 6px;
+  }
+
+  .verse {
+    margin-top: 190px;
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 17px;
+    color: var(--green-deep);
+    line-height: 1.9;
+    padding: 0 40px;
+  }
+  .verse b { color: var(--hibiscus); font-weight: 900; }
+  .verse span.ref {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #6b6350;
+    letter-spacing: 0.08em;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 34px 0 30px;
+  }
+  .divider .line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .divider .diamond {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .info-card {
+    background: #fff;
+    border: 1px solid #e2d6ae;
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 22px;
+    box-shadow: 0 4px 12px rgba(31,92,70,0.06);
+  }
+
+  .info-card .label {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    font-weight: 700;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+  }
+
+  .info-card .value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .call {
+    text-align: center;
+    background: var(--green-deep);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .call::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(200,151,58,0.35), transparent 60%);
+  }
+  .call * { position: relative; z-index: 1; }
+
+  .call .headline {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 900;
+    margin: 0 0 16px;
+    color: var(--gold-light);
+  }
+
+  .kakao {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #FEE500;
+    color: #3c1e1e;
+    font-weight: 900;
+    font-size: 19px;
+    padding: 12px 26px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .kakao .bubble {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #3c1e1e;
+    display: inline-block;
+    position: relative;
+  }
+  .kakao .bubble::after {
+    content: "";
+    position: absolute;
+    left: 4px; top: 6px;
+    width: 14px; height: 10px;
+    background: #FEE500;
+    border-radius: 50% 50% 50% 4px;
+  }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+    color: #6b6350;
+    letter-spacing: 0.03em;
+  }
+
+  .signature {
+    position: absolute;
+    bottom: 30px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    color: #8a8163;
+    letter-spacing: 0.2em;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .poster { box-shadow: none; margin: 0; border-width: 8px; }
+  }
+
+  @media (max-width: 820px) {
+    .poster { width: 100%; }
+    .title { font-size: 42px; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="deco-top"></div>
+
+    <svg class="compass" viewBox="0 0 100 100" aria-hidden="true" role="img" aria-label="히비스커스 문양">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#e8c774" stroke-width="1.5" opacity="0.7"/>
+      <g transform="translate(50 50)">
+        <g fill="#c1442c" opacity="0.95">
+          <ellipse rx="8" ry="17" transform="rotate(0)"/>
+          <ellipse rx="8" ry="17" transform="rotate(72)"/>
+          <ellipse rx="8" ry="17" transform="rotate(144)"/>
+          <ellipse rx="8" ry="17" transform="rotate(216)"/>
+          <ellipse rx="8" ry="17" transform="rotate(288)"/>
+        </g>
+        <circle r="6" fill="#e8c774"/>
+      </g>
+    </svg>
+
+    <div class="content">
+      <p class="eyebrow">Short-Term Mission &middot; Malaysia</p>
+      <h1 class="title">말레이시아<br>사역</h1>
+      <p class="subtitle">단기선교 참여자 모집</p>
+
+      <div class="verse">
+        “<b>가라</b>. 내가 너희에게 명한 모든 것을<br>
+        가르쳐 지키게 하라. 내가 세상 끝날까지<br>
+        너희와 항상 함께 있으리라.”
+        <span class="ref">마태복음 28장 19–20절</span>
+      </div>
+
+      <div class="divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <p class="label">기간</p>
+          <p class="value">수시</p>
+        </div>
+        <div class="info-card">
+          <p class="label">대상</p>
+          <p class="value">모두</p>
+        </div>
+        <div class="info-card">
+          <p class="label">담당</p>
+          <p class="value">조한 선교사</p>
+        </div>
+        <div class="info-card">
+          <p class="label">지역</p>
+          <p class="value">말레이시아</p>
+        </div>
+      </div>
+
+      <div class="batik-band" aria-hidden="true"></div>
+
+      <div class="call">
+        <p class="headline">지금 문의하세요</p>
+        <span class="kakao"><span class="bubble"></span>카카오톡&nbsp;ID&nbsp;·&nbsp;rokaf2002730</span>
+      </div>
+
+      <p class="footer-note">함께 떠날 마음이 있다면, 언제든 편하게 연락 주세요.</p>
+    </div>
+
+    <div class="signature">M A L A Y S I A &nbsp;&middot;&nbsp; M I S S I O N</div>
+  </div>
+</body>
+</html>
