@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#16191B"/>
+  <rect x="0" y="1064" width="960" height="16" fill="#2F6FED"/>
+  <text x="120" y="470" font-family="IBM Plex Mono, D2Coding, Consolas, monospace" font-size="34" font-weight="500" fill="#2F6FED" letter-spacing="5">2:30</text>
+  <text x="120" y="610" font-family="IBM Plex Sans KR, Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="104" font-weight="700" fill="#F1F3F2" text-anchor="start">해부 — 고객과 가치와 과금</text>
+  <text x="120" y="760" font-family="IBM Plex Mono, D2Coding, Consolas, monospace" font-size="26" fill="#8B9895">04 / 08</text>
+</svg>

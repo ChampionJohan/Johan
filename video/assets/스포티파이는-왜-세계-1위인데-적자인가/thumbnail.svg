@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#16191B"/>
+  <rect x="0" y="0" width="26" height="720" fill="#2F6FED"/>
+  <text x="96" y="130" font-family="IBM Plex Mono, D2Coding, Consolas, monospace" font-size="30" font-weight="600" fill="#2F6FED" letter-spacing="6">IT</text>
+  <text x="96" y="300" font-family="IBM Plex Sans KR, Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="96" font-weight="700" fill="#F1F3F2" text-anchor="start">스포티파이는 왜 세계</text>
+  <text x="96" y="423" font-family="IBM Plex Sans KR, Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="96" font-weight="700" fill="#F1F3F2" text-anchor="start">1위인데 적자인가</text>
+  <rect x="96" y="612" width="120" height="7" fill="#2F6FED"/>
+  <text x="96" y="672" font-family="IBM Plex Sans KR, Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" font-size="27" fill="#8B9895" letter-spacing="3">세계의 비즈니스 모델</text>
+</svg>

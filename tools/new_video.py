@@ -35,6 +35,7 @@ category: {category}
 color: {color}
 runtime: 10분
 status: draft
+thumb:
 angle: {angle}
 next: {next_title}
 ---
@@ -136,7 +137,7 @@ next: {next_title}
 
 ### 썸네일
 
-- 문구(4단어 이하): <!-- TODO -->
+- 문구(4단어 이하): front matter 의 `thumb:` 에 적는다. 비워 두면 제목이 들어간다.
 - 배경색: {color} ({category})
 - 확인: 휴대폰 크기로 줄여도 읽히는가
 """
@@ -148,6 +149,7 @@ category: {category}
 color: {color}
 runtime: 60초
 status: draft
+thumb:
 angle: {angle}
 ---
 

@@ -23,6 +23,8 @@ plan.md 주제 큐  →  자동으로 오늘자 초고 생성  →  내가 TODO 
 | `python3 tools/new_video.py --peek` | 다음 편만 확인 |
 | `python3 tools/new_video.py --short` | 숏폼 전용 뼈대 (큐를 소비하지 않음) |
 | `python3 tools/video_export.py` | 완성 대본 → 녹음용 나레이션 + 유튜브 업로드 세트 |
+| `python3 tools/video_assets.py --latest` | 대본 → 썸네일 · BM 5칸 · 구간 카드 SVG 자동 생성 |
+| `python3 tools/youtube_upload.py --auth` | (선택) 유튜브 업로드 최초 인증 — 아래 주의사항 참고 |
 
 의존성 없음. Python 3.8+ 만 있으면 된다.
 
@@ -39,6 +41,7 @@ video/
   plan.md      시리즈 기획 + 54편 편성 큐   ← 여기만 고치면 다음 영상이 바뀐다
   STYLE.md     대본 규칙 + 자료·저작권 원칙
   scripts/     영상 대본 (마크다운, front matter 포함)
+  assets/      자동 생성된 그래픽 (썸네일 · 5칸 · 구간 카드 · 장면 보드)
   export/      녹음용·업로드용 텍스트 (git 추적 안 함)
 tools/
   mdlite.py    의존성 없는 마크다운 → HTML 변환기
@@ -47,6 +50,8 @@ tools/
   export.py    매체별 내보내기
   new_video.py 주간 영상 대본 스캐폴딩
   video_export.py  나레이션 · 업로드 세트 내보내기
+  video_assets.py  썸네일 · 5칸 · 구간 카드 SVG 생성
+  youtube_upload.py  유튜브 업로드 (표준 라이브러리만, 선택 사항)
 ```
 
 ## 유튜브 시리즈 — 세계의 비즈니스 모델
@@ -56,9 +61,26 @@ tools/
 1~4주차는 숏폼만, 5~8주차는 3분, 9주차부터 10분 롱폼. 자세한 내용은 `video/plan.md`.
 
 ```
-video/plan.md 편성 큐  →  new_video.py 로 대본 뼈대  →  리서치 표부터 채우기
-   →  대본 3,200자  →  status: ready  →  video_export.py  →  녹음 · 편집 · 업로드
+[자동] 매주 월 09:00  편성 큐 → 대본 뼈대 + 그래픽 → 커밋 → '이번 주 영상' 이슈
+[사람] 리서치 · 대본 · 녹음 · 편집          ← 여기는 자동화하지 않는다
+[반자동] status: ready  →  video_export.py + video_assets.py  →  업로드
 ```
+
+`.github/workflows/weekly-video.yml` 이 매주 월요일 09:00 KST 에 돈다.
+큐가 8편 아래로 내려가면 따로 이슈로 알린다.
+
+### 자동화하지 않는 것
+
+리서치와 숫자는 자동으로 만들지 않는다. 실존하는 회사의 매출과 구조를 다루는 채널이라
+틀린 숫자 하나가 채널 전체의 신뢰를 깎고, 유튜브도 그런 영상을 저품질로 분류한다.
+글쓰기 파이프라인과 같은 원칙이다 — **자동 작성기는 구조까지만 만든다.**
+
+### 업로드에 대해
+
+주 1편이라면 **유튜브 스튜디오에서 직접 올리고 예약 발행**을 거는 쪽이 낫다.
+감사(audit)를 통과하지 않은 API 프로젝트로 올린 영상은 비공개로 잠기고 이의신청이 안 되며,
+풀려면 지우고 다시 올려야 한다. `tools/youtube_upload.py` 는 감사를 통과했거나
+비공개 업로드로 충분할 때 쓰는 선택 사항이다. 자세한 내용은 그 파일 맨 위 설명에 있다.
 
 ## 매체별 내보내기 규칙
 
