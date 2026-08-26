@@ -173,7 +173,7 @@ def render(text):
             buf.append(lines[i].strip())
             i += 1
         if buf:
-            out.append("<p>%s</p>" % _inline("<br>".join(buf)).replace("&lt;br&gt;", "<br>"))
+            out.append("<p>%s</p>" % _inline(" ".join(buf)))
         else:
             i += 1
 

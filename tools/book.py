@@ -102,8 +102,8 @@ STYLE = """
 :root{
  --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
  --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
- --serif:"Noto Serif KR","Nanum Myeongjo",Batang,serif;
- --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+ --serif:"Nanum Myeongjo","Noto Serif KR",Batang,serif;
+ --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
  --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
  --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
