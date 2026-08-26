@@ -23,7 +23,7 @@ from build import ROOT
 
 MANUSCRIPT = os.path.join(ROOT, "book", "manuscript")
 SITE = os.path.join(ROOT, "book", "site")
-TARGET = 130000  # 목표 분량. book/plan.md 4절과 맞춘다.
+TARGET = 95000  # 목표 분량. book/plan.md 4절과 맞춘다.
 
 CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
 TODO = re.compile(r"<!--\s*TODO:(.*?)-->", re.S)
