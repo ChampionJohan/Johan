@@ -10,7 +10,7 @@
 원고는 book/manuscript/NNN-제목.md. 파일 이름 앞 숫자가 곧 차례다.
 front matter: title · part · kind(front|part|chapter|back) · status.
 
-절 번호(1.1, 1.2 …)는 장 번호에서 자동으로 붙는다. 원고에 직접 쓰지 않는다.
+소제목 앞의 기호(◆)는 빌드할 때 자동으로 붙는다. 원고에 직접 쓰지 않는다.
 분량과 확인 건수는 --stat 에만 나온다. 독자가 보는 책에는 넣지 않는다.
 """
 
@@ -25,8 +25,8 @@ from build import ROOT
 
 MANUSCRIPT = os.path.join(ROOT, "book", "manuscript")
 SITE = os.path.join(ROOT, "book", "site")
-TITLE = "누가 돈을 내는가"
-SUBTITLE = "세계의 사업을 다섯 칸으로 읽는 법"
+TITLE = "돈의 해부학"
+SUBTITLE = "세계의 사업을 다섯 칸으로 뜯어보는 법"
 SERIES = "다섯 칸 시리즈 · 첫째 권"
 TARGET = 95000
 
@@ -34,7 +34,7 @@ CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
 TODO = re.compile(r"<!--\s*TODO:(.*?)-->", re.S)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
 CHAPNO = re.compile(r"^(\d+)장")
-H2 = re.compile(r"(?m)^##\s+(?!\d+\.\d)(.+)$")
+H2 = re.compile(r"(?m)^##\s+(?!◆)(.+)$")
 
 
 def load():
@@ -65,17 +65,12 @@ def load():
     return items
 
 
+MARK = "◆"
+
+
 def numbered(body, chapter_no):
-    """`## 소제목` 에 1.1, 1.2 … 를 붙인다. 장이 아닌 꼭지는 그대로 둔다."""
-    if not chapter_no:
-        return body
-    count = [0]
-
-    def repl(match):
-        count[0] += 1
-        return "## %s.%d %s" % (chapter_no, count[0], match.group(1).strip())
-
-    return H2.sub(repl, body)
+    """`## 소제목` 앞에 기호를 붙인다. 번호 대신 표시만 둔다."""
+    return H2.sub(lambda m: "## %s %s" % (MARK, m.group(1).strip()), body)
 
 
 def clean_body(item, keep_flags=True):
@@ -260,7 +255,7 @@ def render_md(items):
         for flag in flags:
             out.append("\n> **교정 표시** — %s" % flag)
     os.makedirs(SITE, exist_ok=True)
-    path = os.path.join(SITE, "누가-돈을-내는가.md")
+    path = os.path.join(SITE, "돈의-해부학.md")
     open(path, "w", encoding="utf-8").write("\n".join(out) + "\n")
     print("만들었습니다: %s" % os.path.relpath(path, ROOT))
     return 0
