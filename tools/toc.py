@@ -7,13 +7,12 @@
 """
 
 import os
-import re
 import sys
-
-import fitz  # PyMuPDF
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
+
+import pdf as pdftool
 
 
 def load_module(which):
@@ -26,21 +25,6 @@ def load_module(which):
     return m
 
 
-def norm(text):
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def page_of(doc, title, start_at):
-    target = norm(title)
-    for page in doc:
-        if page.number + 1 < start_at:
-            continue
-        head = norm(page.get_text())[:160]
-        if target in head:
-            return page.number + 1
-    return None
-
-
 def main():
     if not sys.argv[1:]:
         print(__doc__)
@@ -50,23 +34,16 @@ def main():
     if not os.path.exists(pdf_path):
         raise SystemExit("먼저 tools/pdf.py 로 PDF 를 만들어 주세요: %s" % pdf_path)
 
-    doc = fitz.open(pdf_path)
     items = [i for i in m.load() if not (i["kind"] == "front" and i.get("order") == "0")]
-
-    rows = []
-    pointer = 1
-    for item in items:
-        page = page_of(doc, item["title"], pointer)
-        if page:
-            pointer = page
-        indent = "  " if item["kind"] in ("chapter",) else ""
-        rows.append((indent + item["title"], page, item["kind"]))
+    pages = pdftool.page_map(pdf_path, items)
 
     print("%-46s  %s" % ("목차명", "페이지번호"))
     print("-" * 60)
-    for title, page, kind in rows:
+    for item in items:
+        page = pages.get(item["slug"])
+        indent = "  " if item["kind"] == "chapter" else ""
         mark = "" if page else "  ⚠ 못 찾음(손으로 확인)"
-        print("%-46s  %6s%s" % (title, page if page else "-", mark))
+        print("%-46s  %6s%s" % (indent + item["title"], page if page else "-", mark))
     return 0
 
 

@@ -70,22 +70,34 @@ def norm(text):
 
 
 def page_map(pdf_path, items):
+    """각 장의 제목이 실제로 시작되는 쪽을 찾는다.
+
+    차례 쪽 자체에도 모든 장 제목이 글자 그대로 나오기 때문에, 단순히
+    "이 페이지에 제목이 있는가"만 보면 차례 쪽을 그 장의 시작 쪽으로
+    잘못 짚는다. 차례 쪽은 한 페이지에 여러 장 제목이 한꺼번에 나온다는
+    점으로 구분해 건너뛴다.
+    """
     import fitz
     doc = fitz.open(pdf_path)
+    pages_text = [norm(p.get_text()) for p in doc]
+    targets = [(item["slug"], norm(item["title"])) for item in items]
+
+    toc_last = -1
+    for i, text in enumerate(pages_text):
+        hits = sum(1 for _, t in targets if t and t in text)
+        if hits > 1:
+            toc_last = i
+
     mapping = {}
-    pointer = 1
-    for item in items:
-        target = norm(item["title"])
+    pointer = toc_last + 1
+    for slug, target in targets:
         found = None
-        for page in doc:
-            if page.number + 1 < pointer:
-                continue
-            head = norm(page.get_text())[:160]
-            if target in head:
-                found = page.number + 1
+        for i in range(pointer, len(pages_text)):
+            if target in pages_text[i][:160]:
+                found = i
                 break
-        if found:
-            mapping[item["slug"]] = found
+        if found is not None:
+            mapping[slug] = found + 1
             pointer = found
     return mapping
 
