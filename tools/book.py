@@ -126,16 +126,17 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
 
 /* 차례 */
 nav.toc{margin:0 0 96px}
-nav.toc h2{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;color:var(--muted);
- margin:0 0 24px;font-weight:600;padding-bottom:12px;border-bottom:1px solid var(--rule)}
 nav.toc ul{list-style:none;margin:0;padding:0}
 nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--accent);
- font-weight:600;margin:28px 0 10px}
+ font-weight:600;margin:28px 0 10px;display:flex;align-items:baseline;gap:12px}
 nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
 nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
  min-width:2.6em;font-variant-numeric:tabular-nums}
 nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
 nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent);outline:none}
+nav.toc .dots{flex:1 1 auto;border-bottom:1px dotted var(--rule);margin:0 2px 3px}
+nav.toc .pg{font-family:var(--sans);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+nav.toc .grp .pg{margin-left:auto}
 
 /* 부 표제지 */
 section.part{margin:0 0 96px;padding:88px 0;border-top:2px solid var(--ink);
@@ -173,7 +174,7 @@ tbody tr:last-child td{border-bottom:0}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
 @media print{.flags{display:none}
- section.part,section.ch,section.front{page-break-before:always}}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}}
 </style>
 """
 
@@ -186,23 +187,20 @@ BODY = """<div class="wrap">
 """
 
 
-def render_html(items, fragment=False):
-    groups, rows = [], []
-    last = None
+def render_html(items, fragment=False, page_numbers=None, out_name=None):
+    rows = []
     for item in items:
-        if item["kind"] == "part":
-            rows.append('<li class="grp">%s</li>' % html.escape(item["title"]))
-            last = item["part"]
+        if item["kind"] == "front" and item.get("order") == "0":
             continue
-        if item["kind"] in ("front", "back") and item["part"] != last:
-            rows.append('<li class="grp">%s</li>' % html.escape(item["part"]))
-            last = item["part"]
-        if item["kind"] == "front" and item["order"] == "0":
+        pg = (page_numbers or {}).get(item["slug"])
+        pg_html = '<span class="pg">%s</span>' % pg if pg else ""
+        if item["kind"] == "part":
+            rows.append('<li class="grp">%s%s</li>' % (html.escape(item["title"]), pg_html))
             continue
         no = (item["no"] + "장") if item["no"] else "—"
         label = item["title"].split(" · ", 1)[-1] if item["no"] else item["title"]
-        rows.append('<li><span class="no">%s</span><a href="#%s">%s</a></li>'
-                    % (html.escape(no), item["slug"], html.escape(label)))
+        rows.append('<li><span class="no">%s</span><a href="#%s">%s</a><span class="dots"></span>%s</li>'
+                    % (html.escape(no), item["slug"], html.escape(label), pg_html))
 
     sections = []
     for item in items:
@@ -229,7 +227,7 @@ def render_html(items, fragment=False):
         "title": ('<header class="titlepage"><p class="series">%s</p><h1>%s</h1>'
                   '<p>%s</p><div class="rule"></div></header>'
                   % (html.escape(SERIES), html.escape(TITLE), html.escape(SUBTITLE))),
-        "toc": '<nav class="toc"><h2>차례</h2><ul>%s</ul></nav>' % "\n".join(rows),
+        "toc": '<nav class="toc"><ul>%s</ul></nav>' % "\n".join(rows),
         "body": "\n".join(sections),
         "footer": "%s · %s" % (html.escape(TITLE), html.escape(SERIES)),
     }
@@ -239,7 +237,7 @@ def render_html(items, fragment=False):
         page = page.replace('<div class="wrap">', '</head><body><div class="wrap">', 1) + "</body></html>"
 
     os.makedirs(SITE, exist_ok=True)
-    path = os.path.join(SITE, "artifact.html" if fragment else "index.html")
+    path = os.path.join(SITE, out_name or ("artifact.html" if fragment else "index.html"))
     open(path, "w", encoding="utf-8").write(page)
     print("만들었습니다: %s  (%d꼭지)" % (os.path.relpath(path, ROOT), len(items)))
     return 0
