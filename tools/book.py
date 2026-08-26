@@ -4,6 +4,7 @@
     python3 tools/book.py            # book/manuscript/*.md → book/site/index.html
     python3 tools/book.py --stat     # 장별 분량 · 남은 확인 항목 · 진행률
     python3 tools/book.py --plain    # 원고 전체를 평문 한 파일로 (투고용)
+    python3 tools/book.py --artifact # 아티팩트로 올릴 조각 HTML (book/site/artifact.html)
 
 원고는 book/manuscript/NN-제목.md. 파일 이름 앞 번호가 곧 차례다.
 front matter: title · part · order · status(draft|ready).
@@ -29,13 +30,28 @@ CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
 TODO = re.compile(r"<!--\s*TODO:(.*?)-->", re.S)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
 
-PAGE = """<!doctype html>
+HEAD_FULL = """<!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
+"""
+
+HEAD_FRAGMENT = """<title>%(title)s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
+"""
+
+STYLE = """
 <style>
-:root{--paper:#FBFAF7;--ink:#1A1A1A;--muted:#6B6B66;--rule:#E0DED7;--accent:#8A2E2E}
-@media (prefers-color-scheme:dark){:root{--paper:#141513;--ink:#E9E7E1;--muted:#96948C;--rule:#2C2E2A;--accent:#D98A6A}}
+:root{--paper:#FBFAF7;--ink:#1A1A1A;--muted:#6B6B66;--rule:#E0DED7;--accent:#8A2E2E;
+ --flagbg:#FFF3CD;--flagink:#6B4E00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#141513;--ink:#E9E7E1;--muted:#96948C;--rule:#2C2E2A;--accent:#D98A6A;
+ --flagbg:#3A2E10;--flagink:#E8C97A}}
+:root[data-theme="dark"]{
+ --paper:#141513;--ink:#E9E7E1;--muted:#96948C;--rule:#2C2E2A;--accent:#D98A6A;
+ --flagbg:#3A2E10;--flagink:#E8C97A}
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);
  font-family:"Noto Serif KR","Nanum Myeongjo",Batang,serif;
@@ -73,17 +89,19 @@ table{border-collapse:collapse;width:100%%;margin:28px 0;font-size:.92rem;
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
 thead th{border-bottom:1.5px solid var(--ink);font-size:.8rem;color:var(--muted);font-weight:600}
 .tblwrap{overflow-x:auto}
-.flag{background:#FFF3CD;color:#6B4E00;padding:1px 5px;font-size:.8rem;
- font-family:system-ui,sans-serif;border-radius:2px}
-@media (prefers-color-scheme:dark){.flag{background:#3A2E10;color:#E8C97A}}
+.flag{background:var(--flagbg);color:var(--flagink);padding:1px 5px;font-size:.8rem;
+ font-family:"IBM Plex Sans KR",system-ui,sans-serif;border-radius:2px}
 footer.book{border-top:1px solid var(--rule);padding-top:24px;color:var(--muted);
- font-size:.85rem;font-family:system-ui,sans-serif}
-</style></head><body><div class="wrap">
+ font-size:.85rem;font-family:"IBM Plex Sans KR",system-ui,sans-serif}
+</style>
+"""
+
+BODY = """<div class="wrap">
 <header class="book"><h1>%(booktitle)s</h1><p>%(subtitle)s</p></header>
 %(toc)s
 %(body)s
 <footer class="book">%(stat)s</footer>
-</div></body></html>
+</div>
 """
 
 
@@ -139,7 +157,7 @@ def stat(items):
     return 0
 
 
-def build(items):
+def build(items, fragment=False):
     rows, sections = [], []
     seen = set()
     for item in items:
@@ -167,7 +185,7 @@ def build(items):
     checks = sum(len(i["checks"]) for i in items)
     todos = sum(len(i["todos"]) for i in items)
     os.makedirs(SITE, exist_ok=True)
-    page = PAGE % {
+    fields = {
         "title": "돈이 흐르는 구조",
         "booktitle": "돈이 흐르는 구조",
         "subtitle": "세계의 비즈니스 모델을 다섯 칸으로 읽는 법",
@@ -176,7 +194,13 @@ def build(items):
         "stat": "%d꼭지 · %s자 · 확인 %d건 · TODO %d건" % (
             len(items), format(total, ","), checks, todos),
     }
-    path = os.path.join(SITE, "index.html")
+    if fragment:
+        page = (HEAD_FRAGMENT + STYLE + BODY) % fields
+    else:
+        page = (HEAD_FULL + STYLE + BODY + "</head><body>") % fields
+        page = page.replace("</head><body>", "", 1).replace(
+            '<div class="wrap">', '</head><body><div class="wrap">', 1) + "</body></html>"
+    path = os.path.join(SITE, "artifact.html" if fragment else "index.html")
     with open(path, "w", encoding="utf-8") as handle:
         handle.write(page)
     print("만들었습니다: %s  (%d꼭지 · %s자)" % (
@@ -204,7 +228,7 @@ def main():
         return stat(items)
     if "--plain" in sys.argv[1:]:
         return plain(items)
-    return build(items)
+    return build(items, fragment="--artifact" in sys.argv[1:])
 
 
 if __name__ == "__main__":
