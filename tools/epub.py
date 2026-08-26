@@ -189,17 +189,17 @@ def make_cover(out_dir, title, subtitle, accent):
             lines.append(line)
         return lines
 
-    title_font = font(112)
-    sub_font = font(48)
-    lines = wrap(title, title_font, w - 240)
-    y = h * 0.34
+    title_font = font(176)
+    sub_font = font(52)
+    lines = wrap(title, title_font, w - 200)
+    y = h * 0.28
     for line in lines:
-        draw.text((120, y), line, font=title_font, fill="#1A1A1A")
-        y += 132
-    y += 40
+        draw.text((100, y), line, font=title_font, fill="#1A1A1A")
+        y += 208
+    y += 50
     for line in wrap(subtitle, sub_font, w - 240):
         draw.text((120, y), line, font=sub_font, fill="#6E6C64")
-        y += 66
+        y += 72
 
     path = os.path.join(out_dir, "cover.jpg")
     img.convert("RGB").save(path, quality=90)
