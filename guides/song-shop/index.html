@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>노래 가게 여는 법</title>
+<meta name="description" content="유튜브에 기독교 음악 채널을 만드는 법을, 처음 듣는 사람도 알아듣게 다섯 단계로 설명한 글.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gowun+Dodum&family=Jua&display=swap">
+<style>
+/* ─── 토큰: 크레용 상자 ─────────────────────────────── */
+:root{
+  --paper:#FCFBF8; --card:#FFFFFF; --tint:#F2F2EE; --tint2:#E8E8E2;
+  --ink:#2A3444; --ink2:#4B566B; --soft:#7B879C; --line:#DEDED6;
+  --c1:#D9482A;  /* 빨강 */
+  --c2:#D18416;  /* 주황 */
+  --c3:#2F8B44;  /* 초록 */
+  --c4:#2470A8;  /* 파랑 */
+  --c5:#6E51A0;  /* 보라 */
+  --c1b:#FBEAE5; --c2b:#FBF0DF; --c3b:#E4F2E7; --c4b:#E1EEF8; --c5b:#EDE7F6;
+  --yes:#2F8B44; --no:#D9482A;
+  --code-bg:#2C3445; --code-ink:#EDEFF4; --code-dim:#8D97AC;
+  --pop:0 2px 0 var(--line), 0 10px 22px -14px rgba(42,52,68,.35);
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151A24; --card:#1D2431; --tint:#232B3A; --tint2:#2C3546;
+    --ink:#F0F2F7; --ink2:#CBD2DF; --soft:#8E99AC; --line:#333D4F;
+    --c1:#FF8A6B; --c2:#F0B95C; --c3:#6CCB84; --c4:#6BB4E8; --c5:#B39BE0;
+    --c1b:#331C15; --c2b:#33260F; --c3b:#152B1B; --c4b:#132633; --c5b:#241D33;
+    --yes:#6CCB84; --no:#FF8A6B;
+    --code-bg:#0E131C; --code-ink:#E4E8F0; --code-dim:#77839A;
+    --pop:0 2px 0 rgba(0,0,0,.3), 0 12px 26px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151A24; --card:#1D2431; --tint:#232B3A; --tint2:#2C3546;
+  --ink:#F0F2F7; --ink2:#CBD2DF; --soft:#8E99AC; --line:#333D4F;
+  --c1:#FF8A6B; --c2:#F0B95C; --c3:#6CCB84; --c4:#6BB4E8; --c5:#B39BE0;
+  --c1b:#331C15; --c2b:#33260F; --c3b:#152B1B; --c4b:#132633; --c5b:#241D33;
+  --yes:#6CCB84; --no:#FF8A6B;
+  --code-bg:#0E131C; --code-ink:#E4E8F0; --code-dim:#77839A;
+  --pop:0 2px 0 rgba(0,0,0,.3), 0 12px 26px -16px rgba(0,0,0,.8);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Gowun Dodum",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;
+  font-size:18px; line-height:1.95; word-break:keep-all; overflow-wrap:anywhere;
+}
+::selection{background:var(--c2); color:var(--paper);}
+:focus-visible{outline:3px solid var(--c4); outline-offset:3px; border-radius:6px;}
+a{color:var(--c4);}
+
+.wrap{max-width:720px; margin:0 auto; padding:0 1.25rem 5rem;}
+
+/* ─── 표지 ──────────────────────────────────────────── */
+.cover{
+  text-align:center; padding:clamp(3rem,10vw,5.5rem) 0 clamp(2rem,6vw,3rem);
+}
+.cover .hi{
+  font-family:Gaegu,cursive; font-size:clamp(1.1rem,3.5vw,1.4rem);
+  color:var(--c2); font-weight:700; margin:0 0 .4rem;
+}
+.cover h1{
+  font-family:Jua,sans-serif; font-weight:400;
+  font-size:clamp(2.4rem,9vw,4rem); line-height:1.25; margin:0 0 1rem;
+  letter-spacing:-.01em; color:var(--ink); text-wrap:balance;
+}
+.cover h1 .u{
+  background:linear-gradient(transparent 62%, var(--c2b) 62%);
+  padding:0 .1em;
+}
+.cover p{
+  font-size:1.02rem; color:var(--ink2); margin:0 auto; max-width:30ch; line-height:1.85;
+}
+.keys{display:flex; justify-content:center; gap:.4rem; margin-top:1.8rem; flex-wrap:wrap;}
+.keys span{
+  width:26px; height:64px; border-radius:0 0 6px 6px; display:block;
+  border:2px solid var(--ink); border-top:none; background:var(--card);
+}
+.keys span:nth-child(2n){background:var(--ink); width:18px; height:42px;}
+
+/* ─── 큰 그림 ───────────────────────────────────────── */
+.map{
+  background:var(--tint); border:2px solid var(--line); border-radius:var(--r);
+  padding:1.5rem 1.3rem; margin:0 0 3rem;
+}
+.map h2{font-family:Jua,sans-serif; font-weight:400; font-size:1.3rem; margin:0 0 1.1rem; text-align:center;}
+.maplist{list-style:none; padding:0; margin:0; display:grid; gap:.55rem;}
+.maplist li{
+  display:grid; grid-template-columns:2.1rem 1fr auto; gap:.75rem; align-items:center;
+  background:var(--card); border-radius:10px; padding:.6rem .85rem;
+  font-size:.97rem; border:1.5px solid var(--line);
+}
+.maplist .b{
+  font-family:Jua,sans-serif; width:2.1rem; height:2.1rem; border-radius:50%;
+  display:grid; place-items:center; color:#fff; font-size:1rem;
+}
+.maplist .t{font-size:.83rem; color:var(--soft); white-space:nowrap;}
+.maplist li:nth-child(1) .b{background:var(--c1);}
+.maplist li:nth-child(2) .b{background:var(--c2);}
+.maplist li:nth-child(3) .b{background:var(--c3);}
+.maplist li:nth-child(4) .b{background:var(--c4);}
+.maplist li:nth-child(5) .b{background:var(--c5);}
+
+/* ─── 단계 ──────────────────────────────────────────── */
+.step{margin:0 0 3.5rem; scroll-margin-top:1.5rem;}
+.step-top{display:flex; align-items:center; gap:.9rem; margin:0 0 1.4rem;}
+.badge{
+  font-family:Jua,sans-serif; font-size:1.6rem; color:#fff;
+  width:3.1rem; height:3.1rem; border-radius:50%; display:grid; place-items:center; flex:none;
+  box-shadow:var(--pop);
+}
+.step h2{
+  font-family:Jua,sans-serif; font-weight:400; font-size:clamp(1.5rem,5vw,2rem);
+  margin:0; line-height:1.3; text-wrap:balance;
+}
+.step h2 small{display:block; font-family:"Gowun Dodum",sans-serif; font-size:.82rem; color:var(--soft); margin-top:.15rem;}
+.step h3{
+  font-family:Jua,sans-serif; font-weight:400; font-size:1.22rem;
+  margin:2.4rem 0 .8rem; line-height:1.45; text-wrap:balance;
+}
+.step h4{font-size:1rem; font-weight:400; font-family:Jua,sans-serif; margin:1.8rem 0 .6rem;}
+p{margin:0 0 1.15rem; color:var(--ink2);}
+strong{color:var(--ink); font-weight:400; background:linear-gradient(transparent 60%, var(--tint2) 60%); padding:0 .12em;}
+ul,ol{margin:0 0 1.3rem; padding-left:1.35rem; color:var(--ink2);}
+li{margin-bottom:.5rem;}
+
+.s1 .badge{background:var(--c1);} .s1 h2{color:var(--c1);}
+.s2 .badge{background:var(--c2);} .s2 h2{color:var(--c2);}
+.s3 .badge{background:var(--c3);} .s3 h2{color:var(--c3);}
+.s4 .badge{background:var(--c4);} .s4 h2{color:var(--c4);}
+.s5 .badge{background:var(--c5);} .s5 h2{color:var(--c5);}
+.s1 li::marker{color:var(--c1);} .s2 li::marker{color:var(--c2);}
+.s3 li::marker{color:var(--c3);} .s4 li::marker{color:var(--c4);}
+.s5 li::marker{color:var(--c5);}
+
+/* ─── 말풍선 / 쪽지 ─────────────────────────────────── */
+.note{
+  border:2px dashed var(--line); border-radius:var(--r); padding:1.1rem 1.25rem;
+  margin:0 0 1.4rem; background:var(--card);
+  font-family:Gaegu,cursive; font-size:1.22rem; line-height:1.75; color:var(--ink2);
+}
+.note b{font-weight:700; color:var(--ink); background:none;}
+.note .who{
+  display:block; font-family:Jua,sans-serif; font-size:.8rem; color:var(--c2);
+  margin-bottom:.35rem; letter-spacing:.02em;
+}
+.note > :last-child{margin-bottom:0;}
+
+.tip{
+  border-left:5px solid var(--c4); background:var(--c4b); border-radius:0 var(--r) var(--r) 0;
+  padding:1rem 1.2rem; margin:0 0 1.4rem;
+}
+.tip.warn{border-left-color:var(--c1); background:var(--c1b);}
+.tip.good{border-left-color:var(--c3); background:var(--c3b);}
+.tip.star{border-left-color:var(--c2); background:var(--c2b);}
+.tip .lbl{display:block; font-family:Jua,sans-serif; font-size:.92rem; margin-bottom:.4rem; color:var(--c4);}
+.tip.warn .lbl{color:var(--c1);} .tip.good .lbl{color:var(--c3);} .tip.star .lbl{color:var(--c2);}
+.tip p{margin-bottom:.7rem; font-size:.98rem;}
+.tip > :last-child{margin-bottom:0;}
+
+/* ─── 비유 카드 ─────────────────────────────────────── */
+.vs{
+  display:grid; gap:.7rem; margin:0 0 1.4rem;
+}
+@media (min-width:560px){ .vs{grid-template-columns:1fr 1fr;} }
+.vs div{
+  border-radius:12px; padding:.95rem 1.1rem; font-size:.96rem; line-height:1.7;
+  border:2px solid var(--line); background:var(--card);
+}
+.vs .bad{border-color:var(--c1); background:var(--c1b);}
+.vs .ok{border-color:var(--c3); background:var(--c3b);}
+.vs .mark{font-family:Jua,sans-serif; display:block; font-size:1.05rem; margin-bottom:.25rem;}
+.vs .bad .mark{color:var(--c1);} .vs .ok .mark{color:var(--c3);}
+
+/* ─── 표 ────────────────────────────────────────────── */
+.tw{overflow-x:auto; margin:0 0 1.5rem; border:2px solid var(--line); border-radius:var(--r); background:var(--card);}
+table{border-collapse:collapse; width:100%; font-size:.93rem; min-width:max-content;}
+th,td{padding:.7rem .9rem; text-align:left; border-bottom:1.5px solid var(--line); vertical-align:top;}
+thead th{background:var(--tint); font-family:Jua,sans-serif; font-weight:400; font-size:.9rem; white-space:nowrap;}
+tbody tr:last-child td, tbody tr:last-child th{border-bottom:none;}
+tbody th{font-weight:400; color:var(--ink); white-space:nowrap;}
+.y{color:var(--yes);} .n{color:var(--no);}
+
+/* ─── 코드 / 도식 ───────────────────────────────────── */
+pre{
+  background:var(--code-bg); color:var(--code-ink); padding:1.1rem 1.2rem;
+  border-radius:12px; overflow-x:auto; margin:0 0 1.4rem;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.86rem; line-height:1.85;
+}
+pre .c{color:var(--code-dim);}
+code{
+  font-family:ui-monospace,Menlo,monospace; font-size:.88em;
+  background:var(--tint2); padding:.1em .4em; border-radius:5px;
+}
+
+/* ─── 하면 안 되는 것 ───────────────────────────────── */
+.nono{list-style:none; padding:0; margin:0 0 1.5rem; display:grid; gap:.8rem; counter-reset:x;}
+.nono li{
+  counter-increment:x; background:var(--c1b); border:2px solid var(--c1);
+  border-radius:var(--r); padding:1rem 1.15rem 1rem 3.3rem; position:relative;
+  font-size:.97rem; line-height:1.8; margin:0; color:var(--ink2);
+}
+.nono li::before{
+  content:"✕"; position:absolute; left:1rem; top:.95rem;
+  font-family:Jua,sans-serif; color:var(--c1); font-size:1.15rem;
+}
+.nono b{display:block; font-family:Jua,sans-serif; font-weight:400; color:var(--ink); font-size:1.08rem; margin-bottom:.25rem; background:none;}
+
+/* ─── 마무리 ────────────────────────────────────────── */
+.wrapup{
+  background:var(--tint); border:2px solid var(--line); border-radius:var(--r);
+  padding:1.6rem 1.4rem; margin:0 0 2rem;
+}
+.wrapup h2{font-family:Jua,sans-serif; font-weight:400; font-size:1.35rem; margin:0 0 1.1rem; text-align:center;}
+.three{list-style:none; padding:0; margin:0; display:grid; gap:.8rem; counter-reset:t;}
+.three li{
+  counter-increment:t; position:relative; padding-left:2.4rem; margin:0;
+  font-size:1rem; line-height:1.8;
+}
+.three li::before{
+  content:counter(t); position:absolute; left:0; top:.15rem;
+  font-family:Jua,sans-serif; width:1.7rem; height:1.7rem; border-radius:50%;
+  background:var(--c5); color:#fff; display:grid; place-items:center; font-size:.9rem;
+}
+.today{
+  text-align:center; padding:2.2rem 1.4rem; border-radius:var(--r);
+  background:var(--c2b); border:2px solid var(--c2);
+}
+.today .lbl{font-family:Jua,sans-serif; color:var(--c2); font-size:.95rem; display:block; margin-bottom:.7rem;}
+.today p{font-size:1.12rem; color:var(--ink); margin-bottom:.7rem; line-height:1.8;}
+.today .sm{font-family:Gaegu,cursive; font-size:1.15rem; color:var(--ink2); margin:0;}
+
+footer{margin-top:3rem; padding-top:1.5rem; border-top:2px dashed var(--line); text-align:center;}
+footer p{font-size:.88rem; color:var(--soft); margin:0;}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation:none !important; transition:none !important;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="cover">
+    <p class="hi">유튜브에 기독교 음악 채널 만들기</p>
+    <h1>노래 가게<br><span class="u">여는 법</span></h1>
+    <p>어려운 말은 하나도 안 쓸게. 다섯 단계면 돼.</p>
+    <div class="keys" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <section>
+    <h2 style="font-family:Jua,sans-serif;font-weight:400;font-size:1.35rem;margin:0 0 1rem;">먼저, 유튜브가 뭔지부터</h2>
+    <p>유튜브는 아주아주 큰 <strong>시장</strong>이야. 세계에서 제일 큰 시장이라고 생각하면 돼.</p>
+    <p>그 시장에는 가게가 수백만 개 있어. 요리 가게, 게임 가게, 공부 가게…
+      그리고 놀랍게도 <strong>누구나 가게를 낼 수 있어.</strong> 자리값도 안 받아.</p>
+    <p>너는 거기에 <strong>노래 가게</strong>를 낼 거야. 찬송가와 찬양을 파는 가게.</p>
+
+    <div class="map">
+      <h2>가게를 여는 다섯 단계</h2>
+      <ul class="maplist">
+        <li><span class="b">1</span><span>가게 자리 얻기</span><span class="t">채널 만들기</span></li>
+        <li><span class="b">2</span><span>팔 물건 만들기 ★</span><span class="t">음악 만들기</span></li>
+        <li><span class="b">3</span><span>예쁘게 포장하기</span><span class="t">영상 만들기</span></li>
+        <li><span class="b">4</span><span>손님 모으기 ★</span><span class="t">구독자</span></li>
+        <li><span class="b">5</span><span>돈 받기</span><span class="t">수익</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section class="step s1">
+    <div class="step-top"><span class="badge">1</span><h2>가게 자리 얻기<small>채널 만들기</small></h2></div>
+
+    <h3>열쇠부터 만들어</h3>
+    <p>가게를 열려면 <strong>열쇠</strong>가 있어야겠지? 유튜브에서 열쇠는 <strong>구글 계정</strong>이야.</p>
+    <p>평소에 쓰던 거 말고 <strong>가게 전용으로 새로</strong> 만드는 게 좋아.
+      집 열쇠랑 가게 열쇠를 따로 쓰는 것처럼.</p>
+
+    <h3>자리를 고를 때 딱 하나만 조심해</h3>
+    <p>채널을 만들려고 하면 유튜브가 물어봐 — <em>“개인 채널로 할래? 브랜드 계정으로 할래?”</em></p>
+    <div class="tip star"><span class="lbl">여기서 꼭</span>
+      <p><strong>“브랜드 계정”</strong>을 고르자.</p></div>
+
+    <div class="tw"><table>
+      <thead><tr><th></th><th>개인 채널</th><th>브랜드 계정</th></tr></thead>
+      <tbody>
+        <tr><th>간판 이름</th><td>내 이름으로 붙박이</td><td class="y">마음대로 바꿔</td></tr>
+        <tr><th>이름 바꾸기</th><td>몇 달에 한 번만</td><td class="y">언제든지</td></tr>
+        <tr><th>친구랑 같이</th><td>비밀번호를 알려줘야 해</td><td class="y">초대하면 돼</td></tr>
+        <tr><th>남한테 주기</th><td class="n">안 돼</td><td class="y">돼</td></tr>
+      </tbody>
+    </table></div>
+    <p>개인 채널로 만들었다가 나중에 후회하면?
+      <strong>가게를 부수고 새로 지어야 해.</strong> 손님도 다 잃고.</p>
+
+    <h3>자물쇠는 두 개 걸어</h3>
+    <p>가게에 도둑이 들면 큰일이잖아. 유튜브 채널도 훔쳐 가는 사람들이 있어.
+      음악 채널은 특히 많이 노려.</p>
+    <p>그래서 자물쇠를 두 개 걸어야 해. 이걸 <strong>2단계 인증</strong>이라고 불러.
+      비밀번호가 첫 번째 자물쇠, 휴대폰에 뜨는 숫자가 두 번째 자물쇠야.</p>
+
+    <h3>“제가 진짜 주인이에요” 확인받기</h3>
+    <p>전화번호를 넣어서 확인을 받아. 이걸 안 하면
+      <strong>15분보다 긴 영상을 못 올려.</strong>
+      우리는 <strong>1시간짜리</strong>를 만들 거니까 꼭 해야 해.</p>
+
+    <h3>가게 이름 짓기</h3>
+    <p>가게 이름은 <strong>손님이 찾는 말</strong>로 지어야 해.
+      빵집 이름을 “구름”이라고 지으면 예쁘긴 한데, 빵 사고 싶은 사람이 못 찾잖아.</p>
+    <div class="tw"><table>
+      <thead><tr><th>이름</th><th>어때?</th></tr></thead>
+      <tbody>
+        <tr><td>기도 피아노 찬양</td><td class="y">좋아. 찾기 쉬워</td></tr>
+        <tr><td>잠들기 전 찬송가</td><td class="y">좋아. 언제 듣는지 알려줘</td></tr>
+        <tr><td>구름과 바람</td><td class="n">예쁘지만 아무도 못 찾아</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="note"><span class="who">어른에게 부탁할 것</span>
+      <p>유튜브 계정은 나이 제한이 있어. 그리고 나중에 돈을 받으려면
+        <b>어른 이름으로 은행 정보</b>를 넣어야 해.
+        부모님이나 선생님께 같이 해 달라고 하자.</p></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="step s2">
+    <div class="step-top"><span class="badge">2</span><h2>팔 물건 만들기 ★<small>음악 만들기 · 제일 중요</small></h2></div>
+    <p>여기가 제일 중요해. 잘 들어 봐.</p>
+
+    <h3>노래에는 주인이 두 명 있어</h3>
+    <p>이게 제일 헷갈리는 부분인데, 딱 한 번만 이해하면 끝이야.</p>
+<pre><code>주인 ①  노래를 만든 사람     (작사·작곡가)
+주인 ②  그 노래를 녹음한 사람  (가수, 음반 회사)</code></pre>
+    <p>친구가 그림을 그렸어. 그 그림의 주인은 친구야. → <strong>주인 ①</strong><br>
+      그 그림을 사진관에서 예쁘게 찍었어. 그 사진의 주인은 사진관이야. → <strong>주인 ②</strong></p>
+    <p>노래도 똑같아. 그래서 남의 노래를 쓰려면 <strong>두 명 다한테 허락</strong>을 받아야 해.</p>
+
+    <h3>물건을 만드는 방법은 세 가지야</h3>
+
+    <h4>방법 (가) · 아주 오래된 찬송가 — 제일 좋아 ⭐</h4>
+    <p>100년, 200년 전에 만들어진 찬송가들이 있어.
+      <em>나 같은 죄인 살리신</em>(Amazing Grace) 같은 노래.</p>
+    <p>이 노래들은 만든 사람이 이미 하늘나라에 가셨어. 그리고 아주 오래돼서
+      <strong>이제 모두의 것</strong>이 됐어. 그러니까 <strong>주인 ①은 없어.</strong></p>
+    <p>그리고 네가 직접 피아노로 연주해서 녹음하면? <strong>주인 ②는 너야!</strong></p>
+    <div class="tip good"><span class="lbl">그래서 이렇게 돼</span>
+      <p style="font-size:1.05rem;">오래된 찬송가 &nbsp;+&nbsp; 내가 직접 연주 &nbsp;=&nbsp; <strong>완전히 내 노래</strong> 🎉</p>
+      <p>돈도 전부 네가 받고, 아무도 뭐라고 안 해.</p></div>
+
+    <div class="tw"><table>
+      <thead><tr><th>써도 되는 노래</th><th>언제 만들어졌나</th></tr></thead>
+      <tbody>
+        <tr><td>Amazing Grace <small>나 같은 죄인 살리신</small></td><td>1779년</td></tr>
+        <tr><td>It Is Well with My Soul <small>내 평생에 가는 길</small></td><td>1876년</td></tr>
+        <tr><td>Holy, Holy, Holy <small>거룩 거룩 거룩</small></td><td>1826년</td></tr>
+        <tr><td>What a Friend We Have in Jesus <small>죄 짐 맡은 우리 구주</small></td><td>1855년</td></tr>
+      </tbody>
+    </table></div>
+    <div class="tip warn"><span class="lbl">한 가지만 조심해</span>
+      <p>찬송가 책에 있는 <strong>악보를 그대로 스캔해서 올리면 안 돼.</strong>
+        책을 만든 사람들이 따로 있거든.
+        <strong>멜로디만 참고해서 네가 새로 연주</strong>하는 거야.</p></div>
+
+    <h4>방법 (나) · 컴퓨터(AI)한테 도와달라고 하기</h4>
+    <p>요즘은 컴퓨터한테 “잔잔한 피아노 찬양 만들어 줘” 하면 만들어 줘.
+      <code>수노(Suno)</code> 같은 게 그런 거야. 근데 아주 중요한 규칙이 있어.</p>
+    <div class="tip warn"><span class="lbl">규칙</span>
+      <p><strong>컴퓨터가 만든 걸 그대로 올리면 안 돼.</strong></p>
+      <p>유튜브가 이렇게 생각하거든 — <em>“이건 이 사람이 만든 게 아니라 그냥 받아 온 거네?”</em>
+        그러면 <strong>돈을 안 줘.</strong></p></div>
+    <p>냉동피자로 생각해 봐.</p>
+    <div class="vs">
+      <div class="bad"><span class="mark">✕ 이건 안 돼</span>냉동피자를 그냥 데워서 팔기<br><small>“이건 네 요리가 아니잖아”</small></div>
+      <div class="ok"><span class="mark">○ 이건 돼</span>치즈 더 올리고, 굽고, 예쁘게 담기<br><small>“오, 네 요리 맞네”</small></div>
+    </div>
+    <p>노래도 똑같아. <strong>네 손을 꼭 얹어야 해.</strong></p>
+    <ol>
+      <li>한 번에 여러 개를 만들어서, 좋은 부분만 골라내</li>
+      <li>그 위에 피아노를 한 줄 더 연주해서 얹어</li>
+      <li>앞뒤 순서를 네가 다시 정해</li>
+      <li>소리 크기를 다듬어</li>
+    </ol>
+    <div class="tip"><span class="lbl">잊지 마</span>
+      <p>유튜브에 <strong>“AI로 만들었어요” 버튼</strong>이 있어. 꼭 눌러.
+        숨기면 나중에 더 크게 혼나.</p>
+      <p>그리고 컴퓨터한테 부탁하려면 <strong>한 달에 만 원</strong> 정도 내야 해.
+        공짜로 만든 노래는 팔면 안 되거든. 이건 규칙이야.</p></div>
+
+    <h4>방법 (다) · 요즘 찬양 따라 부르기 — 돈은 안 돼</h4>
+    <p>요즘 사람들이 많이 듣는 찬양을 네가 따라 부르는 거야.</p>
+    <div class="vs">
+      <div class="ok"><span class="mark">○ 좋은 점</span>사람들이 검색해서 많이 찾아와. 손님이 빨리 늘어</div>
+      <div class="bad"><span class="mark">✕ 나쁜 점</span>유튜브가 광고비를 <b>원래 주인한테</b> 줘. 너한테 안 줘</div>
+    </div>
+    <p>컴퓨터가 자동으로 알아채거든. <em>“어? 이거 그 노래잖아.”</em>
+      그러고는 돈을 원래 만든 사람한테 보내.</p>
+    <div class="tip warn"><span class="lbl">절대 하면 안 되는 것</span>
+      <p>원래 노래의 <strong>반주(MR)를 그대로 쓰면 안 돼.</strong>
+        그럼 주인 ①이랑 주인 ② 둘 다한테 걸려서 <strong>돈이 완전히 0원</strong>이 돼.
+        반주도 네가 직접 쳐야 해.</p></div>
+    <p>그럼 왜 할까? 손님을 데려오려고. 손님이 오면 네 오래된 찬송가도 듣게 되잖아.
+      그래서 이건 전체의 <strong>10개 중 2~3개</strong>만 하는 거야.</p>
+
+    <h3>세 가지를 표로 정리하면</h3>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>(가) 오래된 찬송가</th><th>(나) AI 도움</th><th>(다) 요즘 찬양</th></tr></thead>
+      <tbody>
+        <tr><th>돈이 누구한테?</th><td class="y">전부 나</td><td class="y">전부 나</td><td class="n">원래 주인</td></tr>
+        <tr><th>위험해?</th><td class="y">안전해</td><td>조금 조심</td><td class="n">위험해</td></tr>
+        <tr><th>손님이 빨리 와?</th><td>천천히</td><td>천천히</td><td class="y">빨리</td></tr>
+        <tr><th>얼마나 할까?</th><td class="y">많이</td><td class="y">많이</td><td>조금만</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 3 -->
+  <section class="step s3">
+    <div class="step-top"><span class="badge">3</span><h2>예쁘게 포장하기<small>영상 만들기</small></h2></div>
+
+    <h3>왜 1시간짜리를 만들까?</h3>
+    <p>이상하게 들리겠지만, 이런 음악은 <strong>1시간짜리</strong>가 제일 잘 돼.
+      왜냐면 사람들이 이렇게 듣거든.</p>
+    <ul>
+      <li>잠들기 전에 틀어 놓고 잠들어</li>
+      <li>기도하면서 틀어 놔</li>
+      <li>공부하면서 틀어 놔</li>
+    </ul>
+    <p>3분짜리를 틀면 금방 끝나서 불편하잖아. 그래서
+      <strong>노래 8~10개를 이어 붙여서 1시간</strong>으로 만드는 거야.
+      그리고 유튜브는 <strong>사람들이 오래 본 영상</strong>을 좋아해.</p>
+
+    <h3>배경 그림은 네가 직접 찍은 게 최고야</h3>
+    <p>인터넷에서 그림을 가져오지 마. 남들도 똑같은 걸 쓰거든.
+      그럼 네 가게가 특별해 보이지 않아.</p>
+    <div class="tip good"><span class="lbl">핸드폰으로 이런 걸 찍어 봐</span>
+      <p>창문으로 들어오는 햇빛 · 촛불이 흔들리는 모습 · 성경책 넘어가는 페이지 ·
+        해 지는 하늘 · 비 오는 창문</p>
+      <p>30초짜리 하나만 잘 찍어도 1시간 영상 배경으로 쓸 수 있어.
+        그리고 계속 다시 쓸 수 있어. <strong>찍을수록 재산이 쌓여.</strong></p></div>
+
+    <h3>그림이 하나도 안 움직이면 안 돼</h3>
+    <p>사진 한 장을 딱 붙여 놓고 1시간 동안 그대로 두면?
+      유튜브가 <em>“성의가 없네”</em>라고 생각해서 돈을 잘 안 줘.</p>
+    <p>그러니까 아주 조금이라도 움직이게 해 — 아주 천천히 확대되기,
+      반짝이가 떠다니기, 촛불이 흔들리기.</p>
+
+    <h3>제목에 손님이 찾는 말을 넣어</h3>
+    <p>제목은 <strong>가게 간판</strong>이야.</p>
+<pre><code><span class="c">좋은 제목 ⭕</span>
+   잠들기 전 듣는 찬송가 연주 1시간
+   새벽 기도 피아노 찬양 1시간
+
+<span class="c">아쉬운 제목 ❌</span>
+   나의 첫 번째 영상
+   찬양 모음 #1</code></pre>
+    <p>중요한 말은 <strong>앞쪽</strong>에 써야 해. 뒤쪽은 휴대폰에서 잘려서 안 보여.</p>
+  </section>
+
+  <!-- 4 -->
+  <section class="step s4">
+    <div class="step-top"><span class="badge">4</span><h2>손님 모으기 ★<small>구독자 · 제일 어려움</small></h2></div>
+    <p>여기가 제일 어려워. 솔직하게 말할게.</p>
+
+    <h3>유튜브가 정한 규칙</h3>
+<pre><code>① 단골손님 <b>1,000명</b>            ← 구독자
+② 사람들이 들은 시간 <b>4,000시간</b>  ← 다 합쳐서</code></pre>
+    <p><strong>4,000시간이 얼마나 되냐면?</strong>
+      1시간짜리 영상을 4,000명이 끝까지 들으면 돼. 혹은 8,000명이 30분씩 들어도 되고.</p>
+    <p>많아 보이지? 맞아, 많아. 근데 1시간짜리를 만드는 이유가 이거야.
+      <strong>훨씬 빨리 채워져.</strong> 3분짜리로 채우려면 8만 명이 봐야 하거든.</p>
+
+    <h3>제일 중요한 비밀: 꾸준함</h3>
+    <div class="tip star"><span class="lbl">다른 거 다 잊어도 이건 기억해</span>
+      <p style="font-size:1.1rem;"><strong>일주일에 하나씩. 계속.</strong></p>
+      <p>멋진 영상 하나보다, <strong>평범한 영상 열 개</strong>가 훨씬 세.</p></div>
+    <p>왜냐면 유튜브는 <strong>꾸준한 가게</strong>를 좋아하거든.
+      매일 문 여는 가게랑 가끔 여는 가게 중에 어디를 소개해 주겠어?</p>
+
+    <h3>조급해하지 마 — 진짜 이야기</h3>
+    <p>유튜브에서 제일 유명한 피아노 찬양 채널이 있어.
+      <strong>DappyTKeys</strong>라는 채널이야. 구독자가 <strong>100만 명</strong>이 넘어.</p>
+    <p>그 사람이 얼마나 걸렸을까? <strong>2011년에 시작해서 지금까지야. 15년.</strong></p>
+    <p>“석 달 만에 부자 되는 법!” 이렇게 말하는 사람은 믿지 마.</p>
+    <div class="note"><span class="who">그런데 좋은 소식</span>
+      <p>그 사람은 <b>피아노만 쳤어.</b> 얼굴도 안 나오고, 노래도 안 부르고,
+        화려한 편집도 없었어.<br><b>너도 할 수 있다는 뜻이야.</b></p></div>
+
+    <h3>100일 동안 뭘 볼까</h3>
+    <p>처음에는 구독자 숫자를 보지 마. 속상하기만 해. 대신 이 두 개만 봐.</p>
+    <div class="tw"><table>
+      <thead><tr><th>볼 것</th><th>뜻</th><th>낮으면</th></tr></thead>
+      <tbody>
+        <tr><th>클릭률</th><td>지나가다 눌러 본 사람 비율</td><td>그림이랑 제목을 바꿔</td></tr>
+        <tr><th>평균 시청 시간</th><td>얼마나 오래 들었나</td><td>처음 1분을 다시 만들어</td></tr>
+      </tbody>
+    </table></div>
+    <p>숫자가 알려 줘. <strong>뭘 고쳐야 하는지.</strong></p>
+  </section>
+
+  <!-- 5 -->
+  <section class="step s5">
+    <div class="step-top"><span class="badge">5</span><h2>돈 받기<small>수익</small></h2></div>
+    <p>돈이 오는 길은 세 개야.</p>
+
+    <h3>길 ① · 광고판 임대료 <small style="color:var(--soft);font-size:.85rem;">유튜브 광고</small></h3>
+    <p>네 영상 앞에 광고가 나오잖아. 그 광고비의 일부를 유튜브가 너한테 줘.
+      가게 벽에 광고판을 붙여 주고 임대료를 받는 거랑 똑같아.</p>
+    <p><strong>얼마나 받냐면</strong> — 1,000번 보면 대략 <strong>2,000원에서 1만 원</strong>쯤.
+      적어 보이지? 근데 이건 <strong>네가 자는 동안에도 들어와.</strong> 그게 다른 점이야.</p>
+    <div class="tip star"><span class="lbl">🔑 아주 중요한 요령</span>
+      <p>똑같은 노래인데, 뭐라고 부르냐에 따라 돈이 <strong>다섯 배</strong>까지 달라져.</p>
+      <p><span class="n">“찬양 모음”</span>이라고 쓰면 → 1,000번에 약 <strong>2,000원</strong><br>
+        <span class="y">“기도할 때 듣는 음악”</span>이라고 쓰면 → 1,000번에 약 <strong>1만 원</strong></p>
+      <p>왜 그럴까? 광고를 주는 회사가 달라지거든. 잠, 마음 편해지는 것, 건강
+        이런 걸 파는 회사들이 광고비를 훨씬 많이 내.</p>
+      <p>그러니까 제목에 이런 말을 넣자 —
+        <code>잠들기 전</code> <code>기도할 때</code> <code>마음이 편해지는</code></p></div>
+
+    <h3>길 ② · 다른 가게에도 물건 놓기 ⭐ <small style="color:var(--soft);font-size:.85rem;">제일 먼저 할 것</small></h3>
+    <p>이게 사람들이 잘 모르는 건데, <strong>제일 먼저 해야 할 일</strong>이야.</p>
+    <p>네가 만든 노래를 <strong>스포티파이, 애플뮤직</strong> 같은 데에도 올릴 수 있어.
+      <code>디스트로키드</code> 같은 곳에 부탁하면 대신 올려 줘. <strong>1년에 3만 원</strong>쯤.</p>
+    <div class="tw"><table>
+      <thead><tr><th></th><th>유튜브 광고</th><th>다른 가게에 놓기</th></tr></thead>
+      <tbody>
+        <tr><th>시작하려면</th><td>단골 1,000명 필요</td><td class="y">0명이어도 돼</td></tr>
+        <tr><th>언제 시작해?</th><td>1년쯤 뒤</td><td class="y">오늘</td></tr>
+      </tbody>
+    </table></div>
+    <p>똑같은 노래인데 유튜브에서는 1년을 기다려야 하고, 여기서는
+      <strong>오늘 시작할 수 있어.</strong> 그리고 이런 음악은 사람들이
+      <strong>몇 년 동안</strong> 계속 들어.</p>
+    <div class="tip warn"><span class="lbl">조심할 것 하나</span>
+      <p><code>Content ID</code>라는 걸 켜지 마. 처음에는 절대.</p>
+      <p>이걸 켜면 <strong>네 노래가 네 영상을 고발해.</strong> 진짜야.
+        컴퓨터가 “어? 이 노래 주인이 있는데?” 하면서 네 영상을 막아.
+        <strong>그 주인이 너인데도!</strong></p></div>
+
+    <h3>길 ③ · 교회에 빌려주기</h3>
+    <p>이건 아무도 잘 안 하는데, 사실 아주 좋아.</p>
+    <p>교회들은 영상을 많이 만들어. 예배 영상, 수련회 영상, 교회 유튜브…
+      거기에 <strong>배경음악</strong>이 필요하거든. 근데 아무 음악이나 쓰면 안 돼. 저작권 때문에.</p>
+    <p>그래서 교회들은 늘 <strong>마음 놓고 쓸 수 있는 음악</strong>을 찾고 있어.
+      네가 만든 오래된 찬송가 연주가 바로 그거야!</p>
+    <div class="tip good"><span class="lbl">이게 왜 좋냐면</span>
+      <p>조회수랑 상관없어. <strong>한 번에 얼마</strong> 이렇게 받아.<br>
+        그리고 유튜브가 갑자기 규칙을 바꿔도 이건 안 없어져.</p></div>
+
+    <h3>어떤 순서로 할까</h3>
+<pre><code>지금 당장  →  ② 다른 가게에도 놓기   <span class="c">(오늘 시작할 수 있어)</span>
+1년쯤 뒤   →  ① 유튜브 광고          <span class="c">(1,000명 모이면)</span>
+노래 20개  →  ③ 교회에 빌려주기</code></pre>
+  </section>
+
+  <!-- 하면 안 되는 것 -->
+  <section class="step">
+    <div class="step-top"><span class="badge" style="background:var(--c1);">!</span>
+      <h2 style="color:var(--c1);">하면 안 되는 것 다섯 개</h2></div>
+    <ol class="nono">
+      <li><b>남의 노래를 그냥 가져다 올리기</b>
+        “찬양 모음”이라면서 남이 만든 음원을 모아서 올리는 거.
+        조회수는 잘 나와. 근데 돈은 하나도 안 들어오고, 채널이 갑자기 사라질 수도 있어.
+        그건 남의 물건을 가게에 놓고 파는 거야. <b style="display:inline;">도둑질이야.</b></li>
+      <li><b>AI가 만든 걸 손 안 대고 그대로 올리기</b>
+        냉동피자 그냥 파는 거 기억나지? 꼭 네 손을 얹어.</li>
+      <li><b>AI 썼으면서 아니라고 하기</b>
+        유튜브에 “AI로 만들었어요” 버튼이 있어. 꼭 눌러.
+        숨기다가 걸리면 훨씬 크게 혼나. 솔직하게 누르면 아무 문제 없어.</li>
+      <li><b>세금 서류 안 내기</b>
+        미국 사람들이 네 영상을 많이 봐. 그런데 서류를 안 내면 그 돈의 30%를 미국이 가져가.
+        서류를 내면 10%만. 5분이면 끝나는데 5분 안 해서 20%를 잃는 거야.</li>
+      <li><b>하다가 그만두기</b>
+        사실 이게 제일 무서워. 유튜브는 최근 1년만 세거든.
+        쉬면 예전에 쌓은 시간이 뒤에서 계속 빠져나가.</li>
+    </ol>
+  </section>
+
+  <!-- 마무리 -->
+  <section>
+    <div class="wrapup">
+      <h2>정리 — 딱 세 문장</h2>
+      <ol class="three">
+        <li><strong>오래된 찬송가를 네가 직접 연주하는 게 제일 좋아.</strong>
+          돈도 전부 네 거고, 아무 문제도 없어.</li>
+        <li><strong>일주일에 하나씩 꾸준히.</strong> 멋진 하나보다 평범한 열 개가 세.</li>
+        <li><strong>급하지 않아.</strong> 제일 잘하는 사람도 15년 걸렸어.</li>
+      </ol>
+    </div>
+
+    <div class="today">
+      <span class="lbl">오늘 할 수 있는 일 하나</span>
+      <p>채널 만들기? 아니야. 그건 내일 해도 돼.<br>
+        오늘은 <strong>핸드폰을 들고, 창문으로 들어오는 빛을 30초만 찍어 봐.</strong></p>
+      <p class="sm">그게 네 첫 번째 재료야.<br>그리고 그건 아무도 안 가진, 너만의 것이야.</p>
+    </div>
+
+    <footer>
+      <p>이 글은 어른용 자세한 가이드 「새벽 세 시의 채널」을<br>
+        처음 듣는 사람도 알아듣게 다시 쓴 거야. 숫자와 출처는 그쪽에 있어.</p>
+    </footer>
+  </section>
+
+</div>
+</body>
+</html>
