@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""원고를 책 한 권짜리 HTML 로 묶고, 진행 상황을 센다.
+"""원고를 전자책 한 권으로 묶는다.
 
-    python3 tools/book.py            # book/manuscript/*.md → book/site/index.html
-    python3 tools/book.py --stat     # 장별 분량 · 남은 확인 항목 · 진행률
-    python3 tools/book.py --plain    # 원고 전체를 평문 한 파일로 (투고용)
-    python3 tools/book.py --artifact # 아티팩트로 올릴 조각 HTML (book/site/artifact.html)
+    python3 tools/book.py             # book/site/index.html  (브라우저용 한 권)
+    python3 tools/book.py --artifact  # book/site/artifact.html (아티팩트용 조각)
+    python3 tools/book.py --md        # book/site/누가-돈을-내는가.md (번호가 매겨진 원고 한 파일)
+    python3 tools/book.py --plain     # book/site/원고전체.txt (투고·편집용 평문)
+    python3 tools/book.py --stat      # 장별 분량 · 남은 확인 항목 (독자용 출력이 아니다)
 
-원고는 book/manuscript/NN-제목.md. 파일 이름 앞 번호가 곧 차례다.
-front matter: title · part · order · status(draft|ready).
+원고는 book/manuscript/NNN-제목.md. 파일 이름 앞 숫자가 곧 차례다.
+front matter: title · part · kind(front|part|chapter|back) · status.
 
-`<!-- 확인: … -->` 는 1차 자료로 검증해야 하는 숫자,
-`<!-- TODO: … -->` 는 아직 안 쓴 부분이다. **둘 다 0 이 되어야 원고가 끝난다.**
+절 번호(1.1, 1.2 …)는 장 번호에서 자동으로 붙는다. 원고에 직접 쓰지 않는다.
+분량과 확인 건수는 --stat 에만 나온다. 독자가 보는 책에는 넣지 않는다.
 """
 
 import html
@@ -24,96 +25,24 @@ from build import ROOT
 
 MANUSCRIPT = os.path.join(ROOT, "book", "manuscript")
 SITE = os.path.join(ROOT, "book", "site")
-TARGET = 95000  # 목표 분량. book/plan.md 4절과 맞춘다.
+TITLE = "누가 돈을 내는가"
+SUBTITLE = "세계의 사업을 다섯 칸으로 읽는 법"
+SERIES = "다섯 칸 시리즈 · 첫째 권"
+TARGET = 95000
 
 CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
 TODO = re.compile(r"<!--\s*TODO:(.*?)-->", re.S)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
-
-HEAD_FULL = """<!doctype html>
-<html lang="ko"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>%(title)s</title>
-"""
-
-HEAD_FRAGMENT = """<title>%(title)s</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;600&display=swap">
-"""
-
-STYLE = """
-<style>
-:root{--paper:#FBFAF7;--ink:#1A1A1A;--muted:#6B6B66;--rule:#E0DED7;--accent:#8A2E2E;
- --flagbg:#FFF3CD;--flagink:#6B4E00}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
- --paper:#141513;--ink:#E9E7E1;--muted:#96948C;--rule:#2C2E2A;--accent:#D98A6A;
- --flagbg:#3A2E10;--flagink:#E8C97A}}
-:root[data-theme="dark"]{
- --paper:#141513;--ink:#E9E7E1;--muted:#96948C;--rule:#2C2E2A;--accent:#D98A6A;
- --flagbg:#3A2E10;--flagink:#E8C97A}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);
- font-family:"Noto Serif KR","Nanum Myeongjo",Batang,serif;
- font-size:17px;line-height:1.95;word-break:keep-all}
-.wrap{max-width:38em;margin:0 auto;padding:0 24px 120px}
-header.book{padding:96px 0 40px;border-bottom:2px solid var(--ink);margin-bottom:56px}
-header.book h1{font-size:2.6rem;line-height:1.2;margin:0 0 12px;letter-spacing:-.02em}
-header.book p{margin:0;color:var(--muted);font-size:1rem}
-nav.toc{margin:0 0 96px;padding:28px 0;border-bottom:1px solid var(--rule)}
-nav.toc h2{font-size:.78rem;letter-spacing:.18em;color:var(--muted);
- font-family:system-ui,sans-serif;margin:0 0 18px;font-weight:600}
-nav.toc ol{list-style:none;margin:0;padding:0}
-nav.toc li{padding:5px 0;font-size:.95rem}
-nav.toc .part{margin-top:18px;font-size:.72rem;letter-spacing:.16em;color:var(--muted);
- font-family:system-ui,sans-serif;font-weight:600}
-nav.toc li:first-child .part{margin-top:0}
-nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
-nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent)}
-nav.toc .n{color:var(--muted);font-size:.82rem;margin-left:8px}
-section.ch{margin-bottom:104px;scroll-margin-top:20px}
-section.ch>h1{font-size:1.75rem;line-height:1.35;margin:0 0 8px;letter-spacing:-.01em}
-section.ch>.part{font-family:system-ui,sans-serif;font-size:.72rem;letter-spacing:.16em;
- color:var(--muted);margin-bottom:40px;font-weight:600}
-h2{font-size:1.18rem;margin:56px 0 18px;line-height:1.45}
-h3{font-size:1rem;margin:36px 0 12px;color:var(--accent)}
-p{margin:0 0 1.35em}
-blockquote{margin:32px 0;padding:4px 0 4px 22px;border-left:3px solid var(--accent);
- font-size:1.08rem;color:var(--ink)}
-blockquote p{margin:0}
-ul,ol{margin:0 0 1.35em;padding-left:1.4em}
-li{margin-bottom:.4em}
-strong{font-weight:700}
-table{border-collapse:collapse;width:100%%;margin:28px 0;font-size:.92rem;
- font-family:system-ui,sans-serif;line-height:1.6}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
-thead th{border-bottom:1.5px solid var(--ink);font-size:.8rem;color:var(--muted);font-weight:600}
-.tblwrap{overflow-x:auto}
-.flag{background:var(--flagbg);color:var(--flagink);padding:1px 5px;font-size:.8rem;
- font-family:"IBM Plex Sans KR",system-ui,sans-serif;border-radius:2px}
-footer.book{border-top:1px solid var(--rule);padding-top:24px;color:var(--muted);
- font-size:.85rem;font-family:"IBM Plex Sans KR",system-ui,sans-serif}
-</style>
-"""
-
-BODY = """<div class="wrap">
-<header class="book"><h1>%(booktitle)s</h1><p>%(subtitle)s</p></header>
-%(toc)s
-%(body)s
-<footer class="book">%(stat)s</footer>
-</div>
-"""
+CHAPNO = re.compile(r"^(\d+)장")
+H2 = re.compile(r"(?m)^##\s+(?!\d+\.\d)(.+)$")
 
 
-def chapters():
-    if not os.path.isdir(MANUSCRIPT):
-        return []
-    out = []
+def load():
+    items = []
     for name in sorted(os.listdir(MANUSCRIPT)):
         if not name.endswith(".md"):
             continue
-        with open(os.path.join(MANUSCRIPT, name), encoding="utf-8") as handle:
-            raw = handle.read()
+        raw = open(os.path.join(MANUSCRIPT, name), encoding="utf-8").read()
         meta, body = {}, raw
         if raw.startswith("---"):
             _, front, body = raw.split("---", 2)
@@ -123,112 +52,266 @@ def chapters():
                     meta[key.strip()] = value.strip()
         meta.setdefault("title", name)
         meta.setdefault("part", "")
+        meta.setdefault("kind", "chapter")
         meta.setdefault("status", "draft")
-        meta["file"] = name
-        meta["slug"] = "ch" + re.sub(r"\D", "", name.split("-")[0] or "0")
+        match = CHAPNO.match(meta["title"])
+        meta["no"] = match.group(1) if match else ""
+        meta["slug"] = "s" + name.split("-")[0]
         meta["body"] = body
         meta["checks"] = CHECK.findall(body)
         meta["todos"] = TODO.findall(body)
         meta["chars"] = len(re.sub(r"\s+", " ", COMMENT.sub("", body)))
-        out.append(meta)
-    return out
+        items.append(meta)
+    return items
+
+
+def numbered(body, chapter_no):
+    """`## 소제목` 에 1.1, 1.2 … 를 붙인다. 장이 아닌 꼭지는 그대로 둔다."""
+    if not chapter_no:
+        return body
+    count = [0]
+
+    def repl(match):
+        count[0] += 1
+        return "## %s.%d %s" % (chapter_no, count[0], match.group(1).strip())
+
+    return H2.sub(repl, body)
+
+
+def clean_body(item, keep_flags=True):
+    body = numbered(item["body"], item["no"])
+    flags = [t.strip() for t in item["checks"]] + ["TODO — " + t.strip() for t in item["todos"]]
+    body = COMMENT.sub("", body)
+    return body, (flags if keep_flags else [])
+
+
+# ------------------------------------------------------------------ HTML
+
+HEAD_FULL = """<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>%(title)s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+"""
+
+HEAD_FRAGMENT = """<title>%(title)s</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+"""
+
+STYLE = """
+<style>
+:root{
+ --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
+ --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
+ --serif:"Noto Serif KR","Nanum Myeongjo",Batang,serif;
+ --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
+:root[data-theme="dark"]{
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+ font-size:17px;line-height:1.95;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:37em;margin:0 auto;padding:0 24px 140px}
+.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.18em;
+ color:var(--muted);text-transform:none}
+
+/* 표제지 */
+.titlepage{padding:120px 0 80px;border-bottom:1px solid var(--rule);margin-bottom:72px;text-align:center}
+.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;color:var(--muted);margin-bottom:36px}
+.titlepage h1{font-size:clamp(2.6rem,9vw,4rem);line-height:1.12;margin:0 0 20px;letter-spacing:-.03em;font-weight:700}
+.titlepage p{margin:0;color:var(--muted);font-size:1.02rem}
+.titlepage .rule{width:56px;height:2px;background:var(--accent);margin:36px auto 0}
+
+/* 차례 */
+nav.toc{margin:0 0 96px}
+nav.toc h2{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;color:var(--muted);
+ margin:0 0 24px;font-weight:600;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--accent);
+ font-weight:600;margin:28px 0 10px}
+nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
+nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
+ min-width:2.6em;font-variant-numeric:tabular-nums}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent);outline:none}
+
+/* 부 표제지 */
+section.part{margin:0 0 96px;padding:88px 0;border-top:2px solid var(--ink);
+ border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+section.part h1{font-size:2.1rem;margin:0 0 40px;letter-spacing:-.02em;line-height:1.3}
+
+/* 장 */
+section.ch{margin-bottom:112px;scroll-margin-top:16px}
+section.ch>.eyebrow{display:block;margin-bottom:14px}
+section.ch>h1{font-size:1.72rem;line-height:1.4;margin:0 0 44px;letter-spacing:-.01em;
+ padding-bottom:22px;border-bottom:1px solid var(--rule)}
+section.front>h1{font-size:1.5rem;line-height:1.45;margin:0 0 40px;padding-bottom:20px;
+ border-bottom:1px solid var(--rule)}
+
+h2{font-size:1.14rem;margin:56px 0 18px;line-height:1.5;font-weight:600}
+h3{font-size:1rem;margin:38px 0 12px;color:var(--accent);font-weight:600}
+p{margin:0 0 1.35em}
+blockquote{margin:34px 0;padding:6px 0 6px 22px;border-left:3px solid var(--accent);font-size:1.06rem}
+blockquote p{margin:0 0 .5em}
+blockquote p:last-child{margin:0}
+ul,ol{margin:0 0 1.35em;padding-left:1.4em}
+li{margin-bottom:.45em}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+ font-family:var(--sans);line-height:1.65}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto}
+.flag{display:inline-block;background:var(--flagbg);color:var(--flagink);padding:2px 8px;
+ font-size:.78rem;font-family:var(--sans);border-radius:2px;line-height:1.6}
+.flags{margin:24px 0;padding:16px 18px;background:var(--hair);border-left:3px solid var(--accent)}
+.flags .eyebrow{display:block;margin-bottom:10px}
+.flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
+footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
+ font-size:.84rem;font-family:var(--sans);text-align:center}
+@media print{.flags{display:none}}
+</style>
+"""
+
+BODY = """<div class="wrap">
+%(title)s
+%(toc)s
+%(body)s
+<footer class="book">%(footer)s</footer>
+</div>
+"""
+
+
+def render_html(items, fragment=False):
+    groups, rows = [], []
+    last = None
+    for item in items:
+        if item["kind"] == "part":
+            rows.append('<li class="grp">%s</li>' % html.escape(item["title"]))
+            last = item["part"]
+            continue
+        if item["kind"] in ("front", "back") and item["part"] != last:
+            rows.append('<li class="grp">%s</li>' % html.escape(item["part"]))
+            last = item["part"]
+        if item["kind"] == "front" and item["order"] == "0":
+            continue
+        no = (item["no"] + "장") if item["no"] else "—"
+        label = item["title"].split(" · ", 1)[-1] if item["no"] else item["title"]
+        rows.append('<li><span class="no">%s</span><a href="#%s">%s</a></li>'
+                    % (html.escape(no), item["slug"], html.escape(label)))
+
+    sections = []
+    for item in items:
+        if item["kind"] == "front" and item.get("order") == "0":
+            continue  # 표제지는 따로 그린다
+        body, flags = clean_body(item)
+        rendered = mdlite.render(body)
+        rendered = rendered.replace("<table>", '<div class="tblwrap"><table>')
+        rendered = rendered.replace("</table>", "</table></div>")
+        if flags:
+            rendered += ('<div class="flags"><span class="eyebrow">교정 표시 — 발행 전 확인</span>%s</div>'
+                         % "".join('<p><span class="flag">%s</span></p>' % html.escape(f) for f in flags))
+        if item["kind"] == "part":
+            sections.append('<section class="part" id="%s"><h1>%s</h1>%s</section>'
+                            % (item["slug"], html.escape(item["title"]), rendered))
+        else:
+            cls = "front" if item["kind"] in ("front", "back") else "ch"
+            eyebrow = ('<span class="eyebrow">%s</span>' % html.escape(item["part"])
+                       if item["kind"] == "chapter" else "")
+            sections.append('<section class="%s" id="%s">%s<h1>%s</h1>%s</section>'
+                            % (cls, item["slug"], eyebrow, html.escape(item["title"]), rendered))
+
+    fields = {
+        "title": ('<header class="titlepage"><p class="series">%s</p><h1>%s</h1>'
+                  '<p>%s</p><div class="rule"></div></header>'
+                  % (html.escape(SERIES), html.escape(TITLE), html.escape(SUBTITLE))),
+        "toc": '<nav class="toc"><h2>차례</h2><ul>%s</ul></nav>' % "\n".join(rows),
+        "body": "\n".join(sections),
+        "footer": "%s · %s" % (html.escape(TITLE), html.escape(SERIES)),
+    }
+    head = (HEAD_FRAGMENT if fragment else HEAD_FULL) % {"title": TITLE}
+    page = head + STYLE + (BODY % fields)
+    if not fragment:
+        page = page.replace('<div class="wrap">', '</head><body><div class="wrap">', 1) + "</body></html>"
+
+    os.makedirs(SITE, exist_ok=True)
+    path = os.path.join(SITE, "artifact.html" if fragment else "index.html")
+    open(path, "w", encoding="utf-8").write(page)
+    print("만들었습니다: %s  (%d꼭지)" % (os.path.relpath(path, ROOT), len(items)))
+    return 0
+
+
+def render_md(items):
+    out = ["# %s\n" % TITLE, "**%s**\n" % SUBTITLE, "*%s*\n" % SERIES, "\n---\n"]
+    for item in items:
+        if item["kind"] == "front" and item.get("order") == "0":
+            continue
+        body, flags = clean_body(item)
+        out.append("\n\n# %s\n" % item["title"])
+        out.append(re.sub(r"(?m)^(#+) ", lambda m: "#" + m.group(1) + " ", body).strip())
+        for flag in flags:
+            out.append("\n> **교정 표시** — %s" % flag)
+    os.makedirs(SITE, exist_ok=True)
+    path = os.path.join(SITE, "누가-돈을-내는가.md")
+    open(path, "w", encoding="utf-8").write("\n".join(out) + "\n")
+    print("만들었습니다: %s" % os.path.relpath(path, ROOT))
+    return 0
+
+
+def render_plain(items):
+    os.makedirs(SITE, exist_ok=True)
+    path = os.path.join(SITE, "원고전체.txt")
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write("%s\n%s\n%s\n\n\n" % (TITLE, SUBTITLE, SERIES))
+        for item in items:
+            if item["kind"] == "front" and item.get("order") == "0":
+                continue
+            body, _ = clean_body(item, keep_flags=False)
+            handle.write("%s\n%s\n\n%s\n\n\n" % (
+                item["title"], "=" * 40, mdlite.to_plain(body).strip()))
+    print("만들었습니다: %s" % os.path.relpath(path, ROOT))
+    return 0
 
 
 def stat(items):
-    print("%-26s %8s %6s %6s  %s" % ("장", "분량", "확인", "TODO", "상태"))
+    print("%-40s %8s %5s %5s" % ("꼭지", "분량", "확인", "TODO"))
     print("-" * 62)
     total = checks = todos = 0
     for item in items:
         total += item["chars"]
         checks += len(item["checks"])
         todos += len(item["todos"])
-        print("%-26s %8s %6d %6d  %s" % (
-            item["title"][:26], format(item["chars"], ","),
-            len(item["checks"]), len(item["todos"]), item["status"]))
+        print("%-40s %8s %5d %5d" % (item["title"][:40], format(item["chars"], ","),
+                                     len(item["checks"]), len(item["todos"])))
     print("-" * 62)
-    print("%-26s %8s %6d %6d" % ("합계", format(total, ","), checks, todos))
+    print("%-40s %8s %5d %5d" % ("합계", format(total, ","), checks, todos))
     print("\n목표 %s자 대비 %.0f%%" % (format(TARGET, ","), 100.0 * total / TARGET))
-    if checks or todos:
-        print("확인 %d건, TODO %d건 남았습니다. 둘 다 0 이어야 발행할 수 있습니다." % (checks, todos))
-    elif total >= TARGET:
-        print("확인·TODO 없음. 원고가 끝났습니다.")
-    else:
-        print("확인·TODO 없음. 남은 일은 분량입니다.")
-    return 0
-
-
-def build(items, fragment=False):
-    rows, sections = [], []
-    seen = set()
-    for item in items:
-        part = item["part"]
-        label = ('<span class="part">%s</span><br>' % html.escape(part)
-                 if part and part not in seen else "")
-        seen.add(part)
-        rows.append('<li>%s<a href="#%s">%s</a><span class="n">%s자</span></li>' % (
-            label, item["slug"], html.escape(item["title"]), format(item["chars"], ",")))
-
-        # 확인이 필요한 숫자는 본문에 표시로 남겨 둔다. 교정할 때 눈에 띄어야 한다.
-        body = CHECK.sub(lambda m: '<!--FLAG:%s-->' % m.group(1).strip(), item["body"])
-        body = TODO.sub(lambda m: '<!--FLAG:TODO %s-->' % m.group(1).strip(), body)
-        body = COMMENT.sub(lambda m: "", body)
-        rendered = mdlite.render(body)
-        for text in CHECK.findall(item["body"]) + ["TODO " + t for t in TODO.findall(item["body"])]:
-            rendered += '<p><span class="flag">확인 필요 · %s</span></p>' % html.escape(text.strip())
-        rendered = re.sub(r"<table>", '<div class="tblwrap"><table>', rendered)
-        rendered = re.sub(r"</table>", "</table></div>", rendered)
-        sections.append(
-            '<section class="ch" id="%s"><h1>%s</h1><div class="part">%s</div>%s</section>'
-            % (item["slug"], html.escape(item["title"]), html.escape(part), rendered))
-
-    total = sum(i["chars"] for i in items)
-    checks = sum(len(i["checks"]) for i in items)
-    todos = sum(len(i["todos"]) for i in items)
-    os.makedirs(SITE, exist_ok=True)
-    fields = {
-        "title": "돈이 흐르는 구조",
-        "booktitle": "돈이 흐르는 구조",
-        "subtitle": "세계의 비즈니스 모델을 다섯 칸으로 읽는 법",
-        "toc": '<nav class="toc"><h2>차례</h2><ol>%s</ol></nav>' % "\n".join(rows),
-        "body": "\n".join(sections),
-        "stat": "%d꼭지 · %s자 · 확인 %d건 · TODO %d건" % (
-            len(items), format(total, ","), checks, todos),
-    }
-    if fragment:
-        page = (HEAD_FRAGMENT + STYLE + BODY) % fields
-    else:
-        page = (HEAD_FULL + STYLE + BODY + "</head><body>") % fields
-        page = page.replace("</head><body>", "", 1).replace(
-            '<div class="wrap">', '</head><body><div class="wrap">', 1) + "</body></html>"
-    path = os.path.join(SITE, "artifact.html" if fragment else "index.html")
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write(page)
-    print("만들었습니다: %s  (%d꼭지 · %s자)" % (
-        os.path.relpath(path, ROOT), len(items), format(total, ",")))
-    return 0
-
-
-def plain(items):
-    os.makedirs(SITE, exist_ok=True)
-    path = os.path.join(SITE, "원고전체.txt")
-    with open(path, "w", encoding="utf-8") as handle:
-        for item in items:
-            handle.write("%s\n%s\n\n%s\n\n\n" % (
-                item["title"], "=" * 40, mdlite.to_plain(COMMENT.sub("", item["body"])).strip()))
-    print("만들었습니다: %s" % os.path.relpath(path, ROOT))
+    print("확인 %d건, TODO %d건. 둘 다 0 이어야 발행할 수 있습니다." % (checks, todos)
+          if (checks or todos) else "확인·TODO 없음.")
     return 0
 
 
 def main():
-    items = chapters()
+    items = load()
     if not items:
-        print("원고가 없습니다. book/manuscript/ 에 NN-제목.md 를 넣으세요.")
+        print("원고가 없습니다. book/manuscript/ 에 NNN-제목.md 를 넣으세요.")
         return 1
-    if "--stat" in sys.argv[1:]:
+    args = sys.argv[1:]
+    if "--stat" in args:
         return stat(items)
-    if "--plain" in sys.argv[1:]:
-        return plain(items)
-    return build(items, fragment="--artifact" in sys.argv[1:])
+    if "--md" in args:
+        return render_md(items)
+    if "--plain" in args:
+        return render_plain(items)
+    return render_html(items, fragment="--artifact" in args)
 
 
 if __name__ == "__main__":

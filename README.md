@@ -112,6 +112,30 @@ python3 tools/video_render.py --check
 풀려면 지우고 다시 올려야 한다. `tools/youtube_upload.py` 는 감사를 통과했거나
 비공개 업로드로 충분할 때 쓰는 선택 사항이다. 자세한 내용은 그 파일 맨 위 설명에 있다.
 
+## 책 — 『누가 돈을 내는가』
+
+세계의 사업을 다섯 칸(고객 · 가치 · 과금 · 해자 · 균열)으로 해부하는 단행본.
+`다섯 칸 시리즈` 첫째 권이고, 둘째 권은 『왜 아직 안 뺏겼는가』다.
+
+| 명령 | 하는 일 |
+|---|---|
+| `python3 tools/book.py` | 원고 → `book/site/index.html` (브라우저용 한 권) |
+| `python3 tools/book.py --artifact` | 아티팩트용 조각 HTML |
+| `python3 tools/book.py --md` | 번호가 매겨진 원고 한 파일 |
+| `python3 tools/book.py --plain` | 투고·편집용 평문 |
+| `python3 tools/book.py --stat` | 장별 분량 · 남은 확인 항목 (독자용 아님) |
+
+```
+book/
+  plan.md        출간 기획 + 편집 규칙
+  manuscript/    원고. 파일 이름 앞 숫자가 곧 차례
+  site/          빌드 결과 (git 추적 안 함)
+```
+
+실존 기업의 숫자는 지어내지 않는다. 확인이 필요한 자리에는
+`<!-- 확인: … 출처 -->` 를 남기고, `--stat` 이 남은 건수를 센다.
+**확인과 TODO 가 둘 다 0 이어야 발행할 수 있다.**
+
 ## 매체별 내보내기 규칙
 
 | 매체 | front matter `target` | 형식 |
