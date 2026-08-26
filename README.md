@@ -1,6 +1,7 @@
 # 작가노트
 
 매일 한 편씩 원고를 쌓고, 브런치스토리 · 요즘IT · 퍼블리(PUBLY)에 낼 형태로 뽑아내는 저장소.
+주 1회 유튜브 영상(`세계의 비즈니스 모델`) 대본도 같은 방식으로 굴린다.
 
 ## 하루 흐름
 
@@ -18,6 +19,10 @@ plan.md 주제 큐  →  자동으로 오늘자 초고 생성  →  내가 TODO 
 | `python3 tools/build.py` | `writing/posts/*.md` → `writing/site/` (index + 글 + RSS) |
 | `python3 tools/export.py` | 완성본을 매체별 붙여넣기용 텍스트로 내보내기 |
 | `python3 tools/export.py --all` | 초고까지 전부 내보내기 |
+| `python3 tools/new_video.py` | 편성 큐에서 다음 편을 꺼내 영상 대본 뼈대 생성 |
+| `python3 tools/new_video.py --peek` | 다음 편만 확인 |
+| `python3 tools/new_video.py --short` | 숏폼 전용 뼈대 (큐를 소비하지 않음) |
+| `python3 tools/video_export.py` | 완성 대본 → 녹음용 나레이션 + 유튜브 업로드 세트 |
 
 의존성 없음. Python 3.8+ 만 있으면 된다.
 
@@ -30,11 +35,29 @@ writing/
   posts/       원고 (마크다운, front matter 포함)
   site/        빌드된 HTML + RSS
   export/      매체별 붙여넣기용 텍스트 (git 추적 안 함)
+video/
+  plan.md      시리즈 기획 + 54편 편성 큐   ← 여기만 고치면 다음 영상이 바뀐다
+  STYLE.md     대본 규칙 + 자료·저작권 원칙
+  scripts/     영상 대본 (마크다운, front matter 포함)
+  export/      녹음용·업로드용 텍스트 (git 추적 안 함)
 tools/
   mdlite.py    의존성 없는 마크다운 → HTML 변환기
   build.py     정적 사이트 빌더
   new_post.py  오늘자 초고 스캐폴딩
   export.py    매체별 내보내기
+  new_video.py 주간 영상 대본 스캐폴딩
+  video_export.py  나레이션 · 업로드 세트 내보내기
+```
+
+## 유튜브 시리즈 — 세계의 비즈니스 모델
+
+주 1회, 10분. 9개 카테고리(IT · 음식 · 금융 · 숙박 · 마케팅 · 스포츠 · 경제 · 농업 · 어업)를
+순서대로 돌면서, 매 편 같은 **BM 5칸**(고객 · 가치 · 과금 · 해자 · 균열)으로 해부한다.
+1~4주차는 숏폼만, 5~8주차는 3분, 9주차부터 10분 롱폼. 자세한 내용은 `video/plan.md`.
+
+```
+video/plan.md 편성 큐  →  new_video.py 로 대본 뼈대  →  리서치 표부터 채우기
+   →  대본 3,200자  →  status: ready  →  video_export.py  →  녹음 · 편집 · 업로드
 ```
 
 ## 매체별 내보내기 규칙
