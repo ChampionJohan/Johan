@@ -172,7 +172,8 @@ tbody tr:last-child td{border-bottom:0}
 .flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
-@media print{.flags{display:none}}
+@media print{.flags{display:none}
+ section.part,section.ch,section.front{page-break-before:always}}
 </style>
 """
 
