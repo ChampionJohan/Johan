@@ -2,7 +2,8 @@
 """원고를 전자책 표준 형식(EPUB3)으로 묶는다. 부크크·리디·유페이퍼 등
 자가출간 플랫폼에 그대로 업로드할 수 있는 .epub 파일 하나를 만든다.
 
-    python3 tools/epub.py book         # book/site/<제목>.epub  (성인판)
+    python3 tools/epub.py book         # book/site/<제목>.epub  (첫째 권)
+    python3 tools/epub.py book2        # book2/site/<제목>.epub (둘째 권)
     python3 tools/epub.py book-teen    # book-teen/site/<제목>.epub (청소년판)
 
 전자책에는 페이지 번호를 넣지 않는다. 글자 크기에 따라 화면이 다시 짜이는
@@ -30,17 +31,21 @@ import mdlite
 VOID = re.compile(r"<(br|hr|img|input|meta|source|wbr)([^<>]*?)\s*/?>")
 
 
+OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen"}
+ACCENT = {"book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F"}
+
+
 def load_module(which):
-    """book_teen.py 는 book.py 의 전역(TITLE·MANUSCRIPT·MARK …)을 제자리에서
-    덮어쓰는 방식이라, 청소년판일 때도 실제로 쓰는 모듈은 항상 book 이다."""
+    """book2.py·book_teen.py 는 book.py 의 전역(TITLE·MANUSCRIPT·MARK …)을
+    제자리에서 덮어쓰는 방식이라, 어느 권이든 실제로 쓰는 모듈은 항상 book 이다."""
     which = which.rstrip("/")
     import book as m
     if which in ("book", "adult"):
         pass
-    elif which in ("book-teen", "teen"):
-        importlib.import_module("book_teen")
+    elif which in OVERLAY:
+        importlib.import_module(OVERLAY[which])
     else:
-        raise SystemExit("첫 인자는 book 또는 book-teen 이어야 합니다.")
+        raise SystemExit("첫 인자는 book · book2 · book-teen 중 하나여야 합니다.")
     return m
 
 
@@ -215,7 +220,7 @@ def build(which):
         return 1
 
     author = getattr(m, "AUTHOR", "저자명")
-    accent = "#8A2E2E" if which in ("book", "adult") else "#E85D2F"
+    accent = ACCENT.get(which.rstrip("/"), "#8A2E2E")
     out_dir = m.SITE
     os.makedirs(out_dir, exist_ok=True)
 

@@ -2,6 +2,7 @@
 """책 원고를 PDF로 만든다. (전자책 플랫폼이 epub 을 안 받아 줄 때 대신 쓴다)
 
     python3 tools/pdf.py book         # book/site/돈의 해부학.pdf
+    python3 tools/pdf.py book2        # book2/site/....pdf
     python3 tools/pdf.py book-teen    # book-teen/site/....pdf
 
 book/site/index.html (또는 book-teen/site/index.html) 을 먼저 최신으로 만든 뒤,
@@ -21,15 +22,18 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 
 
+OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen"}
+
+
 def build_html(which):
-    script = {"book": "book.py", "adult": "book.py",
-              "book-teen": "book_teen.py", "teen": "book_teen.py"}.get(which)
-    if not script:
-        raise SystemExit("첫 인자는 book 또는 book-teen 이어야 합니다.")
+    which = which.rstrip("/")
+    if which not in OVERLAY and which not in ("book", "adult"):
+        raise SystemExit("첫 인자는 book · book2 · book-teen 중 하나여야 합니다.")
+    script = OVERLAY.get(which, "book") + ".py"
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", script)], check=True, cwd=ROOT)
     import book as m
-    if which in ("book-teen", "teen"):
-        importlib.import_module("book_teen")
+    if which in OVERLAY:
+        importlib.import_module(OVERLAY[which])
     return m
 
 

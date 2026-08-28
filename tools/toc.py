@@ -3,6 +3,7 @@
 유페이퍼 같은 곳에 PDF 로 올리면 목차를 손으로 입력해야 하는데, 그때 쓸 표다.
 
     python3 tools/toc.py book
+    python3 tools/toc.py book2
     python3 tools/toc.py book-teen
 """
 
@@ -16,12 +17,13 @@ import pdf as pdftool
 
 
 def load_module(which):
+    import importlib
     import book as m
-    if which in ("book-teen", "teen"):
-        import importlib
-        importlib.import_module("book_teen")
+    which = which.rstrip("/")
+    if which in pdftool.OVERLAY:
+        importlib.import_module(pdftool.OVERLAY[which])
     elif which not in ("book", "adult"):
-        raise SystemExit("첫 인자는 book 또는 book-teen 이어야 합니다.")
+        raise SystemExit("첫 인자는 book · book2 · book-teen 중 하나여야 합니다.")
     return m
 
 
