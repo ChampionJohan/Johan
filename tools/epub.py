@@ -31,8 +31,10 @@ import mdlite
 VOID = re.compile(r"<(br|hr|img|input|meta|source|wbr)([^<>]*?)\s*/?>")
 
 
-OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen"}
-ACCENT = {"book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F"}
+OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
+           "book-teen2": "book_teen2", "teen2": "book_teen2"}
+ACCENT = {"book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
+          "book-teen2": "#2E7D52", "teen2": "#2E7D52"}
 
 
 def load_module(which):
@@ -45,7 +47,7 @@ def load_module(which):
     elif which in OVERLAY:
         importlib.import_module(OVERLAY[which])
     else:
-        raise SystemExit("첫 인자는 book · book2 · book-teen 중 하나여야 합니다.")
+        raise SystemExit("첫 인자는 book · book2 · book-teen · book-teen2 중 하나여야 합니다.")
     return m
 
 

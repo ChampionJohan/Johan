@@ -22,13 +22,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 
 
-OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen"}
+OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
+           "book-teen2": "book_teen2", "teen2": "book_teen2"}
 
 
 def build_html(which):
     which = which.rstrip("/")
     if which not in OVERLAY and which not in ("book", "adult"):
-        raise SystemExit("첫 인자는 book · book2 · book-teen 중 하나여야 합니다.")
+        raise SystemExit("첫 인자는 book · book2 · book-teen · book-teen2 중 하나여야 합니다.")
     script = OVERLAY.get(which, "book") + ".py"
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", script)], check=True, cwd=ROOT)
     import book as m
