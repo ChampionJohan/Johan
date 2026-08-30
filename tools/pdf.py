@@ -107,20 +107,34 @@ def page_map(pdf_path, items):
     return mapping
 
 
-def to_pdf(m):
+def to_pdf(m, max_passes=6):
+    """차례에 쪽 번호를 박아 넣고, 그 번호가 실제 쪽과 맞을 때까지 다시 그린다.
+
+    쪽 번호를 넣으면 차례가 길어지고, 차례가 한 쪽 늘어나면 뒤의 모든 쪽이
+    한 칸씩 밀린다. 그래서 한 번만 다시 그리면 번호가 1씩 어긋난 채로 굳는다.
+    측정한 쪽 번호가 두 번 연속 같아질 때까지 반복한다.
+    """
     pdf_path = os.path.join(m.SITE, "%s.pdf" % m.TITLE)
     html_path = os.path.join(m.SITE, "index.html")
+    numbered_html = os.path.join(m.SITE, "index.print.html")
 
     render_pdf(html_path, pdf_path)
 
     items = [i for i in m.load() if not (i["kind"] == "front" and i.get("order") == "0")]
     pages = page_map(pdf_path, items)
 
-    numbered_html = os.path.join(m.SITE, "index.print.html")
-    m.render_html(m.load(), out_name="index.print.html", page_numbers=pages)
-    render_pdf(numbered_html, pdf_path)
+    for attempt in range(max_passes):
+        m.render_html(m.load(), out_name="index.print.html", page_numbers=pages)
+        render_pdf(numbered_html, pdf_path)
+        measured = page_map(pdf_path, items)
+        if measured == pages:
+            break
+        pages = measured
+    else:
+        print("경고: 차례 쪽 번호가 %d번 안에 수렴하지 않았습니다." % max_passes)
 
-    print("만들었습니다: %s" % os.path.relpath(pdf_path, ROOT))
+    print("만들었습니다: %s  (쪽 번호 %d번 만에 맞춤)"
+          % (os.path.relpath(pdf_path, ROOT), attempt + 1))
     return pdf_path
 
 

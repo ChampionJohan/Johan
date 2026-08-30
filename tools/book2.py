@@ -22,7 +22,7 @@ first.SITE = os.path.join(first.ROOT, "book2", "site")
 first.TITLE = "돈의 해부학 2"
 first.SUBTITLE = "왜 아직 안 뺏겼는가"
 first.SERIES = "다섯 칸 시리즈 · 둘째 권"
-first.TARGET = 82000
+first.TARGET = 100000
 
 # 첫째 권과 나란히 꽂히는 책이다. 형태는 같게 두고 강조색만 구분한다.
 first.STYLE = first.STYLE.replace("--accent:#8A2E2E;", "--accent:#1F4E5F;")
