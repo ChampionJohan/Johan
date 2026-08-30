@@ -61,10 +61,15 @@ def slugify(name):
     return re.sub(r"\.md$", "", name)
 
 
+FRONT_MATTER_DOCS = ("기획안", "스토리라인")
+
+
 def order_key(filename):
+    """기획안·스토리라인을 맨 앞에, 나머지는 파일명 앞 번호(01장, 02장…) 순으로."""
+    for rank, name in enumerate(FRONT_MATTER_DOCS):
+        if filename.startswith(name):
+            return (rank - len(FRONT_MATTER_DOCS), filename)
     m = re.match(r"(\d+)", filename)
-    if filename.startswith("기획안"):
-        return (-1, filename)
     return (int(m.group(1)) if m else 999, filename)
 
 
