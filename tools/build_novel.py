@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """writing/novel/<시리즈>/*.md 를 읽어 같은 폴더 site/ 에 HTML을 만든다.
 
-    python3 tools/build_novel.py writing/novel/카이로스-연대기
+    python3 tools/build_novel.py writing/novel/루프-연대기
 
 기획안.md 는 기획안 페이지로, 나머지는 장(챕터)으로 취급해 파일명 앞
 숫자(01장, 02장…) 순으로 정렬한다. front matter 는 선택 사항이다.
@@ -117,7 +117,7 @@ def main():
         for slug, title, _ in toc
     )
     index_body = (
-        '<header class="book"><p class="kicker">카이로스 연대기</p>'
+        '<header class="book"><p class="kicker">갓피플 연재</p>'
         '<h1>%s</h1><p>다니엘 12장 4절에서 시작하는 판타지 연작</p></header>'
         '<ul class="chapters">%s</ul>' % (html.escape(series_name), items)
     )
