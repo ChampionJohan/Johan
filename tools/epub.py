@@ -115,7 +115,11 @@ OPF = """<?xml version="1.0" encoding="utf-8"?>
     <dc:creator>%(author)s</dc:creator>
     <dc:language>ko</dc:language>
     <dc:date>%(date)s</dc:date>
-    <meta property="dcterms:modified">%(modified)s</meta>%(cover_meta)s
+    <meta property="dcterms:modified">%(modified)s</meta>
+    <meta refines="#bookid" property="identifier-type" scheme="onix:codelist5">01</meta>
+    <meta property="belongs-to-collection" id="series">%(series_name)s</meta>
+    <meta refines="#series" property="collection-type">series</meta>
+    <meta refines="#series" property="group-position">%(series_pos)s</meta>%(cover_meta)s
   </metadata>
   <manifest>
     <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
@@ -214,6 +218,30 @@ def make_cover(out_dir, title, subtitle, accent):
     return path
 
 
+SERIES_POS = {"첫째": "1", "둘째": "2", "셋째": "3", "넷째": "4", "다섯째": "5"}
+
+
+def series_parts(series):
+    """'다섯 칸 시리즈 · 둘째 권' -> ('다섯 칸 시리즈', '2')"""
+    name, _, tail = series.partition("·")
+    name = name.strip() or series.strip()
+    pos = "1"
+    for word, number in SERIES_POS.items():
+        if word in tail:
+            pos = number
+            break
+    return name, pos
+
+
+def stable_uuid(title):
+    """같은 책은 다시 만들어도 같은 식별자를 갖게 한다.
+
+    발행 플랫폼과 독서 앱은 dc:identifier 로 책을 구분한다.
+    빌드할 때마다 새 UUID 를 넣으면 개정판을 올릴 때 다른 책으로 취급된다.
+    """
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, "urn:dasotkan:%s" % title))
+
+
 def build(which):
     m = load_module(which)
     items = m.load()
@@ -276,11 +304,13 @@ def build(which):
     cover_item = ('\n    <item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>'
                   if cover_path else "")
 
-    book_uuid = str(uuid.uuid4())
+    book_uuid = stable_uuid(m.TITLE)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    series_name, series_pos = series_parts(getattr(m, "SERIES", ""))
     opf = OPF % {
         "uuid": book_uuid, "title": html.escape(m.TITLE), "author": html.escape(author),
         "date": datetime.now().strftime("%Y-%m-%d"), "modified": now,
+        "series_name": html.escape(series_name), "series_pos": series_pos,
         "cover_meta": cover_meta, "cover_item": cover_item,
         "manifest": "\n".join(manifest_lines) + "\n",
         "spine": "\n".join(spine_lines),

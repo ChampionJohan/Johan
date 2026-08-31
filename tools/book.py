@@ -28,6 +28,7 @@ SITE = os.path.join(ROOT, "book", "site")
 TITLE = "돈의 해부학"
 SUBTITLE = "세계의 사업을 다섯 칸으로 뜯어보는 법"
 SERIES = "다섯 칸 시리즈 · 첫째 권"
+AUTHOR = "최재혁"
 TARGET = 95000
 
 CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
