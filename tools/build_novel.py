@@ -61,7 +61,7 @@ def slugify(name):
     return re.sub(r"\.md$", "", name)
 
 
-FRONT_MATTER_DOCS = ("기획안", "스토리라인")
+FRONT_MATTER_DOCS = ("기획안", "스토리라인", "인물과")
 
 
 def order_key(filename):
