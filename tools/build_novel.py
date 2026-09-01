@@ -32,6 +32,9 @@ ul.chapters{list-style:none;padding:0;margin:0}
 ul.chapters li{padding:1rem 0;border-bottom:1px solid var(--line)}
 ul.chapters a{color:inherit;text-decoration:none;font-size:1.05rem;font-weight:600}
 ul.chapters a:hover{color:var(--accent)}
+ul.chapters li.part{border-bottom:none;padding:2rem 0 .3rem;color:var(--accent);
+  font-size:.78rem;letter-spacing:.1em;font-weight:650}
+ul.chapters li.part:first-child{padding-top:.5rem}
 article h1{font-size:1.6rem;line-height:1.4;margin:0 0 1.75rem;letter-spacing:-.02em}
 article p{margin:0 0 1.3rem}
 article blockquote{margin:1.8rem 0;padding:.3rem 0 .3rem 1.2rem;border-left:3px solid var(--accent);
@@ -115,12 +118,18 @@ def main():
         )
         with open(os.path.join(site_dir, slug + ".html"), "w", encoding="utf-8") as handle:
             handle.write(page)
-        toc.append((slug, title, name.startswith("기획안")))
+        toc.append((slug, title, meta.get("series", "")))
 
-    items = "".join(
-        '<li><a href="%s.html">%s</a></li>' % (html.escape(slug), html.escape(title))
-        for slug, title, _ in toc
-    )
+    # front matter 의 series 값이 바뀔 때마다 목차에 부(部) 제목을 끼워 넣는다.
+    items = []
+    current_part = None
+    for slug, title, series in toc:
+        part = series.split("·")[0].strip() if "·" in series else ""
+        if part and part != current_part:
+            items.append('<li class="part">%s</li>' % html.escape(series))
+            current_part = part
+        items.append('<li><a href="%s.html">%s</a></li>' % (html.escape(slug), html.escape(title)))
+    items = "".join(items)
     index_body = (
         '<header class="book"><p class="kicker">갓피플 연재</p>'
         '<h1>%s</h1><p>다니엘 12장 4절에서 시작하는 판타지 연작</p></header>'
