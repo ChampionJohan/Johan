@@ -123,8 +123,8 @@
 <body>
 <div class="wrap">
   <div class="lang-row no-print">
-    <button class="lang-btn" data-lang="ko">한국어</button>
     <button class="lang-btn" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="ko">한국어</button>
     <button class="lang-btn" data-lang="zh">中文</button>
   </div>
 
@@ -401,7 +401,7 @@ const I18N = {
   }
 };
 
-let lang = localStorage.getItem("travelLedgerLang") || (navigator.language||"").slice(0,2);
+let lang = localStorage.getItem("travelLedgerLang") || "en";
 if(!I18N[lang]) lang = "en";
 function t(key){ return I18N[lang][key]; }
 function currencyLabel(code){ return `${t("currencyNames")[code]} (${code})`; }
