@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>용돈 기입장</title>
+<style>
+  :root{
+    --bg:#f6f5f2;
+    --card:#ffffff;
+    --ink:#2b2a28;
+    --sub:#767268;
+    --line:#e7e3da;
+    --accent:#b3541e;
+    --accent-soft:#f1e3d4;
+    --up:#b3541e;
+    --down:#3a6b52;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.5;
+    padding:24px 16px 64px;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  h1{font-size:22px;margin:0 0 4px;}
+  .lead{color:var(--sub);font-size:13px;margin:0 0 24px;}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 20px;
+    margin-bottom:16px;
+  }
+  .card h2{font-size:15px;margin:0 0 14px;color:var(--ink);}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+  .row > *{flex:1 1 120px;}
+  label{display:block;font-size:12px;color:var(--sub);margin-bottom:4px;}
+  input,select{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:14px;
+    background:#fff;
+    color:var(--ink);
+    font-family:inherit;
+  }
+  input:focus,select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent);}
+  button{
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:14px;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+    padding:10px 18px;
+    width:100%;
+  }
+  .btn-primary:hover{background:#96420f;}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--sub);
+    padding:8px 12px;
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .toolbar .actions{display:flex;gap:8px;}
+  .summary-grid{display:flex;gap:12px;flex-wrap:wrap;}
+  .stat{flex:1 1 140px;background:var(--accent-soft);border-radius:10px;padding:12px 14px;}
+  .stat .num{font-size:20px;font-weight:700;color:var(--accent);}
+  .stat .num.neutral{color:var(--ink);}
+  .stat .cap{font-size:12px;color:var(--sub);margin-top:2px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);}
+  th{color:var(--sub);font-weight:500;font-size:12px;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .bar-row{display:flex;align-items:center;gap:10px;padding:6px 0;}
+  .bar-label{flex:0 0 92px;font-size:13px;}
+  .bar-track{flex:1;background:var(--line);border-radius:6px;height:10px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--accent);border-radius:6px;}
+  .bar-amt{flex:0 0 84px;text-align:right;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;}
+  .delete-btn{background:none;border:none;color:var(--sub);font-size:14px;cursor:pointer;padding:2px 6px;}
+  .delete-btn:hover{color:var(--accent);}
+  .empty{color:var(--sub);font-size:13px;text-align:center;padding:18px 0;}
+  .diff-up{color:var(--up);}
+  .diff-down{color:var(--down);}
+  .foot-note{font-size:11px;color:var(--sub);text-align:center;margin-top:24px;}
+  @media print{
+    body{background:#fff;padding:0;}
+    .no-print{display:none !important;}
+    .card{border:none;box-shadow:none;padding:0;margin-bottom:20px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>용돈 기입장</h1>
+  <p class="lead">오늘 쓴 돈을 입력하면 이번 달 총액과 지난 달 기록을 자동으로 비교해줍니다. 데이터는 이 브라우저에만 저장됩니다.</p>
+
+  <div class="card no-print">
+    <h2>오늘 지출 입력</h2>
+    <form id="entryForm">
+      <div class="row">
+        <div>
+          <label for="f-date">날짜</label>
+          <input type="date" id="f-date" required>
+        </div>
+        <div>
+          <label for="f-category">분류</label>
+          <select id="f-category">
+            <option>식비</option>
+            <option>간식/음료</option>
+            <option>교통비</option>
+            <option>문구/학용품</option>
+            <option>취미/오락</option>
+            <option>통신비</option>
+            <option>저축</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-amount">금액(원)</label>
+          <input type="number" id="f-amount" min="0" step="1" placeholder="0" required>
+        </div>
+      </div>
+      <div class="row">
+        <div style="flex:1 1 100%;">
+          <label for="f-memo">메모 (선택)</label>
+          <input type="text" id="f-memo" placeholder="예: 편의점 간식">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary">기록 추가</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <h2 style="margin:0;">이번 달 요약</h2>
+      <select id="monthSelect" class="no-print" style="max-width:140px;"></select>
+    </div>
+    <div class="summary-grid">
+      <div class="stat">
+        <div class="num" id="stat-total">0원</div>
+        <div class="cap">이번 달 총 지출</div>
+      </div>
+      <div class="stat">
+        <div class="num neutral" id="stat-count">0건</div>
+        <div class="cap">기록 건수</div>
+      </div>
+      <div class="stat">
+        <div class="num neutral" id="stat-diff">-</div>
+        <div class="cap" id="stat-diff-cap">전월 대비</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>분류별 지출</h2>
+    <div id="categoryBars"><p class="empty">아직 기록이 없습니다.</p></div>
+  </div>
+
+  <div class="card">
+    <h2>월별 비교 (최근 6개월)</h2>
+    <div id="monthBars"><p class="empty">비교할 다른 달 기록이 아직 없습니다.</p></div>
+  </div>
+
+  <div class="card">
+    <div class="toolbar">
+      <h2 style="margin:0;">이번 달 기록</h2>
+      <div class="actions no-print">
+        <button class="btn-ghost" id="exportMdBtn">마크다운으로 내보내기</button>
+        <button class="btn-ghost" id="printBtn">인쇄/HTML 저장</button>
+      </div>
+    </div>
+    <table>
+      <thead><tr><th>날짜</th><th>분류</th><th>메모</th><th class="num">금액</th><th class="no-print"></th></tr></thead>
+      <tbody id="entryRows"></tbody>
+    </table>
+    <p class="empty" id="entryEmpty" style="display:none;">이번 달 기록이 없습니다.</p>
+  </div>
+
+  <p class="foot-note">데이터는 서버로 전송되지 않고 이 브라우저(localStorage)에만 저장됩니다. 다른 기기와 공유하려면 마크다운 내보내기를 이용하세요.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var STORAGE_KEY = "allowanceLedgerEntries_v1";
+  var CATEGORIES = ["식비","간식/음료","교통비","문구/학용품","취미/오락","통신비","저축","기타"];
+
+  function loadEntries(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveEntries(entries){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(entries)); }catch(e){}
+  }
+
+  var entries = loadEntries();
+
+  function todayStr(){
+    var d = new Date();
+    var m = String(d.getMonth()+1).padStart(2,"0");
+    var day = String(d.getDate()).padStart(2,"0");
+    return d.getFullYear()+"-"+m+"-"+day;
+  }
+  function monthKey(dateStr){ return dateStr.slice(0,7); }
+  function monthLabel(key){
+    var parts = key.split("-");
+    return parts[0]+"년 "+parseInt(parts[1],10)+"월";
+  }
+  function won(n){ return Math.round(n).toLocaleString("ko-KR")+"원"; }
+
+  document.getElementById("f-date").value = todayStr();
+
+  var monthSelect = document.getElementById("monthSelect");
+
+  function allMonthsDesc(){
+    var set = {};
+    entries.forEach(function(e){ set[monthKey(e.date)] = true; });
+    set[monthKey(todayStr())] = true;
+    return Object.keys(set).sort().reverse();
+  }
+
+  function renderMonthOptions(selected){
+    var months = allMonthsDesc();
+    monthSelect.innerHTML = "";
+    months.forEach(function(m){
+      var opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = monthLabel(m);
+      monthSelect.appendChild(opt);
+    });
+    monthSelect.value = selected && months.indexOf(selected) !== -1 ? selected : months[0];
+  }
+
+  function entriesForMonth(m){
+    return entries.filter(function(e){ return monthKey(e.date) === m; });
+  }
+
+  function monthTotal(m){
+    return entriesForMonth(m).reduce(function(sum,e){ return sum + Number(e.amount); }, 0);
+  }
+
+  function prevMonthKey(m){
+    var y = parseInt(m.slice(0,4),10), mo = parseInt(m.slice(5,7),10);
+    mo -= 1;
+    if(mo === 0){ mo = 12; y -= 1; }
+    return y + "-" + String(mo).padStart(2,"0");
+  }
+
+  function renderSummary(m){
+    var total = monthTotal(m);
+    var list = entriesForMonth(m);
+    document.getElementById("stat-total").textContent = won(total);
+    document.getElementById("stat-count").textContent = list.length + "건";
+
+    var prevKey = prevMonthKey(m);
+    var prevTotal = monthTotal(prevKey);
+    var diffEl = document.getElementById("stat-diff");
+    var capEl = document.getElementById("stat-diff-cap");
+    if(prevTotal === 0){
+      diffEl.textContent = "비교 불가";
+      diffEl.className = "num neutral";
+      capEl.textContent = "전월 기록 없음";
+    }else{
+      var diff = total - prevTotal;
+      var pct = Math.round((diff/prevTotal)*100);
+      var sign = diff > 0 ? "+" : (diff < 0 ? "" : "±");
+      diffEl.textContent = sign + won(diff).replace("원","") + "원 (" + sign + pct + "%)";
+      diffEl.className = "num " + (diff > 0 ? "diff-up" : (diff < 0 ? "diff-down" : "neutral"));
+      capEl.textContent = monthLabel(prevKey) + " 대비";
+    }
+  }
+
+  function renderCategoryBars(m){
+    var list = entriesForMonth(m);
+    var el = document.getElementById("categoryBars");
+    if(list.length === 0){
+      el.innerHTML = '<p class="empty">아직 기록이 없습니다.</p>';
+      return;
+    }
+    var totals = {};
+    list.forEach(function(e){
+      totals[e.category] = (totals[e.category]||0) + Number(e.amount);
+    });
+    var monthSum = monthTotal(m);
+    var rows = Object.keys(totals).sort(function(a,b){ return totals[b]-totals[a]; });
+    var max = Math.max.apply(null, rows.map(function(k){ return totals[k]; }));
+    el.innerHTML = rows.map(function(k){
+      var pct = monthSum ? Math.round((totals[k]/monthSum)*100) : 0;
+      var w = max ? Math.round((totals[k]/max)*100) : 0;
+      return '<div class="bar-row">'+
+        '<div class="bar-label">'+k+'</div>'+
+        '<div class="bar-track"><div class="bar-fill" style="width:'+w+'%"></div></div>'+
+        '<div class="bar-amt">'+won(totals[k])+' ('+pct+'%)</div>'+
+        '</div>';
+    }).join("");
+  }
+
+  function renderMonthComparison(m){
+    var months = allMonthsDesc().slice(0,6).reverse();
+    var el = document.getElementById("monthBars");
+    var withData = months.filter(function(mk){ return monthTotal(mk) > 0; });
+    if(withData.length <= 1){
+      el.innerHTML = '<p class="empty">비교할 다른 달 기록이 아직 없습니다.</p>';
+      return;
+    }
+    var totals = months.map(function(mk){ return monthTotal(mk); });
+    var max = Math.max.apply(null, totals);
+    el.innerHTML = months.map(function(mk){
+      var t = monthTotal(mk);
+      var w = max ? Math.round((t/max)*100) : 0;
+      var isCurrent = mk === m;
+      return '<div class="bar-row">'+
+        '<div class="bar-label"'+(isCurrent?' style="font-weight:700;"':'')+'>'+monthLabel(mk)+(isCurrent?' ●':'')+'</div>'+
+        '<div class="bar-track"><div class="bar-fill" style="width:'+w+'%'+(isCurrent?'':';opacity:.55')+'"></div></div>'+
+        '<div class="bar-amt">'+won(t)+'</div>'+
+        '</div>';
+    }).join("");
+  }
+
+  function renderEntryTable(m){
+    var list = entriesForMonth(m).slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+    var tbody = document.getElementById("entryRows");
+    var emptyEl = document.getElementById("entryEmpty");
+    if(list.length === 0){
+      tbody.innerHTML = "";
+      emptyEl.style.display = "block";
+      return;
+    }
+    emptyEl.style.display = "none";
+    tbody.innerHTML = list.map(function(e){
+      return '<tr>'+
+        '<td>'+e.date+'</td>'+
+        '<td>'+escapeHtml(e.category)+'</td>'+
+        '<td>'+escapeHtml(e.memo||"")+'</td>'+
+        '<td class="num">'+won(e.amount)+'</td>'+
+        '<td class="no-print"><button class="delete-btn" data-id="'+e.id+'" title="삭제">✕</button></td>'+
+        '</tr>';
+    }).join("");
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+    });
+  }
+
+  function currentMonth(){ return monthSelect.value; }
+
+  function renderAll(selected){
+    renderMonthOptions(selected);
+    var m = currentMonth();
+    renderSummary(m);
+    renderCategoryBars(m);
+    renderMonthComparison(m);
+    renderEntryTable(m);
+  }
+
+  document.getElementById("entryForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var date = document.getElementById("f-date").value || todayStr();
+    var category = document.getElementById("f-category").value;
+    var amount = Number(document.getElementById("f-amount").value);
+    var memo = document.getElementById("f-memo").value.trim();
+    if(!amount || amount <= 0) return;
+    entries.push({
+      id: Date.now() + "-" + Math.random().toString(36).slice(2,7),
+      date: date, category: category, amount: amount, memo: memo
+    });
+    saveEntries(entries);
+    document.getElementById("f-amount").value = "";
+    document.getElementById("f-memo").value = "";
+    renderAll(monthKey(date));
+  });
+
+  document.getElementById("entryRows").addEventListener("click", function(ev){
+    var btn = ev.target.closest(".delete-btn");
+    if(!btn) return;
+    var id = btn.getAttribute("data-id");
+    entries = entries.filter(function(e){ return e.id !== id; });
+    saveEntries(entries);
+    renderAll(currentMonth());
+  });
+
+  monthSelect.addEventListener("change", function(){ renderAll(currentMonth()); });
+
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+
+  document.getElementById("exportMdBtn").addEventListener("click", function(){
+    var m = currentMonth();
+    var list = entriesForMonth(m).slice().sort(function(a,b){ return a.date < b.date ? -1 : 1; });
+    var total = monthTotal(m);
+    var prevKey = prevMonthKey(m);
+    var prevTotal = monthTotal(prevKey);
+
+    var lines = [];
+    lines.push("# 용돈 기입장 - " + monthLabel(m));
+    lines.push("");
+    lines.push("- 총 지출: **" + won(total) + "**");
+    lines.push("- 기록 건수: " + list.length + "건");
+    if(prevTotal > 0){
+      var diff = total - prevTotal;
+      var pct = Math.round((diff/prevTotal)*100);
+      lines.push("- " + monthLabel(prevKey) + " 대비: " + (diff>=0?"+":"") + won(diff) + " (" + (diff>=0?"+":"") + pct + "%)");
+    }
+    lines.push("");
+    lines.push("## 분류별 지출");
+    lines.push("");
+    lines.push("| 분류 | 금액 | 비중 |");
+    lines.push("|---|---:|---:|");
+    var totals = {};
+    list.forEach(function(e){ totals[e.category] = (totals[e.category]||0) + Number(e.amount); });
+    Object.keys(totals).sort(function(a,b){ return totals[b]-totals[a]; }).forEach(function(k){
+      var pct = total ? Math.round((totals[k]/total)*100) : 0;
+      lines.push("| " + k + " | " + won(totals[k]) + " | " + pct + "% |");
+    });
+    lines.push("");
+    lines.push("## 월별 비교");
+    lines.push("");
+    lines.push("| 월 | 총 지출 |");
+    lines.push("|---|---:|");
+    allMonthsDesc().slice(0,6).forEach(function(mk){
+      var t = monthTotal(mk);
+      if(t > 0) lines.push("| " + monthLabel(mk) + (mk===m?" (이번 달)":"") + " | " + won(t) + " |");
+    });
+    lines.push("");
+    lines.push("## 상세 내역");
+    lines.push("");
+    lines.push("| 날짜 | 분류 | 메모 | 금액 |");
+    lines.push("|---|---|---|---:|");
+    list.forEach(function(e){
+      lines.push("| " + e.date + " | " + e.category + " | " + (e.memo||"") + " | " + won(e.amount) + " |");
+    });
+
+    var blob = new Blob([lines.join("\n")], {type:"text/markdown;charset=utf-8"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "용돈기입장-" + m + ".md";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  renderAll(monthKey(todayStr()));
+})();
+</script>
+</body>
+</html>
