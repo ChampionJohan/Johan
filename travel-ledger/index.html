@@ -121,6 +121,22 @@
   .status-line.warn{color:var(--spend);}
   .sync-row{display:flex; gap:8px; align-items:flex-end;}
 
+  .converter-card{background:var(--accent-soft);}
+  .converter-row{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .converter-row input{flex:1 1 100px; min-width:90px;}
+  .converter-row select{flex:2 1 160px;}
+  .swap-btn{
+    flex:0 0 auto; width:38px; height:38px; padding:0;
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    font-size:16px; color:var(--accent-strong);
+  }
+  .swap-btn:hover{border-color:var(--accent); background:var(--accent-soft);}
+  .converter-result{
+    margin-top:14px; font-size:22px; font-weight:700; text-align:center;
+    font-variant-numeric:tabular-nums; color:var(--ink);
+  }
+  .converter-result .unset{font-size:13px; font-weight:400; color:var(--spend);}
+
   @media print{
     body{background:#fff; padding:0;}
     .no-print{display:none !important;}
@@ -142,6 +158,17 @@
     <button class="lang-btn" data-lang="id">Bahasa Indonesia</button>
     <button class="lang-btn" data-lang="tl">Filipino</button>
     <button class="lang-btn" data-lang="es">Español</button>
+  </div>
+
+  <div class="card converter-card no-print" id="converterCard">
+    <h2><span data-t="converterTitle"></span></h2>
+    <div class="converter-row">
+      <input type="number" id="convAmount" value="1" step="0.01" min="0">
+      <select id="convFrom"></select>
+      <button type="button" class="swap-btn" id="convSwapBtn">⇄</button>
+      <select id="convTo"></select>
+    </div>
+    <div class="converter-result" id="convResult"></div>
   </div>
 
   <div class="passbook">
@@ -292,19 +319,21 @@ async function loadFirebaseSdk(){
 
 /* ================= i18n ================= */
 const CATEGORY_KEYS = ["food","snacks","transport","lodging","shopping","gifts","sightseeing","activities","communication","insurance","other"];
-const CURRENCY_CODES = ["KRW","USD","MYR","PHP","JPY","THB","VND","SGD","TWD","HKD","CNY","IDR","EUR","AUD"];
+const CURRENCY_CODES = ["KRW","USD","MYR","PHP","JPY","THB","VND","SGD","TWD","HKD","CNY","IDR","EUR","AUD","GBP","MXN"];
 const CURRENCY_LOCALES = {
   KRW:"ko-KR", USD:"en-US", MYR:"ms-MY", PHP:"en-PH", JPY:"en-US", THB:"th-TH",
-  VND:"en-US", SGD:"en-US", TWD:"en-US", HKD:"en-US", CNY:"en-US", IDR:"en-US", EUR:"en-US", AUD:"en-US"
+  VND:"en-US", SGD:"en-US", TWD:"en-US", HKD:"en-US", CNY:"en-US", IDR:"en-US", EUR:"en-US", AUD:"en-US",
+  GBP:"en-GB", MXN:"en-US"
 };
 /* Frankfurter (ECB reference rates) covers these; VND/TWD need manual entry. */
-const LIVE_RATE_SUPPORTED = ["USD","MYR","PHP","JPY","THB","SGD","HKD","CNY","IDR","EUR","AUD"];
+const LIVE_RATE_SUPPORTED = ["USD","MYR","PHP","JPY","THB","SGD","HKD","CNY","IDR","EUR","AUD","GBP","MXN"];
 const PIVOT = "KRW";
-const DEFAULT_RATES = { USD:1380, MYR:310, PHP:24, JPY:9, THB:39, VND:0.055, SGD:1020, TWD:43, HKD:177, CNY:190, IDR:0.085, EUR:1500, AUD:920 };
+const DEFAULT_RATES = { USD:1380, MYR:310, PHP:24, JPY:9, THB:39, VND:0.055, SGD:1020, TWD:43, HKD:177, CNY:190, IDR:0.085, EUR:1500, AUD:920, GBP:1750, MXN:75 };
 
 const I18N = {
   ko: {
     eyebrow: "Travel Ledger", appTitle: "여행 용돈 기입장",
+    converterTitle: "환율 계산기", converterSwap: "통화 바꾸기",
     totalLabel: (m,cur) => `${m} 총 지출 (${cur} 환산)`,
     prevNoData: (m) => `${m} 기록 없음`,
     vsPrev: (m,diff,pct) => `${m} 대비 ${diff} (${pct}%)`,
@@ -342,11 +371,12 @@ const I18N = {
     emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
     convUnset: "환율 미설정",
     categories: { food:"식비", snacks:"간식/음료", transport:"교통비", lodging:"숙박", shopping:"쇼핑", gifts:"선물", sightseeing:"관광/입장료", activities:"액티비티/투어", communication:"통신비", insurance:"보험/의료", other:"기타" },
-    currencyNames: { KRW:"원", USD:"달러", MYR:"링깃", PHP:"페소", JPY:"엔", THB:"바트", VND:"동", SGD:"싱가포르 달러", TWD:"대만 달러", HKD:"홍콩 달러", CNY:"위안", IDR:"루피아", EUR:"유로", AUD:"호주 달러" },
+    currencyNames: { KRW:"원", USD:"달러", MYR:"링깃", PHP:"페소", JPY:"엔", THB:"바트", VND:"동", SGD:"싱가포르 달러", TWD:"대만 달러", HKD:"홍콩 달러", CNY:"위안", IDR:"루피아", EUR:"유로", AUD:"호주 달러", GBP:"파운드", MXN:"멕시코 페소" },
     monthLabel: (y,m) => `${y}년 ${m}월`
   },
   en: {
     eyebrow: "Travel Ledger", appTitle: "Travel Allowance Ledger",
+    converterTitle: "Currency Converter", converterSwap: "Swap currencies",
     totalLabel: (m,cur) => `${m} total spend (in ${cur})`,
     prevNoData: (m) => `No data for ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) vs ${m}`,
@@ -384,11 +414,12 @@ const I18N = {
     emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
     convUnset: "rate not set",
     categories: { food:"Food", snacks:"Snacks & drinks", transport:"Transport", lodging:"Lodging", shopping:"Shopping", gifts:"Gifts & souvenirs", sightseeing:"Sightseeing & admission", activities:"Activities & tours", communication:"Communication", insurance:"Insurance & medical", other:"Other" },
-    currencyNames: { KRW:"Won", USD:"Dollar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar" },
+    currencyNames: { KRW:"Won", USD:"Dollar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Mexican Peso" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("en-US", {year:"numeric", month:"long"})
   },
   zh: {
     eyebrow: "Travel Ledger", appTitle: "旅行零花钱记账本",
+    converterTitle: "汇率计算器", converterSwap: "交换货币",
     totalLabel: (m,cur) => `${m} 总支出（折合${cur}）`,
     prevNoData: (m) => `${m} 无记录`,
     vsPrev: (m,diff,pct) => `较${m} ${diff}（${pct}%）`,
@@ -426,11 +457,12 @@ const I18N = {
     emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
     convUnset: "未设汇率",
     categories: { food:"餐饮", snacks:"零食饮品", transport:"交通", lodging:"住宿", shopping:"购物", gifts:"礼品纪念品", sightseeing:"观光门票", activities:"活动/团游", communication:"通讯", insurance:"保险/医疗", other:"其他" },
-    currencyNames: { KRW:"韩元", USD:"美元", MYR:"林吉特", PHP:"比索", JPY:"日元", THB:"泰铢", VND:"越南盾", SGD:"新加坡元", TWD:"新台币", HKD:"港币", CNY:"人民币", IDR:"印尼盾", EUR:"欧元", AUD:"澳元" },
+    currencyNames: { KRW:"韩元", USD:"美元", MYR:"林吉特", PHP:"比索", JPY:"日元", THB:"泰铢", VND:"越南盾", SGD:"新加坡元", TWD:"新台币", HKD:"港币", CNY:"人民币", IDR:"印尼盾", EUR:"欧元", AUD:"澳元", GBP:"英镑", MXN:"墨西哥比索" },
     monthLabel: (y,m) => `${y}年${m}月`
   },
   ja: {
     eyebrow: "Travel Ledger", appTitle: "旅行おこづかい帳",
+    converterTitle: "為替計算機", converterSwap: "通貨を入れ替え",
     totalLabel: (m,cur) => `${m}の総支出（${cur}換算）`,
     prevNoData: (m) => `${m}のデータなし`,
     vsPrev: (m,diff,pct) => `${m}比 ${diff}（${pct}%）`,
@@ -468,11 +500,12 @@ const I18N = {
     emptyCompare: "比較できる他の月のデータがまだありません。", emptyHistory: "今月の記録はありません。",
     convUnset: "レート未設定",
     categories: { food:"食費", snacks:"軽食・飲み物", transport:"交通費", lodging:"宿泊", shopping:"ショッピング", gifts:"お土産", sightseeing:"観光・入場料", activities:"アクティビティ・ツアー", communication:"通信費", insurance:"保険・医療", other:"その他" },
-    currencyNames: { KRW:"ウォン", USD:"ドル", MYR:"リンギット", PHP:"ペソ", JPY:"円", THB:"バーツ", VND:"ドン", SGD:"シンガポールドル", TWD:"台湾ドル", HKD:"香港ドル", CNY:"元", IDR:"ルピア", EUR:"ユーロ", AUD:"豪ドル" },
+    currencyNames: { KRW:"ウォン", USD:"ドル", MYR:"リンギット", PHP:"ペソ", JPY:"円", THB:"バーツ", VND:"ドン", SGD:"シンガポールドル", TWD:"台湾ドル", HKD:"香港ドル", CNY:"元", IDR:"ルピア", EUR:"ユーロ", AUD:"豪ドル", GBP:"ポンド", MXN:"メキシコペソ" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ja-JP", {year:"numeric", month:"long"})
   },
   vi: {
     eyebrow: "Travel Ledger", appTitle: "Sổ Chi Tiêu Du Lịch",
+    converterTitle: "Máy Tính Tỷ Giá", converterSwap: "Đổi chiều tiền tệ",
     totalLabel: (m,cur) => `Tổng chi tiêu ${m} (quy đổi ${cur})`,
     prevNoData: (m) => `Không có dữ liệu cho ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) so với ${m}`,
@@ -510,11 +543,12 @@ const I18N = {
     emptyCompare: "Chưa đủ dữ liệu các tháng khác để so sánh.", emptyHistory: "Tháng này chưa có khoản chi nào.",
     convUnset: "chưa có tỷ giá",
     categories: { food:"Ăn uống", snacks:"Đồ ăn vặt/nước uống", transport:"Di chuyển", lodging:"Chỗ ở", shopping:"Mua sắm", gifts:"Quà lưu niệm", sightseeing:"Tham quan/vé vào cổng", activities:"Hoạt động/tour", communication:"Liên lạc", insurance:"Bảo hiểm/y tế", other:"Khác" },
-    currencyNames: { KRW:"Won", USD:"Đô la", MYR:"Ringgit", PHP:"Peso", JPY:"Yên", THB:"Baht", VND:"Đồng", SGD:"Đô la Singapore", TWD:"Đô la Đài Loan", HKD:"Đô la Hồng Kông", CNY:"Nhân dân tệ", IDR:"Rupiah", EUR:"Euro", AUD:"Đô la Úc" },
+    currencyNames: { KRW:"Won", USD:"Đô la", MYR:"Ringgit", PHP:"Peso", JPY:"Yên", THB:"Baht", VND:"Đồng", SGD:"Đô la Singapore", TWD:"Đô la Đài Loan", HKD:"Đô la Hồng Kông", CNY:"Nhân dân tệ", IDR:"Rupiah", EUR:"Euro", AUD:"Đô la Úc", GBP:"Bảng Anh", MXN:"Peso Mexico" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("vi-VN", {year:"numeric", month:"long"})
   },
   th: {
     eyebrow: "Travel Ledger", appTitle: "สมุดบันทึกค่าใช้จ่ายท่องเที่ยว",
+    converterTitle: "เครื่องคำนวณอัตราแลกเปลี่ยน", converterSwap: "สลับสกุลเงิน",
     totalLabel: (m,cur) => `ยอดใช้จ่ายรวม ${m} (แปลงเป็น ${cur})`,
     prevNoData: (m) => `ไม่มีข้อมูลของ ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) เทียบกับ ${m}`,
@@ -552,11 +586,12 @@ const I18N = {
     emptyCompare: "ยังไม่มีข้อมูลเดือนอื่นพอสำหรับเปรียบเทียบ", emptyHistory: "เดือนนี้ยังไม่มีรายการ",
     convUnset: "ยังไม่ตั้งอัตรา",
     categories: { food:"อาหาร", snacks:"ของว่าง/เครื่องดื่ม", transport:"การเดินทาง", lodging:"ที่พัก", shopping:"ช้อปปิ้ง", gifts:"ของฝาก", sightseeing:"ท่องเที่ยว/ค่าเข้าชม", activities:"กิจกรรม/ทัวร์", communication:"การสื่อสาร", insurance:"ประกัน/การแพทย์", other:"อื่นๆ" },
-    currencyNames: { KRW:"วอน", USD:"ดอลลาร์", MYR:"ริงกิต", PHP:"เปโซ", JPY:"เยน", THB:"บาท", VND:"ดง", SGD:"ดอลลาร์สิงคโปร์", TWD:"ดอลลาร์ไต้หวัน", HKD:"ดอลลาร์ฮ่องกง", CNY:"หยวน", IDR:"รูเปียห์", EUR:"ยูโร", AUD:"ดอลลาร์ออสเตรเลีย" },
+    currencyNames: { KRW:"วอน", USD:"ดอลลาร์", MYR:"ริงกิต", PHP:"เปโซ", JPY:"เยน", THB:"บาท", VND:"ดง", SGD:"ดอลลาร์สิงคโปร์", TWD:"ดอลลาร์ไต้หวัน", HKD:"ดอลลาร์ฮ่องกง", CNY:"หยวน", IDR:"รูเปียห์", EUR:"ยูโร", AUD:"ดอลลาร์ออสเตรเลีย", GBP:"ปอนด์", MXN:"เปโซเม็กซิโก" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("th-TH", {year:"numeric", month:"long"})
   },
   ms: {
     eyebrow: "Travel Ledger", appTitle: "Buku Perbelanjaan Percutian",
+    converterTitle: "Penukar Mata Wang", converterSwap: "Tukar mata wang",
     totalLabel: (m,cur) => `Jumlah perbelanjaan ${m} (ditukar ke ${cur})`,
     prevNoData: (m) => `Tiada data untuk ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) berbanding ${m}`,
@@ -594,11 +629,12 @@ const I18N = {
     emptyCompare: "Belum cukup bulan lain untuk dibandingkan.", emptyHistory: "Tiada rekod bulan ini.",
     convUnset: "kadar belum ditetapkan",
     categories: { food:"Makanan", snacks:"Snek/minuman", transport:"Pengangkutan", lodging:"Penginapan", shopping:"Membeli-belah", gifts:"Hadiah/cenderamata", sightseeing:"Lawatan/tiket masuk", activities:"Aktiviti/lawatan", communication:"Komunikasi", insurance:"Insurans/perubatan", other:"Lain-lain" },
-    currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia" },
+    currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun", MXN:"Peso Mexico" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ms-MY", {year:"numeric", month:"long"})
   },
   id: {
     eyebrow: "Travel Ledger", appTitle: "Catatan Pengeluaran Perjalanan",
+    converterTitle: "Kalkulator Kurs", converterSwap: "Tukar mata uang",
     totalLabel: (m,cur) => `Total pengeluaran ${m} (dikonversi ke ${cur})`,
     prevNoData: (m) => `Tidak ada data untuk ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) dibanding ${m}`,
@@ -636,11 +672,12 @@ const I18N = {
     emptyCompare: "Belum cukup data bulan lain untuk dibandingkan.", emptyHistory: "Belum ada catatan bulan ini.",
     convUnset: "kurs belum diatur",
     categories: { food:"Makanan", snacks:"Camilan/minuman", transport:"Transportasi", lodging:"Penginapan", shopping:"Belanja", gifts:"Oleh-oleh", sightseeing:"Wisata/tiket masuk", activities:"Aktivitas/tur", communication:"Komunikasi", insurance:"Asuransi/medis", other:"Lainnya" },
-    currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia" },
+    currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun Sterling", MXN:"Peso Meksiko" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("id-ID", {year:"numeric", month:"long"})
   },
   tl: {
     eyebrow: "Travel Ledger", appTitle: "Talaan ng Gastos sa Paglalakbay",
+    converterTitle: "Currency Converter", converterSwap: "Ipagpalit ang currency",
     totalLabel: (m,cur) => `Kabuuang gastos ng ${m} (na-convert sa ${cur})`,
     prevNoData: (m) => `Walang datos para sa ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) kumpara sa ${m}`,
@@ -678,11 +715,12 @@ const I18N = {
     emptyCompare: "Wala pang sapat na ibang buwan para ikumpara.", emptyHistory: "Walang entry ngayong buwan.",
     convUnset: "walang rate",
     categories: { food:"Pagkain", snacks:"Meryenda/inumin", transport:"Transportasyon", lodging:"Tuluyan", shopping:"Pamimili", gifts:"Regalo/pasalubong", sightseeing:"Pasyalan/bayad sa pasukan", activities:"Aktibidad/tour", communication:"Komunikasyon", insurance:"Insurance/medikal", other:"Iba pa" },
-    currencyNames: { KRW:"Won", USD:"Dolyar", MYR:"Ringgit", PHP:"Piso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar" },
+    currencyNames: { KRW:"Won", USD:"Dolyar", MYR:"Ringgit", PHP:"Piso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Piso Mexicano" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("fil-PH", {year:"numeric", month:"long"})
   },
   es: {
     eyebrow: "Travel Ledger", appTitle: "Libreta de Gastos de Viaje",
+    converterTitle: "Conversor de Moneda", converterSwap: "Intercambiar monedas",
     totalLabel: (m,cur) => `Gasto total de ${m} (convertido a ${cur})`,
     prevNoData: (m) => `Sin datos de ${m}`,
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) frente a ${m}`,
@@ -720,7 +758,7 @@ const I18N = {
     emptyCompare: "Aún no hay suficientes meses para comparar.", emptyHistory: "No hay registros este mes.",
     convUnset: "sin tipo de cambio",
     categories: { food:"Comida", snacks:"Bocadillos/bebidas", transport:"Transporte", lodging:"Alojamiento", shopping:"Compras", gifts:"Regalos/recuerdos", sightseeing:"Turismo/entradas", activities:"Actividades/tours", communication:"Comunicación", insurance:"Seguro/médico", other:"Otro" },
-    currencyNames: { KRW:"Won", USD:"Dólar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dólar de Singapur", TWD:"Dólar taiwanés", HKD:"Dólar de Hong Kong", CNY:"Yuan", IDR:"Rupia", EUR:"Euro", AUD:"Dólar australiano" },
+    currencyNames: { KRW:"Won", USD:"Dólar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dólar de Singapur", TWD:"Dólar taiwanés", HKD:"Dólar de Hong Kong", CNY:"Yuan", IDR:"Rupia", EUR:"Euro", AUD:"Dólar australiano", GBP:"Libra esterlina", MXN:"Peso mexicano" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("es-ES", {year:"numeric", month:"long"})
   }
 };
@@ -784,8 +822,13 @@ const syncStatusEl = document.getElementById("sync-status");
 const footNoteEl = document.getElementById("footNote");
 const syncCodeInput = document.getElementById("syncCodeInput");
 const syncHintEl = document.getElementById("syncHint");
+const convAmountInput = document.getElementById("convAmount");
+const convFromSelect = document.getElementById("convFrom");
+const convToSelect = document.getElementById("convTo");
+const convResultEl = document.getElementById("convResult");
 
 document.getElementById("f-date").value = todayStr();
+let convFrom = "USD", convTo = PIVOT;
 
 /* ================= localization render ================= */
 function applyStaticText(){
@@ -800,9 +843,15 @@ function applyStaticText(){
   const currencyOptionsHtml = CURRENCY_CODES.map(c => `<option value="${c}">${currencyLabel(c)}</option>`).join("");
   fCurrencySelect.innerHTML = currencyOptionsHtml;
   baseCurrencySelect.innerHTML = currencyOptionsHtml;
+  convFromSelect.innerHTML = currencyOptionsHtml;
+  convToSelect.innerHTML = currencyOptionsHtml;
+  convFromSelect.value = convFrom;
+  convToSelect.value = convTo;
+  document.getElementById("convSwapBtn").title = t("converterSwap");
   document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   syncCodeInput.placeholder = lang==="ko" ? "예: johan-family-2026" : (lang==="zh" ? "例如：johan-family-2026" : "e.g. johan-family-2026");
   updateConnectionUI();
+  updateConverter();
 }
 document.querySelectorAll(".lang-btn").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -1151,6 +1200,7 @@ function renderAll(selectMonth){
   renderCategoryBars(m);
   renderMonthComparison(m);
   renderEntryTable(m);
+  updateConverter();
 }
 
 function updateLivePreview(){
@@ -1159,6 +1209,16 @@ function updateLivePreview(){
   if(!amt || cur === settings.baseCurrency){ livePreview.textContent = ""; return; }
   const conv = convertAmount(amt, cur, settings.baseCurrency);
   livePreview.textContent = conv===null ? t("livePreviewUnset") : t("livePreviewApprox")(formatMoney(conv, settings.baseCurrency));
+}
+
+function updateConverter(){
+  const amt = Number(convAmountInput.value) || 0;
+  const conv = convertAmount(amt, convFrom, convTo);
+  if(conv === null){
+    convResultEl.innerHTML = `<span class="unset">${t("convUnset")}</span>`;
+  }else{
+    convResultEl.textContent = formatMoney(conv, convTo);
+  }
 }
 
 /* ================= events ================= */
@@ -1183,6 +1243,16 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
 
 fCurrencySelect.addEventListener("change", updateLivePreview);
 fAmountInput.addEventListener("input", updateLivePreview);
+
+convAmountInput.addEventListener("input", updateConverter);
+convFromSelect.addEventListener("change", () => { convFrom = convFromSelect.value; updateConverter(); });
+convToSelect.addEventListener("change", () => { convTo = convToSelect.value; updateConverter(); });
+document.getElementById("convSwapBtn").addEventListener("click", () => {
+  [convFrom, convTo] = [convTo, convFrom];
+  convFromSelect.value = convFrom;
+  convToSelect.value = convTo;
+  updateConverter();
+});
 
 document.getElementById("entryRows").addEventListener("click", async (ev) => {
   const btn = ev.target.closest(".delete-btn");
