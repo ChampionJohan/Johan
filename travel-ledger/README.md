@@ -1,4 +1,4 @@
-# Travel Ledger · 여행 용돈 기입장
+# RoamRate · Currency Converter & Travel Budget
 
 여행 중 현지 통화로 지출을 입력하면 자동으로 원화(또는 원하는 통화)로 환산해 오늘·이번 달 총 지출을 보여주는
 설치형 웹 앱(PWA). English·한국어·中文·日本語·Tiếng Việt·ไทย·Bahasa Melayu·Bahasa Indonesia·Filipino·Español
@@ -76,7 +76,7 @@ Apple Developer(연 $99)·Google Play(1회 $25) 계정과 심사가 추가로 �
 
 ```
 travel-ledger/
-  index.html           앱 전체 (UI + 3개 언어 문자열 + 로직, 의존성은 CDN의 Firebase SDK뿐)
+  index.html           앱 전체 (UI + 10개 언어 문자열 + 로직, 의존성은 CDN의 Firebase SDK뿐)
   firebase-config.js    Firebase 프로젝트 설정값 (직접 채워 넣는 파일, 비밀 아님)
   manifest.json         PWA 설치 정보 (이름, 아이콘, 색상)
   sw.js                 오프라인 캐시용 서비스 워커

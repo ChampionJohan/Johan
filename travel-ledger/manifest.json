@@ -1,14 +1,14 @@
 {
-  "name": "Travel Ledger · 여행 용도 기입장",
-  "short_name": "Travel Ledger",
-  "description": "Log travel spending in local currency and see it converted to your own currency instantly.",
+  "name": "RoamRate: Currency Converter & Travel Budget",
+  "short_name": "RoamRate",
+  "description": "Convert currencies instantly and log travel spending in local currency, converted to your own currency in real time.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f1f4ea",
   "theme_color": "#1f4f38",
   "orientation": "portrait",
-  "lang": "ko",
+  "lang": "en",
   "icons": [
     { "src": "icons/icon-any-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icons/icon-any-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },

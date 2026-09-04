@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Travel Ledger · 여행 용돈 기입장</title>
+<title>RoamRate · Currency Converter & Travel Budget</title>
 <meta name="theme-color" content="#1f4f38">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-apple-180.png">
@@ -332,7 +332,7 @@ const DEFAULT_RATES = { USD:1380, MYR:310, PHP:24, JPY:9, THB:39, VND:0.055, SGD
 
 const I18N = {
   ko: {
-    eyebrow: "Travel Ledger", appTitle: "여행 용돈 기입장",
+    eyebrow: "RoamRate", appTitle: "RoamRate — 여행 환율·가계부",
     converterTitle: "환율 계산기", converterSwap: "통화 바꾸기",
     totalLabel: (m,cur) => `${m} 총 지출 (${cur} 환산)`,
     prevNoData: (m) => `${m} 기록 없음`,
@@ -375,7 +375,7 @@ const I18N = {
     monthLabel: (y,m) => `${y}년 ${m}월`
   },
   en: {
-    eyebrow: "Travel Ledger", appTitle: "Travel Allowance Ledger",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Currency & Travel Budget",
     converterTitle: "Currency Converter", converterSwap: "Swap currencies",
     totalLabel: (m,cur) => `${m} total spend (in ${cur})`,
     prevNoData: (m) => `No data for ${m}`,
@@ -418,7 +418,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("en-US", {year:"numeric", month:"long"})
   },
   zh: {
-    eyebrow: "Travel Ledger", appTitle: "旅行零花钱记账本",
+    eyebrow: "RoamRate", appTitle: "RoamRate — 汇率与旅行记账",
     converterTitle: "汇率计算器", converterSwap: "交换货币",
     totalLabel: (m,cur) => `${m} 总支出（折合${cur}）`,
     prevNoData: (m) => `${m} 无记录`,
@@ -461,7 +461,7 @@ const I18N = {
     monthLabel: (y,m) => `${y}年${m}月`
   },
   ja: {
-    eyebrow: "Travel Ledger", appTitle: "旅行おこづかい帳",
+    eyebrow: "RoamRate", appTitle: "RoamRate — 為替・旅行家計簿",
     converterTitle: "為替計算機", converterSwap: "通貨を入れ替え",
     totalLabel: (m,cur) => `${m}の総支出（${cur}換算）`,
     prevNoData: (m) => `${m}のデータなし`,
@@ -504,7 +504,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ja-JP", {year:"numeric", month:"long"})
   },
   vi: {
-    eyebrow: "Travel Ledger", appTitle: "Sổ Chi Tiêu Du Lịch",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Tỷ giá & Chi tiêu du lịch",
     converterTitle: "Máy Tính Tỷ Giá", converterSwap: "Đổi chiều tiền tệ",
     totalLabel: (m,cur) => `Tổng chi tiêu ${m} (quy đổi ${cur})`,
     prevNoData: (m) => `Không có dữ liệu cho ${m}`,
@@ -547,7 +547,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("vi-VN", {year:"numeric", month:"long"})
   },
   th: {
-    eyebrow: "Travel Ledger", appTitle: "สมุดบันทึกค่าใช้จ่ายท่องเที่ยว",
+    eyebrow: "RoamRate", appTitle: "RoamRate — อัตราแลกเปลี่ยนและงบเดินทาง",
     converterTitle: "เครื่องคำนวณอัตราแลกเปลี่ยน", converterSwap: "สลับสกุลเงิน",
     totalLabel: (m,cur) => `ยอดใช้จ่ายรวม ${m} (แปลงเป็น ${cur})`,
     prevNoData: (m) => `ไม่มีข้อมูลของ ${m}`,
@@ -590,7 +590,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("th-TH", {year:"numeric", month:"long"})
   },
   ms: {
-    eyebrow: "Travel Ledger", appTitle: "Buku Perbelanjaan Percutian",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Kadar Tukaran & Bajet Percutian",
     converterTitle: "Penukar Mata Wang", converterSwap: "Tukar mata wang",
     totalLabel: (m,cur) => `Jumlah perbelanjaan ${m} (ditukar ke ${cur})`,
     prevNoData: (m) => `Tiada data untuk ${m}`,
@@ -633,7 +633,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ms-MY", {year:"numeric", month:"long"})
   },
   id: {
-    eyebrow: "Travel Ledger", appTitle: "Catatan Pengeluaran Perjalanan",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Kurs & Anggaran Perjalanan",
     converterTitle: "Kalkulator Kurs", converterSwap: "Tukar mata uang",
     totalLabel: (m,cur) => `Total pengeluaran ${m} (dikonversi ke ${cur})`,
     prevNoData: (m) => `Tidak ada data untuk ${m}`,
@@ -676,7 +676,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("id-ID", {year:"numeric", month:"long"})
   },
   tl: {
-    eyebrow: "Travel Ledger", appTitle: "Talaan ng Gastos sa Paglalakbay",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Exchange Rate at Badyet sa Biyahe",
     converterTitle: "Currency Converter", converterSwap: "Ipagpalit ang currency",
     totalLabel: (m,cur) => `Kabuuang gastos ng ${m} (na-convert sa ${cur})`,
     prevNoData: (m) => `Walang datos para sa ${m}`,
@@ -719,7 +719,7 @@ const I18N = {
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("fil-PH", {year:"numeric", month:"long"})
   },
   es: {
-    eyebrow: "Travel Ledger", appTitle: "Libreta de Gastos de Viaje",
+    eyebrow: "RoamRate", appTitle: "RoamRate — Cambio de Divisas y Presupuesto de Viaje",
     converterTitle: "Conversor de Moneda", converterSwap: "Intercambiar monedas",
     totalLabel: (m,cur) => `Gasto total de ${m} (convertido a ${cur})`,
     prevNoData: (m) => `Sin datos de ${m}`,
