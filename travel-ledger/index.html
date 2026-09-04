@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Travel Ledger · 여행 용돈 기입장</title>
+<meta name="theme-color" content="#1f4f38">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-apple-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Dodum&display=swap">
+<style>
+  :root{
+    --bg:#f1f4ea; --surface:#fffefb; --surface-2:#e9edde; --ink:#202b21; --sub:#5f6b5c;
+    --line:#d7ddc8; --accent:#2f6b4c; --accent-strong:#1f4f38; --accent-soft:#dcebe0;
+    --spend:#b1552b; --spend-soft:#f3e2d6; --hole:#f1f4ea;
+    --shadow: 0 1px 2px rgba(32,43,33,.06), 0 8px 24px -12px rgba(32,43,33,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#131a15; --surface:#1b241d; --surface-2:#212c22; --ink:#e9efe6; --sub:#9caa97;
+      --line:#33402f; --accent:#72c398; --accent-strong:#94dab3; --accent-soft:#233a2b;
+      --spend:#e2946a; --spend-soft:#3a2b1e; --hole:#131a15;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{background:var(--bg);}
+  body{
+    margin:0; color:var(--ink);
+    font-family:'Gowun Dodum','Apple SD Gothic Neo','Malgun Gothic','PingFang SC','Microsoft YaHei',sans-serif;
+    padding:28px 14px 64px;
+  }
+  .wrap{max-width:640px;margin:0 auto;}
+  .lang-row{display:flex;justify-content:flex-end;gap:6px;margin-bottom:10px;}
+  .lang-btn{
+    border:1px solid var(--line); background:var(--surface); color:var(--sub);
+    border-radius:999px; padding:5px 12px; font-size:12px; cursor:pointer;
+  }
+  .lang-btn.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+
+  .passbook{
+    background:var(--surface); border-radius:14px; box-shadow:var(--shadow);
+    padding:26px 26px 20px; position:relative; margin-bottom:20px; border-top:3px dashed var(--line);
+  }
+  .passbook::before, .passbook::after{
+    content:""; position:absolute; top:-9px; width:16px;height:16px; border-radius:50%;
+    background:var(--hole); border:3px dashed var(--line);
+  }
+  .passbook::before{left:26px;} .passbook::after{right:26px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; color:var(--sub); text-transform:uppercase; margin:0 0 6px;}
+  h1{font-family:'Song Myung',serif; font-size:26px; margin:0 0 18px; text-wrap:balance;}
+  .balance-row{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid var(--line); padding-top:16px;}
+  .balance-label{font-size:13px; color:var(--sub);}
+  .balance-num{font-family:'Gowun Dodum',sans-serif; font-size:32px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink);}
+  .diff-pill{display:inline-flex; align-items:center; gap:4px; font-size:12px; padding:5px 10px; border-radius:999px; font-variant-numeric:tabular-nums; background:var(--surface-2); color:var(--sub);}
+  .diff-pill.up{background:var(--spend-soft); color:var(--spend);}
+  .diff-pill.down{background:var(--accent-soft); color:var(--accent-strong);}
+  .meta-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:var(--sub);}
+  .other-currencies{font-size:12px; color:var(--sub); margin-top:8px; line-height:1.6;}
+  .other-currencies[hidden], .status-line[hidden]{display:none;}
+
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:16px;}
+  .card h2, .card summary{
+    font-family:'Song Myung',serif; font-size:16px; margin:0 0 14px; padding-bottom:10px;
+    border-bottom:2px solid var(--accent-soft); display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;
+  }
+  details.card summary{cursor:pointer; list-style:none; color:var(--ink);}
+  details.card summary::-webkit-details-marker{display:none;}
+  details.card summary::after{content:"▾"; font-size:14px; color:var(--sub); border:none;}
+  details.card[open] summary::after{content:"▴";}
+  details.card summary .rate-updated{font-family:'Gowun Dodum',sans-serif; font-size:11px; color:var(--sub); margin-right:auto; margin-left:10px;}
+  .card h2 select{font-family:'Gowun Dodum',sans-serif; font-size:13px; border:none; background:transparent; color:var(--accent-strong); text-align:right; width:auto; padding:2px 4px;}
+
+  .row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+  .row > *{flex:1 1 130px;}
+  label{display:block; font-size:12px; color:var(--sub); margin-bottom:4px;}
+  input,select{width:100%; padding:10px 11px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--bg); color:var(--ink); font-family:inherit;}
+  input:focus,select:focus{outline:2px solid var(--accent-soft); border-color:var(--accent);}
+  button{cursor:pointer; border:none; border-radius:8px; font-family:inherit; font-size:14px;}
+  .btn-primary{background:var(--accent); color:#fff; padding:11px 18px; width:100%; font-weight:600;}
+  .btn-primary:hover{background:var(--accent-strong);}
+  .btn-primary:disabled{opacity:.5; cursor:not-allowed;}
+  .btn-ghost{background:transparent; border:1px solid var(--line); color:var(--sub); padding:9px 13px;}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent-strong);}
+  .btn-ghost:disabled{opacity:.45; cursor:not-allowed; border-color:var(--line); color:var(--sub);}
+  .toolbar{display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap; margin-top:14px;}
+
+  .rate-row{display:flex; gap:8px; align-items:flex-end; margin-bottom:10px;}
+  .rate-check{flex:0 0 auto; font-size:12px; color:var(--accent-strong); text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:10px 12px; white-space:nowrap;}
+  .rate-check:hover{border-color:var(--accent); background:var(--accent-soft);}
+  .rate-manual-tag{font-size:10px; color:var(--sub); border:1px solid var(--line); border-radius:6px; padding:1px 6px; margin-left:6px;}
+
+  .bar-row{display:flex; align-items:center; gap:10px; padding:7px 0;}
+  .bar-label{flex:0 0 110px; font-size:13px;}
+  .bar-track{flex:1; background:var(--surface-2); border-radius:6px; height:10px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--accent); border-radius:6px;}
+  .bar-fill.this-month{background:var(--spend);}
+  .bar-amt{flex:0 0 110px; text-align:right; font-size:12px; color:var(--sub); font-variant-numeric:tabular-nums;}
+
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  th,td{text-align:left; padding:9px 6px; border-bottom:1px dashed var(--line);}
+  th{color:var(--sub); font-weight:500; font-size:12px;}
+  td.num,th.num{text-align:right; font-variant-numeric:tabular-nums;}
+  .conv-note{display:block; font-size:11px; color:var(--sub);}
+  .delete-btn{background:none; border:none; color:var(--sub); font-size:14px; cursor:pointer; padding:2px 6px;}
+  .delete-btn:hover{color:var(--spend);}
+  .empty{color:var(--sub); font-size:13px; text-align:center; padding:20px 0;}
+  .table-wrap{overflow-x:auto;}
+  .status-line{font-size:11px; color:var(--sub); text-align:center; margin-top:22px;}
+  .status-line.warn{color:var(--spend);}
+  .sync-row{display:flex; gap:8px; align-items:flex-end;}
+
+  @media print{
+    body{background:#fff; padding:0;}
+    .no-print{display:none !important;}
+    .card,.passbook{border:none; box-shadow:none; padding:0; margin-bottom:18px;}
+    .passbook::before,.passbook::after{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lang-row no-print">
+    <button class="lang-btn" data-lang="ko">한국어</button>
+    <button class="lang-btn" data-lang="en">English</button>
+    <button class="lang-btn" data-lang="zh">中文</button>
+  </div>
+
+  <div class="passbook">
+    <p class="eyebrow" data-t="eyebrow"></p>
+    <h1 data-t="appTitle"></h1>
+    <div class="balance-row">
+      <div>
+        <div class="balance-label" id="balance-label"></div>
+        <div class="balance-num" id="stat-total">0</div>
+      </div>
+      <span class="diff-pill" id="stat-diff"></span>
+    </div>
+    <div class="meta-row">
+      <span id="stat-today"></span>
+      <span id="stat-count"></span>
+      <span id="sync-status"></span>
+    </div>
+    <p class="other-currencies" id="otherCurrencies" hidden></p>
+    <p class="status-line warn" id="rateWarning" hidden></p>
+  </div>
+
+  <div class="card no-print">
+    <h2><span data-t="formTitle"></span></h2>
+    <form id="entryForm">
+      <div class="row">
+        <div>
+          <label for="f-date" data-t="dateLabel"></label>
+          <input type="date" id="f-date" required>
+        </div>
+        <div>
+          <label for="f-category" data-t="categoryLabel"></label>
+          <select id="f-category"></select>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f-currency" data-t="currencyLabel"></label>
+          <select id="f-currency"></select>
+        </div>
+        <div>
+          <label for="f-amount" data-t="amountLabel"></label>
+          <input type="number" id="f-amount" min="0" step="0.01" placeholder="0" required>
+        </div>
+      </div>
+      <p class="conv-note no-print" id="livePreview"></p>
+      <div class="row">
+        <div style="flex:1 1 100%;">
+          <label for="f-memo" data-t="memoLabel"></label>
+          <input type="text" id="f-memo">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" id="submitBtn" data-t="submitBtn"></button>
+    </form>
+  </div>
+
+  <details class="card no-print" id="rateCard">
+    <summary><span data-t="rateCardTitle"></span><span class="rate-updated" id="rateUpdated"></span></summary>
+    <form id="rateForm">
+      <div class="row">
+        <div>
+          <label for="baseCurrencySelect" data-t="baseCurrencyLabel"></label>
+          <select id="baseCurrencySelect"></select>
+        </div>
+      </div>
+      <div class="toolbar" style="justify-content:flex-start;margin:0 0 12px;">
+        <button type="button" class="btn-ghost" id="refreshRatesBtn" data-t="refreshRatesBtn"></button>
+      </div>
+      <div id="rateInputs"></div>
+      <button type="submit" class="btn-primary" data-t="saveRatesBtn"></button>
+    </form>
+    <p class="status-line" id="rateHint"></p>
+  </details>
+
+  <details class="card no-print" id="syncCard">
+    <summary><span data-t="syncCardTitle"></span></summary>
+    <div class="row sync-row">
+      <div>
+        <label for="syncCodeInput" data-t="syncCodeLabel"></label>
+        <input type="text" id="syncCodeInput" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </div>
+      <button type="button" class="btn-primary" id="syncConnectBtn" style="flex:0 0 auto;" data-t="syncConnectBtn"></button>
+    </div>
+    <p class="status-line" id="syncHint"></p>
+  </details>
+
+  <div class="card">
+    <h2>
+      <span data-t="categoryCardTitle"></span>
+      <select id="monthSelect" class="no-print"></select>
+    </h2>
+    <div id="categoryBars"></div>
+  </div>
+
+  <div class="card">
+    <h2><span data-t="monthCompareTitle"></span></h2>
+    <div id="monthBars"></div>
+  </div>
+
+  <div class="card">
+    <h2><span data-t="historyTitle"></span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th data-t="colDate"></th><th data-t="colCategory"></th><th data-t="colMemo"></th>
+          <th class="num" data-t="colAmount"></th><th class="no-print"></th>
+        </tr></thead>
+        <tbody id="entryRows"></tbody>
+      </table>
+    </div>
+    <p class="empty" id="entryEmpty" style="display:none;"></p>
+    <div class="toolbar no-print">
+      <button class="btn-ghost" id="exportMdBtn" data-t="exportBtn"></button>
+      <button class="btn-ghost" id="printBtn" data-t="printBtn"></button>
+    </div>
+  </div>
+
+  <p class="status-line" id="footNote"></p>
+</div>
+
+<script src="firebase-config.js"></script>
+<script type="module">
+/*
+  Firebase is loaded lazily (dynamic import), not with a top-level static import.
+  A static import would be resolved eagerly by the browser before any of our own
+  code runs — if that CDN request fails (offline, or a network that blocks Google
+  domains, e.g. mainland China without a VPN) the WHOLE module would fail to load,
+  taking the entire app down with it. Loading it on demand means the local-only
+  ledger keeps working even when the sync backend is unreachable.
+*/
+let firebaseSdk = null;
+async function loadFirebaseSdk(){
+  if(firebaseSdk) return firebaseSdk;
+  const [{ initializeApp }, firestore] = await Promise.all([
+    import("https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"),
+    import("https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js")
+  ]);
+  firebaseSdk = { initializeApp, ...firestore };
+  return firebaseSdk;
+}
+
+/* ================= i18n ================= */
+const CATEGORY_KEYS = ["food","snacks","transport","lodging","shopping","gifts","sightseeing","activities","communication","insurance","other"];
+const CURRENCY_CODES = ["KRW","USD","MYR","PHP","JPY","THB","VND","SGD","TWD","HKD","CNY","IDR","EUR","AUD"];
+const CURRENCY_LOCALES = {
+  KRW:"ko-KR", USD:"en-US", MYR:"ms-MY", PHP:"en-PH", JPY:"en-US", THB:"th-TH",
+  VND:"en-US", SGD:"en-US", TWD:"en-US", HKD:"en-US", CNY:"en-US", IDR:"en-US", EUR:"en-US", AUD:"en-US"
+};
+/* Frankfurter (ECB reference rates) covers these; VND/TWD need manual entry. */
+const LIVE_RATE_SUPPORTED = ["USD","MYR","PHP","JPY","THB","SGD","HKD","CNY","IDR","EUR","AUD"];
+const PIVOT = "KRW";
+const DEFAULT_RATES = { USD:1380, MYR:310, PHP:24, JPY:9, THB:39, VND:0.055, SGD:1020, TWD:43, HKD:177, CNY:190, IDR:0.085, EUR:1500, AUD:920 };
+
+const I18N = {
+  ko: {
+    eyebrow: "Travel Ledger", appTitle: "여행 용돈 기입장",
+    totalLabel: (m,cur) => `${m} 총 지출 (${cur} 환산)`,
+    prevNoData: (m) => `${m} 기록 없음`,
+    vsPrev: (m,diff,pct) => `${m} 대비 ${diff} (${pct}%)`,
+    today: (amt) => `오늘 지출(환산): ${amt}`,
+    count: (n) => `기록 ${n}건`,
+    syncOffline: "이 기기에만 저장됨", syncOnline: "동기화됨 · 실시간 저장", syncError: "동기화 오류 · 기기 저장으로 전환",
+    footOffline: "동기화 코드를 설정하면 여러 기기에서 같은 기록을 볼 수 있습니다. (아래 '기기 간 동기화')",
+    footOnline: "동기화 코드로 연결된 모든 기기에서 실시간으로 기록이 공유됩니다.",
+    otherCurrencies: (list) => `통화별 사용 내역: ${list}`,
+    rateWarning: (n) => `⚠ 환율이 설정되지 않은 통화 기록 ${n}건은 총액에서 제외되었습니다. 아래 '환율 설정'에서 입력해 주세요.`,
+    formTitle: "오늘 지출 입력", dateLabel: "날짜", categoryLabel: "분류", currencyLabel: "쓴 나라 통화",
+    amountLabel: "금액 (현지 통화)", memoLabel: "메모 (선택)", submitBtn: "기록 추가",
+    livePreviewUnset: "환율 미설정 — 아래 '환율 설정'에서 입력해 주세요.", livePreviewApprox: (v) => `≈ ${v}`,
+    rateCardTitle: "환율 설정",
+    rateUpdatedPrefix: "마지막 수정: ", rateExampleNote: "예시 환율 (아직 수정 안 함)",
+    baseCurrencyLabel: "기준 통화 (총액을 어떤 돈으로 볼지)",
+    refreshRatesBtn: "실시간 환율 불러오기", rateFetching: "환율을 불러오는 중…",
+    rateFetchOk: (n) => `${n}개 통화 환율을 갱신했습니다. 저장하려면 아래 '환율 저장'을 눌러주세요.`,
+    rateFetchFail: "환율을 불러오지 못했습니다 (네트워크 문제일 수 있음). 직접 입력해 주세요.",
+    saveRatesBtn: "환율 저장",
+    rateHint: "환율은 자동으로 갱신되지 않습니다. '실시간 환율 불러오기'로 대부분의 통화를 한 번에 채우거나, 통화 옆 '확인'을 눌러 검색 결과를 참고해 직접 입력하세요.",
+    rateManualOnly: "수동입력",
+    rateInputLabel: (name) => `1 ${name} = 얼마(원)?`,
+    syncCardTitle: "기기 간 동기화", syncCodeLabel: "동기화 코드 (비밀번호처럼 관리)",
+    syncConnectBtn: "연결", syncHintIdle: "코드를 만들어 다른 기기에서 같은 코드를 입력하면 기록이 실시간으로 공유됩니다. 이 코드를 아는 사람은 누구나 보고 쓸 수 있으니 비밀번호처럼 관리하세요.",
+    syncHintConnected: (code) => `"${code}" 코드로 연결되어 실시간 동기화 중입니다.`,
+    syncHintNoBackend: "백엔드가 설정되지 않았습니다 — firebase-config.js를 채우면 사용할 수 있습니다 (README 참고).",
+    syncLoadFail: "동기화 서비스에 연결하지 못했습니다 (네트워크 차단 또는 오프라인일 수 있음). 기기 저장으로 계속 사용됩니다.",
+    categoryCardTitle: "분류별 지출 (환산)", monthCompareTitle: "월별 비교 (최근 6개월, 환산)", historyTitle: "내역",
+    colDate: "날짜", colCategory: "분류", colMemo: "메모", colAmount: "금액",
+    exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
+    emptyGeneric: "아직 기록이 없습니다.", emptyRates: "환율이 설정되지 않아 표시할 수 없습니다.",
+    emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
+    convUnset: "환율 미설정",
+    categories: { food:"식비", snacks:"간식/음료", transport:"교통비", lodging:"숙박", shopping:"쇼핑", gifts:"선물", sightseeing:"관광/입장료", activities:"액티비티/투어", communication:"통신비", insurance:"보험/의료", other:"기타" },
+    currencyNames: { KRW:"원", USD:"달러", MYR:"링깃", PHP:"페소", JPY:"엔", THB:"바트", VND:"동", SGD:"싱가포르 달러", TWD:"대만 달러", HKD:"홍콩 달러", CNY:"위안", IDR:"루피아", EUR:"유로", AUD:"호주 달러" },
+    monthLabel: (y,m) => `${y}년 ${m}월`
+  },
+  en: {
+    eyebrow: "Travel Ledger", appTitle: "Travel Allowance Ledger",
+    totalLabel: (m,cur) => `${m} total spend (in ${cur})`,
+    prevNoData: (m) => `No data for ${m}`,
+    vsPrev: (m,diff,pct) => `${diff} (${pct}%) vs ${m}`,
+    today: (amt) => `Today (converted): ${amt}`,
+    count: (n) => `${n} entries`,
+    syncOffline: "Saved on this device only", syncOnline: "Synced · saving live", syncError: "Sync error · switched to device storage",
+    footOffline: "Set a sync code below to share your ledger across devices.",
+    footOnline: "Every device connected with this sync code shares the ledger live.",
+    otherCurrencies: (list) => `Also spent in: ${list}`,
+    rateWarning: (n) => `⚠ ${n} entr${n===1?'y':'ies'} in a currency with no exchange rate were excluded from the total. Set it below in "Exchange Rates".`,
+    formTitle: "Add today's spending", dateLabel: "Date", categoryLabel: "Category", currencyLabel: "Currency spent",
+    amountLabel: "Amount (local currency)", memoLabel: "Memo (optional)", submitBtn: "Add entry",
+    livePreviewUnset: "Exchange rate not set — see \"Exchange Rates\" below.", livePreviewApprox: (v) => `≈ ${v}`,
+    rateCardTitle: "Exchange Rates",
+    rateUpdatedPrefix: "Last updated: ", rateExampleNote: "Example rates (not yet edited)",
+    baseCurrencyLabel: "Base currency (what totals are shown in)",
+    refreshRatesBtn: "Fetch live rates", rateFetching: "Fetching rates…",
+    rateFetchOk: (n) => `Updated ${n} currencies. Press "Save rates" below to keep them.`,
+    rateFetchFail: "Couldn't fetch live rates (possibly a network issue). Please enter them manually.",
+    saveRatesBtn: "Save rates",
+    rateHint: "Rates don't refresh automatically. Use \"Fetch live rates\" to fill most currencies at once, or tap \"check\" next to a currency to look it up and enter it yourself.",
+    rateManualOnly: "manual only",
+    rateInputLabel: (name) => `1 ${name} = ? KRW`,
+    syncCardTitle: "Sync across devices", syncCodeLabel: "Sync code (treat like a password)",
+    syncConnectBtn: "Connect", syncHintIdle: "Pick a code and enter the same one on another device to share the ledger live. Anyone who knows this code can read and write it — keep it like a password.",
+    syncHintConnected: (code) => `Connected with code "${code}" — syncing live.`,
+    syncHintNoBackend: "Backend not configured yet — fill in firebase-config.js to enable this (see README).",
+    syncLoadFail: "Couldn't reach the sync service (network blocked or offline?). Continuing with device-only storage.",
+    categoryCardTitle: "Spending by category (converted)", monthCompareTitle: "Last 6 months (converted)", historyTitle: "History",
+    colDate: "Date", colCategory: "Category", colMemo: "Memo", colAmount: "Amount",
+    exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
+    emptyGeneric: "No entries yet.", emptyRates: "Can't display — no exchange rate set.",
+    emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
+    convUnset: "rate not set",
+    categories: { food:"Food", snacks:"Snacks & drinks", transport:"Transport", lodging:"Lodging", shopping:"Shopping", gifts:"Gifts & souvenirs", sightseeing:"Sightseeing & admission", activities:"Activities & tours", communication:"Communication", insurance:"Insurance & medical", other:"Other" },
+    currencyNames: { KRW:"Won", USD:"Dollar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar" },
+    monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("en-US", {year:"numeric", month:"long"})
+  },
+  zh: {
+    eyebrow: "Travel Ledger", appTitle: "旅行零花钱记账本",
+    totalLabel: (m,cur) => `${m} 总支出（折合${cur}）`,
+    prevNoData: (m) => `${m} 无记录`,
+    vsPrev: (m,diff,pct) => `较${m} ${diff}（${pct}%）`,
+    today: (amt) => `今日支出（折合）：${amt}`,
+    count: (n) => `共 ${n} 笔`,
+    syncOffline: "仅保存在本设备", syncOnline: "已同步 · 实时保存", syncError: "同步出错 · 已切换为本地保存",
+    footOffline: "在下方设置同步码，即可在多台设备间共享记账本。",
+    footOnline: "所有使用此同步码连接的设备都会实时共享记录。",
+    otherCurrencies: (list) => `其他币种支出：${list}`,
+    rateWarning: (n) => `⚠ 有 ${n} 笔记录因未设置汇率而未计入总额，请在下方"汇率设置"中输入。`,
+    formTitle: "记一笔今天的支出", dateLabel: "日期", categoryLabel: "分类", currencyLabel: "使用的货币",
+    amountLabel: "金额（当地货币）", memoLabel: "备注（可选）", submitBtn: "添加记录",
+    livePreviewUnset: "未设置汇率 — 请见下方「汇率设置」。", livePreviewApprox: (v) => `≈ ${v}`,
+    rateCardTitle: "汇率设置",
+    rateUpdatedPrefix: "最后更新：", rateExampleNote: "示例汇率（尚未修改）",
+    baseCurrencyLabel: "基准货币（总额以哪种货币显示）",
+    refreshRatesBtn: "获取实时汇率", rateFetching: "正在获取汇率…",
+    rateFetchOk: (n) => `已更新 ${n} 种货币的汇率，请点击下方"保存汇率"以保留。`,
+    rateFetchFail: "获取实时汇率失败（可能是网络问题），请手动输入。",
+    saveRatesBtn: "保存汇率",
+    rateHint: "汇率不会自动更新。可点击「获取实时汇率」一次性填入大部分币种，或点击币种旁的「查询」查看搜索结果后手动输入。",
+    rateManualOnly: "仅手动",
+    rateInputLabel: (name) => `1 ${name} = 多少韩元(KRW)？`,
+    syncCardTitle: "跨设备同步", syncCodeLabel: "同步码（请像密码一样保管）",
+    syncConnectBtn: "连接", syncHintIdle: "设定一个同步码，在其他设备输入相同的码即可实时共享记账本。知道此码的任何人都能读写，请像密码一样保管。",
+    syncHintConnected: (code) => `已使用同步码 "${code}" 连接，正在实时同步。`,
+    syncHintNoBackend: "尚未配置后端 — 请填写 firebase-config.js 以启用（参见 README）。",
+    syncLoadFail: "无法连接同步服务（可能是网络受限或离线）。将继续使用本机存储。",
+    categoryCardTitle: "按分类统计（折合）", monthCompareTitle: "近6个月对比（折合）", historyTitle: "明细",
+    colDate: "日期", colCategory: "分类", colMemo: "备注", colAmount: "金额",
+    exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
+    emptyGeneric: "暂无记录。", emptyRates: "未设置汇率，暂无法显示。",
+    emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
+    convUnset: "未设汇率",
+    categories: { food:"餐饮", snacks:"零食饮品", transport:"交通", lodging:"住宿", shopping:"购物", gifts:"礼品纪念品", sightseeing:"观光门票", activities:"活动/团游", communication:"通讯", insurance:"保险/医疗", other:"其他" },
+    currencyNames: { KRW:"韩元", USD:"美元", MYR:"林吉特", PHP:"比索", JPY:"日元", THB:"泰铢", VND:"越南盾", SGD:"新加坡元", TWD:"新台币", HKD:"港币", CNY:"人民币", IDR:"印尼盾", EUR:"欧元", AUD:"澳元" },
+    monthLabel: (y,m) => `${y}年${m}月`
+  }
+};
+
+let lang = localStorage.getItem("travelLedgerLang") || (navigator.language||"").slice(0,2);
+if(!I18N[lang]) lang = "en";
+function t(key){ return I18N[lang][key]; }
+function currencyLabel(code){ return `${t("currencyNames")[code]} (${code})`; }
+function categoryLabel(key){ return t("categories")[key]; }
+
+/* ================= state ================= */
+const LOCAL_KEY = "travelLedgerEntries_v1";
+const SETTINGS_KEY = "travelLedgerSettings_v1";
+const SYNC_CODE_KEY = "travelLedgerSyncCode";
+
+let entries = [];
+let settings = { baseCurrency: PIVOT, rates: Object.assign({}, DEFAULT_RATES), updatedAt: null };
+let firebaseApp = null, dbInstance = null, syncCode = null, cloudOps = null;
+let unsubEntries = null, unsubSettings = null;
+let usingCloud = false;
+
+function todayStr(){
+  const d = new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+function monthKey(dateStr){ return (dateStr||todayStr()).slice(0,7); }
+function monthLabel(key){
+  const [y,m] = key.split("-").map(Number);
+  return t("monthLabel")(y,m);
+}
+function formatMoney(amount, code){
+  const n = Number(amount) || 0;
+  try{ return new Intl.NumberFormat(CURRENCY_LOCALES[code]||"en-US", {style:"currency", currency:code}).format(n); }
+  catch(e){ return n.toLocaleString() + " " + code; }
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function rateOf(cur){
+  if(cur === PIVOT) return 1;
+  const r = settings.rates[cur];
+  return (typeof r === "number" && r > 0) ? r : null;
+}
+function convertAmount(amount, fromCur, toCur){
+  const f = rateOf(fromCur), tt = rateOf(toCur);
+  if(f===null || tt===null) return null;
+  return Number(amount) * f / tt;
+}
+
+/* ================= DOM refs ================= */
+const monthSelect = document.getElementById("monthSelect");
+const fCategorySelect = document.getElementById("f-category");
+const fCurrencySelect = document.getElementById("f-currency");
+const fAmountInput = document.getElementById("f-amount");
+const livePreview = document.getElementById("livePreview");
+const baseCurrencySelect = document.getElementById("baseCurrencySelect");
+const rateInputsEl = document.getElementById("rateInputs");
+const rateUpdatedEl = document.getElementById("rateUpdated");
+const rateCardEl = document.getElementById("rateCard");
+const syncStatusEl = document.getElementById("sync-status");
+const footNoteEl = document.getElementById("footNote");
+const syncCodeInput = document.getElementById("syncCodeInput");
+const syncHintEl = document.getElementById("syncHint");
+
+document.getElementById("f-date").value = todayStr();
+
+/* ================= localization render ================= */
+function applyStaticText(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-t]").forEach(el => {
+    const key = el.getAttribute("data-t");
+    const val = t(key);
+    if(typeof val === "string") el.textContent = val;
+  });
+  document.getElementById("rateHint").textContent = t("rateHint");
+  fCategorySelect.innerHTML = CATEGORY_KEYS.map(k => `<option value="${k}">${categoryLabel(k)}</option>`).join("");
+  const currencyOptionsHtml = CURRENCY_CODES.map(c => `<option value="${c}">${currencyLabel(c)}</option>`).join("");
+  fCurrencySelect.innerHTML = currencyOptionsHtml;
+  baseCurrencySelect.innerHTML = currencyOptionsHtml;
+  document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+  syncCodeInput.placeholder = lang==="ko" ? "예: johan-family-2026" : (lang==="zh" ? "例如：johan-family-2026" : "e.g. johan-family-2026");
+  updateConnectionUI();
+}
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    lang = btn.dataset.lang;
+    localStorage.setItem("travelLedgerLang", lang);
+    applyStaticText();
+    renderRateForm();
+    renderAll(monthSelect.value);
+  });
+});
+
+/* ================= storage: local fallback ================= */
+function loadLocalEntries(){ try{ const r = localStorage.getItem(LOCAL_KEY); return r ? JSON.parse(r) : []; }catch(e){ return []; } }
+function saveLocalEntries(list){ try{ localStorage.setItem(LOCAL_KEY, JSON.stringify(list)); }catch(e){} }
+function loadLocalSettings(){
+  try{
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if(!raw) return null;
+    const p = JSON.parse(raw);
+    return { baseCurrency: p.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, p.rates||{}), updatedAt: p.updatedAt || null };
+  }catch(e){ return null; }
+}
+function saveLocalSettings(s){ try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }catch(e){} }
+function normalizeCurrency(e){ if(!e.currency || CURRENCY_CODES.indexOf(e.currency)===-1) e.currency = PIVOT; return e; }
+
+function updateConnectionUI(){
+  if(usingCloud && syncCode){
+    syncStatusEl.textContent = t("syncOnline");
+    footNoteEl.textContent = t("footOnline");
+    syncHintEl.textContent = t("syncHintConnected")(syncCode);
+  }else{
+    syncStatusEl.textContent = t("syncOffline");
+    footNoteEl.textContent = t("footOffline");
+    syncHintEl.textContent = firebaseConfigured() ? t("syncHintIdle") : t("syncHintNoBackend");
+  }
+}
+
+function startLocalMode(){
+  usingCloud = false;
+  entries = loadLocalEntries().map(normalizeCurrency);
+  const s = loadLocalSettings();
+  if(s) settings = s;
+  updateConnectionUI();
+  renderRateForm();
+  renderAll(monthKey(todayStr()));
+}
+
+/* ================= storage: Firebase cloud mode ================= */
+function firebaseConfigured(){
+  const c = window.TRAVEL_LEDGER_FIREBASE_CONFIG;
+  return !!(c && c.apiKey && c.apiKey !== "YOUR_API_KEY" && c.projectId && c.projectId !== "YOUR_PROJECT");
+}
+
+async function connectSync(code){
+  if(!firebaseConfigured()){
+    syncHintEl.textContent = t("syncHintNoBackend");
+    return;
+  }
+  let sdk;
+  try{
+    sdk = await loadFirebaseSdk();
+  }catch(e){
+    console.error("firebase sdk load failed", e);
+    syncHintEl.textContent = t("syncLoadFail");
+    startLocalMode();
+    return;
+  }
+  const { initializeApp, getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy, limit } = sdk;
+
+  if(unsubEntries) unsubEntries();
+  if(unsubSettings) unsubSettings();
+  syncCode = code;
+  localStorage.setItem(SYNC_CODE_KEY, code);
+  if(!firebaseApp){
+    firebaseApp = initializeApp(window.TRAVEL_LEDGER_FIREBASE_CONFIG);
+    dbInstance = getFirestore(firebaseApp);
+  }
+  cloudOps = { collection, doc, addDoc, setDoc, deleteDoc };
+  usingCloud = true;
+  updateConnectionUI();
+
+  const settingsRef = doc(dbInstance, "codes", code, "settings", "config");
+  unsubSettings = onSnapshot(settingsRef, snap => {
+    if(snap.exists()){
+      const d = snap.data();
+      settings = { baseCurrency: d.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, d.rates||{}), updatedAt: d.updatedAt || null };
+    }
+    renderRateForm();
+    renderAll(monthSelect.value || monthKey(todayStr()));
+  }, err => { console.error("settings sync error", err); });
+
+  const entriesQuery = query(collection(dbInstance, "codes", code, "entries"), orderBy("date","desc"), limit(1000));
+  unsubEntries = onSnapshot(entriesQuery, snap => {
+    entries = snap.docs.map(d => normalizeCurrency(Object.assign({id:d.id}, d.data())));
+    renderAll(monthSelect.value || monthKey(todayStr()));
+  }, err => {
+    console.error("entries sync error", err);
+    usingCloud = false;
+    startLocalMode();
+    syncStatusEl.textContent = t("syncError");
+  });
+}
+
+async function addEntry(data){
+  if(usingCloud){
+    await cloudOps.addDoc(cloudOps.collection(dbInstance, "codes", syncCode, "entries"), data);
+  }else{
+    entries.push(Object.assign({id: Date.now()+"-"+Math.random().toString(36).slice(2,7)}, data));
+    saveLocalEntries(entries);
+    renderAll(monthKey(data.date));
+  }
+}
+async function deleteEntry(id){
+  if(usingCloud){
+    await cloudOps.deleteDoc(cloudOps.doc(dbInstance, "codes", syncCode, "entries", id));
+  }else{
+    entries = entries.filter(e => e.id !== id);
+    saveLocalEntries(entries);
+    renderAll(monthSelect.value);
+  }
+}
+async function saveSettings(newSettings){
+  if(usingCloud){
+    await cloudOps.setDoc(cloudOps.doc(dbInstance, "codes", syncCode, "settings", "config"), Object.assign({}, newSettings, {updatedAt: new Date().toISOString()}));
+  }else{
+    settings = Object.assign({}, newSettings, {updatedAt: new Date().toISOString()});
+    saveLocalSettings(settings);
+    renderRateForm();
+    renderAll(monthSelect.value);
+  }
+}
+
+/* ================= derived data ================= */
+function allMonthsDesc(){
+  const set = {};
+  entries.forEach(e => set[monthKey(e.date)] = true);
+  set[monthKey(todayStr())] = true;
+  return Object.keys(set).sort().reverse();
+}
+function entriesForMonth(m){ return entries.filter(e => monthKey(e.date) === m); }
+function entriesForDate(d){ return entries.filter(e => e.date === d); }
+function convertedSum(list){
+  let total=0, skipped=0;
+  list.forEach(e => { const v = convertAmount(e.amount, e.currency, settings.baseCurrency); if(v===null) skipped++; else total+=v; });
+  return {total, skipped};
+}
+function monthConverted(m){ return convertedSum(entriesForMonth(m)); }
+function monthTotalsByCurrency(m){
+  const totals = {};
+  entriesForMonth(m).forEach(e => totals[e.currency] = (totals[e.currency]||0) + Number(e.amount));
+  return totals;
+}
+function prevMonthKey(m){
+  let [y,mo] = m.split("-").map(Number); mo -= 1;
+  if(mo===0){ mo=12; y-=1; }
+  return y+"-"+String(mo).padStart(2,"0");
+}
+
+/* ================= render: rate form ================= */
+function renderRateForm(){
+  baseCurrencySelect.value = settings.baseCurrency;
+  rateInputsEl.innerHTML = CURRENCY_CODES.filter(c => c !== PIVOT).map(c => {
+    const val = settings.rates[c] != null ? settings.rates[c] : "";
+    const manualOnly = LIVE_RATE_SUPPORTED.indexOf(c) === -1;
+    const q = encodeURIComponent(`1 ${c} to ${PIVOT}`);
+    return `<div class="rate-row"><div style="flex:1;"><label>${t("rateInputLabel")(currencyLabel(c))}${manualOnly?`<span class="rate-manual-tag">${t("rateManualOnly")}</span>`:""}</label>
+      <input type="number" step="0.01" min="0" data-cur="${c}" value="${val}"></div>
+      <a class="rate-check" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">${lang==="ko"?"환율 확인":(lang==="zh"?"查询":"Check")}</a></div>`;
+  }).join("");
+  if(settings.updatedAt){
+    const d = new Date(settings.updatedAt);
+    rateUpdatedEl.textContent = t("rateUpdatedPrefix") + d.getFullYear()+"."+String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0");
+  }else{
+    rateUpdatedEl.textContent = t("rateExampleNote");
+  }
+}
+
+async function fetchLiveRates(){
+  const btn = document.getElementById("refreshRatesBtn");
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = t("rateFetching");
+  try{
+    const symbols = LIVE_RATE_SUPPORTED.join(",");
+    const res = await fetch(`https://api.frankfurter.dev/v1/latest?base=${PIVOT}&symbols=${symbols}`);
+    if(!res.ok) throw new Error("bad response");
+    const data = await res.json();
+    const updated = {};
+    Object.keys(data.rates||{}).forEach(code => {
+      /* API gives "1 KRW = X code" — we store "1 code = ? KRW", so invert. */
+      if(data.rates[code] > 0){
+        rateInputsEl.querySelector(`input[data-cur="${code}"]`).value = (1/data.rates[code]).toFixed(4);
+        updated[code] = true;
+      }
+    });
+    document.getElementById("rateHint").textContent = t("rateFetchOk")(Object.keys(updated).length);
+  }catch(e){
+    console.error("fx fetch failed", e);
+    document.getElementById("rateHint").textContent = t("rateFetchFail");
+  }finally{
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+}
+
+/* ================= render: main views ================= */
+function renderMonthOptions(selected){
+  const months = allMonthsDesc();
+  const keep = selected && months.indexOf(selected)!==-1 ? selected : months[0];
+  monthSelect.innerHTML = months.map(m => `<option value="${m}"${m===keep?' selected':''}>${monthLabel(m)}</option>`).join("");
+  return keep;
+}
+
+function renderHero(m){
+  const base = settings.baseCurrency;
+  const cur = monthConverted(m);
+  const list = entriesForMonth(m);
+  document.getElementById("balance-label").textContent = t("totalLabel")(monthLabel(m), currencyLabel(base).split(" ")[0]);
+  document.getElementById("stat-total").textContent = formatMoney(cur.total, base);
+  document.getElementById("stat-count").textContent = t("count")(list.length);
+
+  const today = convertedSum(entriesForDate(todayStr()));
+  document.getElementById("stat-today").textContent = t("today")(formatMoney(today.total, base));
+
+  const prevKey = prevMonthKey(m);
+  const prevCur = monthConverted(prevKey);
+  const pill = document.getElementById("stat-diff");
+  if(prevCur.total === 0){
+    pill.textContent = t("prevNoData")(monthLabel(prevKey));
+    pill.className = "diff-pill";
+  }else{
+    const diff = cur.total - prevCur.total;
+    const pct = Math.round((diff/prevCur.total)*100);
+    const sign = diff > 0 ? "+" : "";
+    pill.textContent = t("vsPrev")(monthLabel(prevKey), sign+formatMoney(diff, base), sign+pct);
+    pill.className = "diff-pill " + (diff>0 ? "up" : (diff<0 ? "down" : ""));
+  }
+
+  const byCur = monthTotalsByCurrency(m);
+  const keys = Object.keys(byCur);
+  const otherEl = document.getElementById("otherCurrencies");
+  if(keys.length <= 1 && keys[0] === base){
+    otherEl.hidden = true;
+  }else{
+    otherEl.hidden = false;
+    otherEl.textContent = t("otherCurrencies")(keys.map(k => {
+      const native = formatMoney(byCur[k], k);
+      if(k === base) return native;
+      const conv = convertAmount(byCur[k], k, base);
+      return native + (conv===null ? ` (${t("convUnset")})` : ` (≈${formatMoney(conv, base)})`);
+    }).join(" · "));
+  }
+
+  const warnEl = document.getElementById("rateWarning");
+  if(cur.skipped > 0){ warnEl.hidden = false; warnEl.textContent = t("rateWarning")(cur.skipped); }
+  else{ warnEl.hidden = true; }
+}
+
+function renderCategoryBars(m){
+  const base = settings.baseCurrency;
+  const list = entriesForMonth(m);
+  const el = document.getElementById("categoryBars");
+  if(list.length === 0){ el.innerHTML = `<p class="empty">${t("emptyGeneric")}</p>`; return; }
+  const totals = {};
+  list.forEach(e => {
+    const v = convertAmount(e.amount, e.currency, base);
+    if(v===null) return;
+    totals[e.category] = (totals[e.category]||0) + v;
+  });
+  const keys = Object.keys(totals);
+  if(keys.length === 0){ el.innerHTML = `<p class="empty">${t("emptyRates")}</p>`; return; }
+  const sum = keys.reduce((s,k) => s+totals[k], 0);
+  keys.sort((a,b) => totals[b]-totals[a]);
+  const max = Math.max(...keys.map(k => totals[k]));
+  el.innerHTML = keys.map(k => {
+    const pct = sum ? Math.round((totals[k]/sum)*100) : 0;
+    const w = max ? Math.round((totals[k]/max)*100) : 0;
+    return `<div class="bar-row"><div class="bar-label">${escapeHtml(categoryLabel(k))}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${w}%"></div></div>
+      <div class="bar-amt">${formatMoney(totals[k], base)} (${pct}%)</div></div>`;
+  }).join("");
+}
+
+function renderMonthComparison(m){
+  const base = settings.baseCurrency;
+  const months = allMonthsDesc().slice(0,6).reverse();
+  const totalsByMonth = months.map(mk => monthConverted(mk).total);
+  const withData = totalsByMonth.filter(v => v > 0);
+  const el = document.getElementById("monthBars");
+  if(withData.length <= 1){ el.innerHTML = `<p class="empty">${t("emptyCompare")}</p>`; return; }
+  const max = Math.max(...totalsByMonth);
+  el.innerHTML = months.map((mk,i) => {
+    const val = totalsByMonth[i];
+    const w = max ? Math.round((val/max)*100) : 0;
+    const isCur = mk === m;
+    return `<div class="bar-row"><div class="bar-label"${isCur?' style="font-weight:700;color:var(--accent-strong);"':''}>${monthLabel(mk)}${isCur?' ●':''}</div>
+      <div class="bar-track"><div class="bar-fill${isCur?' this-month':''}" style="width:${w}%${isCur?'':';opacity:.55'}"></div></div>
+      <div class="bar-amt">${formatMoney(val, base)}</div></div>`;
+  }).join("");
+}
+
+function renderEntryTable(m){
+  const base = settings.baseCurrency;
+  const list = entriesForMonth(m).slice().sort((a,b) => a.date < b.date ? 1 : -1);
+  const tbody = document.getElementById("entryRows");
+  const emptyEl = document.getElementById("entryEmpty");
+  if(list.length === 0){ tbody.innerHTML=""; emptyEl.textContent = t("emptyHistory"); emptyEl.style.display="block"; return; }
+  emptyEl.style.display = "none";
+  tbody.innerHTML = list.map(e => {
+    let amountCell = formatMoney(e.amount, e.currency);
+    if(e.currency !== base){
+      const conv = convertAmount(e.amount, e.currency, base);
+      amountCell += `<span class="conv-note">${conv===null ? t("convUnset") : "≈ "+formatMoney(conv, base)}</span>`;
+    }
+    return `<tr><td>${e.date}</td><td>${escapeHtml(categoryLabel(e.category))}</td><td>${escapeHtml(e.memo||"")}</td>
+      <td class="num">${amountCell}</td>
+      <td class="no-print"><button class="delete-btn" data-id="${e.id}" title="delete">✕</button></td></tr>`;
+  }).join("");
+}
+
+function renderAll(selectMonth){
+  const m = renderMonthOptions(selectMonth);
+  renderHero(m);
+  renderCategoryBars(m);
+  renderMonthComparison(m);
+  renderEntryTable(m);
+}
+
+function updateLivePreview(){
+  const cur = fCurrencySelect.value;
+  const amt = Number(fAmountInput.value);
+  if(!amt || cur === settings.baseCurrency){ livePreview.textContent = ""; return; }
+  const conv = convertAmount(amt, cur, settings.baseCurrency);
+  livePreview.textContent = conv===null ? t("livePreviewUnset") : t("livePreviewApprox")(formatMoney(conv, settings.baseCurrency));
+}
+
+/* ================= events ================= */
+document.getElementById("entryForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const date = document.getElementById("f-date").value || todayStr();
+  const category = fCategorySelect.value;
+  const currency = fCurrencySelect.value || PIVOT;
+  const amount = Number(fAmountInput.value);
+  const memo = document.getElementById("f-memo").value.trim();
+  if(!amount || amount <= 0) return;
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true;
+  try{
+    await addEntry({date, category, currency, amount, memo, createdAt: new Date().toISOString()});
+    fAmountInput.value = ""; document.getElementById("f-memo").value = "";
+    updateLivePreview();
+    monthSelect.value = monthKey(date);
+  }catch(e){ console.error("add entry failed", e); }
+  finally{ btn.disabled = false; }
+});
+
+fCurrencySelect.addEventListener("change", updateLivePreview);
+fAmountInput.addEventListener("input", updateLivePreview);
+
+document.getElementById("entryRows").addEventListener("click", async (ev) => {
+  const btn = ev.target.closest(".delete-btn");
+  if(!btn) return;
+  btn.disabled = true;
+  try{ await deleteEntry(btn.getAttribute("data-id")); }
+  catch(e){ console.error("delete failed", e); btn.disabled = false; }
+});
+
+document.getElementById("refreshRatesBtn").addEventListener("click", fetchLiveRates);
+
+document.getElementById("rateForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const rates = {};
+  rateInputsEl.querySelectorAll("input[data-cur]").forEach(input => {
+    const v = parseFloat(input.value);
+    if(v > 0) rates[input.getAttribute("data-cur")] = v;
+  });
+  try{ await saveSettings({baseCurrency: baseCurrencySelect.value || PIVOT, rates}); updateLivePreview(); }
+  catch(e){ console.error("save settings failed", e); }
+});
+
+document.getElementById("syncConnectBtn").addEventListener("click", () => {
+  const code = syncCodeInput.value.trim().toLowerCase().replace(/\s+/g,"-");
+  if(!code) return;
+  connectSync(code);
+});
+
+monthSelect.addEventListener("change", () => renderAll(monthSelect.value));
+document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+document.getElementById("exportMdBtn").addEventListener("click", () => {
+  const m = monthSelect.value;
+  const base = settings.baseCurrency;
+  const list = entriesForMonth(m).slice().sort((a,b) => a.date < b.date ? -1 : 1);
+  const cur = monthConverted(m);
+  const prevKey = prevMonthKey(m);
+  const prevCur = monthConverted(prevKey);
+
+  const lines = [];
+  lines.push(`# ${t("appTitle")} - ${monthLabel(m)}`, "");
+  lines.push(`- ${t("totalLabel")(monthLabel(m), base)}: **${formatMoney(cur.total, base)}**${cur.skipped>0 ? ` _(${cur.skipped})_` : ""}`);
+  if(prevCur.total > 0){
+    const diff = cur.total - prevCur.total;
+    const pct = Math.round((diff/prevCur.total)*100);
+    lines.push(`- ${t("vsPrev")(monthLabel(prevKey), (diff>=0?"+":"")+formatMoney(diff, base), (diff>=0?"+":"")+pct)}`);
+  }
+  lines.push(`- ${t("count")(list.length)}`, "");
+
+  const byCur = monthTotalsByCurrency(m);
+  lines.push(`## ${t("historyTitle")} — ${t("colAmount")} by currency`, "", `| currency | amount | ≈ ${base} |`, "|---|---:|---:|");
+  Object.keys(byCur).sort().forEach(k => {
+    const conv = convertAmount(byCur[k], k, base);
+    lines.push(`| ${k} | ${formatMoney(byCur[k], k)} | ${conv===null?t("convUnset"):formatMoney(conv, base)} |`);
+  });
+
+  lines.push("", `## ${t("categoryCardTitle")}`, "", `| ${t("colCategory")} | ${t("colAmount")} |`, "|---|---:|");
+  const catTotals = {};
+  list.forEach(e => {
+    const v = convertAmount(e.amount, e.currency, base);
+    if(v===null) return;
+    catTotals[e.category] = (catTotals[e.category]||0) + v;
+  });
+  Object.keys(catTotals).sort((a,b) => catTotals[b]-catTotals[a]).forEach(k => {
+    lines.push(`| ${categoryLabel(k)} | ${formatMoney(catTotals[k], base)} |`);
+  });
+
+  lines.push("", `## ${t("monthCompareTitle")}`, "", "| month | total |", "|---|---:|");
+  allMonthsDesc().slice(0,6).forEach(mk => {
+    const val = monthConverted(mk).total;
+    if(val>0) lines.push(`| ${monthLabel(mk)}${mk===m?" *":""} | ${formatMoney(val, base)} |`);
+  });
+
+  lines.push("", `## ${t("historyTitle")}`, "", `| ${t("colDate")} | ${t("colCategory")} | currency | ${t("colAmount")} | ≈ ${base} | ${t("colMemo")} |`, "|---|---|---|---:|---:|---|");
+  list.forEach(e => {
+    const conv = convertAmount(e.amount, e.currency, base);
+    lines.push(`| ${e.date} | ${categoryLabel(e.category)} | ${e.currency} | ${formatMoney(e.amount, e.currency)} | ${conv===null?"-":formatMoney(conv, base)} | ${e.memo||""} |`);
+  });
+
+  const content = lines.join("\n");
+  const blob = new Blob([content], {type:"text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `travel-ledger-${m}.md`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ================= boot ================= */
+applyStaticText();
+if(firebaseConfigured()){
+  const savedCode = localStorage.getItem(SYNC_CODE_KEY);
+  if(savedCode){
+    syncCodeInput.value = savedCode;
+    connectSync(savedCode);
+  }else{
+    startLocalMode();
+  }
+}else{
+  startLocalMode();
+}
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(err => console.warn("sw register failed", err));
+  });
+}
+</script>
+</body>
+</html>
