@@ -1,7 +1,8 @@
 # Travel Ledger · 여행 용돈 기입장
 
 여행 중 현지 통화로 지출을 입력하면 자동으로 원화(또는 원하는 통화)로 환산해 오늘·이번 달 총 지출을 보여주는
-설치형 웹 앱(PWA). 한국어·English·中文 3개 언어를 지원해 한국인뿐 아니라 외국인 관광객도 쓸 수 있다.
+설치형 웹 앱(PWA). English·한국어·中文·日本語·Tiếng Việt·ไทย·Bahasa Melayu·Bahasa Indonesia·Filipino·Español
+10개 언어를 지원해 한국인뿐 아니라 다양한 국적의 여행자도 쓸 수 있다. 기본 언어는 English.
 
 `allowance-ledger/`(Claude Artifact용 프로토타입)의 후속작이며, 이 폴더는 GitHub Pages 등에 직접 배포해
 실시간 환율 조회와 여러 기기 간 동기화까지 지원하는 "진짜 앱" 버전이다.
