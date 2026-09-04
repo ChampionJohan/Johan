@@ -84,6 +84,17 @@
 
   .row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
   .row > *{flex:1 1 130px;}
+  .category-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(72px,1fr)); gap:8px; margin-bottom:10px;}
+  .cat-btn{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:10px 4px; border:1px solid var(--line); border-radius:10px;
+    background:var(--bg); color:var(--sub); font-size:11px; line-height:1.2; text-align:center;
+  }
+  .cat-btn .emoji{font-size:20px;}
+  .cat-btn.active{border-color:var(--accent); background:var(--accent-soft); color:var(--accent-strong); font-weight:600;}
+  .balance-num.flash{animation:flash-pulse .6s ease;}
+  @keyframes flash-pulse{ 0%{color:var(--accent-strong);} 100%{color:var(--ink);} }
+  @media (prefers-reduced-motion: reduce){ .balance-num.flash{animation:none;} }
   label{display:block; font-size:12px; color:var(--sub); margin-bottom:4px;}
   input,select{width:100%; padding:10px 11px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--bg); color:var(--ink); font-family:inherit;}
   input:focus,select:focus{outline:2px solid var(--accent-soft); border-color:var(--accent);}
@@ -206,10 +217,11 @@
           <label for="f-date" data-t="dateLabel"></label>
           <input type="date" id="f-date" required>
         </div>
-        <div>
-          <label for="f-category" data-t="categoryLabel"></label>
-          <select id="f-category"></select>
-        </div>
+      </div>
+      <div>
+        <label data-t="categoryLabel"></label>
+        <div class="category-grid" id="categoryGrid"></div>
+        <input type="hidden" id="f-category" value="food">
       </div>
       <div class="row">
         <div>
@@ -218,7 +230,7 @@
         </div>
         <div>
           <label for="f-amount" data-t="amountLabel"></label>
-          <input type="number" id="f-amount" min="0" step="0.01" placeholder="0" required>
+          <input type="number" id="f-amount" min="0" step="0.01" placeholder="0" required inputmode="decimal">
         </div>
       </div>
       <p class="conv-note no-print" id="livePreview"></p>
@@ -319,6 +331,10 @@ async function loadFirebaseSdk(){
 
 /* ================= i18n ================= */
 const CATEGORY_KEYS = ["food","snacks","transport","lodging","shopping","gifts","sightseeing","activities","communication","insurance","other"];
+const CATEGORY_EMOJI = {
+  food:"🍜", snacks:"🥤", transport:"🚕", lodging:"🏨", shopping:"🛍️", gifts:"🎁",
+  sightseeing:"🎫", activities:"🎢", communication:"📶", insurance:"🩺", other:"🗂️"
+};
 const CURRENCY_CODES = ["KRW","USD","MYR","PHP","JPY","THB","VND","SGD","TWD","HKD","CNY","IDR","EUR","AUD","GBP","MXN"];
 const CURRENCY_LOCALES = {
   KRW:"ko-KR", USD:"en-US", MYR:"ms-MY", PHP:"en-PH", JPY:"en-US", THB:"th-TH",
@@ -811,6 +827,7 @@ function convertAmount(amount, fromCur, toCur){
 /* ================= DOM refs ================= */
 const monthSelect = document.getElementById("monthSelect");
 const fCategorySelect = document.getElementById("f-category");
+const categoryGridEl = document.getElementById("categoryGrid");
 const fCurrencySelect = document.getElementById("f-currency");
 const fAmountInput = document.getElementById("f-amount");
 const livePreview = document.getElementById("livePreview");
@@ -839,7 +856,13 @@ function applyStaticText(){
     if(typeof val === "string") el.textContent = val;
   });
   document.getElementById("rateHint").textContent = t("rateHint");
-  fCategorySelect.innerHTML = CATEGORY_KEYS.map(k => `<option value="${k}">${categoryLabel(k)}</option>`).join("");
+  const activeCat = fCategorySelect.value || "food";
+  categoryGridEl.innerHTML = CATEGORY_KEYS.map(k =>
+    `<button type="button" class="cat-btn${k===activeCat?' active':''}" data-cat="${k}">
+      <span class="emoji">${CATEGORY_EMOJI[k]}</span><span>${categoryLabel(k)}</span>
+    </button>`
+  ).join("");
+  fCategorySelect.value = activeCat;
   const currencyOptionsHtml = CURRENCY_CODES.map(c => `<option value="${c}">${currencyLabel(c)}</option>`).join("");
   fCurrencySelect.innerHTML = currencyOptionsHtml;
   baseCurrencySelect.innerHTML = currencyOptionsHtml;
@@ -1237,8 +1260,19 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
     fAmountInput.value = ""; document.getElementById("f-memo").value = "";
     updateLivePreview();
     monthSelect.value = monthKey(date);
+    const totalEl = document.getElementById("stat-total");
+    totalEl.classList.remove("flash");
+    void totalEl.offsetWidth;
+    totalEl.classList.add("flash");
   }catch(e){ console.error("add entry failed", e); }
   finally{ btn.disabled = false; }
+});
+
+categoryGridEl.addEventListener("click", (ev) => {
+  const btn = ev.target.closest(".cat-btn");
+  if(!btn) return;
+  fCategorySelect.value = btn.getAttribute("data-cat");
+  categoryGridEl.querySelectorAll(".cat-btn").forEach(b => b.classList.toggle("active", b === btn));
 });
 
 fCurrencySelect.addEventListener("change", updateLivePreview);
