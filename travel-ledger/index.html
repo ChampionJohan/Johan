@@ -57,6 +57,15 @@
   .diff-pill{display:inline-flex; align-items:center; gap:4px; font-size:12px; padding:5px 10px; border-radius:999px; font-variant-numeric:tabular-nums; background:var(--surface-2); color:var(--sub);}
   .diff-pill.up{background:var(--spend-soft); color:var(--spend);}
   .diff-pill.down{background:var(--accent-soft); color:var(--accent-strong);}
+  .budget-row{display:flex; align-items:center; gap:10px; margin-top:14px;}
+  .budget-row .bar-track{flex:1; height:8px;}
+  .budget-row .bar-fill{background:var(--accent);}
+  .budget-row .bar-fill.over{background:var(--spend);}
+  .budget-row[hidden]{display:none;}
+  #budgetNote{font-size:12px; color:var(--sub); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .budget-edit{display:flex; gap:8px; margin-top:8px;}
+  .budget-edit input{flex:1;}
+  .budget-edit button{flex:0 0 auto; padding:9px 14px;}
   .meta-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:var(--sub);}
   .other-currencies{font-size:12px; color:var(--sub); margin-top:8px; line-height:1.6;}
   .other-currencies[hidden], .status-line[hidden]{display:none;}
@@ -138,6 +147,14 @@
       </div>
       <span class="diff-pill" id="stat-diff"></span>
     </div>
+    <div class="budget-row" id="budgetDisplay" hidden>
+      <div class="bar-track"><div class="bar-fill" id="budgetBar"></div></div>
+      <span id="budgetNote"></span>
+    </div>
+    <form class="budget-edit no-print" id="budgetForm">
+      <input type="number" id="budgetInput" min="0" step="1">
+      <button type="submit" class="btn-ghost" data-t="budgetSaveBtn"></button>
+    </form>
     <div class="meta-row">
       <span id="stat-today"></span>
       <span id="stat-count"></span>
@@ -286,6 +303,8 @@ const I18N = {
     vsPrev: (m,diff,pct) => `${m} 대비 ${diff} (${pct}%)`,
     today: (amt) => `오늘 지출(환산): ${amt}`,
     count: (n) => `기록 ${n}건`,
+    budgetSaveBtn: "예산 저장", budgetPlaceholder: (base) => `여행 예산 (${base}, 선택)`,
+    budgetRemaining: (amt) => `남은 예산: ${amt}`, budgetOver: (amt) => `예산 초과: ${amt}`,
     syncOffline: "이 기기에만 저장됨", syncOnline: "동기화됨 · 실시간 저장", syncError: "동기화 오류 · 기기 저장으로 전환",
     footOffline: "동기화 코드를 설정하면 여러 기기에서 같은 기록을 볼 수 있습니다. (아래 '기기 간 동기화')",
     footOnline: "동기화 코드로 연결된 모든 기기에서 실시간으로 기록이 공유됩니다.",
@@ -326,6 +345,8 @@ const I18N = {
     vsPrev: (m,diff,pct) => `${diff} (${pct}%) vs ${m}`,
     today: (amt) => `Today (converted): ${amt}`,
     count: (n) => `${n} entries`,
+    budgetSaveBtn: "Save budget", budgetPlaceholder: (base) => `Trip budget (${base}, optional)`,
+    budgetRemaining: (amt) => `Remaining: ${amt}`, budgetOver: (amt) => `Over budget by ${amt}`,
     syncOffline: "Saved on this device only", syncOnline: "Synced · saving live", syncError: "Sync error · switched to device storage",
     footOffline: "Set a sync code below to share your ledger across devices.",
     footOnline: "Every device connected with this sync code shares the ledger live.",
@@ -366,6 +387,8 @@ const I18N = {
     vsPrev: (m,diff,pct) => `较${m} ${diff}（${pct}%）`,
     today: (amt) => `今日支出（折合）：${amt}`,
     count: (n) => `共 ${n} 笔`,
+    budgetSaveBtn: "保存预算", budgetPlaceholder: (base) => `旅行预算（${base}，可选）`,
+    budgetRemaining: (amt) => `剩余预算：${amt}`, budgetOver: (amt) => `已超支：${amt}`,
     syncOffline: "仅保存在本设备", syncOnline: "已同步 · 实时保存", syncError: "同步出错 · 已切换为本地保存",
     footOffline: "在下方设置同步码，即可在多台设备间共享记账本。",
     footOnline: "所有使用此同步码连接的设备都会实时共享记录。",
@@ -413,7 +436,7 @@ const SETTINGS_KEY = "travelLedgerSettings_v1";
 const SYNC_CODE_KEY = "travelLedgerSyncCode";
 
 let entries = [];
-let settings = { baseCurrency: PIVOT, rates: Object.assign({}, DEFAULT_RATES), updatedAt: null };
+let settings = { baseCurrency: PIVOT, rates: Object.assign({}, DEFAULT_RATES), budget: null, updatedAt: null };
 let firebaseApp = null, dbInstance = null, syncCode = null, cloudOps = null;
 let unsubEntries = null, unsubSettings = null;
 let usingCloud = false;
@@ -498,7 +521,7 @@ function loadLocalSettings(){
     const raw = localStorage.getItem(SETTINGS_KEY);
     if(!raw) return null;
     const p = JSON.parse(raw);
-    return { baseCurrency: p.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, p.rates||{}), updatedAt: p.updatedAt || null };
+    return { baseCurrency: p.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, p.rates||{}), budget: p.budget || null, updatedAt: p.updatedAt || null };
   }catch(e){ return null; }
 }
 function saveLocalSettings(s){ try{ localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }catch(e){} }
@@ -564,7 +587,7 @@ async function connectSync(code){
   unsubSettings = onSnapshot(settingsRef, snap => {
     if(snap.exists()){
       const d = snap.data();
-      settings = { baseCurrency: d.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, d.rates||{}), updatedAt: d.updatedAt || null };
+      settings = { baseCurrency: d.baseCurrency || PIVOT, rates: Object.assign({}, DEFAULT_RATES, d.rates||{}), budget: d.budget || null, updatedAt: d.updatedAt || null };
     }
     renderRateForm();
     renderAll(monthSelect.value || monthKey(todayStr()));
@@ -600,11 +623,12 @@ async function deleteEntry(id){
     renderAll(monthSelect.value);
   }
 }
-async function saveSettings(newSettings){
+async function saveSettings(partialSettings){
+  const merged = Object.assign({}, settings, partialSettings, {updatedAt: new Date().toISOString()});
   if(usingCloud){
-    await cloudOps.setDoc(cloudOps.doc(dbInstance, "codes", syncCode, "settings", "config"), Object.assign({}, newSettings, {updatedAt: new Date().toISOString()}));
+    await cloudOps.setDoc(cloudOps.doc(dbInstance, "codes", syncCode, "settings", "config"), merged);
   }else{
-    settings = Object.assign({}, newSettings, {updatedAt: new Date().toISOString()});
+    settings = merged;
     saveLocalSettings(settings);
     renderRateForm();
     renderAll(monthSelect.value);
@@ -715,6 +739,27 @@ function renderHero(m){
     const sign = diff > 0 ? "+" : "";
     pill.textContent = t("vsPrev")(monthLabel(prevKey), sign+formatMoney(diff, base), sign+pct);
     pill.className = "diff-pill " + (diff>0 ? "up" : (diff<0 ? "down" : ""));
+  }
+
+  const budgetDisplay = document.getElementById("budgetDisplay");
+  const budgetInput = document.getElementById("budgetInput");
+  if(document.activeElement !== budgetInput){
+    budgetInput.value = settings.budget != null ? settings.budget : "";
+  }
+  budgetInput.placeholder = t("budgetPlaceholder")(base);
+  if(settings.budget != null && settings.budget > 0){
+    budgetDisplay.hidden = false;
+    const pct = Math.min(100, Math.round((cur.total / settings.budget) * 100));
+    const over = cur.total > settings.budget;
+    const fill = document.getElementById("budgetBar");
+    fill.style.width = pct + "%";
+    fill.className = "bar-fill" + (over ? " over" : "");
+    const note = document.getElementById("budgetNote");
+    note.textContent = over
+      ? t("budgetOver")(formatMoney(cur.total - settings.budget, base))
+      : t("budgetRemaining")(formatMoney(settings.budget - cur.total, base));
+  }else{
+    budgetDisplay.hidden = true;
   }
 
   const byCur = monthTotalsByCurrency(m);
@@ -847,6 +892,14 @@ document.getElementById("entryRows").addEventListener("click", async (ev) => {
 });
 
 document.getElementById("refreshRatesBtn").addEventListener("click", fetchLiveRates);
+
+document.getElementById("budgetForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const raw = document.getElementById("budgetInput").value;
+  const budget = raw === "" ? null : Number(raw);
+  try{ await saveSettings({budget: (budget && budget > 0) ? budget : null}); }
+  catch(e){ console.error("save budget failed", e); }
+});
 
 document.getElementById("rateForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
