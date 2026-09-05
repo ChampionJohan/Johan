@@ -1,0 +1,19 @@
+{
+  "name": "roamrate-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capacitor wrapper that packages travel-ledger/ as an installable iOS/Android app.",
+  "scripts": {
+    "sync": "npx cap sync",
+    "open:ios": "npx cap open ios",
+    "open:android": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/ios": "^6.1.2"
+  }
+}

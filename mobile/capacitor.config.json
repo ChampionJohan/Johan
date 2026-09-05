@@ -1,0 +1,15 @@
+{
+  "appId": "com.roamrate.app",
+  "appName": "RoamRate",
+  "webDir": "../travel-ledger",
+  "backgroundColor": "#1f4f38",
+  "server": {
+    "androidScheme": "https"
+  },
+  "ios": {
+    "backgroundColor": "#1f4f38"
+  },
+  "android": {
+    "backgroundColor": "#1f4f38"
+  }
+}
