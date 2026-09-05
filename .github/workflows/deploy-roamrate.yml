@@ -1,0 +1,33 @@
+name: deploy-roamrate
+
+on:
+  push:
+    branches: ["claude/allowance-ledger-app-zqdewu"]
+    paths: ["travel-ledger/**", ".github/workflows/deploy-roamrate.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# GitHub Pages 배포 대상은 저장소당 하나뿐이라, 다른 배포 워크플로(build-site.yml)와
+# 같은 concurrency 그룹을 공유해 두 배포가 겹치지 않게 한다.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: travel-ledger
+      - id: deploy
+        uses: actions/deploy-pages@v4
