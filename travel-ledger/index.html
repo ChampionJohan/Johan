@@ -33,7 +33,20 @@
     padding:28px 14px 64px;
   }
   .wrap{max-width:640px;margin:0 auto;}
-  .lang-row{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px;margin-bottom:10px;}
+  .lang-picker{position:relative; display:flex; justify-content:flex-end; margin-bottom:10px;}
+  .lang-toggle{
+    border:1px solid var(--line); background:var(--surface); color:var(--ink);
+    border-radius:999px; padding:6px 14px; font-size:13px; cursor:pointer;
+    display:flex; align-items:center; gap:6px;
+  }
+  .lang-toggle .caret{font-size:10px; color:var(--sub);}
+  .lang-panel{
+    display:none; flex-wrap:wrap; gap:6px; justify-content:flex-end;
+    position:absolute; top:calc(100% + 6px); right:0; z-index:30;
+    background:var(--surface); border:1px solid var(--line); border-radius:12px;
+    box-shadow:var(--shadow); padding:10px; max-width:260px;
+  }
+  .lang-panel.open{display:flex;}
   .lang-btn{
     border:1px solid var(--line); background:var(--surface); color:var(--sub);
     border-radius:999px; padding:5px 12px; font-size:12px; cursor:pointer;
@@ -167,17 +180,20 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="lang-row no-print">
-    <button class="lang-btn" data-lang="en">English</button>
-    <button class="lang-btn" data-lang="ko">한국어</button>
-    <button class="lang-btn" data-lang="zh">中文</button>
-    <button class="lang-btn" data-lang="ja">日本語</button>
-    <button class="lang-btn" data-lang="vi">Tiếng Việt</button>
-    <button class="lang-btn" data-lang="th">ไทย</button>
-    <button class="lang-btn" data-lang="ms">Bahasa Melayu</button>
-    <button class="lang-btn" data-lang="id">Bahasa Indonesia</button>
-    <button class="lang-btn" data-lang="tl">Filipino</button>
-    <button class="lang-btn" data-lang="es">Español</button>
+  <div class="lang-picker no-print">
+    <button type="button" class="lang-toggle" id="langToggleBtn">🌐 <span id="langToggleLabel">English</span> <span class="caret">▾</span></button>
+    <div class="lang-panel" id="langPanel">
+      <button class="lang-btn" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="ko">한국어</button>
+      <button class="lang-btn" data-lang="zh">中文</button>
+      <button class="lang-btn" data-lang="ja">日本語</button>
+      <button class="lang-btn" data-lang="vi">Tiếng Việt</button>
+      <button class="lang-btn" data-lang="th">ไทย</button>
+      <button class="lang-btn" data-lang="ms">Bahasa Melayu</button>
+      <button class="lang-btn" data-lang="id">Bahasa Indonesia</button>
+      <button class="lang-btn" data-lang="tl">Filipino</button>
+      <button class="lang-btn" data-lang="es">Español</button>
+    </div>
   </div>
 
   <div class="card converter-card no-print" id="converterCard">
@@ -1017,6 +1033,8 @@ function applyStaticText(){
   convToSelect.value = convTo;
   document.getElementById("convSwapBtn").title = t("converterSwap");
   document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+  const langToggleLabelEl = document.getElementById("langToggleLabel");
+  if(langToggleLabelEl) langToggleLabelEl.textContent = LANG_NAMES[lang] || lang;
   syncCodeInput.placeholder = lang==="ko" ? "예: johan-family-2026" : (lang==="zh" ? "例如：johan-family-2026" : "e.g. johan-family-2026");
   homeCityInput.placeholder = t("cityPlaceholder");
   destCityInput.placeholder = t("cityPlaceholder");
@@ -1024,10 +1042,23 @@ function applyStaticText(){
   updateConnectionUI();
   updateConverter();
 }
+const LANG_NAMES = {en:"English", ko:"한국어", zh:"中文", ja:"日本語", vi:"Tiếng Việt", th:"ไทย", ms:"Bahasa Melayu", id:"Bahasa Indonesia", tl:"Filipino", es:"Español"};
+const langToggleBtn = document.getElementById("langToggleBtn");
+const langPanel = document.getElementById("langPanel");
+langToggleBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  langPanel.classList.toggle("open");
+});
+document.addEventListener("click", (e) => {
+  if(langPanel.classList.contains("open") && !langPanel.contains(e.target) && e.target !== langToggleBtn){
+    langPanel.classList.remove("open");
+  }
+});
 document.querySelectorAll(".lang-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     lang = btn.dataset.lang;
     localStorage.setItem("travelLedgerLang", lang);
+    langPanel.classList.remove("open");
     applyStaticText();
     renderRateForm();
     renderAll(monthSelect.value);
