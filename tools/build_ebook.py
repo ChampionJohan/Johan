@@ -22,8 +22,8 @@ ROOT = "/home/user/Johan/writing/novel/루프-연대기"
 OUT = os.path.join(ROOT, "build")
 os.makedirs(OUT, exist_ok=True)
 
-AUTHOR_PLACEHOLDER_KO = "[필명을 입력하세요 · Author Name Here]"
-AUTHOR_PLACEHOLDER_EN = "[Author Name Here]"
+AUTHOR_PLACEHOLDER_KO = "Johan Choi"
+AUTHOR_PLACEHOLDER_EN = "Johan Choi"
 
 CONFIGS = {
     "ko": dict(
