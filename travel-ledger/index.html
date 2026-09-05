@@ -169,6 +169,7 @@
   .tw-city{font-size:12px; color:var(--sub); margin-top:4px; min-height:15px;}
   .tw-weather{font-size:14px; color:var(--accent-strong); margin-top:6px; font-weight:600;}
   @media (max-width:420px){ .tw-clock{font-size:21px;} }
+  .city-sub-select{margin-top:6px;}
 
   @media print{
     body{background:#fff; padding:0;}
@@ -224,16 +225,17 @@
     </div>
     <div class="row">
       <div>
-        <label for="homeCityInput" data-t="homeLabel"></label>
-        <input type="text" id="homeCityInput">
+        <label for="homeCountrySelect" data-t="homeLabel"></label>
+        <select id="homeCountrySelect"></select>
+        <select id="homeCitySelect" class="city-sub-select" hidden></select>
       </div>
       <div>
-        <label for="destCityInput" data-t="destLabel"></label>
-        <input type="text" id="destCityInput">
+        <label for="destCountrySelect" data-t="destLabel"></label>
+        <select id="destCountrySelect"></select>
+        <select id="destCitySelect" class="city-sub-select" hidden></select>
       </div>
     </div>
     <div class="toolbar" style="justify-content:flex-start;">
-      <button type="button" class="btn-primary" id="citySetBtn" data-t="citySetBtn" style="width:auto;flex:1 1 auto;"></button>
       <button type="button" class="btn-ghost" id="useLocationBtn" data-t="useLocationBtn"></button>
     </div>
     <p class="status-line" id="cityHint"></p>
@@ -467,12 +469,13 @@ const I18N = {
     emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
     convUnset: "환율 미설정",
     timeWeatherCardTitle: "시간 · 날씨", homeLabel: "우리나라", destLabel: "여행지",
-    cityPlaceholder: "도시 이름 (예: Bangkok)", citySetBtn: "설정", useLocationBtn: "현재 위치 사용",
+    cityPlaceholder: "도시 이름 (예: Bangkok)", citySetBtn: "설정", useLocationBtn: "현재 위치 사용", selectCountryPlaceholder: "국가를 선택하세요",
     locating: "위치 확인 중…", cityNotFound: "도시를 찾을 수 없습니다.", geoDenied: "위치 권한이 거부되었습니다.", weatherFail: "날씨를 불러오지 못했습니다.",
     weatherClear: "맑음", weatherCloudy: "흐림", weatherFog: "안개", weatherRain: "비", weatherSnow: "눈", weatherStorm: "뇌우",
     currentLocationLabel: "현재 위치",
     categories: { food:"식비", snacks:"간식/음료", transport:"교통비", lodging:"숙박", shopping:"쇼핑", gifts:"선물", sightseeing:"관광/입장료", activities:"액티비티/투어", communication:"통신비", insurance:"보험/의료", other:"기타" },
     currencyNames: { KRW:"원", USD:"달러", MYR:"링깃", PHP:"페소", JPY:"엔", THB:"바트", VND:"동", SGD:"싱가포르 달러", TWD:"대만 달러", HKD:"홍콩 달러", CNY:"위안", IDR:"루피아", EUR:"유로", AUD:"호주 달러", GBP:"파운드", MXN:"멕시코 페소" },
+    countryNames: { KR:"대한민국", JP:"일본", CN:"중국", TW:"대만", HK:"홍콩", VN:"베트남", TH:"태국", MY:"말레이시아", SG:"싱가포르", ID:"인도네시아", PH:"필리핀", IN:"인도", US:"미국", CA:"캐나다", MX:"멕시코", BR:"브라질", GB:"영국", FR:"프랑스", DE:"독일", IT:"이탈리아", ES:"스페인", PT:"포르투갈", NL:"네덜란드", CH:"스위스", GR:"그리스", TR:"튀르키예", RU:"러시아", AE:"아랍에미리트", AU:"호주", NZ:"뉴질랜드", EG:"이집트" },
     monthLabel: (y,m) => `${y}년 ${m}월`
   },
   en: {
@@ -518,12 +521,13 @@ const I18N = {
     emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
     convUnset: "rate not set",
     timeWeatherCardTitle: "Time & Weather", homeLabel: "Home", destLabel: "Destination",
-    cityPlaceholder: "City name (e.g. Bangkok)", citySetBtn: "Set", useLocationBtn: "Use my location",
+    cityPlaceholder: "City name (e.g. Bangkok)", citySetBtn: "Set", useLocationBtn: "Use my location", selectCountryPlaceholder: "Select a country",
     locating: "Locating…", cityNotFound: "City not found.", geoDenied: "Location permission denied.", weatherFail: "Couldn't load weather.",
     weatherClear: "Clear", weatherCloudy: "Cloudy", weatherFog: "Foggy", weatherRain: "Rain", weatherSnow: "Snow", weatherStorm: "Storm",
     currentLocationLabel: "Current location",
     categories: { food:"Food", snacks:"Snacks & drinks", transport:"Transport", lodging:"Lodging", shopping:"Shopping", gifts:"Gifts & souvenirs", sightseeing:"Sightseeing & admission", activities:"Activities & tours", communication:"Communication", insurance:"Insurance & medical", other:"Other" },
     currencyNames: { KRW:"Won", USD:"Dollar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Mexican Peso" },
+    countryNames: { KR:"South Korea", JP:"Japan", CN:"China", TW:"Taiwan", HK:"Hong Kong", VN:"Vietnam", TH:"Thailand", MY:"Malaysia", SG:"Singapore", ID:"Indonesia", PH:"Philippines", IN:"India", US:"United States", CA:"Canada", MX:"Mexico", BR:"Brazil", GB:"United Kingdom", FR:"France", DE:"Germany", IT:"Italy", ES:"Spain", PT:"Portugal", NL:"Netherlands", CH:"Switzerland", GR:"Greece", TR:"Turkey", RU:"Russia", AE:"United Arab Emirates", AU:"Australia", NZ:"New Zealand", EG:"Egypt" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("en-US", {year:"numeric", month:"long"})
   },
   zh: {
@@ -569,12 +573,13 @@ const I18N = {
     emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
     convUnset: "未设汇率",
     timeWeatherCardTitle: "时间与天气", homeLabel: "本国", destLabel: "旅行地",
-    cityPlaceholder: "城市名称（如 Bangkok）", citySetBtn: "设置", useLocationBtn: "使用当前位置",
+    cityPlaceholder: "城市名称（如 Bangkok）", citySetBtn: "设置", useLocationBtn: "使用当前位置", selectCountryPlaceholder: "选择国家",
     locating: "正在定位…", cityNotFound: "找不到该城市。", geoDenied: "位置权限被拒绝。", weatherFail: "无法获取天气。",
     weatherClear: "晴", weatherCloudy: "多云", weatherFog: "有雾", weatherRain: "有雨", weatherSnow: "有雪", weatherStorm: "雷暴",
     currentLocationLabel: "当前位置",
     categories: { food:"餐饮", snacks:"零食饮品", transport:"交通", lodging:"住宿", shopping:"购物", gifts:"礼品纪念品", sightseeing:"观光门票", activities:"活动/团游", communication:"通讯", insurance:"保险/医疗", other:"其他" },
     currencyNames: { KRW:"韩元", USD:"美元", MYR:"林吉特", PHP:"比索", JPY:"日元", THB:"泰铢", VND:"越南盾", SGD:"新加坡元", TWD:"新台币", HKD:"港币", CNY:"人民币", IDR:"印尼盾", EUR:"欧元", AUD:"澳元", GBP:"英镑", MXN:"墨西哥比索" },
+    countryNames: { KR:"韩国", JP:"日本", CN:"中国", TW:"台湾", HK:"香港", VN:"越南", TH:"泰国", MY:"马来西亚", SG:"新加坡", ID:"印度尼西亚", PH:"菲律宾", IN:"印度", US:"美国", CA:"加拿大", MX:"墨西哥", BR:"巴西", GB:"英国", FR:"法国", DE:"德国", IT:"意大利", ES:"西班牙", PT:"葡萄牙", NL:"荷兰", CH:"瑞士", GR:"希腊", TR:"土耳其", RU:"俄罗斯", AE:"阿联酋", AU:"澳大利亚", NZ:"新西兰", EG:"埃及" },
     monthLabel: (y,m) => `${y}年${m}月`
   },
   ja: {
@@ -620,12 +625,13 @@ const I18N = {
     emptyCompare: "比較できる他の月のデータがまだありません。", emptyHistory: "今月の記録はありません。",
     convUnset: "レート未設定",
     timeWeatherCardTitle: "時間・天気", homeLabel: "自国", destLabel: "旅行先",
-    cityPlaceholder: "都市名（例: Bangkok）", citySetBtn: "設定", useLocationBtn: "現在地を使用",
+    cityPlaceholder: "都市名（例: Bangkok）", citySetBtn: "設定", useLocationBtn: "現在地を使用", selectCountryPlaceholder: "国を選択",
     locating: "位置情報を取得中…", cityNotFound: "都市が見つかりません。", geoDenied: "位置情報の許可が拒否されました。", weatherFail: "天気を取得できませんでした。",
     weatherClear: "晴れ", weatherCloudy: "曇り", weatherFog: "霧", weatherRain: "雨", weatherSnow: "雪", weatherStorm: "雷雨",
     currentLocationLabel: "現在地",
     categories: { food:"食費", snacks:"軽食・飲み物", transport:"交通費", lodging:"宿泊", shopping:"ショッピング", gifts:"お土産", sightseeing:"観光・入場料", activities:"アクティビティ・ツアー", communication:"通信費", insurance:"保険・医療", other:"その他" },
     currencyNames: { KRW:"ウォン", USD:"ドル", MYR:"リンギット", PHP:"ペソ", JPY:"円", THB:"バーツ", VND:"ドン", SGD:"シンガポールドル", TWD:"台湾ドル", HKD:"香港ドル", CNY:"元", IDR:"ルピア", EUR:"ユーロ", AUD:"豪ドル", GBP:"ポンド", MXN:"メキシコペソ" },
+    countryNames: { KR:"韓国", JP:"日本", CN:"中国", TW:"台湾", HK:"香港", VN:"ベトナム", TH:"タイ", MY:"マレーシア", SG:"シンガポール", ID:"インドネシア", PH:"フィリピン", IN:"インド", US:"アメリカ", CA:"カナダ", MX:"メキシコ", BR:"ブラジル", GB:"イギリス", FR:"フランス", DE:"ドイツ", IT:"イタリア", ES:"スペイン", PT:"ポルトガル", NL:"オランダ", CH:"スイス", GR:"ギリシャ", TR:"トルコ", RU:"ロシア", AE:"アラブ首長国連邦", AU:"オーストラリア", NZ:"ニュージーランド", EG:"エジプト" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ja-JP", {year:"numeric", month:"long"})
   },
   vi: {
@@ -671,12 +677,13 @@ const I18N = {
     emptyCompare: "Chưa đủ dữ liệu các tháng khác để so sánh.", emptyHistory: "Tháng này chưa có khoản chi nào.",
     convUnset: "chưa có tỷ giá",
     timeWeatherCardTitle: "Giờ & Thời tiết", homeLabel: "Quê nhà", destLabel: "Điểm đến",
-    cityPlaceholder: "Tên thành phố (vd: Bangkok)", citySetBtn: "Đặt", useLocationBtn: "Dùng vị trí của tôi",
+    cityPlaceholder: "Tên thành phố (vd: Bangkok)", citySetBtn: "Đặt", useLocationBtn: "Dùng vị trí của tôi", selectCountryPlaceholder: "Chọn quốc gia",
     locating: "Đang định vị…", cityNotFound: "Không tìm thấy thành phố.", geoDenied: "Quyền truy cập vị trí bị từ chối.", weatherFail: "Không tải được thời tiết.",
     weatherClear: "Trời quang", weatherCloudy: "Nhiều mây", weatherFog: "Sương mù", weatherRain: "Mưa", weatherSnow: "Tuyết", weatherStorm: "Giông bão",
     currentLocationLabel: "Vị trí hiện tại",
     categories: { food:"Ăn uống", snacks:"Đồ ăn vặt/nước uống", transport:"Di chuyển", lodging:"Chỗ ở", shopping:"Mua sắm", gifts:"Quà lưu niệm", sightseeing:"Tham quan/vé vào cổng", activities:"Hoạt động/tour", communication:"Liên lạc", insurance:"Bảo hiểm/y tế", other:"Khác" },
     currencyNames: { KRW:"Won", USD:"Đô la", MYR:"Ringgit", PHP:"Peso", JPY:"Yên", THB:"Baht", VND:"Đồng", SGD:"Đô la Singapore", TWD:"Đô la Đài Loan", HKD:"Đô la Hồng Kông", CNY:"Nhân dân tệ", IDR:"Rupiah", EUR:"Euro", AUD:"Đô la Úc", GBP:"Bảng Anh", MXN:"Peso Mexico" },
+    countryNames: { KR:"Hàn Quốc", JP:"Nhật Bản", CN:"Trung Quốc", TW:"Đài Loan", HK:"Hồng Kông", VN:"Việt Nam", TH:"Thái Lan", MY:"Malaysia", SG:"Singapore", ID:"Indonesia", PH:"Philippines", IN:"Ấn Độ", US:"Hoa Kỳ", CA:"Canada", MX:"Mexico", BR:"Brazil", GB:"Vương quốc Anh", FR:"Pháp", DE:"Đức", IT:"Ý", ES:"Tây Ban Nha", PT:"Bồ Đào Nha", NL:"Hà Lan", CH:"Thụy Sĩ", GR:"Hy Lạp", TR:"Thổ Nhĩ Kỳ", RU:"Nga", AE:"Các Tiểu vương quốc Ả Rập Thống nhất", AU:"Úc", NZ:"New Zealand", EG:"Ai Cập" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("vi-VN", {year:"numeric", month:"long"})
   },
   th: {
@@ -722,12 +729,13 @@ const I18N = {
     emptyCompare: "ยังไม่มีข้อมูลเดือนอื่นพอสำหรับเปรียบเทียบ", emptyHistory: "เดือนนี้ยังไม่มีรายการ",
     convUnset: "ยังไม่ตั้งอัตรา",
     timeWeatherCardTitle: "เวลาและสภาพอากาศ", homeLabel: "บ้านเกิด", destLabel: "จุดหมายปลายทาง",
-    cityPlaceholder: "ชื่อเมือง (เช่น Bangkok)", citySetBtn: "ตั้งค่า", useLocationBtn: "ใช้ตำแหน่งของฉัน",
+    cityPlaceholder: "ชื่อเมือง (เช่น Bangkok)", citySetBtn: "ตั้งค่า", useLocationBtn: "ใช้ตำแหน่งของฉัน", selectCountryPlaceholder: "เลือกประเทศ",
     locating: "กำลังค้นหาตำแหน่ง…", cityNotFound: "ไม่พบเมืองนี้", geoDenied: "การเข้าถึงตำแหน่งถูกปฏิเสธ", weatherFail: "โหลดสภาพอากาศไม่สำเร็จ",
     weatherClear: "ท้องฟ้าแจ่มใส", weatherCloudy: "มีเมฆมาก", weatherFog: "มีหมอก", weatherRain: "ฝนตก", weatherSnow: "หิมะตก", weatherStorm: "พายุฝนฟ้าคะนอง",
     currentLocationLabel: "ตำแหน่งปัจจุบัน",
     categories: { food:"อาหาร", snacks:"ของว่าง/เครื่องดื่ม", transport:"การเดินทาง", lodging:"ที่พัก", shopping:"ช้อปปิ้ง", gifts:"ของฝาก", sightseeing:"ท่องเที่ยว/ค่าเข้าชม", activities:"กิจกรรม/ทัวร์", communication:"การสื่อสาร", insurance:"ประกัน/การแพทย์", other:"อื่นๆ" },
     currencyNames: { KRW:"วอน", USD:"ดอลลาร์", MYR:"ริงกิต", PHP:"เปโซ", JPY:"เยน", THB:"บาท", VND:"ดง", SGD:"ดอลลาร์สิงคโปร์", TWD:"ดอลลาร์ไต้หวัน", HKD:"ดอลลาร์ฮ่องกง", CNY:"หยวน", IDR:"รูเปียห์", EUR:"ยูโร", AUD:"ดอลลาร์ออสเตรเลีย", GBP:"ปอนด์", MXN:"เปโซเม็กซิโก" },
+    countryNames: { KR:"เกาหลีใต้", JP:"ญี่ปุ่น", CN:"จีน", TW:"ไต้หวัน", HK:"ฮ่องกง", VN:"เวียดนาม", TH:"ไทย", MY:"มาเลเซีย", SG:"สิงคโปร์", ID:"อินโดนีเซีย", PH:"ฟิลิปปินส์", IN:"อินเดีย", US:"สหรัฐอเมริกา", CA:"แคนาดา", MX:"เม็กซิโก", BR:"บราซิล", GB:"สหราชอาณาจักร", FR:"ฝรั่งเศส", DE:"เยอรมนี", IT:"อิตาลี", ES:"สเปน", PT:"โปรตุเกส", NL:"เนเธอร์แลนด์", CH:"สวิตเซอร์แลนด์", GR:"กรีซ", TR:"ตุรกี", RU:"รัสเซีย", AE:"สหรัฐอาหรับเอมิเรตส์", AU:"ออสเตรเลีย", NZ:"นิวซีแลนด์", EG:"อียิปต์" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("th-TH", {year:"numeric", month:"long"})
   },
   ms: {
@@ -773,12 +781,13 @@ const I18N = {
     emptyCompare: "Belum cukup bulan lain untuk dibandingkan.", emptyHistory: "Tiada rekod bulan ini.",
     convUnset: "kadar belum ditetapkan",
     timeWeatherCardTitle: "Masa & Cuaca", homeLabel: "Negara Asal", destLabel: "Destinasi",
-    cityPlaceholder: "Nama bandar (cth: Bangkok)", citySetBtn: "Tetapkan", useLocationBtn: "Guna lokasi saya",
+    cityPlaceholder: "Nama bandar (cth: Bangkok)", citySetBtn: "Tetapkan", useLocationBtn: "Guna lokasi saya", selectCountryPlaceholder: "Pilih negara",
     locating: "Mencari lokasi…", cityNotFound: "Bandar tidak dijumpai.", geoDenied: "Kebenaran lokasi ditolak.", weatherFail: "Gagal memuatkan cuaca.",
     weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabus", weatherRain: "Hujan", weatherSnow: "Salji", weatherStorm: "Ribut petir",
     currentLocationLabel: "Lokasi semasa",
     categories: { food:"Makanan", snacks:"Snek/minuman", transport:"Pengangkutan", lodging:"Penginapan", shopping:"Membeli-belah", gifts:"Hadiah/cenderamata", sightseeing:"Lawatan/tiket masuk", activities:"Aktiviti/lawatan", communication:"Komunikasi", insurance:"Insurans/perubatan", other:"Lain-lain" },
     currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun", MXN:"Peso Mexico" },
+    countryNames: { KR:"Korea Selatan", JP:"Jepun", CN:"China", TW:"Taiwan", HK:"Hong Kong", VN:"Vietnam", TH:"Thailand", MY:"Malaysia", SG:"Singapura", ID:"Indonesia", PH:"Filipina", IN:"India", US:"Amerika Syarikat", CA:"Kanada", MX:"Mexico", BR:"Brazil", GB:"United Kingdom", FR:"Perancis", DE:"Jerman", IT:"Itali", ES:"Sepanyol", PT:"Portugal", NL:"Belanda", CH:"Switzerland", GR:"Greece", TR:"Turki", RU:"Rusia", AE:"Emiriah Arab Bersatu", AU:"Australia", NZ:"New Zealand", EG:"Mesir" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ms-MY", {year:"numeric", month:"long"})
   },
   id: {
@@ -824,12 +833,13 @@ const I18N = {
     emptyCompare: "Belum cukup data bulan lain untuk dibandingkan.", emptyHistory: "Belum ada catatan bulan ini.",
     convUnset: "kurs belum diatur",
     timeWeatherCardTitle: "Waktu & Cuaca", homeLabel: "Negara Asal", destLabel: "Tujuan",
-    cityPlaceholder: "Nama kota (mis. Bangkok)", citySetBtn: "Atur", useLocationBtn: "Gunakan lokasi saya",
+    cityPlaceholder: "Nama kota (mis. Bangkok)", citySetBtn: "Atur", useLocationBtn: "Gunakan lokasi saya", selectCountryPlaceholder: "Pilih negara",
     locating: "Mencari lokasi…", cityNotFound: "Kota tidak ditemukan.", geoDenied: "Izin lokasi ditolak.", weatherFail: "Gagal memuat cuaca.",
     weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabut", weatherRain: "Hujan", weatherSnow: "Salju", weatherStorm: "Badai petir",
     currentLocationLabel: "Lokasi saat ini",
     categories: { food:"Makanan", snacks:"Camilan/minuman", transport:"Transportasi", lodging:"Penginapan", shopping:"Belanja", gifts:"Oleh-oleh", sightseeing:"Wisata/tiket masuk", activities:"Aktivitas/tur", communication:"Komunikasi", insurance:"Asuransi/medis", other:"Lainnya" },
     currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun Sterling", MXN:"Peso Meksiko" },
+    countryNames: { KR:"Korea Selatan", JP:"Jepang", CN:"Tiongkok", TW:"Taiwan", HK:"Hong Kong", VN:"Vietnam", TH:"Thailand", MY:"Malaysia", SG:"Singapura", ID:"Indonesia", PH:"Filipina", IN:"India", US:"Amerika Serikat", CA:"Kanada", MX:"Meksiko", BR:"Brasil", GB:"Inggris", FR:"Prancis", DE:"Jerman", IT:"Italia", ES:"Spanyol", PT:"Portugal", NL:"Belanda", CH:"Swiss", GR:"Yunani", TR:"Turki", RU:"Rusia", AE:"Uni Emirat Arab", AU:"Australia", NZ:"Selandia Baru", EG:"Mesir" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("id-ID", {year:"numeric", month:"long"})
   },
   tl: {
@@ -875,12 +885,13 @@ const I18N = {
     emptyCompare: "Wala pang sapat na ibang buwan para ikumpara.", emptyHistory: "Walang entry ngayong buwan.",
     convUnset: "walang rate",
     timeWeatherCardTitle: "Oras at Panahon", homeLabel: "Sariling Bansa", destLabel: "Destinasyon",
-    cityPlaceholder: "Pangalan ng lungsod (hal. Bangkok)", citySetBtn: "I-set", useLocationBtn: "Gamitin ang lokasyon ko",
+    cityPlaceholder: "Pangalan ng lungsod (hal. Bangkok)", citySetBtn: "I-set", useLocationBtn: "Gamitin ang lokasyon ko", selectCountryPlaceholder: "Pumili ng bansa",
     locating: "Hinahanap ang lokasyon…", cityNotFound: "Hindi nahanap ang lungsod.", geoDenied: "Tinanggihan ang pahintulot sa lokasyon.", weatherFail: "Hindi na-load ang panahon.",
     weatherClear: "Maaraw", weatherCloudy: "Maulap", weatherFog: "Maulap na hamog", weatherRain: "Umuulan", weatherSnow: "Niyebe", weatherStorm: "Bagyo",
     currentLocationLabel: "Kasalukuyang lokasyon",
     categories: { food:"Pagkain", snacks:"Meryenda/inumin", transport:"Transportasyon", lodging:"Tuluyan", shopping:"Pamimili", gifts:"Regalo/pasalubong", sightseeing:"Pasyalan/bayad sa pasukan", activities:"Aktibidad/tour", communication:"Komunikasyon", insurance:"Insurance/medikal", other:"Iba pa" },
     currencyNames: { KRW:"Won", USD:"Dolyar", MYR:"Ringgit", PHP:"Piso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Piso Mexicano" },
+    countryNames: { KR:"Timog Korea", JP:"Japan", CN:"Tsina", TW:"Taiwan", HK:"Hong Kong", VN:"Vietnam", TH:"Thailand", MY:"Malaysia", SG:"Singapore", ID:"Indonesia", PH:"Pilipinas", IN:"India", US:"Estados Unidos", CA:"Canada", MX:"Mexico", BR:"Brazil", GB:"United Kingdom", FR:"Pransya", DE:"Alemanya", IT:"Italya", ES:"Espanya", PT:"Portugal", NL:"Netherlands", CH:"Switzerland", GR:"Greece", TR:"Turkey", RU:"Russia", AE:"United Arab Emirates", AU:"Australia", NZ:"New Zealand", EG:"Ehipto" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("fil-PH", {year:"numeric", month:"long"})
   },
   es: {
@@ -926,12 +937,13 @@ const I18N = {
     emptyCompare: "Aún no hay suficientes meses para comparar.", emptyHistory: "No hay registros este mes.",
     convUnset: "sin tipo de cambio",
     timeWeatherCardTitle: "Hora y Clima", homeLabel: "Mi país", destLabel: "Destino",
-    cityPlaceholder: "Nombre de la ciudad (ej. Bangkok)", citySetBtn: "Establecer", useLocationBtn: "Usar mi ubicación",
+    cityPlaceholder: "Nombre de la ciudad (ej. Bangkok)", citySetBtn: "Establecer", useLocationBtn: "Usar mi ubicación", selectCountryPlaceholder: "Selecciona un país",
     locating: "Localizando…", cityNotFound: "Ciudad no encontrada.", geoDenied: "Permiso de ubicación denegado.", weatherFail: "No se pudo cargar el clima.",
     weatherClear: "Despejado", weatherCloudy: "Nublado", weatherFog: "Niebla", weatherRain: "Lluvia", weatherSnow: "Nieve", weatherStorm: "Tormenta",
     currentLocationLabel: "Ubicación actual",
     categories: { food:"Comida", snacks:"Bocadillos/bebidas", transport:"Transporte", lodging:"Alojamiento", shopping:"Compras", gifts:"Regalos/recuerdos", sightseeing:"Turismo/entradas", activities:"Actividades/tours", communication:"Comunicación", insurance:"Seguro/médico", other:"Otro" },
     currencyNames: { KRW:"Won", USD:"Dólar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dólar de Singapur", TWD:"Dólar taiwanés", HKD:"Dólar de Hong Kong", CNY:"Yuan", IDR:"Rupia", EUR:"Euro", AUD:"Dólar australiano", GBP:"Libra esterlina", MXN:"Peso mexicano" },
+    countryNames: { KR:"Corea del Sur", JP:"Japón", CN:"China", TW:"Taiwán", HK:"Hong Kong", VN:"Vietnam", TH:"Tailandia", MY:"Malasia", SG:"Singapur", ID:"Indonesia", PH:"Filipinas", IN:"India", US:"Estados Unidos", CA:"Canadá", MX:"México", BR:"Brasil", GB:"Reino Unido", FR:"Francia", DE:"Alemania", IT:"Italia", ES:"España", PT:"Portugal", NL:"Países Bajos", CH:"Suiza", GR:"Grecia", TR:"Turquía", RU:"Rusia", AE:"Emiratos Árabes Unidos", AU:"Australia", NZ:"Nueva Zelanda", EG:"Egipto" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("es-ES", {year:"numeric", month:"long"})
   }
 };
@@ -997,8 +1009,10 @@ const footNoteEl = document.getElementById("footNote");
 const syncCodeInput = document.getElementById("syncCodeInput");
 const syncHintEl = document.getElementById("syncHint");
 const feedbackHintEl = document.getElementById("feedbackHint");
-const homeCityInput = document.getElementById("homeCityInput");
-const destCityInput = document.getElementById("destCityInput");
+const homeCountrySelect = document.getElementById("homeCountrySelect");
+const homeCitySelect = document.getElementById("homeCitySelect");
+const destCountrySelect = document.getElementById("destCountrySelect");
+const destCitySelect = document.getElementById("destCitySelect");
 const cityHintEl = document.getElementById("cityHint");
 const convAmountInput = document.getElementById("convAmount");
 const convFromSelect = document.getElementById("convFrom");
@@ -1036,8 +1050,7 @@ function applyStaticText(){
   const langToggleLabelEl = document.getElementById("langToggleLabel");
   if(langToggleLabelEl) langToggleLabelEl.textContent = LANG_NAMES[lang] || lang;
   syncCodeInput.placeholder = lang==="ko" ? "예: johan-family-2026" : (lang==="zh" ? "例如：johan-family-2026" : "e.g. johan-family-2026");
-  homeCityInput.placeholder = t("cityPlaceholder");
-  destCityInput.placeholder = t("cityPlaceholder");
+  if(typeof populateCountrySelects === "function") populateCountrySelects();
   if(typeof renderClocks === "function") renderClocks();
   updateConnectionUI();
   updateConverter();
@@ -1434,9 +1447,81 @@ function updateConverter(){
 
 /* ================= time & weather ================= */
 const CITIES_KEY = "travelLedgerCities_v1";
-let homeCity = null;   // {name, timezone}
-let destCity = null;   // {name, timezone, lat, lon}
+let homeCity = null;   // {countryCode, cityId, name, timezone, lat, lon}
+let destCity = null;   // {countryCode, cityId, name, timezone, lat, lon}
 let destWeatherCache = null; // {tempC, code}
+
+const COUNTRY_CODES = ["KR","JP","CN","TW","HK","VN","TH","MY","SG","ID","PH","IN","US","CA","MX","BR","GB","FR","DE","IT","ES","PT","NL","CH","GR","TR","RU","AE","AU","NZ","EG"];
+const COUNTRY_CITY_DATA = {
+  KR:[{id:"seoul", label:"Seoul", lat:37.5665, lon:126.9780, tz:"Asia/Seoul"}],
+  JP:[{id:"tokyo", label:"Tokyo", lat:35.6762, lon:139.6503, tz:"Asia/Tokyo"}],
+  CN:[{id:"beijing", label:"Beijing", lat:39.9042, lon:116.4074, tz:"Asia/Shanghai"}],
+  TW:[{id:"taipei", label:"Taipei", lat:25.0330, lon:121.5654, tz:"Asia/Taipei"}],
+  HK:[{id:"hongkong", label:"Hong Kong", lat:22.3193, lon:114.1694, tz:"Asia/Hong_Kong"}],
+  VN:[{id:"hanoi", label:"Hanoi", lat:21.0278, lon:105.8342, tz:"Asia/Ho_Chi_Minh"}],
+  TH:[{id:"bangkok", label:"Bangkok", lat:13.7563, lon:100.5018, tz:"Asia/Bangkok"}],
+  MY:[{id:"kualalumpur", label:"Kuala Lumpur", lat:3.1390, lon:101.6869, tz:"Asia/Kuala_Lumpur"}],
+  SG:[{id:"singapore", label:"Singapore", lat:1.3521, lon:103.8198, tz:"Asia/Singapore"}],
+  ID:[
+    {id:"jakarta", label:"Jakarta", lat:-6.2088, lon:106.8456, tz:"Asia/Jakarta"},
+    {id:"makassar", label:"Makassar", lat:-5.1477, lon:119.4327, tz:"Asia/Makassar"},
+    {id:"jayapura", label:"Jayapura", lat:-2.5337, lon:140.7181, tz:"Asia/Jayapura"}
+  ],
+  PH:[{id:"manila", label:"Manila", lat:14.5995, lon:120.9842, tz:"Asia/Manila"}],
+  IN:[{id:"newdelhi", label:"New Delhi", lat:28.6139, lon:77.2090, tz:"Asia/Kolkata"}],
+  US:[
+    {id:"newyork", label:"New York", lat:40.7128, lon:-74.0060, tz:"America/New_York"},
+    {id:"chicago", label:"Chicago", lat:41.8781, lon:-87.6298, tz:"America/Chicago"},
+    {id:"denver", label:"Denver", lat:39.7392, lon:-104.9903, tz:"America/Denver"},
+    {id:"losangeles", label:"Los Angeles", lat:34.0522, lon:-118.2437, tz:"America/Los_Angeles"},
+    {id:"anchorage", label:"Anchorage", lat:61.2181, lon:-149.9003, tz:"America/Anchorage"},
+    {id:"honolulu", label:"Honolulu", lat:21.3069, lon:-157.8583, tz:"Pacific/Honolulu"}
+  ],
+  CA:[
+    {id:"toronto", label:"Toronto", lat:43.6532, lon:-79.3832, tz:"America/Toronto"},
+    {id:"winnipeg", label:"Winnipeg", lat:49.8951, lon:-97.1384, tz:"America/Winnipeg"},
+    {id:"edmonton", label:"Edmonton", lat:53.5461, lon:-113.4938, tz:"America/Edmonton"},
+    {id:"vancouver", label:"Vancouver", lat:49.2827, lon:-123.1207, tz:"America/Vancouver"},
+    {id:"halifax", label:"Halifax", lat:44.6488, lon:-63.5752, tz:"America/Halifax"},
+    {id:"stjohns", label:"St. John's", lat:47.5615, lon:-52.7126, tz:"America/St_Johns"}
+  ],
+  MX:[{id:"mexicocity", label:"Mexico City", lat:19.4326, lon:-99.1332, tz:"America/Mexico_City"}],
+  BR:[
+    {id:"saopaulo", label:"São Paulo", lat:-23.5505, lon:-46.6333, tz:"America/Sao_Paulo"},
+    {id:"manaus", label:"Manaus", lat:-3.1190, lon:-60.0217, tz:"America/Manaus"},
+    {id:"riobranco", label:"Rio Branco", lat:-9.9750, lon:-67.8100, tz:"America/Rio_Branco"},
+    {id:"noronha", label:"Fernando de Noronha", lat:-3.8536, lon:-32.4297, tz:"America/Noronha"}
+  ],
+  GB:[{id:"london", label:"London", lat:51.5074, lon:-0.1278, tz:"Europe/London"}],
+  FR:[{id:"paris", label:"Paris", lat:48.8566, lon:2.3522, tz:"Europe/Paris"}],
+  DE:[{id:"berlin", label:"Berlin", lat:52.5200, lon:13.4050, tz:"Europe/Berlin"}],
+  IT:[{id:"rome", label:"Rome", lat:41.9028, lon:12.4964, tz:"Europe/Rome"}],
+  ES:[{id:"madrid", label:"Madrid", lat:40.4168, lon:-3.7038, tz:"Europe/Madrid"}],
+  PT:[{id:"lisbon", label:"Lisbon", lat:38.7223, lon:-9.1393, tz:"Europe/Lisbon"}],
+  NL:[{id:"amsterdam", label:"Amsterdam", lat:52.3676, lon:4.9041, tz:"Europe/Amsterdam"}],
+  CH:[{id:"zurich", label:"Zurich", lat:47.3769, lon:8.5417, tz:"Europe/Zurich"}],
+  GR:[{id:"athens", label:"Athens", lat:37.9838, lon:23.7275, tz:"Europe/Athens"}],
+  TR:[{id:"istanbul", label:"Istanbul", lat:41.0082, lon:28.9784, tz:"Europe/Istanbul"}],
+  RU:[
+    {id:"moscow", label:"Moscow", lat:55.7558, lon:37.6173, tz:"Europe/Moscow"},
+    {id:"yekaterinburg", label:"Yekaterinburg", lat:56.8389, lon:60.6057, tz:"Asia/Yekaterinburg"},
+    {id:"novosibirsk", label:"Novosibirsk", lat:55.0084, lon:82.9357, tz:"Asia/Novosibirsk"},
+    {id:"irkutsk", label:"Irkutsk", lat:52.2869, lon:104.3050, tz:"Asia/Irkutsk"},
+    {id:"vladivostok", label:"Vladivostok", lat:43.1332, lon:131.9113, tz:"Asia/Vladivostok"}
+  ],
+  AE:[{id:"dubai", label:"Dubai", lat:25.2048, lon:55.2708, tz:"Asia/Dubai"}],
+  AU:[
+    {id:"sydney", label:"Sydney", lat:-33.8688, lon:151.2093, tz:"Australia/Sydney"},
+    {id:"brisbane", label:"Brisbane", lat:-27.4698, lon:153.0251, tz:"Australia/Brisbane"},
+    {id:"adelaide", label:"Adelaide", lat:-34.9285, lon:138.6007, tz:"Australia/Adelaide"},
+    {id:"perth", label:"Perth", lat:-31.9505, lon:115.8605, tz:"Australia/Perth"}
+  ],
+  NZ:[{id:"auckland", label:"Auckland", lat:-36.8485, lon:174.7633, tz:"Pacific/Auckland"}],
+  EG:[{id:"cairo", label:"Cairo", lat:30.0444, lon:31.2357, tz:"Africa/Cairo"}]
+};
+function countryLabel(code){
+  return (I18N[lang] && I18N[lang].countryNames && I18N[lang].countryNames[code]) || code;
+}
 
 function loadCities(){
   try{
@@ -1466,16 +1551,6 @@ function weatherCodeToKey(code){
 function weatherEmoji(code){
   const key = weatherCodeToKey(code);
   return {weatherClear:"☀️", weatherCloudy:"⛅", weatherFog:"🌫️", weatherSnow:"❄️", weatherStorm:"⛈️", weatherRain:"🌧️"}[key];
-}
-
-async function geocodeCity(query){
-  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
-  const res = await fetch(url);
-  if(!res.ok) throw new Error("geocoding failed");
-  const data = await res.json();
-  const hit = (data.results || [])[0];
-  if(!hit) return null;
-  return {name: hit.name + (hit.country ? ", " + hit.country : ""), timezone: hit.timezone, lat: hit.latitude, lon: hit.longitude};
 }
 
 async function fetchWeather(lat, lon){
@@ -1519,32 +1594,68 @@ async function refreshDestWeather(){
   }
 }
 
-async function applyCityInputs(){
-  const homeQuery = homeCityInput.value.trim();
-  const destQuery = destCityInput.value.trim();
-  if(!homeQuery && !destQuery) return;
-  const btn = document.getElementById("citySetBtn");
-  btn.disabled = true;
-  cityHintEl.textContent = t("locating");
-  try{
-    if(homeQuery){
-      const found = await geocodeCity(homeQuery);
-      if(found) homeCity = found; else cityHintEl.textContent = t("cityNotFound");
-    }
-    if(destQuery){
-      const found = await geocodeCity(destQuery);
-      if(found){ destCity = found; destWeatherCache = null; }
-      else cityHintEl.textContent = t("cityNotFound");
-    }
-    saveCities();
-    renderClocks();
-    if(destQuery && destCity) await refreshDestWeather();
-    if(cityHintEl.textContent === t("locating")) cityHintEl.textContent = "";
-  }catch(e){
-    console.error("city lookup failed", e);
-    cityHintEl.textContent = t("cityNotFound");
-  }finally{
-    btn.disabled = false;
+function populateCountrySelects(){
+  const optionsHtml = `<option value="">${t("selectCountryPlaceholder")}</option>` +
+    COUNTRY_CODES.map(c => `<option value="${c}">${countryLabel(c)}</option>`).join("");
+  [homeCountrySelect, destCountrySelect].forEach(sel => {
+    const prev = sel.value;
+    sel.innerHTML = optionsHtml;
+    if(prev) sel.value = prev;
+  });
+}
+
+function updateCitySubSelect(which){
+  const countrySel = which === "home" ? homeCountrySelect : destCountrySelect;
+  const citySel = which === "home" ? homeCitySelect : destCitySelect;
+  const cities = COUNTRY_CITY_DATA[countrySel.value] || [];
+  if(cities.length > 1){
+    citySel.innerHTML = cities.map(c => `<option value="${c.id}">${c.label}</option>`).join("");
+    citySel.hidden = false;
+  }else{
+    citySel.innerHTML = "";
+    citySel.hidden = true;
+  }
+}
+
+function resolveSelectedCity(which){
+  const countrySel = which === "home" ? homeCountrySelect : destCountrySelect;
+  const citySel = which === "home" ? homeCitySelect : destCitySelect;
+  const code = countrySel.value;
+  if(!code) return null;
+  const cities = COUNTRY_CITY_DATA[code] || [];
+  if(!cities.length) return null;
+  const entry = (cities.length > 1 ? cities.find(c => c.id === citySel.value) : cities[0]) || cities[0];
+  return {countryCode: code, cityId: entry.id, name: countryLabel(code) + (cities.length > 1 ? " – " + entry.label : ""), timezone: entry.tz, lat: entry.lat, lon: entry.lon};
+}
+
+function applyHomeSelection(){
+  homeCity = resolveSelectedCity("home");
+  saveCities();
+  renderClocks();
+}
+
+async function applyDestSelection(){
+  destCity = resolveSelectedCity("dest");
+  destWeatherCache = null;
+  saveCities();
+  renderClocks();
+  if(destCity){
+    cityHintEl.textContent = t("locating");
+    await refreshDestWeather();
+    cityHintEl.textContent = "";
+  }
+}
+
+function restoreCountrySelects(){
+  if(homeCity && homeCity.countryCode){
+    homeCountrySelect.value = homeCity.countryCode;
+    updateCitySubSelect("home");
+    if(homeCity.cityId) homeCitySelect.value = homeCity.cityId;
+  }
+  if(destCity && destCity.countryCode){
+    destCountrySelect.value = destCity.countryCode;
+    updateCitySubSelect("dest");
+    if(destCity.cityId) destCitySelect.value = destCity.cityId;
   }
 }
 
@@ -1555,8 +1666,10 @@ function useCurrentLocationForDest(){
     async (pos) => {
       try{
         const w = await fetchWeather(pos.coords.latitude, pos.coords.longitude);
-        destCity = {name: t("currentLocationLabel"), timezone: w.timezone, lat: pos.coords.latitude, lon: pos.coords.longitude};
+        destCity = {countryCode: null, cityId: null, name: t("currentLocationLabel"), timezone: w.timezone, lat: pos.coords.latitude, lon: pos.coords.longitude};
         destWeatherCache = {tempC: w.tempC, code: w.code};
+        destCountrySelect.value = "";
+        updateCitySubSelect("dest");
         saveCities();
         renderClocks();
         cityHintEl.textContent = "";
@@ -1595,8 +1708,11 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
   finally{ btn.disabled = false; }
 });
 
-document.getElementById("citySetBtn").addEventListener("click", applyCityInputs);
 document.getElementById("useLocationBtn").addEventListener("click", useCurrentLocationForDest);
+homeCountrySelect.addEventListener("change", () => { updateCitySubSelect("home"); applyHomeSelection(); });
+homeCitySelect.addEventListener("change", applyHomeSelection);
+destCountrySelect.addEventListener("change", () => { updateCitySubSelect("dest"); applyDestSelection(); });
+destCitySelect.addEventListener("change", applyDestSelection);
 
 categoryGridEl.addEventListener("click", (ev) => {
   const btn = ev.target.closest(".cat-btn");
@@ -1774,6 +1890,7 @@ if(firebaseConfigured()){
 logAnalyticsEvent("app_opens");
 
 loadCities();
+restoreCountrySelects();
 renderClocks();
 setInterval(renderClocks, 30000);
 if(destCity) refreshDestWeather();
