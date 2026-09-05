@@ -4,25 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>RoamRate · Currency Converter & Travel Budget</title>
-<meta name="theme-color" content="#1f4f38">
+<meta name="theme-color" content="#5b3df0">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-apple-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Gowun+Dodum&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap">
 <style>
   :root{
-    --bg:#f1f4ea; --surface:#fffefb; --surface-2:#e9edde; --ink:#202b21; --sub:#5f6b5c;
-    --line:#d7ddc8; --accent:#2f6b4c; --accent-strong:#1f4f38; --accent-soft:#dcebe0;
-    --spend:#b1552b; --spend-soft:#f3e2d6; --hole:#f1f4ea;
-    --shadow: 0 1px 2px rgba(32,43,33,.06), 0 8px 24px -12px rgba(32,43,33,.18);
+    --bg:#faf7ff; --surface:#ffffff; --surface-2:#f2ecff; --ink:#241f38; --sub:#736a8d;
+    --line:#e6defa; --accent:#7c5cff; --accent-strong:#5b3df0; --accent-soft:#ece4ff;
+    --accent2:#ff8a3d; --accent2-soft:#ffe6d1;
+    --spend:#ff5d73; --spend-soft:#ffe1e6; --hole:#faf7ff;
+    --hero-grad: linear-gradient(135deg, #7c5cff 0%, #ff8a3d 100%);
+    --shadow: 0 1px 2px rgba(36,31,56,.06), 0 10px 28px -14px rgba(76,50,180,.28);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#131a15; --surface:#1b241d; --surface-2:#212c22; --ink:#e9efe6; --sub:#9caa97;
-      --line:#33402f; --accent:#72c398; --accent-strong:#94dab3; --accent-soft:#233a2b;
-      --spend:#e2946a; --spend-soft:#3a2b1e; --hole:#131a15;
-      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.5);
+      --bg:#161225; --surface:#211b34; --surface-2:#291f42; --ink:#f1edff; --sub:#b3a6d6;
+      --line:#392e54; --accent:#a78bfa; --accent-strong:#c4b5fd; --accent-soft:#332752;
+      --accent2:#ffab6b; --accent2-soft:#4a331f;
+      --spend:#ff8fa0; --spend-soft:#452433; --hole:#161225;
+      --hero-grad: linear-gradient(135deg, #6d4fe0 0%, #d9762f 100%);
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.6);
     }
   }
   *{box-sizing:border-box;}
@@ -53,39 +57,35 @@
   }
   .lang-btn.active{background:var(--accent); color:#fff; border-color:var(--accent);}
 
-  .passbook{
-    background:var(--surface); border-radius:14px; box-shadow:var(--shadow);
-    padding:26px 26px 20px; position:relative; margin-bottom:20px; border-top:3px dashed var(--line);
+  .hero{
+    background:var(--hero-grad); border-radius:20px; box-shadow:var(--shadow);
+    padding:26px 26px 22px; position:relative; margin-bottom:20px; color:#fff;
   }
-  .passbook::before, .passbook::after{
-    content:""; position:absolute; top:-9px; width:16px;height:16px; border-radius:50%;
-    background:var(--hole); border:3px dashed var(--line);
-  }
-  .passbook::before{left:26px;} .passbook::after{right:26px;}
-  .eyebrow{font-size:11px; letter-spacing:.14em; color:var(--sub); text-transform:uppercase; margin:0 0 6px;}
-  h1{font-family:'Song Myung',serif; font-size:26px; margin:0 0 18px; text-wrap:balance;}
-  .balance-row{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid var(--line); padding-top:16px;}
-  .balance-label{font-size:13px; color:var(--sub);}
-  .balance-num{font-family:'Gowun Dodum',sans-serif; font-size:32px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink);}
-  .diff-pill{display:inline-flex; align-items:center; gap:4px; font-size:12px; padding:5px 10px; border-radius:999px; font-variant-numeric:tabular-nums; background:var(--surface-2); color:var(--sub);}
-  .diff-pill.up{background:var(--spend-soft); color:var(--spend);}
-  .diff-pill.down{background:var(--accent-soft); color:var(--accent-strong);}
+  .eyebrow{font-size:11px; letter-spacing:.14em; color:rgba(255,255,255,.85); text-transform:uppercase; margin:0 0 6px; font-weight:700;}
+  h1{font-family:'Jua','Gowun Dodum',sans-serif; font-weight:400; font-size:24px; margin:0 0 18px; text-wrap:balance; color:#fff;}
+  .balance-row{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,.28); padding-top:16px;}
+  .balance-label{font-size:13px; color:rgba(255,255,255,.85);}
+  .balance-num{font-family:'Gowun Dodum',sans-serif; font-size:34px; font-weight:700; font-variant-numeric:tabular-nums; color:#fff;}
+  .diff-pill{display:inline-flex; align-items:center; gap:4px; font-size:12px; padding:5px 10px; border-radius:999px; font-variant-numeric:tabular-nums; background:rgba(255,255,255,.22); color:#fff;}
+  .diff-pill.up{background:rgba(255,255,255,.3); color:#fff;}
+  .diff-pill.down{background:rgba(255,255,255,.22); color:#fff;}
   .budget-row{display:flex; align-items:center; gap:10px; margin-top:14px;}
-  .budget-row .bar-track{flex:1; height:8px;}
-  .budget-row .bar-fill{background:var(--accent);}
-  .budget-row .bar-fill.over{background:var(--spend);}
+  .budget-row .bar-track{flex:1; height:8px; background:rgba(255,255,255,.28);}
+  .budget-row .bar-fill{background:#fff;}
+  .budget-row .bar-fill.over{background:#2a1f1f;}
   .budget-row[hidden]{display:none;}
-  #budgetNote{font-size:12px; color:var(--sub); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  #budgetNote{font-size:12px; color:rgba(255,255,255,.85); white-space:nowrap; font-variant-numeric:tabular-nums;}
   .budget-edit{display:flex; gap:8px; margin-top:8px;}
-  .budget-edit input{flex:1;}
-  .budget-edit button{flex:0 0 auto; padding:9px 14px;}
-  .meta-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:var(--sub);}
-  .other-currencies{font-size:12px; color:var(--sub); margin-top:8px; line-height:1.6;}
+  .budget-edit input{flex:1; background:rgba(255,255,255,.92); border-color:transparent;}
+  .budget-edit button{flex:0 0 auto; padding:9px 14px; background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.4); color:#fff;}
+  .meta-row{display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:rgba(255,255,255,.85);}
+  .other-currencies{font-size:12px; color:rgba(255,255,255,.85); margin-top:8px; line-height:1.6;}
   .other-currencies[hidden], .status-line[hidden]{display:none;}
+  .hero .status-line.warn{color:#fff9c4;}
 
-  .card{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin-bottom:16px;}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:20px 22px; margin-bottom:16px;}
   .card h2, .card summary{
-    font-family:'Song Myung',serif; font-size:16px; margin:0 0 14px; padding-bottom:10px;
+    font-family:'Jua','Gowun Dodum',sans-serif; font-weight:400; font-size:16px; margin:0 0 14px; padding-bottom:10px;
     border-bottom:2px solid var(--accent-soft); display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;
   }
   details.card summary{cursor:pointer; list-style:none; color:var(--ink);}
@@ -93,7 +93,13 @@
   details.card summary::after{content:"▾"; font-size:14px; color:var(--sub); border:none;}
   details.card[open] summary::after{content:"▴";}
   details.card summary .rate-updated{font-family:'Gowun Dodum',sans-serif; font-size:11px; color:var(--sub); margin-right:auto; margin-left:10px;}
-  .card h2 select{font-family:'Gowun Dodum',sans-serif; font-size:13px; border:none; background:transparent; color:var(--accent-strong); text-align:right; width:auto; padding:2px 4px;}
+  .card h2 select, .settings-section h3 select{font-family:'Gowun Dodum',sans-serif; font-size:13px; border:none; background:transparent; color:var(--accent-strong); text-align:right; width:auto; padding:2px 4px;}
+  .settings-section{padding-top:16px; margin-top:16px; border-top:1px solid var(--line);}
+  .settings-section:first-of-type{padding-top:0; margin-top:0; border-top:none;}
+  .settings-section h3{
+    font-size:12px; font-weight:700; color:var(--sub); text-transform:uppercase; letter-spacing:.04em;
+    margin:0 0 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap;
+  }
 
   .row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
   .row > *{flex:1 1 130px;}
@@ -174,8 +180,11 @@
   @media print{
     body{background:#fff; padding:0;}
     .no-print{display:none !important;}
-    .card,.passbook{border:none; box-shadow:none; padding:0; margin-bottom:18px;}
-    .passbook::before,.passbook::after{display:none;}
+    .card,.hero{border:none; box-shadow:none; padding:0; margin-bottom:18px;}
+    .hero{background:none !important;}
+    .hero, .hero *{color:#000 !important;}
+    .hero .bar-track{background:#ddd !important;}
+    .hero .bar-fill{background:#000 !important;}
   }
 </style>
 </head>
@@ -208,8 +217,8 @@
     <div class="converter-result" id="convResult"></div>
   </div>
 
-  <div class="card no-print" id="timeWeatherCard">
-    <h2><span data-t="timeWeatherCardTitle"></span></h2>
+  <details class="card no-print" id="timeWeatherCard">
+    <summary><span data-t="timeWeatherCardTitle"></span></summary>
     <div class="tw-grid">
       <div class="tw-block">
         <p class="tw-label" data-t="homeLabel"></p>
@@ -239,9 +248,9 @@
       <button type="button" class="btn-ghost" id="useLocationBtn" data-t="useLocationBtn"></button>
     </div>
     <p class="status-line" id="cityHint"></p>
-  </div>
+  </details>
 
-  <div class="passbook">
+  <div class="hero">
     <p class="eyebrow" data-t="eyebrow"></p>
     <h1 data-t="appTitle"></h1>
     <div class="balance-row">
@@ -303,68 +312,74 @@
     </form>
   </div>
 
-  <details class="card no-print" id="rateCard">
-    <summary><span data-t="rateCardTitle"></span><span class="rate-updated" id="rateUpdated"></span></summary>
-    <form id="rateForm">
-      <div class="row">
-        <div>
-          <label for="baseCurrencySelect" data-t="baseCurrencyLabel"></label>
-          <select id="baseCurrencySelect"></select>
-        </div>
-      </div>
-      <div class="toolbar" style="justify-content:flex-start;margin:0 0 12px;">
-        <button type="button" class="btn-ghost" id="refreshRatesBtn" data-t="refreshRatesBtn"></button>
-      </div>
-      <div id="rateInputs"></div>
-      <button type="submit" class="btn-primary" data-t="saveRatesBtn"></button>
-    </form>
-    <p class="status-line" id="rateHint"></p>
-  </details>
-
-  <details class="card no-print" id="syncCard">
-    <summary><span data-t="syncCardTitle"></span></summary>
-    <div class="row sync-row">
-      <div>
-        <label for="syncCodeInput" data-t="syncCodeLabel"></label>
-        <input type="text" id="syncCodeInput" autocomplete="off" autocapitalize="off" spellcheck="false">
-      </div>
-      <button type="button" class="btn-primary" id="syncConnectBtn" style="flex:0 0 auto;" data-t="syncConnectBtn"></button>
+  <details class="card">
+    <summary><span data-t="insightsCardTitle"></span></summary>
+    <div class="settings-section">
+      <h3>
+        <span data-t="categoryCardTitle"></span>
+        <select id="monthSelect" class="no-print"></select>
+      </h3>
+      <div id="categoryBars"></div>
     </div>
-    <p class="status-line" id="syncHint"></p>
+    <div class="settings-section">
+      <h3><span data-t="monthCompareTitle"></span></h3>
+      <div id="monthBars"></div>
+    </div>
   </details>
 
-  <details class="card no-print" id="feedbackCard">
-    <summary><span data-t="feedbackCardTitle"></span></summary>
-    <form id="feedbackForm">
-      <div class="row">
-        <div style="flex:1 1 100%;">
-          <label for="feedbackText" data-t="feedbackLabel"></label>
-          <textarea id="feedbackText" rows="3" required></textarea>
+  <details class="card no-print" id="settingsCard">
+    <summary><span data-t="settingsCardTitle"></span></summary>
+
+    <div class="settings-section" id="rateCard">
+      <h3><span data-t="rateCardTitle"></span><span class="rate-updated" id="rateUpdated"></span></h3>
+      <form id="rateForm">
+        <div class="row">
+          <div>
+            <label for="baseCurrencySelect" data-t="baseCurrencyLabel"></label>
+            <select id="baseCurrencySelect"></select>
+          </div>
         </div>
-      </div>
-      <div class="row">
+        <div class="toolbar" style="justify-content:flex-start;margin:0 0 12px;">
+          <button type="button" class="btn-ghost" id="refreshRatesBtn" data-t="refreshRatesBtn"></button>
+        </div>
+        <div id="rateInputs"></div>
+        <button type="submit" class="btn-primary" data-t="saveRatesBtn"></button>
+      </form>
+      <p class="status-line" id="rateHint"></p>
+    </div>
+
+    <div class="settings-section" id="syncCard">
+      <h3><span data-t="syncCardTitle"></span></h3>
+      <div class="row sync-row">
         <div>
-          <label for="feedbackEmail" data-t="feedbackEmailLabel"></label>
-          <input type="email" id="feedbackEmail">
+          <label for="syncCodeInput" data-t="syncCodeLabel"></label>
+          <input type="text" id="syncCodeInput" autocomplete="off" autocapitalize="off" spellcheck="false">
         </div>
+        <button type="button" class="btn-primary" id="syncConnectBtn" style="flex:0 0 auto;" data-t="syncConnectBtn"></button>
       </div>
-      <button type="submit" class="btn-primary" id="feedbackSendBtn" data-t="feedbackSendBtn"></button>
-    </form>
-    <p class="status-line" id="feedbackHint"></p>
+      <p class="status-line" id="syncHint"></p>
+    </div>
+
+    <div class="settings-section" id="feedbackCard">
+      <h3><span data-t="feedbackCardTitle"></span></h3>
+      <form id="feedbackForm">
+        <div class="row">
+          <div style="flex:1 1 100%;">
+            <label for="feedbackText" data-t="feedbackLabel"></label>
+            <textarea id="feedbackText" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="feedbackEmail" data-t="feedbackEmailLabel"></label>
+            <input type="email" id="feedbackEmail">
+          </div>
+        </div>
+        <button type="submit" class="btn-primary" id="feedbackSendBtn" data-t="feedbackSendBtn"></button>
+      </form>
+      <p class="status-line" id="feedbackHint"></p>
+    </div>
   </details>
-
-  <div class="card">
-    <h2>
-      <span data-t="categoryCardTitle"></span>
-      <select id="monthSelect" class="no-print"></select>
-    </h2>
-    <div id="categoryBars"></div>
-  </div>
-
-  <div class="card">
-    <h2><span data-t="monthCompareTitle"></span></h2>
-    <div id="monthBars"></div>
-  </div>
 
   <div class="card">
     <h2><span data-t="historyTitle"></span></h2>
@@ -462,6 +477,7 @@ const I18N = {
     feedbackCardTitle: "피드백 보내기", feedbackLabel: "의견이나 불편한 점을 적어주세요",
     feedbackEmailLabel: "이메일 (선택, 답장 받으려면)", feedbackSendBtn: "보내기", feedbackSending: "보내는 중…",
     feedbackThanks: "보내주셔서 감사합니다!", feedbackFail: "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.", feedbackNoBackend: "백엔드가 설정되지 않아 이메일로 대신 보냅니다.",
+    insightsCardTitle: "통계 · 비교", settingsCardTitle: "설정 더보기",
     categoryCardTitle: "분류별 지출 (환산)", monthCompareTitle: "월별 비교 (최근 6개월, 환산)", historyTitle: "내역",
     colDate: "날짜", colCategory: "분류", colMemo: "메모", colAmount: "금액",
     exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
@@ -514,6 +530,7 @@ const I18N = {
     feedbackCardTitle: "Send Feedback", feedbackLabel: "Tell us what's working or what's not",
     feedbackEmailLabel: "Email (optional, for a reply)", feedbackSendBtn: "Send", feedbackSending: "Sending…",
     feedbackThanks: "Thanks for the feedback!", feedbackFail: "Couldn't send it. Please try again in a moment.", feedbackNoBackend: "Backend not configured — opening your email app instead.",
+    insightsCardTitle: "Insights & Trends", settingsCardTitle: "More Settings",
     categoryCardTitle: "Spending by category (converted)", monthCompareTitle: "Last 6 months (converted)", historyTitle: "History",
     colDate: "Date", colCategory: "Category", colMemo: "Memo", colAmount: "Amount",
     exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
@@ -566,6 +583,7 @@ const I18N = {
     feedbackCardTitle: "发送反馈", feedbackLabel: "告诉我们哪里好用、哪里不好用",
     feedbackEmailLabel: "邮箱（可选，用于回复）", feedbackSendBtn: "发送", feedbackSending: "发送中…",
     feedbackThanks: "感谢反馈！", feedbackFail: "发送失败，请稍后重试。", feedbackNoBackend: "尚未配置后端，改为打开邮件应用发送。",
+    insightsCardTitle: "统计与对比", settingsCardTitle: "更多设置",
     categoryCardTitle: "按分类统计（折合）", monthCompareTitle: "近6个月对比（折合）", historyTitle: "明细",
     colDate: "日期", colCategory: "分类", colMemo: "备注", colAmount: "金额",
     exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
@@ -618,6 +636,7 @@ const I18N = {
     feedbackCardTitle: "フィードバックを送る", feedbackLabel: "良かった点・不便な点を教えてください",
     feedbackEmailLabel: "メール（任意、返信が必要な場合）", feedbackSendBtn: "送信", feedbackSending: "送信中…",
     feedbackThanks: "フィードバックありがとうございます！", feedbackFail: "送信に失敗しました。しばらくしてからもう一度お試しください。", feedbackNoBackend: "バックエンド未設定のため、代わりにメールアプリを開きます。",
+    insightsCardTitle: "統計・比較", settingsCardTitle: "その他の設定",
     categoryCardTitle: "分類別支出（換算）", monthCompareTitle: "過去6か月の比較（換算）", historyTitle: "履歴",
     colDate: "日付", colCategory: "分類", colMemo: "メモ", colAmount: "金額",
     exportBtn: "Markdownで書き出す", printBtn: "印刷 / PDFで保存",
@@ -670,6 +689,7 @@ const I18N = {
     feedbackCardTitle: "Gửi phản hồi", feedbackLabel: "Cho chúng tôi biết điều gì tốt hoặc chưa tốt",
     feedbackEmailLabel: "Email (không bắt buộc, để nhận phản hồi)", feedbackSendBtn: "Gửi", feedbackSending: "Đang gửi…",
     feedbackThanks: "Cảm ơn phản hồi của bạn!", feedbackFail: "Gửi thất bại. Vui lòng thử lại sau.", feedbackNoBackend: "Chưa cấu hình backend — sẽ mở ứng dụng email thay thế.",
+    insightsCardTitle: "Thống kê & So sánh", settingsCardTitle: "Cài đặt thêm",
     categoryCardTitle: "Chi tiêu theo danh mục (quy đổi)", monthCompareTitle: "So sánh 6 tháng gần nhất (quy đổi)", historyTitle: "Lịch sử",
     colDate: "Ngày", colCategory: "Danh mục", colMemo: "Ghi chú", colAmount: "Số tiền",
     exportBtn: "Xuất ra Markdown", printBtn: "In / Lưu thành PDF",
@@ -722,6 +742,7 @@ const I18N = {
     feedbackCardTitle: "ส่งความคิดเห็น", feedbackLabel: "บอกเราว่าอะไรใช้ได้ดีหรือมีปัญหา",
     feedbackEmailLabel: "อีเมล (ไม่บังคับ เผื่อให้ตอบกลับ)", feedbackSendBtn: "ส่ง", feedbackSending: "กำลังส่ง…",
     feedbackThanks: "ขอบคุณสำหรับความคิดเห็น!", feedbackFail: "ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง", feedbackNoBackend: "ยังไม่ได้ตั้งค่าระบบหลังบ้าน จะเปิดแอปอีเมลแทน",
+    insightsCardTitle: "สถิติและเปรียบเทียบ", settingsCardTitle: "การตั้งค่าเพิ่มเติม",
     categoryCardTitle: "ค่าใช้จ่ายตามหมวดหมู่ (แปลงแล้ว)", monthCompareTitle: "เปรียบเทียบ 6 เดือนล่าสุด (แปลงแล้ว)", historyTitle: "ประวัติ",
     colDate: "วันที่", colCategory: "หมวดหมู่", colMemo: "บันทึกช่วยจำ", colAmount: "จำนวนเงิน",
     exportBtn: "ส่งออกเป็น Markdown", printBtn: "พิมพ์ / บันทึกเป็น PDF",
@@ -774,6 +795,7 @@ const I18N = {
     feedbackCardTitle: "Hantar Maklum Balas", feedbackLabel: "Beritahu kami apa yang berfungsi atau tidak",
     feedbackEmailLabel: "E-mel (pilihan, untuk balasan)", feedbackSendBtn: "Hantar", feedbackSending: "Menghantar…",
     feedbackThanks: "Terima kasih atas maklum balas anda!", feedbackFail: "Gagal menghantar. Sila cuba lagi sebentar.", feedbackNoBackend: "Backend belum dikonfigurasi — membuka aplikasi e-mel sebagai gantinya.",
+    insightsCardTitle: "Statistik & Perbandingan", settingsCardTitle: "Tetapan Lanjut",
     categoryCardTitle: "Perbelanjaan mengikut kategori (ditukar)", monthCompareTitle: "Perbandingan 6 bulan terakhir (ditukar)", historyTitle: "Sejarah",
     colDate: "Tarikh", colCategory: "Kategori", colMemo: "Nota", colAmount: "Jumlah",
     exportBtn: "Eksport sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
@@ -826,6 +848,7 @@ const I18N = {
     feedbackCardTitle: "Kirim Masukan", feedbackLabel: "Beri tahu kami apa yang berjalan baik atau kurang",
     feedbackEmailLabel: "Email (opsional, untuk balasan)", feedbackSendBtn: "Kirim", feedbackSending: "Mengirim…",
     feedbackThanks: "Terima kasih atas masukannya!", feedbackFail: "Gagal mengirim. Silakan coba lagi sebentar.", feedbackNoBackend: "Backend belum dikonfigurasi — membuka aplikasi email sebagai gantinya.",
+    insightsCardTitle: "Statistik & Perbandingan", settingsCardTitle: "Pengaturan Lainnya",
     categoryCardTitle: "Pengeluaran per kategori (dikonversi)", monthCompareTitle: "Perbandingan 6 bulan terakhir (dikonversi)", historyTitle: "Riwayat",
     colDate: "Tanggal", colCategory: "Kategori", colMemo: "Catatan", colAmount: "Jumlah",
     exportBtn: "Ekspor sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
@@ -878,6 +901,7 @@ const I18N = {
     feedbackCardTitle: "Magpadala ng Feedback", feedbackLabel: "Sabihin sa amin kung ano ang maganda o may problema",
     feedbackEmailLabel: "Email (opsyonal, para sa tugon)", feedbackSendBtn: "Ipadala", feedbackSending: "Ipinapadala…",
     feedbackThanks: "Salamat sa iyong feedback!", feedbackFail: "Hindi naipadala. Pakisubukan ulit mamaya.", feedbackNoBackend: "Hindi pa naka-configure ang backend — bubuksan na lang ang email app.",
+    insightsCardTitle: "Estadistika at Paghahambing", settingsCardTitle: "Karagdagang Setting",
     categoryCardTitle: "Gastos ayon sa kategorya (na-convert)", monthCompareTitle: "Huling 6 na buwan (na-convert)", historyTitle: "Kasaysayan",
     colDate: "Petsa", colCategory: "Kategorya", colMemo: "Tala", colAmount: "Halaga",
     exportBtn: "I-export bilang Markdown", printBtn: "I-print / I-save bilang PDF",
@@ -930,6 +954,7 @@ const I18N = {
     feedbackCardTitle: "Enviar Comentarios", feedbackLabel: "Cuéntanos qué funciona bien o qué no",
     feedbackEmailLabel: "Correo (opcional, para responderte)", feedbackSendBtn: "Enviar", feedbackSending: "Enviando…",
     feedbackThanks: "¡Gracias por tus comentarios!", feedbackFail: "No se pudo enviar. Inténtalo de nuevo en un momento.", feedbackNoBackend: "Backend no configurado — se abrirá tu aplicación de correo en su lugar.",
+    insightsCardTitle: "Estadísticas y comparación", settingsCardTitle: "Más ajustes",
     categoryCardTitle: "Gasto por categoría (convertido)", monthCompareTitle: "Últimos 6 meses (convertido)", historyTitle: "Historial",
     colDate: "Fecha", colCategory: "Categoría", colMemo: "Nota", colAmount: "Monto",
     exportBtn: "Exportar como Markdown", printBtn: "Imprimir / Guardar como PDF",
