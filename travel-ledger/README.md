@@ -32,6 +32,13 @@ python3 -m http.server 8000   # 또는 아무 정적 서버
          match /codes/{code}/{document=**} {
            allow read, write: if true;
          }
+         match /feedback/{id} {
+           allow create: if true;
+           allow read, update, delete: if false;
+         }
+         match /analytics/{id} {
+           allow read, write: if true;
+         }
        }
      }
      ```
@@ -66,11 +73,39 @@ Apple Developer(연 $99)·Google Play(1회 $25) 계정과 심사가 추가로 �
 
 ## GitHub Pages로 배포하기
 
-1. 저장소 Settings > Pages에서 배포 브랜치/폴더를 이 브랜치의 `/travel-ledger`로 지정
-   (또는 `travel-ledger`의 내용을 별도 `gh-pages` 브랜치 루트로 옮겨도 된다).
-2. 저장소가 비공개(private)면 GitHub Pages 무료 배포가 안 되므로 공개로 전환해야 한다.
-3. 배포 후 나오는 `https://<사용자>.github.io/<저장소>/` 주소가 실제 서비스 URL이 된다 —
-   이 주소를 홈 화면에 추가하면 된다.
+`.github/workflows/deploy-roamrate.yml`이 이미 준비되어 있다 — 이 브랜치에 `travel-ledger/`
+변경사항을 푸시할 때마다 자동으로 배포된다. 딱 한 번, 저장소 Settings에서 켜야 한다:
+
+1. https://github.com/&lt;owner&gt;/&lt;repo&gt;/settings/pages 접속.
+2. **Build and deployment → Source**를 "GitHub Actions"로 변경 후 저장.
+3. Actions 탭에서 `deploy-roamrate` 워크플로를 한 번 재실행(Re-run)하면 배포가 완료되고,
+   `https://<사용자>.github.io/<저장소>/` 주소가 실제 서비스 URL이 된다.
+4. 이 주소를 아무 브라우저에서 열어 "홈 화면에 추가"하면 다른 사람도 설치할 수 있다.
+
+## 4. 피드백 받기 / 사용량 보기
+
+"피드백 보내기" 카드에 사용자가 남긴 내용은 Firestore의 `feedback` 컬렉션에 쌓인다.
+Firebase 콘솔 → Firestore Database → `feedback`에서 바로 읽을 수 있다 (앱에서는 다시
+읽을 수 없도록 규칙을 걸어뒀다 — 남이 쓴 피드백을 다른 사용자가 볼 수 없게 하기 위함).
+
+앱을 연 횟수·기록 추가 횟수 같은 익명 집계는 `analytics/summary` 문서 하나에 카운터로
+쌓인다 (개인정보·제3자 분석 SDK 없이, 숫자만). 사용량을 보려면 Firestore Database →
+`analytics` → `summary` 문서를 열면 된다.
+
+## 5. 수익화 — 여기부터는 직접 계정을 만들어야 한다
+
+앱 코드는 무료 배포·피드백·사용량 확인까지 전부 준비되어 있지만, **실제 수익이 발생하려면
+아래 계정들은 본인 명의로 직접 가입해야 한다** (신원·결제 정보가 필요해 대신 만들어줄 수 없다):
+
+- **제휴(어필리에이트) 링크** — Wise(환전), 여행자보험, eSIM 판매처 등의 제휴 프로그램에 가입하면
+  전용 추적 링크를 받는다. 이 링크를 분류별 지출 화면에 붙이면 각 서비스의 자체 대시보드에서
+  클릭·전환·수익을 볼 수 있다.
+- **광고(AdMob)** — 스토어 앱으로 만든 뒤 Google AdMob 계정을 만들면 광고 수익이 AdMob
+  대시보드에 표시된다.
+- **인앱결제(Pro)** — Apple/Google 개발자 계정에 결제 정보를 등록해야 매출이 잡힌다.
+
+즉 "얼마나 버는지"는 이 앱이 아니라 **가입한 제휴사·AdMob·스토어 콘솔의 대시보드**에서
+확인하게 된다 — 계정을 만들고 나면 그 대시보드 링크와 확인 방법을 이어서 정리해줄 수 있다.
 
 ## 폴더 구조
 

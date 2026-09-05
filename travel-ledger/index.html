@@ -96,7 +96,8 @@
   @keyframes flash-pulse{ 0%{color:var(--accent-strong);} 100%{color:var(--ink);} }
   @media (prefers-reduced-motion: reduce){ .balance-num.flash{animation:none;} }
   label{display:block; font-size:12px; color:var(--sub); margin-bottom:4px;}
-  input,select{width:100%; padding:10px 11px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--bg); color:var(--ink); font-family:inherit;}
+  input,select,textarea{width:100%; padding:10px 11px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--bg); color:var(--ink); font-family:inherit;}
+  textarea{resize:vertical;}
   input:focus,select:focus{outline:2px solid var(--accent-soft); border-color:var(--accent);}
   button{cursor:pointer; border:none; border-radius:8px; font-family:inherit; font-size:14px;}
   .btn-primary{background:var(--accent); color:#fff; padding:11px 18px; width:100%; font-weight:600;}
@@ -274,6 +275,26 @@
     <p class="status-line" id="syncHint"></p>
   </details>
 
+  <details class="card no-print" id="feedbackCard">
+    <summary><span data-t="feedbackCardTitle"></span></summary>
+    <form id="feedbackForm">
+      <div class="row">
+        <div style="flex:1 1 100%;">
+          <label for="feedbackText" data-t="feedbackLabel"></label>
+          <textarea id="feedbackText" rows="3" required></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="feedbackEmail" data-t="feedbackEmailLabel"></label>
+          <input type="email" id="feedbackEmail">
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" id="feedbackSendBtn" data-t="feedbackSendBtn"></button>
+    </form>
+    <p class="status-line" id="feedbackHint"></p>
+  </details>
+
   <div class="card">
     <h2>
       <span data-t="categoryCardTitle"></span>
@@ -380,6 +401,9 @@ const I18N = {
     syncHintConnected: (code) => `"${code}" 코드로 연결되어 실시간 동기화 중입니다.`,
     syncHintNoBackend: "백엔드가 설정되지 않았습니다 — firebase-config.js를 채우면 사용할 수 있습니다 (README 참고).",
     syncLoadFail: "동기화 서비스에 연결하지 못했습니다 (네트워크 차단 또는 오프라인일 수 있음). 기기 저장으로 계속 사용됩니다.",
+    feedbackCardTitle: "피드백 보내기", feedbackLabel: "의견이나 불편한 점을 적어주세요",
+    feedbackEmailLabel: "이메일 (선택, 답장 받으려면)", feedbackSendBtn: "보내기", feedbackSending: "보내는 중…",
+    feedbackThanks: "보내주셔서 감사합니다!", feedbackFail: "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.", feedbackNoBackend: "백엔드가 설정되지 않아 이메일로 대신 보냅니다.",
     categoryCardTitle: "분류별 지출 (환산)", monthCompareTitle: "월별 비교 (최근 6개월, 환산)", historyTitle: "내역",
     colDate: "날짜", colCategory: "분류", colMemo: "메모", colAmount: "금액",
     exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
@@ -423,6 +447,9 @@ const I18N = {
     syncHintConnected: (code) => `Connected with code "${code}" — syncing live.`,
     syncHintNoBackend: "Backend not configured yet — fill in firebase-config.js to enable this (see README).",
     syncLoadFail: "Couldn't reach the sync service (network blocked or offline?). Continuing with device-only storage.",
+    feedbackCardTitle: "Send Feedback", feedbackLabel: "Tell us what's working or what's not",
+    feedbackEmailLabel: "Email (optional, for a reply)", feedbackSendBtn: "Send", feedbackSending: "Sending…",
+    feedbackThanks: "Thanks for the feedback!", feedbackFail: "Couldn't send it. Please try again in a moment.", feedbackNoBackend: "Backend not configured — opening your email app instead.",
     categoryCardTitle: "Spending by category (converted)", monthCompareTitle: "Last 6 months (converted)", historyTitle: "History",
     colDate: "Date", colCategory: "Category", colMemo: "Memo", colAmount: "Amount",
     exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
@@ -466,6 +493,9 @@ const I18N = {
     syncHintConnected: (code) => `已使用同步码 "${code}" 连接，正在实时同步。`,
     syncHintNoBackend: "尚未配置后端 — 请填写 firebase-config.js 以启用（参见 README）。",
     syncLoadFail: "无法连接同步服务（可能是网络受限或离线）。将继续使用本机存储。",
+    feedbackCardTitle: "发送反馈", feedbackLabel: "告诉我们哪里好用、哪里不好用",
+    feedbackEmailLabel: "邮箱（可选，用于回复）", feedbackSendBtn: "发送", feedbackSending: "发送中…",
+    feedbackThanks: "感谢反馈！", feedbackFail: "发送失败，请稍后重试。", feedbackNoBackend: "尚未配置后端，改为打开邮件应用发送。",
     categoryCardTitle: "按分类统计（折合）", monthCompareTitle: "近6个月对比（折合）", historyTitle: "明细",
     colDate: "日期", colCategory: "分类", colMemo: "备注", colAmount: "金额",
     exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
@@ -509,6 +539,9 @@ const I18N = {
     syncHintConnected: (code) => `コード「${code}」で接続済み — リアルタイム同期中。`,
     syncHintNoBackend: "バックエンド未設定 — firebase-config.js を設定すると使用できます（README参照）。",
     syncLoadFail: "同期サービスに接続できませんでした（ネットワーク制限またはオフラインの可能性）。端末保存のまま続行します。",
+    feedbackCardTitle: "フィードバックを送る", feedbackLabel: "良かった点・不便な点を教えてください",
+    feedbackEmailLabel: "メール（任意、返信が必要な場合）", feedbackSendBtn: "送信", feedbackSending: "送信中…",
+    feedbackThanks: "フィードバックありがとうございます！", feedbackFail: "送信に失敗しました。しばらくしてからもう一度お試しください。", feedbackNoBackend: "バックエンド未設定のため、代わりにメールアプリを開きます。",
     categoryCardTitle: "分類別支出（換算）", monthCompareTitle: "過去6か月の比較（換算）", historyTitle: "履歴",
     colDate: "日付", colCategory: "分類", colMemo: "メモ", colAmount: "金額",
     exportBtn: "Markdownで書き出す", printBtn: "印刷 / PDFで保存",
@@ -552,6 +585,9 @@ const I18N = {
     syncHintConnected: (code) => `Đã kết nối bằng mã "${code}" — đang đồng bộ trực tiếp.`,
     syncHintNoBackend: "Chưa cấu hình backend — điền vào firebase-config.js để bật tính năng này (xem README).",
     syncLoadFail: "Không kết nối được dịch vụ đồng bộ (mạng bị chặn hoặc mất kết nối?). Tiếp tục lưu trên thiết bị.",
+    feedbackCardTitle: "Gửi phản hồi", feedbackLabel: "Cho chúng tôi biết điều gì tốt hoặc chưa tốt",
+    feedbackEmailLabel: "Email (không bắt buộc, để nhận phản hồi)", feedbackSendBtn: "Gửi", feedbackSending: "Đang gửi…",
+    feedbackThanks: "Cảm ơn phản hồi của bạn!", feedbackFail: "Gửi thất bại. Vui lòng thử lại sau.", feedbackNoBackend: "Chưa cấu hình backend — sẽ mở ứng dụng email thay thế.",
     categoryCardTitle: "Chi tiêu theo danh mục (quy đổi)", monthCompareTitle: "So sánh 6 tháng gần nhất (quy đổi)", historyTitle: "Lịch sử",
     colDate: "Ngày", colCategory: "Danh mục", colMemo: "Ghi chú", colAmount: "Số tiền",
     exportBtn: "Xuất ra Markdown", printBtn: "In / Lưu thành PDF",
@@ -595,6 +631,9 @@ const I18N = {
     syncHintConnected: (code) => `เชื่อมต่อด้วยรหัส "${code}" แล้ว — กำลังซิงค์แบบเรียลไทม์`,
     syncHintNoBackend: "ยังไม่ได้ตั้งค่าระบบหลังบ้าน — กรอกไฟล์ firebase-config.js เพื่อเปิดใช้งาน (ดู README)",
     syncLoadFail: "เชื่อมต่อบริการซิงค์ไม่ได้ (เครือข่ายอาจถูกบล็อกหรือออฟไลน์) จะใช้การบันทึกในอุปกรณ์ต่อไป",
+    feedbackCardTitle: "ส่งความคิดเห็น", feedbackLabel: "บอกเราว่าอะไรใช้ได้ดีหรือมีปัญหา",
+    feedbackEmailLabel: "อีเมล (ไม่บังคับ เผื่อให้ตอบกลับ)", feedbackSendBtn: "ส่ง", feedbackSending: "กำลังส่ง…",
+    feedbackThanks: "ขอบคุณสำหรับความคิดเห็น!", feedbackFail: "ส่งไม่สำเร็จ กรุณาลองใหม่อีกครั้ง", feedbackNoBackend: "ยังไม่ได้ตั้งค่าระบบหลังบ้าน จะเปิดแอปอีเมลแทน",
     categoryCardTitle: "ค่าใช้จ่ายตามหมวดหมู่ (แปลงแล้ว)", monthCompareTitle: "เปรียบเทียบ 6 เดือนล่าสุด (แปลงแล้ว)", historyTitle: "ประวัติ",
     colDate: "วันที่", colCategory: "หมวดหมู่", colMemo: "บันทึกช่วยจำ", colAmount: "จำนวนเงิน",
     exportBtn: "ส่งออกเป็น Markdown", printBtn: "พิมพ์ / บันทึกเป็น PDF",
@@ -638,6 +677,9 @@ const I18N = {
     syncHintConnected: (code) => `Disambungkan dengan kod "${code}" — sedang disegerakkan secara masa nyata.`,
     syncHintNoBackend: "Backend belum dikonfigurasi — isi firebase-config.js untuk mengaktifkan (lihat README).",
     syncLoadFail: "Tidak dapat menghubungi perkhidmatan penyegerakan (rangkaian disekat atau luar talian?). Meneruskan dengan storan peranti sahaja.",
+    feedbackCardTitle: "Hantar Maklum Balas", feedbackLabel: "Beritahu kami apa yang berfungsi atau tidak",
+    feedbackEmailLabel: "E-mel (pilihan, untuk balasan)", feedbackSendBtn: "Hantar", feedbackSending: "Menghantar…",
+    feedbackThanks: "Terima kasih atas maklum balas anda!", feedbackFail: "Gagal menghantar. Sila cuba lagi sebentar.", feedbackNoBackend: "Backend belum dikonfigurasi — membuka aplikasi e-mel sebagai gantinya.",
     categoryCardTitle: "Perbelanjaan mengikut kategori (ditukar)", monthCompareTitle: "Perbandingan 6 bulan terakhir (ditukar)", historyTitle: "Sejarah",
     colDate: "Tarikh", colCategory: "Kategori", colMemo: "Nota", colAmount: "Jumlah",
     exportBtn: "Eksport sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
@@ -681,6 +723,9 @@ const I18N = {
     syncHintConnected: (code) => `Terhubung dengan kode "${code}" — sedang sinkron langsung.`,
     syncHintNoBackend: "Backend belum dikonfigurasi — isi firebase-config.js untuk mengaktifkannya (lihat README).",
     syncLoadFail: "Tidak dapat terhubung ke layanan sinkronisasi (jaringan diblokir atau offline?). Melanjutkan dengan penyimpanan perangkat.",
+    feedbackCardTitle: "Kirim Masukan", feedbackLabel: "Beri tahu kami apa yang berjalan baik atau kurang",
+    feedbackEmailLabel: "Email (opsional, untuk balasan)", feedbackSendBtn: "Kirim", feedbackSending: "Mengirim…",
+    feedbackThanks: "Terima kasih atas masukannya!", feedbackFail: "Gagal mengirim. Silakan coba lagi sebentar.", feedbackNoBackend: "Backend belum dikonfigurasi — membuka aplikasi email sebagai gantinya.",
     categoryCardTitle: "Pengeluaran per kategori (dikonversi)", monthCompareTitle: "Perbandingan 6 bulan terakhir (dikonversi)", historyTitle: "Riwayat",
     colDate: "Tanggal", colCategory: "Kategori", colMemo: "Catatan", colAmount: "Jumlah",
     exportBtn: "Ekspor sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
@@ -724,6 +769,9 @@ const I18N = {
     syncHintConnected: (code) => `Naka-connect gamit ang code na "${code}" — real-time na nagsi-sync.`,
     syncHintNoBackend: "Hindi pa naka-configure ang backend — punan ang firebase-config.js para paganahin ito (tingnan ang README).",
     syncLoadFail: "Hindi makonekta sa sync service (naka-block ang network o offline?). Magpapatuloy gamit ang pag-save sa device lang.",
+    feedbackCardTitle: "Magpadala ng Feedback", feedbackLabel: "Sabihin sa amin kung ano ang maganda o may problema",
+    feedbackEmailLabel: "Email (opsyonal, para sa tugon)", feedbackSendBtn: "Ipadala", feedbackSending: "Ipinapadala…",
+    feedbackThanks: "Salamat sa iyong feedback!", feedbackFail: "Hindi naipadala. Pakisubukan ulit mamaya.", feedbackNoBackend: "Hindi pa naka-configure ang backend — bubuksan na lang ang email app.",
     categoryCardTitle: "Gastos ayon sa kategorya (na-convert)", monthCompareTitle: "Huling 6 na buwan (na-convert)", historyTitle: "Kasaysayan",
     colDate: "Petsa", colCategory: "Kategorya", colMemo: "Tala", colAmount: "Halaga",
     exportBtn: "I-export bilang Markdown", printBtn: "I-print / I-save bilang PDF",
@@ -767,6 +815,9 @@ const I18N = {
     syncHintConnected: (code) => `Conectado con el código "${code}" — sincronizando en vivo.`,
     syncHintNoBackend: "El backend aún no está configurado — completa firebase-config.js para habilitarlo (ver README).",
     syncLoadFail: "No se pudo conectar al servicio de sincronización (¿red bloqueada o sin conexión?). Continuando con almacenamiento local.",
+    feedbackCardTitle: "Enviar Comentarios", feedbackLabel: "Cuéntanos qué funciona bien o qué no",
+    feedbackEmailLabel: "Correo (opcional, para responderte)", feedbackSendBtn: "Enviar", feedbackSending: "Enviando…",
+    feedbackThanks: "¡Gracias por tus comentarios!", feedbackFail: "No se pudo enviar. Inténtalo de nuevo en un momento.", feedbackNoBackend: "Backend no configurado — se abrirá tu aplicación de correo en su lugar.",
     categoryCardTitle: "Gasto por categoría (convertido)", monthCompareTitle: "Últimos 6 meses (convertido)", historyTitle: "Historial",
     colDate: "Fecha", colCategory: "Categoría", colMemo: "Nota", colAmount: "Monto",
     exportBtn: "Exportar como Markdown", printBtn: "Imprimir / Guardar como PDF",
@@ -839,6 +890,7 @@ const syncStatusEl = document.getElementById("sync-status");
 const footNoteEl = document.getElementById("footNote");
 const syncCodeInput = document.getElementById("syncCodeInput");
 const syncHintEl = document.getElementById("syncHint");
+const feedbackHintEl = document.getElementById("feedbackHint");
 const convAmountInput = document.getElementById("convAmount");
 const convFromSelect = document.getElementById("convFrom");
 const convToSelect = document.getElementById("convTo");
@@ -928,6 +980,20 @@ function firebaseConfigured(){
   return !!(c && c.apiKey && c.apiKey !== "YOUR_API_KEY" && c.projectId && c.projectId !== "YOUR_PROJECT");
 }
 
+/* Loads the SDK and initializes the Firestore app once, regardless of whether
+   a sync code is connected — feedback/analytics need this even in local-only mode. */
+async function ensureFirebase(){
+  if(!firebaseConfigured()) return null;
+  const sdk = await loadFirebaseSdk();
+  const { initializeApp, getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy, limit, increment } = sdk;
+  if(!firebaseApp){
+    firebaseApp = initializeApp(window.TRAVEL_LEDGER_FIREBASE_CONFIG);
+    dbInstance = getFirestore(firebaseApp);
+  }
+  if(!cloudOps) cloudOps = { collection, doc, addDoc, setDoc, deleteDoc };
+  return { collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy, limit, increment };
+}
+
 async function connectSync(code){
   if(!firebaseConfigured()){
     syncHintEl.textContent = t("syncHintNoBackend");
@@ -935,24 +1001,19 @@ async function connectSync(code){
   }
   let sdk;
   try{
-    sdk = await loadFirebaseSdk();
+    sdk = await ensureFirebase();
   }catch(e){
     console.error("firebase sdk load failed", e);
     syncHintEl.textContent = t("syncLoadFail");
     startLocalMode();
     return;
   }
-  const { initializeApp, getFirestore, collection, doc, addDoc, setDoc, deleteDoc, onSnapshot, query, orderBy, limit } = sdk;
+  const { doc, onSnapshot, collection, query, orderBy, limit } = sdk;
 
   if(unsubEntries) unsubEntries();
   if(unsubSettings) unsubSettings();
   syncCode = code;
   localStorage.setItem(SYNC_CODE_KEY, code);
-  if(!firebaseApp){
-    firebaseApp = initializeApp(window.TRAVEL_LEDGER_FIREBASE_CONFIG);
-    dbInstance = getFirestore(firebaseApp);
-  }
-  cloudOps = { collection, doc, addDoc, setDoc, deleteDoc };
   usingCloud = true;
   updateConnectionUI();
 
@@ -1264,6 +1325,7 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
     totalEl.classList.remove("flash");
     void totalEl.offsetWidth;
     totalEl.classList.add("flash");
+    logAnalyticsEvent("entries_added");
   }catch(e){ console.error("add entry failed", e); }
   finally{ btn.disabled = false; }
 });
@@ -1322,6 +1384,51 @@ document.getElementById("syncConnectBtn").addEventListener("click", () => {
   if(!code) return;
   connectSync(code);
 });
+
+document.getElementById("feedbackForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const message = document.getElementById("feedbackText").value.trim();
+  const email = document.getElementById("feedbackEmail").value.trim();
+  if(!message) return;
+  const sendBtn = document.getElementById("feedbackSendBtn");
+  sendBtn.disabled = true;
+  sendBtn.textContent = t("feedbackSending");
+  try{
+    const sdk = await ensureFirebase();
+    if(!sdk){
+      feedbackHintEl.textContent = t("feedbackNoBackend");
+      const subject = encodeURIComponent("RoamRate feedback");
+      const body = encodeURIComponent(message + (email ? `\n\n(reply to: ${email})` : ""));
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    }else{
+      await sdk.addDoc(sdk.collection(dbInstance, "feedback"), {
+        message, email: email || null, lang, appVersion: "RoamRate",
+        createdAt: new Date().toISOString()
+      });
+      feedbackHintEl.textContent = t("feedbackThanks");
+      document.getElementById("feedbackText").value = "";
+      document.getElementById("feedbackEmail").value = "";
+    }
+  }catch(e){
+    console.error("feedback send failed", e);
+    feedbackHintEl.textContent = t("feedbackFail");
+  }finally{
+    sendBtn.disabled = false;
+    sendBtn.textContent = t("feedbackSendBtn");
+  }
+});
+
+/* Anonymous, aggregate-only usage counters — one shared doc, no per-user tracking,
+   no third-party analytics SDK. Firestore's increment() creates the field at 1 if
+   it doesn't exist yet, and increments it otherwise, so this is safe on first use. */
+async function logAnalyticsEvent(eventName){
+  try{
+    const sdk = await ensureFirebase();
+    if(!sdk) return;
+    const ref = sdk.doc(dbInstance, "analytics", "summary");
+    await sdk.setDoc(ref, { [eventName]: sdk.increment(1) }, { merge: true });
+  }catch(e){ /* analytics failures must never affect the app */ }
+}
 
 monthSelect.addEventListener("change", () => renderAll(monthSelect.value));
 document.getElementById("printBtn").addEventListener("click", () => window.print());
@@ -1396,6 +1503,7 @@ if(firebaseConfigured()){
 }else{
   startLocalMode();
 }
+logAnalyticsEvent("app_opens");
 
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => {
