@@ -77,7 +77,7 @@ The three of them stepped too. They arrived at the same spot.
 
 The pile had gone untouched for one hundred twelve years and was thick with moss. Haran stood before it. Rolled up his sleeves. Reached out his hand.
 
-"Third row, second stone from the left," Haran said. "One hundred forty geun in weight. The moss must be scraped off first. Right hand under the lower edge, left hand in the upper groove. Bend the knees, straighten the back, and lift while exhaling. Then it lifts."
+"Third row, second stone from the left," Haran said. "One hundred eighty-five pounds. The moss must be scraped off first. Right hand under the lower edge, left hand in the upper groove. Bend the knees, straighten the back, and lift while exhaling. Then it lifts."
 
 "…Okay."
 
@@ -119,7 +119,7 @@ Temel could not explain, even afterward, why he did what he did that day.
 
 He walked up to the stone pile.
 
-"Hey, that thing's a hundred forty geun," Speon warned. "You can't lift that."
+"Hey, that thing's a hundred eighty-five pounds," Speon warned. "You can't lift that."
 
 "Let's find out."
 
@@ -131,7 +131,7 @@ A handspan. No — half a handspan. And then it slipped from his hands. It hit t
 
 "Told you," Speon rushed over, pulling him up. "You okay?"
 
-Temel couldn't answer. He was gasping for breath. A fifteen-year-old could not lift one hundred forty geun.
+Temel couldn't answer. He was gasping for breath. A fifteen-year-old could not lift one hundred eighty-five pounds.
 
 But Haran stood frozen where he was.
 

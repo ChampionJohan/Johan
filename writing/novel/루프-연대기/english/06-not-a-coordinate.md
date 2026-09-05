@@ -198,7 +198,7 @@ Temel didn't eat breakfast that morning.
 
 "Stones. Ten of them." Temel's eyes were blazing. "One a day means nine years, right? But if the three of us work together, we can do ten a day. That's one year. One year, and that man gets to meet his sister."
 
-"Ten stones at a hundred forty geun each?"
+"Ten stones at a hundred eighty-five pounds each?"
 
 "You said rolling them works. You said it yourself. Roll them down a slope and it takes less than half the effort."
 

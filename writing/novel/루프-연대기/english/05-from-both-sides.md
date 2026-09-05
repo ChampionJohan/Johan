@@ -355,7 +355,7 @@ He sat some distance away, on an empty stretch of cliff.
 
 And for the first time, he really looked at him.
 
-The man in white was walking over from the direction of the quarry. Carrying a stone. Barely small enough for a grown man to hold in both arms. One hundred forty geun.
+The man in white was walking over from the direction of the quarry. Carrying a stone. Barely small enough for a grown man to hold in both arms. One hundred eighty-five pounds.
 
 He was slow. Very slow.
 

@@ -67,7 +67,11 @@ the honorific itself is the point (ch.47); otherwise just "the well-keeper."
   명" → "four hundred seventy-two people", "서른 자" → "thirty cheok" is
   wrong (there's no such unit in English) — convert 자 (a traditional
   Korean unit, ≈ 30.3 cm) to **"thirty feet"** throughout for readability;
-  keep the number consistent across every chapter that reuses it.
+  keep the number consistent across every chapter that reuses it. Likewise
+  convert **근** (a traditional Korean weight unit, ≈ 600g) to **pounds**
+  — never transliterate it as "geun" (KDP's spellcheck flags it and it
+  means nothing to an English reader). "백사십 근" → **"one hundred
+  eighty-five pounds"** everywhere it recurs (chapters 2, 5, 6).
 
 ## 4. Scripture — use the King James Version (KJV) ONLY
 
