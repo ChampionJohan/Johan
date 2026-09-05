@@ -149,6 +149,14 @@
   }
   .converter-result .unset{font-size:13px; font-weight:400; color:var(--spend);}
 
+  .tw-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:16px;}
+  .tw-block{background:var(--bg); border:1px solid var(--line); border-radius:10px; padding:14px 12px; text-align:center;}
+  .tw-label{font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--sub); margin:0 0 6px;}
+  .tw-clock{font-family:'Gowun Dodum',sans-serif; font-size:26px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink);}
+  .tw-city{font-size:12px; color:var(--sub); margin-top:4px; min-height:15px;}
+  .tw-weather{font-size:14px; color:var(--accent-strong); margin-top:6px; font-weight:600;}
+  @media (max-width:420px){ .tw-clock{font-size:21px;} }
+
   @media print{
     body{background:#fff; padding:0;}
     .no-print{display:none !important;}
@@ -181,6 +189,38 @@
       <select id="convTo"></select>
     </div>
     <div class="converter-result" id="convResult"></div>
+  </div>
+
+  <div class="card no-print" id="timeWeatherCard">
+    <h2><span data-t="timeWeatherCardTitle"></span></h2>
+    <div class="tw-grid">
+      <div class="tw-block">
+        <p class="tw-label" data-t="homeLabel"></p>
+        <div class="tw-clock" id="homeClock">--:--</div>
+        <div class="tw-city" id="homeCityName"></div>
+      </div>
+      <div class="tw-block">
+        <p class="tw-label" data-t="destLabel"></p>
+        <div class="tw-clock" id="destClock">--:--</div>
+        <div class="tw-city" id="destCityName"></div>
+        <div class="tw-weather" id="destWeather"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="homeCityInput" data-t="homeLabel"></label>
+        <input type="text" id="homeCityInput">
+      </div>
+      <div>
+        <label for="destCityInput" data-t="destLabel"></label>
+        <input type="text" id="destCityInput">
+      </div>
+    </div>
+    <div class="toolbar" style="justify-content:flex-start;">
+      <button type="button" class="btn-primary" id="citySetBtn" data-t="citySetBtn" style="width:auto;flex:1 1 auto;"></button>
+      <button type="button" class="btn-ghost" id="useLocationBtn" data-t="useLocationBtn"></button>
+    </div>
+    <p class="status-line" id="cityHint"></p>
   </div>
 
   <div class="passbook">
@@ -410,6 +450,11 @@ const I18N = {
     emptyGeneric: "아직 기록이 없습니다.", emptyRates: "환율이 설정되지 않아 표시할 수 없습니다.",
     emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
     convUnset: "환율 미설정",
+    timeWeatherCardTitle: "시간 · 날씨", homeLabel: "우리나라", destLabel: "여행지",
+    cityPlaceholder: "도시 이름 (예: Bangkok)", citySetBtn: "설정", useLocationBtn: "현재 위치 사용",
+    locating: "위치 확인 중…", cityNotFound: "도시를 찾을 수 없습니다.", geoDenied: "위치 권한이 거부되었습니다.", weatherFail: "날씨를 불러오지 못했습니다.",
+    weatherClear: "맑음", weatherCloudy: "흐림", weatherFog: "안개", weatherRain: "비", weatherSnow: "눈", weatherStorm: "뇌우",
+    currentLocationLabel: "현재 위치",
     categories: { food:"식비", snacks:"간식/음료", transport:"교통비", lodging:"숙박", shopping:"쇼핑", gifts:"선물", sightseeing:"관광/입장료", activities:"액티비티/투어", communication:"통신비", insurance:"보험/의료", other:"기타" },
     currencyNames: { KRW:"원", USD:"달러", MYR:"링깃", PHP:"페소", JPY:"엔", THB:"바트", VND:"동", SGD:"싱가포르 달러", TWD:"대만 달러", HKD:"홍콩 달러", CNY:"위안", IDR:"루피아", EUR:"유로", AUD:"호주 달러", GBP:"파운드", MXN:"멕시코 페소" },
     monthLabel: (y,m) => `${y}년 ${m}월`
@@ -456,6 +501,11 @@ const I18N = {
     emptyGeneric: "No entries yet.", emptyRates: "Can't display — no exchange rate set.",
     emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
     convUnset: "rate not set",
+    timeWeatherCardTitle: "Time & Weather", homeLabel: "Home", destLabel: "Destination",
+    cityPlaceholder: "City name (e.g. Bangkok)", citySetBtn: "Set", useLocationBtn: "Use my location",
+    locating: "Locating…", cityNotFound: "City not found.", geoDenied: "Location permission denied.", weatherFail: "Couldn't load weather.",
+    weatherClear: "Clear", weatherCloudy: "Cloudy", weatherFog: "Foggy", weatherRain: "Rain", weatherSnow: "Snow", weatherStorm: "Storm",
+    currentLocationLabel: "Current location",
     categories: { food:"Food", snacks:"Snacks & drinks", transport:"Transport", lodging:"Lodging", shopping:"Shopping", gifts:"Gifts & souvenirs", sightseeing:"Sightseeing & admission", activities:"Activities & tours", communication:"Communication", insurance:"Insurance & medical", other:"Other" },
     currencyNames: { KRW:"Won", USD:"Dollar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Mexican Peso" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("en-US", {year:"numeric", month:"long"})
@@ -502,6 +552,11 @@ const I18N = {
     emptyGeneric: "暂无记录。", emptyRates: "未设置汇率，暂无法显示。",
     emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
     convUnset: "未设汇率",
+    timeWeatherCardTitle: "时间与天气", homeLabel: "本国", destLabel: "旅行地",
+    cityPlaceholder: "城市名称（如 Bangkok）", citySetBtn: "设置", useLocationBtn: "使用当前位置",
+    locating: "正在定位…", cityNotFound: "找不到该城市。", geoDenied: "位置权限被拒绝。", weatherFail: "无法获取天气。",
+    weatherClear: "晴", weatherCloudy: "多云", weatherFog: "有雾", weatherRain: "有雨", weatherSnow: "有雪", weatherStorm: "雷暴",
+    currentLocationLabel: "当前位置",
     categories: { food:"餐饮", snacks:"零食饮品", transport:"交通", lodging:"住宿", shopping:"购物", gifts:"礼品纪念品", sightseeing:"观光门票", activities:"活动/团游", communication:"通讯", insurance:"保险/医疗", other:"其他" },
     currencyNames: { KRW:"韩元", USD:"美元", MYR:"林吉特", PHP:"比索", JPY:"日元", THB:"泰铢", VND:"越南盾", SGD:"新加坡元", TWD:"新台币", HKD:"港币", CNY:"人民币", IDR:"印尼盾", EUR:"欧元", AUD:"澳元", GBP:"英镑", MXN:"墨西哥比索" },
     monthLabel: (y,m) => `${y}年${m}月`
@@ -548,6 +603,11 @@ const I18N = {
     emptyGeneric: "まだ記録がありません。", emptyRates: "為替レートが未設定のため表示できません。",
     emptyCompare: "比較できる他の月のデータがまだありません。", emptyHistory: "今月の記録はありません。",
     convUnset: "レート未設定",
+    timeWeatherCardTitle: "時間・天気", homeLabel: "自国", destLabel: "旅行先",
+    cityPlaceholder: "都市名（例: Bangkok）", citySetBtn: "設定", useLocationBtn: "現在地を使用",
+    locating: "位置情報を取得中…", cityNotFound: "都市が見つかりません。", geoDenied: "位置情報の許可が拒否されました。", weatherFail: "天気を取得できませんでした。",
+    weatherClear: "晴れ", weatherCloudy: "曇り", weatherFog: "霧", weatherRain: "雨", weatherSnow: "雪", weatherStorm: "雷雨",
+    currentLocationLabel: "現在地",
     categories: { food:"食費", snacks:"軽食・飲み物", transport:"交通費", lodging:"宿泊", shopping:"ショッピング", gifts:"お土産", sightseeing:"観光・入場料", activities:"アクティビティ・ツアー", communication:"通信費", insurance:"保険・医療", other:"その他" },
     currencyNames: { KRW:"ウォン", USD:"ドル", MYR:"リンギット", PHP:"ペソ", JPY:"円", THB:"バーツ", VND:"ドン", SGD:"シンガポールドル", TWD:"台湾ドル", HKD:"香港ドル", CNY:"元", IDR:"ルピア", EUR:"ユーロ", AUD:"豪ドル", GBP:"ポンド", MXN:"メキシコペソ" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ja-JP", {year:"numeric", month:"long"})
@@ -594,6 +654,11 @@ const I18N = {
     emptyGeneric: "Chưa có khoản chi nào.", emptyRates: "Không thể hiển thị — chưa đặt tỷ giá.",
     emptyCompare: "Chưa đủ dữ liệu các tháng khác để so sánh.", emptyHistory: "Tháng này chưa có khoản chi nào.",
     convUnset: "chưa có tỷ giá",
+    timeWeatherCardTitle: "Giờ & Thời tiết", homeLabel: "Quê nhà", destLabel: "Điểm đến",
+    cityPlaceholder: "Tên thành phố (vd: Bangkok)", citySetBtn: "Đặt", useLocationBtn: "Dùng vị trí của tôi",
+    locating: "Đang định vị…", cityNotFound: "Không tìm thấy thành phố.", geoDenied: "Quyền truy cập vị trí bị từ chối.", weatherFail: "Không tải được thời tiết.",
+    weatherClear: "Trời quang", weatherCloudy: "Nhiều mây", weatherFog: "Sương mù", weatherRain: "Mưa", weatherSnow: "Tuyết", weatherStorm: "Giông bão",
+    currentLocationLabel: "Vị trí hiện tại",
     categories: { food:"Ăn uống", snacks:"Đồ ăn vặt/nước uống", transport:"Di chuyển", lodging:"Chỗ ở", shopping:"Mua sắm", gifts:"Quà lưu niệm", sightseeing:"Tham quan/vé vào cổng", activities:"Hoạt động/tour", communication:"Liên lạc", insurance:"Bảo hiểm/y tế", other:"Khác" },
     currencyNames: { KRW:"Won", USD:"Đô la", MYR:"Ringgit", PHP:"Peso", JPY:"Yên", THB:"Baht", VND:"Đồng", SGD:"Đô la Singapore", TWD:"Đô la Đài Loan", HKD:"Đô la Hồng Kông", CNY:"Nhân dân tệ", IDR:"Rupiah", EUR:"Euro", AUD:"Đô la Úc", GBP:"Bảng Anh", MXN:"Peso Mexico" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("vi-VN", {year:"numeric", month:"long"})
@@ -640,6 +705,11 @@ const I18N = {
     emptyGeneric: "ยังไม่มีรายการ", emptyRates: "แสดงไม่ได้ — ยังไม่ได้ตั้งอัตราแลกเปลี่ยน",
     emptyCompare: "ยังไม่มีข้อมูลเดือนอื่นพอสำหรับเปรียบเทียบ", emptyHistory: "เดือนนี้ยังไม่มีรายการ",
     convUnset: "ยังไม่ตั้งอัตรา",
+    timeWeatherCardTitle: "เวลาและสภาพอากาศ", homeLabel: "บ้านเกิด", destLabel: "จุดหมายปลายทาง",
+    cityPlaceholder: "ชื่อเมือง (เช่น Bangkok)", citySetBtn: "ตั้งค่า", useLocationBtn: "ใช้ตำแหน่งของฉัน",
+    locating: "กำลังค้นหาตำแหน่ง…", cityNotFound: "ไม่พบเมืองนี้", geoDenied: "การเข้าถึงตำแหน่งถูกปฏิเสธ", weatherFail: "โหลดสภาพอากาศไม่สำเร็จ",
+    weatherClear: "ท้องฟ้าแจ่มใส", weatherCloudy: "มีเมฆมาก", weatherFog: "มีหมอก", weatherRain: "ฝนตก", weatherSnow: "หิมะตก", weatherStorm: "พายุฝนฟ้าคะนอง",
+    currentLocationLabel: "ตำแหน่งปัจจุบัน",
     categories: { food:"อาหาร", snacks:"ของว่าง/เครื่องดื่ม", transport:"การเดินทาง", lodging:"ที่พัก", shopping:"ช้อปปิ้ง", gifts:"ของฝาก", sightseeing:"ท่องเที่ยว/ค่าเข้าชม", activities:"กิจกรรม/ทัวร์", communication:"การสื่อสาร", insurance:"ประกัน/การแพทย์", other:"อื่นๆ" },
     currencyNames: { KRW:"วอน", USD:"ดอลลาร์", MYR:"ริงกิต", PHP:"เปโซ", JPY:"เยน", THB:"บาท", VND:"ดง", SGD:"ดอลลาร์สิงคโปร์", TWD:"ดอลลาร์ไต้หวัน", HKD:"ดอลลาร์ฮ่องกง", CNY:"หยวน", IDR:"รูเปียห์", EUR:"ยูโร", AUD:"ดอลลาร์ออสเตรเลีย", GBP:"ปอนด์", MXN:"เปโซเม็กซิโก" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("th-TH", {year:"numeric", month:"long"})
@@ -686,6 +756,11 @@ const I18N = {
     emptyGeneric: "Belum ada rekod.", emptyRates: "Tidak dapat dipaparkan — kadar pertukaran belum ditetapkan.",
     emptyCompare: "Belum cukup bulan lain untuk dibandingkan.", emptyHistory: "Tiada rekod bulan ini.",
     convUnset: "kadar belum ditetapkan",
+    timeWeatherCardTitle: "Masa & Cuaca", homeLabel: "Negara Asal", destLabel: "Destinasi",
+    cityPlaceholder: "Nama bandar (cth: Bangkok)", citySetBtn: "Tetapkan", useLocationBtn: "Guna lokasi saya",
+    locating: "Mencari lokasi…", cityNotFound: "Bandar tidak dijumpai.", geoDenied: "Kebenaran lokasi ditolak.", weatherFail: "Gagal memuatkan cuaca.",
+    weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabus", weatherRain: "Hujan", weatherSnow: "Salji", weatherStorm: "Ribut petir",
+    currentLocationLabel: "Lokasi semasa",
     categories: { food:"Makanan", snacks:"Snek/minuman", transport:"Pengangkutan", lodging:"Penginapan", shopping:"Membeli-belah", gifts:"Hadiah/cenderamata", sightseeing:"Lawatan/tiket masuk", activities:"Aktiviti/lawatan", communication:"Komunikasi", insurance:"Insurans/perubatan", other:"Lain-lain" },
     currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun", MXN:"Peso Mexico" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("ms-MY", {year:"numeric", month:"long"})
@@ -732,6 +807,11 @@ const I18N = {
     emptyGeneric: "Belum ada catatan.", emptyRates: "Tidak dapat ditampilkan — kurs belum diatur.",
     emptyCompare: "Belum cukup data bulan lain untuk dibandingkan.", emptyHistory: "Belum ada catatan bulan ini.",
     convUnset: "kurs belum diatur",
+    timeWeatherCardTitle: "Waktu & Cuaca", homeLabel: "Negara Asal", destLabel: "Tujuan",
+    cityPlaceholder: "Nama kota (mis. Bangkok)", citySetBtn: "Atur", useLocationBtn: "Gunakan lokasi saya",
+    locating: "Mencari lokasi…", cityNotFound: "Kota tidak ditemukan.", geoDenied: "Izin lokasi ditolak.", weatherFail: "Gagal memuat cuaca.",
+    weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabut", weatherRain: "Hujan", weatherSnow: "Salju", weatherStorm: "Badai petir",
+    currentLocationLabel: "Lokasi saat ini",
     categories: { food:"Makanan", snacks:"Camilan/minuman", transport:"Transportasi", lodging:"Penginapan", shopping:"Belanja", gifts:"Oleh-oleh", sightseeing:"Wisata/tiket masuk", activities:"Aktivitas/tur", communication:"Komunikasi", insurance:"Asuransi/medis", other:"Lainnya" },
     currencyNames: { KRW:"Won", USD:"Dolar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dolar Singapura", TWD:"Dolar Taiwan", HKD:"Dolar Hong Kong", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Dolar Australia", GBP:"Paun Sterling", MXN:"Peso Meksiko" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("id-ID", {year:"numeric", month:"long"})
@@ -778,6 +858,11 @@ const I18N = {
     emptyGeneric: "Wala pang entry.", emptyRates: "Hindi maipakita — walang naka-set na exchange rate.",
     emptyCompare: "Wala pang sapat na ibang buwan para ikumpara.", emptyHistory: "Walang entry ngayong buwan.",
     convUnset: "walang rate",
+    timeWeatherCardTitle: "Oras at Panahon", homeLabel: "Sariling Bansa", destLabel: "Destinasyon",
+    cityPlaceholder: "Pangalan ng lungsod (hal. Bangkok)", citySetBtn: "I-set", useLocationBtn: "Gamitin ang lokasyon ko",
+    locating: "Hinahanap ang lokasyon…", cityNotFound: "Hindi nahanap ang lungsod.", geoDenied: "Tinanggihan ang pahintulot sa lokasyon.", weatherFail: "Hindi na-load ang panahon.",
+    weatherClear: "Maaraw", weatherCloudy: "Maulap", weatherFog: "Maulap na hamog", weatherRain: "Umuulan", weatherSnow: "Niyebe", weatherStorm: "Bagyo",
+    currentLocationLabel: "Kasalukuyang lokasyon",
     categories: { food:"Pagkain", snacks:"Meryenda/inumin", transport:"Transportasyon", lodging:"Tuluyan", shopping:"Pamimili", gifts:"Regalo/pasalubong", sightseeing:"Pasyalan/bayad sa pasukan", activities:"Aktibidad/tour", communication:"Komunikasyon", insurance:"Insurance/medikal", other:"Iba pa" },
     currencyNames: { KRW:"Won", USD:"Dolyar", MYR:"Ringgit", PHP:"Piso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Singapore Dollar", TWD:"Taiwan Dollar", HKD:"Hong Kong Dollar", CNY:"Yuan", IDR:"Rupiah", EUR:"Euro", AUD:"Australian Dollar", GBP:"Pound", MXN:"Piso Mexicano" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("fil-PH", {year:"numeric", month:"long"})
@@ -824,6 +909,11 @@ const I18N = {
     emptyGeneric: "Aún no hay registros.", emptyRates: "No se puede mostrar — tipo de cambio no configurado.",
     emptyCompare: "Aún no hay suficientes meses para comparar.", emptyHistory: "No hay registros este mes.",
     convUnset: "sin tipo de cambio",
+    timeWeatherCardTitle: "Hora y Clima", homeLabel: "Mi país", destLabel: "Destino",
+    cityPlaceholder: "Nombre de la ciudad (ej. Bangkok)", citySetBtn: "Establecer", useLocationBtn: "Usar mi ubicación",
+    locating: "Localizando…", cityNotFound: "Ciudad no encontrada.", geoDenied: "Permiso de ubicación denegado.", weatherFail: "No se pudo cargar el clima.",
+    weatherClear: "Despejado", weatherCloudy: "Nublado", weatherFog: "Niebla", weatherRain: "Lluvia", weatherSnow: "Nieve", weatherStorm: "Tormenta",
+    currentLocationLabel: "Ubicación actual",
     categories: { food:"Comida", snacks:"Bocadillos/bebidas", transport:"Transporte", lodging:"Alojamiento", shopping:"Compras", gifts:"Regalos/recuerdos", sightseeing:"Turismo/entradas", activities:"Actividades/tours", communication:"Comunicación", insurance:"Seguro/médico", other:"Otro" },
     currencyNames: { KRW:"Won", USD:"Dólar", MYR:"Ringgit", PHP:"Peso", JPY:"Yen", THB:"Baht", VND:"Dong", SGD:"Dólar de Singapur", TWD:"Dólar taiwanés", HKD:"Dólar de Hong Kong", CNY:"Yuan", IDR:"Rupia", EUR:"Euro", AUD:"Dólar australiano", GBP:"Libra esterlina", MXN:"Peso mexicano" },
     monthLabel: (y,m) => new Date(y, m-1, 1).toLocaleDateString("es-ES", {year:"numeric", month:"long"})
@@ -891,6 +981,9 @@ const footNoteEl = document.getElementById("footNote");
 const syncCodeInput = document.getElementById("syncCodeInput");
 const syncHintEl = document.getElementById("syncHint");
 const feedbackHintEl = document.getElementById("feedbackHint");
+const homeCityInput = document.getElementById("homeCityInput");
+const destCityInput = document.getElementById("destCityInput");
+const cityHintEl = document.getElementById("cityHint");
 const convAmountInput = document.getElementById("convAmount");
 const convFromSelect = document.getElementById("convFrom");
 const convToSelect = document.getElementById("convTo");
@@ -925,6 +1018,9 @@ function applyStaticText(){
   document.getElementById("convSwapBtn").title = t("converterSwap");
   document.querySelectorAll(".lang-btn").forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
   syncCodeInput.placeholder = lang==="ko" ? "예: johan-family-2026" : (lang==="zh" ? "例如：johan-family-2026" : "e.g. johan-family-2026");
+  homeCityInput.placeholder = t("cityPlaceholder");
+  destCityInput.placeholder = t("cityPlaceholder");
+  if(typeof renderClocks === "function") renderClocks();
   updateConnectionUI();
   updateConverter();
 }
@@ -1305,6 +1401,144 @@ function updateConverter(){
   }
 }
 
+/* ================= time & weather ================= */
+const CITIES_KEY = "travelLedgerCities_v1";
+let homeCity = null;   // {name, timezone}
+let destCity = null;   // {name, timezone, lat, lon}
+let destWeatherCache = null; // {tempC, code}
+
+function loadCities(){
+  try{
+    const raw = localStorage.getItem(CITIES_KEY);
+    if(!raw) return;
+    const parsed = JSON.parse(raw);
+    homeCity = parsed.homeCity || null;
+    destCity = parsed.destCity || null;
+  }catch(e){}
+}
+function saveCities(){
+  try{ localStorage.setItem(CITIES_KEY, JSON.stringify({homeCity, destCity})); }catch(e){}
+}
+
+function deviceTimezone(){
+  try{ return Intl.DateTimeFormat().resolvedOptions().timeZone; }catch(e){ return "UTC"; }
+}
+
+function weatherCodeToKey(code){
+  if(code === 0) return "weatherClear";
+  if([1,2,3].includes(code)) return "weatherCloudy";
+  if([45,48].includes(code)) return "weatherFog";
+  if([71,73,75,77,85,86].includes(code)) return "weatherSnow";
+  if([95,96,99].includes(code)) return "weatherStorm";
+  return "weatherRain"; // 51-67, 80-82 drizzle/rain/showers, and any other precipitation code
+}
+function weatherEmoji(code){
+  const key = weatherCodeToKey(code);
+  return {weatherClear:"☀️", weatherCloudy:"⛅", weatherFog:"🌫️", weatherSnow:"❄️", weatherStorm:"⛈️", weatherRain:"🌧️"}[key];
+}
+
+async function geocodeCity(query){
+  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error("geocoding failed");
+  const data = await res.json();
+  const hit = (data.results || [])[0];
+  if(!hit) return null;
+  return {name: hit.name + (hit.country ? ", " + hit.country : ""), timezone: hit.timezone, lat: hit.latitude, lon: hit.longitude};
+}
+
+async function fetchWeather(lat, lon){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&timezone=auto`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error("weather fetch failed");
+  const data = await res.json();
+  return {tempC: data.current.temperature_2m, code: data.current.weather_code, timezone: data.timezone};
+}
+
+function renderClocks(){
+  const homeTz = homeCity ? homeCity.timezone : deviceTimezone();
+  document.getElementById("homeClock").textContent = new Date().toLocaleTimeString(lang, {timeZone: homeTz, hour:"2-digit", minute:"2-digit"});
+  document.getElementById("homeCityName").textContent = homeCity ? homeCity.name : "";
+
+  if(destCity){
+    document.getElementById("destClock").textContent = new Date().toLocaleTimeString(lang, {timeZone: destCity.timezone, hour:"2-digit", minute:"2-digit"});
+    document.getElementById("destCityName").textContent = destCity.name;
+  }else{
+    document.getElementById("destClock").textContent = "--:--";
+    document.getElementById("destCityName").textContent = "";
+  }
+
+  const weatherEl = document.getElementById("destWeather");
+  if(destWeatherCache){
+    weatherEl.textContent = `${weatherEmoji(destWeatherCache.code)} ${Math.round(destWeatherCache.tempC)}°C · ${t(weatherCodeToKey(destWeatherCache.code))}`;
+  }else{
+    weatherEl.textContent = "";
+  }
+}
+
+async function refreshDestWeather(){
+  if(!destCity) return;
+  try{
+    const w = await fetchWeather(destCity.lat, destCity.lon);
+    destWeatherCache = {tempC: w.tempC, code: w.code};
+    renderClocks();
+  }catch(e){
+    console.error("weather fetch failed", e);
+    document.getElementById("destWeather").textContent = t("weatherFail");
+  }
+}
+
+async function applyCityInputs(){
+  const homeQuery = homeCityInput.value.trim();
+  const destQuery = destCityInput.value.trim();
+  if(!homeQuery && !destQuery) return;
+  const btn = document.getElementById("citySetBtn");
+  btn.disabled = true;
+  cityHintEl.textContent = t("locating");
+  try{
+    if(homeQuery){
+      const found = await geocodeCity(homeQuery);
+      if(found) homeCity = found; else cityHintEl.textContent = t("cityNotFound");
+    }
+    if(destQuery){
+      const found = await geocodeCity(destQuery);
+      if(found){ destCity = found; destWeatherCache = null; }
+      else cityHintEl.textContent = t("cityNotFound");
+    }
+    saveCities();
+    renderClocks();
+    if(destQuery && destCity) await refreshDestWeather();
+    if(cityHintEl.textContent === t("locating")) cityHintEl.textContent = "";
+  }catch(e){
+    console.error("city lookup failed", e);
+    cityHintEl.textContent = t("cityNotFound");
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+function useCurrentLocationForDest(){
+  if(!("geolocation" in navigator)){ cityHintEl.textContent = t("geoDenied"); return; }
+  cityHintEl.textContent = t("locating");
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      try{
+        const w = await fetchWeather(pos.coords.latitude, pos.coords.longitude);
+        destCity = {name: t("currentLocationLabel"), timezone: w.timezone, lat: pos.coords.latitude, lon: pos.coords.longitude};
+        destWeatherCache = {tempC: w.tempC, code: w.code};
+        saveCities();
+        renderClocks();
+        cityHintEl.textContent = "";
+      }catch(e){
+        console.error("weather fetch failed", e);
+        cityHintEl.textContent = t("weatherFail");
+      }
+    },
+    () => { cityHintEl.textContent = t("geoDenied"); },
+    {timeout: 10000}
+  );
+}
+
 /* ================= events ================= */
 document.getElementById("entryForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
@@ -1329,6 +1563,9 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
   }catch(e){ console.error("add entry failed", e); }
   finally{ btn.disabled = false; }
 });
+
+document.getElementById("citySetBtn").addEventListener("click", applyCityInputs);
+document.getElementById("useLocationBtn").addEventListener("click", useCurrentLocationForDest);
 
 categoryGridEl.addEventListener("click", (ev) => {
   const btn = ev.target.closest(".cat-btn");
@@ -1504,6 +1741,11 @@ if(firebaseConfigured()){
   startLocalMode();
 }
 logAnalyticsEvent("app_opens");
+
+loadCities();
+renderClocks();
+setInterval(renderClocks, 30000);
+if(destCity) refreshDestWeather();
 
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => {

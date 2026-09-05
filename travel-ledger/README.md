@@ -60,7 +60,16 @@ python3 -m http.server 8000   # 또는 아무 정적 서버
 네트워크가 이 API를 차단하는 환경(중국 등 일부 국가)에서는 자동 조회가 실패할 수 있으며,
 이 경우도 수동 입력으로 자연히 대체된다.
 
-## 3. iOS / Android에 "앱처럼" 설치하기
+## 3. 시간 · 날씨
+
+환율 계산기 아래 "Time & Weather" 카드는 [Open-Meteo](https://open-meteo.com/)(무료, API 키 불필요)로
+도시 이름만 입력하면 좌표·시간대를 찾아 우리나라/여행지 시계 두 개와 여행지 현재 기온·날씨를 보여준다.
+"현재 위치 사용" 버튼은 브라우저 위치 권한으로 지금 있는 곳을 그대로 여행지로 설정한다.
+우리나라 시계는 도시를 따로 입력하지 않으면 기기의 시간대를 자동으로 쓴다.
+도시·좌표는 기기에만 저장되며(로그인·동기화 코드와 무관), 날씨 API도 네트워크가 막히면
+자동으로 오류 메시지만 뜨고 나머지 기능에는 영향이 없다.
+
+## 4. iOS / Android에 "앱처럼" 설치하기
 
 정식 배포(GitHub Pages 등 HTTPS 필요) 후:
 
@@ -82,7 +91,7 @@ Apple Developer(연 $99)·Google Play(1회 $25) 계정과 심사가 추가로 �
    `https://<사용자>.github.io/<저장소>/` 주소가 실제 서비스 URL이 된다.
 4. 이 주소를 아무 브라우저에서 열어 "홈 화면에 추가"하면 다른 사람도 설치할 수 있다.
 
-## 4. 피드백 받기 / 사용량 보기
+## 5. 피드백 받기 / 사용량 보기
 
 "피드백 보내기" 카드에 사용자가 남긴 내용은 Firestore의 `feedback` 컬렉션에 쌓인다.
 Firebase 콘솔 → Firestore Database → `feedback`에서 바로 읽을 수 있다 (앱에서는 다시
@@ -92,7 +101,7 @@ Firebase 콘솔 → Firestore Database → `feedback`에서 바로 읽을 수 �
 쌓인다 (개인정보·제3자 분석 SDK 없이, 숫자만). 사용량을 보려면 Firestore Database →
 `analytics` → `summary` 문서를 열면 된다.
 
-## 5. 수익화 — 여기부터는 직접 계정을 만들어야 한다
+## 6. 수익화 — 여기부터는 직접 계정을 만들어야 한다
 
 앱 코드는 무료 배포·피드백·사용량 확인까지 전부 준비되어 있지만, **실제 수익이 발생하려면
 아래 계정들은 본인 명의로 직접 가입해야 한다** (신원·결제 정보가 필요해 대신 만들어줄 수 없다):
@@ -115,7 +124,10 @@ travel-ledger/
   firebase-config.js    Firebase 프로젝트 설정값 (직접 채워 넣는 파일, 비밀 아님)
   manifest.json         PWA 설치 정보 (이름, 아이콘, 색상)
   sw.js                 오프라인 캐시용 서비스 워커
+  privacy.html          개인정보처리방침 (App Store Connect 제출용)
   icons/                앱 아이콘 (any/maskable/apple 용도별)
+
+mobile/                 iOS/Android 네이티브 래퍼 (Capacitor) — 별도 README 참고
 ```
 
 ## 분류(카테고리)
