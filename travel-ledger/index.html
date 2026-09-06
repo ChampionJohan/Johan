@@ -37,25 +37,25 @@
     padding:28px 14px 64px;
   }
   .wrap{max-width:640px;margin:0 auto;}
-  .lang-picker{position:relative; display:flex; justify-content:flex-end; margin-bottom:10px;}
+  .lang-picker{position:relative; display:flex; justify-content:flex-end; margin:4px 0 14px;}
   .lang-toggle{
     border:1px solid var(--line); background:var(--surface); color:var(--ink);
-    border-radius:999px; padding:6px 14px; font-size:13px; cursor:pointer;
-    display:flex; align-items:center; gap:6px;
+    border-radius:999px; padding:10px 18px; font-size:15px; font-weight:600; cursor:pointer;
+    display:flex; align-items:center; gap:8px;
   }
-  .lang-toggle .caret{font-size:10px; color:var(--sub);}
+  .lang-toggle .caret{font-size:11px; color:var(--sub);}
   .lang-panel{
-    display:none; flex-wrap:wrap; gap:6px; justify-content:flex-end;
+    display:none; flex-direction:column; gap:4px;
     position:absolute; top:calc(100% + 6px); right:0; z-index:30;
-    background:var(--surface); border:1px solid var(--line); border-radius:12px;
-    box-shadow:var(--shadow); padding:10px; max-width:260px;
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:8px; width:200px;
   }
   .lang-panel.open{display:flex;}
   .lang-btn{
-    border:1px solid var(--line); background:var(--surface); color:var(--sub);
-    border-radius:999px; padding:5px 12px; font-size:12px; cursor:pointer;
+    border:1px solid transparent; background:transparent; color:var(--ink);
+    border-radius:9px; padding:11px 14px; font-size:15px; cursor:pointer; text-align:left; width:100%;
   }
-  .lang-btn.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .lang-btn.active{background:var(--accent-soft); color:var(--accent-strong); font-weight:700;}
 
   .hero{
     background:var(--hero-grad); border-radius:20px; box-shadow:var(--shadow);
@@ -74,12 +74,22 @@
   .diff-pill{display:inline-flex; align-items:center; gap:4px; font-size:12px; padding:5px 10px; border-radius:999px; font-variant-numeric:tabular-nums; background:rgba(255,255,255,.22); color:#fff;}
   .diff-pill.up{background:rgba(255,255,255,.3); color:#fff;}
   .diff-pill.down{background:rgba(255,255,255,.22); color:#fff;}
-  .budget-row{display:flex; align-items:center; gap:10px; margin-top:14px;}
-  .budget-row .bar-track{flex:1; height:8px; background:rgba(255,255,255,.28);}
-  .budget-row .bar-fill{background:#fff;}
-  .budget-row .bar-fill.over{background:#2a1f1f;}
+  .budget-row{display:flex; align-items:center; gap:16px; margin-top:14px;}
   .budget-row[hidden]{display:none;}
-  #budgetNote{font-size:12px; color:rgba(255,255,255,.85); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .budget-ring-wrap{position:relative; width:84px; height:84px; flex:0 0 auto;}
+  .budget-ring{transform:rotate(-90deg);}
+  .budget-ring-track{fill:none; stroke:rgba(255,255,255,.28); stroke-width:10;}
+  .budget-ring-fill{
+    fill:none; stroke:#ff8fa0; stroke-width:10; stroke-linecap:round;
+    transition:stroke-dashoffset .4s ease, stroke .4s ease;
+  }
+  .budget-ring-fill.over{stroke:#fff334;}
+  .budget-ring-label{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; color:#fff; text-align:center; line-height:1.2; padding:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  #budgetNote{font-size:13px; color:rgba(255,255,255,.9); font-variant-numeric:tabular-nums; line-height:1.5;}
   .budget-edit{display:flex; gap:8px; margin-top:8px;}
   .budget-edit input{flex:1; background:rgba(255,255,255,.92); border-color:transparent;}
   .budget-edit button{flex:0 0 auto; padding:9px 14px; background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.4); color:#fff;}
@@ -131,6 +141,8 @@
   .btn-ghost:hover{border-color:var(--accent); color:var(--accent-strong);}
   .btn-ghost:disabled{opacity:.45; cursor:not-allowed; border-color:var(--line); color:var(--sub);}
   .toolbar{display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap; margin-top:14px;}
+  .history-actions{flex-wrap:nowrap;}
+  .history-actions button{flex:1 1 0; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
 
   .rate-row{display:flex; gap:8px; align-items:flex-end; margin-bottom:10px;}
   .rate-check{flex:0 0 auto; font-size:12px; color:var(--accent-strong); text-decoration:none; border:1px solid var(--line); border-radius:8px; padding:10px 12px; white-space:nowrap;}
@@ -204,8 +216,8 @@
     .card,.hero{border:none; box-shadow:none; padding:0; margin-bottom:18px;}
     .hero{background:none !important;}
     .hero, .hero *{color:#000 !important;}
-    .hero .bar-track{background:#ddd !important;}
-    .hero .bar-fill{background:#000 !important;}
+    .hero .budget-ring-track{stroke:#ddd !important;}
+    .hero .budget-ring-fill{stroke:#000 !important;}
   }
 </style>
 </head>
@@ -258,7 +270,6 @@
         <label for="homeCountrySelect" data-t="homeLabel"></label>
         <select id="homeCountrySelect"></select>
         <select id="homeCitySelect" class="city-sub-select" hidden></select>
-        <button type="button" class="btn-ghost city-loc-btn" id="useHomeLocationBtn" data-t="useLocationBtn"></button>
       </div>
       <div>
         <label for="destCountrySelect" data-t="destLabel"></label>
@@ -282,7 +293,13 @@
       <span class="diff-pill" id="stat-diff"></span>
     </div>
     <div class="budget-row" id="budgetDisplay" hidden>
-      <div class="bar-track"><div class="bar-fill" id="budgetBar"></div></div>
+      <div class="budget-ring-wrap">
+        <svg class="budget-ring" viewBox="0 0 100 100" width="84" height="84">
+          <circle class="budget-ring-track" cx="50" cy="50" r="42"></circle>
+          <circle class="budget-ring-fill" id="budgetRingFill" cx="50" cy="50" r="42"></circle>
+        </svg>
+        <div class="budget-ring-label" id="budgetRingLabel"></div>
+      </div>
       <span id="budgetNote"></span>
     </div>
     <form class="budget-edit no-print" id="budgetForm">
@@ -380,10 +397,9 @@
       </table>
     </div>
     <p class="empty" id="entryEmpty" style="display:none;"></p>
-    <div class="toolbar no-print">
+    <div class="toolbar no-print history-actions">
       <button class="btn-ghost" id="shareHistoryBtn" data-t="shareBtn"></button>
-      <button class="btn-ghost" id="exportMdBtn" data-t="exportBtn"></button>
-      <button class="btn-ghost" id="printBtn" data-t="printBtn"></button>
+      <button class="btn-ghost" id="saveHistoryBtn" data-t="saveBtn"></button>
     </div>
   </div>
 
@@ -472,7 +488,7 @@ const I18N = {
     insightsCardTitle: "통계 · 비교", settingsCardTitle: "설정 더보기",
     categoryCardTitle: "분류별 지출 (환산)", monthCompareTitle: "월별 비교 (최근 6개월, 환산)", historyTitle: "내역",
     colDate: "날짜", colCategory: "분류", colMemo: "메모", colAmount: "금액",
-    shareBtn: "공유하기", exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
+    shareBtn: "공유", saveBtn: "저장", exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
     emptyGeneric: "아직 기록이 없습니다.", emptyRates: "환율이 설정되지 않아 표시할 수 없습니다.",
     emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
     convUnset: "환율 미설정",
@@ -529,7 +545,7 @@ const I18N = {
     insightsCardTitle: "Insights & Trends", settingsCardTitle: "More Settings",
     categoryCardTitle: "Spending by category (converted)", monthCompareTitle: "Last 6 months (converted)", historyTitle: "History",
     colDate: "Date", colCategory: "Category", colMemo: "Memo", colAmount: "Amount",
-    shareBtn: "Share", exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
+    shareBtn: "Share", saveBtn: "Save", exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
     emptyGeneric: "No entries yet.", emptyRates: "Can't display — no exchange rate set.",
     emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
     convUnset: "rate not set",
@@ -586,7 +602,7 @@ const I18N = {
     insightsCardTitle: "统计与对比", settingsCardTitle: "更多设置",
     categoryCardTitle: "按分类统计（折合）", monthCompareTitle: "近6个月对比（折合）", historyTitle: "明细",
     colDate: "日期", colCategory: "分类", colMemo: "备注", colAmount: "金额",
-    shareBtn: "分享", exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
+    shareBtn: "分享", saveBtn: "保存", exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
     emptyGeneric: "暂无记录。", emptyRates: "未设置汇率，暂无法显示。",
     emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
     convUnset: "未设汇率",
@@ -643,7 +659,7 @@ const I18N = {
     insightsCardTitle: "統計・比較", settingsCardTitle: "その他の設定",
     categoryCardTitle: "分類別支出（換算）", monthCompareTitle: "過去6か月の比較（換算）", historyTitle: "履歴",
     colDate: "日付", colCategory: "分類", colMemo: "メモ", colAmount: "金額",
-    shareBtn: "共有", exportBtn: "Markdownで書き出す", printBtn: "印刷 / PDFで保存",
+    shareBtn: "共有", saveBtn: "保存", exportBtn: "Markdownで書き出す", printBtn: "印刷 / PDFで保存",
     emptyGeneric: "まだ記録がありません。", emptyRates: "為替レートが未設定のため表示できません。",
     emptyCompare: "比較できる他の月のデータがまだありません。", emptyHistory: "今月の記録はありません。",
     convUnset: "レート未設定",
@@ -700,7 +716,7 @@ const I18N = {
     insightsCardTitle: "Thống kê & So sánh", settingsCardTitle: "Cài đặt thêm",
     categoryCardTitle: "Chi tiêu theo danh mục (quy đổi)", monthCompareTitle: "So sánh 6 tháng gần nhất (quy đổi)", historyTitle: "Lịch sử",
     colDate: "Ngày", colCategory: "Danh mục", colMemo: "Ghi chú", colAmount: "Số tiền",
-    shareBtn: "Chia sẻ", exportBtn: "Xuất ra Markdown", printBtn: "In / Lưu thành PDF",
+    shareBtn: "Chia sẻ", saveBtn: "Lưu", exportBtn: "Xuất ra Markdown", printBtn: "In / Lưu thành PDF",
     emptyGeneric: "Chưa có khoản chi nào.", emptyRates: "Không thể hiển thị — chưa đặt tỷ giá.",
     emptyCompare: "Chưa đủ dữ liệu các tháng khác để so sánh.", emptyHistory: "Tháng này chưa có khoản chi nào.",
     convUnset: "chưa có tỷ giá",
@@ -757,7 +773,7 @@ const I18N = {
     insightsCardTitle: "สถิติและเปรียบเทียบ", settingsCardTitle: "การตั้งค่าเพิ่มเติม",
     categoryCardTitle: "ค่าใช้จ่ายตามหมวดหมู่ (แปลงแล้ว)", monthCompareTitle: "เปรียบเทียบ 6 เดือนล่าสุด (แปลงแล้ว)", historyTitle: "ประวัติ",
     colDate: "วันที่", colCategory: "หมวดหมู่", colMemo: "บันทึกช่วยจำ", colAmount: "จำนวนเงิน",
-    shareBtn: "แชร์", exportBtn: "ส่งออกเป็น Markdown", printBtn: "พิมพ์ / บันทึกเป็น PDF",
+    shareBtn: "แชร์", saveBtn: "บันทึก", exportBtn: "ส่งออกเป็น Markdown", printBtn: "พิมพ์ / บันทึกเป็น PDF",
     emptyGeneric: "ยังไม่มีรายการ", emptyRates: "แสดงไม่ได้ — ยังไม่ได้ตั้งอัตราแลกเปลี่ยน",
     emptyCompare: "ยังไม่มีข้อมูลเดือนอื่นพอสำหรับเปรียบเทียบ", emptyHistory: "เดือนนี้ยังไม่มีรายการ",
     convUnset: "ยังไม่ตั้งอัตรา",
@@ -814,7 +830,7 @@ const I18N = {
     insightsCardTitle: "Statistik & Perbandingan", settingsCardTitle: "Tetapan Lanjut",
     categoryCardTitle: "Perbelanjaan mengikut kategori (ditukar)", monthCompareTitle: "Perbandingan 6 bulan terakhir (ditukar)", historyTitle: "Sejarah",
     colDate: "Tarikh", colCategory: "Kategori", colMemo: "Nota", colAmount: "Jumlah",
-    shareBtn: "Kongsi", exportBtn: "Eksport sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
+    shareBtn: "Kongsi", saveBtn: "Simpan", exportBtn: "Eksport sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
     emptyGeneric: "Belum ada rekod.", emptyRates: "Tidak dapat dipaparkan — kadar pertukaran belum ditetapkan.",
     emptyCompare: "Belum cukup bulan lain untuk dibandingkan.", emptyHistory: "Tiada rekod bulan ini.",
     convUnset: "kadar belum ditetapkan",
@@ -871,7 +887,7 @@ const I18N = {
     insightsCardTitle: "Statistik & Perbandingan", settingsCardTitle: "Pengaturan Lainnya",
     categoryCardTitle: "Pengeluaran per kategori (dikonversi)", monthCompareTitle: "Perbandingan 6 bulan terakhir (dikonversi)", historyTitle: "Riwayat",
     colDate: "Tanggal", colCategory: "Kategori", colMemo: "Catatan", colAmount: "Jumlah",
-    shareBtn: "Bagikan", exportBtn: "Ekspor sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
+    shareBtn: "Bagikan", saveBtn: "Simpan", exportBtn: "Ekspor sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
     emptyGeneric: "Belum ada catatan.", emptyRates: "Tidak dapat ditampilkan — kurs belum diatur.",
     emptyCompare: "Belum cukup data bulan lain untuk dibandingkan.", emptyHistory: "Belum ada catatan bulan ini.",
     convUnset: "kurs belum diatur",
@@ -928,7 +944,7 @@ const I18N = {
     insightsCardTitle: "Estadistika at Paghahambing", settingsCardTitle: "Karagdagang Setting",
     categoryCardTitle: "Gastos ayon sa kategorya (na-convert)", monthCompareTitle: "Huling 6 na buwan (na-convert)", historyTitle: "Kasaysayan",
     colDate: "Petsa", colCategory: "Kategorya", colMemo: "Tala", colAmount: "Halaga",
-    shareBtn: "I-share", exportBtn: "I-export bilang Markdown", printBtn: "I-print / I-save bilang PDF",
+    shareBtn: "I-share", saveBtn: "I-save", exportBtn: "I-export bilang Markdown", printBtn: "I-print / I-save bilang PDF",
     emptyGeneric: "Wala pang entry.", emptyRates: "Hindi maipakita — walang naka-set na exchange rate.",
     emptyCompare: "Wala pang sapat na ibang buwan para ikumpara.", emptyHistory: "Walang entry ngayong buwan.",
     convUnset: "walang rate",
@@ -985,7 +1001,7 @@ const I18N = {
     insightsCardTitle: "Estadísticas y comparación", settingsCardTitle: "Más ajustes",
     categoryCardTitle: "Gasto por categoría (convertido)", monthCompareTitle: "Últimos 6 meses (convertido)", historyTitle: "Historial",
     colDate: "Fecha", colCategory: "Categoría", colMemo: "Nota", colAmount: "Monto",
-    shareBtn: "Compartir", exportBtn: "Exportar como Markdown", printBtn: "Imprimir / Guardar como PDF",
+    shareBtn: "Compartir", saveBtn: "Guardar", exportBtn: "Exportar como Markdown", printBtn: "Imprimir / Guardar como PDF",
     emptyGeneric: "Aún no hay registros.", emptyRates: "No se puede mostrar — tipo de cambio no configurado.",
     emptyCompare: "Aún no hay suficientes meses para comparar.", emptyHistory: "No hay registros este mes.",
     convUnset: "sin tipo de cambio",
@@ -1342,15 +1358,19 @@ function renderHero(m){
   budgetInput.placeholder = t("budgetPlaceholder")(base);
   if(settings.budget != null && settings.budget > 0){
     budgetDisplay.hidden = false;
-    const pct = Math.min(100, Math.round((cur.total / settings.budget) * 100));
+    const pct = Math.min(100, Math.max(0, (cur.total / settings.budget) * 100));
     const over = cur.total > settings.budget;
-    const fill = document.getElementById("budgetBar");
-    fill.style.width = pct + "%";
-    fill.className = "bar-fill" + (over ? " over" : "");
+    const ringFill = document.getElementById("budgetRingFill");
+    const circumference = 2 * Math.PI * 42;
+    ringFill.style.strokeDasharray = String(circumference);
+    ringFill.style.strokeDashoffset = String(circumference * (1 - pct / 100));
+    ringFill.classList.toggle("over", over);
+    const remaining = settings.budget - cur.total;
+    document.getElementById("budgetRingLabel").textContent = formatMoney(Math.abs(remaining), base);
     const note = document.getElementById("budgetNote");
     note.textContent = over
-      ? t("budgetOver")(formatMoney(cur.total - settings.budget, base))
-      : t("budgetRemaining")(formatMoney(settings.budget - cur.total, base));
+      ? t("budgetOver")(formatMoney(-remaining, base))
+      : t("budgetRemaining")(formatMoney(remaining, base));
   }else{
     budgetDisplay.hidden = true;
   }
@@ -1731,29 +1751,6 @@ function useCurrentLocationForDest(){
   );
 }
 
-function useCurrentLocationForHome(){
-  if(!("geolocation" in navigator)){ cityHintEl.textContent = t("geoDenied"); return; }
-  cityHintEl.textContent = t("locating");
-  navigator.geolocation.getCurrentPosition(
-    async (pos) => {
-      try{
-        const w = await fetchWeather(pos.coords.latitude, pos.coords.longitude);
-        homeCity = {countryCode: null, cityId: null, name: t("currentLocationLabel"), timezone: w.timezone, lat: pos.coords.latitude, lon: pos.coords.longitude};
-        homeCountrySelect.value = "";
-        updateCitySubSelect("home");
-        saveCities();
-        renderClocks();
-        cityHintEl.textContent = "";
-      }catch(e){
-        console.error("weather fetch failed", e);
-        cityHintEl.textContent = t("weatherFail");
-      }
-    },
-    () => { cityHintEl.textContent = t("geoDenied"); },
-    {timeout: 10000}
-  );
-}
-
 /* ================= events ================= */
 function yesterdayStr(){
   const d = new Date();
@@ -1902,20 +1899,32 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
   const nativeSpeech = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform() && window.Capacitor.Plugins && window.Capacitor.Plugins.SpeechRecognition;
   const WebSpeechCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+  const MIC_ICON_IDLE = "🎤", MIC_ICON_LISTENING = "⏹";
+
   if(nativeSpeech){
     quickAddMicBtn.hidden = false;
     let listening = false;
     quickAddMicBtn.addEventListener("click", async () => {
-      if(listening) return;
-      listening = true;
-      quickAddMicBtn.classList.add("listening");
-      quickAddHintEl.textContent = t("voiceInputListening");
+      if(listening){
+        /* Second tap: stop and let the pending start() promise below resolve
+           with whatever was captured, instead of waiting for the plugin's
+           own end-of-speech detection (which is what silently hung before). */
+        quickAddMicBtn.disabled = true;
+        try{ await nativeSpeech.stop(); }
+        catch(e){ console.error("stop listening failed", e); }
+        quickAddMicBtn.disabled = false;
+        return;
+      }
       try{
         const perm = await nativeSpeech.requestPermissions();
         if(perm.speechRecognition !== "granted"){
           quickAddHintEl.textContent = t("voiceInputError");
           return;
         }
+        listening = true;
+        quickAddMicBtn.classList.add("listening");
+        quickAddMicBtn.textContent = MIC_ICON_LISTENING;
+        quickAddHintEl.textContent = t("voiceInputListening");
         const result = await nativeSpeech.start({
           language: SPEECH_LOCALE_MAP[lang] || "en-US",
           maxResults: 1, partialResults: false, popup: false
@@ -1931,6 +1940,7 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
       }finally{
         listening = false;
         quickAddMicBtn.classList.remove("listening");
+        quickAddMicBtn.textContent = MIC_ICON_IDLE;
       }
     });
   }else if(WebSpeechCtor){
@@ -1939,12 +1949,17 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
     recognition.continuous = false;
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
+    let listening = false;
     recognition.addEventListener("start", () => {
+      listening = true;
       quickAddMicBtn.classList.add("listening");
+      quickAddMicBtn.textContent = MIC_ICON_LISTENING;
       quickAddHintEl.textContent = t("voiceInputListening");
     });
     recognition.addEventListener("end", () => {
+      listening = false;
       quickAddMicBtn.classList.remove("listening");
+      quickAddMicBtn.textContent = MIC_ICON_IDLE;
       if(quickAddHintEl.textContent === t("voiceInputListening")) quickAddHintEl.textContent = "";
     });
     recognition.addEventListener("result", (ev) => {
@@ -1956,6 +1971,7 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
       quickAddHintEl.textContent = t("voiceInputError");
     });
     quickAddMicBtn.addEventListener("click", () => {
+      if(listening){ recognition.stop(); return; }
       recognition.lang = SPEECH_LOCALE_MAP[lang] || "en-US";
       try{ recognition.start(); }catch(e){ /* already listening; ignore */ }
     });
@@ -1963,7 +1979,6 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
 })();
 
 document.getElementById("useLocationBtn").addEventListener("click", useCurrentLocationForDest);
-document.getElementById("useHomeLocationBtn").addEventListener("click", useCurrentLocationForHome);
 homeCountrySelect.addEventListener("change", () => { updateCitySubSelect("home"); applyHomeSelection(); });
 homeCitySelect.addEventListener("change", applyHomeSelection);
 destCountrySelect.addEventListener("change", () => { updateCitySubSelect("dest"); applyDestSelection(); });
@@ -2031,7 +2046,6 @@ async function logAnalyticsEvent(eventName){
 }
 
 monthSelect.addEventListener("change", () => renderAll(monthSelect.value));
-document.getElementById("printBtn").addEventListener("click", () => window.print());
 
 function buildMarkdownExport(m){
   const base = settings.baseCurrency;
@@ -2077,38 +2091,51 @@ function buildMarkdownExport(m){
   return lines.join("\n");
 }
 
-document.getElementById("exportMdBtn").addEventListener("click", () => {
+/* Share/export, in order of preference:
+   1. Native Capacitor Share plugin — the reliable path inside the wrapped
+      app (unlike navigator.share, which is not guaranteed to work in a
+      WKWebView, and unlike a blob-download <a>, which does not work there
+      at all).
+   2. The browser's own navigator.share — works when opened as a website/PWA
+      in a real mobile browser.
+   3. A plain file download — the universal fallback for desktop browsers
+      that have neither of the above. */
+async function shareOrExportMarkdown(){
   const m = monthSelect.value;
   const content = buildMarkdownExport(m);
+  const filename = `travel-ledger-${m}.md`;
+
+  const nativeShare = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform() && window.Capacitor.Plugins && window.Capacitor.Plugins.Share;
+  if(nativeShare){
+    try{
+      await nativeShare.share({ title: t("appTitle"), text: content, dialogTitle: t("shareBtn") });
+    }catch(e){ console.error("native share failed", e); }
+    return;
+  }
+
+  if(navigator.share){
+    try{
+      const file = new File([content], filename, {type:"text/markdown"});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        await navigator.share({files:[file], title: t("appTitle")});
+      }else{
+        await navigator.share({title: t("appTitle"), text: content});
+      }
+    }catch(e){
+      if(e && e.name !== "AbortError") console.error("share failed", e);
+    }
+    return;
+  }
+
   const blob = new Blob([content], {type:"text/markdown;charset=utf-8"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.href = url; a.download = `travel-ledger-${m}.md`;
+  a.href = url; a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
-});
-
-const shareHistoryBtn = document.getElementById("shareHistoryBtn");
-if(shareHistoryBtn){
-  if(!(navigator.share)){
-    shareHistoryBtn.hidden = true;
-  }else{
-    shareHistoryBtn.addEventListener("click", async () => {
-      const m = monthSelect.value;
-      const content = buildMarkdownExport(m);
-      try{
-        const file = new File([content], `travel-ledger-${m}.md`, {type:"text/markdown"});
-        if(navigator.canShare && navigator.canShare({files:[file]})){
-          await navigator.share({files:[file], title: t("appTitle")});
-        }else{
-          await navigator.share({title: t("appTitle"), text: content});
-        }
-      }catch(e){
-        if(e && e.name !== "AbortError") console.error("share failed", e);
-      }
-    });
-  }
 }
+document.getElementById("shareHistoryBtn").addEventListener("click", shareOrExportMarkdown);
+document.getElementById("saveHistoryBtn").addEventListener("click", shareOrExportMarkdown);
 
 /* ================= boot ================= */
 applyStaticText();

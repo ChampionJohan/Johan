@@ -63,3 +63,17 @@ Apple will reject the build without them:
      what you say when adding an expense by voice."
 4. Rebuild and run (▶). The first tap of 🎤 will prompt for microphone and
    speech-recognition permission.
+
+Tap 🎤 again to stop listening and get the result — don't wait for it to
+stop on its own. The button turns solid red with a ⏹ icon while listening,
+and back to 🎤 when idle, so the state is unambiguous either way.
+
+## Share / export (history card)
+
+The "공유하기"/"Share" button uses `@capacitor/share` (official Capacitor
+plugin, already in `package.json`) so it opens the real iOS share sheet
+from inside the wrapped app. This exists for the same reason as the voice
+plugin above: neither `navigator.share()` nor a `<a download>` blob link is
+reliably guaranteed to work inside a WKWebView, so relying on the plain web
+APIs here risked the same silent-failure problem. No extra Info.plist entry
+is needed for this one — just `npm install` + `npx cap sync`.
