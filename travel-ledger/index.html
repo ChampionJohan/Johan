@@ -177,6 +177,17 @@
   @media (max-width:420px){ .tw-clock{font-size:21px;} }
   .city-sub-select{margin-top:6px;}
   .city-loc-btn{margin-top:6px; width:100%;}
+  .quick-add-row{display:flex; gap:8px; margin-bottom:6px;}
+  .quick-add-row input{flex:1;}
+  .quick-add-row button{flex:0 0 auto; width:auto; padding:11px 16px;}
+  #entryFormDetails{margin-top:6px;}
+  #entryFormDetails summary{
+    cursor:pointer; list-style:none; font-size:13px; color:var(--sub); padding:4px 0;
+  }
+  #entryFormDetails summary::-webkit-details-marker{display:none;}
+  #entryFormDetails summary::after{content:" ▾"; font-size:11px;}
+  #entryFormDetails[open] summary::after{content:" ▴";}
+  #entryFormDetails form{margin-top:10px;}
 
   @media print{
     body{background:#fff; padding:0;}
@@ -279,6 +290,13 @@
 
   <div class="card no-print">
     <h2><span data-t="formTitle"></span></h2>
+    <form id="quickAddForm" class="quick-add-row">
+      <input type="text" id="quickAddInput" data-t-placeholder="quickAddPlaceholder">
+      <button type="submit" class="btn-primary" id="quickAddBtn" data-t="quickAddBtn"></button>
+    </form>
+    <p class="status-line" id="quickAddHint"></p>
+    <details id="entryFormDetails">
+    <summary class="entry-form-toggle" data-t="entryFormToggle"></summary>
     <form id="entryForm">
       <div class="row">
         <div>
@@ -310,6 +328,7 @@
       </div>
       <button type="submit" class="btn-primary" id="submitBtn" data-t="submitBtn"></button>
     </form>
+    </details>
   </div>
 
   <details class="card">
@@ -414,6 +433,8 @@ const I18N = {
     footOnline: "동기화 코드로 연결된 모든 기기에서 실시간으로 기록이 공유됩니다.",
     otherCurrencies: (list) => `통화별 사용 내역: ${list}`,
     rateWarning: (n) => `⚠ 환율이 설정되지 않은 통화 기록 ${n}건은 총액에서 제외되었습니다. 아래 '환율 설정'에서 입력해 주세요.`,
+    quickAddPlaceholder: "예: 오늘 천원 교통비", quickAddBtn: "추가", entryFormToggle: "직접 입력 (날짜·분류·통화 선택)",
+    quickAddNoAmount: "금액을 찾지 못했어요. 숫자를 포함해 입력해주세요 (예: 1000 교통비)",
     formTitle: "오늘 지출 입력", dateLabel: "날짜", categoryLabel: "분류", currencyLabel: "쓴 나라 통화",
     amountLabel: "금액 (현지 통화)", memoLabel: "메모 (선택)", submitBtn: "기록 추가",
     livePreviewUnset: "환율 미설정 — 아래 '환율 설정'에서 입력해 주세요.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -467,6 +488,8 @@ const I18N = {
     footOnline: "Every device connected with this sync code shares the ledger live.",
     otherCurrencies: (list) => `Also spent in: ${list}`,
     rateWarning: (n) => `⚠ ${n} entr${n===1?'y':'ies'} in a currency with no exchange rate were excluded from the total. Set it below in "Exchange Rates".`,
+    quickAddPlaceholder: "e.g. 1000 transport today", quickAddBtn: "Add", entryFormToggle: "Manual entry (date, category, currency)",
+    quickAddNoAmount: "Couldn't find an amount. Include a number (e.g. 1000 transport).",
     formTitle: "Add today's spending", dateLabel: "Date", categoryLabel: "Category", currencyLabel: "Currency spent",
     amountLabel: "Amount (local currency)", memoLabel: "Memo (optional)", submitBtn: "Add entry",
     livePreviewUnset: "Exchange rate not set — see \"Exchange Rates\" below.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -520,6 +543,8 @@ const I18N = {
     footOnline: "所有使用此同步码连接的设备都会实时共享记录。",
     otherCurrencies: (list) => `其他币种支出：${list}`,
     rateWarning: (n) => `⚠ 有 ${n} 笔记录因未设置汇率而未计入总额，请在下方"汇率设置"中输入。`,
+    quickAddPlaceholder: "例如：今天 1000 交通", quickAddBtn: "添加", entryFormToggle: "手动输入（日期·分类·货币）",
+    quickAddNoAmount: "未能识别金额，请输入数字（例如：1000 交通）。",
     formTitle: "记一笔今天的支出", dateLabel: "日期", categoryLabel: "分类", currencyLabel: "使用的货币",
     amountLabel: "金额（当地货币）", memoLabel: "备注（可选）", submitBtn: "添加记录",
     livePreviewUnset: "未设置汇率 — 请见下方「汇率设置」。", livePreviewApprox: (v) => `≈ ${v}`,
@@ -573,6 +598,8 @@ const I18N = {
     footOnline: "この同期コードで接続したすべての端末でリアルタイムに記録が共有されます。",
     otherCurrencies: (list) => `他の通貨での支出：${list}`,
     rateWarning: (n) => `⚠ 為替レートが未設定の通貨の記録 ${n}件は合計から除外されています。下の「為替レート設定」で入力してください。`,
+    quickAddPlaceholder: "例：今日 1000 交通費", quickAddBtn: "追加", entryFormToggle: "手動入力（日付・分類・通貨）",
+    quickAddNoAmount: "金額が見つかりません。数字を入力してください（例：1000 交通費）。",
     formTitle: "今日の支出を記録", dateLabel: "日付", categoryLabel: "分類", currencyLabel: "使用した通貨",
     amountLabel: "金額（現地通貨）", memoLabel: "メモ（任意）", submitBtn: "記録を追加",
     livePreviewUnset: "為替レート未設定 — 下の「為替レート設定」を確認してください。", livePreviewApprox: (v) => `≈ ${v}`,
@@ -626,6 +653,8 @@ const I18N = {
     footOnline: "Mọi thiết bị kết nối bằng mã đồng bộ này đều chia sẻ sổ chi tiêu theo thời gian thực.",
     otherCurrencies: (list) => `Cũng đã chi bằng: ${list}`,
     rateWarning: (n) => `⚠ ${n} khoản chi bằng đơn vị tiền chưa có tỷ giá đã bị loại khỏi tổng. Hãy nhập tỷ giá bên dưới ở mục "Tỷ giá".`,
+    quickAddPlaceholder: "vd: hôm nay 1000 di chuyển", quickAddBtn: "Thêm", entryFormToggle: "Nhập thủ công (ngày, danh mục, tiền tệ)",
+    quickAddNoAmount: "Không tìm thấy số tiền. Hãy nhập kèm số (vd: 1000 di chuyển).",
     formTitle: "Ghi chi tiêu hôm nay", dateLabel: "Ngày", categoryLabel: "Danh mục", currencyLabel: "Đơn vị tiền đã dùng",
     amountLabel: "Số tiền (tiền địa phương)", memoLabel: "Ghi chú (không bắt buộc)", submitBtn: "Thêm khoản chi",
     livePreviewUnset: "Chưa đặt tỷ giá — xem mục \"Tỷ giá\" bên dưới.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -679,6 +708,8 @@ const I18N = {
     footOnline: "ทุกอุปกรณ์ที่เชื่อมต่อด้วยรหัสซิงค์นี้จะแชร์บันทึกแบบเรียลไทม์",
     otherCurrencies: (list) => `ใช้จ่ายด้วยสกุลเงินอื่นด้วย: ${list}`,
     rateWarning: (n) => `⚠ มี ${n} รายการที่ยังไม่ได้ตั้งอัตราแลกเปลี่ยน จึงไม่รวมอยู่ในยอดรวม ตั้งค่าได้ที่ "ตั้งค่าอัตราแลกเปลี่ยน" ด้านล่าง`,
+    quickAddPlaceholder: "เช่น วันนี้ 1000 ค่าเดินทาง", quickAddBtn: "เพิ่ม", entryFormToggle: "กรอกเอง (วันที่ หมวดหมู่ สกุลเงิน)",
+    quickAddNoAmount: "ไม่พบจำนวนเงิน กรุณาใส่ตัวเลข (เช่น 1000 ค่าเดินทาง)",
     formTitle: "บันทึกค่าใช้จ่ายวันนี้", dateLabel: "วันที่", categoryLabel: "หมวดหมู่", currencyLabel: "สกุลเงินที่ใช้",
     amountLabel: "จำนวนเงิน (สกุลท้องถิ่น)", memoLabel: "บันทึกช่วยจำ (ไม่บังคับ)", submitBtn: "เพิ่มรายการ",
     livePreviewUnset: "ยังไม่ได้ตั้งอัตราแลกเปลี่ยน — ดู \"ตั้งค่าอัตราแลกเปลี่ยน\" ด้านล่าง", livePreviewApprox: (v) => `≈ ${v}`,
@@ -732,6 +763,8 @@ const I18N = {
     footOnline: "Setiap peranti yang disambungkan dengan kod ini berkongsi buku perbelanjaan secara masa nyata.",
     otherCurrencies: (list) => `Turut berbelanja dalam: ${list}`,
     rateWarning: (n) => `⚠ ${n} rekod dalam mata wang tanpa kadar pertukaran telah dikecualikan daripada jumlah. Tetapkan di bawah dalam "Kadar Pertukaran".`,
+    quickAddPlaceholder: "cth: hari ini 1000 pengangkutan", quickAddBtn: "Tambah", entryFormToggle: "Kemasukan manual (tarikh, kategori, mata wang)",
+    quickAddNoAmount: "Jumlah tidak dijumpai. Sila masukkan nombor (cth: 1000 pengangkutan).",
     formTitle: "Tambah perbelanjaan hari ini", dateLabel: "Tarikh", categoryLabel: "Kategori", currencyLabel: "Mata wang digunakan",
     amountLabel: "Jumlah (mata wang tempatan)", memoLabel: "Nota (pilihan)", submitBtn: "Tambah rekod",
     livePreviewUnset: "Kadar pertukaran belum ditetapkan — lihat \"Kadar Pertukaran\" di bawah.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -785,6 +818,8 @@ const I18N = {
     footOnline: "Semua perangkat yang terhubung dengan kode ini berbagi catatan secara langsung.",
     otherCurrencies: (list) => `Juga mengeluarkan dalam: ${list}`,
     rateWarning: (n) => `⚠ ${n} catatan dengan mata uang yang belum memiliki kurs tidak dihitung dalam total. Atur di bawah pada "Pengaturan Kurs".`,
+    quickAddPlaceholder: "cth: hari ini 1000 transportasi", quickAddBtn: "Tambah", entryFormToggle: "Input manual (tanggal, kategori, mata uang)",
+    quickAddNoAmount: "Jumlah tidak ditemukan. Masukkan angka (cth: 1000 transportasi).",
     formTitle: "Catat pengeluaran hari ini", dateLabel: "Tanggal", categoryLabel: "Kategori", currencyLabel: "Mata uang yang digunakan",
     amountLabel: "Jumlah (mata uang lokal)", memoLabel: "Catatan (opsional)", submitBtn: "Tambah catatan",
     livePreviewUnset: "Kurs belum diatur — lihat \"Pengaturan Kurs\" di bawah.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -838,6 +873,8 @@ const I18N = {
     footOnline: "Lahat ng device na naka-connect sa sync code na ito ay real-time na nagsha-share ng talaan.",
     otherCurrencies: (list) => `Gumastos din gamit ang: ${list}`,
     rateWarning: (n) => `⚠ ${n} entry sa currency na walang exchange rate ang hindi isinama sa kabuuan. I-set ito sa ibaba sa "Exchange Rates".`,
+    quickAddPlaceholder: "hal. ngayon 1000 pamasahe", quickAddBtn: "Idagdag", entryFormToggle: "Manual na entry (petsa, kategorya, currency)",
+    quickAddNoAmount: "Walang nahanap na halaga. Maglagay ng numero (hal. 1000 pamasahe).",
     formTitle: "Idagdag ang gastos ngayong araw", dateLabel: "Petsa", categoryLabel: "Kategorya", currencyLabel: "Currency na ginamit",
     amountLabel: "Halaga (lokal na currency)", memoLabel: "Tala (opsyonal)", submitBtn: "Idagdag ang entry",
     livePreviewUnset: "Walang naka-set na exchange rate — tingnan ang \"Exchange Rates\" sa ibaba.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -891,6 +928,8 @@ const I18N = {
     footOnline: "Todos los dispositivos conectados con este código comparten la libreta en tiempo real.",
     otherCurrencies: (list) => `También gastado en: ${list}`,
     rateWarning: (n) => `⚠ ${n} registro(s) en una moneda sin tipo de cambio se excluyeron del total. Configúralo abajo en "Tipos de cambio".`,
+    quickAddPlaceholder: "ej. hoy 1000 transporte", quickAddBtn: "Agregar", entryFormToggle: "Entrada manual (fecha, categoría, moneda)",
+    quickAddNoAmount: "No se encontró un monto. Incluye un número (ej. 1000 transporte).",
     formTitle: "Agregar gasto de hoy", dateLabel: "Fecha", categoryLabel: "Categoría", currencyLabel: "Moneda usada",
     amountLabel: "Monto (moneda local)", memoLabel: "Nota (opcional)", submitBtn: "Agregar registro",
     livePreviewUnset: "Tipo de cambio no configurado — ver \"Tipos de cambio\" abajo.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -1011,6 +1050,11 @@ function applyStaticText(){
     const key = el.getAttribute("data-t");
     const val = t(key);
     if(typeof val === "string") el.textContent = val;
+  });
+  document.querySelectorAll("[data-t-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-t-placeholder");
+    const val = t(key);
+    if(typeof val === "string") el.placeholder = val;
   });
   document.getElementById("rateHint").textContent = t("rateHint");
   const activeCat = fCategorySelect.value || "food";
@@ -1647,6 +1691,102 @@ function useCurrentLocationForHome(){
 }
 
 /* ================= events ================= */
+function yesterdayStr(){
+  const d = new Date();
+  d.setDate(d.getDate()-1);
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+
+/* ---- quick add: one free-text line -> {date, amount, currency, category, memo} ---- */
+const KOREAN_DIGIT_MAP = {영:0,일:1,이:2,삼:3,사:4,오:5,육:6,칠:7,팔:8,구:9};
+const KOREAN_SMALL_UNITS = {십:10,백:100,천:1000};
+const KOREAN_BIG_UNITS = {만:10000,억:100000000};
+function koreanNumeralToInt(s){
+  let result = 0, section = 0, num = 0;
+  for(const ch of s){
+    if(ch in KOREAN_DIGIT_MAP){ num = KOREAN_DIGIT_MAP[ch]; }
+    else if(ch in KOREAN_SMALL_UNITS){ section += (num || 1) * KOREAN_SMALL_UNITS[ch]; num = 0; }
+    else if(ch in KOREAN_BIG_UNITS){ section = ((section + num) || 1) * KOREAN_BIG_UNITS[ch]; result += section; section = 0; num = 0; }
+  }
+  return result + section + num;
+}
+function extractQuickAddAmount(text){
+  const digitMatch = text.match(/([0-9][0-9,]*(?:\.[0-9]+)?)/);
+  if(digitMatch) return { amount: parseFloat(digitMatch[1].replace(/,/g,"")), matched: digitMatch[0] };
+  const koreanMatch = text.match(/([영일이삼사오육칠팔구십백천만억]{1,10})원/);
+  if(koreanMatch){
+    const value = koreanNumeralToInt(koreanMatch[1]);
+    if(value > 0) return { amount: value, matched: koreanMatch[0] };
+  }
+  return null;
+}
+const QUICK_ADD_DAY_WORDS = {
+  yesterday: ["어제","yesterday","hôm qua","เมื่อวาน","semalam","kemarin","kahapon","ayer","昨天","昨日"],
+  today: ["오늘","today","hôm nay","วันนี้","hari ini","ngayon","hoy","今天","今日"]
+};
+function parseQuickAdd(text){
+  let remaining = text;
+  const amountInfo = extractQuickAddAmount(remaining);
+  let amount = null;
+  if(amountInfo){
+    amount = amountInfo.amount;
+    remaining = remaining.replace(amountInfo.matched, " ");
+  }
+
+  let date = todayStr();
+  for(const w of QUICK_ADD_DAY_WORDS.yesterday){
+    if(remaining.includes(w)){ date = yesterdayStr(); remaining = remaining.replace(w, " "); break; }
+  }
+  for(const w of QUICK_ADD_DAY_WORDS.today){
+    if(remaining.includes(w)){ remaining = remaining.replace(w, " "); break; }
+  }
+
+  /* Match currency/category names in ANY supported language, not just the
+     UI's current language — a Korean speaker may quick-add in Korean even
+     while the app is displayed in English. Longer names are tried first so
+     a specific phrase wins over an accidental short substring. */
+  let currency = fCurrencySelect.value || PIVOT;
+  const currencyCandidates = [];
+  CURRENCY_CODES.forEach(code => {
+    Object.values(I18N).forEach(block => {
+      const name = block.currencyNames && block.currencyNames[code];
+      if(name && !currencyCandidates.some(c => c.text === name)) currencyCandidates.push({code, text: name, isCode:false});
+    });
+    currencyCandidates.push({code, text: code, isCode:true});
+  });
+  currencyCandidates.sort((a,b) => b.text.length - a.text.length);
+  for(const cand of currencyCandidates){
+    const matched = cand.isCode ? (new RegExp(`\\b${cand.text}\\b`,"i").exec(remaining) || null) : (remaining.includes(cand.text) ? [cand.text] : null);
+    if(matched){ currency = cand.code; remaining = remaining.replace(matched[0], " "); break; }
+  }
+
+  let category = fCategorySelect.value || "food";
+  const categoryCandidates = [];
+  CATEGORY_KEYS.forEach(k => {
+    Object.values(I18N).forEach(block => {
+      const label = block.categories && block.categories[k];
+      if(label && !categoryCandidates.some(c => c.text === label)) categoryCandidates.push({k, text: label});
+    });
+  });
+  categoryCandidates.sort((a,b) => b.text.length - a.text.length);
+  for(const cand of categoryCandidates){
+    if(remaining.includes(cand.text)){ category = cand.k; remaining = remaining.replace(cand.text, " "); break; }
+  }
+
+  const memo = remaining.replace(/\s+/g, " ").trim();
+  return { date, amount, currency, category, memo };
+}
+
+async function submitEntry({date, category, currency, amount, memo}){
+  await addEntry({date, category, currency, amount, memo, createdAt: new Date().toISOString()});
+  monthSelect.value = monthKey(date);
+  const totalEl = document.getElementById("stat-total");
+  totalEl.classList.remove("flash");
+  void totalEl.offsetWidth;
+  totalEl.classList.add("flash");
+  logAnalyticsEvent("entries_added");
+}
+
 document.getElementById("entryForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const date = document.getElementById("f-date").value || todayStr();
@@ -1658,16 +1798,31 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
   const btn = document.getElementById("submitBtn");
   btn.disabled = true;
   try{
-    await addEntry({date, category, currency, amount, memo, createdAt: new Date().toISOString()});
+    await submitEntry({date, category, currency, amount, memo});
     fAmountInput.value = ""; document.getElementById("f-memo").value = "";
     updateLivePreview();
-    monthSelect.value = monthKey(date);
-    const totalEl = document.getElementById("stat-total");
-    totalEl.classList.remove("flash");
-    void totalEl.offsetWidth;
-    totalEl.classList.add("flash");
-    logAnalyticsEvent("entries_added");
   }catch(e){ console.error("add entry failed", e); }
+  finally{ btn.disabled = false; }
+});
+
+const quickAddInput = document.getElementById("quickAddInput");
+const quickAddHintEl = document.getElementById("quickAddHint");
+document.getElementById("quickAddForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const text = quickAddInput.value.trim();
+  if(!text) return;
+  const parsed = parseQuickAdd(text);
+  if(!parsed.amount || parsed.amount <= 0){
+    quickAddHintEl.textContent = t("quickAddNoAmount");
+    return;
+  }
+  const btn = document.getElementById("quickAddBtn");
+  btn.disabled = true;
+  try{
+    await submitEntry(parsed);
+    quickAddInput.value = "";
+    quickAddHintEl.textContent = "";
+  }catch(e){ console.error("quick add failed", e); }
   finally{ btn.disabled = false; }
 });
 
