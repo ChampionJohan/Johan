@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>어쩌다 보니 최씨 — 메인화면 미리보기</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; background: #eee; }
+  .wrap { max-width: 1000px; margin: 24px auto; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+
+  .topbar {
+    background: #4A3728;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 28px;
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 10px; }
+  .topbar .logo {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: #8B5E3C; color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 16px;
+  }
+  .topbar .name { font-weight: bold; font-size: 16px; }
+  .topbar .sub { font-size: 11px; opacity: .75; }
+  .topbar nav { display: flex; gap: 22px; font-size: 13px; }
+
+  .hero {
+    position: relative;
+    background: #F6F1EC;
+    overflow: hidden;
+  }
+  .hero img { display: block; width: 100%; height: auto; }
+  .hero .overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 0 20px;
+  }
+  .hero h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: #2B2118;
+    text-shadow: 0 2px 12px rgba(246,241,236,.9), 0 0 24px rgba(246,241,236,.9);
+  }
+  .hero p { margin: 2px 0; color: #2B2118; font-size: 14px; text-shadow: 0 1px 8px rgba(246,241,236,.9); }
+  .hero .cta {
+    margin-top: 14px;
+    background: #E0954B; color: #fff; border: none;
+    padding: 9px 22px; border-radius: 20px; font-size: 13px; font-weight: bold;
+    cursor: pointer;
+  }
+  .hero .phone {
+    position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+    font-size: 12px; color: #2B2118; opacity: .6;
+  }
+
+  .buttons {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    background: #fff;
+  }
+  .buttons a {
+    text-decoration: none; color: #2B2118;
+    padding: 16px 6px; text-align: center; border-right: 1px solid #eee;
+  }
+  .buttons a:last-child { border-right: none; }
+  .buttons .icon {
+    width: 40px; height: 40px; margin: 0 auto 8px;
+    border-radius: 50%; background: #F6F1EC;
+    display: flex; align-items: center; justify-content: center;
+    color: #8B5E3C; font-size: 16px;
+  }
+  .buttons .small { display: block; font-size: 10px; color: #8B5E3C; margin-bottom: 2px; }
+  .buttons .big { display: block; font-size: 12px; font-weight: bold; }
+
+  .note {
+    max-width: 1000px; margin: 0 auto 40px; padding: 16px 4px;
+    font-size: 12px; color: #666; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">최</div>
+      <div>
+        <div class="name">어쩌다 보니 최씨</div>
+        <div class="sub">쓰다 보니 붙은 이름, 최씨</div>
+      </div>
+    </div>
+    <nav>
+      <span>기록</span><span>생각</span><span>가족</span><span>소개</span>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <svg viewBox="0 0 1920 640" width="100%" height="auto" style="display:block">
+      <defs>
+        <radialGradient id="spotlight" cx="50%" cy="45%" r="60%">
+          <stop offset="0%" stop-color="#E0954B" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#E0954B" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect x="0" y="0" width="1920" height="640" fill="#F6F1EC"/>
+      <ellipse cx="960" cy="560" rx="900" ry="18" fill="#8B5E3C" opacity="0.06"/>
+      <circle cx="1470" cy="330" r="190" fill="url(#spotlight)"/>
+
+      <g transform="translate(200,0)">
+        <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
+        <path d="M -55 460 L -70 260 Q -70 245 -55 245 L 55 245 Q 70 245 70 260 L 55 460 Z" fill="#B98F68"/>
+        <circle cx="0" cy="205" r="42" fill="#B98F68"/>
+        <path d="M -42 195 Q 0 150 42 195 L 42 205 Q 0 178 -42 205 Z" fill="#7A5638"/>
+      </g>
+
+      <g transform="translate(450,0)">
+        <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
+        <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
+        <circle cx="0" cy="205" r="42" fill="#B98F68"/>
+        <circle cx="-46" cy="215" r="12" fill="#B98F68"/>
+        <circle cx="46" cy="215" r="12" fill="#B98F68"/>
+      </g>
+
+      <g transform="translate(700,0)">
+        <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
+        <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
+        <circle cx="0" cy="205" r="42" fill="#B98F68"/>
+        <circle cx="-46" cy="215" r="12" fill="#B98F68"/>
+        <circle cx="46" cy="215" r="12" fill="#B98F68"/>
+      </g>
+
+      <g transform="translate(1220,0)">
+        <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
+        <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
+        <circle cx="0" cy="205" r="42" fill="#B98F68"/>
+        <circle cx="-46" cy="215" r="12" fill="#B98F68"/>
+        <circle cx="46" cy="215" r="12" fill="#B98F68"/>
+      </g>
+
+      <g transform="translate(1470,0)">
+        <ellipse cx="0" cy="475" rx="78" ry="16" fill="#E0954B" opacity="0.18"/>
+        <path d="M -54 465 L -74 250 Q -74 240 -60 240 L 60 240 Q 74 240 74 250 L 54 465 Q 0 486 -54 465 Z" fill="#E0954B"/>
+        <circle cx="0" cy="200" r="46" fill="#E0954B"/>
+        <circle cx="-50" cy="212" r="13" fill="#E0954B"/>
+        <circle cx="50" cy="212" r="13" fill="#E0954B"/>
+        <text x="0" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#8B5E3C" font-weight="bold">나</text>
+        <path d="M -14 130 L 0 152 L 14 130" fill="none" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <g transform="translate(1720,0)">
+        <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
+        <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
+        <circle cx="0" cy="205" r="42" fill="#B98F68"/>
+        <circle cx="-46" cy="215" r="12" fill="#B98F68"/>
+        <circle cx="46" cy="215" r="12" fill="#B98F68"/>
+      </g>
+    </svg>
+
+    <div class="overlay">
+      <h1>어쩌다 보니 최씨</h1>
+      <p>쓰다 보니 쌓인 기록들</p>
+      <p>여섯 중 다섯째, 최씨의 하루</p>
+      <button class="cta">글 보러가기</button>
+    </div>
+    <div class="phone">대표번호 없음</div>
+  </div>
+
+  <div class="buttons">
+    <a href="#"><div class="icon">✎</div><span class="small">매일 쌓는</span><span class="big">매일의 기록</span></a>
+    <a href="#"><div class="icon">💭</div><span class="small">그날의</span><span class="big">생각의 조각</span></a>
+    <a href="#"><div class="icon">👪</div><span class="small">여섯 남매</span><span class="big">가족 이야기</span></a>
+    <a href="#"><div class="icon">🖥</div><span class="small">일하며 배운</span><span class="big">IT 인프라 노트</span></a>
+    <a href="#"><div class="icon">📰</div><span class="small">실무 해설</span><span class="big">요즘IT 기고</span></a>
+    <a href="#"><div class="icon">📘</div><span class="small">실무 노하우</span><span class="big">퍼블리 노트</span></a>
+  </div>
+</div>
+
+<p class="note">
+  ※ 이 페이지는 디자이너에게 보낼 회신 내용을 화면으로 확인하기 위한 미리보기입니다. 실제 파일은 회신.md 를 참고하고,
+  배경 일러스트 원본은 hero-illustration.svg 입니다. 아이콘 6개(이모지로 임시 표시)와 로고는 아직 확정 파일이 없어
+  자리표시자 상태입니다.
+</p>
+
+</body>
+</html>
