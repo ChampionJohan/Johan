@@ -62,6 +62,11 @@
     padding:26px 26px 22px; position:relative; margin-bottom:20px; color:#fff;
   }
   .eyebrow{font-size:11px; letter-spacing:.14em; color:rgba(255,255,255,.85); text-transform:uppercase; margin:0 0 6px; font-weight:700;}
+  .streak-badge{
+    display:inline-flex; align-items:center; gap:6px; margin:0 0 12px; font-size:13px; font-weight:700;
+    color:#fff; background:rgba(255,255,255,.22); padding:6px 12px; border-radius:999px; width:fit-content;
+  }
+  .streak-badge[hidden]{display:none;}
   h1{font-family:'Jua','Gowun Dodum',sans-serif; font-weight:400; font-size:24px; margin:0 0 18px; text-wrap:balance; color:#fff;}
   .balance-row{display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,.28); padding-top:16px;}
   .balance-label{font-size:13px; color:rgba(255,255,255,.85);}
@@ -264,6 +269,7 @@
   <div class="hero">
     <p class="eyebrow" data-t="eyebrow"></p>
     <h1 data-t="appTitle"></h1>
+    <div class="streak-badge" id="streakBadge" hidden></div>
     <div class="balance-row">
       <div>
         <div class="balance-label" id="balance-label"></div>
@@ -291,7 +297,7 @@
   <div class="card no-print">
     <h2><span data-t="formTitle"></span></h2>
     <form id="quickAddForm" class="quick-add-row">
-      <input type="text" id="quickAddInput" data-t-placeholder="quickAddPlaceholder">
+      <input type="text" id="quickAddInput" data-t-placeholder="quickAddPlaceholder" enterkeyhint="done" autocomplete="off">
       <button type="submit" class="btn-primary" id="quickAddBtn" data-t="quickAddBtn"></button>
     </form>
     <p class="status-line" id="quickAddHint"></p>
@@ -420,6 +426,7 @@ const DEFAULT_RATES = { USD:1380, MYR:310, PHP:24, JPY:9, THB:39, VND:0.055, SGD
 const I18N = {
   ko: {
     eyebrow: "RoamRate", appTitle: "RoamRate — 여행 환율·가계부",
+    streakLabel: (n) => `🔥 ${n}일 연속 기록 중`,
     converterTitle: "환율 계산기", converterSwap: "통화 바꾸기",
     totalLabel: (m,cur) => `${m} 총 지출 (${cur} 환산)`,
     prevNoData: (m) => `${m} 기록 없음`,
@@ -475,6 +482,7 @@ const I18N = {
   },
   en: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Currency & Travel Budget",
+    streakLabel: (n) => `🔥 ${n}-day streak`,
     converterTitle: "Currency Converter", converterSwap: "Swap currencies",
     totalLabel: (m,cur) => `${m} total spend (in ${cur})`,
     prevNoData: (m) => `No data for ${m}`,
@@ -530,6 +538,7 @@ const I18N = {
   },
   zh: {
     eyebrow: "RoamRate", appTitle: "RoamRate — 汇率与旅行记账",
+    streakLabel: (n) => `🔥 连续记录 ${n} 天`,
     converterTitle: "汇率计算器", converterSwap: "交换货币",
     totalLabel: (m,cur) => `${m} 总支出（折合${cur}）`,
     prevNoData: (m) => `${m} 无记录`,
@@ -585,6 +594,7 @@ const I18N = {
   },
   ja: {
     eyebrow: "RoamRate", appTitle: "RoamRate — 為替・旅行家計簿",
+    streakLabel: (n) => `🔥 ${n}日連続記録中`,
     converterTitle: "為替計算機", converterSwap: "通貨を入れ替え",
     totalLabel: (m,cur) => `${m}の総支出（${cur}換算）`,
     prevNoData: (m) => `${m}のデータなし`,
@@ -640,6 +650,7 @@ const I18N = {
   },
   vi: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Tỷ giá & Chi tiêu du lịch",
+    streakLabel: (n) => `🔥 Chuỗi ${n} ngày liên tiếp`,
     converterTitle: "Máy Tính Tỷ Giá", converterSwap: "Đổi chiều tiền tệ",
     totalLabel: (m,cur) => `Tổng chi tiêu ${m} (quy đổi ${cur})`,
     prevNoData: (m) => `Không có dữ liệu cho ${m}`,
@@ -695,6 +706,7 @@ const I18N = {
   },
   th: {
     eyebrow: "RoamRate", appTitle: "RoamRate — อัตราแลกเปลี่ยนและงบเดินทาง",
+    streakLabel: (n) => `🔥 บันทึกต่อเนื่อง ${n} วัน`,
     converterTitle: "เครื่องคำนวณอัตราแลกเปลี่ยน", converterSwap: "สลับสกุลเงิน",
     totalLabel: (m,cur) => `ยอดใช้จ่ายรวม ${m} (แปลงเป็น ${cur})`,
     prevNoData: (m) => `ไม่มีข้อมูลของ ${m}`,
@@ -750,6 +762,7 @@ const I18N = {
   },
   ms: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Kadar Tukaran & Bajet Percutian",
+    streakLabel: (n) => `🔥 ${n} hari berturut-turut`,
     converterTitle: "Penukar Mata Wang", converterSwap: "Tukar mata wang",
     totalLabel: (m,cur) => `Jumlah perbelanjaan ${m} (ditukar ke ${cur})`,
     prevNoData: (m) => `Tiada data untuk ${m}`,
@@ -805,6 +818,7 @@ const I18N = {
   },
   id: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Kurs & Anggaran Perjalanan",
+    streakLabel: (n) => `🔥 ${n} hari berturut-turut`,
     converterTitle: "Kalkulator Kurs", converterSwap: "Tukar mata uang",
     totalLabel: (m,cur) => `Total pengeluaran ${m} (dikonversi ke ${cur})`,
     prevNoData: (m) => `Tidak ada data untuk ${m}`,
@@ -860,6 +874,7 @@ const I18N = {
   },
   tl: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Exchange Rate at Badyet sa Biyahe",
+    streakLabel: (n) => `🔥 ${n} araw na sunod-sunod`,
     converterTitle: "Currency Converter", converterSwap: "Ipagpalit ang currency",
     totalLabel: (m,cur) => `Kabuuang gastos ng ${m} (na-convert sa ${cur})`,
     prevNoData: (m) => `Walang datos para sa ${m}`,
@@ -915,6 +930,7 @@ const I18N = {
   },
   es: {
     eyebrow: "RoamRate", appTitle: "RoamRate — Cambio de Divisas y Presupuesto de Viaje",
+    streakLabel: (n) => `🔥 Racha de ${n} días`,
     converterTitle: "Conversor de Moneda", converterSwap: "Intercambiar monedas",
     totalLabel: (m,cur) => `Gasto total de ${m} (convertido a ${cur})`,
     prevNoData: (m) => `Sin datos de ${m}`,
@@ -1337,6 +1353,34 @@ function renderHero(m){
   const warnEl = document.getElementById("rateWarning");
   if(cur.skipped > 0){ warnEl.hidden = false; warnEl.textContent = t("rateWarning")(cur.skipped); }
   else{ warnEl.hidden = true; }
+
+  renderStreak();
+}
+
+function computeStreak(){
+  const dateSet = new Set(entries.map(e => e.date));
+  if(dateSet.size === 0) return 0;
+  const cursor = new Date();
+  if(!dateSet.has(todayStr())) cursor.setDate(cursor.getDate()-1);
+  let streak = 0;
+  while(true){
+    const key = cursor.getFullYear()+"-"+String(cursor.getMonth()+1).padStart(2,"0")+"-"+String(cursor.getDate()).padStart(2,"0");
+    if(!dateSet.has(key)) break;
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
+  }
+  return streak;
+}
+
+function renderStreak(){
+  const el = document.getElementById("streakBadge");
+  const n = computeStreak();
+  if(n >= 1){
+    el.hidden = false;
+    el.textContent = t("streakLabel")(n);
+  }else{
+    el.hidden = true;
+  }
 }
 
 function renderCategoryBars(m){
@@ -1822,6 +1866,7 @@ document.getElementById("quickAddForm").addEventListener("submit", async (ev) =>
     await submitEntry(parsed);
     quickAddInput.value = "";
     quickAddHintEl.textContent = "";
+    quickAddInput.focus();
   }catch(e){ console.error("quick add failed", e); }
   finally{ btn.disabled = false; }
 });
