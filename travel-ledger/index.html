@@ -1610,17 +1610,20 @@ function weatherEmoji(code){
 }
 
 async function fetchWeather(lat, lon){
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&hourly=precipitation_probability&forecast_days=1&timezone=auto`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&hourly=precipitation_probability,snowfall&forecast_days=1&timezone=auto`;
   const res = await fetch(url);
   if(!res.ok) throw new Error("weather fetch failed");
   const data = await res.json();
-  let precipProb = null;
-  if(data.hourly && Array.isArray(data.hourly.time) && Array.isArray(data.hourly.precipitation_probability)){
+  let precipProb = null, snowfall = null;
+  if(data.hourly && Array.isArray(data.hourly.time)){
     const hourKey = data.current.time.slice(0, 13) + ":00";
     const idx = data.hourly.time.indexOf(hourKey);
-    if(idx >= 0) precipProb = data.hourly.precipitation_probability[idx];
+    if(idx >= 0){
+      if(Array.isArray(data.hourly.precipitation_probability)) precipProb = data.hourly.precipitation_probability[idx];
+      if(Array.isArray(data.hourly.snowfall)) snowfall = data.hourly.snowfall[idx];
+    }
   }
-  return {tempC: data.current.temperature_2m, code: data.current.weather_code, timezone: data.timezone, precipProb};
+  return {tempC: data.current.temperature_2m, code: data.current.weather_code, timezone: data.timezone, precipProb, snowfall};
 }
 
 function renderClocks(){
@@ -1639,7 +1642,10 @@ function renderClocks(){
   const weatherEl = document.getElementById("destWeather");
   if(destWeatherCache){
     let text = `${weatherEmoji(destWeatherCache.code)} ${Math.round(destWeatherCache.tempC)}°C · ${t(weatherCodeToKey(destWeatherCache.code))}`;
-    if(destWeatherCache.precipProb != null) text += ` · 💧 ${Math.round(destWeatherCache.precipProb)}%`;
+    if(destWeatherCache.precipProb != null){
+      const isSnow = destWeatherCache.snowfall != null && destWeatherCache.snowfall > 0;
+      text += ` · ${isSnow ? "❄️" : "💧"} ${Math.round(destWeatherCache.precipProb)}%`;
+    }
     weatherEl.textContent = text;
   }else{
     weatherEl.textContent = "";
@@ -1650,7 +1656,7 @@ async function refreshDestWeather(){
   if(!destCity) return;
   try{
     const w = await fetchWeather(destCity.lat, destCity.lon);
-    destWeatherCache = {tempC: w.tempC, code: w.code, precipProb: w.precipProb};
+    destWeatherCache = {tempC: w.tempC, code: w.code, precipProb: w.precipProb, snowfall: w.snowfall};
     renderClocks();
   }catch(e){
     console.error("weather fetch failed", e);
@@ -1742,7 +1748,7 @@ function useCurrentLocationForDest(){
       try{
         const w = await fetchWeather(pos.coords.latitude, pos.coords.longitude);
         destCity = {countryCode: null, cityId: null, name: t("currentLocationLabel"), timezone: w.timezone, lat: pos.coords.latitude, lon: pos.coords.longitude};
-        destWeatherCache = {tempC: w.tempC, code: w.code, precipProb: w.precipProb};
+        destWeatherCache = {tempC: w.tempC, code: w.code, precipProb: w.precipProb, snowfall: w.snowfall};
         destCountrySelect.value = "";
         updateCitySubSelect("dest");
         saveCities();
