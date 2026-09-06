@@ -194,6 +194,10 @@
   @media (max-width:420px){ .tw-clock{font-size:21px;} }
   .city-sub-select{margin-top:6px;}
   .city-loc-btn{margin-top:6px; width:100%;}
+  .auto-detect-toggle{
+    display:flex; align-items:center; gap:8px; margin-top:12px; font-size:13px; color:var(--sub); cursor:pointer;
+  }
+  .auto-detect-toggle input{width:auto; margin:0;}
   .quick-add-row{display:flex; gap:8px; margin-bottom:6px;}
   .quick-add-row input{flex:1;}
   .quick-add-row button{flex:0 0 auto; width:auto; padding:11px 16px;}
@@ -278,6 +282,10 @@
         <button type="button" class="btn-ghost city-loc-btn" id="useLocationBtn" data-t="useLocationBtn"></button>
       </div>
     </div>
+    <label class="auto-detect-toggle">
+      <input type="checkbox" id="autoDetectDestToggle">
+      <span data-t="autoDetectLabel"></span>
+    </label>
     <p class="status-line" id="cityHint"></p>
   </details>
 
@@ -494,6 +502,7 @@ const I18N = {
     convUnset: "환율 미설정",
     timeWeatherCardTitle: "시간 · 날씨", homeLabel: "우리나라", destLabel: "여행지",
     cityPlaceholder: "도시 이름 (예: Bangkok)", citySetBtn: "설정", useLocationBtn: "현재 위치 사용", selectCountryPlaceholder: "국가를 선택하세요",
+    autoDetectLabel: "앱 열 때 자동으로 여행지 감지 (GPS)",
     locating: "위치 확인 중…", cityNotFound: "도시를 찾을 수 없습니다.", geoDenied: "위치 권한이 거부되었습니다.", weatherFail: "날씨를 불러오지 못했습니다.",
     weatherClear: "맑음", weatherCloudy: "흐림", weatherFog: "안개", weatherRain: "비", weatherSnow: "눈", weatherStorm: "뇌우",
     currentLocationLabel: "현재 위치",
@@ -551,6 +560,7 @@ const I18N = {
     convUnset: "rate not set",
     timeWeatherCardTitle: "Time & Weather", homeLabel: "Home", destLabel: "Destination",
     cityPlaceholder: "City name (e.g. Bangkok)", citySetBtn: "Set", useLocationBtn: "Use my location", selectCountryPlaceholder: "Select a country",
+    autoDetectLabel: "Auto-detect destination on open (GPS)",
     locating: "Locating…", cityNotFound: "City not found.", geoDenied: "Location permission denied.", weatherFail: "Couldn't load weather.",
     weatherClear: "Clear", weatherCloudy: "Cloudy", weatherFog: "Foggy", weatherRain: "Rain", weatherSnow: "Snow", weatherStorm: "Storm",
     currentLocationLabel: "Current location",
@@ -608,6 +618,7 @@ const I18N = {
     convUnset: "未设汇率",
     timeWeatherCardTitle: "时间与天气", homeLabel: "本国", destLabel: "旅行地",
     cityPlaceholder: "城市名称（如 Bangkok）", citySetBtn: "设置", useLocationBtn: "使用当前位置", selectCountryPlaceholder: "选择国家",
+    autoDetectLabel: "打开应用时自动检测旅行地（GPS）",
     locating: "正在定位…", cityNotFound: "找不到该城市。", geoDenied: "位置权限被拒绝。", weatherFail: "无法获取天气。",
     weatherClear: "晴", weatherCloudy: "多云", weatherFog: "有雾", weatherRain: "有雨", weatherSnow: "有雪", weatherStorm: "雷暴",
     currentLocationLabel: "当前位置",
@@ -665,6 +676,7 @@ const I18N = {
     convUnset: "レート未設定",
     timeWeatherCardTitle: "時間・天気", homeLabel: "自国", destLabel: "旅行先",
     cityPlaceholder: "都市名（例: Bangkok）", citySetBtn: "設定", useLocationBtn: "現在地を使用", selectCountryPlaceholder: "国を選択",
+    autoDetectLabel: "起動時に旅行先を自動検出（GPS）",
     locating: "位置情報を取得中…", cityNotFound: "都市が見つかりません。", geoDenied: "位置情報の許可が拒否されました。", weatherFail: "天気を取得できませんでした。",
     weatherClear: "晴れ", weatherCloudy: "曇り", weatherFog: "霧", weatherRain: "雨", weatherSnow: "雪", weatherStorm: "雷雨",
     currentLocationLabel: "現在地",
@@ -722,6 +734,7 @@ const I18N = {
     convUnset: "chưa có tỷ giá",
     timeWeatherCardTitle: "Giờ & Thời tiết", homeLabel: "Quê nhà", destLabel: "Điểm đến",
     cityPlaceholder: "Tên thành phố (vd: Bangkok)", citySetBtn: "Đặt", useLocationBtn: "Dùng vị trí của tôi", selectCountryPlaceholder: "Chọn quốc gia",
+    autoDetectLabel: "Tự động phát hiện điểm đến khi mở ứng dụng (GPS)",
     locating: "Đang định vị…", cityNotFound: "Không tìm thấy thành phố.", geoDenied: "Quyền truy cập vị trí bị từ chối.", weatherFail: "Không tải được thời tiết.",
     weatherClear: "Trời quang", weatherCloudy: "Nhiều mây", weatherFog: "Sương mù", weatherRain: "Mưa", weatherSnow: "Tuyết", weatherStorm: "Giông bão",
     currentLocationLabel: "Vị trí hiện tại",
@@ -779,6 +792,7 @@ const I18N = {
     convUnset: "ยังไม่ตั้งอัตรา",
     timeWeatherCardTitle: "เวลาและสภาพอากาศ", homeLabel: "บ้านเกิด", destLabel: "จุดหมายปลายทาง",
     cityPlaceholder: "ชื่อเมือง (เช่น Bangkok)", citySetBtn: "ตั้งค่า", useLocationBtn: "ใช้ตำแหน่งของฉัน", selectCountryPlaceholder: "เลือกประเทศ",
+    autoDetectLabel: "ตรวจจับจุดหมายอัตโนมัติเมื่อเปิดแอป (GPS)",
     locating: "กำลังค้นหาตำแหน่ง…", cityNotFound: "ไม่พบเมืองนี้", geoDenied: "การเข้าถึงตำแหน่งถูกปฏิเสธ", weatherFail: "โหลดสภาพอากาศไม่สำเร็จ",
     weatherClear: "ท้องฟ้าแจ่มใส", weatherCloudy: "มีเมฆมาก", weatherFog: "มีหมอก", weatherRain: "ฝนตก", weatherSnow: "หิมะตก", weatherStorm: "พายุฝนฟ้าคะนอง",
     currentLocationLabel: "ตำแหน่งปัจจุบัน",
@@ -836,6 +850,7 @@ const I18N = {
     convUnset: "kadar belum ditetapkan",
     timeWeatherCardTitle: "Masa & Cuaca", homeLabel: "Negara Asal", destLabel: "Destinasi",
     cityPlaceholder: "Nama bandar (cth: Bangkok)", citySetBtn: "Tetapkan", useLocationBtn: "Guna lokasi saya", selectCountryPlaceholder: "Pilih negara",
+    autoDetectLabel: "Kesan destinasi automatik semasa buka apl (GPS)",
     locating: "Mencari lokasi…", cityNotFound: "Bandar tidak dijumpai.", geoDenied: "Kebenaran lokasi ditolak.", weatherFail: "Gagal memuatkan cuaca.",
     weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabus", weatherRain: "Hujan", weatherSnow: "Salji", weatherStorm: "Ribut petir",
     currentLocationLabel: "Lokasi semasa",
@@ -893,6 +908,7 @@ const I18N = {
     convUnset: "kurs belum diatur",
     timeWeatherCardTitle: "Waktu & Cuaca", homeLabel: "Negara Asal", destLabel: "Tujuan",
     cityPlaceholder: "Nama kota (mis. Bangkok)", citySetBtn: "Atur", useLocationBtn: "Gunakan lokasi saya", selectCountryPlaceholder: "Pilih negara",
+    autoDetectLabel: "Deteksi tujuan otomatis saat membuka aplikasi (GPS)",
     locating: "Mencari lokasi…", cityNotFound: "Kota tidak ditemukan.", geoDenied: "Izin lokasi ditolak.", weatherFail: "Gagal memuat cuaca.",
     weatherClear: "Cerah", weatherCloudy: "Berawan", weatherFog: "Berkabut", weatherRain: "Hujan", weatherSnow: "Salju", weatherStorm: "Badai petir",
     currentLocationLabel: "Lokasi saat ini",
@@ -950,6 +966,7 @@ const I18N = {
     convUnset: "walang rate",
     timeWeatherCardTitle: "Oras at Panahon", homeLabel: "Sariling Bansa", destLabel: "Destinasyon",
     cityPlaceholder: "Pangalan ng lungsod (hal. Bangkok)", citySetBtn: "I-set", useLocationBtn: "Gamitin ang lokasyon ko", selectCountryPlaceholder: "Pumili ng bansa",
+    autoDetectLabel: "Awtomatikong tukuyin ang destinasyon kapag binuksan (GPS)",
     locating: "Hinahanap ang lokasyon…", cityNotFound: "Hindi nahanap ang lungsod.", geoDenied: "Tinanggihan ang pahintulot sa lokasyon.", weatherFail: "Hindi na-load ang panahon.",
     weatherClear: "Maaraw", weatherCloudy: "Maulap", weatherFog: "Maulap na hamog", weatherRain: "Umuulan", weatherSnow: "Niyebe", weatherStorm: "Bagyo",
     currentLocationLabel: "Kasalukuyang lokasyon",
@@ -1007,6 +1024,7 @@ const I18N = {
     convUnset: "sin tipo de cambio",
     timeWeatherCardTitle: "Hora y Clima", homeLabel: "Mi país", destLabel: "Destino",
     cityPlaceholder: "Nombre de la ciudad (ej. Bangkok)", citySetBtn: "Establecer", useLocationBtn: "Usar mi ubicación", selectCountryPlaceholder: "Selecciona un país",
+    autoDetectLabel: "Detectar destino automáticamente al abrir (GPS)",
     locating: "Localizando…", cityNotFound: "Ciudad no encontrada.", geoDenied: "Permiso de ubicación denegado.", weatherFail: "No se pudo cargar el clima.",
     weatherClear: "Despejado", weatherCloudy: "Nublado", weatherFog: "Niebla", weatherRain: "Lluvia", weatherSnow: "Nieve", weatherStorm: "Tormenta",
     currentLocationLabel: "Ubicación actual",
@@ -1765,6 +1783,36 @@ function useCurrentLocationForDest(){
   );
 }
 
+/* Grab-style "where am I now" auto-switch — opt-in only (checkbox), since
+   silently using location on every launch is both a bad surprise for users
+   and something App Review scrutinizes. Reverse-geocodes GPS to a country
+   via BigDataCloud's free, no-key client endpoint, and only switches the
+   destination when that country is one of the ones this app supports and
+   differs from what's already selected. Every failure path here (denied
+   permission, offline, unsupported country) fails silently — this is a
+   convenience on top of manual selection, never a blocker. */
+const AUTO_DETECT_KEY = "travelLedgerAutoDetectDest";
+async function autoDetectDestinationCountry(){
+  if(!("geolocation" in navigator)) return;
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      try{
+        const res = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${pos.coords.latitude}&longitude=${pos.coords.longitude}&localityLanguage=en`);
+        if(!res.ok) return;
+        const data = await res.json();
+        const code = data.countryCode;
+        if(code && COUNTRY_CODES.includes(code) && code !== destCountrySelect.value){
+          destCountrySelect.value = code;
+          updateCitySubSelect("dest");
+          await applyDestSelection();
+        }
+      }catch(e){ /* convenience feature only; never surface an error for this */ }
+    },
+    () => {},
+    {timeout: 10000}
+  );
+}
+
 /* ================= events ================= */
 function yesterdayStr(){
   const d = new Date();
@@ -1993,6 +2041,10 @@ const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"v
 })();
 
 document.getElementById("useLocationBtn").addEventListener("click", useCurrentLocationForDest);
+document.getElementById("autoDetectDestToggle").addEventListener("change", (ev) => {
+  localStorage.setItem(AUTO_DETECT_KEY, ev.target.checked ? "1" : "0");
+  if(ev.target.checked) autoDetectDestinationCountry();
+});
 homeCountrySelect.addEventListener("change", () => { updateCitySubSelect("home"); applyHomeSelection(); });
 homeCitySelect.addEventListener("change", applyHomeSelection);
 destCountrySelect.addEventListener("change", () => { updateCitySubSelect("dest"); applyDestSelection(); });
@@ -2161,6 +2213,10 @@ restoreCountrySelects();
 renderClocks();
 setInterval(renderClocks, 30000);
 if(destCity) refreshDestWeather();
+
+const autoDetectDestToggleEl = document.getElementById("autoDetectDestToggle");
+autoDetectDestToggleEl.checked = localStorage.getItem(AUTO_DETECT_KEY) === "1";
+if(autoDetectDestToggleEl.checked) autoDetectDestinationCountry();
 
 if("serviceWorker" in navigator){
   window.addEventListener("load", () => {
