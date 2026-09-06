@@ -185,6 +185,10 @@
   .quick-add-row{display:flex; gap:8px; margin-bottom:6px;}
   .quick-add-row input{flex:1;}
   .quick-add-row button{flex:0 0 auto; width:auto; padding:11px 16px;}
+  .quick-add-mic{font-size:16px; padding:11px 13px;}
+  .quick-add-mic.listening{background:var(--spend); color:#fff; border-color:var(--spend); animation:mic-pulse 1.1s ease-in-out infinite;}
+  @keyframes mic-pulse{ 0%,100%{opacity:1;} 50%{opacity:.55;} }
+  @media (prefers-reduced-motion: reduce){ .quick-add-mic.listening{animation:none;} }
   #entryFormDetails{margin-top:6px;}
   #entryFormDetails summary{
     cursor:pointer; list-style:none; font-size:13px; color:var(--sub); padding:4px 0;
@@ -298,6 +302,7 @@
     <h2><span data-t="formTitle"></span></h2>
     <form id="quickAddForm" class="quick-add-row">
       <input type="text" id="quickAddInput" data-t-placeholder="quickAddPlaceholder" enterkeyhint="done" autocomplete="off">
+      <button type="button" class="btn-ghost quick-add-mic" id="quickAddMicBtn" data-t-title="voiceInputLabel" hidden>🎤</button>
       <button type="submit" class="btn-primary" id="quickAddBtn" data-t="quickAddBtn"></button>
     </form>
     <p class="status-line" id="quickAddHint"></p>
@@ -442,6 +447,7 @@ const I18N = {
     rateWarning: (n) => `⚠ 환율이 설정되지 않은 통화 기록 ${n}건은 총액에서 제외되었습니다. 아래 '환율 설정'에서 입력해 주세요.`,
     quickAddPlaceholder: "예: 오늘 천원 교통비", quickAddBtn: "추가", entryFormToggle: "직접 입력 (날짜·분류·통화 선택)",
     quickAddNoAmount: "금액을 찾지 못했어요. 숫자를 포함해 입력해주세요 (예: 1000 교통비)",
+    voiceInputLabel: "음성으로 입력", voiceInputListening: "듣고 있어요…", voiceInputError: "음성 인식에 실패했어요. 다시 시도해주세요.",
     formTitle: "오늘 지출 입력", dateLabel: "날짜", categoryLabel: "분류", currencyLabel: "쓴 나라 통화",
     amountLabel: "금액 (현지 통화)", memoLabel: "메모 (선택)", submitBtn: "기록 추가",
     livePreviewUnset: "환율 미설정 — 아래 '환율 설정'에서 입력해 주세요.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -498,6 +504,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} entr${n===1?'y':'ies'} in a currency with no exchange rate were excluded from the total. Set it below in "Exchange Rates".`,
     quickAddPlaceholder: "e.g. 1000 transport today", quickAddBtn: "Add", entryFormToggle: "Manual entry (date, category, currency)",
     quickAddNoAmount: "Couldn't find an amount. Include a number (e.g. 1000 transport).",
+    voiceInputLabel: "Voice input", voiceInputListening: "Listening…", voiceInputError: "Couldn't recognize speech. Please try again.",
     formTitle: "Add today's spending", dateLabel: "Date", categoryLabel: "Category", currencyLabel: "Currency spent",
     amountLabel: "Amount (local currency)", memoLabel: "Memo (optional)", submitBtn: "Add entry",
     livePreviewUnset: "Exchange rate not set — see \"Exchange Rates\" below.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -554,6 +561,7 @@ const I18N = {
     rateWarning: (n) => `⚠ 有 ${n} 笔记录因未设置汇率而未计入总额，请在下方"汇率设置"中输入。`,
     quickAddPlaceholder: "例如：今天 1000 交通", quickAddBtn: "添加", entryFormToggle: "手动输入（日期·分类·货币）",
     quickAddNoAmount: "未能识别金额，请输入数字（例如：1000 交通）。",
+    voiceInputLabel: "语音输入", voiceInputListening: "正在聆听…", voiceInputError: "未能识别语音，请重试。",
     formTitle: "记一笔今天的支出", dateLabel: "日期", categoryLabel: "分类", currencyLabel: "使用的货币",
     amountLabel: "金额（当地货币）", memoLabel: "备注（可选）", submitBtn: "添加记录",
     livePreviewUnset: "未设置汇率 — 请见下方「汇率设置」。", livePreviewApprox: (v) => `≈ ${v}`,
@@ -610,6 +618,7 @@ const I18N = {
     rateWarning: (n) => `⚠ 為替レートが未設定の通貨の記録 ${n}件は合計から除外されています。下の「為替レート設定」で入力してください。`,
     quickAddPlaceholder: "例：今日 1000 交通費", quickAddBtn: "追加", entryFormToggle: "手動入力（日付・分類・通貨）",
     quickAddNoAmount: "金額が見つかりません。数字を入力してください（例：1000 交通費）。",
+    voiceInputLabel: "音声入力", voiceInputListening: "聞き取り中…", voiceInputError: "音声を認識できませんでした。もう一度お試しください。",
     formTitle: "今日の支出を記録", dateLabel: "日付", categoryLabel: "分類", currencyLabel: "使用した通貨",
     amountLabel: "金額（現地通貨）", memoLabel: "メモ（任意）", submitBtn: "記録を追加",
     livePreviewUnset: "為替レート未設定 — 下の「為替レート設定」を確認してください。", livePreviewApprox: (v) => `≈ ${v}`,
@@ -666,6 +675,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} khoản chi bằng đơn vị tiền chưa có tỷ giá đã bị loại khỏi tổng. Hãy nhập tỷ giá bên dưới ở mục "Tỷ giá".`,
     quickAddPlaceholder: "vd: hôm nay 1000 di chuyển", quickAddBtn: "Thêm", entryFormToggle: "Nhập thủ công (ngày, danh mục, tiền tệ)",
     quickAddNoAmount: "Không tìm thấy số tiền. Hãy nhập kèm số (vd: 1000 di chuyển).",
+    voiceInputLabel: "Nhập bằng giọng nói", voiceInputListening: "Đang nghe…", voiceInputError: "Không nhận dạng được giọng nói. Vui lòng thử lại.",
     formTitle: "Ghi chi tiêu hôm nay", dateLabel: "Ngày", categoryLabel: "Danh mục", currencyLabel: "Đơn vị tiền đã dùng",
     amountLabel: "Số tiền (tiền địa phương)", memoLabel: "Ghi chú (không bắt buộc)", submitBtn: "Thêm khoản chi",
     livePreviewUnset: "Chưa đặt tỷ giá — xem mục \"Tỷ giá\" bên dưới.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -722,6 +732,7 @@ const I18N = {
     rateWarning: (n) => `⚠ มี ${n} รายการที่ยังไม่ได้ตั้งอัตราแลกเปลี่ยน จึงไม่รวมอยู่ในยอดรวม ตั้งค่าได้ที่ "ตั้งค่าอัตราแลกเปลี่ยน" ด้านล่าง`,
     quickAddPlaceholder: "เช่น วันนี้ 1000 ค่าเดินทาง", quickAddBtn: "เพิ่ม", entryFormToggle: "กรอกเอง (วันที่ หมวดหมู่ สกุลเงิน)",
     quickAddNoAmount: "ไม่พบจำนวนเงิน กรุณาใส่ตัวเลข (เช่น 1000 ค่าเดินทาง)",
+    voiceInputLabel: "ป้อนด้วยเสียง", voiceInputListening: "กำลังฟัง…", voiceInputError: "จดจำเสียงไม่ได้ กรุณาลองใหม่อีกครั้ง",
     formTitle: "บันทึกค่าใช้จ่ายวันนี้", dateLabel: "วันที่", categoryLabel: "หมวดหมู่", currencyLabel: "สกุลเงินที่ใช้",
     amountLabel: "จำนวนเงิน (สกุลท้องถิ่น)", memoLabel: "บันทึกช่วยจำ (ไม่บังคับ)", submitBtn: "เพิ่มรายการ",
     livePreviewUnset: "ยังไม่ได้ตั้งอัตราแลกเปลี่ยน — ดู \"ตั้งค่าอัตราแลกเปลี่ยน\" ด้านล่าง", livePreviewApprox: (v) => `≈ ${v}`,
@@ -778,6 +789,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} rekod dalam mata wang tanpa kadar pertukaran telah dikecualikan daripada jumlah. Tetapkan di bawah dalam "Kadar Pertukaran".`,
     quickAddPlaceholder: "cth: hari ini 1000 pengangkutan", quickAddBtn: "Tambah", entryFormToggle: "Kemasukan manual (tarikh, kategori, mata wang)",
     quickAddNoAmount: "Jumlah tidak dijumpai. Sila masukkan nombor (cth: 1000 pengangkutan).",
+    voiceInputLabel: "Input suara", voiceInputListening: "Mendengar…", voiceInputError: "Tidak dapat mengecam pertuturan. Sila cuba lagi.",
     formTitle: "Tambah perbelanjaan hari ini", dateLabel: "Tarikh", categoryLabel: "Kategori", currencyLabel: "Mata wang digunakan",
     amountLabel: "Jumlah (mata wang tempatan)", memoLabel: "Nota (pilihan)", submitBtn: "Tambah rekod",
     livePreviewUnset: "Kadar pertukaran belum ditetapkan — lihat \"Kadar Pertukaran\" di bawah.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -834,6 +846,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} catatan dengan mata uang yang belum memiliki kurs tidak dihitung dalam total. Atur di bawah pada "Pengaturan Kurs".`,
     quickAddPlaceholder: "cth: hari ini 1000 transportasi", quickAddBtn: "Tambah", entryFormToggle: "Input manual (tanggal, kategori, mata uang)",
     quickAddNoAmount: "Jumlah tidak ditemukan. Masukkan angka (cth: 1000 transportasi).",
+    voiceInputLabel: "Input suara", voiceInputListening: "Mendengarkan…", voiceInputError: "Tidak dapat mengenali suara. Silakan coba lagi.",
     formTitle: "Catat pengeluaran hari ini", dateLabel: "Tanggal", categoryLabel: "Kategori", currencyLabel: "Mata uang yang digunakan",
     amountLabel: "Jumlah (mata uang lokal)", memoLabel: "Catatan (opsional)", submitBtn: "Tambah catatan",
     livePreviewUnset: "Kurs belum diatur — lihat \"Pengaturan Kurs\" di bawah.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -890,6 +903,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} entry sa currency na walang exchange rate ang hindi isinama sa kabuuan. I-set ito sa ibaba sa "Exchange Rates".`,
     quickAddPlaceholder: "hal. ngayon 1000 pamasahe", quickAddBtn: "Idagdag", entryFormToggle: "Manual na entry (petsa, kategorya, currency)",
     quickAddNoAmount: "Walang nahanap na halaga. Maglagay ng numero (hal. 1000 pamasahe).",
+    voiceInputLabel: "Voice input", voiceInputListening: "Nakikinig…", voiceInputError: "Hindi na-recognize ang boses. Pakisubukan ulit.",
     formTitle: "Idagdag ang gastos ngayong araw", dateLabel: "Petsa", categoryLabel: "Kategorya", currencyLabel: "Currency na ginamit",
     amountLabel: "Halaga (lokal na currency)", memoLabel: "Tala (opsyonal)", submitBtn: "Idagdag ang entry",
     livePreviewUnset: "Walang naka-set na exchange rate — tingnan ang \"Exchange Rates\" sa ibaba.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -946,6 +960,7 @@ const I18N = {
     rateWarning: (n) => `⚠ ${n} registro(s) en una moneda sin tipo de cambio se excluyeron del total. Configúralo abajo en "Tipos de cambio".`,
     quickAddPlaceholder: "ej. hoy 1000 transporte", quickAddBtn: "Agregar", entryFormToggle: "Entrada manual (fecha, categoría, moneda)",
     quickAddNoAmount: "No se encontró un monto. Incluye un número (ej. 1000 transporte).",
+    voiceInputLabel: "Entrada de voz", voiceInputListening: "Escuchando…", voiceInputError: "No se pudo reconocer el habla. Inténtalo de nuevo.",
     formTitle: "Agregar gasto de hoy", dateLabel: "Fecha", categoryLabel: "Categoría", currencyLabel: "Moneda usada",
     amountLabel: "Monto (moneda local)", memoLabel: "Nota (opcional)", submitBtn: "Agregar registro",
     livePreviewUnset: "Tipo de cambio no configurado — ver \"Tipos de cambio\" abajo.", livePreviewApprox: (v) => `≈ ${v}`,
@@ -1071,6 +1086,11 @@ function applyStaticText(){
     const key = el.getAttribute("data-t-placeholder");
     const val = t(key);
     if(typeof val === "string") el.placeholder = val;
+  });
+  document.querySelectorAll("[data-t-title]").forEach(el => {
+    const key = el.getAttribute("data-t-title");
+    const val = t(key);
+    if(typeof val === "string") el.title = val;
   });
   document.getElementById("rateHint").textContent = t("rateHint");
   const activeCat = fCategorySelect.value || "food";
@@ -1851,6 +1871,7 @@ document.getElementById("entryForm").addEventListener("submit", async (ev) => {
 
 const quickAddInput = document.getElementById("quickAddInput");
 const quickAddHintEl = document.getElementById("quickAddHint");
+const quickAddMicBtn = document.getElementById("quickAddMicBtn");
 document.getElementById("quickAddForm").addEventListener("submit", async (ev) => {
   ev.preventDefault();
   const text = quickAddInput.value.trim();
@@ -1870,6 +1891,76 @@ document.getElementById("quickAddForm").addEventListener("submit", async (ev) =>
   }catch(e){ console.error("quick add failed", e); }
   finally{ btn.disabled = false; }
 });
+
+/* Voice input for quick add. Prefers the native Capacitor plugin (works inside
+   the wrapped iOS/Android app); falls back to the browser's Web Speech API
+   (works when opened as a website/PWA in Safari/Chrome, but NOT inside a
+   WKWebView — that's a known WebKit limitation, not something fixable here).
+   If neither is available, the mic button just stays hidden. */
+const SPEECH_LOCALE_MAP = {en:"en-US", ko:"ko-KR", zh:"zh-CN", ja:"ja-JP", vi:"vi-VN", th:"th-TH", ms:"ms-MY", id:"id-ID", tl:"fil-PH", es:"es-ES"};
+(function setupVoiceInput(){
+  const nativeSpeech = window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform() && window.Capacitor.Plugins && window.Capacitor.Plugins.SpeechRecognition;
+  const WebSpeechCtor = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if(nativeSpeech){
+    quickAddMicBtn.hidden = false;
+    let listening = false;
+    quickAddMicBtn.addEventListener("click", async () => {
+      if(listening) return;
+      listening = true;
+      quickAddMicBtn.classList.add("listening");
+      quickAddHintEl.textContent = t("voiceInputListening");
+      try{
+        const perm = await nativeSpeech.requestPermissions();
+        if(perm.speechRecognition !== "granted"){
+          quickAddHintEl.textContent = t("voiceInputError");
+          return;
+        }
+        const result = await nativeSpeech.start({
+          language: SPEECH_LOCALE_MAP[lang] || "en-US",
+          maxResults: 1, partialResults: false, popup: false
+        });
+        if(result && result.matches && result.matches[0]){
+          quickAddInput.value = result.matches[0];
+          quickAddInput.focus();
+        }
+        quickAddHintEl.textContent = "";
+      }catch(e){
+        console.error("native speech recognition failed", e);
+        quickAddHintEl.textContent = t("voiceInputError");
+      }finally{
+        listening = false;
+        quickAddMicBtn.classList.remove("listening");
+      }
+    });
+  }else if(WebSpeechCtor){
+    quickAddMicBtn.hidden = false;
+    const recognition = new WebSpeechCtor();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.addEventListener("start", () => {
+      quickAddMicBtn.classList.add("listening");
+      quickAddHintEl.textContent = t("voiceInputListening");
+    });
+    recognition.addEventListener("end", () => {
+      quickAddMicBtn.classList.remove("listening");
+      if(quickAddHintEl.textContent === t("voiceInputListening")) quickAddHintEl.textContent = "";
+    });
+    recognition.addEventListener("result", (ev) => {
+      quickAddInput.value = ev.results[0][0].transcript;
+      quickAddInput.focus();
+    });
+    recognition.addEventListener("error", (ev) => {
+      console.error("speech recognition error", ev.error);
+      quickAddHintEl.textContent = t("voiceInputError");
+    });
+    quickAddMicBtn.addEventListener("click", () => {
+      recognition.lang = SPEECH_LOCALE_MAP[lang] || "en-US";
+      try{ recognition.start(); }catch(e){ /* already listening; ignore */ }
+    });
+  }
+})();
 
 document.getElementById("useLocationBtn").addEventListener("click", useCurrentLocationForDest);
 document.getElementById("useHomeLocationBtn").addEventListener("click", useCurrentLocationForHome);
