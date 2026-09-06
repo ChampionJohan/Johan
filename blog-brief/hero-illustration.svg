@@ -10,18 +10,19 @@
 
   <ellipse cx="960" cy="560" rx="900" ry="18" fill="#8B5E3C" opacity="0.06"/>
 
-  <!-- 다섯째(글쓴이) 강조 글로우 -->
+  <!-- 다섯째(글쓴이, 아들) 강조 글로우 -->
   <circle cx="1470" cy="330" r="190" fill="url(#spotlight)"/>
 
-  <!-- 인물 1 : 아들 (예시 배치, 실제 출생순서 확인 전) -->
+  <!-- 첫째 : 딸 -->
   <g transform="translate(200,0)">
     <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
-    <path d="M -55 460 L -70 260 Q -70 245 -55 245 L 55 245 Q 70 245 70 260 L 55 460 Z" fill="#B98F68"/>
+    <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
     <circle cx="0" cy="205" r="42" fill="#B98F68"/>
-    <path d="M -42 195 Q 0 150 42 195 L 42 205 Q 0 178 -42 205 Z" fill="#7A5638"/>
+    <circle cx="-46" cy="215" r="12" fill="#B98F68"/>
+    <circle cx="46" cy="215" r="12" fill="#B98F68"/>
   </g>
 
-  <!-- 인물 2 : 딸 -->
+  <!-- 둘째 : 딸 -->
   <g transform="translate(450,0)">
     <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
     <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
@@ -30,7 +31,7 @@
     <circle cx="46" cy="215" r="12" fill="#B98F68"/>
   </g>
 
-  <!-- 인물 3 : 딸 -->
+  <!-- 셋째 : 딸 -->
   <g transform="translate(700,0)">
     <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
     <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
@@ -39,7 +40,7 @@
     <circle cx="46" cy="215" r="12" fill="#B98F68"/>
   </g>
 
-  <!-- 인물 4 : 딸 -->
+  <!-- 넷째 : 딸 -->
   <g transform="translate(1220,0)">
     <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
     <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
@@ -48,18 +49,17 @@
     <circle cx="46" cy="215" r="12" fill="#B98F68"/>
   </g>
 
-  <!-- 인물 5 : 딸, 다섯째 = 글쓴이 (강조) -->
+  <!-- 다섯째 : 아들 = 글쓴이 (강조, 6남매 중 유일한 남자) -->
   <g transform="translate(1470,0)">
     <ellipse cx="0" cy="475" rx="78" ry="16" fill="#E0954B" opacity="0.18"/>
-    <path d="M -54 465 L -74 250 Q -74 240 -60 240 L 60 240 Q 74 240 74 250 L 54 465 Q 0 486 -54 465 Z" fill="#E0954B"/>
+    <path d="M -58 465 L -74 260 Q -74 245 -58 245 L 58 245 Q 74 245 74 260 L 58 465 Z" fill="#E0954B"/>
     <circle cx="0" cy="200" r="46" fill="#E0954B"/>
-    <circle cx="-50" cy="212" r="13" fill="#E0954B"/>
-    <circle cx="50" cy="212" r="13" fill="#E0954B"/>
+    <path d="M -46 188 Q 0 148 46 188 L 46 200 Q 0 172 -46 200 Z" fill="#B9701F"/>
     <text x="0" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#8B5E3C" font-weight="bold">나</text>
     <path d="M -14 130 L 0 152 L 14 130" fill="none" stroke="#8B5E3C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
-  <!-- 인물 6 : 딸 -->
+  <!-- 여섯째 : 딸 -->
   <g transform="translate(1720,0)">
     <ellipse cx="0" cy="470" rx="70" ry="14" fill="#8B5E3C" opacity="0.10"/>
     <path d="M -50 460 L -68 255 Q -68 245 -55 245 L 55 245 Q 68 245 68 255 L 50 460 Q 0 480 -50 460 Z" fill="#B98F68"/>
