@@ -1856,9 +1856,9 @@ function applyDestCurrencyDefaults(){
    we don't default to any single one so this stays neutral/transparent
    for a general audience. */
 const DONATE_ORGS = [
-  { id: "unicef_kr", name: "UNICEF Korea", url: "https://www.unicef.or.kr/donate/" },
-  { id: "worldvision_kr", name: "World Vision Korea", url: "https://www.worldvision.or.kr/supportGuide/main" },
-  { id: "kakao_together", name: "Kakao Together (카카오같이가치)", url: "https://together.kakao.com/" },
+  { id: "unicef_usa", name: "UNICEF USA", url: "https://www.unicefusa.org/how-help/donate" },
+  { id: "world_vision", name: "World Vision", url: "https://www.worldvision.org/donate" },
+  { id: "save_children", name: "Save the Children", url: "https://www.savethechildren.org/savekids" },
   { id: "paypal_giving", name: "PayPal Giving Fund", url: "https://www.paypal.com/us/fundraiser/hub" }
 ];
 const DONATE_ORG_KEY = "travelLedgerDonateOrg";
@@ -1876,7 +1876,7 @@ function populateDonateOrgSelect(){
     });
   }
   const saved = localStorage.getItem(DONATE_ORG_KEY);
-  sel.value = (saved && DONATE_ORGS.some(o => o.id === saved)) ? saved : (lang === "ko" ? "unicef_kr" : "paypal_giving");
+  sel.value = (saved && DONATE_ORGS.some(o => o.id === saved)) ? saved : DONATE_ORGS[0].id;
 }
 function updateLeftoverCash(){
   const cur = currentLeftoverCurrency();
