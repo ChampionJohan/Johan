@@ -62,8 +62,9 @@
     padding:26px 26px 22px; position:relative; margin-bottom:20px; color:#fff;
   }
   .eyebrow{font-size:11px; letter-spacing:.14em; color:rgba(255,255,255,.85); text-transform:uppercase; margin:0 0 6px; font-weight:700;}
+  .badge-row{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px;}
   .streak-badge{
-    display:inline-flex; align-items:center; gap:6px; margin:0 0 12px; font-size:13px; font-weight:700;
+    display:inline-flex; align-items:center; gap:6px; margin:0; font-size:13px; font-weight:700;
     color:#fff; background:rgba(255,255,255,.22); padding:6px 12px; border-radius:999px; width:fit-content;
   }
   .streak-badge[hidden]{display:none;}
@@ -292,7 +293,10 @@
   <div class="hero">
     <p class="eyebrow" data-t="eyebrow"></p>
     <h1 data-t="appTitle"></h1>
-    <div class="streak-badge" id="streakBadge" hidden></div>
+    <div class="badge-row">
+      <div class="streak-badge" id="streakBadge" hidden></div>
+      <div class="streak-badge" id="travelPointsBadge" hidden></div>
+    </div>
     <div class="balance-row">
       <div>
         <div class="balance-label" id="balance-label"></div>
@@ -421,6 +425,7 @@
     </div>
     <p class="conv-note" id="leftoverCashResult"></p>
     <p class="status-line" id="leftoverCashHint" data-t="leftoverCashHint"></p>
+    <p class="status-line" id="leftoverCashPointsNote" hidden></p>
     <div class="toolbar" style="justify-content:flex-start;">
       <a href="#" target="_blank" rel="noopener" class="btn-ghost" id="donateLinkBtn" data-t="donateBtn" hidden></a>
     </div>
@@ -517,6 +522,8 @@ const I18N = {
     leftoverCashHint: "환전소에서 재환전하거나, 아래 버튼으로 기부할 수도 있어요.",
     leftoverCashResult: (amt) => `약 ${amt}`, donateBtn: "카카오같이가치로 기부하기",
     donateNote: "남은 돈은 당신의 이름으로 기부됩니다.",
+    travelPointsLabel: (n) => `✈️ 여행 포인트 ${n}개`,
+    leftoverCashPointsNote: (n) => `지금까지 ${n}번 여행하셨어요 — 여행할수록 기부 임팩트가 커져요!`,
     emptyGeneric: "아직 기록이 없습니다.", emptyRates: "환율이 설정되지 않아 표시할 수 없습니다.",
     emptyCompare: "비교할 다른 달 기록이 아직 없습니다.", emptyHistory: "이 달 기록이 없습니다.",
     convUnset: "환율 미설정",
@@ -579,6 +586,8 @@ const I18N = {
     leftoverCashHint: "Exchange it back, or donate it below.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donate via PayPal Giving Fund",
     donateNote: "Your leftover cash is donated in your name.",
+    travelPointsLabel: (n) => `✈️ ${n} travel point${n===1?"":"s"}`,
+    leftoverCashPointsNote: (n) => `You've taken ${n} trip${n===1?"":"s"} so far — the more you travel, the bigger your donation impact!`,
     emptyGeneric: "No entries yet.", emptyRates: "Can't display — no exchange rate set.",
     emptyCompare: "Not enough months to compare yet.", emptyHistory: "No entries this month.",
     convUnset: "rate not set",
@@ -641,6 +650,8 @@ const I18N = {
     leftoverCashHint: "可以换回本国货币，或通过下方按钮捐赠。",
     leftoverCashResult: (amt) => `约 ${amt}`, donateBtn: "通过 PayPal Giving Fund 捐赠",
     donateNote: "剩余的钱将以您的名义捐出。",
+    travelPointsLabel: (n) => `✈️ 旅行积分 ${n}`,
+    leftoverCashPointsNote: (n) => `您已经旅行了 ${n} 次 — 旅行越多，捐赠影响越大！`,
     emptyGeneric: "暂无记录。", emptyRates: "未设置汇率，暂无法显示。",
     emptyCompare: "暂无其他月份可比较。", emptyHistory: "本月暂无记录。",
     convUnset: "未设汇率",
@@ -703,6 +714,8 @@ const I18N = {
     leftoverCashHint: "両替するか、下のボタンから寄付することもできます。",
     leftoverCashResult: (amt) => `約 ${amt}`, donateBtn: "PayPal Giving Fundで寄付する",
     donateNote: "余ったお金はあなたの名前で寄付されます。",
+    travelPointsLabel: (n) => `✈️ 旅ポイント ${n}`,
+    leftoverCashPointsNote: (n) => `これまでに${n}回旅行しました — 旅行するほど寄付のインパクトが大きくなります！`,
     emptyGeneric: "まだ記録がありません。", emptyRates: "為替レートが未設定のため表示できません。",
     emptyCompare: "比較できる他の月のデータがまだありません。", emptyHistory: "今月の記録はありません。",
     convUnset: "レート未設定",
@@ -765,6 +778,8 @@ const I18N = {
     leftoverCashHint: "Đổi lại tiền, hoặc quyên góp bằng nút bên dưới.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Quyên góp qua PayPal Giving Fund",
     donateNote: "Số tiền còn lại sẽ được quyên góp dưới tên của bạn.",
+    travelPointsLabel: (n) => `✈️ ${n} điểm du lịch`,
+    leftoverCashPointsNote: (n) => `Bạn đã đi ${n} chuyến — đi càng nhiều, đóng góp càng lớn!`,
     emptyGeneric: "Chưa có khoản chi nào.", emptyRates: "Không thể hiển thị — chưa đặt tỷ giá.",
     emptyCompare: "Chưa đủ dữ liệu các tháng khác để so sánh.", emptyHistory: "Tháng này chưa có khoản chi nào.",
     convUnset: "chưa có tỷ giá",
@@ -827,6 +842,8 @@ const I18N = {
     leftoverCashHint: "แลกคืนได้ หรือบริจาคผ่านปุ่มด้านล่าง",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "บริจาคผ่าน PayPal Giving Fund",
     donateNote: "เงินที่เหลือจะถูกบริจาคในนามของคุณ",
+    travelPointsLabel: (n) => `✈️ ${n} แต้มการเดินทาง`,
+    leftoverCashPointsNote: (n) => `คุณเดินทางมาแล้ว ${n} ครั้ง — ยิ่งเดินทางมาก ยิ่งบริจาคได้มากขึ้น!`,
     emptyGeneric: "ยังไม่มีรายการ", emptyRates: "แสดงไม่ได้ — ยังไม่ได้ตั้งอัตราแลกเปลี่ยน",
     emptyCompare: "ยังไม่มีข้อมูลเดือนอื่นพอสำหรับเปรียบเทียบ", emptyHistory: "เดือนนี้ยังไม่มีรายการ",
     convUnset: "ยังไม่ตั้งอัตรา",
@@ -889,6 +906,8 @@ const I18N = {
     leftoverCashHint: "Tukar semula, atau derma melalui butang di bawah.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Derma melalui PayPal Giving Fund",
     donateNote: "Baki wang anda akan didermakan atas nama anda.",
+    travelPointsLabel: (n) => `✈️ ${n} mata perjalanan`,
+    leftoverCashPointsNote: (n) => `Anda telah membuat ${n} perjalanan — semakin kerap anda melancong, semakin besar impak derma anda!`,
     emptyGeneric: "Belum ada rekod.", emptyRates: "Tidak dapat dipaparkan — kadar pertukaran belum ditetapkan.",
     emptyCompare: "Belum cukup bulan lain untuk dibandingkan.", emptyHistory: "Tiada rekod bulan ini.",
     convUnset: "kadar belum ditetapkan",
@@ -951,6 +970,8 @@ const I18N = {
     leftoverCashHint: "Tukar kembali, atau donasikan lewat tombol di bawah.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donasikan lewat PayPal Giving Fund",
     donateNote: "Sisa uang Anda akan didonasikan atas nama Anda.",
+    travelPointsLabel: (n) => `✈️ ${n} poin perjalanan`,
+    leftoverCashPointsNote: (n) => `Anda sudah melakukan ${n} perjalanan — makin sering bepergian, makin besar dampak donasi Anda!`,
     emptyGeneric: "Belum ada catatan.", emptyRates: "Tidak dapat ditampilkan — kurs belum diatur.",
     emptyCompare: "Belum cukup data bulan lain untuk dibandingkan.", emptyHistory: "Belum ada catatan bulan ini.",
     convUnset: "kurs belum diatur",
@@ -1013,6 +1034,8 @@ const I18N = {
     leftoverCashHint: "Palitan ulit, o mag-donate gamit ang button sa ibaba.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "I-donate sa PayPal Giving Fund",
     donateNote: "Ang iyong natitirang pera ay ida-donate sa iyong pangalan.",
+    travelPointsLabel: (n) => `✈️ ${n} travel point${n===1?"":"s"}`,
+    leftoverCashPointsNote: (n) => `Naka-${n} na trip ka — mas madalas kang maglakbay, mas malaki ang epekto ng donasyon mo!`,
     emptyGeneric: "Wala pang entry.", emptyRates: "Hindi maipakita — walang naka-set na exchange rate.",
     emptyCompare: "Wala pang sapat na ibang buwan para ikumpara.", emptyHistory: "Walang entry ngayong buwan.",
     convUnset: "walang rate",
@@ -1075,6 +1098,8 @@ const I18N = {
     leftoverCashHint: "Cámbialo de nuevo o dónalo con el botón de abajo.",
     leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donar vía PayPal Giving Fund",
     donateNote: "Tu efectivo sobrante se dona a tu nombre.",
+    travelPointsLabel: (n) => `✈️ ${n} punto${n===1?"":"s"} de viaje`,
+    leftoverCashPointsNote: (n) => `Has hecho ${n} viaje${n===1?"":"s"} — cuantos más viajes hagas, mayor será tu impacto al donar.`,
     emptyGeneric: "Aún no hay registros.", emptyRates: "No se puede mostrar — tipo de cambio no configurado.",
     emptyCompare: "Aún no hay suficientes meses para comparar.", emptyHistory: "No hay registros este mes.",
     convUnset: "sin tipo de cambio",
@@ -1470,6 +1495,7 @@ function renderHero(m){
   else{ warnEl.hidden = true; }
 
   renderStreak();
+  renderTravelPoints();
 }
 
 function computeStreak(){
@@ -1495,6 +1521,37 @@ function renderStreak(){
     el.textContent = t("streakLabel")(n);
   }else{
     el.hidden = true;
+  }
+}
+
+/* Travel points: a purely symbolic ✈️ counter, one per distinct trip
+   (destination country change). Not real currency and never redeemable
+   anywhere — it only makes the "travel more, donate more" idea visible
+   and gives the donate card something concrete to point to. Awarding a
+   real spendable point would require becoming a card issuer / loyalty
+   processor, which is out of scope for a static app (see leftover-cash
+   donate-link discussion). */
+const TRAVEL_POINTS_KEY = "travelLedgerTravelPoints";
+const TRAVEL_POINTS_LAST_COUNTRY_KEY = "travelLedgerTravelPointsLastCountry";
+function awardTravelPointIfNewTrip(countryCode){
+  if(!countryCode) return;
+  if(localStorage.getItem(TRAVEL_POINTS_LAST_COUNTRY_KEY) === countryCode) return;
+  const points = Number(localStorage.getItem(TRAVEL_POINTS_KEY) || "0") + 1;
+  localStorage.setItem(TRAVEL_POINTS_KEY, String(points));
+  localStorage.setItem(TRAVEL_POINTS_LAST_COUNTRY_KEY, countryCode);
+  renderTravelPoints();
+}
+function renderTravelPoints(){
+  const n = Number(localStorage.getItem(TRAVEL_POINTS_KEY) || "0");
+  const badgeEl = document.getElementById("travelPointsBadge");
+  if(badgeEl){
+    if(n >= 1){ badgeEl.hidden = false; badgeEl.textContent = t("travelPointsLabel")(n); }
+    else{ badgeEl.hidden = true; }
+  }
+  const noteEl = document.getElementById("leftoverCashPointsNote");
+  if(noteEl){
+    if(n >= 1){ noteEl.hidden = false; noteEl.textContent = t("leftoverCashPointsNote")(n); }
+    else{ noteEl.hidden = true; }
   }
 }
 
@@ -1828,6 +1885,7 @@ async function applyDestSelection(){
   saveCities();
   renderClocks();
   applyDestCurrencyDefaults();
+  if(destCity && destCity.countryCode) awardTravelPointIfNewTrip(destCity.countryCode);
   if(destCity){
     cityHintEl.textContent = t("locating");
     await refreshDestWeather();
