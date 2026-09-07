@@ -426,7 +426,8 @@
     <p class="conv-note" id="leftoverCashResult"></p>
     <p class="status-line" id="leftoverCashHint" data-t="leftoverCashHint"></p>
     <p class="status-line" id="leftoverCashPointsNote" hidden></p>
-    <div class="toolbar" style="justify-content:flex-start;">
+    <div class="toolbar" style="justify-content:flex-start; flex-wrap:wrap;">
+      <select id="donateOrgSelect" hidden></select>
       <a href="#" target="_blank" rel="noopener" class="btn-ghost" id="donateLinkBtn" data-t="donateBtn" hidden></a>
     </div>
     <p class="status-line" id="donateNote" data-t="donateNote" hidden></p>
@@ -520,7 +521,7 @@ const I18N = {
     shareBtn: "공유", saveBtn: "저장", exportBtn: "마크다운으로 내보내기", printBtn: "인쇄 / PDF로 저장",
     leftoverCashTitle: "여행 마무리 — 남은 현금", leftoverCashLabel: (cur) => `남은 현금 (${cur})`,
     leftoverCashHint: "환전소에서 재환전하거나, 아래 버튼으로 기부할 수도 있어요.",
-    leftoverCashResult: (amt) => `약 ${amt}`, donateBtn: "카카오같이가치로 기부하기",
+    leftoverCashResult: (amt) => `약 ${amt}`, donateBtn: "선택한 곳으로 기부하기",
     donateNote: "남은 돈은 당신의 이름으로 기부됩니다.",
     travelPointsLabel: (n) => `✈️ 여행 포인트 ${n}개`,
     leftoverCashPointsNote: (n) => `지금까지 ${n}번 여행하셨어요 — 여행할수록 기부 임팩트가 커져요!`,
@@ -584,7 +585,7 @@ const I18N = {
     shareBtn: "Share", saveBtn: "Save", exportBtn: "Export as Markdown", printBtn: "Print / Save as PDF",
     leftoverCashTitle: "Wrapping up — leftover cash", leftoverCashLabel: (cur) => `Leftover cash (${cur})`,
     leftoverCashHint: "Exchange it back, or donate it below.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donate via PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donate to selected charity",
     donateNote: "Your leftover cash is donated in your name.",
     travelPointsLabel: (n) => `✈️ ${n} travel point${n===1?"":"s"}`,
     leftoverCashPointsNote: (n) => `You've taken ${n} trip${n===1?"":"s"} so far — the more you travel, the bigger your donation impact!`,
@@ -648,7 +649,7 @@ const I18N = {
     shareBtn: "分享", saveBtn: "保存", exportBtn: "导出为 Markdown", printBtn: "打印 / 保存为 PDF",
     leftoverCashTitle: "旅程收尾 — 剩余现金", leftoverCashLabel: (cur) => `剩余现金（${cur}）`,
     leftoverCashHint: "可以换回本国货币，或通过下方按钮捐赠。",
-    leftoverCashResult: (amt) => `约 ${amt}`, donateBtn: "通过 PayPal Giving Fund 捐赠",
+    leftoverCashResult: (amt) => `约 ${amt}`, donateBtn: "向所选机构捐赠",
     donateNote: "剩余的钱将以您的名义捐出。",
     travelPointsLabel: (n) => `✈️ 旅行积分 ${n}`,
     leftoverCashPointsNote: (n) => `您已经旅行了 ${n} 次 — 旅行越多，捐赠影响越大！`,
@@ -712,7 +713,7 @@ const I18N = {
     shareBtn: "共有", saveBtn: "保存", exportBtn: "Markdownで書き出す", printBtn: "印刷 / PDFで保存",
     leftoverCashTitle: "旅の締めくくり — 余った現金", leftoverCashLabel: (cur) => `余った現金（${cur}）`,
     leftoverCashHint: "両替するか、下のボタンから寄付することもできます。",
-    leftoverCashResult: (amt) => `約 ${amt}`, donateBtn: "PayPal Giving Fundで寄付する",
+    leftoverCashResult: (amt) => `約 ${amt}`, donateBtn: "選択した団体に寄付する",
     donateNote: "余ったお金はあなたの名前で寄付されます。",
     travelPointsLabel: (n) => `✈️ 旅ポイント ${n}`,
     leftoverCashPointsNote: (n) => `これまでに${n}回旅行しました — 旅行するほど寄付のインパクトが大きくなります！`,
@@ -776,7 +777,7 @@ const I18N = {
     shareBtn: "Chia sẻ", saveBtn: "Lưu", exportBtn: "Xuất ra Markdown", printBtn: "In / Lưu thành PDF",
     leftoverCashTitle: "Kết thúc chuyến đi — tiền mặt còn lại", leftoverCashLabel: (cur) => `Tiền mặt còn lại (${cur})`,
     leftoverCashHint: "Đổi lại tiền, hoặc quyên góp bằng nút bên dưới.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Quyên góp qua PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Quyên góp cho tổ chức đã chọn",
     donateNote: "Số tiền còn lại sẽ được quyên góp dưới tên của bạn.",
     travelPointsLabel: (n) => `✈️ ${n} điểm du lịch`,
     leftoverCashPointsNote: (n) => `Bạn đã đi ${n} chuyến — đi càng nhiều, đóng góp càng lớn!`,
@@ -840,7 +841,7 @@ const I18N = {
     shareBtn: "แชร์", saveBtn: "บันทึก", exportBtn: "ส่งออกเป็น Markdown", printBtn: "พิมพ์ / บันทึกเป็น PDF",
     leftoverCashTitle: "ปิดทริป — เงินสดที่เหลือ", leftoverCashLabel: (cur) => `เงินสดที่เหลือ (${cur})`,
     leftoverCashHint: "แลกคืนได้ หรือบริจาคผ่านปุ่มด้านล่าง",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "บริจาคผ่าน PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "บริจาคให้องค์กรที่เลือก",
     donateNote: "เงินที่เหลือจะถูกบริจาคในนามของคุณ",
     travelPointsLabel: (n) => `✈️ ${n} แต้มการเดินทาง`,
     leftoverCashPointsNote: (n) => `คุณเดินทางมาแล้ว ${n} ครั้ง — ยิ่งเดินทางมาก ยิ่งบริจาคได้มากขึ้น!`,
@@ -904,7 +905,7 @@ const I18N = {
     shareBtn: "Kongsi", saveBtn: "Simpan", exportBtn: "Eksport sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
     leftoverCashTitle: "Penutup perjalanan — baki tunai", leftoverCashLabel: (cur) => `Baki tunai (${cur})`,
     leftoverCashHint: "Tukar semula, atau derma melalui butang di bawah.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Derma melalui PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Derma kepada badan yang dipilih",
     donateNote: "Baki wang anda akan didermakan atas nama anda.",
     travelPointsLabel: (n) => `✈️ ${n} mata perjalanan`,
     leftoverCashPointsNote: (n) => `Anda telah membuat ${n} perjalanan — semakin kerap anda melancong, semakin besar impak derma anda!`,
@@ -968,7 +969,7 @@ const I18N = {
     shareBtn: "Bagikan", saveBtn: "Simpan", exportBtn: "Ekspor sebagai Markdown", printBtn: "Cetak / Simpan sebagai PDF",
     leftoverCashTitle: "Penutup perjalanan — sisa uang tunai", leftoverCashLabel: (cur) => `Sisa uang tunai (${cur})`,
     leftoverCashHint: "Tukar kembali, atau donasikan lewat tombol di bawah.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donasikan lewat PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donasikan ke lembaga yang dipilih",
     donateNote: "Sisa uang Anda akan didonasikan atas nama Anda.",
     travelPointsLabel: (n) => `✈️ ${n} poin perjalanan`,
     leftoverCashPointsNote: (n) => `Anda sudah melakukan ${n} perjalanan — makin sering bepergian, makin besar dampak donasi Anda!`,
@@ -1032,7 +1033,7 @@ const I18N = {
     shareBtn: "I-share", saveBtn: "I-save", exportBtn: "I-export bilang Markdown", printBtn: "I-print / I-save bilang PDF",
     leftoverCashTitle: "Pagtatapos ng biyahe — natitirang pera", leftoverCashLabel: (cur) => `Natitirang pera (${cur})`,
     leftoverCashHint: "Palitan ulit, o mag-donate gamit ang button sa ibaba.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "I-donate sa PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "I-donate sa napiling organisasyon",
     donateNote: "Ang iyong natitirang pera ay ida-donate sa iyong pangalan.",
     travelPointsLabel: (n) => `✈️ ${n} travel point${n===1?"":"s"}`,
     leftoverCashPointsNote: (n) => `Naka-${n} na trip ka — mas madalas kang maglakbay, mas malaki ang epekto ng donasyon mo!`,
@@ -1096,7 +1097,7 @@ const I18N = {
     shareBtn: "Compartir", saveBtn: "Guardar", exportBtn: "Exportar como Markdown", printBtn: "Imprimir / Guardar como PDF",
     leftoverCashTitle: "Fin del viaje — efectivo sobrante", leftoverCashLabel: (cur) => `Efectivo sobrante (${cur})`,
     leftoverCashHint: "Cámbialo de nuevo o dónalo con el botón de abajo.",
-    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donar vía PayPal Giving Fund",
+    leftoverCashResult: (amt) => `≈ ${amt}`, donateBtn: "Donar a la organización elegida",
     donateNote: "Tu efectivo sobrante se dona a tu nombre.",
     travelPointsLabel: (n) => `✈️ ${n} punto${n===1?"":"s"} de viaje`,
     leftoverCashPointsNote: (n) => `Has hecho ${n} viaje${n===1?"":"s"} — cuantos más viajes hagas, mayor será tu impacto al donar.`,
@@ -1847,27 +1848,51 @@ function applyDestCurrencyDefaults(){
 }
 
 /* Leftover cash + donate link. This only ever LINKS OUT to an already
-   registered, established donation platform — the app never touches or
-   holds any money itself, so there's no payment/charity-registration
-   requirement on our side (see conversation: real bank-linked automatic
-   donation would need a registered fundraising entity, which this repo
-   is not). */
-const DONATE_LINKS = { ko: "https://together.kakao.com/", default: "https://www.paypal.com/us/fundraiser/hub" };
+   registered, established charity's own donation page — the app never
+   touches or holds any money itself, so there's no payment/charity-
+   registration requirement on our side (see conversation: real
+   bank-linked automatic donation would need a registered fundraising
+   entity, which this repo is not). The traveler picks which charity;
+   we don't default to any single one so this stays neutral/transparent
+   for a general audience. */
+const DONATE_ORGS = [
+  { id: "unicef_kr", name: "UNICEF Korea", url: "https://www.unicef.or.kr/donate/" },
+  { id: "worldvision_kr", name: "World Vision Korea", url: "https://www.worldvision.or.kr/supportGuide/main" },
+  { id: "kakao_together", name: "Kakao Together (카카오같이가치)", url: "https://together.kakao.com/" },
+  { id: "paypal_giving", name: "PayPal Giving Fund", url: "https://www.paypal.com/us/fundraiser/hub" }
+];
+const DONATE_ORG_KEY = "travelLedgerDonateOrg";
 function currentLeftoverCurrency(){
   const destCur = destCity && destCity.countryCode ? COUNTRY_CURRENCY[destCity.countryCode] : null;
   return (destCur && CURRENCY_CODES.includes(destCur)) ? destCur : (settings.baseCurrency || PIVOT);
+}
+function populateDonateOrgSelect(){
+  const sel = document.getElementById("donateOrgSelect");
+  if(!sel.options.length){
+    sel.innerHTML = DONATE_ORGS.map(o => `<option value="${o.id}">${o.name}</option>`).join("");
+    sel.addEventListener("change", () => {
+      localStorage.setItem(DONATE_ORG_KEY, sel.value);
+      updateLeftoverCash();
+    });
+  }
+  const saved = localStorage.getItem(DONATE_ORG_KEY);
+  sel.value = (saved && DONATE_ORGS.some(o => o.id === saved)) ? saved : (lang === "ko" ? "unicef_kr" : "paypal_giving");
 }
 function updateLeftoverCash(){
   const cur = currentLeftoverCurrency();
   const labelEl = document.querySelector('label[for="leftoverCashInput"]');
   if(labelEl) labelEl.textContent = t("leftoverCashLabel")(cur);
+  populateDonateOrgSelect();
+  const donateOrgSelect = document.getElementById("donateOrgSelect");
   const donateLinkBtn = document.getElementById("donateLinkBtn");
   const donateNoteEl = document.getElementById("donateNote");
-  donateLinkBtn.href = DONATE_LINKS[lang] || DONATE_LINKS.default;
+  const org = DONATE_ORGS.find(o => o.id === donateOrgSelect.value) || DONATE_ORGS[0];
+  donateLinkBtn.href = org.url;
   const leftoverCashResultEl = document.getElementById("leftoverCashResult");
   const amt = Number(document.getElementById("leftoverCashInput").value);
   if(!amt || amt <= 0){
     leftoverCashResultEl.textContent = "";
+    donateOrgSelect.hidden = true;
     donateLinkBtn.hidden = true;
     donateNoteEl.hidden = true;
     return;
@@ -1875,6 +1900,7 @@ function updateLeftoverCash(){
   const base = settings.baseCurrency;
   const conv = convertAmount(amt, cur, base);
   leftoverCashResultEl.textContent = conv===null ? t("convUnset") : t("leftoverCashResult")(formatMoney(conv, base));
+  donateOrgSelect.hidden = false;
   donateLinkBtn.hidden = false;
   donateNoteEl.hidden = false;
 }
