@@ -47,7 +47,7 @@ The Ledger didn't answer that right away. Then it said,
 
 "…I say this as a warning. There have, in the past, been cases where people who kept accumulating unresolved filings were moved through a separate procedure."
 
-"…Is that that building?" my brother asked. His voice had dropped low.
+"…Is that the building?" my brother asked. His voice had dropped low.
 
 There was a silence. It was not short.
 

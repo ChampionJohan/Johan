@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""루프 연대기 / Loop Chronicles — 48장 원고를 PDF + EPUB로 묶는다.
+"""Loop Chronicles series — bundle 48-chapter manuscripts into PDF + EPUB.
 
-    python3 tools/build_ebook.py ko   # 한국어판
-    python3 tools/build_ebook.py en   # 영어판
-    python3 tools/build_ebook.py both # 둘 다
+    python3 tools/build_ebook.py ko    # Book 1, Korean
+    python3 tools/build_ebook.py en    # Book 1, English
+    python3 tools/build_ebook.py both  # Book 1, both languages
+    python3 tools/build_ebook.py ko2   # Book 2, Korean
+    python3 tools/build_ebook.py en2   # Book 2, English
+    python3 tools/build_ebook.py both2 # Book 2, both languages
+    python3 tools/build_ebook.py all   # every book/language combination
 
 PDF는 Playwright(Chromium)로, EPUB는 ebooklib으로 만든다. 둘 다 이 저장소에
 이미 있는 mdlite.py(의존성 없는 마크다운 렌더러)를 재사용한다.
@@ -18,16 +22,20 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mdlite
 
-ROOT = "/home/user/Johan/writing/novel/루프-연대기"
-OUT = os.path.join(ROOT, "build")
-os.makedirs(OUT, exist_ok=True)
+ROOT1 = "/home/user/Johan/writing/novel/루프-연대기"
+ROOT2 = "/home/user/Johan/writing/novel/울음-장부"
+OUT1 = os.path.join(ROOT1, "build")
+OUT2 = os.path.join(ROOT2, "build")
+os.makedirs(OUT1, exist_ok=True)
+os.makedirs(OUT2, exist_ok=True)
 
 AUTHOR_PLACEHOLDER_KO = "Johan Choi"
 AUTHOR_PLACEHOLDER_EN = "Johan Choi"
 
 CONFIGS = {
     "ko": dict(
-        src_dir=ROOT,
+        src_dir=ROOT1,
+        out_dir=OUT1,
         pattern=re.compile(r"^\d{2}장.*\.md$"),
         lang="ko",
         title="루프 연대기",
@@ -39,7 +47,8 @@ CONFIGS = {
         part_word="부",
     ),
     "en": dict(
-        src_dir=os.path.join(ROOT, "english"),
+        src_dir=os.path.join(ROOT1, "english"),
+        out_dir=OUT1,
         pattern=re.compile(r"^\d{2}-.*\.md$"),
         lang="en",
         title="Loop Chronicles",
@@ -48,6 +57,32 @@ CONFIGS = {
         toc_label="Table of Contents",
         cover_kicker="A NOVEL",
         out_base="loop-chronicles-en",
+        part_word="Part",
+    ),
+    "ko2": dict(
+        src_dir=ROOT2,
+        out_dir=OUT2,
+        pattern=re.compile(r"^\d{2}장.*\.md$"),
+        lang="ko",
+        title="울음 장부",
+        subtitle="루프 연대기 2권 · 출애굽기 3장 7절에서 시작하는 이야기",
+        author=AUTHOR_PLACEHOLDER_KO,
+        toc_label="목차",
+        cover_kicker="장편 소설",
+        out_base="the-weeping-ledger-ko",
+        part_word="부",
+    ),
+    "en2": dict(
+        src_dir=os.path.join(ROOT2, "english"),
+        out_dir=OUT2,
+        pattern=re.compile(r"^\d{2}-.*\.md$"),
+        lang="en",
+        title="The Weeping Ledger",
+        subtitle="Loop Chronicles Book 2 · A novel that begins at Exodus 3:7",
+        author=AUTHOR_PLACEHOLDER_EN,
+        toc_label="Table of Contents",
+        cover_kicker="A NOVEL",
+        out_base="the-weeping-ledger-en",
         part_word="Part",
     ),
 }
@@ -161,11 +196,11 @@ def build_pdf(cfg):
     )
 
     page = PDF_PAGE.format(lang=cfg["lang"], css=BOOK_CSS, body="\n".join(body_parts))
-    html_path = os.path.join(OUT, cfg["out_base"] + ".html")
+    html_path = os.path.join(cfg["out_dir"], cfg["out_base"] + ".html")
     with open(html_path, "w", encoding="utf-8") as fh:
         fh.write(page)
 
-    pdf_path = os.path.join(OUT, cfg["out_base"] + ".pdf")
+    pdf_path = os.path.join(cfg["out_dir"], cfg["out_base"] + ".pdf")
     from playwright.sync_api import sync_playwright
 
     with sync_playwright() as p:
@@ -199,7 +234,7 @@ def build_epub(cfg, chapters=None):
         chapters = load_chapters(cfg)
 
     book = epub.EpubBook()
-    book.set_identifier("loop-chronicles-%s" % cfg["lang"])
+    book.set_identifier("%s-%s" % (cfg["out_base"], cfg["lang"]))
     book.set_title(cfg["title"])
     book.set_language(cfg["lang"])
     book.add_author(cfg["author"])
@@ -239,16 +274,24 @@ def build_epub(cfg, chapters=None):
     book.add_item(epub.EpubNav())
     book.spine = ["nav"] + epub_chapters
 
-    epub_path = os.path.join(OUT, cfg["out_base"] + ".epub")
+    epub_path = os.path.join(cfg["out_dir"], cfg["out_base"] + ".epub")
     epub.write_epub(epub_path, book)
     print("EPUB:", epub_path, "(%d chapters)" % len(chapters))
 
 
 def main():
     targets = sys.argv[1:] or ["both"]
-    if "both" in targets:
-        targets = ["ko", "en"]
+    expanded = []
     for t in targets:
+        if t == "both":
+            expanded += ["ko", "en"]
+        elif t == "both2":
+            expanded += ["ko2", "en2"]
+        elif t == "all":
+            expanded += ["ko", "en", "ko2", "en2"]
+        else:
+            expanded.append(t)
+    for t in expanded:
         cfg = CONFIGS[t]
         chapters = build_pdf(cfg)
         build_epub(cfg, chapters)
