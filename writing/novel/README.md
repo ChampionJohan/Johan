@@ -70,3 +70,9 @@ python3 tools/build_novel.py writing/novel/루프-연대기
   아빠의 입을 통해 공개된다. 아빠는 완료된 사람들이 이름과 기억을
   잃은 채 우물을 통해 살아 나온다는 이 세계의 규칙에 따라, 이름 없이
   살아남았다가 남매와 재회한 뒤 서서히 회복해 가는 인물이다.
+
+  영어판 제목은 **The Weeping Ledger**. 영어 번역(`울음-장부/english/`,
+  TRANSLATION_GUIDE.md 기준), 한국어/영어 PDF·EPUB 빌드
+  (`울음-장부/build/`, `tools/build_ebook.py both2`), 표지
+  (`울음-장부/cover/`), KDP 업로드 순서(`울음-장부/english/
+  KDP-업로드-순서.md`)도 함께 있다.
