@@ -29,12 +29,15 @@ TITLE = "돈의 해부학"
 SUBTITLE = "세계의 사업을 다섯 칸으로 뜯어보는 법"
 SERIES = "다섯 칸 시리즈 · 첫째 권"
 AUTHOR = "최재혁"
+LANG = "ko"        # 영어판 오버레이가 "en" 으로 바꾼다
+TRIM = "A5"        # 인쇄 판형. 영어판은 아마존 표준인 6x9 를 쓴다
 TARGET = 95000
 
 CHECK = re.compile(r"<!--\s*확인:(.*?)-->", re.S)
 TODO = re.compile(r"<!--\s*TODO:(.*?)-->", re.S)
 COMMENT = re.compile(r"<!--.*?-->", re.S)
-CHAPNO = re.compile(r"^(\d+)장")
+# 한국어판은 "3장 · ...", 영어판은 "Chapter 3 — ..." 로 장 번호를 쓴다.
+CHAPNO = re.compile(r"^(?:Chapter\s+)?(\d+)(?:장)?(?=[\s·—.:]|$)")
 H2 = re.compile(r"(?m)^##\s+(?!◆)(.+)$")
 
 
@@ -61,7 +64,10 @@ def load():
         meta["body"] = body
         meta["checks"] = CHECK.findall(body)
         meta["todos"] = TODO.findall(body)
-        meta["chars"] = len(re.sub(r"\s+", " ", COMMENT.sub("", body)))
+        clean = COMMENT.sub("", body)
+        # 한국어는 글자 수로, 영어는 낱말 수로 센다. 같은 뜻의 분량이라도 단위가 다르다.
+        meta["chars"] = (len(clean.split()) if LANG == "en"
+                         else len(re.sub(r"\s+", " ", clean)))
         items.append(meta)
     return items
 
@@ -84,7 +90,7 @@ def clean_body(item, keep_flags=True):
 # ------------------------------------------------------------------ HTML
 
 HEAD_FULL = """<!doctype html>
-<html lang="ko"><head><meta charset="utf-8">
+<html lang="%(lang)s"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,8 +109,8 @@ STYLE = """
 :root{
  --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
  --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
- --serif:"Nanum Myeongjo","Noto Serif KR",Batang,serif;
- --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+ --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
+ --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
  --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
  --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
@@ -232,7 +238,7 @@ def render_html(items, fragment=False, page_numbers=None, out_name=None):
         "body": "\n".join(sections),
         "footer": "%s · %s" % (html.escape(TITLE), html.escape(SERIES)),
     }
-    head = (HEAD_FRAGMENT if fragment else HEAD_FULL) % {"title": TITLE}
+    head = (HEAD_FRAGMENT if fragment else HEAD_FULL) % {"title": TITLE, "lang": LANG}
     page = head + STYLE + (BODY % fields)
     if not fragment:
         page = page.replace('<div class="wrap">', '</head><body><div class="wrap">', 1) + "</body></html>"
@@ -288,7 +294,8 @@ def stat(items):
                                      len(item["checks"]), len(item["todos"])))
     print("-" * 62)
     print("%-40s %8s %5d %5d" % ("합계", format(total, ","), checks, todos))
-    print("\n목표 %s자 대비 %.0f%%" % (format(TARGET, ","), 100.0 * total / TARGET))
+    unit = "낱말" if LANG == "en" else "자"
+    print("\n목표 %s%s 대비 %.0f%%" % (format(TARGET, ","), unit, 100.0 * total / TARGET))
     print("확인 %d건, TODO %d건. 둘 다 0 이어야 발행할 수 있습니다." % (checks, todos)
           if (checks or todos) else "확인·TODO 없음.")
     return 0

@@ -31,9 +31,13 @@ import mdlite
 VOID = re.compile(r"<(br|hr|img|input|meta|source|wbr)([^<>]*?)\s*/?>")
 
 
-OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
+OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
+           "en-teen": "en_teen", "en-teen2": "en_teen2",
+           "book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
            "book-teen2": "book_teen2", "teen2": "book_teen2"}
-ACCENT = {"book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
+ACCENT = {"en-book": "#8A2E2E", "en-book2": "#1F4E5F",
+          "en-teen": "#E85D2F", "en-teen2": "#2E7D52",
+          "book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
           "book-teen2": "#2E7D52", "teen2": "#2E7D52"}
 
 
@@ -108,12 +112,12 @@ CONTAINER = """<?xml version="1.0" encoding="utf-8"?>
 """
 
 OPF = """<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid" xml:lang="ko">
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid" xml:lang="%(lang)s">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:identifier id="bookid">urn:uuid:%(uuid)s</dc:identifier>
     <dc:title>%(title)s</dc:title>
     <dc:creator>%(author)s</dc:creator>
-    <dc:language>ko</dc:language>
+    <dc:language>%(lang)s</dc:language>
     <dc:date>%(date)s</dc:date>
     <meta property="dcterms:modified">%(modified)s</meta>
     <meta refines="#bookid" property="identifier-type" scheme="onix:codelist5">01</meta>
@@ -218,13 +222,21 @@ def make_cover(out_dir, title, subtitle, accent):
     return path
 
 
-SERIES_POS = {"첫째": "1", "둘째": "2", "셋째": "3", "넷째": "4", "다섯째": "5"}
+SERIES_POS = {"첫째": "1", "둘째": "2", "셋째": "3", "넷째": "4", "다섯째": "5",
+              "Book One": "1", "Book Two": "2", "Book Three": "3",
+              "Book Four": "4", "Book Five": "5"}
 
 
 def series_parts(series):
-    """'다섯 칸 시리즈 · 둘째 권' -> ('다섯 칸 시리즈', '2')"""
+    """'다섯 칸 시리즈 · 둘째 권' -> ('다섯 칸 시리즈', '2')
+
+    영어판은 'The Five Boxes Series · Teen Edition, Book Two' 처럼 쓴다.
+    청소년판은 성인판과 다른 총서로 잡아야 서점에서 섞이지 않는다.
+    """
     name, _, tail = series.partition("·")
     name = name.strip() or series.strip()
+    if "Teen Edition" in tail:
+        name = "%s: Teen Edition" % name.replace(" Series", "")
     pos = "1"
     for word, number in SERIES_POS.items():
         if word in tail:
@@ -311,6 +323,7 @@ def build(which):
         "uuid": book_uuid, "title": html.escape(m.TITLE), "author": html.escape(author),
         "date": datetime.now().strftime("%Y-%m-%d"), "modified": now,
         "series_name": html.escape(series_name), "series_pos": series_pos,
+        "lang": getattr(m, "LANG", "ko"),
         "cover_meta": cover_meta, "cover_item": cover_item,
         "manifest": "\n".join(manifest_lines) + "\n",
         "spine": "\n".join(spine_lines),

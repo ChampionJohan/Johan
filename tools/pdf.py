@@ -3,7 +3,7 @@
 
     python3 tools/pdf.py book         # book/site/돈의 해부학.pdf
     python3 tools/pdf.py book2        # book2/site/....pdf
-    python3 tools/pdf.py book-teen    # book-teen/site/....pdf
+    python3 tools/pdf.py en-book      # en-book/site/....pdf (6x9)
 
 book/site/index.html (또는 book-teen/site/index.html) 을 먼저 최신으로 만든 뒤,
 headless 크롬으로 그 화면을 그대로 인쇄해서 PDF 로 저장한다.
@@ -22,7 +22,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 
 
-OVERLAY = {"book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
+OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
+           "en-teen": "en_teen", "en-teen2": "en_teen2",
+           "book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
            "book-teen2": "book_teen2", "teen2": "book_teen2"}
 
 
@@ -48,17 +50,27 @@ def find_chrome():
     return None
 
 
-def render_pdf(html_path, pdf_path):
+# 아마존 인쇄본(KDP)은 6x9인치를 표준으로 쓴다. 한국어판은 그대로 A5.
+TRIM = {
+    "A5": {"format": "A5",
+           "margin": {"top": "16mm", "bottom": "18mm", "left": "14mm", "right": "14mm"}},
+    "6x9": {"width": "6in", "height": "9in",
+            "margin": {"top": "0.75in", "bottom": "0.75in",
+                       "left": "0.75in", "right": "0.6in"}},
+}
+
+
+def render_pdf(html_path, pdf_path, trim="A5"):
     from playwright.sync_api import sync_playwright
 
+    size = dict(TRIM[trim])
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=find_chrome())
         page = browser.new_page()
         page.goto("file://%s" % html_path)
         page.pdf(
             path=pdf_path,
-            format="A5",
-            margin={"top": "16mm", "bottom": "18mm", "left": "14mm", "right": "14mm"},
+            **size,
             print_background=True,
             display_header_footer=True,
             header_template="<span></span>",
@@ -107,7 +119,7 @@ def page_map(pdf_path, items):
     return mapping
 
 
-def to_pdf(m, max_passes=6):
+def to_pdf(m, max_passes=6, trim=None):
     """차례에 쪽 번호를 박아 넣고, 그 번호가 실제 쪽과 맞을 때까지 다시 그린다.
 
     쪽 번호를 넣으면 차례가 길어지고, 차례가 한 쪽 늘어나면 뒤의 모든 쪽이
@@ -118,14 +130,15 @@ def to_pdf(m, max_passes=6):
     html_path = os.path.join(m.SITE, "index.html")
     numbered_html = os.path.join(m.SITE, "index.print.html")
 
-    render_pdf(html_path, pdf_path)
+    trim = trim or getattr(m, "TRIM", "A5")
+    render_pdf(html_path, pdf_path, trim)
 
     items = [i for i in m.load() if not (i["kind"] == "front" and i.get("order") == "0")]
     pages = page_map(pdf_path, items)
 
     for attempt in range(max_passes):
         m.render_html(m.load(), out_name="index.print.html", page_numbers=pages)
-        render_pdf(numbered_html, pdf_path)
+        render_pdf(numbered_html, pdf_path, trim)
         measured = page_map(pdf_path, items)
         if measured == pages:
             break

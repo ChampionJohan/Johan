@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anatomy of Money for Teens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+
+<style>
+:root{
+ --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
+ --accent:#E85D2F;--flagbg:#FBF0D2;--flagink:#6B4E00;
+ --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
+ --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
+:root[data-theme="dark"]{
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+ font-size:17px;line-height:1.95;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:37em;margin:0 auto;padding:0 24px 140px}
+.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.18em;
+ color:var(--muted);text-transform:none}
+
+/* 표제지 */
+.titlepage{padding:120px 0 80px;border-bottom:1px solid var(--rule);margin-bottom:72px;text-align:center}
+.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;color:var(--muted);margin-bottom:36px}
+.titlepage h1{font-size:clamp(2.6rem,9vw,4rem);line-height:1.12;margin:0 0 20px;letter-spacing:-.03em;font-weight:700}
+.titlepage p{margin:0;color:var(--muted);font-size:1.02rem}
+.titlepage .rule{width:56px;height:2px;background:var(--accent);margin:36px auto 0}
+
+/* 차례 */
+nav.toc{margin:0 0 96px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--accent);
+ font-weight:600;margin:28px 0 10px;display:flex;align-items:baseline;gap:12px}
+nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
+nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
+ min-width:2.6em;font-variant-numeric:tabular-nums}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent);outline:none}
+nav.toc .dots{flex:1 1 auto;border-bottom:1px dotted var(--rule);margin:0 2px 3px}
+nav.toc .pg{font-family:var(--sans);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+nav.toc .grp .pg{margin-left:auto}
+
+/* 부 표제지 */
+section.part{margin:0 0 96px;padding:88px 0;border-top:2px solid var(--ink);
+ border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+section.part h1{font-size:2.1rem;margin:0 0 40px;letter-spacing:-.02em;line-height:1.3}
+
+/* 장 */
+section.ch{margin-bottom:112px;scroll-margin-top:16px}
+section.ch>.eyebrow{display:block;margin-bottom:14px}
+section.ch>h1{font-size:1.72rem;line-height:1.4;margin:0 0 44px;letter-spacing:-.01em;
+ padding-bottom:22px;border-bottom:1px solid var(--rule)}
+section.front>h1{font-size:1.5rem;line-height:1.45;margin:0 0 40px;padding-bottom:20px;
+ border-bottom:1px solid var(--rule)}
+
+h2{font-size:1.14rem;margin:56px 0 18px;line-height:1.5;font-weight:600}
+h3{font-size:1rem;margin:38px 0 12px;color:var(--accent);font-weight:600}
+p{margin:0 0 1.35em}
+blockquote{margin:34px 0;padding:6px 0 6px 22px;border-left:3px solid var(--accent);font-size:1.06rem}
+blockquote p{margin:0 0 .5em}
+blockquote p:last-child{margin:0}
+ul,ol{margin:0 0 1.35em;padding-left:1.4em}
+li{margin-bottom:.45em}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+ font-family:var(--sans);line-height:1.65}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto}
+.flag{display:inline-block;background:var(--flagbg);color:var(--flagink);padding:2px 8px;
+ font-size:.78rem;font-family:var(--sans);border-radius:2px;line-height:1.6}
+.flags{margin:24px 0;padding:16px 18px;background:var(--hair);border-left:3px solid var(--accent)}
+.flags .eyebrow{display:block;margin-bottom:10px}
+.flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
+footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
+ font-size:.84rem;font-family:var(--sans);text-align:center}
+@media print{.flags{display:none}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+</style>
+</head><body><div class="wrap">
+<header class="titlepage"><p class="series">The Five Boxes Series · Teen Edition, Book One</p><h1>Anatomy of Money for Teens</h1><p>How Businesses Really Make Money — and How You Can Start</p><div class="rule"></div></header>
+<nav class="toc"><ul><li><span class="no">—</span><a href="#s005">Copyright</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s010">Before You Start</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s020">Opening — Why Is Your Money Always Gone?</a><span class="dots"></span></li>
+<li class="grp">Part One · Learning the Five Boxes</li>
+<li><span class="no">1장</span><a href="#s101">Customer — It&#x27;s Free, So How Is the Company Still Alive?</a><span class="dots"></span></li></ul></nav>
+<section class="front" id="s005"><h1>Copyright</h1><h2>◆ Anatomy of Money for Teens</h2>
+<p><em>How Businesses Really Make Money — and How You Can Start</em> The Five Boxes Series · Teen Edition, Book One</p>
+<p>Copyright © 2026 Jaehyuk Choi All rights reserved.</p>
+<p>No part of this book may be reproduced or transmitted in any form without written permission from the author, except for brief quotations in a review.</p>
+<p>First English edition, 2026. Translated and adapted from the Korean edition 『너 그거 아니? 돈 버는 머리!』</p>
+<p>Company names and brands mentioned in this book are used for the purpose of analysis and commentary. No endorsement or affiliation is implied.</p>
+<p>Every figure in this book is one that could be verified in a public source. Where a number could not be confirmed, it was left out rather than estimated.</p></section>
+<section class="front" id="s010"><h1>Before You Start</h1><h2>◆ What is this book?</h2>
+<p>There's a book for adults called <em>Anatomy of Money</em>. It takes companies apart using <strong>five boxes</strong> to see how they make money.</p>
+<p>This is the <strong>teen edition</strong>. The five boxes are exactly the same. But none of the examples overlap. The adult book has Spotify, Visa, and Berkshire Hathaway in it. This one has free games, dollar stores, delivery apps — things you run into every day.</p>
+<p><strong>So you don't need the adult book. This one teaches you the five boxes on its own.</strong> If you read the adult version later, you'll see the same tool pointed at much bigger companies.</p>
+<h2>◆ How to read this</h2>
+<p><strong>Start at Part One and go in order.</strong> That's where you learn what the boxes are. Skip to Part Two and you'll only half-understand why any of those companies work.</p>
+<p><strong>Part Two you can open anywhere.</strong> Start with a brand you already know.</p>
+<p><strong>Part Three, whenever you feel like it.</strong> Open it when "maybe I should actually try this" crosses your mind.</p>
+<h2>◆ Five words you might not know</h2>
+<p>If a word trips you up, come back here.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Word</th><th>What it means</th></tr></thead><tbody><tr><td>Customer</td><td>Not the person using it — <strong>the person paying</strong></td></tr><tr><td>Value</td><td>Not the thing itself, but the annoyance the thing removes</td></tr><tr><td>Payment</td><td><strong>How</strong> the money is collected, and <strong>when</strong></td></tr><tr><td>Moat</td><td>The ditch dug around a castle to keep attackers out. Companies have them too</td></tr><tr><td>Fault line</td><td>The place where that ditch starts to crack</td></tr></tbody></table></div></div>
+<p>Don't memorize them. They get explained again as they come up.</p>
+<h2>◆ Can you trust the numbers?</h2>
+<p>Every company figure in this book is one that could be checked. Anything that couldn't be verified isn't in here at all. There is no "probably about right" in this book.</p>
+<h2>◆ There's a second book</h2>
+<p>The next one is <strong>Anatomy of Money for Teens II — I Started, So Why Isn't It Working?</strong></p>
+<p>This book is the one that gets you started. The second one is the one that keeps you from quitting.</p>
+<p>You'll learn all five boxes from this book alone, though.</p></section>
+<section class="front" id="s020"><h1>Opening — Why Is Your Money Always Gone?</h1><h2>◆ Where did last month's money go?</h2>
+<p>Count it up. Snacks, delivery apps, game items, coffee.</p>
+<p>Got a number? Now let me ask it the other way around.</p>
+<p><strong>Which companies did that money go to?</strong></p>
+<p>A convenience store chain. A delivery app. A game studio. A coffee brand.</p>
+<p>All different companies. And every single one of them <strong>is better at money than you are.</strong></p>
+<h2>◆ So why are you always broke?</h2>
+<p>Simple. They know something you don't.</p>
+<p>Know what? <strong>Five questions.</strong></p>
+<p>Every company that's good at money has an answer to all five. And every shop that closed, every app that disappeared, got stuck on one of them.</p>
+<blockquote><ol><li>Who actually pays?</li><li>What are they paying for?</li><li>How and when does the money arrive?</li><li>Why hasn't anyone taken this yet?</li><li>Where does it break?</li></ol></blockquote>
+<h2>◆ What do I get out of this?</h2>
+<p>Three things.</p>
+<p><strong>One, you start seeing companies.</strong> Why that app is free. Why that shop only takes cards. Why that brand isn't opening more locations.</p>
+<p><strong>Two, you start seeing your own money.</strong> You can follow what you spent and watch where it grows.</p>
+<p><strong>Three, these five boxes follow you everywhere.</strong> Part-time job, your own business, a job at a company — same five.</p>
+<p>Plenty of adults never learn this. They work somewhere for years without knowing how the place actually makes its money.</p>
+<p><strong>You're learning it now.</strong> That puts you a step ahead of them.</p>
+<p>Part One takes the boxes one at a time.</p>
+<p>And we start with something you probably did today. <strong>A free game.</strong></p></section>
+<section class="part" id="s100"><h1>Part One · Learning the Five Boxes</h1><h2>◆ Six chapters, six examples</h2>
+<p>Part One is six chapters. Each one teaches you a box using something you run into all the time.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Chapter</th><th>Box</th><th>Example</th></tr></thead><tbody><tr><td>1</td><td>Customer</td><td>A free mobile game</td></tr><tr><td>2</td><td>Value</td><td>A dollar store</td></tr><tr><td>3</td><td>Payment</td><td>A prepaid phone card</td></tr><tr><td>4</td><td>Moat</td><td>A delivery app</td></tr><tr><td>5</td><td>Fault line</td><td>An app that was huge and then vanished</td></tr><tr><td>6</td><td>Diagnosis</td><td>Your favorite YouTube channel</td></tr></tbody></table></div></div>
+<p>By the end of Chapter 6 the five boxes will feel automatic.</p>
+<p>Then Part Two points them at ten real brands.</p></section>
+<section class="ch" id="s101"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 1 · Customer — It&#x27;s Free, So How Is the Company Still Alive?</h1><h2>◆ You haven't paid a cent</h2>
+<p>There's a game on your phone right now. The download was free. You've pulled for characters, cleared some stages. And you've paid nothing.</p>
+<p>So how does that company cover its servers, pay its staff, and still buy ads?</p>
+<p><strong>Here's the answer: you're not the customer.</strong></p>
+<h2>◆ Then who is?</h2>
+<p><strong>Somebody else playing the same game.</strong> Specifically, <strong>somebody who spends.</strong></p>
+<p>Say thirty people in your grade play it. Twenty-seven of them play free, like you. Three of them spend money pulling for characters.</p>
+<p>To the company, those three are the real customers. You and the other twenty-six aren't customers. <strong>You're closer to being the product.</strong></p>
+<h2>◆ Wait — I'm the product?</h2>
+<p>Yeah. For two reasons.</p>
+<p><strong>One, the game is only fun because you're in it.</strong> A game you play with people beats a game you play alone. You log in, you fill up the leaderboard, you take matches, you talk in chat — and that's why those three keep spending.</p>
+<p><strong>Two, what you do gets sold as ad data.</strong> Which games you play and for how long, which ads you tapped. That's information an advertising company will pay for.</p>
+<h2>◆ What if the spenders stop?</h2>
+<p>The game dies. Genuinely.</p>
+<p>If those three stop spending, the servers stop getting paid for. Then comes the notice about the service shutting down, and the game is gone.</p>
+<p><strong>So the thing that actually matters in a free game is why those three spend.</strong> Not wanting to lose to anyone. Liking how the character looks. Wanting the top spot.</p>
+<p>That reason is the second box — <strong>Value</strong> — and it's the next chapter.</p>
+<h2>◆ This isn't only about games</h2>
+<p>YouTube is the same. You watch free; advertisers pay. A map app is the same. You use it free; the businesses on it pay to be seen.</p>
+<p><strong>Anything that looks free is being paid for by somebody else.</strong></p>
+<p>Finding that somebody is Box One.</p>
+<h2>◆ Try It Yourself</h2>
+<p>Pick one free app you used today. Game or not, doesn't matter.</p>
+<p>Find exactly one way it makes money. Ads? Selling items? Subscriptions?</p>
+<p>Found it? Then one more. <strong>What did you supply instead of money?</strong> Time on the app? Or a friend you brought in?</p>
+<p>Once you can answer that, you know what you earned for that app today.</p>
+<p>That's Box One.</p></section>
+<footer class="book">Anatomy of Money for Teens · The Five Boxes Series · Teen Edition, Book One</footer>
+</div>
+</body></html>
