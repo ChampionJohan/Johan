@@ -14,6 +14,8 @@ m.SUBTITLE = "How Businesses Really Make Money — and How You Can Start"
 m.SERIES = "The Five Boxes Series · Teen Edition, Book One"
 m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"
+# 영문은 자간을 넓히면 낱말이 흩어져 보인다
+m.STYLE = m.STYLE.replace("--track:.16em;", "--track:.06em;")
 m.TRIM = "6x9"
 m.TARGET = 11000  # 낱말 수 기준
 m.STYLE = m.STYLE.replace("--accent:#8A2E2E;", "--accent:#E85D2F;")

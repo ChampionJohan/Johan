@@ -18,6 +18,8 @@ m.SUBTITLE = "How to Take Any Business Apart in Five Boxes"
 m.SERIES = "The Five Boxes Series · Book One"
 m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"
+# 영문은 자간을 넓히면 낱말이 흩어져 보인다
+m.STYLE = m.STYLE.replace("--track:.16em;", "--track:.06em;")
 m.TRIM = "6x9"
 m.TARGET = 46000  # 낱말 수 기준
 

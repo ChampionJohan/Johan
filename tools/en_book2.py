@@ -18,6 +18,8 @@ m.SUBTITLE = "Moats, Fault Lines, and How to Build One That Lasts"
 m.SERIES = "The Five Boxes Series · Book Two"
 m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"
+# 영문은 자간을 넓히면 낱말이 흩어져 보인다
+m.STYLE = m.STYLE.replace("--track:.16em;", "--track:.06em;")
 m.TRIM = "6x9"
 m.TARGET = 44000  # 낱말 수 기준
 

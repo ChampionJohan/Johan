@@ -144,12 +144,12 @@ closest category match — the chapter is teaching a mechanism.
 | 8 | 넷플릭스 | **Netflix** | Global. Unchanged. |
 | 9 | 배달의민족 | **DoorDash** | Takes a cut, cooks nothing |
 | 10 | 컴포즈커피 | **Dunkin'** | Cheap coffee that still profits — and it sets up the Starbucks contrast in Ch 13, which was the point of the Korean pairing |
-| 11 | 무신사 | **StockX** | Marketplace that became #1 without making the product |
+| 11 | 무신사 | **Etsy** | Hosts small makers, does the photos/marketing/shipping they can't, takes a commission, and risks them leaving once they're big — every beat of the Korean chapter. (My first table said StockX. Wrong: StockX is peer resale, and Ch 7 already covers resale.) |
 | 12 | 마인크래프트 | **Roblox** | Better fit than Minecraft for *earning money inside a game* — Roblox actually pays creators |
 | 13 | 스타벅스 | **Starbucks** | Global. Unchanged. |
 | 14 | 쿠팡 | **Amazon** | Next-day delivery built on owned logistics |
 | 15 | 유튜브 | **YouTube** | Global. Unchanged. |
-| 16 | 당근 | **OfferUp** | Local secondhand, minimal margin |
+| 16 | 당근 | **Facebook Marketplace** | Free for individuals with no commission, money comes from advertising, and it has a real "Free" section — which is the chapter's actual lesson. (First table said OfferUp. Corrected: 당근's moat is *address-verified neighborhood*, which no US app replicates, so the moat is re-described honestly as "everyone nearby is already there, and you can see who you're dealing with" rather than inventing a feature.) |
 
 **Four of ten stay.** That is the right ratio — enough global anchors that the
 book doesn't read as regional, enough substitution that every chapter lands.

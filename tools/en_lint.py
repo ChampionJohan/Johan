@@ -32,6 +32,14 @@ AUX = (r"(?:is|are|was|were|do|does|did|can|could|will|would|should|shall|"
 SUBJ = r"(?:i|you|we|they|it|he|she|this|that|there|those|these)"
 ASK = re.compile(r"^(?:(?:who|what|when|where|why|how|which|whose)\s+%s\b|%s\s+%s\b)"
                  % (AUX, AUX, SUBJ), re.I)
+# 수 일치가 안 맞으면 의문문이 아니라 명령문이다.
+# "Do it long enough..." 는 명령문이고, 의문문이라면 "Does it ..." 이 된다.
+MISMATCH = re.compile(r"^(?:do|don't|have|haven't|are|aren't|were|weren't)\s+"
+                      r"(?:it|he|she|this|that)\b", re.I)
+
+
+def is_question(sentence):
+    return bool(ASK.match(sentence)) and not MISMATCH.match(sentence)
 ENDS = ".!?:—…\"')"
 
 
@@ -81,7 +89,7 @@ def check(path):
             found.append((n, "종결 부호 없음", text[-52:]))
         for sentence in re.split(r"(?<=[.!?])\s+", text):
             s = sentence.strip()
-            if s.endswith(".") and ASK.match(s):
+            if s.endswith(".") and is_question(s):
                 found.append((n, "물음표여야 한다", s[:60]))
         if text.count("!") > 2:
             found.append((n, "느낌표가 한 문단에 셋 이상", text[:60]))

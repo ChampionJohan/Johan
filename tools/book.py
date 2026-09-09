@@ -109,6 +109,7 @@ STYLE = """
 :root{
  --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
  --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
+ --track:.16em;
  --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
  --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -121,12 +122,12 @@ STYLE = """
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
  font-size:17px;line-height:1.95;word-break:keep-all;-webkit-font-smoothing:antialiased}
 .wrap{max-width:37em;margin:0 auto;padding:0 24px 140px}
-.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.18em;
+.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:var(--track);
  color:var(--muted);text-transform:none}
 
 /* 표제지 */
 .titlepage{padding:120px 0 80px;border-bottom:1px solid var(--rule);margin-bottom:72px;text-align:center}
-.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:.2em;color:var(--muted);margin-bottom:36px}
+.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:var(--track);color:var(--muted);margin-bottom:36px}
 .titlepage h1{font-size:clamp(2.6rem,9vw,4rem);line-height:1.12;margin:0 0 20px;letter-spacing:-.03em;font-weight:700}
 .titlepage p{margin:0;color:var(--muted);font-size:1.02rem}
 .titlepage .rule{width:56px;height:2px;background:var(--accent);margin:36px auto 0}
@@ -134,7 +135,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
 /* 차례 */
 nav.toc{margin:0 0 96px}
 nav.toc ul{list-style:none;margin:0;padding:0}
-nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:.16em;color:var(--accent);
+nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:var(--track);color:var(--accent);
  font-weight:600;margin:28px 0 10px;display:flex;align-items:baseline;gap:12px}
 nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
 nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
@@ -204,7 +205,8 @@ def render_html(items, fragment=False, page_numbers=None, out_name=None):
         if item["kind"] == "part":
             rows.append('<li class="grp">%s%s</li>' % (html.escape(item["title"]), pg_html))
             continue
-        no = (item["no"] + "장") if item["no"] else "—"
+        chapter_mark = "" if LANG == "en" else "장"
+        no = (item["no"] + chapter_mark) if item["no"] else "—"
         label = item["title"].split(" · ", 1)[-1] if item["no"] else item["title"]
         rows.append('<li><span class="no">%s</span><a href="#%s">%s</a><span class="dots"></span>%s</li>'
                     % (html.escape(no), item["slug"], html.escape(label), pg_html))
