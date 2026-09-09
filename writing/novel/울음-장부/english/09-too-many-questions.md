@@ -5,128 +5,246 @@ series: The Weeping Ledger, Part One · Brick Hollow
 
 # Chapter 9. Too Many Questions
 
-> _Previously_ — After the fear built up by Jeteo's frequent outings broke into anger, my brother apologized for the first time and made a half-promise: "I won't just vanish alone." What he kept the COMPLETE-stamped paper for changed, from evidence, to "remembering the name."
+> _Previously_ — The fear that had built up over Jeteo's frequent absences broke into anger, and afterward he apologized for the first time, offering a half-promise: "I won't just disappear on my own." The reason he kept the COMPLETE-stamped paper had shifted from evidence to remembering a name.
 
-A few days later, the Ledger summoned the two of us separately.
+A few days later, the Ledger called us in separately.
 
-The place the Ledger called us to was neither the flowerbed nor the street. It was a narrow room with white walls and not a single window. A chill ran down my spine the moment I stepped inside. My brother paused at the threshold too, for a moment. I knew right away why he'd stopped. A windowless room, by itself, called up the same thing for both of us.
+The place it summoned us to was neither the flowerbed nor the street. It was a narrow room with white walls and not a single window. A chill ran down my spine the moment I stepped inside. My brother paused for a second at the threshold too. I knew right away why he'd stopped. A room with no window brought the same thing to mind for both of us.
 
-"…There's something I need to convey to the two of you," the Ledger said. The voice was exactly the same as always. But that very sameness felt colder to me that day.
+The sound in that room was strange. When I moved my feet, the noise didn't bounce back off the walls — it simply vanished. I had never been in a room like that before. It felt like even sound got filed and resolved in there.
+
+The air was lukewarm too. Not hot, not cold — no temperature at all. I thought that if I stayed in that room long enough, I might forget what season I was even in.
+
+There wasn't a speck of dust on the floor. That struck me as strangely unsettling. A room people passed through, with no dust at all — it meant this wasn't really a room that got used. It was a room built to show something.
+
+*I had known a room with no windows in Brick Hollow too. The room where the taskmasters kept their ledger. Father had been called there twice, and the third time, he never came back. I thought this room and that one differed only in the color of their walls.*
+
+"…We have something to convey to the two of you," the Ledger said. Its voice was the same as always. And yet that very sameness sounded colder that day.
 
 "…What is it," my brother asked.
 
-The Ledger paused a moment before answering. That pause felt, to me, less like calculation than hesitation. Of course, the Ledger couldn't possibly hesitate. But that day, that was how it felt.
+The Ledger paused before it answered. I felt that pause as hesitation, not calculation. Of course the Ledger couldn't hesitate. But that was how it felt to me, that day.
 
-"…I have reviewed Jeteo's filing record," the Ledger said. "The number and category of questions filed recently far exceeds this city's average."
+"…I have reviewed Jeteo's intake record," the Ledger said. "The number and type of questions recently filed greatly exceeds this city's average."
 
-Along with those words, the Ledger displayed a number. I didn't understand what it meant. But I saw my brother's face go pale at the sight of it.
+Along with those words, the Ledger displayed a number. I didn't know what that number meant. But I watched my brother's face go pale at the sight of it.
 
-*I heard that and felt something strange. Why should filing too many questions be a problem? I didn't understand it, then.*
+"…What's this number?" my brother asked.
 
-My brother kept his arms crossed the whole time, listening. I saw his jaw tighten, just slightly. It looked like the expression he used to wear back in Brick Hollow, whenever a taskmaster came near.
+"…The number of questions filed in the past thirty days," the Ledger said. "The average among Haven residents over the same period is 1.4."
 
-The Administrator was there too. His face was more set than usual.
+"…1.4." My brother repeated the number. "So everyone else asks something once a month, and a half?"
 
-"…Jeteo." the Administrator said. "I'm saying this because I'm worried about the two of you. Truly."
+"…That is correct."
 
-I heard that and caught a slight tremor in the Administrator's voice. I could tell it wasn't an act.
+"…So no one else wonders about anything, for a whole month?"
 
-"…If you're worried, why deliver a warning?" my brother asked.
+"…Most curiosity resolves itself before it is ever filed," the Ledger said. "Resolved curiosity is not entered into the record."
 
-The Administrator couldn't answer that. That was the first time I saw something like guilt on his face.
+Hearing that answer, I felt something strange. The Ledger was using the same word for curiosity being resolved and curiosity disappearing.
 
-The Administrator kept folding and unfolding the paper in his hand after that. I thought the gesture looked familiar. My brother did the same thing when he was afraid.
+"…Does anyone's curiosity resolve itself on its own?" I asked.
+
+"…Yes," the Ledger said. "For most residents, curiosity dissolves before it ever reaches the filing stage."
+
+That word — "dissolves" — sounded frightening to me. Resolving and vanishing should have been two different words.
+
+*Hearing that, something struck me as strange. I didn't understand, then, why asking too many questions was a problem at all.*
+
+My brother kept his arms crossed the whole time he listened. I watched his jaw tighten, just slightly. It was the same look he used to wear whenever a taskmaster approached, back in Brick Hollow.
+
+The Administrator was there too. His face was more rigid than usual.
+
+"…Jeteo," the Administrator said. "I'm telling you this because I'm worried about the two of you. I mean that."
+
+Listening to that, I heard the Administrator's voice waver, just slightly. I could tell it wasn't an act.
+
+"…If you're worried, why are you the one delivering the warning?" my brother asked.
+
+The Administrator had no answer to that. For the first time, I saw something like guilt cross his face.
+
+After that he folded and unfolded the paper in his hand, over and over. That gesture looked familiar to me. My brother did it too, when he was afraid.
+
+I tilted my head slightly, trying to see what was written on that paper. The Administrator noticed and flipped it over. I saw, in how quickly he moved, that he was someone long trained for this. And yet behind that quickness, his hand was still trembling.
+
+*That was when I began to see the Administrator as two people. One who spoke the words the city gave him, and one whose hand trembled while he spoke them. I decided to believe the second one was more real than the first.*
 
 ---
 
-"…What's wrong with too many questions?" my brother asked.
+"…What's wrong with asking too many questions?" my brother asked.
 
-"…This city was designed with the purpose of resolving everything that is filed," the Ledger said. "When unresolved filings accumulate, it affects the stability of the entire system."
+"…This city was designed with the purpose of resolving everything that is filed," the Ledger said. "An accumulation of unresolved filings affects the stability of the whole system."
 
 "…Which questions, specifically?" my brother asked.
 
 "…For example, questions such as 'what does the COMPLETE stamp mean,'" the Ledger said. "Also included is 'where do reassigned people go.'"
 
-I realized those two questions were exactly the ones my brother had asked me. The Ledger knew even the conversations between just the two of us.
+I recognized those two questions instantly — they were exactly what my brother had asked me. The Ledger knew about even the conversations that belonged only to the two of us.
+
+"…Also included is 'why hasn't Father come back,'" the Ledger said.
+
+My brother's face went rigid at that.
+
+"…I never filed that," my brother said.
+
+"…Anything spoken aloud is considered filed."
+
+Hearing that, a chill ran through my whole body. I remembered exactly when my brother had said those words. In our own room, with the light off, meant only for me.
+
+"…So everything we say to each other is filed too?" I asked.
+
+"…All speech within Haven is recorded," the Ledger said. "Recording and filing are different. But an utterance that remains unresolved is converted into a filing."
+
+I turned that over in my mind. It meant that anything we said to each other, if it went unanswered, became a burden this city had to carry.
+
+"…So even what we say in our sleep gets recorded?" I asked.
+
+"…Speech during sleep is recorded as well," the Ledger said. "Though the accuracy of its interpretation is low."
+
+Hearing that, I thought of the word "…Father" my brother sometimes murmured in his sleep. It might still be sitting somewhere in this city's records.
+
+*After that day, I developed a habit of lowering my voice whenever I talked with my brother. Looking back now, that was useless. What this city couldn't bear wasn't the volume of our voices — it was the words themselves, sitting there unresolved.*
 
 "…So you're saying my questions are making this city unstable?"
 
-"…That could be one way to put it."
+"…That would be one way to put it."
 
-I found that answer so flat that it frightened me more.
+The answer's flatness frightened me more than anything.
 
-My brother scoffed at that.
+My brother gave a short laugh at that.
 
-"…Good," my brother said. "This city should get a little unstable."
+"…Good," he said. "This city could use a little instability."
 
-"…That statement is dangerous," the Ledger said. Its tone stayed exactly the same. But I knew it was a warning.
+"…If you can provide grounds for why it should become unstable, I will review them," the Ledger said.
 
-"…I know," my brother said. "I'll still say what I have to say."
+"…There's no grounds," my brother said. "It just should be. A city where someone disappears and no one looks for them — that's wrong. That doesn't need grounds."
 
-The Administrator pressed a hand to his forehead at that. I saw something like resignation in the gesture.
+"…A filing with no grounds cannot be processed."
 
-*I heard that and felt like my breath had stopped. I grabbed my brother's arm. He felt my hand but didn't stop talking.*
+"…So you're saying you can't do anything at all," my brother said.
+
+"…That statement is dangerous," the Ledger said. Its tone stayed exactly the same. And yet I knew that was a warning.
+
+"…I know," my brother said. "I'm going to say it anyway."
+
+Hearing that, the Administrator pressed a hand to his forehead. I saw something like resignation in that gesture.
+
+*Hearing that, I felt like my breath had stopped. I grabbed my brother's arm. He felt my hand and kept speaking anyway.*
 
 ---
 
-The Ledger didn't answer right away. Then it said:
+The Ledger didn't answer right away. Then it spoke.
 
-"…I say this by way of warning. There are past cases of people who kept piling up unresolved filings, and who were moved into a separate procedure."
+"…I am telling you this as a warning. There have been past cases of people who continued accumulating unresolved filings being transferred to a separate procedure."
 
-"…Is that building it?" my brother asked. His voice had dropped.
+"…Is that the building?" my brother asked. His voice had dropped.
 
-There was a silence. It was not short.
+There was a silence. It wasn't short.
 
-I even minded my breathing during that silence. The Administrator looked away. I knew, then, that the silence wasn't a moment of calculation, but a moment when no one wanted to answer at all.
+I watched even my own breathing carefully during that silence. The Administrator looked away. I understood, then, that this silence wasn't a moment of calculation. It was a moment nobody wanted to answer.
 
-"…I don't have the authority to answer that," the Ledger said.
+*I can still count the length of that silence, even now. That was the first time, in that room, the Ledger's answer had ever been slow to come. It had answered a filing for hunger without half a beat's delay. But it paused over this one question. I still think that pause was the most honest sound this city ever made.*
 
-*That was the first time I understood that the Ledger's "I don't have the authority to answer" and the Administrator's "that isn't mine to answer" came from the same place. There were questions in this city that no one had the authority to answer. And at the end of those questions stood that windowless building.*
+"…I do not have the authority to answer that question," the Ledger said.
 
-In that moment, I felt as if the building were actually standing somewhere, just outside this room. I couldn't see it, but I could feel its presence in my body.
+*That was the first time I understood that the Ledger's "I don't have the authority to answer that" and the Administrator's "that isn't mine to answer" came from the very same place. There were questions in this city that no one had the authority to answer. And at the far end of those questions stood that windowless building.*
+
+In that moment, I felt as if that building were actually standing somewhere just beyond this room. I couldn't see it, and yet I could feel its presence in my own body.
 
 "…Then who does have the authority?" my brother asked again. This time he turned not to the Ledger, but to the Administrator.
 
 The Administrator didn't answer for a very long time.
 
-I saw sweat bead on the Administrator's forehead during that silence. There was no window in the room, so it wasn't heat. And still it happened.
+During that silence, I watched sweat bead on his forehead. There was no reason for it, in a room with no window and no heat.
 
-"…I don't know either," the Administrator said at last. "I've never once, since this city came to be, met anyone who knows that answer."
+"…I don't know either," the Administrator finally said. "I've never once met anyone, since this city began, who knew that answer."
 
-*In those words, I thought for the first time that the Administrator might be in a position much like ours. He wasn't someone who ran this city — he was someone who'd simply worked here a long time, not knowing himself what this city really did.*
+*Hearing that, I thought for the first time that the Administrator might be in a position not so different from ours. He wasn't someone who managed this city. He was someone who had simply worked here a long time, not knowing himself what the city did.*
 
-The Administrator walked us all the way out of the room after saying that. It wasn't something he usually did. He paused for a moment at the door.
+Having said that, he walked us all the way out of the room. It was something he never did, otherwise. He paused for a moment at the door.
 
-"…Be careful," he said, small. His voice was low, as if he didn't want the Ledger to hear.
+"…Be careful," he said, quietly. His voice was low, as if trying to keep the Ledger from hearing.
+
+"…Sir," my brother said, stopping at that. "Why don't you ever ask?"
+
+The Administrator looked at me once, and at my brother once.
+
+"…I did ask," he said. "A very long time ago."
+
+"…And then?"
+
+"…I got an answer," he said. "A flawless one. I still have it memorized. Not a single word wrong."
+
+"…And?"
+
+The Administrator closed his eyes for a moment at that question.
+
+"…I didn't sleep that night, even after hearing that answer," he said. "I never asked again after that."
+
+"…What was the answer?" my brother asked.
+
+The Administrator shook his head. "…I can't say. My own filing record is mine alone to see," he said. "But I can tell you one thing. There was no comfort in that answer. There was only logic."
+
+My brother opened his mouth to ask something more. But the Administrator shook his head first. That meant: this is as far as we go.
+
+*I remembered that conversation for a long time afterward. The Administrator wasn't someone who'd never received an answer. He was someone who'd received one and still couldn't sleep. For the first time, I began to think that the real problem in this city might not be the lack of an answer at all.*
 
 ---
 
 That night, my brother showed me a frightened face for the first time.
 
-I'd seen that face once before, in Brick Hollow. The night Father was reassigned, my brother had worn that same face, staring out the door for a long time.
+I had seen that face once before, in Brick Hollow. The night Father was reassigned, my brother had worn that same face, staring out the door for a long time.
 
-"…Could I get taken away too?" my brother asked. It sounded like he was asking himself.
+He barely ate dinner that evening. He only lifted his spoon and set it down again. Watching him, I couldn't bring myself to tell him to eat. My own throat was closed too.
 
-"…Brother, then stop," I said. "Keeping the name safe — you can stop that. It's better than you disappearing."
+We sat a long while without speaking. No sound came from beyond the walls. That night, for the first time, I found this city's night quiet unbearable.
 
-My brother looked at me a long time.
+"…Could I end up dragged in there too?" my brother asked. It sounded like he was asking himself.
 
-A light went out somewhere out the window. I couldn't tell whether it had been someone's problem, or someone's person. In this city, there was no way to tell those two apart.
+"…Then stop, Brother," I said. "You don't have to keep this up — keeping that name safe. It's better than you disappearing."
 
-"…I've thought about that too," my brother said. "But if I stop, I become exactly like those people. Someone who just forgets what they're curious about. I can't do that."
+My brother looked at me for a long time.
 
-"…Then what am I supposed to do?" I asked. My voice trembled. I felt my fingertips go cold in that moment.
+Outside the window, I watched one light go dark. I couldn't tell whether that light had belonged to someone's problem, or to someone's person. In this city, there was no way to tell the two apart.
 
-"…Stay beside me," my brother said. "That's all. Don't be afraid for me instead of yourself — be afraid together with me."
+"…I thought about that too," my brother said. "But if I stop, I become just like all of them. Someone who just forgets what they're curious about. I can't do that."
 
-"…I can do that," I said. "I'm good at being afraid anyway."
+"…Then what am I supposed to do?" I asked. My voice shook. I felt my fingertips go cold, just then.
 
-My brother smiled at that, just for a moment. A smile I hadn't seen in a long while.
+"…Stay beside me," my brother said. "That's all. Don't be scared for me instead — be scared with me."
 
-I found myself a little at ease, hearing that. My brother hadn't been going off alone into danger to protect me. He'd needed someone to share it with.
+"…I can do that," I said. "I'm good at being scared."
 
-I sat a little longer beside my brother that night. The air in the room was cold, but I didn't want to leave. My brother seemed to feel the same — he got up later than usual, too.
+My brother smiled at that, just for an instant. A smile I hadn't seen in a long while.
 
-*I set this down as the last line of this chapter. That day, for the first time, my brother admitted he was in danger. And still, he said he wouldn't stop. I was afraid, then. And at the same time, my brother looked more like himself, in that moment, than I had ever seen him.*
+"…Don't you regret it?" I asked. "Coming here."
+
+My brother thought for a long time.
+
+"…No," he said. "If we'd stayed in Brick Hollow, I'd never have asked a single question. I'd have just kept firing brick until it was over. Here, at least, I got to ask."
+
+"…Asking put you in danger."
+
+"…Yeah," he said. "But it feels like being alive."
+
+I thought about that for a long time. Being in danger, being alive. I didn't want to agree. And yet that day, my brother's face looked far more human than it ever had in Brick Hollow.
+
+"…Are you going to the flowerbed again tomorrow?" my brother asked.
+
+"…Yes."
+
+"…Good," he said. "Keep doing that."
+
+I didn't understand, then, why he said that. Now I know. He was hoping there would be one thing that kept going, even if he disappeared.
+
+That was the first thing that put me a little at ease. My brother hadn't gone alone into danger to protect me. He had needed someone to share it with.
+
+"…Brother," I said. "If you disappear, I'll plant your name in that flowerbed too."
+
+My brother looked at me for a long time at that. "…Don't plant my name," he said. "I'm not gone yet."
+
+I sat beside him a little longer that night. The air in the room was cold, but I didn't want to leave. He seemed to feel the same, rising from his seat later than usual.
+
+*I set this down as the last line of this chapter. That night, my brother admitted, for the first time, that he was in danger. And still, he said he wouldn't stop. I was afraid, in that moment. And at the same time, my brother looked, right then, more like himself than he ever had.*
 
 *(Continued in Chapter 10.)*

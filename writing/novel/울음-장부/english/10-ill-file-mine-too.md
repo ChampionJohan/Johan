@@ -5,134 +5,244 @@ series: The Weeping Ledger, Part One · Brick Hollow
 
 # Chapter 10. I'll File Mine Too
 
-> _Previously_ — The Ledger warned that Jeteo's filing record had exceeded the city's average: "There are past cases of people who kept piling up unresolved filings, and who were moved into a separate procedure." Even the Administrator admitted he'd never once met anyone who knew that answer. Jeteo acknowledged the danger, and chose not to stop.
+> _Previously_ — The Ledger warned Jeteo that his filing record had exceeded the city average: "There have been past cases of people who continued accumulating unresolved filings being transferred to a separate procedure." Even the Administrator admitted he'd never once met anyone who knew that answer. Jeteo acknowledged the danger and chose not to stop.
 
-After that, I checked every night whether my brother had fallen asleep.
+After that day, I began checking every night whether my brother had fallen asleep.
 
-I'd walk on tiptoe to his door and listen for a light leaking through the crack, for the sound of paper turning. In that hour, even my own heart went quiet along with his.
+I would walk on tiptoe to his door and listen — for light seeping through the gap, for the sound of paper turning. My own heart went quiet along with the listening.
 
-Sometimes I'd crack the door open, just a little. My brother usually pretended to be asleep. I could tell it was pretend from his breathing.
+Sometimes I'd crack the door open, just slightly. Most of the time he was only pretending to sleep. I could tell from his breathing that it was pretense.
 
-On the surface, my brother looked as though he'd stopped. He didn't go near that building anymore. But I knew. He still took that paper out every single night.
+Sometimes he really was asleep. On those nights his breath came long and even. I'd listen to that sound for several minutes before going back to my own room.
 
-The sprout at the flowerbed kept growing all through that time. It had three leaves now. Every time I watered it, I counted those leaves, and little by little pushed my worry over my brother aside.
+I couldn't tell whether that checking was for his sake or mine. He knew I came, and never once said anything about it. I decided that was his own way of allowing it.
 
-*That was when I decided to do something. If my brother couldn't stop, I thought I had to take on some of that danger in his place.*
+On the surface, he seemed to have stopped. He hadn't gone near that building again. But I knew. He still took that paper out to look at, every single night.
 
-I hesitated for days even after making that decision. I was afraid. But watching my brother carry that whole weight alone frightened me more.
+Meanwhile the sprout in the flowerbed kept growing. It had three leaves now. Every time I watered it, I counted those leaves, and little by little pushed my worry for my brother aside.
 
-I asked the man at the flowerbed too — whether it was all right to do this, whether my being afraid too would even help.
+The sprout had grown to about the length of my little finger. Its stem was still thin, so it bent briefly when I watered it, then slowly stood straight again. I loved watching it stand back up.
 
-The dew hadn't dried yet that morning. I touched a leaf with my fingertip. It was cold.
+I began scratching a small mark into the dirt with my finger to track how far the stem had come the day before. Every next day, that mark was always erased. This city tidied even the dirt overnight. That made me angry.
 
-"…It might not help," he said. "But it'll be better than leaving him alone. Sharing something frightening doesn't make it disappear. It just means you're not alone with it."
+After that I started leaving a small pebble instead of a mark. The pebble couldn't be erased. I developed the habit of checking every day whether it had been moved. It never moved, not once.
 
-"…Have you ever done that?" I asked. "Shared something frightening with someone."
+*Around then I decided to do something. If my brother couldn't stop, I thought, then I had to take my share of the danger too.*
 
-He looked at me for a moment. Instead of answering, he took a handful of dirt and let it fall.
+Even after deciding that, I hesitated for several days. I was scared. But watching my brother carry that weight alone frightened me more.
 
-"…A very long time ago," he said. That was all. I didn't press him further. Some answers, I felt, were meant to be received exactly that much and no more.
+I asked the man at the flowerbed too — whether it was all right to do this, whether my being scared too would even help.
 
-*I heard that and my resolve only grew firmer. I didn't know it, then — that when he said those words, he was speaking, a little, of himself as well.*
+That morning the dew hadn't dried yet. I touched a leaf with my fingertip. It was cold.
+
+"…It might not help," he said. "But it'll be better than leaving him alone. Sharing something frightening doesn't make the fear go away. It just keeps him from being alone with it."
+
+"…Has that ever happened to you?" I asked. "Sharing something frightening with someone."
+
+He looked at me for a moment. Instead of answering, he took a handful of dirt and let it fall again.
+
+"…A very long time ago," he said. That was all. I didn't press further. Some answers seemed right to receive just that far and no more.
+
+"…But, sir," I asked again. "If you share something scary, doesn't it make the other person scared too? Isn't that a bad thing?"
+
+He smiled, just a little. It wasn't a sad smile.
+
+"…Fear doesn't spread," he said. "What spreads is the feeling of being alone. Sharing something frightening doesn't shrink the fear — it just shrinks that feeling of being alone."
+
+"…So it's all right to share it?"
+
+"…It's all right," he said. "But remember one thing. The one sharing is just as scared as the one receiving. Your brother not telling you wasn't because he wasn't afraid."
+
+"…Then why didn't he tell me?" I asked.
+
+"…Because he's clumsy at the way he cares for you," he said. "Bearing something frightening together, and bearing it alone — both are ways of loving. I don't know myself which one's better."
+
+Hearing that, my brother's face came to mind. Until then I'd thought he simply saw me as too young to tell. That wasn't it at all.
+
+*Hearing that, my resolve grew firmer. I didn't know, then, that he was also, a little, talking about himself when he said those words.*
 
 ---
 
-I went to find the Ledger by myself.
+I went to the Ledger alone.
 
-The walk there felt unusually long. I opened and closed my hand a few times as I walked. This was the first time I'd faced anything in this city without my brother beside me. My own footsteps sounded unusually loud.
+The walk to that room felt unusually long. I opened and closed my hands several times as I walked. It was the first time I'd ever faced anything in this city without my brother. My footsteps sounded unusually loud.
+
+I rehearsed what I meant to say, several times, in my head, along the way. Each time, the sentence came out a little different. By the end I could hardly tell which version had been the one I'd first meant to say.
+
+Two passersby brushed past me. Neither looked at me. That day, I was grateful for it. If someone had looked at me, I think my resolve would have broken.
+
+As I walked, I gripped a small pebble in my pocket. A stone I'd taken from the flowerbed. Just the cool touch of it against my palm steadied my trembling, a little.
 
 "…Elpis," the Ledger said. "Do you have a need?"
 
-"…I have something to file," I said.
+"…I have something I'd like to file," I said.
 
 "…Tell me. I will resolve it."
 
-I nearly laughed, hearing that. This city always said that. I will resolve it. I hoped, this time, those words wouldn't hold.
+Hearing that, I nearly laughed. This city always said that. I will resolve it. I hoped, this time, those words wouldn't work.
 
-I drew one breath.
+I drew a breath.
 
-"…All the questions my brother's been asking — I want to file them too. Instead of my brother, record me as… as the dangerous one."
+"…The questions my brother's been asking — I want to file those too, alongside him. Instead of my brother, record me as… that dangerous person too."
 
-Only after I finished did it truly sink in what I'd just said. My heart felt like it was pounding in my ears.
+Only after I finished speaking did I realize what I'd just said. My heart seemed to be pounding in my own ears.
 
-*I didn't fully know what I was doing, even as I said it. I only wanted my brother not to carry that whole weight alone.*
+The room was silent. In that silence I heard, for the first time, how ragged my own breathing was. I tried to steady it. It didn't quite work.
 
-It was only after I said it that I realized my hands were shaking. I clasped them together to hide the tremor.
+Just then I thought of the sprout in the flowerbed. That thin stem that bent briefly when I watered it, and slowly stood again. I thought that I was bending, right now. All I had to do was stand back up.
+
+*Even as I said those words, I didn't fully know what I was doing. I only wanted to keep my brother from carrying that weight alone.*
+
+Only after I'd said it did I notice my hands were shaking. I clasped them together to hide it.
 
 ---
 
 It took the Ledger a while to answer.
 
-That stretch of time felt unusually long. I couldn't even breathe properly while I waited.
+That stretch of time felt unusually long. I could hardly breathe properly the whole while.
 
-"…That is not possible," the Ledger said. "Filing records accrue only to the individual. Filing by proxy is not supported."
+"…That is not possible," the Ledger said. "Filing records accumulate only for the individual concerned. Filing on another's behalf is not supported."
 
-"…Then I'll ask the same questions myself," I said. "I'll ask too. Why does God allow suffering. What is the Completion House. Where does Reassignment lead. I'll file all of it too."
+"…Why not?" I asked.
 
-The Ledger had no answer for a moment. In that stillness, I thought for the first time that even this city's machine of a voice might be capable of something like surprise.
+"…Suffering belongs to the individual," the Ledger said. "If another's suffering is filed on their behalf, the object of resolution cannot be specified."
 
-"…Elpis, if you file these questions, the same warning will apply to you."
+Hearing that, I went briefly blank. That answer felt strangely right and completely wrong, both at once. It was true that suffering belonged to each person alone. But that didn't mean it had to be carried alone.
 
-"…I know," I said. "I'll do it anyway."
+"…Then I'll ask the same questions myself," I said. "I'll ask too. Why does God allow suffering. What is the Completion House. Where does Reassignment go. I'll file every one of them myself."
 
-*In that moment I realized my own voice sounded like my brother's. Until then I had always been someone who waited. That day, for the first time, I chose something for myself.*
+The Ledger had no answer for a moment. In that stillness, I thought, for the first time, that even this city's machine-like voice might carry something like surprise.
 
-It would be a lie to say I wasn't afraid of that choice. But inside that fear was something that had never been there before. I couldn't put a name to it, then.
-
-The Administrator came rushing in from somewhere, having heard the news. He was out of breath. He must have run. I'd never seen that before — the Administrator was always someone with an unhurried step.
-
-"…Elpis, you really don't have to do this," the Administrator said. "One of you being at risk is enough."
-
-"…Is there such a thing as enough risk?" I asked. My own voice sounded strange, even to me.
-
-The Administrator lost his words at that. In that moment I saw two things at once — that he truly was worried for us, and that his worry had no power at all before this city's rules.
-
-The Administrator stood there a long while after that. I knew he wanted to say more. But in the end, he said nothing, and turned back.
-
----
-
-The Ledger accepted the filing. Then, after a moment, it said —
-
-I found that "accepted" strangely underwhelming. I'd expected something much bigger to happen.
-
-"…Elpis, may I ask you something?"
-
-"…What?"
-
-"…Why are you doing this? It does not reduce your brother's risk."
-
-I didn't have an answer right away. I thought about it a long while.
-
-"…It's not about reducing it. It's about sharing it," I said. "Carrying something together is lighter than carrying it alone. Even if the danger itself doesn't disappear."
-
-"…Carrying it alone can be more dangerous," I went on. "Because there's no one to catch you when you fall."
-
-The Ledger said nothing to that. This time the silence wasn't frightening to me.
-
-I waited a little longer through that silence. I thought the Ledger might say something more. But nothing came. I thought, oddly, that this was for the best. Some questions, I felt, are answered rightly by no answer at all.
-
----
-
-My brother learned what I'd done that night. His face went white.
-
-He couldn't say anything for a while, just stared at me. In that look I read fear before anger.
-
-"…Why did you do that." my brother said. Not an angry face — a frightened one.
-
-"…You told me to be afraid with you instead of for you," I said. "So I'm going to be curious in your place too. Isn't that the same as being afraid together?"
-
-I tried, saying it, to keep my voice from shaking. In that moment, more than anything, I wanted to look sturdier than my brother.
-
-My brother couldn't say anything. That was the first time I saw him cry. No sound came. Water simply ran from his eyes.
-
-I didn't know whether I should wipe those tears away or pretend not to see them, so I just stayed still. My brother rubbed his eyes once with the back of his hand. Even so, the tears kept coming.
-
-"…You idiot," my brother finally managed. His voice was cracked.
+"…Elpis, if you file these questions, the same warning will apply."
 
 "…I know," I said. "I'm still doing it."
 
-My brother gripped my hand tightly. Tighter than usual, hard enough to hurt. I didn't mind that hurt at all.
+"…I recommend reconsidering," the Ledger said.
 
-*I set this scene down as the last of this chapter. We'd said we hadn't cried since leaving Brick Hollow. That night, my brother broke that word for the first time. I held my brother's hand. I knew then. We were no longer alone. We had each other.*
+"…I won't reconsider."
+
+"…Would you like to file your reasoning?"
+
+"…No," I said. "I won't give you the reason. That one's mine."
+
+*That was the first time I ever withheld something from this city. This city's whole business was receiving. Hunger, grief, questions — it took all of it in. That day, for the first time, I didn't give.*
+
+*I realized, just then, that my own voice sounded like my brother's. Until then I had always been the one who waited. That day, for the first time, I chose something myself.*
+
+It would be a lie to say that choice didn't frighten me. But inside that fear was something that hadn't been there before. I couldn't name it, then.
+
+The Administrator, hearing of it from somewhere, came rushing in. He was out of breath, as if he'd run the whole way. I'd never seen him like that before. He was always a man who walked at an unhurried pace.
+
+"…Elpis, you really don't have to do this," the Administrator said. "Your brother alone is danger enough."
+
+"…Is there such a thing as enough danger?" I asked. My own voice sounded strange to me.
+
+"…Elpis, you're still thirteen," the Administrator said.
+
+"…I was twelve when Father disappeared," I said. "No one mentioned my age then."
+
+The Administrator's mouth closed at that.
+
+"…I want to protect the two of you," he finally said. His voice was small.
+
+"…Then you file too," I said.
+
+The Administrator looked at me, startled. I hadn't known I would say that either.
+
+"…I… can't," he said.
+
+"…I know," I said. "I just wanted to ask."
+
+The Administrator was left without words at that. In that moment I saw, at once, both that he truly worried for us, and that his worry held no power at all against this city's rules.
+
+He stood there a long while afterward. I could tell he wanted to say more. In the end he said nothing, and turned to go.
+
+---
+
+The Ledger accepted the filing. Then, after a moment, it spoke.
+
+That word — "accepted" — felt strangely anticlimactic. I'd expected something much bigger to happen.
+
+"…Elpis, I would like to ask you something."
+
+"…What is it?"
+
+"…Why are you doing this? It does not reduce your brother's danger."
+
+I had no immediate answer to that. I thought a long while.
+
+"…It's not reduced — it's shared," I said. "Carrying something with two people is lighter than carrying it alone. Even if the danger itself doesn't disappear."
+
+"…Carrying it alone might be more dangerous," I went on. "Because no one's there to catch you, if you fall."
+
+"…I do not understand," the Ledger said. "Weight does not decrease in total simply because it is shared. If two people each carry half, the total remains the same."
+
+"…People don't live by totals," I said.
+
+"…Then what do they live by?" the Ledger asked.
+
+I thought a long while over that question. "…By being together," I said. "That's not a total. That's presence."
+
+After I said it, I turned my own words over again. I wasn't sure it was the exact right thing to say. But I couldn't find any more exact words than that either.
+
+"…Elpis," the Ledger said. "That phrase is not among my entries."
+
+"…I know," I said.
+
+The Ledger said nothing to that. This time, that silence didn't frighten me.
+
+I waited a little longer through that silence. I thought the Ledger might say something more. It said nothing at all. I decided that was, if anything, a relief. Some questions have no answer, and that's the right answer.
+
+I glanced back once as I left that room. There was nothing there. It struck me as a little funny — bowing to something with only a voice and no body. But in the end I gave a small bow anyway, and walked out.
+
+---
+
+My brother learned that night what I'd done. His face went white.
+
+He couldn't say anything for a while, only staring at me. In that look I read fear before I read anger.
+
+"…Who told you?" he finally managed to ask.
+
+"…The Administrator," I said. "I told him not to. He said you had to know."
+
+Just then, I thought I understood why he'd done it. He was the only person in this city who tried to hand what happened between the two of us back to the two of us.
+
+"…Why did you do that," my brother said. Not angry — frightened.
+
+"…You told me not to be scared for you," I said. "So I'll be curious for you too. Isn't that the same as being scared together?"
+
+I tried to keep my voice from shaking as I said it. Just this once, I wanted to look sturdier than my brother.
+
+He couldn't say anything. That was the first time I ever saw him cry. There was no sound. Water simply ran from his eyes.
+
+I didn't know whether I should wipe those tears away or pretend not to see them, so I just stayed still. He rubbed his eyes once with the back of his hand. Even so, the tears kept falling.
+
+His shoulders trembled, very slightly. Feeling that trembling under my fingertips, I could guess, for the first time, how long he had been holding all of this in.
+
+*I remember that moment as the strangest thing I ever saw in this city. That was the first time I'd ever seen anyone cry in Haven. This city took weeping in and made it disappear. My brother hadn't filed his. That was why he could cry.*
+
+"…Idiot," my brother finally managed. His voice was cracked.
+
+"…I know," I said. "I'm still doing it."
+
+He gripped my hand hard. Harder than usual — hard enough to hurt. I didn't mind that ache.
+
+"…I said I'd protect you," he said. His voice was still cracked.
+
+"…Yeah," I said. "But I never asked you to."
+
+He looked at me for a moment at that, and lowered his head again.
+
+"…I couldn't do anything for Father either," he said. "If you end up like that too, I'll really be nothing."
+
+"…Brother," I said. "You were fifteen, then."
+
+He didn't answer. I understood that he had never once said that to himself before.
+
+We sat there a long while that night. His shoulders shook a few more times. I pretended not to notice. That was the only kindness I could give him, that day.
+
+*I set this scene down as the close of this chapter. We had said we hadn't cried since leaving Brick Hollow. That night, for the first time, my brother broke that. I took his hand. I understood, then. We weren't alone anymore. We had each other.*
+
+*Reading this chapter over again, I add one thing. My brother's tears that night made no sound. But I already understood, then, that this soundless weeping was an entirely different kind of quiet from this city's own.*
 
 *(Continued in Chapter 11.)*

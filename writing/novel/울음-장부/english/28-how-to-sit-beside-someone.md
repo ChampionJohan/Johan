@@ -5,112 +5,222 @@ series: The Weeping Ledger, Part Three · The Northward Road
 
 # Chapter 28. How to Sit Beside Someone
 
-> _Previously_ — The siblings found Father at last. But he recognized neither their names nor their faces. "I don't even know who I am, myself." When Elpis took his hand, it trembled faintly — a response that could have been memory, or could have been only habit.
+> _Previously_ — The brother and sister found Father at last. But he recognized neither their names nor their faces. "I don't really know who I am, either." When Elpis took his hand, it trembled faintly — a response that might have been memory, or might have been only habit.
 
-That night, Jeteo sat alone a little way off from Father.
+That night, my brother sat alone a little apart from Father.
 
-The embers had nearly died out. Only a thin thread of smoke still rose. I watched that smoke disappear for a long time. It felt like I couldn't bear it unless I was looking at something.
+The embers had nearly burned out already. Only a thin thread of smoke still rose. I watched that smoke disappear for a long time. It felt like I couldn't bear it unless I was watching something.
 
-I went and sat beside him. I said nothing. He said nothing either.
+The night air had turned far colder than before. I felt that chill sinking into me and still didn't want to move. There was a strange fear that if I left this spot, everything that had happened today would stop being real.
 
-The night air was cold. I leaned lightly against Jeteo's shoulder. He didn't pull away. But he didn't put his arm around me the way he usually did, either. That didn't hurt my feelings. He looked like he didn't even have the strength for it, right then.
+I went and sat beside my brother. Neither of us said anything.
 
-*I knew what he was holding in. He must have imagined this moment for years. But nowhere in that imagining, I think, was there ever a scene where Father didn't know us.*
+The night air was cold. I leaned lightly against my brother's shoulder. He didn't pull away. But he didn't wrap his arm around me the way he usually did, either. That didn't hurt my feelings. He looked, right then, like he didn't even have the strength for it.
 
-In the distance, Father was still counting something on his fingers. He didn't seem to be sleeping at all.
+His breathing was much shallower than usual. Listening to it, I felt how hard he was working not to cry. He was always like that. When he held back tears, his breath went careful first.
 
-Moonlight caught Father's profile. It looked like the silhouette of a stranger. But the line of those shoulders alone was exactly as I remembered. I couldn't tell whether that fact made me glad or sad.
+*I understood, then, what my brother was holding back. He must have imagined this moment for years. And nowhere in that imagining, I think, had there ever been a scene where Father didn't recognize us.*
 
-"…How long is that going to keep going?" Jeteo asked quietly. I couldn't tell if he was asking me, or just himself.
+I tried to picture the reunion my brother must have imagined all this time. Probably Father, seeing us, calling our names and running to us. I tried to measure the distance between that imagined scene and tonight's reality, and gave up quickly. It hurt too much.
+
+"…I feel really wrong," my brother said suddenly. "We found Father, and instead of joy, what I feel most is fear. Is that normal?"
+
+"…I don't know," I said. "But I feel something similar too."
+
+He looked at me, a little surprised. I hoped that knowing he wasn't the only one who felt this strange would bring him at least some comfort.
+
+Insects called low, steadily. I was strangely grateful that the sound never broke off. It felt like proof the world hadn't stopped completely.
+
+Far off, I could see Father still counting something with his fingers. He didn't seem to be sleeping either.
+
+His profile showed in the moonlight — the silhouette of a stranger. And yet the line of that silhouette's shoulders was exactly as I remembered. I couldn't tell whether that fact made me glad or sad.
+
+"…How long does that go on for?" my brother asked quietly. I couldn't tell if he was asking me, or just thinking aloud.
 
 I couldn't answer. I didn't know either.
 
-"…Before," Jeteo said again, his voice thick, "stopping that counting was the whole goal, wasn't it. But now — I'm afraid that if it stops, Father might become someone completely different."
+"…It used to be," my brother said again, his voice thick, "the goal was to make that counting stop. But now I'm scared that if it stops, Father will turn into someone completely different."
 
-*Hearing that, I understood how tangled his heart had become. He wanted Father back, and at the same time, he was afraid of losing even this Father in front of him now.*
+"…Same for me," I said. "That motion — I hate it, and somehow I'm still scared it'll disappear."
+
+My brother turned to look at me. It was the first time he'd heard someone say exactly what he was thinking.
+
+"…You thought that too?" he asked.
+
+"…Yes," I said. "I just didn't say it."
+
+*Hearing that, I understood how tangled my brother's heart really was. He wanted to have Father back, and at the same time he was afraid of losing even this Father in front of him.*
 
 ---
 
 Temel sat down quietly beside us.
 
-"…I've seen this kind of thing a few times myself," Temel said. "If you force it, try to drag the memory out, it only frightens him more. Just being there beside him comes first."
+"…I've seen this happen a few times," Temel said. "Forcing memory to come back only makes it more afraid. Just staying beside someone comes first."
 
-"…What good does that do?" Jeteo asked. His voice had an edge to it. "He doesn't even know who we are."
+"…What good does that do?" my brother asked. There was an edge to his voice. "That person doesn't even know who we are."
 
-"…What good it does, you might learn later, or you might never," Temel said. "But being there beside him — whether he knows you or not — is the one thing you can actually do, right now."
+He rubbed roughly at his eyes as he said it. I understood that gesture was closer to grief than to anger.
 
-"…But he still doesn't know," Jeteo said again. His voice shook a little. "He doesn't know we're here, right now. He doesn't know what we're holding in."
+"…Whether it does any good, you might learn later — or you might not," Temel said. "But staying beside someone is the one thing you can actually do right now, whether they recognize you or not."
 
-"…That's true," Temel admitted, readily. "But being there beside someone was never about being noticed for it. It's just being there."
+"…But he doesn't know us," my brother said again. His voice shook a little. "Doesn't know we're here right now. Doesn't know what we're holding back."
 
-*Hearing that, I thought, strangely, of the Ledger's voice. The Ledger never accepted a case it couldn't "resolve." Temel was telling us to stay beside someone even when there was nothing to resolve. That day, for the first time, I thought that difference might be the answer to this whole book.*
+He glanced toward Father as he said it. Still sitting there, fingers moving. I saw resentment and longing pass through my brother's eyes at the same time.
 
-"…Did you have someone who stayed beside you like this?" I asked.
+"…That's true," Temel admitted plainly. "But staying beside someone was never about being recognized for it. It's just being there."
 
-Temel was silent for a long time, then gave a small nod.
+*Hearing that, I strangely thought of the Ledger's voice. The Ledger would never take in what it couldn't "resolve." Temel was telling us to stay beside someone even when it couldn't be resolved. I thought, for the first time that day, that difference might be the answer this whole book was reaching for.*
 
-"…I did," Temel said. "If it hadn't been for him, I'd still be running, even now."
+I remembered the smooth screen we'd seen back in Haven. Intake, resolution, completion. Nowhere among those three words was there any entry called "staying beside." I felt, for the first time, that I could name exactly what the Ledger couldn't do.
 
-"…Did he ever fail to recognize you?" I asked again.
+"…Did you have someone who stayed beside you like that?" I asked.
 
-Temel looked at me for a moment. His face was choosing an answer.
+Temel was quiet for a long time, then nodded, small.
 
-"…No," Temel said. "It was the other way around. I was the one who didn't recognize him. More than once."
+"…I did," Temel said. "If it hadn't been for that person, I'd probably still be running."
 
-*Hearing that, I felt strangely at ease. It helped to know that failing to recognize the one who stays beside you wasn't something that only happened to our family.*
+"…What kind of person were they?" I asked.
 
-"…When?" Jeteo asked, unable to hide his curiosity.
+Temel searched for words a moment.
+
+"…Hard to explain," Temel said. "But one thing's certain. That person never chased after me when I ran. They just kept being there, in the place I'd come back to."
+
+"…Did that person ever fail to recognize you too?" I asked again.
+
+Temel looked at me for a moment, choosing his answer.
+
+"…No," Temel said. "It was the opposite. I was the one who failed to recognize them. More than once."
+
+*Hearing that, something in me settled strangely. It comforted me to know that failing to recognize the person staying beside you didn't only happen to our family.*
+
+"…So do you recognize them now?" I asked.
+
+Temel paused before answering.
+
+"…Sometimes I do, sometimes I still get confused," Temel said honestly. "But I recognize them much faster than I used to."
+
+"…When?" my brother asked, unable to hide his curiosity.
 
 Temel smiled slightly.
 
-"…Several times," Temel said. "There were times I mistook him for a stranger and kept my guard up. Times he was right in front of me and I still didn't recognize him at all. I only found out later."
+"…Plenty of times," Temel said. "There were times I was wary of them, thinking they were a stranger. There were times I didn't recognize them even standing right in front of me. I only understood, afterward."
 
-"…And even so, he kept staying with you?" I asked.
+"…And they still stayed with you, even so?" I asked.
 
-"…He stayed, whether I recognized him or not," Temel said. "That came first. Not my recognizing him."
+"…That person stayed even when I couldn't recognize them," Temel said. "That came first. Not my recognizing."
 
-*I copied those words down on paper that night. I read that sentence over, again and again. Being there before being recognized. I understood barely half of what it meant, then.*
+"…So it didn't depend on whether you recognized them — they were on your side from the start?" my brother asked. There was a caution in his voice I hadn't heard from him before.
 
-That night, for the first time in a while, I took out my paper and wrote down what had happened that day. My hand was cold, and the letters kept shaking. Still, I tried not to leave out a single line. Father, the counting gesture, Temel's words. I wrote it all imagining a day when I might read every bit of it back to Father.
+Temel looked at my brother for a long moment at that question.
+
+"…Seems that way," Temel said. "But back then, I didn't even think to call it being on my side. I just thought they were a nuisance."
+
+*I copied that line down on paper that night. I read that sentence over several times. Being there before being recognized. I only half understood what it meant, back then.*
+
+"…When you didn't recognize them, did they get upset?" I asked.
+
+Temel shook his head.
+
+"…Didn't even seem upset," Temel said. "Just stayed, like they were waiting for the day I'd recognize them. I found that stranger than anything. If it were me, I'd have given up long before and left."
+
+That night I took out paper again after a long while and wrote down what had happened. My hands were too cold and the letters kept shaking. Still, I tried not to leave out a single line. Father, the hand-counting, Temel's words. I wrote it imagining the day I'd someday read all of this back to Father.
+
+At the bottom of that page I added one more line. "Being there, before being recognized." I traced my fingertip over that sentence several times. As if doing so might press its meaning into my own body.
+
+My brother glanced over at the paper beside me.
+
+"…Can you write that down for me too?" he asked.
+
+The request surprised me enough that I looked at him for a moment. He'd never shown much interest in my writing before. Without a word, I tore a corner off the page and copied the sentence again, and handed it to him. He folded it carefully and tucked it inside his shirt.
 
 ---
 
-The next morning, the sun still hung low. Dew clung to every blade of grass. Father was already up, tidying the fire pit. No one had told him to. His body seemed to move on its own.
+The next morning, the sun still hung low. Dew beaded on every blade of grass. Father was already up, tidying the fire pit. It looked as though his body moved on its own, without anyone telling it to.
 
-Watching him, a strange feeling came over me. A man who had forgotten his name, who couldn't recognize us — and yet, come morning, that same hand still knew how to tidy a fire pit. I thought it must be one more trace of Father, left behind inside him.
+There was still a chill of night left in the air. I breathed it in deep. I wanted to confirm that yesterday hadn't been a dream.
 
-Jeteo went up to Father.
+My brother had woken before me. His eyes were swollen. I pretended not to notice the swelling. There was no need to say out loud that he'd cried alone all night.
 
-"…Would you like to come with us?" Jeteo asked carefully. "If you don't know where else to go."
+Watching him, I felt a strange feeling. A man who had forgotten his own name, who didn't recognize even us — and yet the touch of his hands, tidying the fire each morning, remained exactly the same. I thought that was another trace still left inside Father.
 
-Father looked at Jeteo for a long moment. His eyes were still the eyes of someone looking at a stranger. But there was, just barely, something in them that wasn't wariness.
+Father covered the ashes with dirt and stacked the remaining firewood neatly. The motion was so smooth that, for a moment, it overlapped in my mind with Father tending the fire each dawn back in Brick Hollow. I held onto that overlap for a long time.
 
-Father was turning a small twig over in his hand. It looked like a habit — hands that couldn't stay still whenever something made him uneasy. That habit felt strange to me too, and familiar at once.
+My brother went over to Father.
+
+"…Will you come with us?" he asked carefully. "In case you don't know where else to go."
+
+Father looked at him for a long moment. The eyes of someone looking at a stranger, still. But in that gaze there was, faintly, something that wasn't wariness.
+
+I tried not to let that shift in his eyes slip past me. A tiny difference between yesterday and today. But that small difference felt, to me, like an enormous signal.
+
+Father was fidgeting with a small twig in his hand. It looked like a habit — hands that couldn't stay still when something felt uncertain. That habit, too, was both unfamiliar and familiar to me.
+
+Father set the twig down and looked back at my brother. Wariness and curiosity were mixed in that gaze together.
 
 "…Why are you helping me?" Father asked.
 
-Jeteo was at a loss for a moment. I knew he wanted to say, "Because you're my father." But he chose different words.
+My brother lost his words for a moment. I knew he wanted to say *because you're my father.* But he chose different words.
 
-"…No reason," Jeteo said. "It's all right to help someone without a reason."
+"…No reason," my brother said. "It's fine to help without a reason."
 
-*I was startled to hear that answer. In Haven, Jeteo had been someone who believed there was no such thing as helping without a reason. I felt, right then, that he was becoming, little by little, a different person.*
+*Hearing that answer, I was startled. My brother had always believed there was no such thing as a reasonless act — back in Haven. I felt, right then, that he was slowly becoming a different person.*
+
+I saw my brother look surprised at himself, even as he said it — like someone hearing his own words a beat late. He paused, then went on.
+
+"…The old me wouldn't have said this," he told Father. "But lately… I think there are things without reasons after all. No — I think there are reasons even when you can't put them into words."
+
+Father listened to that quietly. His face wasn't one of full understanding. But it was a face that felt something.
 
 Father tilted his head at that answer.
 
-"…That's a strange answer," Father said. But he was smiling. "Though it's a strangeness I don't mind."
+"…That's a strange answer," Father said. But he was smiling. "But it's not a strangeness I dislike."
 
-Temel was watching from a little way off. I saw the faintest smile cross his face — the look of someone quietly pleased.
+"…People who help without a reason always seem strange," my brother said. "I didn't used to trust people like that either, until not long ago."
+
+"…And now?" Father asked.
+
+My brother thought for a moment.
+
+"…Now I trust it a little. Just a little."
+
+Temel stood watching this from a short distance off. I saw a very faint smile cross his face. A smile that looked, somehow, quietly pleased.
+
+Temel kept glancing our way several times that morning while packing his things. In that gaze I felt relief, and also a small trace of loneliness. It was the face of someone watching the people he'd found find their own way to each other.
+
+"…Have you seen a lot of us turning out like this?" I asked, going over to Temel.
+
+"…Not often," Temel said. "But every time I see it, I'm glad. It's not something happening to me directly, and still it fills my chest, strangely, like it's my own."
+
+"…Why does someone else's business fill your chest?" I asked.
+
+Temel laughed a little.
+
+"…There's a moment when it stops being someone else's business," Temel said. "Spend a few days delivering someone somewhere, and it starts feeling like your own business whether they turn out all right. Strange, but true."
+
+Hearing that, I looked at Temel again. I thought, then, that finding people might be, in its own way, the same as sharing your own portion of joy with someone else.
 
 ---
 
 In the end, Father nodded.
 
-Jeteo held out his hand. Father looked at it for a moment, then slowly set his own hand on top of it. It looked less like a handshake than like a gesture of confirming something for the first time.
+My brother held out his hand. Father looked at it a moment, then slowly laid his own hand on top of it. Less a handshake than a gesture of confirming something for the first time.
 
-I stood still, watching those two hands. One was a stranger's hand, and one was a hand we had waited for so long. But in that moment, I couldn't tell which was which.
+I stood quietly watching those two hands. One was a stranger's hand, and one was a hand long waited for. But in that moment, I couldn't tell which was which.
+
+The morning sun fell slanting across the two hands. I watched that light fall equally on both. Under the light, the stranger's hand and the long-awaited hand weren't different at all.
+
+Far off, a bird passed low, calling once. I thought that sound was carving this morning into some place, somewhere. A sound that, heard again later, would bring this day back.
 
 "…Then… I'll take you up on that," Father said.
 
-*I set down those words as the last line of this chapter. Hearing them, I nearly laughed, in a strange way. Father had just told us he'd "take us up on it." For the first time, I understood that becoming someone who walked with us could come before becoming someone who knew us again.*
+I found myself wondering, out of nowhere, what Speon would have said if he were here. Probably, *that's the well's way.* Giving someone a place beside you without asking why.
+
+Temel heard that and turned back from packing his things.
+
+"…You know," Temel said, "*take you up on that* — I haven't heard someone say that in a long time. These days everyone tries to handle everything on their own. Nobody says they'll take anyone up on anything anymore."
+
+I listened to that and thought of Haven. No one there had ever taken anyone up on anything. The Ledger resolved everything for them instead. Only now did it seem to me that hadn't been convenience — it had been loneliness.
+
+*I set that line down as this chapter's last line. Hearing it, I nearly laughed. Father had told us he'd "take us up on it." I understood, then, for the first time, that becoming someone who walks alongside another can come before becoming someone they recognize again.*
 
 *(Continued in Chapter 29.)*

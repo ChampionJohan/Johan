@@ -5,130 +5,224 @@ series: The Weeping Ledger, Part Three · The Northward Road
 
 # Chapter 29. While He Had No Name
 
-> _Previously_ — The siblings began learning how to stay beside Father instead of forcing his memory to return. To these strangers, Father said, "I'll take you up on that," and agreed to walk with them.
+> _Previously_ — The brother and sister began learning not to force Father's memory back, but simply to stay beside him. Father, to these strangers, said, "…I'll take you up on that," and agreed to walk with them.
 
-From that day, the four of us walked together.
+From that day on, the four of us walked together.
 
-The path was often too narrow for four to walk abreast. Even so, we kept close enough to touch, even strung out in a single line. Strangely, I felt a kind of steadiness inside that narrow line.
+The road was often too narrow for four to walk abreast. Even so, we lined up single file if we had to, keeping close enough that our hands could still reach each other. Strangely, I felt a kind of sturdiness even in that narrow line.
 
-Father's steps were a little slower than ours — legs that hadn't walked far in a long while. But he never once said it was hard. He would only stop, now and then, and look up at the sky.
+A faint scent of dry grass hung in the morning air. Every time I caught it, I felt, a little more, that we were heading a little further south, a little further toward safety. It wasn't certain. But I wanted to believe it.
 
-Every time, Jeteo matched his pace and stood beside him. I thought it was kindness, but later I saw that Jeteo was every bit as tired as Father. He was simply a boy who had gotten used to hiding it.
+Father's steps were a little slower than ours. Legs unused to long walking. But he never once said he was tired. He just stopped, now and then, to look up at the sky.
 
-Every time the wind blew, the dry grass bent low and rose again. Watching it, I thought the four of us were doing the same — bending and rising, over and over.
+Every time he did, my brother matched his pace to stand beside him. I'd thought that was only consideration for Father — later I realized my brother was every bit as worn out as Father was. He was simply a boy used to hiding his own exhaustion.
 
-Father still counted on his fingers sometimes. But not as constantly as before. I didn't know whether that was a good sign or not.
+The shadows of the trees along the road always lay long before we reached them. Every time I stepped on those shadows, I found myself gauging what part of the day we were passing through.
 
-*Every time I saw that gesture, my heart tangled. I wanted it to stop. But at the same time, I was afraid of it stopping too — afraid it might be the only proof left that Father had ever been Father.*
+I listened to the sound of my brother's footsteps as we walked. A little heavier than before. I didn't think that weight came only from fatigue. Lately he seemed like someone constantly weighing something in his mind.
 
-Every time Jeteo saw it, he quietly took Father's hand. At first, Father was startled. After a few days, he stopped pulling his hand away.
+Every time the wind blew, the dry grass leaned low and rose back up again. Watching it, I thought that the four of us were doing the same — leaning down and rising back up, over and over.
 
-"…It's strange, holding this hand makes me feel a little at ease," Father said. "I don't know why."
+Father still counted on his fingers sometimes. But he no longer counted without stopping, the way he used to. I didn't know if that was a good sign or not.
 
-*Hearing that, I looked at Jeteo's face. He said nothing. But I saw that his eyes were wet.*
+*Every time I saw that gesture, my heart felt tangled. I wanted it to stop. But at the same time, I was afraid to see it stop — afraid it might be the only proof left that Father had ever been Father.*
 
-I took Father's other hand sometimes too. He always gave it willingly. I noticed the temperature of that hand shifted a little every day. Some days it was cold; some days it was startlingly warm.
+Sometimes I secretly counted along with the movement of Father's fingers. One, two, three. I wanted to see how far he got before he broke off. Most times it scattered somewhere around twenty. I couldn't tell if that meant he was improving, or if his mind had simply wandered somewhere else.
 
-I wondered if that shifting warmth had something to do with the state of Father's heart. There was no way to be sure. But every time I held that hand, I felt like I could tell, a little, what kind of day Father had had.
+Every time my brother saw that gesture, he would quietly take Father's hand. At first Father startled. After a few days, he stopped pulling the hand away.
 
-"…Your hand is warm today," I said.
+"…Strangely, holding this hand makes me feel calmer," Father said. "I don't know why."
 
-"…Is it?" Father said, looking down at his own hand. "I can't really tell, myself. But if my daughter says so, I suppose it must be."
+*Hearing that, I looked at my brother's face. He said nothing. But I saw that his eyes were wet.*
 
-*I heard the word "daughter" for the first time in that sentence. It was the word Father had chosen to explain me. He didn't know my name, but he knew my place. That single fact carried me through the rest of that day.*
+He turned away and looked off into the distance for a moment. I knew he was hiding his tears. I pretended not to see.
+
+I too sometimes took Father's other hand. Father always let it go into mine easily. I noticed the temperature of that hand was a little different every day. Some days it was cold; some days, surprisingly warm.
+
+I wondered if that shift in temperature might be tied to something in how Father was feeling. There was no way to check. But every time I held that hand, I felt like I could tell, a little, what kind of day Father had had.
+
+Father found that talk of temperature strange and interesting.
+
+"…I never even paid attention to my own hand's temperature," Father said.
+
+"…I pay attention," I said. "Because it's your hand."
+
+Father smiled a little at that. Half embarrassed, half glad.
+
+"…It's warm today," I said.
+
+"…Is it?" Father said, looking down at his own hand. "I can't really tell. But if my daughter says so, I suppose it is."
+
+*That was the first time I heard him use the word "daughter." A word Father had chosen to explain me. He didn't know my name. But he knew my place. That single fact alone let me get through that day.*
+
+That evening I told my brother the story. He listened quietly and laughed shortly.
+
+"…Something similar happened to me too," he said. "Yesterday, when we shared the water, Father told me, '…drink first, since you're the older one.' *Older one* — first time he'd used that word too."
+
+"…Older one?" I asked. "Father called you older brother?"
+
+"…Yeah. I was surprised too," my brother said. "But that word keeps circling back in my mind, for some reason."
+
+*Hearing that, I understood. Father had lost his name, but he still distinguished the places we held between us. I thought that wasn't complete memory, but it wasn't complete forgetting either.*
+
+"…Why did the word *older one* stay with you like that?" I asked.
+
+My brother thought for a moment before answering.
+
+"…I don't know, it's just been a long time since anyone saw me as an older brother," he said. "Nobody in Haven ever called me that. They only ever called me by a number, or a status."
+
+I nodded, hearing that. I'd felt something similar in Haven myself.
 
 ---
 
-"…What should we call you?" Jeteo asked carefully, that first evening.
+"…What should we call you?" my brother asked carefully, that first evening.
 
-Father looked flustered by the question.
+Father looked flustered at the question.
 
-"…I don't really know, myself," Father said. "I don't think I… have a name."
+His eyes wandered the empty air for a moment. His brow drew together faintly, like someone searching for something.
 
-For a moment, none of us could speak. Then I was the first to say something.
+"…I don't really know either," Father said. "It seems like… I don't have a name."
 
-"…Then can we choose one for you? If you remember your real name later, we can change it then."
+We couldn't say anything for a moment. Then I spoke first.
 
-Father looked at me for a moment. That look carried strangeness, and mixed in with it, something small that resembled trust.
+"…Then would it be all right if we chose one for you? If your real name comes back someday, we can just change it then."
 
-"…Doesn't it feel strange, letting someone else decide your name?" Father asked.
+Father looked at me for a moment. In that gaze there was strangeness, and also, faintly, something like trust.
 
-"…It is strange," I said. "But right now, I think strange is just what's normal."
+"…Doesn't it feel strange, asking someone else to name you?" Father asked.
 
-Father smiled a little at that. It looked like a smile I hadn't seen in a long while.
+"…It is strange," I said. "But right now, strange feels like the ordinary thing."
+
+Father smiled a little at that. It looked like a smile I hadn't seen in a long time.
 
 "…I'd like that," Father said.
 
-Jeteo said nothing through the whole exchange. I could feel him turning something over deep in thought.
+"…If it's ever a burden, just say so," my brother added. "We'll just make something up."
 
-"…What is it?" I asked.
+"…No," Father shook his head. "It's not that. It's just unfamiliar. But unfamiliar isn't necessarily unwelcome."
 
-"…Nothing," Jeteo said. "I was just thinking about what it's like, living without a name. We always had names. I thought that was just how it was."
+My brother said nothing through that whole exchange. I could feel him turning something over deeply.
 
-*Hearing that, I thought for the first time about how large a place a name really holds. Having no name wasn't only having no word to be called by. It meant having no way to explain yourself to yourself.*
+"…What's wrong?" I asked.
 
----
+"…Nothing," my brother said. "I was just thinking about what it must be like, living without a name. We always had names. I thought that was just how things were."
 
-That night we thought over names. Jeteo couldn't settle on any. I felt like I already knew.
+*Hearing that, I thought for the first time about how much space a name really takes up. Not having a name wasn't only having no word to be called by. It meant having no way to explain yourself to yourself.*
 
-"…How about 'Waiting'?" I said. "There's a name I know — someone whose name carries just that meaning."
+"…You know," my brother said quietly, "everyone in Haven had a name. But it seemed like none of them really knew who they were, either. Like they had names and had still lost themselves."
 
-Father said the name aloud, a few times, trying it out.
+I was surprised to hear that. I hadn't expected my brother would ever look back on Haven that way.
 
-Slowly at first, turning it over in his mouth, then a little faster. Like someone testing whether that sound could belong to him.
+"…Is having a name different from knowing who you are?" I asked.
 
-"…Waiting," Father said. "That's not bad. Because right now, I really do feel like I'm waiting for something."
-
-"…Waiting for what?" Jeteo asked.
-
-Father thought for a moment, then said:
-
-"…I don't know. But the feeling that I'm waiting for something — that much is certain."
-
-*Hearing that answer, I nearly cried. I understood, then. Father had forgotten his name, forgotten faces — but he hadn't forgotten the shape of that one feeling: waiting. I couldn't be certain it was a waiting for us. But I decided to believe it was.*
-
-Jeteo said nothing in that moment. But I could tell he was repeating the name to himself, over and over, in his heart. His lips moved silently, shaping those two syllables.
-
-From that day on, we still called him "Father" between ourselves, but in front of other people, we used the name "Waiting." It felt strange at first. Father, too, missed his cue to answer to his new name more than once.
-
-"…Mr. Waiting." When someone we met on the road called him that, Father always reacted a beat late. Every time, Jeteo would give his arm a quiet tap — a signal that meant, that was you being called.
-
-*Every time I saw that little tap, I felt strangely at ease. Beside someone who couldn't answer to his own name, there was someone else, sending the signal in his place. I thought that might be needed even before a name.*
+"…Yeah," my brother said. "I've been thinking that, lately."
 
 ---
 
-Temel walked with us a few more days, then stopped at a fork in the road.
+That night we tried to think of a name. My brother couldn't settle on one at all. I felt like I could.
 
-"…I need to take a different road from here," Temel said. "There's someone else, out there, waiting to be found."
+By the campfire, my brother opened his mouth several times and closed it again. He only muttered, "…there should be a name that fits him." I found it new, somehow, that my brother could grow this careful over choosing a single name.
 
-"…Thank you," Jeteo said. His voice was sincere.
+"…What about *Waiting*?" I said. "It's the meaning behind someone's name I know."
 
-I looked at Temel's worn pack. It looked lighter than when we'd first met him. I thought it was probably because of everything he'd shared with us along the way.
+Father said the name aloud, several times.
+
+Slowly, rolling it in his mouth, then a bit faster — like someone testing whether the sound could belong to him.
+
+"…Waiting," Father said. "Not bad. It does seem like I'm truly waiting for something right now."
+
+"…What are you waiting for?" my brother asked.
+
+Father thought for a moment.
+
+"…I don't know. But the feeling of waiting for something — that much is certain."
+
+*Hearing that answer, I nearly cried. I understood, then. Father had forgotten his name, his face — but he hadn't forgotten the shape of that particular feeling, waiting. I couldn't be sure whether it was us he was waiting for. But I chose to believe it was.*
+
+In that moment I remembered how we'd been, back in Brick Hollow. It had always been us waiting for Father. Now Father was the one waiting for something. I found that reversal strange, and yet, somehow, natural too.
+
+My brother said nothing in that moment. But I could tell he was repeating that name over and over in his mind. His lips moved soundlessly along with the two syllables.
+
+From that day on, we called Father "Father" between ourselves, but used the name "Waiting" in front of others. It felt strange at first. Father, too, missed his cue to answer to his own new name more than once.
+
+Every time I said that name, a strange feeling came over me. Calling out a name I myself had given. I thought it felt, somehow, like giving Father life a second time. I knew it was a strange thought, but I couldn't quite shake it.
+
+"…Mr. Waiting." When someone on the road called out to him that way, Father always reacted a beat late. Every time, my brother would quietly tap Father's arm. A signal that meant: *that's you being called.*
+
+*Every time I saw that tap, I felt strangely settled. Beside someone who couldn't answer to their own name, there was someone else, sending the signal in their place. I thought that was needed even before a name was.*
+
+Once, in a market, a merchant asked, "…Mr. Waiting, how much would you like to pay for this?" Father let the words pass right by him. My brother quickly tugged his sleeve. "…Father, they're talking to you." Only then did Father startle and answer, "…oh, yes! Me!"
+
+The merchant laughed and asked, "…why so surprised, when someone calls your name?" Father smiled sheepishly and only said, "…I'm still not used to it."
+
+I watched that exchange and felt something cold settle in my chest. Even Father's own name was still, to him, an unfamiliar coat.
+
+---
+
+Temel walked with us for a few more days, then stopped at a fork in the road.
+
+"…I have to take a different way from here," Temel said. "There's someone else waiting to be found."
+
+"…Thank you," my brother said. There was real feeling in his voice.
+
+I looked at Temel's worn pack. It looked even lighter than when we'd first met him. I thought it was probably from all the things he'd shared with us while we walked.
 
 "…Where will you go now?" I asked.
 
-"…Wherever someone needs me next," Temel said, smiling. "I never know where that is until I get there."
+"…Wherever someone needs me next," Temel said, smiling. "You never know where that is until you get there."
 
-"…Doesn't living like that wear you out?" Jeteo asked.
+"…Doesn't living like that wear you out?" my brother asked.
 
-Temel thought for a moment before answering.
+Temel thought a moment before answering.
 
-"…It does," Temel said. "But it's better than stopping."
+"…It does," Temel said. "But it beats stopping."
 
-*I thought about that answer for a long time. Someone worn out and still not stopping. I'd rarely seen anyone like that, in Brick Hollow or in Haven. Most people, once tired, stopped — or else never came forward in the first place, precisely to avoid growing tired.*
+*I turned that answer over for a long time. Someone who kept going despite being worn out. I hadn't seen many people like that, in Brick Hollow or in Haven. Most people, once worn out, either stopped, or never set out to begin with, so as never to be worn out at all.*
 
-Temel looked at us and said one last thing.
+Father had been quietly watching Temel pack his things all this while. He watched, unblinking, like watching a familiar gesture. I couldn't tell what that gaze was directed at. Maybe Father, too, was faintly recalling some parting he himself had forgotten.
 
-"…Until your father finds his real name again, you two hold his place. A person can lose his name and still not lose the place where he's loved."
+"…Have we been a burden to you at all?" I asked. "We kept you from your own work, following you around."
 
-Father, hearing that, held his hand out to Temel. Temel took it.
+Temel shook his head.
 
-"…Thank you," Father said. "For treating me this way, when I don't even know who I am."
+"…Never thought of it as a burden," Temel said. "If anything, thanks to you two, I got to walk a few whole days alongside someone again, for once. Usually I find someone and we part right away."
 
-"…There's always a reason to treat someone well, even without knowing who he is," Temel said.
+"…So we were good for you too?" I asked again.
 
-With those words, Temel turned and walked off down the other fork. I watched his back grow smaller for a long time. At the last, he turned once and waved. I waved back.
+"…Yes," Temel said, smiling. "Much more than I expected."
 
-*I set down those words as the last line of this chapter. We parted from Temel that day and went on walking, the three of us again. For the first time, I felt this journey's purpose changing — from finding an answer, to holding a place.*
+Far off, I could hear wind combing through the dry grass. That sound seemed to go on, like the background music of this fork in the road. I thought that if partings had a fitting sound, it would be one like that.
+
+Temel adjusted his pack straps and looked at each of us for a long moment. I understood that gaze as one preparing a last goodbye.
+
+"…Will we get to see you again?" I asked. My throat tightened as I asked it.
+
+"…I don't know," Temel said honestly. "But this road isn't so wide. We might cross paths again someday."
+
+"…Please," my brother said, with unusual force.
+
+Temel smiled at that.
+
+Temel looked at us and spoke one last time.
+
+"…Hold his place until your father finds his real name again. Losing a name doesn't have to mean losing the place where you're loved."
+
+Father heard that and held out his hand to Temel. Temel took it.
+
+"…Thank you," Father said. "For treating me this way, when even I don't know who I am."
+
+"…There's always a reason to treat someone well, whether you know who they are or not," Temel said.
+
+Father closed his eyes for a moment at that, then opened them. It wasn't the face of someone who'd fully understood. But it was the face of someone who had received something.
+
+With that, Temel turned and walked off toward the other branch of the road. I watched his back grow smaller and smaller for a long time. At the last, Temel turned once and waved. I waved back.
+
+Father waved toward that retreating back too. It was a strangely earnest gesture, for a farewell to a stranger. I thought that even if Father couldn't fully remember Temel, his body still knew, somehow, that he'd been someone precious.
+
+My brother stayed rooted to the spot until Temel had completely disappeared. I stood quietly beside him, watching that empty road together.
+
+Even after the sun had fully set, we stood there a little longer. No one suggested moving on first. I understood that silence as grief at the parting.
+
+*I set that line down as this chapter's last line. We parted with Temel that day and set off again, the three of us. I felt, for the first time, that this journey's purpose was shifting — from finding an answer, to holding a place.*
 
 *(Continued in Chapter 30.)*

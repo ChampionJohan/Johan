@@ -5,122 +5,236 @@ series: The Weeping Ledger, Part One · Brick Hollow
 
 # Chapter 8. If You Disappeared
 
-> _Previously_ — The sprout Elpis planted broke ground. The old woman didn't remember her daughter's name, but she remembered that she'd "liked" things like this. Jeteo bore witness to the truth of the Completion House alone, and despaired all the more that no one else feared it. Brother and sister took up the fight against this city in their own separate ways, but never let go of each other's hands.
+> _Previously_ — The seed Elpis planted sprouted. The old woman couldn't remember her daughter's name, but she remembered that she had loved things like this. Jeteo witnessed the truth of the Completion House alone, and despaired all the more that no one else was afraid of it. Brother and sister fought this city in different ways, and still did not let go of each other's hands.
 
-My brother started circling that building even more often, after that.
+After that, my brother lingered near that building more and more often.
 
-I told him not to, more than once. Every time, he'd say "all right," and every next day he'd come back late again.
+I told him not to, again and again. Every time, he said "…All right," but he still came home late the next day.
 
-*That was the first time I was truly angry with my brother. Not afraid — angry. I had already lost Father. It wasn't the fear of losing my brother too that made me angry. It was that he wouldn't share that fear with me.*
+I noticed that "all right" growing shorter each time. At first he said it looking at me. Then he said it while taking off his shoes. Later, he said it with his back turned.
 
-Every evening I sat by the window and watched the direction my brother came from. When I saw him, I'd feel relief, and then I'd be ashamed of that relief. I didn't want to be watching over my brother. But I couldn't help it.
+I didn't think it was a lie. He truly meant it, when he said it. He just couldn't stop, even knowing better. I didn't understand, then, that this was harder than lying.
 
-Through all of that, I went to the flowerbed every day and watered the sprout. It had two leaves now. Even looking at those leaves, half my mind was still spent worrying over where my brother was.
+*That was the first time I was ever angry at my brother. Not afraid — angry. I had already lost Father. It wasn't the fear of losing my brother too that made me angry. It was that he wouldn't share that fear with me.*
 
-Every time I watered it, I counted the leaves. One, two. If it was the same as yesterday, I was relieved. If they'd spread a little further apart, I smiled. I knew it was a strange habit, but I kept it up anyway. Having something to count, in itself, was a comfort.
+Every evening I sat by the window watching for him to come home. When I saw him, I felt relief, and then felt ashamed of that relief. I didn't want to watch over him like a guard. But I couldn't help it.
 
-The man was there some days, gone others. When he was there, he didn't say much. We just sat together and looked at the soil. I realized then that this quiet was different from the quiet with my brother. The quiet with my brother always carried tension. This quiet had none.
+All the while, I went to the flowerbed every day and watered the sprout. It had two leaves now. But even watching those leaves, half my mind was still worrying over where my brother was.
 
-One day a worn old watering can sat where he usually was. I didn't know who'd left it. The next day, when he came back, I asked him.
+Every time I watered it, I counted the leaves. One, two. If the count matched yesterday, I felt at ease; if it had opened a little wider, I smiled. I knew it was a strange habit, and I didn't stop it. Just having something to count was, in itself, a comfort.
+
+*I only understood later. Counting those leaves, I was really counting something else — the number of nights my brother came home safely. I was afraid of that count breaking off, so instead I gave myself something else I could count.*
+
+Around that time I developed a habit of touching the leaves with my finger every night to count them. Even in the dark, I could tell how many there were just by feel. I couldn't have named it, then, but that was my own way of checking on my brother with my eyes closed.
+
+The man was there some days and not others. When he was there, he didn't say much. We just sat together and looked at the dirt. I understood, then, that this quiet was different from the quiet with my brother. The quiet with my brother always carried tension. This quiet carried none.
+
+One day I spoke first.
+
+"…Sir," I said. "What do I do if I get tired of waiting?"
+
+He paused the hand smoothing the soil.
+
+"…Getting tired is normal," he said. "Not getting tired isn't waiting — it's just enduring."
+
+"…So what do you do when you get tired?"
+
+"…You rest," he said. "Giving up on waiting and resting aren't the same thing."
+
+I liked that distinction. Until then, I'd thought resting meant losing.
+
+"…Have you ever gotten tired?"
+
+He looked at me. A long look.
+
+"…I have," he said. "But even then, I never left my post."
+
+I remembered that answer for a long time. Not leaving your post. It seemed to me like another name for waiting.
+
+"…Why don't you ever leave your post?" I asked.
+
+"…Because leaving would make the waiting spent there go to waste," he said. "Waiting is only waiting if it holds together. Broken off, it just becomes time that passed."
+
+One day I found an old watering can left at the spot where he wasn't. I didn't know who had left it. The next day, when he came back, I asked.
 
 "…Did you leave this?"
 
-"…No," he said. "But whoever left it, it must be there to use."
+"…No," he said. "But whoever left it, it's probably there to be used."
 
-I watered with that can after that. I never did find out who'd left it. Its handle was already worn smooth. Someone besides me had used it a long time too.
+After that I watered the sprout with that can. I never did find out who had left it. Its handle was already worn smooth. Someone besides me had used it a long time too.
+
+I fit my hand to the worn place on that handle. It was bigger than my hand. A place made for an adult's grip. I wondered who that person had carried it for.
+
+When I poured water, the spout made a very thin sound — not a long steady rush, but a series of small, clipped taps. I poured slowly, on purpose, just to hear that sound. It was the only sound in Haven I ever came to love.
 
 ---
 
-My brother came home late again that night. His clothes had dirt on them. There was a scrape on the back of his hand.
+That night, my brother came home late again. There was dirt on his clothes. A scrape on the back of his hand.
 
-I'd been waiting for him at the door. It had been long since sundown. I couldn't count how many times I'd stepped outside and looked up at the sky in that stretch of time.
+I was waiting for him at the door. It had been dark a long while. I couldn't count how many times I'd gone outside to check the sky during that wait.
+
+I already knew the sound the door made when it opened. My brother's way of opening it was always quick and impatient. That night the sound was more careful than usual. That alone told me he was hiding something.
+
+I'd left only one light burning in the room. It wasn't because I liked the dark. I worried a bright room might look, to him, like an accusation the moment he walked in. But once I actually saw his face, all that care went to waste anyway.
+
+The light lit only half of his face. The other half was buried in shadow. My eyes kept drifting to that shadowed side, as if something more were hiding there.
 
 "…What's this?" I asked, pointing at the back of his hand.
 
-"…Climbing a wall," my brother said. As if it were nothing.
+"…Climbing a wall," my brother said, as if it were nothing.
 
-He avoided my eyes even as he said it. I knew that was the sign he was hiding something. A habit I'd known since Brick Hollow.
+"…What wall," I asked.
 
-Something I'd been holding down broke loose in that moment.
+"…Just a wall," he said. "I'm fine."
 
-"…Don't you think of me at all?" I shouted. "If you go in there and never come out, what do I do? What do I do if I'm left here alone?"
+"…Don't say fine," I said. "You say fine when you're fine, and you say fine when you're not. So what's the use of that word."
+
+My brother stopped, one shoe half off.
+
+He avoided my eyes even as he spoke. I recognized that as a sign he was hiding something. A habit I'd known since Brick Hollow.
+
+Everything I'd been holding back broke loose in that moment.
+
+"…Don't you think about me at all?" I shouted. "If you walk into that place and never come out, what happens to me? What if I'm left here all alone?"
 
 "…I was just—" my brother started.
 
-"…No, listen to me first," I cut him off. "Every night I sit at the window watching for you to come. When you don't show up, I feel like my heart's stopped. You don't know that."
+"…No, you listen first," I cut him off. "I sit by that window every evening watching for you to come back. When I can't see you, it feels like my heart stops. You don't know that."
 
-My brother looked at me, startled. I'd never raised my voice like that before.
+My brother looked at me, startled. I had never raised my voice like that before.
 
-*I remember that moment exactly. For the first time since leaving Brick Hollow, I really thought I might cry that day. But I didn't. Even then, I had forgotten how to cry.*
+"…I couldn't say anything, even when Father disappeared," I said. My voice rose on its own. "I watched him walk out the door and said nothing. I still think about that. Every single night."
 
-The room stayed quiet a while. I was still catching my breath. My brother stood right there, just looking at me. It was only later I understood that his silence was him searching for something to say.
+My brother's face went rigid at that.
+
+"…So at least tell me, before you go," I said. "I don't need to be able to stop you. Just let me know."
+
+*I remember that moment exactly. For the first time since leaving Brick Hollow, I really thought I might cry, that day. I didn't. I had forgotten how to cry, even then.*
+
+The room stayed quiet for a while. I was still catching my breath. My brother just stood there, looking at me. I only understood later that his silence was him searching for something to say.
+
+No sound came from outside the window. In Brick Hollow, if I'd made a sound like that, the neighbors would have pounded the wall. Here, no one responded at all. In that moment, I hated even the way this city swallowed sound.
+
+My throat hurt. I couldn't remember the last time I'd spoken that loudly. And strangely, that ache in my throat felt like a relief.
 
 ---
 
-After a long while without a word, my brother sat down beside me.
+My brother said nothing for a long while, then sat down beside me.
 
-His shoulders had dropped a little. Watching that, I began to regret shouting. But even regretting it, I didn't want to take the words back.
+His shoulders had dropped a little. Watching him, I began to regret shouting. And yet, even regretting it, I didn't want to take the words back.
 
-"…I'm sorry," my brother said. It was a voice I'd never heard before. "I… when I was doing something, I could stop thinking about Father. I think that's why I kept going."
+"…I'm sorry," my brother said. A voice I'd never heard from him before. "I… found that if I was doing something, I didn't have to think about Father. I think that's why I kept going."
 
 "…I think about Father too," I said. "But I have to think about you as well."
 
-"…Yeah," my brother said. "That part, I'm sorry."
+"…I know," he said. "That part's on me. I'm sorry."
 
-My brother took my hand. The scrape on the back of his hand touched my palm. I stroked it carefully.
+"…Is thinking about Father really that hard?" I asked.
+
+My brother nodded.
+
+"…His face keeps going blurry," he said. "That's what scares me most. When I'm doing something, I don't feel it blurring. When I'm still, I do."
+
+Hearing that, I understood why he'd gone out every night. He hadn't gone to investigate. He'd gone because he couldn't bear to sit still.
+
+"…Father's voice hasn't gone blurry for me yet," I said. "But I'm scared that once his face blurs, his voice will too, soon after."
+
+My brother closed his eyes and opened them again. "…Maybe," he said. "But if the two of us remember, maybe one version stays clear."
+
+"…Mine goes blurry too," I said. "But I let it stay blurry. Even blurred, Father's still Father."
+
+My brother said nothing to that. But the grip of his hand around mine grew a little stronger.
+
+He took my hand. The scrape on the back of his hand pressed against my palm. I stroked it carefully.
 
 "…Does it hurt?" I asked.
 
-"…It doesn't hurt anymore," my brother said.
+"…Not anymore," he said.
 
-*I knew then how rare it was for my brother to apologize. In Brick Hollow, he'd always had to be stronger than me. There'd been no room for apologies. I held that apology close, for a long while, right there.*
+"…Liar," I said.
+
+"…A little," he corrected himself. And smiled, just for an instant.
+
+I liked that correction. It felt like the first time he'd told me the true size of something.
+
+*I understood, then, how rare it was for my brother to apologize. In Brick Hollow he had always had to be stronger than me. There had never been room for him to say sorry. I held onto that apology, right there, for a long time.*
 
 "…Promise me," I said. "That you won't go in there alone."
 
 My brother hesitated a moment.
 
-"…I can't promise that," my brother said. I was about to be angry again. But my brother went on. "But I'll promise this. Whatever I do, I'll tell you first before I go. I won't just vanish alone."
+"…I can't promise that," he said. I nearly grew angry all over again. But he went on. "But I'll promise this. Whatever I do, I'll tell you first before I go. I won't just disappear on my own."
 
 "…That's not enough," I said.
 
-"…I know," my brother said. "But it's all I can do. I can't stop asking that question. If I stop, then Father — that name too — just gets forgotten, completely."
+"…I know," he said. "But that's all I can give you. I can't stop asking that question. If I stop, then Father — even his name — just gets forgotten."
 
-*I knew it wasn't a whole promise. But I also knew it was the best my brother had, that day. I decided to take that half a promise.*
+*I knew it wasn't a whole promise. But I also knew it was the best my brother could give me, that day. I decided to accept that half-promise.*
 
-I held out my little finger. It was how we used to make promises, back in Brick Hollow. My brother saw it and smiled for a moment.
+I held out my little finger. It was how we used to seal promises in Brick Hollow. My brother saw it and smiled, just a little.
 
-"…You remember that too?" my brother asked.
+My finger was trembling slightly then. I didn't know myself whether it was the lingering echo of my anger, or the wish that this one small finger could really hold onto something.
+
+"…You still remember that?" he asked.
 
 "…Of course," I said.
 
-My brother hooked his little finger around mine. It was an old gesture, but our fingertips found each other exactly.
+He hooked his little finger around mine. Old as the gesture was, our fingertips found each other exactly.
 
-I remembered, for a moment, some night in Brick Hollow. Before Father was reassigned, my brother and I used to hook our fingers like this every night and promise to wake up safe. That memory was painful and welcome, both at once.
+For an instant, some night from Brick Hollow flickered back to me. Before Father was reassigned, my brother and I used to hook fingers like this every night, promising to wake up safe. That memory ached and comforted me both at once.
+
+We stayed there a while afterward, not letting go. I thought I could feel my brother's pulse at my fingertip. It was probably my own.
+
+*This is how I remember that night. We resolved nothing. My brother would still go to that building, and I would still be afraid. But from that night on, I never sat alone at the window again. My brother was there with me, inside that fear.*
 
 ---
 
 "…Brother," I asked. "Are you going to keep that paper?"
 
-My brother pulled the paper out and looked at it. The COMPLETE stamp was still red.
+He took the paper out. The COMPLETE stamp was still red. Under the lamplight it looked darker than it had by day. I saw, for the first time, that the red had soaked all the way through the paper.
 
-"…Yes," my brother said. "But I'm not keeping it as evidence anymore."
+"…Yes," he said. "But I'm not keeping it as evidence anymore."
 
-"…Then what?"
+"…Then why?"
 
-"…Someone has to remember that name," my brother said. "No one but this paper will ever call that person's name."
+"…Because someone has to remember that name," he said. "No one but this paper is ever going to say it."
 
 "…You don't even know who they are," I said.
 
-"…I don't," my brother said. "But they have a name. Having a name means someone once called them by it. That's enough for me."
+"…I don't," he said. "But they had a name. Having a name means someone once called them by it. That's enough for me."
+
+"…Do you think they were someone's brother too?" I asked.
+
+My brother paused at that.
+
+"…Could be," he said. "Or someone's father."
+
+"…So what's their sibling doing right now?"
+
+"…Probably nothing at all," he said. "They'd have filed it."
+
+That was the saddest thing I'd heard since coming to this city.
+
+"…If you met that sibling, what would you say?" I asked.
+
+My brother thought a long while. "…I think I'd say I'm sorry," he said. "That I've been remembering in their place, and I'm sorry for that."
 
 "…What's the name?" I asked.
 
-My brother unfolded the paper and showed me. It was a name we didn't know. I read it aloud once. My brother read it after me. Neither of us knew that person. But in that moment, they felt like someone we knew.
+My brother unfolded the paper and showed me. An unfamiliar name. I read it aloud once. My brother read it after me. Neither of us knew that person, and yet in that moment they felt like someone we knew.
 
-I borrowed the paper from my brother's hand for a moment. Its edges were worn now. I could tell how many times my brother had silently read that name over.
+"…It's different, saying it out loud," my brother said.
 
-I handed the paper back to my brother. He took it and tucked it carefully into his shirt, as if he were handling something alive. Watching that gesture, I understood clearly that my brother was keeping this paper now for a different reason than fear.
+"…What is?"
 
-*I set this down as the last line of this chapter. From that day, my brother was no longer someone collecting evidence. He was becoming someone who kept a name safe. I didn't know the difference then. Now I do. That was a place very close to where faith begins.*
+"…On the paper it was just letters," he said. "Said aloud, it sounds like a person."
+
+I nodded at that. Before I fell asleep that night, I repeated that name once more in my head. It felt strange, calling a name no one else could hear. But I thought it was the biggest act of defiance I could manage, in this city.
+
+I borrowed the paper from my brother's hand for a moment. Its edge was worn thin now. I could tell how many times he'd silently read that name.
+
+I handed the paper back to him. He took it and tucked it carefully inside his shirt, as though handling something alive. Watching that motion, I understood clearly that he was no longer keeping this paper out of fear, but for another reason entirely.
+
+*I set this down as the last line of this chapter. From that day my brother was no longer someone gathering evidence. He was becoming someone who kept a name safe. I didn't understand the difference, then. Now I know. That was a place standing very close to where faith begins.*
 
 *(Continued in Chapter 9.)*

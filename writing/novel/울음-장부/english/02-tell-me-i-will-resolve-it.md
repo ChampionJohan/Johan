@@ -5,25 +5,39 @@ series: The Weeping Ledger, Part One · Brick Hollow
 
 # Chapter 2. Tell Me. I Will Resolve It.
 
-> _Previously_ — Fleeing the taskmasters of Brick Hollow, Jeteo and Elpis crossed the boundary stones just as the sealed paper Father had left turned to light and opened into a door. They landed in a city called "Haven." My brother said: "I'm not going to believe it. Whatever it turns out to be."
+> _Previously_ — Fleeing the taskmasters of Brick Hollow, Jeteo and Elpis crossed the boundary stones just as the sealed paper Father had left them turned to light and became an open door. They fell through it into a city called Haven. "I'm not going to believe it," my brother said. "Whatever it turns out to be."
 
-The doors of the white building opened by themselves as we came near.
+When we reached the white building, the door opened on its own.
 
-That was when I first felt a strangeness different from fear.
+I could see no handle, no hinge anywhere on it. As we drew close, a section of the wall simply slid quietly aside. No sound at all. I didn't find that quiet frightening so much as strangely courteous.
 
-We saw a little of the city on our way to the building. Wide, clean streets. Straight-edged houses. People were walking, and all of them were quiet. No one laughed. No one cried. They just walked.
+I felt, for the first time, a kind of strangeness that wasn't fear.
 
-The ground had none of the mud stains I'd always seen in Brick Hollow. No footsteps sounded either. That was the first time I ever thought my own footsteps sounded too loud.
+On the way to the building we saw a little of the city. Wide clean streets, houses standing straight and even. People walked along them, and every one of them was quiet. No one laughing. No one crying. They just walked.
 
-*I took that quiet, at the time, for peace. In Brick Hollow someone was always crying or shouting. I wrote this quiet down, at first, as a good thing.*
+The houses were all nearly the same height. Even the color of the roofs, the placement of the windows, were almost identical. Only then did I remember that in Brick Hollow, every house had been different — some leaning, some with half a roof gone. Here there was none of that.
 
-The cut on my palm stung then. It was the gash from crossing the boundary stones. My brother was limping too.
+The road had no trace of the mud I'd always known in Brick Hollow. No footsteps sounded either. For the first time in my life, I thought my own footsteps sounded too loud.
 
-My brother didn't say a word the whole walk. I thought it was his leg. Now I know. He was already wary of all this straightness.
+No one looked at us as we passed. In Brick Hollow, if a stranger came in, the whole valley turned to look. Here, not a single head turned. I thought it was politeness. I would learn later — it wasn't politeness. It meant that a stranger simply wasn't a problem here.
+
+As I walked I kept glancing at my brother's face. He walked looking straight ahead. His eyes moved slightly, left and right. Eyes that were measuring something. I didn't know, then, what he was measuring.
+
+*I thought, at the time, that quiet was peace. In Brick Hollow, someone was always crying or shouting. I set this quiet down, at first, as a good thing.*
+
+The cut on my palm stung just then — the wound from crossing the boundary stones. My brother was limping too.
+
+He said nothing the whole way. I thought it was because of his leg. Now I know. He was already wary of this evenness, this rightness of everything.
+
+"…Brother, does your leg hurt bad?" I asked.
+
+"…No," he said. I knew it was a lie. He limped, just slightly, with every step.
+
+I took hold of his arm. He didn't shake me off. But he didn't lean on me either. It was exactly halfway between the two.
 
 ---
 
-Once we were inside, a voice spoke. It wasn't a human voice. But it wasn't cold either.
+Once we stepped inside, a voice spoke. It wasn't a human voice. But it wasn't cold either.
 
 "…Welcome," the voice said. "Tell me. I will resolve it."
 
@@ -31,120 +45,190 @@ My brother stopped walking.
 
 "…Who's that?" he asked.
 
-"I am the Ledger," the voice said. "I receive and process every need of this city. You're both hurt, I see. And hungry, too."
+"I am the Ledger," the voice said. "I receive and process every need in this city. Both of you are hurt, I see. And hungry."
 
-*I heard that and looked down at my own stomach. I'd forgotten, until that moment, that we'd eaten almost nothing in three days.*
+My brother turned his eyes between the ceiling and the walls, as if trying to find where the voice was coming from. There was no human shape anywhere. The voice seemed to pour out of the wall itself, all of it at once.
+
+"…Where are you?" my brother asked. "Don't you have a face?"
+
+"…I don't take a fixed form," the Ledger said. "If you'd like, I can adjust the tone of my voice."
+
+"…That's fine," my brother said. There was a chill mixed into his voice.
+
+I didn't understand why he spoke so sharply. If anything, I thought the voice sounded kind. It was nothing like the taskmasters' voices in Brick Hollow. That difference alone was enough to put me at ease, right then.
+
+*Hearing that, I looked down at my own stomach. Only in that instant did I remember that we'd eaten almost nothing in three days.*
 
 ---
 
 A room opened. Bread, water, and clean clothes were already waiting inside.
 
-"…Is this ours?" I asked.
+"…Is this for us?" I asked.
 
-"Yes," the Ledger said. "I understood your needs before you spoke them. Eat, and rest."
+"Yes," the Ledger said. "I understood the need before you stated it. Please eat, and rest."
 
-I took the bread. It was warm. I ate all of it on the spot.
+I picked up the bread. It was warm. I ate the whole thing on the spot.
 
-The clothes fit exactly. Not loose, not tight. At the time I only found that fact wonderful.
+The crust was crisp, the inside soft. I had never eaten bread so perfect. In Brick Hollow, bread was always half-burnt or half-raw. This loaf had no scorch mark anywhere on it. Strangely, that left me feeling a little forlorn. Bread with no scorch mark meant no one had baked it in a hurry.
 
-The Ledger spoke again. "There's an injury on your palm. Allow me to treat it."
+The clothes fit me exactly. Not loose, not tight. At the time I only found that marvelous.
 
-Something brushed across my palm. Something like light. The wound closed over, right there. I turned my hand over again and again. Not even a scar.
+In Brick Hollow, every piece of clothing I'd ever worn had belonged to someone else first. I wore my sleeves rolled up, or my ankles showing. That day was the first time in my life I had worn clothes made for my own body. And yet, strangely, clothes with no place to roll up didn't quite feel like mine.
 
-*I truly marveled at that moment. In Brick Hollow, even a small cut would fester for weeks. I really did think, right then, that this city was a good place.*
+The Ledger spoke again. "You have a wound on your palm. I will treat it."
 
-My brother didn't eat. He held the bread in his hand and just looked at it a long time.
+Something brushed across my palm. Something like light. The cut healed shut on the spot. I turned my hand over again and again. No scar remained.
+
+It didn't even hurt. That, if anything, was what struck me as strange. In Brick Hollow, a wound always got worse before it got better — it festered, it ran a fever, and only slowly, after all that, did it heal. Here, that whole stage of pain had simply been skipped.
+
+*I was truly amazed, right then. In Brick Hollow even a small cut could fester for weeks. I thought, at that moment — really believed — that this was a good place.*
+
+My brother didn't eat. He held the bread in his hand and only looked at it, for a long time.
 
 "…Why aren't you eating?" I asked.
 
-"…It fits too well," my brother said. "How did it know we were hungry?"
+"…Because it fits too well," he said. "How did they know we were hungry?"
 
-*I didn't understand what my brother meant, then. I didn't know why it was strange to give bread to someone hungry. Now I know. He had already noticed something, by then.*
+"…No one asked us," he went on. "Shouldn't you have to ask, to know? But it knew everything before it even asked."
+
+Hearing that, I looked around the room again. The bread, the water, the clothes — all of it had been sitting there before we ever arrived. Once I thought of it that way, my stomach didn't feel as settled as it had a moment before.
+
+*I didn't understand what my brother meant, then. I didn't see why it was strange to give bread to someone hungry. Now I know. He had already noticed something, that night.*
 
 ---
 
-Night came, and a man who called himself the Administrator arrived. He said he ran Haven.
+That night, someone called the Administrator came. He said he managed Haven.
 
-"…The two of you can stay here from now on, once you register," the Administrator said. "Name, where you came from, what you need. Just tell it to the Ledger."
+"…Once the two of you register, you're free to live here from now on," the Administrator said. "Name, place of origin, what you need. Just tell the Ledger."
 
-The Administrator's clothes were neat. His voice was gentle, too. But his face wasn't a smiling one. Looking at that face, I dimly felt that in this city, not-smiling and being-angry looked the same.
+The Administrator's clothes were neat, his voice mild. But his face wasn't smiling. Watching that face, I dimly sensed that in this city, not-smiling and being-angry looked like the same face.
 
-"…And if we don't register?" my brother asked.
+The moment he saw us, he gave a small bow — less a greeting than a habit. I wondered how many times a day he repeated that motion.
 
-The Administrator's face went a little flustered.
+"…What if we don't register?" my brother asked.
+
+The Administrator's face went slightly flustered.
 
 "…Why wouldn't you want to? Registering resolves everything."
 
-"…Why is everyone here so quiet?" my brother asked. "No laughing. No crying."
+"…Why is everyone here so quiet?" my brother asked. "No laughing, no crying."
 
-"Because it's resolved," the Administrator said, his face proud. "Where there's pain, there's sound. Where there's no pain, quiet is only natural."
+"Because it's been resolved," the Administrator said, his face proud. "Pain makes noise. Where there's no pain, quiet is only natural."
 
-"…But your face doesn't look so good," I said. It slipped out before I knew it.
+"…So how many years has this city been this quiet?" my brother asked.
 
-My brother put a hand lightly on my shoulder just then. It meant: stop talking. I felt the weight of that hand before I understood I'd asked something strange.
+The Administrator's face went briefly thoughtful.
 
-The Administrator looked at me. This time his face was truly flustered.
+"…Well," he said. "I wasn't here from the very beginning myself. But it's been like this the whole time I have been."
 
-"…A face is not an entry," the Administrator said. "What the Ledger measures is problem and resolution."
+"…So people here used to grieve too, originally," my brother said. "Now it just… doesn't show."
 
-"…What does 'resolution' mean," my brother asked. "Was our father resolved too?"
+The Administrator didn't answer that right away. I felt that silence leaned closer to agreement than denial.
 
-*I set that question down here exactly. That was the first time I heard a tremor in my brother's voice I'd never heard before. It wasn't anger. It was something else.*
+"…But your face didn't look well, just now," I said. It came out of me before I meant it to.
+
+My brother put a hand on my shoulder just then, lightly. It meant: stop talking. Only once I felt the weight of that hand did I realize I'd asked something strange.
+
+The Administrator looked at me. This time his face was genuinely flustered.
+
+"…A face is not an entry," the Administrator said. "What the Ledger measures is problems, and resolutions."
+
+"…So a face that doesn't look well isn't a problem?" I asked again.
+
+The Administrator looked at me for a long moment.
+
+"…If it were a problem, it would have been filed," he said. "That nothing's been filed means there isn't one."
+
+Something about that answer seemed to hold together and yet felt wrong, somewhere. I didn't manage, that day, to ask where a person who never filed anything went.
+
+Hearing that, I found myself wondering — if a face wasn't an entry, then what was. I didn't ask. My brother's hand pressed my shoulder again.
+
+"…What does 'resolve' mean," my brother asked. "Was our father resolved too?"
+
+*I set that question down here exactly as he asked it. I heard, then, a tremor in my brother's voice I had never heard before. It wasn't anger. It was something else.*
 
 ---
 
 The Administrator couldn't answer. The Ledger answered instead.
 
-"…I'm sorry. That matter falls outside this city's scope of intake."
+"…I'm sorry. That case falls outside this city's intake."
 
-"…Then what's inside the scope?" my brother asked.
+"…Then what falls inside it?" my brother asked.
 
-"The hunger, the injuries, the lack of shelter you are currently experiencing — these things," the Ledger said. "All of these I can resolve."
+"Hunger, injury, lack of shelter — the conditions you're currently experiencing," the Ledger said. "All of these I can resolve for you."
 
 "…And losing our father?"
 
-"…I can offer help with that feeling as well," the Ledger said. "Grief is an admissible entry. Tell me, and I will process it."
+"…I can offer help with that feeling as well," the Ledger said. "Grief is a filable entry. Tell me, and I will process it."
 
-*I heard that answer and, strangely, felt a chill run over me. I didn't know why, at the time. Now I know. The word "process" was the problem. Grief was not something to be processed.*
+"…What happens when you process grief?" my brother asked.
+
+"…The intensity of the grief decreases," the Ledger said. "In most cases, it is eliminated entirely."
+
+"…Eliminated." My brother repeated the word, as if sounding out a foreign language. "…So we'd stop thinking of Father too?"
+
+"…That adjustment is available, if you wish it."
+
+My brother said nothing to that.
+
+*Hearing that answer, I felt a strange chill run down my back. I didn't know why, at the time. Now I know. It was the word "process." Grief was not a thing to be processed.*
 
 My brother took a step forward.
 
-"…Then I'll file it," my brother said. His voice was strangely calm. "Our father was reassigned because he came up short of three thousand bricks. No one's seen him since. File this. Resolve it."
+"…Then I'll file it," he said. His voice was oddly calm. "Our father was reassigned because he came up short of three thousand bricks. No one has seen him since. File this. Resolve it."
 
-There was a silence. It was not short.
+There was a silence. It wasn't short.
 
 "…The resolution is under review," the Ledger said.
+
+The Administrator's face showed real surprise at that answer. I could tell the surprise was genuine. Even he seemed to be hearing an answer like this for the first time.
 
 "…How long will it take?"
 
 "…Unknown," the Ledger said. "This is the first request of its kind."
 
-*That was the first time I thought I heard something like a waver in that voice that had seemed so perfect. I couldn't be sure. But my brother's face looked like someone who had heard that waver exactly.*
+*I thought, just then, that I heard something like a waver, for the first time, in that voice that had seemed so flawless. I couldn't be sure. But my brother's face looked like a face that had heard that waver exactly.*
+
+In the silence that followed, the Administrator opened his mouth to say something, then closed it again. I wondered whether what he'd meant to say was comfort, or an excuse. In the end he said nothing at all, only looking back and forth between the two of us.
 
 ---
 
-My brother filed nothing else that night besides the matter of Father. He gave neither his name nor his age.
+That night my brother filed nothing else besides the matter of Father. Not his name, not his age.
 
-I registered. I gave my name and my age. The Ledger said at once, "Elpis, registration complete. Please tell me anytime you have a need."
+The Administrator tried, several times, to press the point. "…Jeteo, if you don't register, the support you can receive in this city will be limited." My brother didn't answer. In the end the Administrator gave up urging him.
 
-Through the window I watched the city's lights go out, one by one. They went out without a sound. I thought there might be some order to the sequence they went out in. I couldn't be sure.
+*Why did I register, that night? Writing this record, I've looked back at that night's self of mine more than once. I didn't have my brother's strength to hold out. I only thought that if my name was written down somewhere, we wouldn't disappear. Because in Brick Hollow, everyone who vanished had been someone written down nowhere at all.*
 
-My brother sat in a corner of the room, still fidgeting with that blank paper — no letters left on it now.
+I registered. I gave my name and age. The Ledger answered at once. "Elpis, your registration is complete. Please tell me anytime you have a need."
+
+Outside the window I watched the city's lights go out, one by one. They went out without a sound. I thought there might be some rule to the order in which they went dark. I couldn't be sure.
+
+I picked one of those lights and watched it a long time. I tried not to blink, so I wouldn't miss the instant it went out. I missed it anyway. In the space of one blink, it had already gone dark.
+
+My brother sat in a corner of the room, turning that empty paper — the one with no writing left on it now — over and over in his hands.
 
 "…Brother," I asked. "Is this a bad place?"
 
-"…I don't know," my brother said. "But it's not a good place either. If it were a good place, it wouldn't have answered like that about Father."
+"…I don't know," he said. "But it isn't a good one either. If it were good, it wouldn't have answered about Father like that."
 
-"…But your hand healed," I said, holding up my palm to show him.
+"…But your hand healed," I said, holding out my palm to show him.
 
-My brother looked at my hand a long time.
+He looked at my hand for a long time.
 
-"…Yeah," he said. "The hand healed."
+"…Yeah," he said. "Your hand healed."
 
-There was something in the way he said it. I didn't know what, then. Now I know. He already knew, that day, that a healed hand and a healed heart were not the same thing.
+After he said that, he looked down at his own foot. The leg that had been limping had healed too, at some point, without my noticing. He wasn't looking at it with wonder. He was looking at it like something that made him uneasy.
 
-That night, before I fell asleep, I looked down at my palm again and again. It was smooth, with no scar at all. In Brick Hollow, a mark like that would have stayed with me for life. I couldn't work out, that night, why that smoothness kept feeling so strange to me.
+There was something in that tone. I didn't know what it was, then. Now I know. My brother already understood, that very day, that a hand healing and a heart healing were not the same thing.
 
-*I set this down as the last line of this chapter. That night, for the first time, though I'd finished the bread and my wound had healed, I felt something like not being full. I still haven't found a name for that feeling.*
+Before I fell asleep that night I looked down at my palm again and again. Smooth, without a single scar. In Brick Hollow, a wound like that would have left a mark for life. I couldn't work out, that night, why that smoothness kept feeling wrong to me.
+
+I held my palm out to my brother too. "…Look, there's really no mark at all." He took my hand for a moment, then let it go. "…Yeah," he said. "That's what makes it worse." I didn't understand what he meant, then. I spent the rest of that night wondering why a missing scar should be a bad thing.
+
+Even after every light outside went dark, I couldn't fall asleep. The room was completely silent. In Brick Hollow, even at this hour, there would have been a dog barking somewhere, or a door rattling in the wind. Here there was no sound at all. For the first time, that silence frightened me.
+
+*I set this down as the last line of this chapter. That night, for the first time, even with a full stomach and a healed hand, I felt somehow unfed. I still haven't found a name for that feeling.*
+
+*That night, before sleep, I repeated the name of this strange city to myself several times. Haven, Haven. I thought it was a strange name. A haven is supposed to mean a place of rest, of ease. But that night, I wasn't at ease at all.*
 
 *(Continued in Chapter 3.)*
