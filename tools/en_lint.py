@@ -47,7 +47,8 @@ def is_question(sentence):
         return False
     return not (MISMATCH.match(sentence) or IMPERATIVE_DO.match(sentence)
                 or RELATIVE.match(sentence))
-ENDS = ".!?:—…\"')"
+# 각주 번호는 마침표 뒤에 붙으므로 종결 문자로 함께 인정한다
+ENDS = ".!?:—…\"')" + "¹²³⁴⁵⁶⁷⁸⁹⁰"
 
 
 def strip_md(line):
