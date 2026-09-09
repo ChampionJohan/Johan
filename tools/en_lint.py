@@ -73,6 +73,7 @@ def paragraphs(path):
         if re.search(r"(?m)^lint:\s*skip\b", head):
             return
     buf, kind = [], "prose"
+    fenced = False
 
     def flush():
         if buf:
@@ -81,7 +82,16 @@ def paragraphs(path):
 
     for n, raw in enumerate(text.splitlines(), 1):
         line = raw.strip()
-        skip = (not line) or line.startswith(("#", "|", "```", "<!--", "---"))
+        # 코드 울타리 안은 조판된 표나 서식이라 문장 부호를 따지지 않는다.
+        if line.startswith("```"):
+            out = flush()
+            if out:
+                yield out
+            buf, kind, fenced = [], "prose", not fenced
+            continue
+        if fenced:
+            continue
+        skip = (not line) or line.startswith(("#", "|", "<!--", "---"))
         listish = re.match(r"^(?:[>\-*]\s|\d+\.\s)", line)
         if skip or listish:
             out = flush()

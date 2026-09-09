@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""영어판 청소년 첫째 권 — Anatomy of Money for Teens."""
+"""영어판 청소년 둘째 권 — I Started. So Why Isn't It Working?"""
 
 import os
 import sys
