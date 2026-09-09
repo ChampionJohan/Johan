@@ -169,40 +169,74 @@ book doesn't read as regional, enough substitution that every chapter lands.
 
 ---
 
-# 5. Chapters that need rewriting, not translating
+# 5. Chapters that were rebuilt, not translated — done
 
-Three chapters cannot be translated. The underlying facts are different.
+Three chapters could not simply be translated. All three are now written.
 
-## Teen Ch 19 — 사업자등록 (business registration)
+## Teen Ch 17 — Kids Who Actually Did It · **rebuilt**
 
-Korean business registration has no US equivalent. This chapter must be rebuilt
-around: sole proprietorship, whether a minor can sign, when an EIN is needed,
-and the fact that **rules differ by state**.
+**My earlier note on this was wrong.** I flagged it as needing Western
+replacements. It didn't — the Korean chapter was already built on three
+American founders. It translates directly.
 
-And per the series' own rule — *don't pin down age limits and conditions, they
-change* — the chapter should teach the reader **how to look it up for their own
-state**, not state the rules.
+All three were verified before publishing:
 
-## Teen Ch 17 — 또래 창업 사례 (peer founder stories)
+| Founder | Verified |
+|---|---|
+| **Moziah Bridges** (Mo's Bows) | Started at 9; grandmother was a seamstress and taught him to sew; pitched on television at 11 and took a mentor over the cash offer; NBA licensing deal at 15 |
+| **Mikaila Ulmer** (Me & the Bees) | Stung by bees twice in one week at age 4; great-grandmother's 1940 cookbook flaxseed lemonade recipe; sweetened with honey from local beekeepers; reached Whole Foods |
+| **Rachel Zietz** (Gladiator Lacrosse) | Founded at 13 after a young entrepreneurs program; raised about $2,700; later *Forbes* 30 Under 30, youngest in her category |
 
-The Korean examples are Korean teenagers. English readers need English-language
-ones, and the series rule is that **every fact must be checkable**.
+**One ordering error in the Korean was corrected.** The Korean text implies the
+NBA partnership came before the age-11 magazine coverage. It didn't — the
+television pitch was at 11, the NBA deal at 15. The English fixes the sequence.
 
-**I could not verify any replacement from this environment** — outbound access to
-the sources is blocked. This chapter is flagged, not written. It needs either
-verified US/UK teen-founder cases or a rewrite that teaches the pattern without
-naming anyone.
+**What did need replacing** was the section explaining why Korean peer examples
+are hard to find. The English version keeps the same honest move but makes it
+universal: you don't hear about founders your age **because coverage of minors
+is restricted, not because they don't exist.**
 
-## Both closings — 대한민국
+## Teen Ch 19 — Making It Official · **rebuilt for the US**
 
-Teen Ch and adult Book 2 both close on 「대한민국 창업민국」 / 「대한민국, 창업하는 나라」.
+Korean business registration has no American equivalent, so this is a new chapter
+built on the US structure:
 
-Reframe to **"Building From a Small Market"**, as set out in the edition plan.
-The argument was never actually about Korea — it was about not having a large
-domestic market and not having capital. Korea stays as the author's worked
-example and the place he writes from.
+- **A US business with no paperwork is already a sole proprietorship.** There is
+  no starting gun. This is the chapter's opening reassurance.
+- **The real obstacle isn't paperwork — it's that a minor's contract is voidable.**
+  That's protective, but it means landlords, banks, and suppliers won't sign.
+  The chapter explains *why* an adult is needed rather than just saying so.
+- **Taxes:** sole proprietors generally report under their own SSN; an EIN is
+  mostly for employees or a separate account, and its "responsible party"
+  generally must be an adult.
+- **Rules vary by state and by city**, so the chapter refuses to print them.
 
----
+**Instead it teaches a ten-minute lookup** — secretary of state, city business
+licence, state sales tax — and tells the reader to write down the date they
+checked. That follows the series' own rule: *don't pin down conditions that
+change; teach the reader to check.*
+
+The chapter carries an explicit note that it is a starting point for a
+conversation with a parent, not legal advice.
+
+## Both closings — 대한민국 · **reframed**
+
+The teen closing is now **"You Don't Need a Big Country."**
+
+The Korean argued: not everyone must be a founder, but a country where people
+understand how money moves is a different country.
+
+The English keeps the whole argument and drops the flag. And it earns the point
+**from the book's own material** rather than asserting it — Box Four already
+established that the strongest moats are the ones that pile up over time
+(trust, a record, knowing one group of people well), and none of those require
+a large market or capital. They require starting early.
+
+> None of that needs a big country. None of it needs money. It needs starting early.
+> And you are extremely early.
+
+Korea isn't erased — in the adult book it stays as the author's worked example.
+It just stops being the thesis.
 
 # 6. Terms — quick reference
 
