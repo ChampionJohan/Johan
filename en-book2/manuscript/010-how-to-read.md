@@ -73,7 +73,8 @@ same place. That discovery changed how Parts One and Two are written.
 
 ## Where Book One's promised thirty-six cases appear
 
-The thirty-six cases named in Book One's sequel section are all here.
+The thirty-six cases named in Book One's sequel section are all here,
+and one more joined them along the way.
 
 They are not given a chapter each. They're **distributed across the moat types
 and the fault line paths.**
@@ -87,10 +88,10 @@ and fishmeal next to soft drinks.
 | Ch | Cases |
 |---|---|
 | 1 · Economies of scale | Shein · Thai Union · Peruvian fishmeal · Coca-Cola concentrate |
-| 2 · Network effects | Shopify · M-PESA · Motel 6 |
+| 2 · Network effects | Shopify · M-PESA · OpenTable |
 | 3 · Switching costs | Adobe · NVIDIA · John Deere · Topgolf |
 | 4 · Intangible assets | Aman Resorts · Zespri · Yubari melons · Switzerland |
-| 5 · Cost advantage | Cloudflare · In-N-Out · capsule hotels |
+| 5 · Cost advantage | Cloudflare · In-N-Out · capsule hotels · Motel 6 |
 | 6 · Regulation changes | Robinhood · Grameen Bank · Estonia · Ireland |
 | 7 · Technology substitutes | Conveyor sushi · citizenM · Driscoll's |
 | 8 · Customers move | Dollar Shave Club · Liquid Death · Peloton |
