@@ -69,7 +69,7 @@ blockquote p:last-child{margin:0}
 ul,ol{margin:0 0 1.35em;padding-left:1.4em}
 li{margin-bottom:.45em}
 hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
-table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+table{border-collapse:collapse;width:100%;margin:30px 0;font-size:.9rem;
  font-family:var(--sans);line-height:1.65}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
 thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
@@ -83,7 +83,15 @@ tbody tr:last-child td{border-bottom:0}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
 @media print{.flags{display:none}
- nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}
+ /* 인쇄에서는 표가 인쇄 폭보다 넓어지면 안 된다. 넓어지면 크로뮴이
+    문서 전체를 축소해서 본문 글자까지 작아진다. 칸 너비를 고정하고
+    긴 낱말은 줄바꿈해서 표가 폭 안에 들어오게 한다. */
+ .tblwrap{overflow-x:visible}
+ table{table-layout:fixed;width:100%}
+ th,td{overflow-wrap:break-word;word-break:normal;hyphens:auto}
+ /* 코드 블록의 긴 줄도 같은 이유로 접어 준다. */
+ pre{white-space:pre-wrap;overflow-wrap:break-word}}
 </style>
 </head><body><div class="wrap">
 <header class="titlepage"><p class="series">The Five Boxes Series · Teen Edition, Book Two</p><h1>I Started. So Why Isn&#x27;t It Working?</h1><p>The Part Nobody Warns You About</p><div class="rule"></div></header>

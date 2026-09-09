@@ -53,7 +53,7 @@ More locations means more total revenue. More revenue reads as growth.
 And inside it, each individual location's performance may be falling.
 
 ```
-Total revenue  =  number of locations  ×  revenue per location
+Total revenue = locations × revenue per location
 ```
 
 Grow the first and the total rises even as the second falls.

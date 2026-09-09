@@ -69,7 +69,7 @@ blockquote p:last-child{margin:0}
 ul,ol{margin:0 0 1.35em;padding-left:1.4em}
 li{margin-bottom:.45em}
 hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
-table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+table{border-collapse:collapse;width:100%;margin:30px 0;font-size:.9rem;
  font-family:var(--sans);line-height:1.65}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
 thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
@@ -83,33 +83,41 @@ tbody tr:last-child td{border-bottom:0}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
 @media print{.flags{display:none}
- nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}
+ /* 인쇄에서는 표가 인쇄 폭보다 넓어지면 안 된다. 넓어지면 크로뮴이
+    문서 전체를 축소해서 본문 글자까지 작아진다. 칸 너비를 고정하고
+    긴 낱말은 줄바꿈해서 표가 폭 안에 들어오게 한다. */
+ .tblwrap{overflow-x:visible}
+ table{table-layout:fixed;width:100%}
+ th,td{overflow-wrap:break-word;word-break:normal;hyphens:auto}
+ /* 코드 블록의 긴 줄도 같은 이유로 접어 준다. */
+ pre{white-space:pre-wrap;overflow-wrap:break-word}}
 </style>
 </head><body><div class="wrap">
 <header class="titlepage"><p class="series">The Five Boxes Series · Teen Edition, Book Two</p><h1>I Started. So Why Isn&#x27;t It Working?</h1><p>The Part Nobody Warns You About</p><div class="rule"></div></header>
 <nav class="toc"><ul><li><span class="no">—</span><a href="#s005">Copyright</a><span class="dots"></span><span class="pg">4</span></li>
 <li><span class="no">—</span><a href="#s010">Before You Start</a><span class="dots"></span><span class="pg">6</span></li>
-<li><span class="no">—</span><a href="#s020">Opening — There&#x27;s a Wall Only People Who Started Ever Meet</a><span class="dots"></span><span class="pg">10</span></li>
-<li class="grp">Part One · What Actually Happens When You Start<span class="pg">15</span></li>
-<li><span class="no">1</span><a href="#s101">Nobody&#x27;s Buying — That&#x27;s Normal</a><span class="dots"></span><span class="pg">17</span></li>
-<li><span class="no">2</span><a href="#s102">One Person Bought and Then Nothing</a><span class="dots"></span><span class="pg">25</span></li>
-<li><span class="no">3</span><a href="#s103">I Did the Math and There&#x27;s Nothing Left</a><span class="dots"></span><span class="pg">33</span></li>
-<li><span class="no">4</span><a href="#s104">We Started Together and Now We&#x27;re Fighting</a><span class="dots"></span><span class="pg">42</span></li>
-<li><span class="no">5</span><a href="#s105">My Parents Are Against It</a><span class="dots"></span><span class="pg">51</span></li>
-<li><span class="no">6</span><a href="#s106">I Can&#x27;t Do This and School</a><span class="dots"></span><span class="pg">60</span></li>
-<li class="grp">Part Two · What Can Only I Do?<span class="pg">69</span></li>
-<li><span class="no">7</span><a href="#s201">Doing a Lot Makes It Cheaper — Economies of Scale</a><span class="dots"></span><span class="pg">72</span></li>
-<li><span class="no">8</span><a href="#s202">Friends Bring Friends — Network Effects</a><span class="dots"></span><span class="pg">80</span></li>
-<li><span class="no">9</span><a href="#s203">Moving Is a Hassle — Switching Costs</a><span class="dots"></span><span class="pg">89</span></li>
-<li><span class="no">10</span><a href="#s204">There&#x27;s a Reason People Buy From Them — Intangible Assets</a><span class="dots"></span><span class="pg">97</span></li>
-<li><span class="no">11</span><a href="#s205">I Can Just Do It Cheaper — Cost Advantage</a><span class="dots"></span><span class="pg">106</span></li>
-<li class="grp">Part Three · When It&#x27;s Going Fine and Then Suddenly Isn&#x27;t<span class="pg">115</span></li>
-<li><span class="no">12</span><a href="#s301">The Rules Changed</a><span class="dots"></span><span class="pg">119</span></li>
-<li><span class="no">13</span><a href="#s302">Something Easier Came Along</a><span class="dots"></span><span class="pg">127</span></li>
-<li><span class="no">14</span><a href="#s303">The Trend Passed</a><span class="dots"></span><span class="pg">135</span></li>
-<li><span class="no">15</span><a href="#s304">The Place That Sold Me Materials Sells Direct Now</a><span class="dots"></span><span class="pg">143</span></li>
-<li><span class="no">16</span><a href="#s305">Too Many Orders Killed It</a><span class="dots"></span><span class="pg">151</span></li>
-<li><span class="no">—</span><a href="#s900">Closing — How to Quit, and How to Start Again</a><span class="dots"></span><span class="pg">162</span></li></ul></nav>
+<li><span class="no">—</span><a href="#s020">Opening — There&#x27;s a Wall Only People Who Started Ever Meet</a><span class="dots"></span><span class="pg">11</span></li>
+<li class="grp">Part One · What Actually Happens When You Start<span class="pg">16</span></li>
+<li><span class="no">1</span><a href="#s101">Nobody&#x27;s Buying — That&#x27;s Normal</a><span class="dots"></span><span class="pg">19</span></li>
+<li><span class="no">2</span><a href="#s102">One Person Bought and Then Nothing</a><span class="dots"></span><span class="pg">28</span></li>
+<li><span class="no">3</span><a href="#s103">I Did the Math and There&#x27;s Nothing Left</a><span class="dots"></span><span class="pg">36</span></li>
+<li><span class="no">4</span><a href="#s104">We Started Together and Now We&#x27;re Fighting</a><span class="dots"></span><span class="pg">45</span></li>
+<li><span class="no">5</span><a href="#s105">My Parents Are Against It</a><span class="dots"></span><span class="pg">55</span></li>
+<li><span class="no">6</span><a href="#s106">I Can&#x27;t Do This and School</a><span class="dots"></span><span class="pg">65</span></li>
+<li class="grp">Part Two · What Can Only I Do?<span class="pg">75</span></li>
+<li><span class="no">7</span><a href="#s201">Doing a Lot Makes It Cheaper — Economies of Scale</a><span class="dots"></span><span class="pg">79</span></li>
+<li><span class="no">8</span><a href="#s202">Friends Bring Friends — Network Effects</a><span class="dots"></span><span class="pg">87</span></li>
+<li><span class="no">9</span><a href="#s203">Moving Is a Hassle — Switching Costs</a><span class="dots"></span><span class="pg">97</span></li>
+<li><span class="no">10</span><a href="#s204">There&#x27;s a Reason People Buy From Them — Intangible Assets</a><span class="dots"></span><span class="pg">107</span></li>
+<li><span class="no">11</span><a href="#s205">I Can Just Do It Cheaper — Cost Advantage</a><span class="dots"></span><span class="pg">117</span></li>
+<li class="grp">Part Three · When It&#x27;s Going Fine and Then Suddenly Isn&#x27;t<span class="pg">126</span></li>
+<li><span class="no">12</span><a href="#s301">The Rules Changed</a><span class="dots"></span><span class="pg">130</span></li>
+<li><span class="no">13</span><a href="#s302">Something Easier Came Along</a><span class="dots"></span><span class="pg">138</span></li>
+<li><span class="no">14</span><a href="#s303">The Trend Passed</a><span class="dots"></span><span class="pg">147</span></li>
+<li><span class="no">15</span><a href="#s304">The Place That Sold Me Materials Sells Direct Now</a><span class="dots"></span><span class="pg">156</span></li>
+<li><span class="no">16</span><a href="#s305">Too Many Orders Killed It</a><span class="dots"></span><span class="pg">165</span></li>
+<li><span class="no">—</span><a href="#s900">Closing — How to Quit, and How to Start Again</a><span class="dots"></span><span class="pg">178</span></li></ul></nav>
 <section class="front" id="s005"><h1>Copyright</h1><h2>◆ I Started. So Why Isn't It Working?</h2>
 <p><em>The Part Nobody Warns You About</em> The Five Boxes Series · Teen Edition, Book Two</p>
 <p>Copyright © 2026 Jaehyuk Choi All rights reserved.</p>

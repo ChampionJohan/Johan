@@ -69,7 +69,7 @@ blockquote p:last-child{margin:0}
 ul,ol{margin:0 0 1.35em;padding-left:1.4em}
 li{margin-bottom:.45em}
 hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
-table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+table{border-collapse:collapse;width:100%;margin:30px 0;font-size:.9rem;
  font-family:var(--sans);line-height:1.65}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
 thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
@@ -83,7 +83,13 @@ tbody tr:last-child td{border-bottom:0}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
 @media print{.flags{display:none}
- nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}
+ /* 인쇄에서는 표가 인쇄 폭보다 넓어지면 안 된다. 넓어지면 크로뮴이
+    문서 전체를 축소해서 본문 글자까지 작아진다. 칸 너비를 고정하고
+    긴 낱말은 줄바꿈해서 표가 폭 안에 들어오게 한다. */
+ .tblwrap{overflow-x:visible}
+ table{table-layout:fixed;width:100%}
+ th,td{overflow-wrap:break-word;word-break:normal;hyphens:auto}}
 </style>
 </head><body><div class="wrap">
 <header class="titlepage"><p class="series">The Five Boxes Series · Book One</p><h1>Who&#x27;s Actually Paying?</h1><p>Take Any Business Apart in Five Questions</p><div class="rule"></div></header>
@@ -2495,7 +2501,7 @@ footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted)
 <p>As Chapter 4 said: when there's a failed pursuer, the moat is proven.</p>
 <p>This book treated that point only briefly. It's a debt the second book pays.</p>
 <h2>◆ The businesses it covers</h2>
-<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Field</th><th>Cases planned</th></tr></thead><tbody><tr><td>Software</td><td>Adobe's move to subscription · NVIDIA's CUDA · Cloudflare · Shopify</td></tr><tr><td>Food</td><td>Coca-Cola's concentrate · In-N-Out · Haidilao · Chipotle</td></tr><tr><td>Finance</td><td>Robinhood's free trades · Kenya's M-PESA · Nubank · Grameen Bank</td></tr><tr><td>Lodging</td><td>Capsule hotels · citizenM · Aman Resorts · Motel 6</td></tr><tr><td>Marketing</td><td>Dollar Shave Club · IKEA's floor plan · Liquid Death · Shein</td></tr><tr><td>Sport</td><td>Manchester United · Topgolf · Peloton · The NBA in China</td></tr><tr><td>Economies</td><td>Estonia · Switzerland · Ireland · Icelandic tourism</td></tr><tr><td>Farming</td><td>John Deere and the right to repair · Zespri · Yubari melons · Driscoll's</td></tr><tr><td>Fishing</td><td>Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · abalone farming</td></tr></tbody></table></div></div>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Field</th><th>Cases planned</th></tr></thead><tbody><tr><td>Software</td><td>Adobe's move to subscription · NVIDIA's CUDA · Cloudflare · Shopify</td></tr><tr><td>Food</td><td>Coca-Cola's concentrate · In-N-Out · Haidilao · Chipotle</td></tr><tr><td>Finance</td><td>Robinhood's free trades · Kenya's M-PESA · Nubank · Grameen Bank</td></tr><tr><td>Lodging</td><td>Capsule hotels · citizenM · Aman Resorts · Motel 6</td></tr><tr><td>Marketing</td><td>Dollar Shave Club · IKEA's floor plan · Liquid Death · Shein</td></tr><tr><td>Sport</td><td>Manchester United · Topgolf · Peloton · The NBA in China</td></tr><tr><td>Economies</td><td>Estonia · Switzerland · Ireland · Icelandic tourism</td></tr><tr><td>Farming</td><td>John Deere and the right to repair · Zespri · Yubari melons · Driscoll's</td></tr><tr><td>Fishing</td><td>Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · Maine lobster</td></tr></tbody></table></div></div>
 <h2>◆ And there is no third book</h2>
 <p>Fifty-four cases split across two books and it's finished.</p>
 <p>Adding cases forever is not what this book is trying to do.</p>

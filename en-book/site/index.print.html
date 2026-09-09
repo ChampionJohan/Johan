@@ -69,7 +69,7 @@ blockquote p:last-child{margin:0}
 ul,ol{margin:0 0 1.35em;padding-left:1.4em}
 li{margin-bottom:.45em}
 hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
-table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+table{border-collapse:collapse;width:100%;margin:30px 0;font-size:.9rem;
  font-family:var(--sans);line-height:1.65}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
 thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
@@ -83,7 +83,13 @@ tbody tr:last-child td{border-bottom:0}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
 @media print{.flags{display:none}
- nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}
+ /* 인쇄에서는 표가 인쇄 폭보다 넓어지면 안 된다. 넓어지면 크로뮴이
+    문서 전체를 축소해서 본문 글자까지 작아진다. 칸 너비를 고정하고
+    긴 낱말은 줄바꿈해서 표가 폭 안에 들어오게 한다. */
+ .tblwrap{overflow-x:visible}
+ table{table-layout:fixed;width:100%}
+ th,td{overflow-wrap:break-word;word-break:normal;hyphens:auto}}
 </style>
 </head><body><div class="wrap">
 <header class="titlepage"><p class="series">The Five Boxes Series · Book One</p><h1>Who&#x27;s Actually Paying?</h1><p>Take Any Business Apart in Five Questions</p><div class="rule"></div></header>
@@ -97,28 +103,28 @@ footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted)
 <li><span class="no">4</span><a href="#s104">Moat — What If a Competitor Shows Up With Ten Times the Money?</a><span class="dots"></span><span class="pg">69</span></li>
 <li><span class="no">5</span><a href="#s105">Fault Line — When the Moat Turns Into a Liability</a><span class="dots"></span><span class="pg">82</span></li>
 <li><span class="no">6</span><a href="#s106">Diagnosis — Thirty Minutes to Fill All Five</a><span class="dots"></span><span class="pg">94</span></li>
-<li class="grp">Part Two · Eighteen Dissections<span class="pg">106</span></li>
-<li><span class="no">7</span><a href="#s201">Spotify — Why Did the World Leader Lose Money?</a><span class="dots"></span><span class="pg">109</span></li>
-<li><span class="no">8</span><a href="#s202">Arm — The Semiconductor Company That Makes No Chips</a><span class="dots"></span><span class="pg">123</span></li>
-<li><span class="no">9</span><a href="#s203">Domino&#x27;s — The Pizza Company That Doesn&#x27;t Sell Pizza</a><span class="dots"></span><span class="pg">136</span></li>
-<li><span class="no">10</span><a href="#s204">Starbucks — Selling Coffee, Running Deposits</a><span class="dots"></span><span class="pg">149</span></li>
-<li><span class="no">11</span><a href="#s205">Visa — The Financial Company That Lends No Money</a><span class="dots"></span><span class="pg">163</span></li>
-<li><span class="no">12</span><a href="#s206">Berkshire Hathaway — How to Borrow Other People&#x27;s Money for Free</a><span class="dots"></span><span class="pg">177</span></li>
-<li><span class="no">13</span><a href="#s207">Airbnb — Lodging With Not One Room of Its Own</a><span class="dots"></span><span class="pg">191</span></li>
-<li><span class="no">14</span><a href="#s208">Marriott — The Hotel Company That Owns No Hotels</a><span class="dots"></span><span class="pg">204</span></li>
-<li><span class="no">15</span><a href="#s209">Red Bull — A Media Company That Sells Drinks</a><span class="dots"></span><span class="pg">218</span></li>
-<li><span class="no">16</span><a href="#s210">Patagonia — The Company That Advertised Against Buying</a><span class="dots"></span><span class="pg">230</span></li>
-<li><span class="no">17</span><a href="#s211">The NFL — A League Designed So the Small Team Can Win</a><span class="dots"></span><span class="pg">243</span></li>
-<li><span class="no">18</span><a href="#s212">Formula One — The Race Cities Pay to Host</a><span class="dots"></span><span class="pg">257</span></li>
-<li><span class="no">19</span><a href="#s213">Singapore — The Country Whose Only Product Was Its Location</a><span class="dots"></span><span class="pg">269</span></li>
-<li><span class="no">20</span><a href="#s214">Dubai — The Oil City Without Much Oil</a><span class="dots"></span><span class="pg">282</span></li>
-<li><span class="no">21</span><a href="#s215">The Netherlands — Too Little Land, So It Sold the Method</a><span class="dots"></span><span class="pg">294</span></li>
-<li><span class="no">22</span><a href="#s216">Israel — No Water, So It Sold the Way to Use It</a><span class="dots"></span><span class="pg">308</span></li>
-<li><span class="no">23</span><a href="#s217">Norwegian Salmon — When the License Costs More Than the Fish</a><span class="dots"></span><span class="pg">321</span></li>
-<li><span class="no">24</span><a href="#s218">Iceland — A Sea Where the Right to Fish Is Traded</a><span class="dots"></span><span class="pg">334</span></li>
-<li><span class="no">—</span><a href="#s900">Closing — Now It&#x27;s Your Turn</a><span class="dots"></span><span class="pg">348</span></li>
-<li><span class="no">—</span><a href="#s910">The Second Book — The Fourth Box</a><span class="dots"></span><span class="pg">354</span></li>
-<li><span class="no">—</span><a href="#s920">How This Book Was Made</a><span class="dots"></span><span class="pg">357</span></li></ul></nav>
+<li class="grp">Part Two · Eighteen Dissections<span class="pg">107</span></li>
+<li><span class="no">7</span><a href="#s201">Spotify — Why Did the World Leader Lose Money?</a><span class="dots"></span><span class="pg">111</span></li>
+<li><span class="no">8</span><a href="#s202">Arm — The Semiconductor Company That Makes No Chips</a><span class="dots"></span><span class="pg">125</span></li>
+<li><span class="no">9</span><a href="#s203">Domino&#x27;s — The Pizza Company That Doesn&#x27;t Sell Pizza</a><span class="dots"></span><span class="pg">138</span></li>
+<li><span class="no">10</span><a href="#s204">Starbucks — Selling Coffee, Running Deposits</a><span class="dots"></span><span class="pg">151</span></li>
+<li><span class="no">11</span><a href="#s205">Visa — The Financial Company That Lends No Money</a><span class="dots"></span><span class="pg">165</span></li>
+<li><span class="no">12</span><a href="#s206">Berkshire Hathaway — How to Borrow Other People&#x27;s Money for Free</a><span class="dots"></span><span class="pg">179</span></li>
+<li><span class="no">13</span><a href="#s207">Airbnb — Lodging With Not One Room of Its Own</a><span class="dots"></span><span class="pg">193</span></li>
+<li><span class="no">14</span><a href="#s208">Marriott — The Hotel Company That Owns No Hotels</a><span class="dots"></span><span class="pg">206</span></li>
+<li><span class="no">15</span><a href="#s209">Red Bull — A Media Company That Sells Drinks</a><span class="dots"></span><span class="pg">221</span></li>
+<li><span class="no">16</span><a href="#s210">Patagonia — The Company That Advertised Against Buying</a><span class="dots"></span><span class="pg">233</span></li>
+<li><span class="no">17</span><a href="#s211">The NFL — A League Designed So the Small Team Can Win</a><span class="dots"></span><span class="pg">247</span></li>
+<li><span class="no">18</span><a href="#s212">Formula One — The Race Cities Pay to Host</a><span class="dots"></span><span class="pg">262</span></li>
+<li><span class="no">19</span><a href="#s213">Singapore — The Country Whose Only Product Was Its Location</a><span class="dots"></span><span class="pg">274</span></li>
+<li><span class="no">20</span><a href="#s214">Dubai — The Oil City Without Much Oil</a><span class="dots"></span><span class="pg">287</span></li>
+<li><span class="no">21</span><a href="#s215">The Netherlands — Too Little Land, So It Sold the Method</a><span class="dots"></span><span class="pg">299</span></li>
+<li><span class="no">22</span><a href="#s216">Israel — No Water, So It Sold the Way to Use It</a><span class="dots"></span><span class="pg">313</span></li>
+<li><span class="no">23</span><a href="#s217">Norwegian Salmon — When the License Costs More Than the Fish</a><span class="dots"></span><span class="pg">327</span></li>
+<li><span class="no">24</span><a href="#s218">Iceland — A Sea Where the Right to Fish Is Traded</a><span class="dots"></span><span class="pg">340</span></li>
+<li><span class="no">—</span><a href="#s900">Closing — Now It&#x27;s Your Turn</a><span class="dots"></span><span class="pg">354</span></li>
+<li><span class="no">—</span><a href="#s910">The Second Book — The Fourth Box</a><span class="dots"></span><span class="pg">360</span></li>
+<li><span class="no">—</span><a href="#s920">How This Book Was Made</a><span class="dots"></span><span class="pg">363</span></li></ul></nav>
 <section class="front" id="s005"><h1>Copyright</h1><h2>◆ Who's Actually Paying?</h2>
 <p><em>Take Any Business Apart in Five Questions</em> The Five Boxes Series · Book One</p>
 <p>Copyright © 2026 Jaehyuk Choi All rights reserved.</p>
@@ -2495,7 +2501,7 @@ footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted)
 <p>As Chapter 4 said: when there's a failed pursuer, the moat is proven.</p>
 <p>This book treated that point only briefly. It's a debt the second book pays.</p>
 <h2>◆ The businesses it covers</h2>
-<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Field</th><th>Cases planned</th></tr></thead><tbody><tr><td>Software</td><td>Adobe's move to subscription · NVIDIA's CUDA · Cloudflare · Shopify</td></tr><tr><td>Food</td><td>Coca-Cola's concentrate · In-N-Out · Haidilao · Chipotle</td></tr><tr><td>Finance</td><td>Robinhood's free trades · Kenya's M-PESA · Nubank · Grameen Bank</td></tr><tr><td>Lodging</td><td>Capsule hotels · citizenM · Aman Resorts · Motel 6</td></tr><tr><td>Marketing</td><td>Dollar Shave Club · IKEA's floor plan · Liquid Death · Shein</td></tr><tr><td>Sport</td><td>Manchester United · Topgolf · Peloton · The NBA in China</td></tr><tr><td>Economies</td><td>Estonia · Switzerland · Ireland · Icelandic tourism</td></tr><tr><td>Farming</td><td>John Deere and the right to repair · Zespri · Yubari melons · Driscoll's</td></tr><tr><td>Fishing</td><td>Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · abalone farming</td></tr></tbody></table></div></div>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Field</th><th>Cases planned</th></tr></thead><tbody><tr><td>Software</td><td>Adobe's move to subscription · NVIDIA's CUDA · Cloudflare · Shopify</td></tr><tr><td>Food</td><td>Coca-Cola's concentrate · In-N-Out · Haidilao · Chipotle</td></tr><tr><td>Finance</td><td>Robinhood's free trades · Kenya's M-PESA · Nubank · Grameen Bank</td></tr><tr><td>Lodging</td><td>Capsule hotels · citizenM · Aman Resorts · Motel 6</td></tr><tr><td>Marketing</td><td>Dollar Shave Club · IKEA's floor plan · Liquid Death · Shein</td></tr><tr><td>Sport</td><td>Manchester United · Topgolf · Peloton · The NBA in China</td></tr><tr><td>Economies</td><td>Estonia · Switzerland · Ireland · Icelandic tourism</td></tr><tr><td>Farming</td><td>John Deere and the right to repair · Zespri · Yubari melons · Driscoll's</td></tr><tr><td>Fishing</td><td>Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · Maine lobster</td></tr></tbody></table></div></div>
 <h2>◆ And there is no third book</h2>
 <p>Fifty-four cases split across two books and it's finished.</p>
 <p>Adding cases forever is not what this book is trying to do.</p>
