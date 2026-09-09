@@ -5,122 +5,220 @@ series: The Weeping Ledger, Part Two · The Wilderness
 
 # Chapter 23. An Answer We Didn't Expect
 
-> _Previously_ — After two days of travel, the brother and sister reached Mena's House of Records. Mena found Father's name, but closed the chapter saying, "It isn't the answer you're hoping for."
+> _Previously_ — At the end of a two-day road, the brother and sister reached Mena's House of Records. Mena found Father's name, but closed the chapter with the words, "It isn't the answer you're hoping for."
 
-The lamp burned low. Mena settled into her seat and unfolded the paper once more. I could feel her hand moving more slowly than before.
+The lamp burned low. Mena settled back into her seat and unfolded the paper once more. I could feel that her hands were moving more slowly now than before.
 
-"…About a month ago," Mena said, unfolding the paper. "I got word that someone we believe was your father came out of a well in the north."
+"…About a month ago," Mena said, unfolding the paper, "I got word that someone who might be your father came out of a well to the north."
 
-"…He's alive, right?" my brother asked urgently.
+"…He's alive?" my brother asked, urgent.
 
-"…He was alive. At least, then," Mena said.
+"…He was. At least then," Mena said.
 
-I remember that all three of us seemed to hold our breath in that instant. The lamp's shadow trembled faintly on the wall. The room was so quiet that even that small trembling felt loud.
+I remember feeling, in that moment, that all three of us had stopped breathing at once. The lamp's shadow trembled faintly against the wall. The room was so quiet that even that small tremor felt loud.
 
-*I felt the unease already, in that word "then." I knew it meant this was a story with no ending yet.*
+"…North?" I asked.
 
-My brother looked like he could hardly breathe. I saw his hand clenched tight on his knee. His knuckles had gone white.
+"…North of here," Mena said. "Several days on foot. I haven't been there myself, so I can't say exactly."
 
-Mena studied our faces and went on carefully.
+At that, my brother had already leaned forward. I gripped his arm lightly, afraid he might stand and walk out right then.
 
-"…Should I keep going?" she asked. "Once you hear it, there's no taking it back."
+"…I haven't finished," I said.
+
+My brother looked at me. His eyes already held half a night's walking in them.
+
+*I already felt the unease in that word "then." I knew it meant this story wasn't finished.*
+
+My brother seemed unable to breathe properly where he sat. I saw his hands clenched tight on his knees. His knuckles had gone white.
+
+Mena studied our faces and went on, carefully.
+
+"…Can I keep going?" Mena asked. "Once you hear it, there's no taking it back."
 
 My brother looked at me for a moment. I nodded. He nodded too.
 
-"…Please, go on," he said.
+"…Please, keep going," he said.
 
-I could feel, in his voice, both fear and longing at once. I felt the same. I wanted to know. And I felt, at the same time, that knowing might break me.
+I felt, in his voice just then, both fear and longing at once. I felt the same. I wanted to know. And at the same time, I felt that knowing might break me.
 
-Mena closed her eyes briefly, then opened them again. I could tell she was steadying herself for this moment. Delivering news like this couldn't be an easy thing for her either.
+Mena closed her eyes for a moment, then opened them again. I felt her steadying herself for this. Delivering news like this didn't seem to come easily to her, either.
 
----
+*I learned later how rare a kindness it was, that Mena warned us first, that night, that there was no taking it back. Haven had never once asked us that. That city always resolved things first, and told us afterward that this was what we'd wanted.*
 
-"…This came from the one who keeps that well," Mena said. "The moment he came out, he was counting something. Silently, on his fingers. He said he didn't even know why."
-
-"…At first he didn't say anything at all," Mena added. "Whether they asked his name or where he'd come from, there was no answer. He just kept folding and unfolding his fingers."
-
-I tried to picture that, and stopped myself. Even the picture of it alone was enough to hurt.
-
-"…What was he counting?" I asked. I already felt I knew the answer.
-
-My voice came out shaking. Tears were already rising in me before I even heard the answer.
-
-"…I don't know. But at some point, while he was counting, he suddenly got up and walked off somewhere. No one could stop him."
-
-*Hearing that, I felt like I was going to cry. I knew it was a count of bricks. Father had forgotten his name, and our faces, and yet that number alone he counted as if it had been carved into his body.*
-
-I thought of Father counting that number every evening in Brick Hollow. Even with his fingertips split and bleeding, he never let that count slip. I hadn't known, then, why it mattered so much. I know now. That number had been the proof, every single day, that he had survived.
-
-"…Three thousand," my brother said quietly. "He must have counted all the way to three thousand. And then started over from the beginning again."
-
-Mena didn't question that at all. I could tell she had already guessed what it meant.
-
-The room went very quiet. I felt I could almost hear the flicker of the lamp's flame itself. I sat pressed close to my brother's side and held on to his arm. He didn't move at all.
+The lamp wick crackled faintly and flickered. I flinched even at that small sound. Everything inside me had drawn so taut that it answered to the smallest change in that room.
 
 ---
 
-"…And after that?" my brother asked. His voice cracked.
+"…This is what the well-keeper there told me," Mena said. "The moment he came out, he kept counting something. On his fingers, without a sound. He didn't know himself why he was counting."
 
-"…There's no word after that," Mena said. "The Well-Keeper there hasn't seen him since. He must still be somewhere. But exactly where — I don't know that either."
+"…At first he didn't say anything at all," Mena added. "Not his name, not where he'd come from — no answer to anything. He just kept folding and unfolding his fingers."
 
-"…Did no one go after him?" I asked.
+I tried to picture that, then made myself stop. Even the thought of it hurt.
 
-"…They did," Mena said. "But they lost him. It was night, and he walked faster than anyone expected."
+But the picture had already started forming. A man sitting at a strange well, folding and unfolding his fingers. No one knowing who he was, and he himself not knowing either. I closed my eyes and opened them again, several times, trying to erase that image. It wouldn't go.
 
-*Hearing that, I felt, strangely, a little comforted by the fact that Father had hurried. Even having forgotten his name, his stride, at least, had still been urgent. I wanted to believe that meant he was still walking toward something.*
+"…What was he counting?" I asked. I already thought I knew the answer.
 
-My brother sank down where he stood. I sat beside him and gripped his shoulder.
+My voice came out shaking. Tears had already started rising before I even heard it.
 
-My brother made no sound at all. But I could feel his shoulder trembling, very finely. I thought, in that moment, that my brother looked like someone who had forgotten how to cry aloud. From Brick Hollow all the way to now, he had always wept only on the inside, like this.
+"…I don't know," Mena said. "But at some point, in the middle of counting, he stood up all at once and walked off somewhere. No one could stop him."
 
-"…Is this the answer you didn't expect?" I asked Mena.
+*Hearing that, I felt tears coming. I knew it was the brick count. Father had forgotten his name, forgotten our faces, and still that number went on counting itself, as if it had been carved into his body.*
+
+I remembered the way Father used to count that number every evening in Brick Hollow. Even when his fingertips split and bled, he never let that count slip. I hadn't understood, back then, why it mattered so much to him. I understand now. That number was proof that he'd survived one more day.
+
+If he lost count, he started over from the beginning. As a child, that used to frustrate me enough that I asked him once — couldn't he just count roughly? Father had laughed and told me: count roughly, and the whole day turns rough with it.
+
+I had gone a long time without remembering those words. And yet here, in Mena's room, under the lamplight, they came back to me whole, word for word.
+
+*I found it strangely steadying, that I hadn't forgotten Father's voice. His face kept blurring on me, again and again — but some turns of phrase stayed perfectly clear. I thought that might be what real memory actually is. Not everything, but a handful of clear pieces.*
+
+*I understood, in that moment, that the Completion House had taken Father's name and his face. But it hadn't been able to take that one habit — his refusal to live a day roughly. I think that was because it lived in the deepest place in him.*
+
+"…Three thousand," my brother said, low. "He must have counted all the way to three thousand. And then started over from the beginning again."
+
+Mena didn't ask him to repeat it. I understood that she'd already guessed what it meant.
+
+Mena looked back down at the paper and touched a line near the bottom with her fingertip.
+
+"…It says here," Mena said. "'Stops at three thousand each day.' The well-keeper watched for three days and sent this back."
+
+"…Three days?" I asked.
+
+"…Three days," Mena said. "He didn't even eat. He just kept counting. And strangely, he always stopped at exactly three thousand."
+
+My brother let out a short, broken laugh. It wasn't really a laugh. It was another sound that only came out sounding like one.
+
+"…That was a day's quota," my brother said. "Three thousand bricks was a day's quota. If you didn't reach it, there was no food that night."
+
+Mena set down her pen. She said nothing.
+
+The room went very quiet. Quiet enough that I thought I could hear even the trembling of the lamp's flame. I sat close beside my brother and held onto his arm. He didn't move at all.
+
+After a long while, my brother spoke in a very low voice.
+
+"…He wasn't counting us."
+
+Mena looked up at that.
+
+"…What do you mean?" Mena asked.
+
+"…He counts bricks," my brother said. "He doesn't count us. Because we're not a number."
+
+Hearing that, the breath caught in my throat. My brother was saying that truth right now in the way that hurt him most.
+
+"…That isn't because he loved you less," Mena said quietly. "The body remembers numbers. The heart remembers love. What those people took from him was the heart's side."
+
+My brother said nothing back.
+
+---
+
+"…And after that?" my brother asked. His voice had cracked.
+
+"…There's no word after that," Mena said. "The well-keeper hasn't seen him since. He must still be somewhere. But exactly where — I don't know that either."
+
+"…No one went after him?" I asked.
+
+"…Someone did," Mena said. "But they lost him. It was night, and he walked faster than they expected."
+
+Even in that brief moment, my brother's voice was already trying to fix a direction. I thought that was exactly like him.
+
+"…Which way did he go?" my brother asked.
+
+"…That's not exact either," Mena said. "But the well-keeper wrote this much: 'Not toward the sunset.'"
+
+"…That's all?" my brother asked.
+
+"…That's all," Mena said. "I'm sorry. I can only write down what's given to me. The moment I start filling in what isn't there, this whole room stops being a room anyone can trust."
+
+*Hearing that, I found strange comfort in the fact that Father had been hurrying. Even with his name forgotten, his steps had still been urgent. I wanted to believe that meant he was still moving toward something.*
+
+My brother sank down where he stood. I sat beside him and took hold of his shoulder.
+
+He made no sound at all. But I could feel his shoulder trembling, very faintly. I thought, in that moment, that my brother looked like someone who had forgotten how to cry out loud. From Brick Hollow until now, he had always wept only inward, like this.
+
+*I thought, just then, of Haven's ledger. The ledger took in your weeping and resolved it. But my brother had never once filed his. He had never handed his weeping over to anyone. And so all of it was still inside him, every bit of it, still there.*
+
+"…Was this the answer you didn't expect?" I asked Mena.
 
 Mena nodded.
 
-"…Learning he's alive and then losing him again can hurt worse than never knowing whether he lived or died at all," Mena said. "But I don't tell lies."
+"…Coming with no idea whether someone's alive or dead can hurt less than learning they're alive, and losing them again," Mena said. "But I don't tell lies."
 
-"…Why not?" my brother asked. It wasn't resentment. He genuinely seemed to want to know.
+"…Why not?" my brother asked. It wasn't resentment. He seemed to genuinely want to know.
 
-"…Because false comfort is already something Haven does well," Mena said. "I started this work because I wanted to do something different from that."
+"…Because Haven already does false comfort perfectly well," Mena said. "I started this work because I wanted to do something different from that."
 
-"…Doesn't it wear on you?" I asked. "Having to deliver news like this, every time?"
+"…Doesn't it wear on you?" I asked. "Having to deliver news like this every time?"
 
-Mena looked at me for a long time.
+Mena looked at me for a long moment.
 
-"…It does," Mena said honestly. "But I think it's better than no one delivering it at all. That's what I believe, and it's why I keep doing this work."
+"…It does," Mena admitted. "But I think it's better than no one delivering it at all. That's what I believe, and it's why I keep doing this."
 
 Mena looked down at her hands for a moment. They were covered in ink stains.
 
-"…I don't know how many times these hands have written down news like this," Mena said. "But every time, it's just as hard as the first. I never get used to it."
+"…I don't even know how many times these hands have written down news like this," Mena said. "But it's just as hard every time. I never get used to it."
 
-I found that answer, somehow, a comfort. I was glad that Mena hadn't grown numb to this work.
+I found that answer strangely comforting. I thought it was a good thing that Mena hadn't gone numb to this work.
 
-Mena said this as she carefully folded the paper and held it out toward my brother.
+*I thought, just then, of Haven's Administrator. That man was always smiling. He had never once said this was hard. I used to think that was strength. Now I know better. That wasn't strength. It was only that he, too, had already gone numb to it.*
 
-"…Take this," Mena said. "You may need it again someday."
+"…Wouldn't it be easier to get used to it?" I asked. "You'd hurt less."
 
-My brother took the paper with trembling hands. He folded it and tucked it in beside the paper stamped COMPLETE that he already carried.
+"…If I got used to it, I'd have to stop doing this work," Mena said. "News delivered by someone who's gone numb ends up sounding exactly like the ledger's."
+
+*I thought about that all through that night. The same words, spoken by someone who hurts along with you as they say them, become different words entirely. That was exactly the thing Haven could never do. That city's answers were all correct. But not a single person there had ever hurt, speaking one of them.*
+
+Saying that, Mena carefully folded the paper and held it out toward my brother.
+
+"…Take this," Mena said. "You might need it again someday."
+
+My brother took the paper with trembling hands. He folded it away beside the COMPLETE-stamped paper he already carried.
+
+"…This is the original, though," my brother said.
+
+"…I can copy it out again," Mena said. "Copying is the thing I do best."
+
+I understood, from that answer, that this was someone who could hand over the thing she treasured most without a second thought. It was only that day that I understood why giving away a single sheet of paper, in a room filled with nothing but paper, could mean so much.
 
 ---
 
-Mena quietly stepped away, as if not wanting to intrude on us. She left a single lamp burning and let the rest go dark. I sat with my brother in that dim light.
+Mena stepped quietly out of the room, as if trying not to disturb us. She left only one lamp burning and put out the rest. In that dim light, I sat beside my brother.
 
-Outside, the wind brushed against the walls of the earthen house. Listening to it, I thought that somewhere out past this house, Father might be feeling that same wind right now. Without a name, and without knowing us at all.
+Outside, I could hear the wind brushing against the earthen walls of the house. Listening to it, I thought that somewhere out there, beyond this house, Father might be standing in that same wind right now — with no name, not knowing us at all.
 
-*I understood then, for the first time, just how cruel Haven's "resolving" truly had been. Nights like this one didn't exist there at all. The pain vanished before it ever had the chance to hurt. I thought, now, that this pain of ours felt more human than that smooth, seamless resolving ever had.*
+Thinking that, my mind wandered somewhere strange. Was he cold, right now? Had he eaten? Did he have somewhere to sleep? I found it strangely fortunate that I could still worry about things like that. You can't worry about things like that for someone who's dead.
 
-*I sat beside my brother a long time that night. He didn't cry. But I could see he wore a face more broken than crying.*
+*That was the first time I truly felt, all over again, how cruel Haven's "resolving" had been. There, a night like this could never have happened at all. The pain disappeared before it even had the chance to hurt. I thought that this pain, right now, felt more human, somehow, than that smooth, seamless resolution ever had.*
 
-"…Brother," I said. "He's still alive, though."
+*I sat beside my brother a long while that night. He didn't cry. But I could see that his face had come apart more thoroughly than crying ever could.*
 
-"…Yes," he said, after a very long pause. "He's alive."
+"…Brother," I said. "He's alive, though."
 
-"…And he's still counting bricks," I said. "That's proof he was Father. Even having forgotten his name, Father is still inside him."
+"…Yeah," my brother said, after a long pause. "He's alive."
 
-My brother had no answer to that. I knew it wasn't because he had nothing to say — it was because his throat had closed.
+"…Say that again," my brother said.
 
-My brother lifted his head then, for the first time, and looked at me. I saw his eyes brimming with tears. He'd been holding them back. This time, it seemed, he couldn't.
+"…He's alive," I said.
 
-*I set that line down as the last sentence of this chapter. I cried that day for the first time. The first time since we left Brick Hollow. My brother cried too, following me. That night, we wept together for the father who had forgotten his name.*
+My brother closed his eyes. I understood that he was trying to take those three words and press them down inside himself. It was something we hadn't once been able to say with certainty, since we left Brick Hollow.
+
+"…And he's still counting bricks," I said. "That's proof he's still Father, isn't it. Even with his name gone, Father is still inside him."
+
+My brother couldn't answer that. I understood it wasn't because he had nothing to say back — it was because his throat had closed.
+
+At those words, my brother lifted his head and looked at me for the first time. I saw his eyes brimming with tears. He tried to hold them back. But this time, it seemed, he couldn't.
+
+My brother covered his face with both hands. At first there was no sound. Then his shoulders heaved once, hard, and after that, the sound came. It was the first time in my life I had ever heard my brother cry.
+
+I cried too. We held onto each other and cried for a long time. I don't even know when the lamp went out.
+
+Mena didn't come in. I knew she was there, just beyond the door. But she didn't come in to comfort us, and she didn't tell us to stop. She simply stayed there.
+
+A long while later, two bowls of water were quietly pushed under the door. I thought that was the smallest and, at once, the largest thing Mena knew how to say. Asking nothing, demanding nothing — just water, set there in case we grew thirsty.
+
+*I still think, even now, that it was one of the greatest gifts I received in this world. No one filed our weeping. No one resolved it. Someone simply stayed on the other side of a door, until we had finished crying.*
+
+*I set that down as the last sentence of this chapter. That day, I cried for the first time. It was the first time since we'd left Brick Hollow. My brother cried along with me, following me into it. That night, we wept together for the father who had forgotten his own name.*
 
 *(Continued in Chapter 24.)*
