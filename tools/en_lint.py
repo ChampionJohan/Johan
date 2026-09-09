@@ -40,13 +40,18 @@ MISMATCH = re.compile(r"^(?:do|don't|have|haven't|are|aren't|were|weren't)\s+"
 IMPERATIVE_DO = re.compile(r"^(?:do|don't)\s+(?!you\b|we\b|they\b|i\b)", re.I)
 # "Which is why ..." 처럼 관계사로 이어 붙인 조각은 직접 의문문이 아니다.
 RELATIVE = re.compile(r"^(?:which|that)\s+\w+\s+(?:why|how|means)\b", re.I)
+# 유사분열문(pseudo-cleft)은 의문사로 시작하지만 평서문이다.
+# "What was sold to the owner was the reservation network."
+# 의문사 + be동사 + 분사 ... + 두 번째 be동사 라는 어순으로만 좁게 잡는다.
+COP = r"(?:is|are|was|were)"
+CLEFT = re.compile(r"^what\s+%s\s+\w+(?:d|n|t)\b.*\s%s\s" % (COP, COP), re.I)
 
 
 def is_question(sentence):
     if not ASK.match(sentence):
         return False
     return not (MISMATCH.match(sentence) or IMPERATIVE_DO.match(sentence)
-                or RELATIVE.match(sentence))
+                or RELATIVE.match(sentence) or CLEFT.match(sentence))
 # 각주 번호는 마침표 뒤에 붙으므로 종결 문자로 함께 인정한다
 ENDS = ".!?:—…\"')" + "¹²³⁴⁵⁶⁷⁸⁹⁰"
 
