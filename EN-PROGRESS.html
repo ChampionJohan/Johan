@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>English Editions — Progress</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#8A2E2E;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#d98b8b;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap"><p class="meta">2026-09-09</p><h1>Where things stand</h1>
+<div class="table-wrap"><table><thead><tr><th>Book</th><th>Words</th><th>Done</th><th>Status</th></tr></thead><tbody><tr><td><strong>It's Free. So How Are They Rich?</strong></td><td>10,465</td><td>100%</td><td><strong>Complete</strong> — 115 pages</td></tr><tr><td><strong>Who's Actually Paying?</strong></td><td>~12,400</td><td>27%</td><td>Front matter + <strong>all of Part One</strong> + first case</td></tr><tr><td>The Fourth Box</td><td>0</td><td>0%</td><td>Titles and series data configured</td></tr><tr><td>I Started. So Why Isn't It Working?</td><td>0</td><td>0%</td><td>Titles and series data configured</td></tr></tbody></table></div>
+<p><strong>Roughly 98,600 words remain.</strong> That's two and a half books. It won't come out of one sitting, and anything that claims otherwise is machine translation.</p>
+<hr>
+<h1>What got finished this round</h1>
+<h2>Part One of the flagship — the piece everything else waited on</h2>
+<p>Six chapters: Customer, Value, Payment, Moat, Fault Line, Diagnosis.</p>
+<p>This block had to come before anything else because <strong>it's where the English definitions of the five boxes get fixed.</strong> <em>The Fourth Box</em> and the teen sequel both quote these terms constantly. Translating them before Part One was locked would have meant retranslating them after.</p>
+<p>That's now locked.</p>
+<h2>One structural decision, affecting all eighteen case chapters</h2>
+<p>Every chapter in Part Two ends with a section called <strong>「한국에 옮기면」</strong> — <em>if you moved this to Korea.</em></p>
+<p>Translated literally it's dead weight for an American reader. Cut, and the chapter loses the part that turns analysis into application.</p>
+<p><strong>It became "Could You Build This Where You Are?"</strong></p>
+<p>The Korean argument was never really about Korea — it was about <strong>a smaller market with concentrated suppliers.</strong> Generalized, it applies to more readers and loses nothing. In the Spotify chapter it reads:</p>
+<blockquote><p>When your supplier is also your competitor, a distributor has essentially no way to control costs.</p></blockquote>
+<p>Which is true in Seoul, Stockholm, and Toronto alike.</p>
+<h2>Chapter 6's source list was replaced, not translated</h2>
+<p>The Korean chapter tells readers to pull filings from <strong>DART</strong>, Korea's disclosure system. Useless to an English reader.</p>
+<p>Replaced with <strong>SEC EDGAR</strong> (10-K, and 20-F for foreign issuers), <strong>Companies House</strong>, and the international bodies the book already uses — FAO, UNWTO, World Bank, OECD.</p>
+<hr>
+<h1>A bug the PDF caught that the EPUB never would have</h1>
+<p><strong>The table of contents came out with no page numbers at all.</strong></p>
+<p>The cause was in how the renderer identifies which page <em>is</em> the contents page. It looks for a page containing more than one chapter title.</p>
+<p>But every chapter's opening page carries an eyebrow line naming its part — and in English that string is <strong>character-for-character identical</strong> to the part divider's own title: <em>Part One · The Five Boxes.</em></p>
+<p>So every chapter opening registered as a contents page. The detector kept walking forward, decided the contents ran to the final chapter, and then searched for chapter starts <strong>after</strong> it. Nothing was left to find.</p>
+<p><strong>The Korean editions escaped this by luck.</strong> Their eyebrow reads <code>1부 다섯 칸</code> while the divider title reads <code>1부 · 다섯 칸</code> — one character apart. Not safe, just lucky.</p>
+<p>Fixed two ways: names used as eyebrows are excluded from the detection count, and the contents is only allowed to be contiguous from the front.</p>
+<p><strong>Both Korean books and the finished English one were rebuilt and checked for regressions.</strong> None.</p>
+<hr>
+<h1>The linter keeps paying for itself</h1>
+<p>Three more false positives this round, each one sharpening a rule.</p>
+<div class="table-wrap"><table><thead><tr><th>Flagged</th><th>Why it was wrong</th><th>Rule added</th></tr></thead><tbody><tr><td>A bullet wrapping to a second line</td><td>Read as a new paragraph</td><td>Join wrapped list items</td></tr><tr><td><em>"Which is why they carry it."</em></td><td>Read as a question</td><td>Relative clauses aren't questions</td></tr><tr><td><em>"Do these three in order…"</em></td><td>Read as a question</td><td>Imperative <code>do</code> takes no third-person subject</td></tr><tr><td><em>"…leaving as cost.¹"</em></td><td>Read as missing punctuation</td><td>Footnote markers count as terminal</td></tr></tbody></table></div>
+<p>It now knows that <strong>"Do it…" is an imperative and "Does it…" is a question.</strong> That distinction will hold across the remaining ~98,600 words.</p>
+<hr>
+<h1>What's next, in order</h1>
+<ol><li>**Part Two of *Who's Actually Paying?*** — seventeen more case chapters, then the closing. This is the bulk of the book.</li><li><strong>I Started. So Why Isn't It Working?</strong> — reuses the teen voice already set.</li><li><strong>The Fourth Box</strong> — last, because it quotes Book One on every other page.</li></ol>
+<p><strong>Nothing is publishable alone yet.</strong> <em>It's Free</em> is finished, but a one-book series has no series effect. The second finished book is what makes the first one sell.</p></div></body></html>
