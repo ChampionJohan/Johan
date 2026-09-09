@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I Started. So Why Isn't It Working?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+
+<style>
+:root{
+ --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
+ --accent:#2E7D52;--flagbg:#FBF0D2;--flagink:#6B4E00;
+ --track:.06em;
+ --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
+ --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
+:root[data-theme="dark"]{
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+ font-size:17px;line-height:1.95;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:37em;margin:0 auto;padding:0 24px 140px}
+.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:var(--track);
+ color:var(--muted);text-transform:none}
+
+/* 표제지 */
+.titlepage{padding:120px 0 80px;border-bottom:1px solid var(--rule);margin-bottom:72px;text-align:center}
+.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:var(--track);color:var(--muted);margin-bottom:36px}
+.titlepage h1{font-size:clamp(2.6rem,9vw,4rem);line-height:1.12;margin:0 0 20px;letter-spacing:-.03em;font-weight:700}
+.titlepage p{margin:0;color:var(--muted);font-size:1.02rem}
+.titlepage .rule{width:56px;height:2px;background:var(--accent);margin:36px auto 0}
+
+/* 차례 */
+nav.toc{margin:0 0 96px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:var(--track);color:var(--accent);
+ font-weight:600;margin:28px 0 10px;display:flex;align-items:baseline;gap:12px}
+nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
+nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
+ min-width:2.6em;font-variant-numeric:tabular-nums}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent);outline:none}
+nav.toc .dots{flex:1 1 auto;border-bottom:1px dotted var(--rule);margin:0 2px 3px}
+nav.toc .pg{font-family:var(--sans);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+nav.toc .grp .pg{margin-left:auto}
+
+/* 부 표제지 */
+section.part{margin:0 0 96px;padding:88px 0;border-top:2px solid var(--ink);
+ border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+section.part h1{font-size:2.1rem;margin:0 0 40px;letter-spacing:-.02em;line-height:1.3}
+
+/* 장 */
+section.ch{margin-bottom:112px;scroll-margin-top:16px}
+section.ch>.eyebrow{display:block;margin-bottom:14px}
+section.ch>h1{font-size:1.72rem;line-height:1.4;margin:0 0 44px;letter-spacing:-.01em;
+ padding-bottom:22px;border-bottom:1px solid var(--rule)}
+section.front>h1{font-size:1.5rem;line-height:1.45;margin:0 0 40px;padding-bottom:20px;
+ border-bottom:1px solid var(--rule)}
+
+h2{font-size:1.14rem;margin:56px 0 18px;line-height:1.5;font-weight:600}
+h3{font-size:1rem;margin:38px 0 12px;color:var(--accent);font-weight:600}
+p{margin:0 0 1.35em}
+blockquote{margin:34px 0;padding:6px 0 6px 22px;border-left:3px solid var(--accent);font-size:1.06rem}
+blockquote p{margin:0 0 .5em}
+blockquote p:last-child{margin:0}
+ul,ol{margin:0 0 1.35em;padding-left:1.4em}
+li{margin-bottom:.45em}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+ font-family:var(--sans);line-height:1.65}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto}
+.flag{display:inline-block;background:var(--flagbg);color:var(--flagink);padding:2px 8px;
+ font-size:.78rem;font-family:var(--sans);border-radius:2px;line-height:1.6}
+.flags{margin:24px 0;padding:16px 18px;background:var(--hair);border-left:3px solid var(--accent)}
+.flags .eyebrow{display:block;margin-bottom:10px}
+.flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
+footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
+ font-size:.84rem;font-family:var(--sans);text-align:center}
+@media print{.flags{display:none}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+</style>
+</head><body><div class="wrap">
+<header class="titlepage"><p class="series">The Five Boxes Series · Teen Edition, Book Two</p><h1>I Started. So Why Isn&#x27;t It Working?</h1><p>The Part Nobody Warns You About</p><div class="rule"></div></header>
+<nav class="toc"><ul><li><span class="no">—</span><a href="#s005">Copyright</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s010">Before You Start</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s020">Opening — There&#x27;s a Wall Only People Who Started Ever Meet</a><span class="dots"></span></li>
+<li class="grp">Part One · What Actually Happens When You Start</li>
+<li><span class="no">1</span><a href="#s101">Nobody&#x27;s Buying — That&#x27;s Normal</a><span class="dots"></span></li>
+<li><span class="no">2</span><a href="#s102">One Person Bought and Then Nothing</a><span class="dots"></span></li>
+<li><span class="no">3</span><a href="#s103">I Did the Math and There&#x27;s Nothing Left</a><span class="dots"></span></li>
+<li><span class="no">4</span><a href="#s104">We Started Together and Now We&#x27;re Fighting</a><span class="dots"></span></li>
+<li><span class="no">5</span><a href="#s105">My Parents Are Against It</a><span class="dots"></span></li>
+<li><span class="no">6</span><a href="#s106">I Can&#x27;t Do This and School</a><span class="dots"></span></li>
+<li class="grp">Part Two · What Can Only I Do?</li>
+<li><span class="no">7</span><a href="#s201">Doing a Lot Makes It Cheaper — Economies of Scale</a><span class="dots"></span></li>
+<li><span class="no">8</span><a href="#s202">Friends Bring Friends — Network Effects</a><span class="dots"></span></li>
+<li><span class="no">9</span><a href="#s203">Moving Is a Hassle — Switching Costs</a><span class="dots"></span></li>
+<li><span class="no">10</span><a href="#s204">There&#x27;s a Reason People Buy From Them — Intangible Assets</a><span class="dots"></span></li>
+<li><span class="no">11</span><a href="#s205">I Can Just Do It Cheaper — Cost Advantage</a><span class="dots"></span></li>
+<li class="grp">Part Three · When It&#x27;s Going Fine and Then Suddenly Isn&#x27;t</li>
+<li><span class="no">12</span><a href="#s301">The Rules Changed</a><span class="dots"></span></li>
+<li><span class="no">13</span><a href="#s302">Something Easier Came Along</a><span class="dots"></span></li>
+<li><span class="no">14</span><a href="#s303">The Trend Passed</a><span class="dots"></span></li>
+<li><span class="no">15</span><a href="#s304">The Place That Sold Me Materials Sells Direct Now</a><span class="dots"></span></li>
+<li><span class="no">16</span><a href="#s305">Too Many Orders Killed It</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s900">Closing — How to Quit, and How to Start Again</a><span class="dots"></span></li></ul></nav>
+<section class="front" id="s005"><h1>Copyright</h1><h2>◆ I Started. So Why Isn't It Working?</h2>
+<p><em>The Part Nobody Warns You About</em> The Five Boxes Series · Teen Edition, Book Two</p>
+<p>Copyright © 2026 Jaehyuk Choi All rights reserved.</p>
+<p>No part of this book may be reproduced or transmitted in any form without written permission from the author, except for brief quotations in a review.</p>
+<p>First English edition, 2026. Translated and adapted from the Korean edition 『너 그거 아니? 돈 버는 머리! 2』</p>
+<p>Company names and brands discussed in this book appear for the purpose of analysis and commentary. No endorsement or affiliation is implied.</p>
+<p>Age limits, sign-up requirements and platform rules change often. This book says where to check them rather than printing numbers that go stale. Always check the current rules yourself, and talk to a parent or guardian before signing up for anything or handling money.</p></section>
+<section class="front" id="s010"><h1>Before You Start</h1><h2>◆ It's fine if you haven't done anything yet</h2>
+<p>This book was written thinking about somebody who read Book One and started something.</p>
+<p>But you can read it without having started.</p>
+<p>Every chapter opens with <strong>"this happened, right?"</strong> — and if it hasn't happened to you, just read it as <strong>"this is going to happen."</strong></p>
+<p>Knowing in advance is the better deal anyway.</p>
+<h2>◆ If you didn't read Book One, this is all you need</h2>
+<p>Book One took businesses apart using five questions. We call them <strong>the Five Boxes.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th>The question</th><th>One word</th></tr></thead><tbody><tr><td>1</td><td>Who actually pays?</td><td><strong>Customer</strong></td></tr><tr><td>2</td><td>What are they paying for?</td><td><strong>Value</strong></td></tr><tr><td>3</td><td>How and when does the money arrive?</td><td><strong>Payment</strong></td></tr><tr><td>4</td><td>Why hasn't anyone taken it?</td><td><strong>Moat</strong></td></tr><tr><td>5</td><td>Where does it break?</td><td><strong>Fault line</strong></td></tr></tbody></table></div></div>
+<p>The first three ask <strong>how it earns right now.</strong> The last two ask <strong>whether it gets to keep earning.</strong></p>
+<p><strong>Book Two only digs into the last two.</strong></p>
+<h2>◆ What was a moat again?</h2>
+<p>Book One explained it like this.</p>
+<blockquote><p>A ditch dug around a castle so attackers can't get across.</p></blockquote>
+<p>In a business it's <strong>the thing somebody can't copy even when they want to.</strong></p>
+<p>In this book we're going to ask it this way.</p>
+<blockquote><p><strong>Somebody showed up copying me. Why am I still standing?</strong></p></blockquote>
+<p>That's the moat. The reason it can't be taken.</p>
+<h2>◆ How this book is built</h2>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Part</th><th>What's in it</th></tr></thead><tbody><tr><td>Part One (1–6)</td><td>What actually happens when you start — the first six walls</td></tr><tr><td>Part Two (7–11)</td><td>What can only I do — moats</td></tr><tr><td>Part Three (12–16)</td><td>When it's going fine and then suddenly isn't — fault lines</td></tr></tbody></table></div></div>
+<p>Every chapter ends with <strong>Do This Today.</strong></p>
+<p>In Book One that section was called <em>Try It Yourself.</em> The name changed because you're not somebody trying something new anymore. <strong>You're somebody fixing something.</strong></p>
+<h2>◆ About numbers</h2>
+<p>Every company fact in this book is one that could be checked. If it couldn't be confirmed, it isn't here. Same as Book One.</p>
+<p>And <strong>age limits and sign-up requirements are deliberately not printed as exact numbers,</strong> because those change constantly.</p>
+<p>Instead you'll find where to go and check.</p>
+<p><strong>Getting in the habit of looking it up yourself is one of the things this book is trying to teach you.</strong></p></section>
+<section class="front" id="s020"><h1>Opening — There&#x27;s a Wall Only People Who Started Ever Meet</h1><h2>◆ Three weeks in and nothing is happening</h2>
+<p>Say you started something.</p>
+<p>You sold something secondhand, or you drew something and posted it, or you made something for your friends.</p>
+<p>And three weeks went by.</p>
+<p><strong>Nothing happened.</strong></p>
+<p>One or two people looked. That was it. The buzz you had at the beginning is gone, and now it's a little embarrassing.</p>
+<p>And a sentence shows up in your head.</p>
+<blockquote><p><strong>Yeah, I'm just not built for this.</strong></p></blockquote>
+<p>This book exists to stop that sentence.</p>
+<h2>◆ Why that sentence is wrong</h2>
+<p>Almost everybody who starts something goes through these three weeks.</p>
+<p><strong>There are barely any exceptions.</strong> The people it worked out for went through it too.</p>
+<p>You just don't hear about that part, because only the success stories survive.</p>
+<p>So nothing happening at week three is <strong>not you being bad at this. It's how it goes.</strong></p>
+<p>What separates people here isn't skill.</p>
+<blockquote><p><strong>Do you wait out those three weeks without knowing why, or do you know why and fix it?</strong></p></blockquote>
+<p>If you don't know why, you just endure until you're tired and quit. If you know why, you can see what to change.</p>
+<p><strong>This book is here to tell you why.</strong></p>
+<h2>◆ What's different from Book One?</h2>
+<p>In Book One we took apart <strong>other people's companies.</strong> Nike, Netflix, DoorDash, Facebook Marketplace.</p>
+<p>In Book Two we take apart <strong>the thing you started.</strong></p>
+<p>Same five boxes, different subject. And it's much harder.</p>
+<p>Somebody else's company you look at from outside. <strong>Your own you have to admit something before you can see it.</strong></p>
+<p>Asking <em>why did I even make this</em> again stings a bit. It's also the only method there is.</p>
+<h2>◆ The order this book goes in</h2>
+<p><strong>Part One</strong> is the six walls you actually meet after starting.</p>
+<p>Nobody's buying. One person bought and then nothing. There's nothing left over. You fought with your friend. Your parents said no. You can't do this and school.</p>
+<p><strong>Part Two</strong> is what comes after you get past those.</p>
+<p>Once it starts working a little, <strong>somebody shows up copying you.</strong> What you need then is a moat.</p>
+<p><strong>Part Three</strong> is later still. The thing that was working suddenly stops working. That's what it's about.</p>
+<h2>◆ Something to say up front</h2>
+<p><strong>This is not a book that will make you a lot of money.</strong></p>
+<p>Teenagers rarely make big money from something they started. That's normal.</p>
+<p>This book has one goal.</p>
+<blockquote><p><strong>That you don't quit.</strong></p></blockquote>
+<p>More precisely: <strong>that even if you do quit, you're not left holding "yeah, I'm just not built for this."</strong></p>
+<p>What you tried, where you got stuck, what you'd do differently next time.</p>
+<p>If those three things are what's left, that isn't failure. <strong>It's experience.</strong></p>
+<p>And that experience gets used at twenty and at thirty, at a much higher price.</p>
+<p>Alright. Let's start. First wall.</p></section>
+<section class="part" id="s100"><h1>Part One · What Actually Happens When You Start</h1><h2>◆ Six walls</h2>
+<p>The walls people meet after starting, put <strong>in the order you actually meet them.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Ch</th><th>The wall</th><th>What you'll figure out</th></tr></thead><tbody><tr><td>1</td><td>Nobody's buying</td><td>Who were you selling to in the first place?</td></tr><tr><td>2</td><td>One person bought and then nothing</td><td>Buying once and buying again are different things</td></tr><tr><td>3</td><td>I did the math and there's nothing left</td><td>Your time is a cost too</td></tr><tr><td>4</td><td>We started together and now we're fighting</td><td>The thing you should have settled at the beginning</td></tr><tr><td>5</td><td>My parents are against it</td><td>The real reason behind the no is usually worry</td></tr><tr><td>6</td><td>I can't do this and school</td><td>Keeping it small is a skill too</td></tr></tbody></table></div></div>
+<p>The first three are <strong>business problems.</strong> The last three are <strong>your life.</strong></p>
+<p>Business books usually skip the last three. That's strange, because <strong>the last three are why teenagers actually quit.</strong></p>
+<p>Far more people stop because things got awkward with a friend, or because their parents were worried, or because it's exam season, than because the math didn't work.</p>
+<p>So this book does both.</p></section>
+<section class="ch" id="s101"><span class="eyebrow">Part One</span><h1>Chapter 1 · Nobody&#x27;s Buying — That&#x27;s Normal</h1><h2>◆ You posted it and it's quiet</h2>
+<p>You worked up the nerve and posted it.</p>
+<p>You took the photo, wrote the description, set the price. Then you refreshed about five times in the first hour.</p>
+<p>Three views. Two of them were you.</p>
+<p>Days go by and it's the same. Nobody asks anything.</p>
+<p><strong>This is where most people stop.</strong></p>
+<h2>◆ The usual thought — my thing must not be good enough</h2>
+<p>It's the first thing that comes to mind. Better photos. Lower price. Better description.</p>
+<p><strong>Half right.</strong></p>
+<p>Sometimes the thing is the problem. But something else is far more common.</p>
+<blockquote><p><strong>It's not that your thing isn't good. It's that the person who needs it isn't standing where you put it.</strong></p></blockquote>
+<h2>◆ Look at box one again</h2>
+<p>Chapter 1 of Book One taught you this.</p>
+<blockquote><p><strong>Who actually pays?</strong></p></blockquote>
+<p>What did you answer when you started?</p>
+<p>You probably answered <em>people who need it.</em></p>
+<p><strong>That isn't an answer.</strong> <em>People who need it</em> are somewhere out in the world. They're not people who will see your post.</p>
+<p>A real answer looks like this.</p>
+<blockquote><p><strong>Someone doing ______ who is searching for ______.</strong></p></blockquote>
+<p>Here's the difference.</p>
+<ul><li><strong>Not an answer</strong> — people who like stationery</li><li><strong>An answer</strong> — someone during exam week searching for stickers to decorate their mistake notebook</li></ul>
+<p>The second one contains <strong>when, where, and what they were doing</strong> when they ran into your thing. The first one contains none of that.</p>
+<p><strong>Without those three, you can't even decide where to post it.</strong></p>
+<p>Which is why nobody sees it.</p>
+<h2>◆ The real reason is usually one of three</h2>
+<p>When nobody's buying, the cause is almost always one of these.</p>
+<p><strong>One, that person isn't standing there.</strong></p>
+<p>The person who needs it exists. They just don't come to where you posted. You listed it on a resale app when people look for that thing by searching somewhere else entirely.</p>
+<p><strong>Two, they need it but not right now.</strong></p>
+<p>You posted a winter thing in summer. You're selling class notes on the day exams ended.</p>
+<p><strong>When the timing is off, it doesn't sell no matter how good it is.</strong></p>
+<p><strong>Three, it doesn't make sense in three seconds.</strong></p>
+<p>People don't look for long. They decide from the title and the first photo. However well you wrote the description, they never scroll that far.</p>
+<p>None of these three is <strong>product quality.</strong> All three are <strong>box one.</strong></p>
+<h2>◆ One number most people don't know</h2>
+<p>Knowing one thing makes this a lot easier to sit with.</p>
+<p><strong>Whatever you're selling, most people don't buy it.</strong> That's normal.</p>
+<p>Out of a hundred people who walk into a store, how many do you think buy something?</p>
+<p>For an online store, people generally say <strong>two or three out of a hundred, if that.</strong> Depending on what's being sold it can be much lower.</p>
+<p>So do the math. To sell to one person, <strong>dozens of people have to see it.</strong></p>
+<p>How many people have you shown it to so far? Three? Five?</p>
+<p><strong>It hasn't failed to sell. It hasn't been shown to enough people yet.</strong></p>
+<h2>◆ Don't ask your friends to buy it</h2>
+<p>This is the most common move at this point. Asking a close friend for a favor.</p>
+<p>It feels better. And <strong>you learn absolutely nothing.</strong></p>
+<p>Your friend isn't buying because the thing is good. They're buying because it's you.</p>
+<p>Which means the question <em>is this a thing that sells</em> gets no answer.</p>
+<blockquote><p><strong>One thing a friend bought isn't a sale. It's support.</strong></p></blockquote>
+<p>Support is a nice thing to have. It just wrecks your math if you count it as a sale.</p>
+<p>When you count numbers, <strong>count only what strangers bought.</strong></p>
+<p>That doesn't mean cutting friends out entirely. Ask them like this instead and they become much more useful.</p>
+<blockquote><p>"I'm not asking you to buy it. Just tell me what you thought when you looked at it."</p></blockquote>
+<p><strong>Right now you need people who will tell you things more than you need people who will buy.</strong></p>
+<h2>◆ To sum up</h2>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>If you were thinking</th><th>Try switching to</th></tr></thead><tbody><tr><td>My thing must not be good enough</td><td>Where is the person looking for this right now?</td></tr><tr><td>I should take better photos</td><td>Does the title and first photo make sense in three seconds?</td></tr><tr><td>Nobody's interested</td><td>How many people actually saw it? Did I count?</td></tr></tbody></table></div></div>
+<h2>◆ Sources for this chapter</h2>
+<ul><li>The share of online store visitors who actually buy varies by study, but it's generally talked about as <strong>two or three in a hundred.</strong> Depending on the category, the device and where visitors came from, it can be under one in a hundred or much higher. **The exact number matters less than "most people don't buy." Your own number is something only you can count.**</li></ul>
+<h2>◆ Do This Today</h2>
+<p>Write one line on paper. Fill in three blanks.</p>
+<blockquote><p><strong>Someone doing ______ searches for ______ and runs into mine at ______.</strong></p></blockquote>
+<p>Example: someone doing <strong>exam revision</strong> searches for <strong>stickers to decorate a mistake notebook</strong> and runs into mine at <strong>a resale app search.</strong></p>
+<p>If you can't fill all three, the blank you couldn't fill is where you're stuck.</p>
+<p>Then do one more thing today.</p>
+<p><strong>Go to the place you wrote in the third blank and read ten titles other people wrote.</strong></p>
+<p>Not to copy them. <strong>Those titles are telling you what people search for.</strong></p>
+<p>Read ten and you'll see immediately how to fix yours.</p></section>
+<section class="ch" id="s102"><span class="eyebrow">Part One</span><h1>Chapter 2 · One Person Bought and Then Nothing</h1><h2>◆ How the first sale feels</h2>
+<p>Finally, one person bought it.</p>
+<p>Honestly, in that moment the feeling was much bigger than the money. Somebody paid actual money for a thing you made. That part is real.</p>
+<p>That evening you probably got out a calculator. <strong>"If this sells ten a day…"</strong></p>
+<p>Then two weeks passed. The second customer never came.</p>
+<h2>◆ The usual thought — I guess I got lucky</h2>
+<p>It's easy to decide the first sale was a fluke. Somebody who knew you bought it. It just happened to land.</p>
+<p><strong>Half right.</strong></p>
+<p>It might have been luck. But you're missing something more important.</p>
+<blockquote><p><strong>One person buying is proof that a person who buys this exists.</strong></p></blockquote>
+<p>That's an enormous piece of information.</p>
+<p><strong>The gap between zero and one is much bigger than the gap between one and a hundred.</strong></p>
+<p>Zero means <em>I don't know if this works.</em> One means <strong>it works.</strong></p>
+<h2>◆ So here's what to do</h2>
+<p>You have to ask your first customer. Exactly three things.</p>
+<blockquote><p><strong>1. How did you find it?</strong> <strong>2. Was there anything that made you hesitate?</strong> <strong>3. How was it after you got it?</strong></p></blockquote>
+<p>Ask even if it's embarrassing. Most people answer. When the person who made the thing asks, people are usually pretty nice about it.</p>
+<p>Here's what each one tells you.</p>
+<ul><li><strong>Question 1</strong> tells you where to post more (box one)</li><li><strong>Question 2</strong> tells you why other people didn't buy (box two)</li><li><strong>Question 3</strong> tells you whether they'd buy again</li></ul>
+<p><strong>Question 2 is the gold one.</strong></p>
+<p>The reason a buyer hesitated is almost exactly <strong>the reason non-buyers didn't buy.</strong></p>
+<p>You can't ask the people who didn't buy. You have no way to reach them and they don't care.</p>
+<p>But the person who did buy knows the reason.</p>
+<h2>◆ Buying once and buying again are different</h2>
+<p>There's a big fork in the road here.</p>
+<p>Is the thing you sell <strong>a buy-it-once thing</strong> or <strong>a keep-buying thing?</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th>Buy once and done</th><th>Keep buying</th></tr></thead><tbody><tr><td>Examples</td><td>Secondhand items · merch · one drawing</td><td>Consumables · a monthly thing · a service you keep using</td></tr><tr><td>New customers</td><td><strong>Needed every single time</strong></td><td>Stack up</td></tr><tr><td>The hard part</td><td>Always starting from zero</td><td>Getting the first one is hard</td></tr></tbody></table></div></div>
+<p>If you're selling a buy-it-once thing, <strong>of course</strong> the second customer didn't come. That's what the structure does.</p>
+<p>Chapter 8 of Book One taught you this difference through Netflix. Money leaving your account automatically every month and selling something once are completely different structures.</p>
+<p><strong>Just knowing which one you're in changes what you do next.</strong></p>
+<ul><li>Buy-it-once → <strong>your job is meeting new customers, continuously</strong></li><li>Keep-buying → <strong>your job is making one person come back</strong></li></ul>
+<p>Those are entirely different jobs. Mix them and neither works.</p>
+<h2>◆ How to make a buy-it-once thing come back</h2>
+<p>Even selling a buy-it-once thing, there are options. One of these three usually works.</p>
+<p><strong>One, tell them what's next.</strong></p>
+<p>Saying "there's a new one next week" at the moment of the sale is enough. People don't come back because they forgot, not because they didn't like it.</p>
+<p><strong>Two, make something that goes with it.</strong></p>
+<p>If they bought stickers, there should be something that matches those stickers. Somebody who bought once buys a second time <strong>far more easily than a first-time buyer does.</strong></p>
+<p><strong>Three, sell something that runs out.</strong></p>
+<p>A thing that disappears as you use it has to be bought again. A thing that doesn't disappear doesn't.</p>
+<p>At the same price, <strong>the one that runs out is much easier as a business.</strong></p>
+<p>If none of the three works, it really is buy-it-once. Then accept it and <strong>spend your time meeting new customers.</strong> That's just what that job is.</p>
+<h2>◆ Don't count until you get to ten</h2>
+<p>One more thing.</p>
+<p>After the first customer you're going to want to project revenue. <strong>Let's not.</strong></p>
+<p>Sell one and calculate <em>ten a day means this much a month,</em> and when that number doesn't happen you'll be badly disappointed.</p>
+<p>And that disappointment becomes the reason you quit.</p>
+<p><strong>Until you hit ten people, don't count — just ask.</strong></p>
+<p>Once you've asked all three questions of ten people, what you'll see isn't a calculation. <strong>It's a pattern.</strong> That's far more useful.</p>
+<h2>◆ To sum up</h2>
+<ul><li>One is completely different from zero. <strong>It's proof it works.</strong></li><li>Ask your first customer <strong>how they found it and what made them hesitate.</strong></li><li><strong>Start by identifying</strong> whether it's buy-once or keep-buying.</li><li><strong>Until ten, don't count — just ask.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Message your first customer with this one sentence.</p>
+<blockquote><p><strong>"Could I ask how you found it? Just trying to learn for next time."</strong></p></blockquote>
+<p>Asking one person is enough. That single answer is far more accurate than everything you've been guessing at on your own.</p>
+<p>And when the answer comes, write it down on paper.</p>
+<p><strong>When ten of those pile up, that's the map of your business.</strong></p></section>
+<section class="ch" id="s103"><span class="eyebrow">Part One</span><h1>Chapter 3 · I Did the Math and There&#x27;s Nothing Left</h1><h2>◆ I sold things. Why is my balance the same?</h2>
+<p>You sold a few. And something's off. Money came in, but there isn't much left.</p>
+<p>So you did the math.</p>
+<ul><li>Sold for: $8</li><li>Materials: $3</li><li><strong>Left over: $5</strong></li></ul>
+<p>That seems fine? Except something still isn't adding up.</p>
+<p>You bought packaging. You paid for shipping. Two of them came out wrong. And it took two hours to make.</p>
+<p><strong>Run it again and there's almost nothing left.</strong></p>
+<h2>◆ The usual thought — I'll just raise the price</h2>
+<p>Raising the price is the first thing that comes to mind. Make it $12 instead of $8.</p>
+<p><strong>Half right.</strong></p>
+<p>You can raise the price. But raising it makes some people not buy. And <strong>if you can't explain why it costs more,</strong> it just stops selling.</p>
+<p>There's something to do first. <strong>Know your real cost.</strong></p>
+<h2>◆ Three costs nobody counts</h2>
+<p>There are three costs almost always missing from something a teenager made.</p>
+<p><strong>One, the ones that came out wrong.</strong></p>
+<p>If you made ten and wrecked two, the materials for those two have to be paid for by the eight that worked.</p>
+<p>Make ten at $3 of materials each and sell eight, and your actual material cost per item isn't $3. <strong>It's $3.75.</strong></p>
+<p><strong>Two, the supplies you don't see.</strong></p>
+<p>Packaging, envelopes, stickers, shipping boxes, tape.</p>
+<p>Each one is pennies, and added up they sometimes come to as much as the materials.</p>
+<p>The mistake people make most is <strong>not counting things bought in bulk.</strong> Buy 100 sheets of wrapping for $5 and each sheet is 5 cents. It isn't free.</p>
+<p><strong>Three — and this is the biggest one — your time.</strong></p>
+<p>Two hours to earn $5 is $2.50 an hour.</p>
+<p>Don't misread this. <strong>The point isn't to argue about your hourly rate.</strong> You're learning right now, so a low rate is fine.</p>
+<p>The point is this.</p>
+<blockquote><p><strong>If you don't count your time, you have no reason to look for ways to spend less of it.</strong></p></blockquote>
+<p>The moment time goes into the cost, a question appears.</p>
+<p><strong>"How do I make two of these in an hour instead of one?"</strong></p>
+<p>That question changes a business.</p>
+<h2>◆ Let's actually run it</h2>
+<p>Put in a table it looks like this.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Item</th><th>Did you count it?</th></tr></thead><tbody><tr><td>Materials</td><td>Usually yes</td></tr><tr><td><strong>The ones that came out wrong</strong></td><td>Often missed</td></tr><tr><td><strong>Packaging and supplies</strong></td><td>Often missed</td></tr><tr><td>Shipping</td><td>About half the time</td></tr><tr><td><strong>Your time</strong></td><td>Almost always missed</td></tr></tbody></table></div></div>
+<p>The first four added together is your <strong>cost.</strong> The sale price minus the cost is <strong>what's left.</strong></p>
+<p>And what's left divided by the hours it took gives you <strong>how much an hour.</strong></p>
+<p>That number is going to be terrible at first. That's fine.</p>
+<p><strong>What matters is knowing the number, not whether the number is big.</strong></p>
+<h2>◆ Three things to do when there's nothing left</h2>
+<p><strong>One, cut the time.</strong></p>
+<p>Making several of the same thing at once cuts the time dramatically. Making ten in one batch is far faster than making one ten times.</p>
+<p>That's the <strong>economies of scale</strong> you learned in Book One. Chapter 7 in Part Two goes into it properly.</p>
+<p><strong>Two, buy materials differently.</strong></p>
+<p>Buying one at a time is expensive. Buying several at once is cheaper.</p>
+<p>But <strong>buying a pile of something that won't sell is a loss,</strong> so do this after you've confirmed it sells.</p>
+<p><strong>Three, raise the price.</strong></p>
+<p>This one is last. And if you're raising it, <strong>you have to hand over the reason along with it.</strong></p>
+<p>Better packaging, one extra thing in the box, showing how it gets made.</p>
+<p><strong>Raise only the number and it stops selling.</strong></p>
+<h2>◆ So how do you set a price?</h2>
+<p>There are three ways to set a price, and which one you use changes the answer completely.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Method</th><th>How</th><th>The problem</th></tr></thead><tbody><tr><td>Cost plus</td><td>Materials + some amount</td><td>Your time drops out easily</td></tr><tr><td>Matching others</td><td>Around what other people charge</td><td>If they're losing money, so are you</td></tr><tr><td><strong>Pricing on worth</strong></td><td>What it's worth to the buyer</td><td>You have to ask to find out</td></tr></tbody></table></div></div>
+<p>Most people use the first or the second. <strong>The third is the most accurate.</strong></p>
+<p>Say you organize somebody's mistake notebook for them. Materials cost roughly nothing. Price it the first way and it comes out extremely cheap.</p>
+<p>But from the buyer's side, this is <strong>two hours they get back.</strong> What those two hours are worth is the real price.</p>
+<blockquote><p><strong>Cost sets the floor. Worth sets the ceiling.</strong> <strong>Your price has to live somewhere in between.</strong></p></blockquote>
+<p>Below the floor you lose money every time you sell. Above the ceiling nobody buys.</p>
+<h2>◆ To sum up</h2>
+<ul><li>Materials alone are not your cost. Add **the wrecked ones, the supplies, and your time.**</li><li>Don't count your time and you'll never have a reason to reduce it.</li><li>When nothing's left, work in this order: <strong>time → materials → price.</strong></li><li>A terrible number at the start is normal. <strong>Knowing it comes first.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Pick the last thing you sold and fill in the table.</p>
+<pre><code>Sale price          $ _______
+Materials           $ _______
+Share of wrecked    $ _______
+Packaging/supplies  $ _______
+Shipping            $ _______
+──────────────────────────────
+Left over           $ _______
+Hours it took         _______ hours
+Per hour            $ _______</code></pre>
+<p>Don't erase it if you don't like the numbers.</p>
+<p><strong>Almost no teenager has ever filled this table in once.</strong></p>
+<p>Then look at the last line and think about one thing.</p>
+<blockquote><p><strong>What would I have to change to cut the time in half?</strong></p></blockquote>
+<p>If an answer comes, that's what you do next.</p></section>
+<section class="ch" id="s104"><span class="eyebrow">Part One</span><h1>Chapter 4 · We Started Together and Now We&#x27;re Fighting</h1><h2>◆ We started this with my best friend</h2>
+<p>When you agreed to do it together it was genuinely great.</p>
+<p>You came up with ideas together, the roles split themselves naturally, and it was all you talked about between classes.</p>
+<p>Then about two months in, it turned into this.</p>
+<ul><li>They haven't really been doing much lately</li><li>But we agreed to split the money evenly</li><li>And if I say something it's going to get weird</li><li>So I don't say anything</li><li>And then I stopped wanting to do it either</li></ul>
+<p>And you both quietly stopped. <strong>And things did get a little weird.</strong></p>
+<h2>◆ The usual thought — I picked the wrong person</h2>
+<p>After a fight you blame the person. They're lazy. They don't keep their word.</p>
+<p><strong>Half right.</strong></p>
+<p>Sometimes that's it. But this is much more common.</p>
+<blockquote><p><strong>The person isn't the problem. Nothing was ever settled.</strong></p></blockquote>
+<p>You didn't decide anything at the start.</p>
+<p>Not who does what. Not what happens if somebody doesn't. Not how the money splits. Not what happens if somebody quits.</p>
+<p>Nothing was settled, so all of it turns into <strong>a feelings problem</strong> later.</p>
+<p><em>They're not doing anything</em> isn't a fact. It's an emotion.</p>
+<h2>◆ Four things you should have settled at the start</h2>
+<p>There's a ten-minute conversation to have when you start something together. Four items.</p>
+<p><strong>One, who does what?</strong></p>
+<p><em>Both of us, together</em> is not a role. It becomes <strong>the thing nobody does.</strong></p>
+<p>Split it at least as far as "I make them, you post and answer messages."</p>
+<p><strong>Two, how does the money split?</strong></p>
+<p>Evenly is the most common, and evenly isn't always fair.</p>
+<p>If one person paid for materials, that gets paid back first and the rest gets split.</p>
+<p><strong>What matters isn't how you split it. It's deciding beforehand.</strong></p>
+<p><strong>Three, what happens if somebody doesn't do their part?</strong></p>
+<p>This is the most important one and nobody sets it.</p>
+<p>Something like <em>if you're too busy to do it for two weeks, you don't take a share for those two weeks.</em></p>
+<p><strong>Set in advance, it's a rule later instead of a fight.</strong></p>
+<p><strong>Four, what happens if somebody wants out?</strong></p>
+<p>Quitting isn't the bad part. Disappearing without saying anything is.</p>
+<p>One line does it: <em>if you want out, say so a week ahead.</em></p>
+<h2>◆ Adults have exactly this problem</h2>
+<p>This isn't a teenager thing.</p>
+<p>The most common reason adult partnerships blow up is identical.</p>
+<p>Which is why adults write something called a <strong>partnership agreement.</strong> The four things above are what goes in it.</p>
+<p>You don't need an actual contract.</p>
+<p><strong>Four lines in the group chat with both of you saying "yeah" is the contract.</strong></p>
+<p>When it gets murky later, you go back and read the messages.</p>
+<p><strong>Memories differ. The message is one thing.</strong></p>
+<h2>◆ If you already fought</h2>
+<p>What if it's already weird?</p>
+<p><strong>Talk about the people before you talk about the business.</strong></p>
+<p>Better than "let's figure out what we're doing with this" is "things have felt weird between us and honestly that bothers me more."</p>
+<p>And this one sentence works surprisingly well.</p>
+<blockquote><p><strong>"I think it's because we never settled anything at the start. Want to settle it now?"</strong></p></blockquote>
+<p>That sentence doesn't blame anybody.</p>
+<p>It says <strong>neither of us did anything wrong and the setup was the problem.</strong> Which makes it easy to accept.</p>
+<h2>◆ Would it be better alone?</h2>
+<p>Honestly? <strong>Alone is easier.</strong></p>
+<p>Nothing to negotiate, nothing to fight about, everything your way.</p>
+<p>But alone, <strong>a lot of people don't last.</strong> There's nobody to sit in the bad stretch with you. And the day you stop finding it fun by yourself, it's over.</p>
+<p>There's no right answer. This much is certain, though.</p>
+<blockquote><p><strong>If you're doing it together, settle things before you start. If you're doing it alone, line up one person you can talk to when it isn't working.</strong></p></blockquote>
+<p>A friend, a sibling, a parent. Not somebody to help you sell — <strong>somebody you can say "nobody bought anything again today" to.</strong></p>
+<h2>◆ One piece of paper does it</h2>
+<p>This isn't a grand contract conversation. <strong>Four lines is plenty.</strong></p>
+<blockquote><p><strong>Who does what: ______</strong> <strong>How the money splits: ______</strong> <strong>Who decides when something has to be decided: ______</strong> <strong>What happens if one of us quits: ______</strong></p></blockquote>
+<p>Suggesting this feels awkward. <em>Do we really need this, between us?</em></p>
+<p>But the awkward part is five minutes now. Not settling it makes several months awkward later.</p>
+<p><strong>And saying it this way isn't awkward at all.</strong></p>
+<blockquote><p>"I'm not trying to set up an argument. I just don't want us to forget."</p></blockquote>
+<p>Put the <strong>fourth line</strong> in especially. It's the least written and the most fought over.</p>
+<p>When one person gets busy and drops out, what happens to what you earned up to then?</p>
+<p>Decided in advance, it's a rule. Decided afterward, it's a fight.</p>
+<h2>◆ To sum up</h2>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>What happens when nothing's settled</th><th>When it is</th></tr></thead><tbody><tr><td>"They're not doing anything"</td><td>"That was your part" — it becomes a fact, checkable</td></tr><tr><td>"Splitting the money is awkward"</td><td>Already decided</td></tr><tr><td>Somebody quietly disappears</td><td>A week's notice was agreed</td></tr><tr><td>The friendship gets weird</td><td>It's a rules conversation, so fewer feelings get hurt</td></tr></tbody></table></div></div>
+<h2>◆ Do This Today</h2>
+<p>If you're doing this with somebody, send four lines to the group chat.</p>
+<blockquote><p><strong>1. I do ______ and you do ______.</strong> <strong>2. The money splits ______.</strong> <strong>3. If somebody can't do it for a while, we ______.</strong> <strong>4. If you want out, say so ______ ahead.</strong></p></blockquote>
+<p>Just say "figured it'd be easier later if we set this now."</p>
+<p><strong>You'll worry it's awkward. It's much better than getting awkward later.</strong></p>
+<p>If you're doing this alone, do this instead.</p>
+<p><strong>Pick one person you'll talk to when it isn't working, and tell them where things stand today.</strong></p></section>
+<section class="ch" id="s105"><span class="eyebrow">Part One</span><h1>Chapter 5 · My Parents Are Against It</h1><h2>◆ "You could be studying instead of doing that"</h2>
+<p>You worked up the nerve and told them.</p>
+<p>"I want to try doing this."</p>
+<p>And what came back was that. <strong>"You could be studying instead of doing that."</strong></p>
+<p>It stings. You thought they'd be behind you.</p>
+<p>And from that day you do it secretly. Doing it secretly makes you more self-conscious, being self-conscious drains the fun out of it, and then you stop.</p>
+<h2>◆ The usual thought — they just don't get it</h2>
+<p>The first thing you think is that your parents are from a different era and don't understand how things work now.</p>
+<p><strong>Half right.</strong></p>
+<p>They might not. But that's usually not the real reason behind the no.</p>
+<blockquote><p><strong>A no doesn't come from not understanding. It comes from worrying.</strong></p></blockquote>
+<p>Worrying about what? Usually these three.</p>
+<p><strong>One, that you'll get scammed.</strong></p>
+<p>Selling something online means, to a parent, <strong>money moving between you and strangers.</strong> And that does sometimes go wrong.</p>
+<p><strong>Two, that you'll drop school.</strong></p>
+<p>They think grades slipping now is hard to reverse. That worry actually has evidence behind it.</p>
+<p><strong>Three, that you'll get hurt when it doesn't work.</strong></p>
+<p>They rarely say this one out loud, and it's often the biggest reason.</p>
+<p><strong>All three are "I'm worried about you."</strong> None of them is "I don't want you doing this."</p>
+<h2>◆ So stop persuading and start reassuring</h2>
+<p>You have to change direction here.</p>
+<p>Trying to persuade produces sentences like "this could actually work" and "I could make money."</p>
+<p><strong>Those make the worry worse.</strong> <em>I'm going to make a lot</em> sounds, to a parent, like <em>I could lose a lot.</em></p>
+<p>Go toward <strong>reassuring</strong> instead.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Persuading (doesn't work)</th><th>Reassuring (works)</th></tr></thead><tbody><tr><td>"This is real money"</td><td>"The money's tiny. But I'm learning a lot"</td></tr><tr><td>"I've got it handled"</td><td>"I've capped it at 30 minutes a day"</td></tr><tr><td>"Everyone does this now"</td><td>"I never meet strangers in person for it"</td></tr><tr><td>"Just trust me"</td><td>"I'll try it this month and stop if my grades drop"</td></tr></tbody></table></div></div>
+<p>See what the right-hand sentences have in common?</p>
+<p><strong>Every one of them sets a limit before anybody asked.</strong></p>
+<p>State the limit yourself and your parents <strong>feel less need to control it.</strong></p>
+<p><em>I've got it handled</em> says there is no limit, which makes them more anxious, not less.</p>
+<h2>◆ How to get them on your side</h2>
+<p>This one is a little surprising, and it works well.</p>
+<p><strong>Give your parents a role.</strong></p>
+<ul><li>Ask them to come with you when you post a package</li><li>Ask what they think when you're setting a price</li><li>Give them the first one you made and ask for their honest opinion</li></ul>
+<p>Somebody who was against it <strong>becomes an ally once they're involved.</strong></p>
+<p>And parents are adults, so they actually know things you don't. A sense of what things should cost, how to handle a difficult person — that help is real.</p>
+<h2>◆ Sometimes the no is correct</h2>
+<p>Something has to be said honestly.</p>
+<p><strong>Sometimes your parents are right.</strong></p>
+<ul><li>Exams are two weeks away and you're up all night making things — that's a real problem</li><li>You're planning to meet a stranger alone — that's dangerous</li><li>You took money up front and haven't made the thing — that's a mess</li></ul>
+<p>When they block those, it isn't because they don't understand. <strong>It's because it genuinely needs blocking.</strong></p>
+<p>And as Chapter 3 showed, most things a teenager does bring in very little money.</p>
+<p><strong>Losing something that matters over that is a bad trade.</strong></p>
+<h2>◆ If it's still no, buy time</h2>
+<p>If they hold the line, try this.</p>
+<blockquote><p><strong>"Can I try it for one month and then talk about it again? If my grades drop or it goes over 30 minutes a day, I'll stop first."</strong></p></blockquote>
+<p>A deadline makes it much easier to agree to. It isn't forever. It's a month.</p>
+<p>Then during that month, <strong>actually keep the promise.</strong> That makes the next conversation dramatically easier.</p>
+<p><strong>Trust is built from kept promises, not from words.</strong></p>
+<p>Same principle as the intangible assets in Chapter 10.</p>
+<h2>◆ Three sentences you can use exactly as written</h2>
+<p>A lot of these conversations become fights because the words don't come. Use these three as they are.</p>
+<p><strong>One — when you're starting:</strong></p>
+<blockquote><p>"It's less about making money and more that I want to see what happens. I'll try it for a month and wrap it up if it doesn't work."</p></blockquote>
+<p>Saying the timeframe first cuts the worry sharply. <strong>A thing with an ending is less frightening.</strong></p>
+<p><strong>Two — when grades come up:</strong></p>
+<blockquote><p>"If my grades drop, I'll stop. And I'll be the one to say so."</p></blockquote>
+<p>That's putting a condition on yourself. Keep it and the trust builds fast.</p>
+<p><strong>Three — when money comes up:</strong></p>
+<blockquote><p>"Here's what's gone out and what's come in, written down."</p></blockquote>
+<p>Nothing reassures like showing the numbers. <strong>This is where the math from Chapter 3 gets used.</strong></p>
+<p>See what the three have in common?</p>
+<p><strong>In all of them you draw the line first.</strong> A no gets stronger mostly when there doesn't appear to be a line.</p>
+<h2>◆ To sum up</h2>
+<ul><li>The reason is usually one of three: <strong>scams, school, getting hurt.</strong> All worry.</li><li><strong>Don't persuade. Reassure.</strong> State the limit yourself.</li><li>Give them a role and the opposition turns into an ally.</li><li><strong>Sometimes they're right.</strong> Especially about safety and about promises.</li><li>If it's still no, <strong>set a deadline and buy time.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Say these three sentences to your parents. In order.</p>
+<blockquote><p><strong>1. "The reason I'm doing this isn't money, it's ______."</strong> <strong>2. "I've decided on ______ minutes a day, maximum."</strong> <strong>3. "Could you help me with ______?"</strong></p></blockquote>
+<p>The third one is the key. <strong>It's hard to be against something you're helping with.</strong></p>
+<p>And if they already said no and you've been doing it secretly, tell them today.</p>
+<p><strong>Secret doesn't last, and getting caught goes much worse.</strong></p></section>
+<section class="ch" id="s106"><span class="eyebrow">Part One</span><h1>Chapter 6 · I Can&#x27;t Do This and School</h1><h2>◆ Everything stopped during exams</h2>
+<p>It was going fine.</p>
+<p>Then exam season arrived. You put it down for two weeks.</p>
+<p>After exams you opened it again and there were three messages waiting, all of them old. Replying now would be embarrassing.</p>
+<p><strong>And that was that.</strong></p>
+<p>This is the most common way a teenager quits. Not by deciding to quit — <strong>by not picking it back up.</strong></p>
+<h2>◆ The usual thought — I need to manage my time better</h2>
+<p>You decide to redo your schedule. Get up early to work on it, use the gaps between classes.</p>
+<p><strong>Half right.</strong></p>
+<p>A better plan helps a bit. But exam season comes again. So do holidays, and projects, and the weeks you're sick.</p>
+<blockquote><p><strong>The problem isn't time management. You built something that dies when you stop.</strong></p></blockquote>
+<h2>◆ Rebuild it so stopping doesn't kill it</h2>
+<p>This is the heart of the chapter.</p>
+<p>If it only runs when you touch it every day, <strong>it stops every time you get busy.</strong> And a few stops end it.</p>
+<p>There are three ways to build something that survives a pause.</p>
+<p><strong>One, make things in advance.</strong></p>
+<p>Instead of making it when an order arrives, make several while you're free.</p>
+<p>Then an order during exams takes ten minutes, because all you do is send it.</p>
+<p>And as Chapter 3 showed, <strong>making several at once takes less time anyway.</strong> Two birds.</p>
+<p><strong>Two, write your answers in advance.</strong></p>
+<p>Don't compose a fresh reply every time. Write down answers to the questions that keep coming.</p>
+<ul><li>How long does shipping take?</li><li>Can I get a different color?</li><li>Can I return it?</li></ul>
+<p>Three notes saved somewhere turns a reply into thirty seconds.</p>
+<p><strong>Three — this is the important one — say it in advance.</strong></p>
+<p>Put one line in your profile or your post.</p>
+<blockquote><p><strong>"Replies are slow during exam season (dates)."</strong></p></blockquote>
+<p>That one line doesn't make three messages disappear. <strong>It turns them into three messages that will wait for you.</strong></p>
+<p>People don't mind being kept waiting. <strong>They mind not knowing.</strong></p>
+<h2>◆ Staying small is a skill too</h2>
+<p>Here's a slightly different point.</p>
+<p>A lot of people think a business has to keep growing. So when it doesn't grow, they feel like they failed.</p>
+<p><strong>That's wrong.</strong></p>
+<p>Book One looked at dollar stores and at Dunkin', but there are far more businesses in the world that <strong>deliberately don't grow.</strong></p>
+<p>Think of the shops in your neighborhood that have been there for decades. Those people didn't fail to open a second location. <strong>They chose not to.</strong></p>
+<p>A second location means hiring people, managing them, borrowing money. They didn't want that, and that choice is why they're still there.</p>
+<p><strong>For you this matters even more.</strong></p>
+<p>You're a student. If this gets big now it genuinely collides with school. Then you have to drop one of them, and for a teenager that's not a good choice to be facing.</p>
+<blockquote><p><strong>Staying small isn't failure. It's a decision.</strong> <strong>And right now it's probably the right decision for you.</strong></p></blockquote>
+<h2>◆ How much is about right?</h2>
+<p>Here's one benchmark.</p>
+<blockquote><p><strong>If it fits in three hours a week, you can keep doing it.</strong></p></blockquote>
+<p>Once it starts running past three hours, it collides with something. Then you shrink it, or you cut the making time, or you take a break.</p>
+<p><strong>Try aiming to hold it inside three hours rather than to grow it.</strong></p>
+<p>And in exchange, <strong>do it for a long time.</strong></p>
+<p>Three hours a week for two years leaves you far more than three months of going hard and stopping.</p>
+<h2>◆ You're not quitting, you're pausing</h2>
+<p>One last thing.</p>
+<p>When a stretch arrives where you genuinely can't, <strong>pause instead of quitting.</strong></p>
+<p>There's exactly one difference between them.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Quitting</th><th>Pausing</th></tr></thead><tbody><tr><td>You just stop</td><td><strong>You decide when you come back</strong></td></tr><tr><td>Restarting later is awkward</td><td>You just open it again that day</td></tr><tr><td>"Yeah, I'm not built for this" stays behind</td><td>Nothing stays behind</td></tr></tbody></table></div></div>
+<p>Put "back in March" in your profile and close it, and you didn't quit.</p>
+<p><strong>And that one line is what brings you back later.</strong></p>
+<h2>◆ How not to be forgotten while you're away</h2>
+<p>Stopping is fine. People forgetting while you're stopped is the problem. Two things prevent it.</p>
+<p><strong>One, say it before you stop.</strong></p>
+<blockquote><p>"Taking two weeks off for exams. Back on the 14th."</p></blockquote>
+<p>Disappearing without saying anything and pausing with a date on it are completely different.</p>
+<p>The first one is gone. The second one is <strong>scheduled.</strong></p>
+<p><strong>Two, leave the return date somewhere visible.</strong></p>
+<p>That one line hanging where you normally post is enough. People read it as <em>still going.</em></p>
+<p>And one more thing. You don't have to do anything while you're away, but <strong>doing one thing makes coming back much easier.</strong></p>
+<blockquote><p><strong>Right before you pause, write down the next three things you were going to do.</strong></p></blockquote>
+<p>You in two weeks will not remember what you were in the middle of. Without those three lines you come back, stall on figuring it out, and drift off again.</p>
+<h2>◆ To sum up</h2>
+<ul><li>Teenagers don't quit by deciding to. They quit <strong>because they stopped.</strong></li><li><strong>Make in advance, write your replies in advance, say it in advance.</strong></li><li>Staying small isn't failure, it's a decision.</li><li>Hold it inside <strong>three hours a week</strong> and it can last.</li><li>When you can't, don't quit — <strong>pause, with a date.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Two things.</p>
+<p><strong>One.</strong> Write down the three questions you get most and their answers. From your next message on, you copy and paste.</p>
+<p><strong>Two.</strong> Put this line in your profile or your post.</p>
+<blockquote><p><strong>"Replies are slow during ______."</strong></p></blockquote>
+<p>And fill in your next exam period ahead of time.</p>
+<p>Do those two and the next time you get busy, <strong>it slows down instead of stopping.</strong> That difference is bigger than it looks.</p></section>
+<section class="part" id="s200"><h1>Part Two · What Can Only I Do?</h1><h2>◆ Once it starts working, somebody copies you</h2>
+<p>Say you got past Part One's walls. It's selling a bit now.</p>
+<p>Then this happens.</p>
+<p><strong>Somebody in your class starts the exact same thing.</strong></p>
+<p>Cheaper, or nicer-looking, or just identical.</p>
+<p>It stings. And there's nothing you can say, because there's no way to stop it.</p>
+<p>What you need here is <strong>a moat.</strong></p>
+<p>Book One explained it like this.</p>
+<blockquote><p>A ditch dug around a castle so attackers can't get across.</p></blockquote>
+<p>The question Part Two asks is this.</p>
+<blockquote><p><strong>Somebody showed up copying me. Why am I still standing?</strong></p></blockquote>
+<p>If there's an answer, you have a moat. If there isn't, you don't.</p>
+<h2>◆ There are five of them</h2>
+<p>The moats in the world come in five kinds. Same for adult companies.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Ch</th><th>Moat</th><th>At teenager scale</th></tr></thead><tbody><tr><td>7</td><td>Economies of scale</td><td>Doing a lot makes it cheaper</td></tr><tr><td>8</td><td>Network effects</td><td>Friends bring friends</td></tr><tr><td>9</td><td>Switching costs</td><td>Moving is a hassle</td></tr><tr><td>10</td><td>Intangible assets</td><td>There's a reason people buy from them</td></tr><tr><td>11</td><td>Cost advantage</td><td>I can just do it cheaper</td></tr></tbody></table></div></div>
+<p>Every chapter ends with <strong>"so what happens when somebody copies you?"</strong></p>
+<p>That's the only way to check whether a moat is real.</p>
+<h2>◆ Something to say up front</h2>
+<p>You don't need all five. <strong>One is enough.</strong></p>
+<p>And it's fine if you have none right now. <strong>A moat isn't something you have at the start. It's something that builds up while you go.</strong></p>
+<p>There's exactly one reason to know these five.</p>
+<blockquote><p><strong>So you can pick which direction to stack in.</strong></p></blockquote>
+<p>Work hard in no particular direction and nothing accumulates. Know the direction and the same effort stacks.</p></section>
+<section class="ch" id="s201"><span class="eyebrow">Part Two</span><h1>Chapter 7 · Doing a Lot Makes It Cheaper — Economies of Scale</h1><h2>◆ Making one versus making ten</h2>
+<p>Anybody who has made something knows this already.</p>
+<p><strong>Thirty minutes to make one does not mean five hours to make ten.</strong></p>
+<p>Getting the materials out, setting up the space, cleaning up — that happens once.</p>
+<p>Make ten in one sitting and it might take two hours.</p>
+<p>Per item, thirty minutes just became twelve.</p>
+<p><strong>That's economies of scale.</strong> The more you do, the cheaper each one gets.</p>
+<h2>◆ The usual thought — that's a big-company thing</h2>
+<p>Say "economies of scale" and people picture factories and container ships. Nothing to do with you.</p>
+<p><strong>Half right.</strong></p>
+<p>It does show up biggest at big companies. But <strong>size isn't the point.</strong></p>
+<blockquote><p><strong>Economies of scale appear any time there's a cost you only pay once.</strong></p></blockquote>
+<p>What you saved making ten at a time is exactly that. Setting up the space happens once whether you make one or ten.</p>
+<h2>◆ Where it's hiding</h2>
+<p>In the things teenagers do, the pay-it-once costs live here.</p>
+<p><strong>One, setup and cleanup time.</strong> Getting things out and putting them away has nothing to do with quantity.</p>
+<p><strong>Two, learning time.</strong></p>
+<p>You learn by making mistakes on the first one. That learning is free from the second one on.</p>
+<p><strong>Which is why the tenth one comes out far better than the first.</strong></p>
+<p><strong>Three, what the materials cost.</strong> Buying singles is expensive, buying several is cheaper. Everybody knows this one.</p>
+<p><strong>Four, photos and descriptions.</strong></p>
+<p>Shoot it well once and you use it forever. Sell ten of the same thing and you shoot the photo once.</p>
+<h2>◆ But the risk grows with it</h2>
+<p>Here's the trap.</p>
+<p>If cheaper is better, why not make a hundred?</p>
+<p><strong>Because if they don't sell, all hundred are a loss.</strong></p>
+<p>There's a company in the adult books that handles this well. It puts out thousands of new styles, and <strong>makes only about a hundred of each one at first.</strong></p>
+<p>If a style sells, it makes more. If it doesn't, the loss stops at a hundred.</p>
+<p><strong>"Making it cheap" and "the risk it doesn't sell" point in opposite directions.</strong></p>
+<p>So the rule is this.</p>
+<blockquote><p><strong>While you don't know if it sells, few. Once selling is confirmed, many.</strong></p></blockquote>
+<h2>◆ Warning signs on a group buy</h2>
+<p>Buying together really is cheaper. Done wrong it's a loss. If any one of these applies, run the numbers again.</p>
+<p><strong>One, the leftovers are yours.</strong></p>
+<p>Order ten, deliver eight, and the two left over are your money. The leftovers eat everything the discount saved.</p>
+<blockquote><p><strong>The rule is you order after you've collected all the orders.</strong> Order first and sell after, and from that point it's gambling.</p></blockquote>
+<p><strong>Two, you're the one paying up front.</strong></p>
+<p>If the amount is large this is genuinely risky, because somebody always changes their mind.</p>
+<p><strong>Collect, then order.</strong> Never flip that order.</p>
+<p><strong>Three, your time isn't being counted.</strong></p>
+<p>Collecting, counting, dividing, handing out. That's all cost (Chapter 3).</p>
+<p>Save fifty cents an item and lose three hours and you didn't come out ahead.</p>
+<h2>◆ So what happens when somebody copies you?</h2>
+<p>Now the real question of this chapter.</p>
+<p>Somebody in your class started the exact same thing. With economies of scale, what happens?</p>
+<p><strong>You have the advantage.</strong> They're new, so each item takes them much longer.</p>
+<p>You've made ten already, so you're fast, your materials are cheaper, and you have the photos.</p>
+<p>If they sell at your price, <strong>they lose more than you do.</strong></p>
+<p><strong>But this moat is weak.</strong> They'll make ten too, and catch up.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>How long does it hold?</td><td><strong>Weeks to months</strong></td></tr><tr><td>Why is it weak?</td><td>Repetition makes them just as fast</td></tr><tr><td>What defends it?</td><td>Build <strong>a second moat</strong> during that window</td></tr></tbody></table></div></div>
+<p>Which makes economies of scale <strong>a moat you should never use alone.</strong></p>
+<p>It buys you time. It doesn't hold the line forever.</p>
+<h2>◆ To sum up</h2>
+<ul><li>Economies of scale appear wherever there's <strong>a cost you only pay once.</strong> Size is irrelevant.</li><li>For a teenager they hide in **setup time, learning time, material costs, and photos.**</li><li>Getting cheaper also <strong>grows the risk of not selling.</strong> Scale up after it's confirmed.</li><li>When somebody copies you, <strong>you're ahead briefly and you can't hold it.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Make <strong>five at once</strong> of whatever you're making. Not one five times — five in one sitting.</p>
+<p>And time it.</p>
+<blockquote><p>One at a time: ______ minutes each Five at once: ______ minutes each</p></blockquote>
+<p>If there's a gap, that's your economies of scale. Now confirmed with a number.</p>
+<p>Then think about one more thing.</p>
+<blockquote><p><strong>What are you going to build with the time you just saved?</strong></p></blockquote>
+<p>The time economies of scale bought you has to go into stacking another moat.</p>
+<p>The next four chapters are about those.</p></section>
+<section class="ch" id="s202"><span class="eyebrow">Part Two</span><h1>Chapter 8 · Friends Bring Friends — Network Effects</h1><h2>◆ Why does everyone use the same app?</h2>
+<p>Think of one messaging app.</p>
+<p>Honestly, is it the best-made app out there? Probably not. There's definitely something prettier with more features.</p>
+<p>So why do you use it?</p>
+<p><strong>Because your friends are all on it.</strong></p>
+<p>Move to a different app alone and you can't talk to anybody. However good the app is, it's useless if you're the only one there.</p>
+<p><strong>That's a network effect.</strong> The more people use it, the more it's worth, by itself.</p>
+<h2>◆ The usual thought — you just need lots of people</h2>
+<p>It's easy to think popular means network effect.</p>
+<p><strong>Half right.</strong></p>
+<p>Popularity and network effects are different things. There's exactly one test.</p>
+<blockquote><p><strong>When one more person shows up, does anything get better for the people already there?</strong></p></blockquote>
+<p>Think about a popular YouTube channel.</p>
+<p>Does one more subscriber make things better for the existing subscribers? No. <strong>That's popularity, not a network effect.</strong></p>
+<p>Now a resale app. More people means <strong>more things for sale and more people buying.</strong> It genuinely gets better for everyone already there.</p>
+<p><strong>That's a network effect.</strong></p>
+<h2>◆ What does it look like at teenager scale?</h2>
+<p>Can you build one? You can. Small ones.</p>
+<p><strong>One, things used together.</strong></p>
+<p>If what you made <strong>gets better when several people use it,</strong> you have a network effect.</p>
+<ul><li>A shared class timetable</li><li>A group that works through problems together</li><li>People drawing things for each other and trading</li></ul>
+<p>Useless alone, better with several. All of these qualify.</p>
+<p><strong>Two, a pile of things in one place.</strong></p>
+<p>Sell one secondhand item and nobody comes. Have a hundred and people show up <strong>just to browse.</strong></p>
+<p>Lots of items brings people, people coming makes others bring items to sell, and so there are more items.</p>
+<p><strong>Once that starts turning it's strong.</strong></p>
+<p><strong>Three, reviews and records.</strong></p>
+<p>As transaction reviews stack up, new people come in trusting it. More people means more reviews, and more reviews means more people.</p>
+<h2>◆ The real problem with this moat — the beginning is brutal</h2>
+<p>Network effects are strong and the start is the hardest part.</p>
+<p><strong>Nobody comes because nobody's there.</strong> Chicken and egg.</p>
+<p>Adult companies punch through this with money. They lose money early to gather people.</p>
+<p>You don't have that money. So you do it differently.</p>
+<p><strong>Start narrow.</strong></p>
+<p>Don't aim at the whole school. Start with <strong>your class.</strong> Don't aim at the country. Start with <strong>your neighborhood.</strong></p>
+<p>Book One looked at Facebook Marketplace at the end. That thing's power comes from <strong>being nearby.</strong></p>
+<p>Because it's your area and not the whole country, it's dense enough even with few people.</p>
+<blockquote><p><strong>Full inside a small area beats empty inside a big one, by a lot.</strong></p></blockquote>
+<h2>◆ It has a boundary</h2>
+<p>One thing to know.</p>
+<p>Network effects have <strong>a boundary.</strong> And that boundary is your ceiling.</p>
+<p>A network built in your class doesn't leave your class. When classes change, you start over.</p>
+<p>That isn't bad, it's just what it is. You do have to know it, though.</p>
+<blockquote><p><strong>This moat is very strong inside its boundary and travels badly outside it.</strong></p></blockquote>
+<h2>◆ How to tell the real thing from a fake</h2>
+<p>A lot of things look like a network effect and aren't. Test them this way.</p>
+<blockquote><p><strong>When one more person shows up, does it get better for the people already there?</strong></p></blockquote>
+<p>If yes, it's real. If it changes nothing, you just have <strong>a lot of people.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Situation</th><th>One more person</th><th>Real?</th></tr></thead><tbody><tr><td>A room where people post problem solutions</td><td>More gets posted</td><td><strong>Real</strong></td></tr><tr><td>A room connecting buyers and sellers</td><td>More people to trade with</td><td><strong>Real</strong></td></tr><tr><td>A room where I sell what I make</td><td>Nothing changes for existing people</td><td>No</td></tr></tbody></table></div></div>
+<p>The third row isn't bad. It just means <strong>more people doesn't make it stronger on its own.</strong></p>
+<p>That's promotion, not a moat.</p>
+<p>There's a reason to tell them apart.</p>
+<p>If it's real, the painful beginning is worth sitting through. If it isn't, you'd be better off spending that time making the thing better.</p>
+<h2>◆ So what happens when somebody copies you?</h2>
+<p>Somebody in your class started the identical group. What happens?</p>
+<p><strong>You're way ahead,</strong> because the people are already on your side.</p>
+<p>Going to the new group means <strong>everybody</strong> has to move, and that rarely happens.</p>
+<p>One or two move, find it empty over there, and come back.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>How long does it hold?</td><td><strong>Quite a while</strong> — one of the stronger five</td></tr><tr><td>When does it break?</td><td>When people get a reason to move <strong>all at once</strong></td></tr><tr><td>Watch out for</td><td>People using <strong>both</strong> — that thins the effect</td></tr></tbody></table></div></div>
+<p>That last row matters.</p>
+<p>If people use your group <em>and</em> the other one, your moat is halved.</p>
+<p><strong>It stops being "this is the only place" and becomes "this is also a place."</strong></p>
+<h2>◆ To sum up</h2>
+<ul><li>Popularity and network effects differ. Test with <strong>does one more person help the people already there?</strong></li><li>At teenager scale it shows up in **things used together, a pile in one place, and reviews.**</li><li>The start is the hardest part. So <strong>start narrow.</strong></li><li>It has a boundary. Strong inside it, weak outside it.</li><li><strong>It thins the moment people start using both.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Put this question to what you're doing.</p>
+<blockquote><p><strong>When one more person shows up, does anything get better for the people already there?</strong></p></blockquote>
+<p>If you answered <strong>yes,</strong> show people the thing that's getting better. Even just writing "there are ___ of us now" changes things.</p>
+<p>If you answered <strong>no,</strong> think about one more thing.</p>
+<blockquote><p><strong>How could I make it better when several people do it together?</strong></p></blockquote>
+<p>For example, if you're selling something people use alone, you could make <strong>a place where the people who bought it gather.</strong></p>
+<p>The moment that place exists, a network effect starts.</p></section>
+<section class="ch" id="s203"><span class="eyebrow">Part Two</span><h1>Chapter 9 · Moving Is a Hassle — Switching Costs</h1><h2>◆ Why can't you delete that game?</h2>
+<p>There's probably a game that isn't as fun as it used to be.</p>
+<p>Honestly you open it out of habit now. And you can't delete it. Why?</p>
+<p><strong>Because you'd be throwing away everything you built.</strong></p>
+<p>Levels, items, your login streak, the people you play with. Go to a new game and all of it starts at zero.</p>
+<p><strong>That's a switching cost.</strong> What you'd have to abandon to move.</p>
+<h2>◆ The usual thought — it's a contract thing</h2>
+<p>Say "switching cost" and people picture contracts and cancellation fees. A two-year plan.</p>
+<p><strong>Half right.</strong></p>
+<p>Something built out of a contract disappears when the contract ends. And people <strong>feel it clearly as a cost.</strong> Which makes them annoyed.</p>
+<p>The genuinely strong switching costs aren't written in any contract. They're one of three.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Kind</th><th>What you'd have to give up</th></tr></thead><tbody><tr><td><strong>Learned</strong></td><td>The way your hands already know, familiarity</td></tr><tr><td><strong>Accumulated</strong></td><td>Records, history, reviews</td></tr><tr><td><strong>Blocked</strong></td><td>The exit itself</td></tr></tbody></table></div></div>
+<p>And up front: <strong>the third is the weakest.</strong></p>
+<h2>◆ How do you build one at teenager scale?</h2>
+<p><strong>One, accumulate records for them.</strong></p>
+<p>If you make things for people, <strong>write down their stuff.</strong></p>
+<ul><li>What they liked last time</li><li>Their size or their taste</li><li>What they asked you to fix</li></ul>
+<p>Next time they come, saying "you liked that one last time, right?" makes them not want to go anywhere else.</p>
+<p><strong>Because somewhere else they'd have to explain from scratch.</strong></p>
+<p>That's the best switching cost money can't buy. <strong>A notes app is all it takes.</strong></p>
+<p><strong>Two, make it continue.</strong></p>
+<p>Instead of buy-once-and-done, build something where <strong>the next one follows.</strong></p>
+<ul><li>Make it a series (buying #1 makes you curious about #2)</li><li>Give it something collectible</li><li>Give buyers something only buyers see</li></ul>
+<p>Then moving somewhere else in the middle <strong>breaks the set they were building.</strong></p>
+<p><strong>Three, make it familiar.</strong></p>
+<p>Once somebody is used to your way, that's a switching cost too. Ordering is easy. Replies come fast.</p>
+<p>Going somewhere else means adjusting again, which is a hassle.</p>
+<h2>◆ Don't do the blocking kind</h2>
+<p>Don't do the third kind, <strong>blocking.</strong></p>
+<ul><li>Refusing refunds</li><li>Taking money up front and not letting go</li><li>Grabbing at people who want to leave</li></ul>
+<p>It works for a moment. And <strong>people get angry.</strong></p>
+<p>And angry people write reviews. Among teenagers, that gets around in a day.</p>
+<blockquote><p><strong>What you build by blocking is short. What you build by giving is long.</strong></p></blockquote>
+<p>Adult companies are the same. There's a farm equipment company in the adult books that made its machines repairable only at its own dealers.</p>
+<p>Farmers pushed back, it turned into lawsuits, and one US state passed a law requiring them to open it up.</p>
+<p><strong>The thing they blocked ended up being the evidence against them.</strong></p>
+<h2>◆ Three ways to make things accumulate</h2>
+<p>Switching costs come, in the end, from <strong>accumulated things.</strong> At teenager scale, these three.</p>
+<p><strong>One, let records accumulate.</strong></p>
+<p>If you remember what somebody bought and what they liked, going somewhere else means explaining from scratch.</p>
+<blockquote><p>"Want it in the same color as the last one?"</p></blockquote>
+<p>That sentence is a switching cost. <strong>Nobody else can say it.</strong></p>
+<p><strong>Two, let customization accumulate.</strong></p>
+<p>Their name on it, the size adjusted, their preferences learned. The more it's fitted to them, the more of a hassle moving is.</p>
+<p><strong>Three, make things match.</strong></p>
+<p>Keep releasing things that go with what they already bought, and buying somewhere else means it doesn't match.</p>
+<p>That one is fairly strong.</p>
+<p>What the three have in common is <strong>they get stronger with time.</strong></p>
+<p>Which is why starting today matters. Start tomorrow and you have a day less.</p>
+<h2>◆ So what happens when somebody copies you?</h2>
+<p>Somebody in your class sells the identical thing cheaper. What happens?</p>
+<p><strong>Your customers with records built up mostly don't move.</strong></p>
+<p>Moving means explaining again, breaking the set, adjusting again. <strong>Slightly cheaper isn't worth throwing all that away.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>How long does it hold?</td><td><strong>A long time</strong> — it strengthens as it stacks</td></tr><tr><td>When does it break?</td><td>When you raise the price <strong>too far</strong></td></tr><tr><td>Watch out for</td><td>Building it by blocking backfires</td></tr></tbody></table></div></div>
+<p>That second row matters.</p>
+<p>With a switching cost, you can raise the price some and people stay.</p>
+<p>But <strong>raise it past the point where relearning is worth it</strong> and they go.</p>
+<p><strong>The size of the switching cost is exactly how far you can raise the price.</strong></p>
+<h2>◆ To sum up</h2>
+<ul><li>Switching costs come from <strong>learned, accumulated, and blocked.</strong></li><li>Teenagers can build them with <strong>records, continuation, and familiarity.</strong> All free.</li><li><strong>Don't do the blocking kind.</strong> Short win, long loss.</li><li>This moat <strong>gets stronger as it stacks.</strong> Starting today is fine.</li></ul>
+<h2>◆ Do This Today</h2>
+<p>Make one note file and write this in it.</p>
+<pre><code>Customer name (or nickname)
+- Bought:
+- Liked:
+- Note for next time:</code></pre>
+<p>Write down everybody you've sold to. Three people is fine.</p>
+<p>Then next time that person comes, say <strong>"you did ______ last time, right?"</strong></p>
+<p>That one sentence is where a switching cost starts.</p>
+<p><strong>And it's the only moat you can start today, for free.</strong></p></section>
+<section class="ch" id="s204"><span class="eyebrow">Part Two</span><h1>Chapter 10 · There&#x27;s a Reason People Buy From Them — Intangible Assets</h1><h2>◆ Same thing, and people buy it from them</h2>
+<p>There's usually one person like this.</p>
+<p>They sell the exact same thing and people buy from them specifically. Not cheaper. Not better.</p>
+<p>Ask why and everybody says roughly the same thing.</p>
+<p><strong>"They're reliable."</strong></p>
+<p>What is that? It isn't the product and it isn't the price. <strong>Something you can't see that has a price attached to it.</strong></p>
+<p>We call it an <strong>intangible asset.</strong> An asset with no shape.</p>
+<h2>◆ The usual thought — I need to promote more</h2>
+<p>You decide you need to raise your profile. Post more. Grow the account.</p>
+<p><strong>Half right.</strong></p>
+<p>Promotion makes people aware. <strong>Promotion does not make people trust you.</strong></p>
+<blockquote><p><strong>Trust comes from the accumulated experience that this person is always like this.</strong> <strong>And one break takes it down.</strong></p></blockquote>
+<h2>◆ This moat is the opposite of the other four</h2>
+<p>Here's something important.</p>
+<p>The first three moats got stronger <strong>the more you did.</strong> Make more and it's cheaper, more people makes it stronger, longer use makes leaving harder.</p>
+<p><strong>Intangible assets are the reverse.</strong> Grow in a hurry and it gets weaker.</p>
+<p>Because this moat is built out of <strong>the number of promises you kept.</strong></p>
+<p>Take on more orders than you can handle and you start breaking promises, and what you'd stacked up gets cut down at once.</p>
+<blockquote><p><strong>The other moats you build by growing. This one you build by keeping.</strong></p></blockquote>
+<h2>◆ Three intangible assets a teenager can build</h2>
+<p><strong>One, a record of hitting the date you promised.</strong></p>
+<p>Saying "you'll have it by Wednesday" and handing it over on Wednesday. Do that ten times and it's an asset.</p>
+<p><strong>And it has nothing to do with how good you are at making things.</strong> It's the only one you can start stacking today with no skill at all.</p>
+<p><strong>Two, how you behave when you get it wrong.</strong></p>
+<p>Here's the paradox. <strong>Trust builds more when things go wrong than when they go right.</strong></p>
+<p>Saying something ahead of time when you're late. Admitting it and remaking it when you made it wrong.</p>
+<p>People don't remember that you made a mistake. <strong>They remember how you handled it.</strong></p>
+<p><strong>Three, deciding what you don't do.</strong></p>
+<p>Being able to say "I don't sell that" is an asset too.</p>
+<p>Somebody who is clear about <strong>what they won't do</strong> reads as more trustworthy than somebody who sells anything.</p>
+<h2>◆ It can only be bought with time</h2>
+<p>The strongest thing about this moat is this.</p>
+<p><strong>Money can't buy it. Only time can.</strong></p>
+<p>Somebody with a hundred times the money can show up and still not buy <strong>a record of a hundred kept promises.</strong></p>
+<p>That only exists if you kept a hundred of them.</p>
+<p>Same in the adult world. There's a passage in the adult books about this — Japan has a great many businesses over a hundred years old, and a few over a thousand.</p>
+<p>The power of a place like that isn't capital. <strong>It's what accumulated.</strong></p>
+<p>That money can't buy it is both frightening and good.</p>
+<p><strong>Frightening,</strong> because you can't create it today. <strong>Good,</strong> because if you start today it starts stacking today.</p>
+<h2>◆ It can also collapse in one go</h2>
+<p>Intangible assets have a feature the other four don't.</p>
+<p><strong>It takes a long time to stack and one day to lose.</strong></p>
+<p>Scale and cost survive one mistake. Trust doesn't.</p>
+<ul><li>Missing a date you promised</li><li>Not answering when there's a problem</li><li>Insisting you didn't do it</li></ul>
+<p>Any one of those and months of stacking goes at once.</p>
+<p><strong>And that story travels much faster than a good one.</strong></p>
+<p>Which is why anybody holding this moat needs one rule.</p>
+<blockquote><p><strong>Decide in advance what you'll do when you get it wrong.</strong></p></blockquote>
+<p>Something like this.</p>
+<blockquote><p>"If I'm going to be late, I message first. If there's a problem, I remake it or give the money back."</p></blockquote>
+<p>Decided in advance, you don't wobble in the moment.</p>
+<p>And strangely, <strong>one problem handled well builds more trust than ten times with no problem at all.</strong></p>
+<h2>◆ So what happens when somebody copies you?</h2>
+<p>Somebody arrives selling the same thing cheaper and prettier. What happens?</p>
+<p><strong>Your regulars mostly don't move.</strong></p>
+<p>Nobody knows yet whether the new person keeps promises. Cheap is certain. Reliable is uncertain.</p>
+<p><strong>People don't like that uncertainty.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>How long does it hold?</td><td><strong>Longest</strong> — the strongest of the five</td></tr><tr><td>How long to build?</td><td><strong>Longest</strong></td></tr><tr><td>When does it break?</td><td><strong>The first time you break something badly</strong></td></tr><tr><td>Watch out for</td><td>Growing too fast and failing to keep promises</td></tr></tbody></table></div></div>
+<p>Remember that last row. It comes back in Chapter 16 in Part Three.</p>
+<p><strong>What destroys an intangible asset is usually not a competitor. It's your own appetite.</strong></p>
+<h2>◆ To sum up</h2>
+<ul><li>An intangible asset is <strong>trust.</strong> Promotion doesn't build it.</li><li>Unlike the other moats, it stacks <strong>by keeping, not by growing.</strong></li><li>Teenagers build it with **hitting dates, how you act when wrong, and deciding what you won't do.**</li><li><strong>Money can't buy it, only time can.</strong> That's why it's the strongest.</li><li>Start today and <strong>it stacks from today.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Two things.</p>
+<p><strong>One.</strong> Next time you promise a date, <strong>give yourself a day of slack.</strong></p>
+<p>If Wednesday looks doable, say Thursday and deliver Wednesday. <strong>Early lands much bigger than late costs.</strong></p>
+<p><strong>Two.</strong> Count how many promises you've kept so far.</p>
+<pre><code>Delivered on the promised day:   ______ times
+Late:                            ______ times
+Said so in advance when late:    ______ times</code></pre>
+<p>The third line is the important one. <strong>Being late gets erased. Saying so in advance stays.</strong></p>
+<p>Small numbers are fine. Three is fine.</p>
+<p><strong>Having counted at all means you're paying attention from now on.</strong></p></section>
+<section class="ch" id="s205"><span class="eyebrow">Part Two</span><h1>Chapter 11 · I Can Just Do It Cheaper — Cost Advantage</h1><h2>◆ Everyone else has to buy it. You already have it.</h2>
+<p>This happens sometimes.</p>
+<p>You're both making the same thing and <strong>only you already have the materials.</strong></p>
+<ul><li>Your dad does woodworking, so there are always offcuts around</li><li>Your mom runs a salon, so there's leftover supply</li><li>Your older brother's old equipment is just sitting in the house</li></ul>
+<p>What everyone else has to buy, you don't. <strong>So at the same price, more of it stays with you.</strong></p>
+<p>That's a <strong>cost advantage.</strong> Being able to do the same thing cheaper by default.</p>
+<h2>◆ The usual thought — isn't that just being big?</h2>
+<p>Chapter 7 said doing a lot makes it cheaper. So isn't this the same thing?</p>
+<p><strong>It's different.</strong></p>
+<p>Chapter 7 gets cheap <strong>by doing a lot.</strong> This chapter is cheap <strong>to begin with.</strong></p>
+<blockquote><p><strong>Sometimes small is still cheap. That's a cost advantage.</strong></p></blockquote>
+<p>And it's a far more realistic moat for a teenager. You may not be able to make a lot, but being cheap by default is available.</p>
+<h2>◆ There are three ways</h2>
+<p><strong>One, what costs others money is free for you.</strong></p>
+<p>The case above. The materials are already there, or the equipment is, or the space is.</p>
+<p>Here's the important part. <strong>Your time counts here too.</strong></p>
+<p>An adult doing this loses the wages they'd have earned in that time. That's a cost.</p>
+<p>You weren't doing anything with that time anyway.</p>
+<p><strong>So a teenager's time costs less than an adult's.</strong> That is a genuine advantage.</p>
+<p><strong>Two, get cheap by doing less.</strong></p>
+<p>Fewer menu items, one color only, one shipping method only.</p>
+<p>Fewer choices means lower cost. You buy one kind of material, nothing gets confusing, and mistakes go down.</p>
+<p><strong>While everybody else does ten things, you do one thing really well.</strong></p>
+<p><strong>Three, build it differently on purpose.</strong></p>
+<p>Find the biggest cost and remove it entirely.</p>
+<p>If shipping is the biggest cost, switch to <strong>handing it over in person.</strong> If packaging is the biggest cost, switch to <strong>selling it unpackaged.</strong></p>
+<p>That isn't saving money. <strong>It's redesigning.</strong> Which is why it's the strongest.</p>
+<h2>◆ Something has to be said, though</h2>
+<p>Cost advantage has an honest weakness.</p>
+<p><strong>It's the fastest of the five to get caught.</strong></p>
+<p>Once somebody knows how you're doing it cheaply, they do it too. Even having materials at home evens out if they find a cheap source.</p>
+<p>So this moat <strong>doesn't hold for long.</strong></p>
+<p>There's exactly one case where it does.</p>
+<blockquote><p><strong>When copying it would cost the copier something.</strong></p></blockquote>
+<p>For example, if you got cheap by doing less, copying you means <strong>giving up things they already do.</strong> That isn't easy.</p>
+<h2>◆ The moment this moat disappears</h2>
+<p>Cost advantage is <strong>the easiest of the five to lose.</strong> And the moment it goes is predictable.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Where it came from</th><th>When it disappears</th></tr></thead><tbody><tr><td>Using something at home</td><td>When it runs out or you can't use it</td></tr><tr><td>Doing it yourself</td><td>When the time goes (exam season)</td></tr><tr><td>Getting it cheap from someone you know</td><td>When they stop or raise the price</td></tr></tbody></table></div></div>
+<p>The problem is that all three are <strong>things you don't control.</strong></p>
+<p>Which is why holding only a cost advantage is dangerous.</p>
+<p><strong>While the cheap price gathers people, build something else in the meantime.</strong></p>
+<p>The best fit is Chapter 10's intangible asset.</p>
+<p>People who came for cheap <strong>stay because they like it.</strong></p>
+<blockquote><p><strong>Cost advantage is a moat that opens the door. It isn't one that holds people.</strong></p></blockquote>
+<h2>◆ So what happens when somebody copies you?</h2>
+<p>Somebody started the same thing.</p>
+<p><strong>If your cost really is lower, they can't match your price.</strong></p>
+<p>Sell at your price and they have nothing left. So they either raise the price or stop.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>How long does it hold?</td><td><strong>Shortest</strong></td></tr><tr><td>Why so short?</td><td>Knowing the method is enough to copy it</td></tr><tr><td>To make it last?</td><td>Copying has to <strong>cost the copier</strong> something</td></tr></tbody></table></div></div>
+<h2>◆ To sum up</h2>
+<ul><li>Cost advantage <strong>has nothing to do with size.</strong> Small can still be cheap.</li><li>It comes from <strong>what's already at home, what you don't do, and redesigning.</strong></li><li><strong>A teenager's time costs less.</strong> That's a real advantage.</li><li>It's <strong>the fastest of the five to get caught.</strong> It buys time.</li><li>To make it last, copying has to <strong>cost the copier something.</strong></li></ul>
+<h2>◆ Closing Part Two</h2>
+<p>That's all five. Put together they look like this.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Moat</th><th>How long does it hold?</th><th>Can you start today?</th></tr></thead><tbody><tr><td>Economies of scale</td><td>Short</td><td>Yes (make several at once)</td></tr><tr><td>Network effects</td><td>Long</td><td>Fairly hard</td></tr><tr><td>Switching costs</td><td>Long</td><td><strong>Yes (one note file)</strong></td></tr><tr><td>Intangible assets</td><td><strong>Longest</strong></td><td><strong>Yes (keep your promises)</strong></td></tr><tr><td>Cost advantage</td><td><strong>Shortest</strong></td><td>Yes, if you have one</td></tr></tbody></table></div></div>
+<p><strong>Two of them you can start today and they last.</strong></p>
+<p><strong>Switching costs and intangible assets.</strong> Both cost nothing and are built out of records and promises.</p>
+<p>Having no capital right now doesn't mean you can't build a moat.</p>
+<p><strong>The two strongest were never buyable with money in the first place.</strong></p>
+<h2>◆ Do This Today</h2>
+<p>Write two lines on paper.</p>
+<blockquote><p><strong>Something other people pay for that I just have: ______</strong> <strong>Something other people do that I don't have to: ______</strong></p></blockquote>
+<p>Fill in even one and that's your cost advantage.</p>
+<p>If you can't fill in either, ask this instead.</p>
+<blockquote><p><strong>What's the biggest thing this costs me to make?</strong></p></blockquote>
+<p>Then think about whether there's a way to <strong>not do it at all.</strong></p>
+<p>Removing it is the third method. The hardest one, and the one that lasts longest.</p></section>
+<section class="part" id="s300"><h1>Part Three · When It&#x27;s Going Fine and Then Suddenly Isn&#x27;t</h1><h2>◆ The strangest moment</h2>
+<p>Say you built one of Part Two's moats. It's ticking along.</p>
+<p>Then one day it gets strange.</p>
+<p>You didn't do anything wrong. You're working harder, if anything. And orders drop. The response cools.</p>
+<p><strong>This is the strangest moment,</strong> because you can't tell what went wrong.</p>
+<h2>◆ There are five ways things break</h2>
+<p>Chapter 5 of Book One taught you <strong>fault lines.</strong> The place a moat gives way.</p>
+<p>There are five ways it gives way. Same for adult companies.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Ch</th><th>How it breaks</th><th>For a teenager</th></tr></thead><tbody><tr><td>12</td><td>The rules change</td><td>A school rule or an app policy changed</td></tr><tr><td>13</td><td>Something easier arrives</td><td>Now anybody can do it</td></tr><tr><td>14</td><td>People move on</td><td>The trend passed</td></tr><tr><td>15</td><td>Your supplier does it themselves</td><td>The place that sold you materials sells direct</td></tr><tr><td>16</td><td><strong>It breaks by growing</strong></td><td>Too many orders</td></tr></tbody></table></div></div>
+<p>The first four come <strong>from outside.</strong> Only the last one comes <strong>from inside.</strong></p>
+<p><strong>And what actually breaks a teenager is almost always the last one.</strong></p>
+<p>Which is why Chapter 16 is the most important chapter in this book.</p>
+<h2>◆ Knowing in advance changes it</h2>
+<p>There's a good thing about fault lines.</p>
+<p><strong>Most of them announce themselves.</strong></p>
+<p>It feels sudden, and looking back there were signals. You just couldn't see them at the time.</p>
+<p>So every chapter in Part Three tells you <strong>what to watch.</strong> See it early and you can fix it early.</p>
+<h2>◆ Breaking isn't failing</h2>
+<p>One thing to say first.</p>
+<p><strong>Moats break. That's what they do.</strong> Nothing is permanent.</p>
+<p>Adult companies are the same. The list of the biggest companies in the world turns over far faster than you'd think. It looks different within a generation.</p>
+<p>So your thing breaking is not you being bad at this.</p>
+<p><strong>What matters is what you know when it breaks.</strong></p>
+<p>Know the reason and you can build it again. Don't know the reason and all that's left is <em>yeah, I'm not built for this.</em></p></section>
+<section class="ch" id="s301"><span class="eyebrow">Part Three</span><h1>Chapter 12 · The Rules Changed</h1><h2>◆ One day you just can't anymore</h2>
+<p>It was going fine and then one day this happens.</p>
+<ul><li>The school posts a notice banning selling on school grounds</li><li>The app you use changes its policy so minors can't use it</li><li>The thing you sell becomes a prohibited item</li></ul>
+<p><strong>You did nothing wrong.</strong> And you can't do it anymore.</p>
+<h2>◆ The usual thought — this isn't fair</h2>
+<p>The first feeling is unfairness. You followed the rules and then the rules changed.</p>
+<p><strong>Half right.</strong></p>
+<p>It is unfair. And stopping there teaches you nothing.</p>
+<p>The question to ask is this.</p>
+<blockquote><p><strong>How much of my business was sitting on top of that rule?</strong></p></blockquote>
+<h2>◆ Which layer it was is everything</h2>
+<p>The same rule changes and some people are wiped out while others are fine. There's one difference.</p>
+<p><strong>Whether the rule was the whole moat or one layer of several.</strong></p>
+<p>Here's the example.</p>
+<p><strong>A only sold inside school.</strong></p>
+<p>Ban on-campus selling and A's business disappears entirely. <strong>The rule was everything.</strong></p>
+<p><strong>B sold at school, sold on a local app, and had regulars.</strong></p>
+<p>Ban on-campus selling and B loses one layer. <strong>The other layers keep going.</strong></p>
+<blockquote><p><strong>The way to reduce rule risk isn't predicting the rules.</strong> <strong>It's building one more layer that isn't a rule.</strong></p></blockquote>
+<h2>◆ And rules differ by place</h2>
+<p>Worth knowing too.</p>
+<p>The same activity <strong>is allowed in one place and not in another.</strong></p>
+<ul><li>Banned at school, fine in your neighborhood</li><li>One app bars minors, another allows it with a parent's consent</li></ul>
+<p>So when you hear "you're not allowed to do that," it's worth checking <strong>where</strong> you're not allowed.</p>
+<h2>◆ Signals you can see in advance</h2>
+<p>This fault line is <strong>the slowest of the five and the easiest to see coming.</strong> Three things to watch.</p>
+<p><strong>One, know where the notices get posted.</strong></p>
+<p>School announcements, app notices, terms-of-service change alerts.</p>
+<p>Most of them tell you first. People just don't read them.</p>
+<p><strong>Two, check age requirements regularly.</strong></p>
+<p>Platform sign-up rules and parental consent requirements change often.</p>
+<p><strong>That's exactly why this book doesn't print the specific requirements.</strong> Searching and checking right now is what's accurate.</p>
+<p><strong>Three, watch somebody else get caught first.</strong></p>
+<p>When you hear that somebody got restricted, that's the signal. You could be next.</p>
+<h2>◆ Sometimes a rule helps you</h2>
+<p>Here's an interesting one.</p>
+<p>You'd think a new rule is always a loss. <strong>Sometimes it's a win.</strong></p>
+<p>Say you've been keeping your promises and doing it honestly. And there were so many people cutting corners that nobody could tell the difference.</p>
+<p>Then a rule arrives and filters out the corner-cutters.</p>
+<p><strong>You're one of the people left.</strong></p>
+<blockquote><p><strong>Rules hit the people who weren't following them first.</strong> <strong>If you already were, you come out ahead.</strong></p></blockquote>
+<h2>◆ How to read the rules in advance</h2>
+<p>You can't stop rules from changing. <strong>You can know first.</strong> You just have to know where to look.</p>
+<p><strong>One, read the terms of the place you use, once.</strong></p>
+<p>Not all of it. <strong>Search for three words.</strong></p>
+<blockquote><p><strong>Age · prohibited · payment</strong></p></blockquote>
+<p>Nearly everything you need to know is near those three words. Ten minutes. And almost nobody has ever done it.</p>
+<p><strong>Two, rules change, so don't memorize numbers.</strong></p>
+<p>Memorizing "you can do this from age such-and-such" is risky. It changes.</p>
+<p><strong>Memorize where to check.</strong> That part rarely changes.</p>
+<p><strong>Three, if it's happening at school, ask first.</strong></p>
+<p>Not to get permission — <strong>to know what the rules are.</strong></p>
+<p>Far better than getting stopped later is knowing first and going around it.</p>
+<blockquote><p><strong>There are far more people who never read the rule than people who broke it.</strong></p></blockquote>
+<h2>◆ To sum up</h2>
+<ul><li>Before feeling wronged, ask <strong>which layer of my moat that rule was.</strong></li><li>Sitting entirely on one rule is dangerous. <strong>Build another layer.</strong></li><li>Rules <strong>differ by place.</strong> When you hear no, check where the no applies.</li><li><strong>They're announced in advance.</strong> Know where the announcements appear.</li><li>If you were already following them, a rule can work <strong>in your favor.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Write one line.</p>
+<blockquote><p><strong>If what I'm doing gets banned, I can keep going through ______.</strong></p></blockquote>
+<p>If you can fill in the blank, the rule was one layer. You're fine.</p>
+<p><strong>If you can't fill it in,</strong> that's your biggest risk right now.</p>
+<p>So today's job is <strong>building one more place.</strong></p>
+<p>Add another place to sell, or keep your regulars' contact details separately.</p>
+<p><strong>Just make one path that continues when one place closes.</strong></p></section>
+<section class="ch" id="s302"><span class="eyebrow">Part Three</span><h1>Chapter 13 · Something Easier Came Along</h1><h2>◆ Now anybody can do the thing I was good at</h2>
+<p>This happens.</p>
+<p>There was something you were good at. Other people weren't good at it, so people asked you to do it.</p>
+<p>Then one day <strong>a tool showed up that makes it easy.</strong></p>
+<p>Now anybody can do it. What took you an hour, other people do in five minutes.</p>
+<p><strong>Your skill didn't shrink. It stopped being necessary.</strong></p>
+<h2>◆ The usual thought — I'll just get better</h2>
+<p>You decide you should do something harder. Climb to a level nobody can follow you to.</p>
+<p><strong>Half right.</strong></p>
+<p>That's one option. But the tools keep improving. However far you climb, the tools climb after you.</p>
+<p>And the real problem is this.</p>
+<blockquote><p><strong>If your moat was "this is hard," the moat disappears the moment it gets easy.</strong></p></blockquote>
+<h2>◆ So here's what to look at</h2>
+<p>You have to shift your view here.</p>
+<p>Stop looking at <strong>what you're good at</strong> and look at <strong>the problem it solves.</strong></p>
+<p>For example.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>What you're good at</th><th>The problem it solves</th></tr></thead><tbody><tr><td>Nice handwriting</td><td>People want <strong>the feeling that care was taken</strong></td></tr><tr><td>Good photo editing</td><td>People want <strong>to look good</strong></td></tr><tr><td>Well-organized notes</td><td>People want <strong>to do well on the test</strong></td></tr></tbody></table></div></div>
+<p>A tool arrives and <strong>the right column doesn't disappear.</strong> People still want that.</p>
+<p>What disappeared is the left column — one method of delivering it.</p>
+<blockquote><p><strong>The moat isn't in what you're good at. It's in the problem it solves.</strong></p></blockquote>
+<h2>◆ So what do you do?</h2>
+<p><strong>One, use the tool first.</strong></p>
+<p>If a new tool appeared, be the first one to use it.</p>
+<p>Making far more with it while other people don't know about it yet is a temporary advantage.</p>
+<p><strong>Don't fight it. Get on it first.</strong></p>
+<p><strong>Two, move toward what the tool can't do.</strong></p>
+<p>What tools are good at is generally <strong>making things.</strong> What tools aren't good at is this.</p>
+<ul><li>Knowing what suits this particular person</li><li>Asking and adjusting</li><li>Delivering on time</li><li>Being someone who can be trusted</li></ul>
+<p><strong>All of it is Chapter 10's intangible assets.</strong></p>
+<p>The more common the tool, <strong>the more value survives only in what the tool can't make.</strong></p>
+<p>So when this fault line arrives, the intangible-asset side actually gets stronger.</p>
+<p><strong>Three, don't be embarrassed to use the tool.</strong></p>
+<p>This part matters.</p>
+<p>Some people won't use a new tool because it feels like it isn't really their own skill. That's a loss.</p>
+<p><strong>People buy the result, not the process.</strong></p>
+<p>Whether you spent three hours by hand or ten minutes with a tool, the person receiving it gets the same thing.</p>
+<p><strong>Spend the time you saved on what the tool can't do.</strong></p>
+<h2>◆ This fault line is the fastest one right now</h2>
+<p>One thing worth pointing out.</p>
+<p>Tools are appearing much faster than they used to. Tools that write, draw, organize and translate for you keep arriving.</p>
+<p>So <strong>the moat "this is hard, so only I can do it" is weakening fastest.</strong></p>
+<p>And for the same reason, some moats are <strong>getting stronger.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Getting weaker</th><th>Getting stronger</th></tr></thead><tbody><tr><td>Too hard for anyone to copy</td><td><strong>I buy from them</strong> (intangible assets)</td></tr><tr><td>Only I can do it fast</td><td><strong>Moving is a hassle</strong> (switching costs)</td></tr></tbody></table></div></div>
+<p>The easier making gets, the more <strong>who made it</strong> matters.</p>
+<p>When there are more makers, choosing becomes the work. And when people choose, they choose <strong>somebody they know.</strong></p>
+<blockquote><p><strong>The more common the tools, the rarer the person.</strong></p></blockquote>
+<p>So there's no reason to be afraid of a new tool.</p>
+<p><strong>Use the tool, and build your moat on the person side.</strong></p>
+<h2>◆ Signals you can see in advance</h2>
+<p><strong>One, watch whether the number of people doing it jumps.</strong> If there were a few and suddenly there are many, it got easy.</p>
+<p><strong>Two, watch whether the price falls.</strong> Somebody doing the same thing for half the price means there's a tool.</p>
+<p><strong>Three, time it.</strong> Ask how fast other people do it. If you take much longer, you're already late.</p>
+<h2>◆ To sum up</h2>
+<ul><li>When a tool arrives, <strong>what you're good at</strong> can vanish while **the problem it solves** doesn't.</li><li>The moat is in <strong>the problem it solves,</strong> not the skill.</li><li><strong>Get on it first, or move toward what the tool can't do.</strong></li><li>When tools get common, <strong>intangible assets get stronger.</strong></li><li>Don't be embarrassed to use tools. <strong>People buy the result.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Write two lines.</p>
+<blockquote><p><strong>What I'm good at: ______</strong> <strong>The problem it solves: ______</strong></p></blockquote>
+<p>If the second line won't come, that's your warning signal right now.</p>
+<p>Not knowing the problem you solve means having nothing to replace the skill with when a tool arrives.</p>
+<p>And one more thing.</p>
+<blockquote><p><strong>Spend ten minutes today looking for a tool that does this much more easily.</strong></p></blockquote>
+<p>If there is one, try it. If there isn't, there will be.</p>
+<p><strong>Either way, the person who knows is ahead of the person who doesn't.</strong></p></section>
+<section class="ch" id="s303"><span class="eyebrow">Part Three</span><h1>Chapter 14 · The Trend Passed</h1><h2>◆ Suddenly nobody's asking</h2>
+<p>This happens.</p>
+<p>A few good months. You made things and they sold. People kept asking about it.</p>
+<p>Then one day it goes quiet.</p>
+<p>You didn't get lazy. The product didn't get worse. <strong>You made the same thing the same way and nobody's asking.</strong></p>
+<p>And a few days later you find out. Everyone's into something else now.</p>
+<h2>◆ The usual thought — I need to promote more</h2>
+<p>Most people do this at this point.</p>
+<p>Post more. Tell more people. Cut the price.</p>
+<p><strong>Half right.</strong></p>
+<p>Telling people works on people who didn't know. But on <strong>people who know and stopped caring,</strong> telling them again does nothing.</p>
+<p>Telling somebody who already knows is just noise.</p>
+<blockquote><p><strong>There are two reasons things stop selling, and you're only answering one.</strong></p></blockquote>
+<h2>◆ The real reason — the people moved</h2>
+<p>You have to go back to box one here. <strong>Customer.</strong></p>
+<p><em>The trend passed</em> isn't quite accurate. <strong>People didn't vanish. What they want moved.</strong></p>
+<p>You have to separate these.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>What moved</th><th>Meaning</th><th>What to do</th></tr></thead><tbody><tr><td><strong>The people changed</strong></td><td>Seniors graduated and freshmen arrived</td><td>Tell the new arrivals from scratch</td></tr><tr><td><strong>What they want changed</strong></td><td>Same people, they want something else now</td><td>Change what you make</td></tr><tr><td><strong>Where they go changed</strong></td><td>Same want, buying it somewhere else</td><td>Follow them there</td></tr></tbody></table></div></div>
+<p>Three completely different problems. <strong>And they look identical from outside.</strong> Orders drop.</p>
+<p>So the first job is <strong>figuring out which of the three it is.</strong></p>
+<h2>◆ There's one way to find out — ask</h2>
+<p>Numbers tell you it dropped. They don't tell you why. That only comes <strong>from asking a person.</strong></p>
+<p>Ask <strong>three people</strong> who used to buy and don't anymore.</p>
+<blockquote><p>"You haven't gotten one of these lately. Just curious what changed."</p></blockquote>
+<p>Not accusing — curious. Three people is usually enough to see it.</p>
+<p>If all three say something similar, that's your reason. If all three say something different, it isn't a trend, it's another problem.</p>
+<h2>◆ So what do you do?</h2>
+<p><strong>One, decide whether to follow the people or keep the product.</strong></p>
+<p>Here's the fork.</p>
+<ul><li><strong>Follow the people</strong> — make what your old buyers want now.</li><li><strong>Keep the product</strong> — find different people who still want this.</li></ul>
+<p>Both are correct answers. <strong>You just can't do both.</strong></p>
+<p>Trying to do both and ending up with neither is the most common failure here.</p>
+<p><strong>Two, don't sell the trend itself.</strong></p>
+<p>Somebody who once sold into a big trend goes hunting for the next one. But chasing trends means starting from zero every time.</p>
+<p>When a trend ends, <strong>nothing has accumulated.</strong></p>
+<p><strong>Three, stack on people, not on trends.</strong></p>
+<p>This is the most important sentence in the chapter.</p>
+<p>A trend passes and <strong>the people who bought from you don't disappear.</strong></p>
+<p>If you still have a way to reach them, you can tell them the moment you make the next thing.</p>
+<blockquote><p><strong>Trends pass. Your list doesn't.</strong></p></blockquote>
+<p>That's Chapter 10's intangible asset. What's left isn't the trend. <strong>It's the relationship.</strong></p>
+<h2>◆ Signals you can see in advance</h2>
+<p><strong>One, watch whether first-time buyers are dropping.</strong></p>
+<p>Before total orders fall, <strong>first-time buyers</strong> fall first. That's the earliest signal.</p>
+<p><strong>Two, watch whether the questions change.</strong></p>
+<p>When "how do I get one?" goes down and "could you also do ___?" goes up, interest is leaking sideways.</p>
+<p><strong>Three, watch what other people are doing.</strong></p>
+<p>When people who were doing the same thing start moving to something else, that's the signal. Usually the busiest one moves first.</p>
+<h2>◆ There's no way to be trend-proof</h2>
+<p>Let's admit one thing.</p>
+<p><strong>A product that doesn't ride trends also doesn't sell much.</strong></p>
+<p>It sold a lot suddenly <em>because</em> there was a trend. You can't take all of that benefit and pay none of the cost.</p>
+<p>So the right way to think about it is this.</p>
+<blockquote><p><strong>A trend delivers customers. It doesn't hold them.</strong></p></blockquote>
+<p>Which means there are specific things to do while the trend is on.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>While the trend is on</th><th>The thing to do</th></tr></thead><tbody><tr><td>Orders are pouring in</td><td><strong>Build a list</strong></td></tr><tr><td>People are paying attention</td><td><strong>Ask what they want next</strong></td></tr><tr><td>Some money is piling up</td><td><strong>Don't spend all of it</strong></td></tr></tbody></table></div></div>
+<p>Skip those three while it's good and there's nothing left when it cools.</p>
+<p><strong>The good stretch is the preparation time.</strong></p>
+<h2>◆ To sum up</h2>
+<ul><li><em>The trend passed</em> means <strong>the people moved.</strong></li><li>There are three ways they move. <strong>The people, the want, the place.</strong></li><li>The only way to find out is <strong>asking three people who stopped buying.</strong></li><li><strong>Decide: follow or keep.</strong> Not both.</li><li>Don't stack on trends. <strong>Stack on people.</strong></li></ul>
+<h2>◆ Do This Today</h2>
+<p>Compare last month and this month and write one line.</p>
+<blockquote><p><strong>First-time buyers: last month ___ → this month ___</strong></p></blockquote>
+<p>Not total orders. <strong>First-time buyers.</strong> That's what moves first.</p>
+<p>And one more thing.</p>
+<blockquote><p><strong>Ask one person who stopped buying, today.</strong></p></blockquote>
+<p>One is enough. Whatever the answer is, it's more useful than more promotion.</p></section>
+<section class="ch" id="s304"><span class="eyebrow">Part Three</span><h1>Chapter 15 · The Place That Sold Me Materials Sells Direct Now</h1><h2>◆ The place that sold to me is competing with me</h2>
+<p>This happens.</p>
+<p>You bought materials somewhere and made something to sell. Sticker paper into stickers, beads into bracelets, whatever it was.</p>
+<p>One day that place <strong>starts selling the finished thing.</strong></p>
+<p>And cheaper than you. Obviously. They don't pay for materials.</p>
+<p><strong>Yesterday they sold to you. Today they're fighting you.</strong></p>
+<h2>◆ The usual thought — I got betrayed</h2>
+<p>You get angry. They seem like the bad guy.</p>
+<p><strong>Half right.</strong></p>
+<p>The feeling makes sense. As a business matter, though, they didn't do anything strange.</p>
+<p>They were watching <strong>what you buy for and what you sell for.</strong></p>
+<p>When the gap is big, they start thinking <em>we could just do this ourselves.</em></p>
+<blockquote><p><strong>The more visibly you're making on it, the more reason they have to come in.</strong></p></blockquote>
+<p>So this isn't betrayal. <strong>It's structure.</strong></p>
+<p>Structure can be anticipated, and anticipated things can be prepared for.</p>
+<h2>◆ The real question — what was your job, exactly?</h2>
+<p>There's a question to ask here.</p>
+<blockquote><p><strong>The gap between what you paid for materials and what you sold for — what was that gap paying for?</strong></p></blockquote>
+<p>That gap exists because you <strong>added something.</strong> The question is what that something was.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>What you added</th><th>Can they copy it?</th></tr></thead><tbody><tr><td>Turning materials into a finished thing</td><td><strong>Easily</strong> — they do it better</td></tr><tr><td>Handing it over at school, immediately</td><td><strong>Hard</strong> — they can't get into your school</td></tr><tr><td>Making each one different</td><td><strong>Hard</strong> — they only do volume</td></tr><tr><td>Answering right away when asked</td><td><strong>Hard</strong> — they can't do that</td></tr></tbody></table></div></div>
+<p>If the first row was all you were doing, you get pushed out this time. If you were doing even one of the lower three, you don't.</p>
+<blockquote><p><strong>The place selling materials is good at making materials. It doesn't know your customers.</strong></p></blockquote>
+<h2>◆ So what do you do?</h2>
+<p><strong>One, don't depend on one place.</strong></p>
+<p>If there's only one source for your materials, there's nothing you can do when they raise the price or start selling direct.</p>
+<p><strong>Find a second source in advance.</strong> You don't have to buy from it. Just know where it is.</p>
+<p>Knowing costs nothing. Not knowing means being stuck on the day it happens.</p>
+<p><strong>Two, make what you added visible.</strong></p>
+<p>If people buy from you because <em>this is the only place to get it,</em> you're exposed.</p>
+<p><strong>Safe is when they buy because you're better.</strong></p>
+<p>For that, your customers have to know what you added. Say nothing and nobody knows.</p>
+<p><strong>Three, don't brag about your margin.</strong></p>
+<p>This one's practical.</p>
+<p>Some people say "the materials for this barely cost anything" like it's a brag.</p>
+<p>To a customer that sounds like <em>I overpaid.</em> To your supplier it sounds like <strong>we could just do this ourselves.</strong></p>
+<p><strong>Four, go to a size they can't work at.</strong></p>
+<p>The place selling materials makes money <strong>on volume.</strong></p>
+<p>One at a time, each one different, with a name on it, delivered today — all of that loses them money.</p>
+<p><strong>The position they don't want is your position.</strong></p>
+<h2>◆ Signals you can see in advance</h2>
+<p><strong>One, watch whether they start posting finished products.</strong></p>
+<p>When a materials seller starts showing "here's what you can make with this," that's usually the step before selling direct.</p>
+<p><strong>Two, watch whether they get curious about your customers.</strong></p>
+<p>When they start asking "who mostly buys from you?" or "what do you sell it for?" they're doing research.</p>
+<p><strong>Three, watch whether material prices creep up quietly.</strong></p>
+<p>Sometimes the price rises before the direct selling starts.</p>
+<h2>◆ It also happens the other way</h2>
+<p>This fault line comes from the other direction too. That version may even be more common.</p>
+<p><strong>The place where you sell starts selling directly.</strong></p>
+<p>An app, a cafe, a club market — wherever you post your things. When that place sees it going well, <strong>it wants to do it itself.</strong></p>
+<p>What usually happens then is this.</p>
+<ul><li>The fee goes up, or</li><li>The rules get stricter, or</li><li>You get pushed to a spot nobody sees</li></ul>
+<p>It's next door to Chapter 12's rules problem. The cause is different, though.</p>
+<p><strong>The rules didn't change. That place started wanting your position.</strong></p>
+<p>There's only one way to guard against it.</p>
+<blockquote><p><strong>Make it so people don't know you through that place — they come to that place because they know you.</strong></p></blockquote>
+<p>Then when the place changes, the people follow.</p>
+<p><strong>The place is borrowed. The list is yours.</strong></p>
+<h2>◆ To sum up</h2>
+<ul><li>A supplier selling direct isn't <strong>betrayal. It's structure.</strong></li><li>The more visible your margin, the more reason they have to come in.</li><li>The people who don't get pushed out aren't **the ones who turned materials into products — they're the ones who know the customers.**</li><li><strong>Know two sources.</strong> You don't have to buy from the second.</li><li><strong>The size they don't want to work at</strong> is your position.</li></ul>
+<h2>◆ Do This Today</h2>
+<p>Write two lines.</p>
+<blockquote><p><strong>Where I buy materials: ______</strong> <strong>Somewhere else I could buy them: ______</strong></p></blockquote>
+<p>If the second line is blank, spend ten minutes today finding one. Don't buy. Just find it.</p>
+<p>And one more thing.</p>
+<blockquote><p><strong>Write, in one sentence, why customers buy from you.</strong></p></blockquote>
+<p>If that sentence contains "because it's only sold here," you're exposed. If it contains "because they're better at it," you're safe.</p></section>
+<section class="ch" id="s305"><span class="eyebrow">Part Three</span><h1>Chapter 16 · Too Many Orders Killed It</h1><h2>◆ It starts on the best day</h2>
+<p>This is the most important chapter in the book.</p>
+<p>It's the most common reason a thing a teenager started actually collapses.</p>
+<p>And it starts <strong>not when things are going badly but when they're going best.</strong></p>
+<p>Here's what happens.</p>
+<p>One day the orders pile in. Somebody shared it, or word got around. Three a day became thirty.</p>
+<p>It feels great. Obviously. This is what you started for.</p>
+<p>So you take all of them. <strong>You don't turn down a single one.</strong></p>
+<p>The next week it looks like this.</p>
+<ul><li>You stay up all night and still can't finish them</li><li>Rushing makes them come out worse than before</li><li>You miss dates you promised</li><li>You can't answer the messages asking where it is</li><li>Your homework piles up</li></ul>
+<p>And a month later nothing is left. <strong>Not the orders, not the reputation, not the wanting to do it.</strong></p>
+<h2>◆ The usual thought — you can't waste an opportunity</h2>
+<p>Everybody thinks this at this point.</p>
+<p>Will this ever come again? I have to take all of it. If I turn people down they won't come back.</p>
+<p><strong>Half right.</strong></p>
+<p>It is an opportunity. But <strong>taking all of it is not how you save an opportunity.</strong></p>
+<p>Here's the thing that's inverted.</p>
+<blockquote><p><strong>Take thirty and deliver badly, and thirty people are disappointed.</strong> <strong>Take ten and deliver well, and ten are happy and twenty are waiting.</strong></p></blockquote>
+<p>Which is better a month later? <strong>The second.</strong></p>
+<p>The thirty disappointed people don't come back. The twenty waiting are still there.</p>
+<h2>◆ The real reason — you weren't selling a product</h2>
+<p>Here's the core.</p>
+<p>Chapter 3 said <strong>your time is a cost too.</strong> You have to look at that again here.</p>
+<p>What you sell looks like a product. It's actually <strong>your time.</strong></p>
+<p>And time <strong>cannot be increased.</strong> Money doesn't buy a twenty-fifth hour.</p>
+<p>If it's a product, more orders means make more. <strong>Time doesn't grow when orders grow.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th>If orders double</th></tr></thead><tbody><tr><td>Materials</td><td>Buy twice as much</td></tr><tr><td>Money</td><td>Twice as much comes in</td></tr><tr><td><strong>Your time</strong></td><td><strong>Doesn't grow</strong></td></tr></tbody></table></div></div>
+<p>So past a certain point, <strong>more orders makes it worse.</strong></p>
+<p>That's what makes this different from the previous four chapters.</p>
+<p>The fault lines in Chapters 12 through 15 came from outside. Rules, tools, people, suppliers.</p>
+<p><strong>This one comes from inside.</strong> And you built it.</p>
+<blockquote><p><strong>If you don't know how much you can handle, doing well is itself dangerous.</strong></p></blockquote>
+<h2>◆ You have to know your limit as a number</h2>
+<p><em>Busy</em> is too vague to stop this. You need a number.</p>
+<p>Measuring three lines gets you there.</p>
+<blockquote><p>Time to make one: <strong>___ minutes</strong> Time available per day: <strong>___ minutes</strong> Max per day = second ÷ first = <strong>___</strong></p></blockquote>
+<p>That number is your <strong>limit line.</strong></p>
+<p>And you have to subtract from it. <strong>Don't fill it to the top.</strong></p>
+<p>If one thing goes wrong — materials run out, something needs remaking, exams arrive — a plan filled to the top collapses that day.</p>
+<blockquote><p><strong>Take up to eighty percent of the limit. The other twenty percent is the space accidents live in.</strong></p></blockquote>
+<h2>◆ So what do you do?</h2>
+<p><strong>One, write your no in advance.</strong></p>
+<p>Saying no is hard because the words don't come. Written down in advance, it's easy.</p>
+<blockquote><p>"This week's full. I could start Tuesday next week if that works?"</p></blockquote>
+<p>That isn't a no. <strong>It's giving them a date.</strong> Nobody's feelings get hurt.</p>
+<p>And it actually reads as <strong>a signal that things are going well.</strong></p>
+<p><strong>Two, keep a waiting list.</strong></p>
+<p>Don't let the orders you can't take just evaporate. Write down names and contacts.</p>
+<p>That's next week's orders, and it's the <strong>list</strong> that survives a trend passing (Chapter 14).</p>
+<p>Turning people down stops being a loss and becomes <strong>savings.</strong></p>
+<p><strong>Three, raising the price is also an option.</strong></p>
+<p>Orders arriving faster than you can handle also means <strong>the price is low.</strong></p>
+<p>Raise it and orders drop some. That looks bad, and it means earning more in the same hours while protecting the quality.</p>
+<p><strong>Four, set a quality standard in advance and don't sell below it.</strong></p>
+<p>Rushing clouds your judgment. So you set it before the rush.</p>
+<blockquote><p><strong>Write one line: "I don't send it out unless it's at least this good."</strong></p></blockquote>
+<p>That one line protects you when you're busy.</p>
+<p><strong>Five, adding people is the last thing to think about.</strong></p>
+<p>Bringing a friend in looks like the fix, and as Chapter 4 showed, <strong>more people means more things to settle.</strong></p>
+<p>Teaching them also comes out of your hours.</p>
+<p>Adding people when you're busy usually makes you busier.</p>
+<h2>◆ Signals you can see in advance</h2>
+<p><strong>One, watch whether you missed a promised date even once.</strong></p>
+<p>Once is an accident. Twice is a structure. You've already crossed the limit line.</p>
+<p><strong>Two, watch whether remakes are increasing.</strong></p>
+<p>Rushing produces more remakes. That eats more time, which makes you rush more.</p>
+<p><strong>That's the scariest loop there is.</strong></p>
+<p><strong>Three, watch whether you stopped wanting to do it.</strong></p>
+<p>That's a feeling rather than a number, and it's the most accurate one.</p>
+<p>If something you started because you liked it has become a weight, you already took too much.</p>
+<h2>◆ To sum up</h2>
+<ul><li>A teenager's business usually breaks <strong>not from failing but from doing well.</strong></li><li>Materials and money can grow. <strong>Your time can't.</strong></li><li><strong>Know your limit as a number and take eighty percent of it.</strong></li><li>Saying no isn't a loss. <strong>Give a date and write them on a list.</strong></li><li>If you can't keep up, <strong>raising the price is an answer.</strong></li><li>Set <strong>one line of quality standard</strong> before the rush.</li></ul>
+<h2>◆ Closing Part Three</h2>
+<p>That's all five fault lines. Collected in one table.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Fault line</th><th>Where from?</th><th>What tells you early?</th></tr></thead><tbody><tr><td>The rules change</td><td>Outside</td><td>Terms · notices · school rules</td></tr><tr><td>Something easier arrives</td><td>Outside</td><td>How many people do it · price · time taken</td></tr><tr><td>People move on</td><td>Outside</td><td><strong>Number of first-time buyers</strong></td></tr><tr><td>Suppliers sell direct</td><td>Outside</td><td>Whether they start posting finished products</td></tr><tr><td><strong>It breaks by growing</strong></td><td><strong>Inside</strong></td><td><strong>Whether you kept promises · how many remakes</strong></td></tr></tbody></table></div></div>
+<p>Four come from outside and one comes from inside.</p>
+<p>And strangely, <strong>the way to beat all five overlaps into one thing.</strong></p>
+<blockquote><p><strong>The list of people who bought from you, and those people trusting you.</strong></p></blockquote>
+<p>Rules change and the list stays. Tools arrive and the trust stays. A trend passes and the list lets you announce the next thing. A supplier sells direct and people go to the one they know.</p>
+<p><strong>That's why Chapter 10 said the intangible asset lasts longest of the five.</strong></p>
+<p>Finish Part Three and you can see where that came from.</p>
+<p>And one last thing: the fault line that comes from inside is the one a list can't stop.</p>
+<p><strong>That one is stopped only by you knowing your own limit.</strong></p>
+<h2>◆ Do This Today</h2>
+<p>Measure three lines and write them down. Don't estimate. Actually time it once.</p>
+<blockquote><p><strong>To make one: ___ minutes</strong> <strong>Time available per day: ___ minutes</strong> <strong>Max per day: ___ → eighty percent of that: ___</strong></p></blockquote>
+<p>That last number is your <strong>intake limit,</strong> starting today.</p>
+<p>And one more thing.</p>
+<blockquote><p><strong>Write one sentence that says no, and save it somewhere.</strong></p></blockquote>
+<p>You won't need it right now. On the day you need it, you won't have time to write it.</p></section>
+<section class="front" id="s900"><h1>Closing — How to Quit, and How to Start Again</h1><h2>◆ Nobody writes a book about how to quit</h2>
+<p>You made it here.</p>
+<p>Books usually end with <em>don't give up.</em> That sentence is only half useful.</p>
+<p>Some things should be quit.</p>
+<p>You stopped enjoying it. Exams are on top of you. You tried it and it isn't you.</p>
+<p><strong>And nobody tells you how to quit.</strong></p>
+<p>So everybody just disappears. Stops answering, stops posting, quietly.</p>
+<p>That's the problem. <strong>Quit that way and nothing at all is left.</strong></p>
+<h2>◆ Quitting well versus disappearing</h2>
+<p>They are completely different.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th>Disappearing</th><th>Quitting well</th></tr></thead><tbody><tr><td>The people who bought</td><td>Angry at getting no reply</td><td>Told in advance, so they understand</td></tr><tr><td>The friend you did it with</td><td>Left feeling let down</td><td>Wrapped up and parted properly</td></tr><tr><td>What's left for you</td><td>"Yeah, I'm not built for this"</td><td>Three lines on what you learned</td></tr><tr><td>Next time you start</td><td>From zero</td><td><strong>From where you left off</strong></td></tr></tbody></table></div></div>
+<p><strong>Quitting well takes three things.</strong></p>
+<p><strong>One, tell people.</strong></p>
+<p>One line to the people who bought from you.</p>
+<p>"I'm wrapping this up at the end of the month and taking a break. Thanks for everything."</p>
+<p>Whether that line exists makes an enormous difference when you start again later.</p>
+<p><strong>Two, close things out.</strong></p>
+<p>Finish anything you took money for. Keep anything you promised. Settle with the friend you did it with about what's left.</p>
+<p><strong>Three, write three lines.</strong></p>
+<blockquote><p><strong>What I did: ______</strong> <strong>Where I got stuck: ______</strong> <strong>What I'd do differently: ______</strong></p></blockquote>
+<p>Those three lines are the output of this entire book.</p>
+<p>If you have them, you didn't quit. <strong>You finished.</strong></p>
+<h2>◆ Why the three lines matter</h2>
+<p>When somebody who quit starts something again later, they mostly <strong>get stuck in exactly the same place.</strong></p>
+<p>Because they never wrote down where they got stuck.</p>
+<p>With the three lines it's different.</p>
+<p><em>Right, last time nobody bought. So this time I ask before I make anything.</em></p>
+<p><strong>Chapters 1 through 16 existed to help you write those three lines well.</strong></p>
+<p>To let you name the place you got stuck in precise words.</p>
+<p>Instead of "it just didn't work," you get to write this.</p>
+<p>"Box one was wrong. The person who said they'd buy and the person who actually paid were different people."</p>
+<p>Write that and it isn't failure. <strong>It's data.</strong></p>
+<h2>◆ Breaking is what things do</h2>
+<p>As Part Three showed, moats break. That's what moats do.</p>
+<p>Same for adult companies. The list of the biggest companies in the world keeps turning over.</p>
+<p>However well something is made, the rules change, tools arrive, people move on.</p>
+<p>So your thing breaking is <strong>not you being especially bad at this.</strong></p>
+<p>One thing does have to be different, though.</p>
+<blockquote><p><strong>Learn nothing each time it breaks and every time is the first time.</strong> <strong>Learn one thing each time and every time starts further along.</strong></p></blockquote>
+<h2>◆ How to start again</h2>
+<p>Don't start again like it's the first time. You already have three things.</p>
+<p><strong>One, you have a list.</strong></p>
+<p>The people who bought from you before. Even one of them puts you well ahead of the start.</p>
+<p>The hardest thing when starting is <strong>the first customer,</strong> and you have one.</p>
+<p><strong>Two, you know your limit line.</strong></p>
+<p>The number you measured in Chapter 16.</p>
+<p>Somebody who knows how many they can do in a day is a completely different person from somebody doing this for the first time.</p>
+<p><strong>Three, you can see in five boxes.</strong></p>
+<p>Before starting anything new, you write five lines.</p>
+<p>Who pays, what they're paying for, how you collect, why nobody can take it, where it breaks.</p>
+<p><strong>Not many people can write those five lines before they start.</strong></p>
+<p>You read two books, so you can.</p>
+<h2>◆ Finally</h2>
+<p>The last sentence of Book One was <em>starting is the thing that counts.</em></p>
+<p>The last sentence of Book Two is this.</p>
+<blockquote><p><strong>Somebody who has done it once doesn't go back to being somebody who hasn't.</strong></p></blockquote>
+<p>Whether it's going well or badly right now, whether you already quit or you're still going, none of that matters.</p>
+<p>You are somebody who made a thing and held it out to another person.</p>
+<p>You set a price. You got turned down. You did the math.</p>
+<p><strong>That doesn't go away.</strong></p>
+<p>At twenty, at thirty, that sense is still there. And by then there'll be far more you can do with it.</p>
+<p>For that day, write three lines now.</p>
+<blockquote><p><strong>What I did · where I got stuck · what I'd do differently.</strong></p></blockquote>
+<p>That's everything this book is asking of you.</p></section>
+<footer class="book">I Started. So Why Isn&#x27;t It Working? · The Five Boxes Series · Teen Edition, Book Two</footer>
+</div>
+</body></html>
