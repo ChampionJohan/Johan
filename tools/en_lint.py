@@ -36,10 +36,17 @@ ASK = re.compile(r"^(?:(?:who|what|when|where|why|how|which|whose)\s+%s\b|%s\s+%
 # "Do it long enough..." 는 명령문이고, 의문문이라면 "Does it ..." 이 된다.
 MISMATCH = re.compile(r"^(?:do|don't|have|haven't|are|aren't|were|weren't)\s+"
                       r"(?:it|he|she|this|that)\b", re.I)
+# 명령문 "Do these three in order..." — 명령형 do 뒤에는 인칭 주어만 올 수 있다.
+IMPERATIVE_DO = re.compile(r"^(?:do|don't)\s+(?!you\b|we\b|they\b|i\b)", re.I)
+# "Which is why ..." 처럼 관계사로 이어 붙인 조각은 직접 의문문이 아니다.
+RELATIVE = re.compile(r"^(?:which|that)\s+\w+\s+(?:why|how|means)\b", re.I)
 
 
 def is_question(sentence):
-    return bool(ASK.match(sentence)) and not MISMATCH.match(sentence)
+    if not ASK.match(sentence):
+        return False
+    return not (MISMATCH.match(sentence) or IMPERATIVE_DO.match(sentence)
+                or RELATIVE.match(sentence))
 ENDS = ".!?:—…\"')"
 
 
@@ -59,21 +66,33 @@ def paragraphs(path):
         head, text = text.split("---", 2)[1], text.split("---", 2)[-1]
         if re.search(r"(?m)^lint:\s*skip\b", head):
             return
-    buf = []
+    buf, kind = [], "prose"
+
+    def flush():
+        if buf:
+            return buf[0][0], " ".join(strip_md(b[1]) for b in buf), kind
+        return None
+
     for n, raw in enumerate(text.splitlines(), 1):
         line = raw.strip()
         skip = (not line) or line.startswith(("#", "|", "```", "<!--", "---"))
         listish = re.match(r"^(?:[>\-*]\s|\d+\.\s)", line)
         if skip or listish:
-            if buf:
-                yield buf[0][0], " ".join(strip_md(b[1]) for b in buf), "prose"
-                buf = []
+            out = flush()
+            if out:
+                yield out
+            buf = []
+            # 목록 항목은 다음 줄로 접힐 수 있다. 접힌 줄까지 한 항목으로 묶는다.
+            kind = "fragment" if listish else "prose"
             if not skip:
-                yield n, strip_md(line), "fragment"
+                buf = [(n, line)]
             continue
+        if not buf:
+            kind = "prose"
         buf.append((n, line))
-    if buf:
-        yield buf[0][0], " ".join(strip_md(b[1]) for b in buf), "prose"
+    out = flush()
+    if out:
+        yield out
 
 
 def check(path):

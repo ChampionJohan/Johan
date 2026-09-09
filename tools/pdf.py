@@ -99,11 +99,20 @@ def page_map(pdf_path, items):
     pages_text = [norm(p.get_text()) for p in doc]
     targets = [(item["slug"], norm(item["title"])) for item in items]
 
+    # 장이 시작하는 쪽에는 눈썹 표시로 부 이름이 찍힌다. 그 문자열이 부 표제지의
+    # 제목과 똑같으면, 장 첫 쪽도 "제목이 둘 이상 있는 쪽"으로 잡혀 차례로 오인된다.
+    # 그래서 눈썹으로 쓰이는 이름은 차례 판정에서 뺀다.
+    eyebrows = {norm(i.get("part", "")) for i in items if i["kind"] == "chapter"}
+    countable = [(s, t) for s, t in targets if t and t not in eyebrows]
+
+    # 차례는 표제지 바로 뒤에서 이어진다. 앞에서부터 붙어 있는 동안만 차례로 본다.
     toc_last = -1
     for i, text in enumerate(pages_text):
-        hits = sum(1 for _, t in targets if t and t in text)
+        hits = sum(1 for _, t in countable if t in text)
         if hits > 1:
             toc_last = i
+        elif toc_last >= 0:
+            break
 
     mapping = {}
     pointer = toc_last + 1

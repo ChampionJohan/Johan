@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who's Actually Paying?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=IBM+Plex+Sans+KR:wght@400;500;600&display=swap">
+
+<style>
+:root{
+ --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
+ --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
+ --track:.06em;
+ --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
+ --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
+:root[data-theme="dark"]{
+ --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
+ --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+ font-size:17px;line-height:1.95;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:37em;margin:0 auto;padding:0 24px 140px}
+.eyebrow{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:var(--track);
+ color:var(--muted);text-transform:none}
+
+/* 표제지 */
+.titlepage{padding:120px 0 80px;border-bottom:1px solid var(--rule);margin-bottom:72px;text-align:center}
+.titlepage .series{font-family:var(--sans);font-size:.74rem;letter-spacing:var(--track);color:var(--muted);margin-bottom:36px}
+.titlepage h1{font-size:clamp(2.6rem,9vw,4rem);line-height:1.12;margin:0 0 20px;letter-spacing:-.03em;font-weight:700}
+.titlepage p{margin:0;color:var(--muted);font-size:1.02rem}
+.titlepage .rule{width:56px;height:2px;background:var(--accent);margin:36px auto 0}
+
+/* 차례 */
+nav.toc{margin:0 0 96px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc .grp{font-family:var(--sans);font-size:.72rem;letter-spacing:var(--track);color:var(--accent);
+ font-weight:600;margin:28px 0 10px;display:flex;align-items:baseline;gap:12px}
+nav.toc li{padding:4px 0;font-size:.96rem;display:flex;gap:12px;align-items:baseline}
+nav.toc .no{font-family:var(--sans);font-size:.78rem;color:var(--muted);
+ min-width:2.6em;font-variant-numeric:tabular-nums}
+nav.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+nav.toc a:hover,nav.toc a:focus{border-bottom-color:var(--accent);outline:none}
+nav.toc .dots{flex:1 1 auto;border-bottom:1px dotted var(--rule);margin:0 2px 3px}
+nav.toc .pg{font-family:var(--sans);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+nav.toc .grp .pg{margin-left:auto}
+
+/* 부 표제지 */
+section.part{margin:0 0 96px;padding:88px 0;border-top:2px solid var(--ink);
+ border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+section.part h1{font-size:2.1rem;margin:0 0 40px;letter-spacing:-.02em;line-height:1.3}
+
+/* 장 */
+section.ch{margin-bottom:112px;scroll-margin-top:16px}
+section.ch>.eyebrow{display:block;margin-bottom:14px}
+section.ch>h1{font-size:1.72rem;line-height:1.4;margin:0 0 44px;letter-spacing:-.01em;
+ padding-bottom:22px;border-bottom:1px solid var(--rule)}
+section.front>h1{font-size:1.5rem;line-height:1.45;margin:0 0 40px;padding-bottom:20px;
+ border-bottom:1px solid var(--rule)}
+
+h2{font-size:1.14rem;margin:56px 0 18px;line-height:1.5;font-weight:600}
+h3{font-size:1rem;margin:38px 0 12px;color:var(--accent);font-weight:600}
+p{margin:0 0 1.35em}
+blockquote{margin:34px 0;padding:6px 0 6px 22px;border-left:3px solid var(--accent);font-size:1.06rem}
+blockquote p{margin:0 0 .5em}
+blockquote p:last-child{margin:0}
+ul,ol{margin:0 0 1.35em;padding-left:1.4em}
+li{margin-bottom:.45em}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+table{border-collapse:collapse;width:100%%;margin:30px 0;font-size:.9rem;
+ font-family:var(--sans);line-height:1.65}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+thead th{border-bottom:1.5px solid var(--ink);font-size:.78rem;color:var(--muted);font-weight:600}
+tbody tr:last-child td{border-bottom:0}
+.tblwrap{overflow-x:auto}
+.flag{display:inline-block;background:var(--flagbg);color:var(--flagink);padding:2px 8px;
+ font-size:.78rem;font-family:var(--sans);border-radius:2px;line-height:1.6}
+.flags{margin:24px 0;padding:16px 18px;background:var(--hair);border-left:3px solid var(--accent)}
+.flags .eyebrow{display:block;margin-bottom:10px}
+.flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
+footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
+ font-size:.84rem;font-family:var(--sans);text-align:center}
+@media print{.flags{display:none}
+ nav.toc,section.part,section.ch,section.front{page-break-before:always}}
+</style>
+</head><body><div class="wrap">
+<header class="titlepage"><p class="series">The Five Boxes Series · Book One</p><h1>Who&#x27;s Actually Paying?</h1><p>Take Any Business Apart in Five Questions</p><div class="rule"></div></header>
+<nav class="toc"><ul><li><span class="no">—</span><a href="#s005">Copyright</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s010">How to Read This Book</a><span class="dots"></span></li>
+<li><span class="no">—</span><a href="#s020">Opening — Don&#x27;t Look at Revenue. Look at the Structure</a><span class="dots"></span></li>
+<li class="grp">Part One · The Five Boxes</li>
+<li><span class="no">1</span><a href="#s101">Customer — Someone Else Is Opening the Wallet</a><span class="dots"></span></li>
+<li><span class="no">2</span><a href="#s102">Value — Nobody Buys the Product</a><span class="dots"></span></li>
+<li><span class="no">3</span><a href="#s103">Payment — When You Collect Matters More Than What</a><span class="dots"></span></li>
+<li><span class="no">4</span><a href="#s104">Moat — What If a Competitor Shows Up With Ten Times the Money?</a><span class="dots"></span></li>
+<li><span class="no">5</span><a href="#s105">Fault Line — When the Moat Turns Into a Liability</a><span class="dots"></span></li>
+<li><span class="no">6</span><a href="#s106">Diagnosis — Thirty Minutes to Fill All Five</a><span class="dots"></span></li></ul></nav>
+<section class="front" id="s005"><h1>Copyright</h1><h2>◆ Who's Actually Paying?</h2>
+<p><em>Take Any Business Apart in Five Questions</em> The Five Boxes Series · Book One</p>
+<p>Copyright © 2026 Jaehyuk Choi All rights reserved.</p>
+<p>No part of this book may be reproduced or transmitted in any form without written permission from the author, except for brief quotations in a review.</p>
+<p>First English edition, 2026. Translated and adapted from the Korean edition 『돈의 해부학』</p>
+<p>Company names, brands and countries discussed in this book appear for the purpose of analysis and commentary. No endorsement or affiliation is implied.</p>
+<p>Every figure in this book is one that could be checked in a public source. Where a number could not be confirmed, it was left out rather than estimated.</p></section>
+<section class="front" id="s010"><h1>How to Read This Book</h1><h2>◆ The order</h2>
+<p><strong>Read Part One first.</strong> Six chapters. This is where the tool ends up in your hands.</p>
+<p>Skip to Part Two on its own and you've read a book of case studies — interesting, and gone in a week.</p>
+<p><strong>Part Two doesn't have to be read in order.</strong> Open whichever industry interests you.</p>
+<p>But do look at <strong>the five-box table</strong> at the end of each chapter before moving on. Eighteen of those tables side by side become something you can compare.</p>
+<p><strong>If you're in a hurry, the tables alone will do.</strong> Every chapter is written in the same shape so that this works.</p>
+<h2>◆ The five words this book uses</h2>
+<p>Two of them may feel unfamiliar. Each gets explained again where it first appears, so there's nothing to memorize now.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Word</th><th>What it means</th><th>The question it asks</th></tr></thead><tbody><tr><td><strong>Customer</strong></td><td>Not the person using it — <strong>the person paying</strong></td><td>Who opens their wallet?</td></tr><tr><td><strong>Value</strong></td><td>What the customer bought. Not the product, but the problem the product removed</td><td>What are they paying for?</td></tr><tr><td><strong>Payment</strong></td><td>The <strong>method and timing</strong> of collection. Subscription or sale, before or after</td><td>How, and when?</td></tr><tr><td><strong>Moat</strong></td><td>The water around a castle. What stops a competitor crossing</td><td>Why hasn't anyone taken it?</td></tr><tr><td><strong>Fault Line</strong></td><td>The place where that moat starts to give way</td><td>Where does it break?</td></tr></tbody></table></div></div>
+<p>Together, these five are <strong>the Five Boxes</strong>.</p>
+<h2>◆ Numbers and sources</h2>
+<p>Every revenue figure, share and ranking in this book carries <strong>a year and a source.</strong></p>
+<p>Sources are collected at the end of each chapter, and most are primary: company annual reports and filings, statistics from international bodies, government publications.</p>
+<p>Numbers seen in other books or articles were traced back to the original before being used. <strong>Anything that couldn't be confirmed isn't here.</strong></p>
+<p>That's why some passages describe a direction rather than a precise amount. Between an exact number that might be wrong and a direction that is right, this book takes the direction.</p>
+<h2>◆ Conventions</h2>
+<ul><li><strong>Amounts stay in the currency of the original source.</strong> They aren't converted. Exchange rates move, and a converted figure becomes a wrong figure the moment they do.</li><li><strong>Bold</strong> marks the one thing worth keeping if you remember nothing else from that paragraph.</li><li>Where a company is not widely known outside its home market, a single clause explains what it does the first time it appears. No more than that — the unfamiliar ones are usually the most useful.</li></ul>
+<h2>◆ The second book</h2>
+<p>This book covers eighteen businesses. Fifty-four were prepared.</p>
+<p>The rest continue in <strong>The Fourth Box — Why Some Businesses Can't Be Taken.</strong></p>
+<p>Where this book weighs <strong>how a business earns</strong>, the second one digs into <strong>why it gets to keep earning.</strong> That means going much deeper into the fourth and fifth boxes.</p>
+<p>You don't need it, though. <strong>All five boxes are built here.</strong> This book finishes what it starts.</p></section>
+<section class="front" id="s020"><h1>Opening — Don&#x27;t Look at Revenue. Look at the Structure</h1><h2>◆ Some companies sell well and die anyway</h2>
+<p>There are companies whose revenue climbs every year until they collapse. And companies whose revenue sits flat while cash piles up.</p>
+<p>If that sounds strange, it's because you've been judging businesses by <strong>how much they sell.</strong></p>
+<p>Most people looking at a business look at two numbers: revenue and profit.</p>
+<p><strong>Both are results.</strong> And a result tells you nothing about whether it will happen again next year.</p>
+<p>Take $100 million in revenue. It can mean completely different things.</p>
+<ul><li>$100 million that renews automatically, versus $100 million that has to be won again from scratch every year</li><li>$100 million collected before the costs are paid, versus $100 million collected long after</li><li>$100 million a competitor would need ten years to copy, versus $100 million a competitor could copy tomorrow</li></ul>
+<p><strong>Same number. Different businesses entirely.</strong></p>
+<p>What makes the difference is <strong>structure</strong>.</p>
+<h2>◆ Why almost nobody looks at structure</h2>
+<p>It isn't that people can't see it. It's that they have no tool for it.</p>
+<p>Most business books are collections of cases. This company succeeded like this, that one failed like that.</p>
+<p>It's enjoyable while you're reading. The problem starts when you close the book. The next company you meet isn't in it, and you're stuck again.</p>
+<p><strong>Read fifty cases and you still can't read the fifty-first one yourself.</strong></p>
+<p>You were handed fifty fish. You weren't taught to fish.</p>
+<p>At the other extreme are the academic frameworks — the ones with nine boxes and a list of things to fill in each. Precise, and heavy.</p>
+<p>In practice you need something you can run in your head while reading a single news article. <strong>Nine boxes won't fit in your head.</strong></p>
+<p>What's needed is the middle. <strong>Small enough to carry, sharp enough to actually produce an answer.</strong></p>
+<h2>◆ Five questions</h2>
+<p>This book breaks every business into five questions.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th></th><th>The question</th><th>One word</th></tr></thead><tbody><tr><td>1</td><td>Who actually pays?</td><td><strong>Customer</strong></td></tr><tr><td>2</td><td>What are they paying for?</td><td><strong>Value</strong></td></tr><tr><td>3</td><td>How does the money arrive?</td><td><strong>Payment</strong></td></tr><tr><td>4</td><td>Why hasn't anyone taken it?</td><td><strong>Moat</strong></td></tr><tr><td>5</td><td>Where does it break?</td><td><strong>Fault Line</strong></td></tr></tbody></table></div></div>
+<p>This book calls those five <strong>the Five Boxes</strong>.</p>
+<p><strong>The order means something.</strong> The first three ask <em>how it earns now.</em> The last two ask <em>whether it gets to keep earning.</em></p>
+<p>The first three explain the present. Only the last two let you judge the future.</p>
+<p>Most people stop at one and two. <em>The customer is the consumer, and they buy it because the product is good.</em></p>
+<p>But <strong>the real character of a business is decided in box three</strong>, and <strong>its lifespan is decided in four and five.</strong></p>
+<h2>◆ Why these five work</h2>
+<p>The five boxes are a single flow. They ask, in order, where the money comes from, where it goes, and why that flow doesn't get cut.</p>
+<p>Money comes from a person (1). That person pays because they get something (2). How you collect changes how long the money stays with you and in what form (3). Competitors try to cut the flow and can't, for some reason (4). But that reason rests on a condition, and conditions change (5).</p>
+<p>Follow that order and an unfamiliar company starts producing answers.</p>
+<p>If a box won't fill, that's either a weak point in the business or a gap in what you know.</p>
+<p><strong>Knowing which of the two it is already gets you halfway.</strong></p>
+<h2>◆ How this book is built</h2>
+<p><strong>Part One</strong> builds the five boxes one at a time. Each gets its types laid out and a diagnostic question you can actually use.</p>
+<p>Read only Part One and the tool is still yours.</p>
+<p><strong>Part Two</strong> dissects eighteen businesses with it. Software, food, finance, lodging, marketing, sport, national economies, farming, fishing — nine fields, two each.</p>
+<p>The fields are scattered on purpose. <strong>It's there to show that the five boxes don't care what industry you're in.</strong></p>
+<p>If a Norwegian salmon farm and an American card network read the same way through the same frame, the frame is worth having.</p>
+<p>Every chapter in Part Two follows the same shape. Start from a scene you know, overturn the obvious reading, fill the five boxes in order, close with one table.</p>
+<p><strong>In a hurry, the tables alone will do.</strong> Eighteen of them side by side become a database.</p>
+<h2>◆ What this book does not do</h2>
+<p>The five boxes look at <strong>structure</strong>. They don't see what's outside it.</p>
+<p>How well a company is run, how well it uses people, how fast it decides — none of that fits in this frame. And in reality those decide outcomes too.</p>
+<p>There are companies with excellent structure that fail on execution, and the reverse.</p>
+<p><strong>The five boxes tell you the range of what's possible. They don't tell you the result.</strong></p>
+<p>Better to know that limit and use the tool anyway.</p>
+<h2>◆ When you've finished</h2>
+<p>The goal is that you can read a company that isn't in this book.</p>
+<p>That you open a filing, or read one news story, and fill the five boxes in your head as you go.</p>
+<p>That you stop at the box that won't fill and think <em>this is where this company is weak</em> — or <em>this is where I need to look harder.</em></p>
+<p>And finally, that you fill the table in for <strong>your own business</strong>, or <strong>the company you work at.</strong></p>
+<p>The closing chapter is about that.</p>
+<p>So let's begin. The first box is the customer.</p>
+<p><strong>And almost everyone gets this first one wrong.</strong></p></section>
+<section class="part" id="s100"><h1>Part One · The Five Boxes</h1><h2>◆ The tool goes in your hands first</h2>
+<p>Six chapters. Each one takes a box, and the last one ties them together.</p>
+<p>Cases appear only where they're needed.</p>
+<p>The work here isn't listening to company stories. <strong>It's learning how to ask.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Chapter</th><th>Box</th><th>The question</th></tr></thead><tbody><tr><td>1</td><td>Customer</td><td>Who opens their wallet?</td></tr><tr><td>2</td><td>Value</td><td>What are they paying for?</td></tr><tr><td>3</td><td>Payment</td><td>How, and when?</td></tr><tr><td>4</td><td>Moat</td><td>Why hasn't anyone taken it?</td></tr><tr><td>5</td><td>Fault Line</td><td>Where does it break?</td></tr><tr><td>6</td><td>Diagnosis</td><td>Filling all five in thirty minutes</td></tr></tbody></table></div></div>
+<p>The first three boxes ask <em>how it earns now.</em></p>
+<p>The last two ask <em>whether it gets to keep earning.</em></p></section>
+<section class="ch" id="s101"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 1 · Customer — Someone Else Is Opening the Wallet</h1><h2>◆ "Who is your customer?"</h2>
+<p>It's the question asked most often in a room where business plans get reviewed.</p>
+<p>It's also the question that gets the wrong answer most often.</p>
+<p>The answers come back like this. <em>Women in their twenties and thirties.</em> <em>Mid-level staff at small companies.</em> <em>Office workers who like to exercise.</em></p>
+<p>None of those are customers. <strong>They're users</strong> — the people who use the thing.</p>
+<p>Sometimes the user and the payer are the same person. Someone buying coffee drinks the coffee. But far more businesses than you'd think don't work that way.</p>
+<p>The question in box one is this:</p>
+<blockquote><p><strong>Who opens their wallet?</strong></p></blockquote>
+<h2>◆ Businesses where somebody else pays</h2>
+<p>Look around and they're everywhere.</p>
+<p><strong>Broadcast television</strong> takes nothing from viewers. Viewers watch free. The money is wired in by advertisers.</p>
+<p>What a broadcaster sells isn't programming. It's <strong>the viewer's time</strong>, and the buyer is the advertiser. The viewer is closer to inventory than to a customer.</p>
+<p><strong>Search</strong> is the same. The person searching pays nothing. The moment a query is typed, an intention exists, and advertisers buy the right to sit next to it.</p>
+<p><strong>Property agents</strong> — sometimes the person touring apartments pays the fee, sometimes the other side does, and in rentals it's usually split. Which side the agent actually serves follows <strong>whoever pays more.</strong></p>
+<p><strong>Hospitals</strong> treat patients, but a large share of the bill comes from insurers, not patients. So insurers belong in the hospital's customer list. It's why whether a procedure is covered changes what a hospital offers.</p>
+<p><strong>Tutoring companies</strong> teach students, but parents pay the fees. So the marketing points at parents, not students. Progress reports, phone calls home, the banner about university admissions — all of it is aimed at the wallet.</p>
+<h2>◆ Three shapes of customer structure</h2>
+<p>Depending on who pays, businesses fall into three shapes.</p>
+<h3>1. One-sided — the user pays</h3>
+<p>The simplest. Most companies that make and sell a product, restaurants, retail shops. The user is the customer, so box one fills easily.</p>
+<p><strong>Simple is not an advantage.</strong> A simple structure is one a competitor can reproduce exactly. To win in this shape you have to win in the other four boxes.</p>
+<p>But some businesses only look one-sided. <strong>A warehouse club that charges a membership fee</strong> is one.</p>
+<p>On the surface it's a shop selling goods. Except the goods are sold at close to cost, and the profit comes from the annual fee. What the customer is buying isn't merchandise — it's <strong>the right to buy cheaply.</strong></p>
+<p>Same building, same shelves, different answer in box one.</p>
+<p>There's one test that separates them. <strong>If a member joins and buys nothing at all, is the company better off or worse off?</strong></p>
+<p>Worse off, and it's a business selling goods. Better off, and it's a business selling the right to buy.</p>
+<h3>2. Multi-sided — one side pays for the other</h3>
+<p>Advertising media, platforms, brokers. Two or more parties, and only one of them pays.</p>
+<p>The core of this structure is that <strong>the side that doesn't pay becomes the product.</strong></p>
+<p>Free users aren't charity cases. They're inventory. The more inventory, the higher the price on the paying side.</p>
+<p>Here the question that decides the business changes shape:</p>
+<blockquote><p>Which side has to gather first before the other side follows?</p></blockquote>
+<p>Think about a card network. Without merchants who accept the card, consumers won't carry one. Without consumers carrying one, merchants won't install the terminal. Chicken and egg.</p>
+<p>Whoever breaks that deadlock takes the market. Which is why multi-sided businesses <strong>carry one side at a loss</strong> early on.</p>
+<p>That's what the waived annual fee and the reward points are. The cost gets recovered from the other side.</p>
+<p>There's one thing you must check when reading this structure. <strong>Does the side being carried eventually start paying, or does it never pay?</strong></p>
+<p>Never having to pay is a strong business. Having to collect from them eventually is a time bomb.</p>
+<p>Multi-sided structures have another property. <strong>The two sides' interests collide head-on.</strong></p>
+<p>More advertising pleases advertisers and drives users away. Raising the commission upsets sellers and buyers don't notice.</p>
+<p>So running a multi-sided business is less like improving a product and more like <strong>holding a scale level.</strong></p>
+<p>Once that scale starts tipping, it's hard to recover. Selling the user experience for short-term revenue works once and not twice.</p>
+<p>Part Two looks at companies that held the scale for a long time, alongside companies that gave up and picked a side.</p>
+<h3>3. Subsidized — same person, different moment</h3>
+<p>Razors and blades is the classic. Sell the handle cheap or give it away, recover on the blades. Printers and ink, consoles and games, water filters and cartridges.</p>
+<p>It's easy to confuse with the multi-sided shape, but it isn't one. <strong>Here there is only one payer.</strong> They just pay a little at the start and keep paying afterwards.</p>
+<p>The vulnerable point in this structure is <strong>whether somebody else can make and sell the part you recover on.</strong></p>
+<p>The moment third-party ink or third-party filters appear, all that's left is the loss at the front.</p>
+<p>So these businesses, without exception, try to lock the back end. A chip goes in, a patent gets filed, the warranty gets voided. <strong>How tightly that lock holds is the lifespan of the business.</strong></p>
+<p>And the lock gets harder to hold every year. Consumer groups object, the demand for a right to repair grows louder, and regulation follows.</p>
+<p>A business built on a lock isn't exposed to technology. <strong>It's exposed to public opinion and regulators.</strong></p>
+<p>A company in Part Two's farming section runs straight into this.</p>
+<h2>◆ Customer structure decides the shape of the company</h2>
+<p>The answer in box one doesn't stop at describing the business. <strong>It determines what the company physically looks like.</strong></p>
+<p><strong>A company selling to individuals</strong> meets a lot of people. Each sale is small, so volume has to make up for it — which means a large marketing budget and a small sales team. Payment happens instantly by card. Complaints arrive through call centres and reviews. The metrics are signups and churn.</p>
+<p><strong>A company selling to businesses</strong> meets few people. Each deal is large, so few deals will do — which means a large sales team and a small marketing budget. Payment happens through contracts and invoices over months. Complaints arrive in meetings. The metrics are deals closed and renewal rate.</p>
+<p><strong>A company earning from advertising</strong> runs two organizations at once: one that gathers users and one that sells ads. Their goals are opposite, so the meetings are permanently noisy. Managing that noise is the job.</p>
+<p>So <strong>box one lets you predict a company's org chart and its job listings.</strong></p>
+<p>Run it backwards: if a company's open roles are almost all sales, its customers are not individuals.</p>
+<h2>◆ Three ways to find the real customer</h2>
+<p>Words get confusing. Do these three in order and the answer usually appears.</p>
+<p><strong>One. Draw the direction of the money.</strong></p>
+<p>Write down every party that deposits into the company's account. Individuals, businesses, governments, insurers. Rank them by amount. The top of that list is the first customer.</p>
+<p>This looks too obvious to bother with. Almost nobody actually does it.</p>
+<p><strong>Two. Look at whose name is on the contract.</strong></p>
+<p>Someone using a free service isn't a counterparty. They accepted terms. The actual contract is with the advertiser, the merchant, the licensee. <strong>The side with a contract is the customer.</strong></p>
+<p><strong>Three. Watch who can move the price.</strong></p>
+<p>The real customer is whoever the company takes seriously when they ask for a discount.</p>
+<p>If users say <em>it's expensive</em> and nothing happens, but an advertiser says <em>lower the rate</em> and a meeting gets scheduled — you have your answer.</p>
+<h2>◆ When there's more than one customer, which comes first?</h2>
+<p>In multi-sided structures there are two or more. The way to rank them isn't by share of revenue.</p>
+<p><strong>It's the bottleneck.</strong></p>
+<p>Look at which side is in short supply and holding growth back. That side is the company's real customer right now.</p>
+<p>Ad space going unsold means advertisers are the bottleneck. Advertisers queuing for space that doesn't exist means users are.</p>
+<p><strong>Bottlenecks move over time.</strong> Early on it's usually the supply side. Past a certain point it crosses to the demand side.</p>
+<p><strong>Miss the moment it moves and you spend money in the wrong place.</strong> Plenty of companies keep running user-acquisition campaigns while drowning in users.</p>
+<h2>◆ Change the customer and you change the business</h2>
+<p>Make the identical product, change who pays, and it's a different company.</p>
+<p>Start selling enterprise software to individuals and the sales team becomes unnecessary while support has to grow several times over.</p>
+<p>Go the other way — consumer product sold to enterprises — and the price per deal rises while each deal takes six months and arrives with an endless list of requirements.</p>
+<p>So <em>"we're expanding our customer base"</em> is usually a dangerous sentence.</p>
+<p>It isn't an expansion. <strong>It's starting a second business.</strong></p>
+<p>Some of the companies in Part Two made that transition. Some were badly hurt by it.</p>
+<h2>◆ Worked example — the neighborhood gym</h2>
+<p>A tool only sticks once you use it. Let's fill box one for a business everyone knows.</p>
+<p>A gym looks one-sided. People work out, people pay dues.</p>
+<p>Look a little closer and something strange shows up.</p>
+<p><strong>The gym would prefer you didn't come.</strong></p>
+<p>Someone on an annual membership who shows up daily crowds the showers, occupies the machines, uses towels, and adds cleaning hours. The fee is already collected. Only the costs grow.</p>
+<p>Someone who signs up in January and stops coming in February has paid in full and consumes nothing.</p>
+<p>So the real structure reads like this. Members split into <strong>those who come</strong> and <strong>those who don't</strong>, and the business uses the dues of the second group to cover the costs of the first.</p>
+<p><strong>If the ratio of people who don't come collapses, the business collapses.</strong></p>
+<p>Once you see that, a lot of gym behavior explains itself.</p>
+<p>Why the deep discount is on the twelve-month plan. Why so much effort goes into the January promotion. Why they'll happily show you the facilities but charge separately for personal coaching.</p>
+<p>And you can see where the structure gives way.</p>
+<p>When a competitor appears offering a genuinely flexible month-to-month plan, <strong>the people who don't come leave first.</strong> What remains is the members who show up every day.</p>
+<p>Revenue falls a little. Costs don't move at all. That's the moment the business turns sharply worse.</p>
+<p>All of that came from filling in one box properly.</p>
+<p><strong>That's what the five boxes do.</strong></p>
+<h2>◆ The most common failure in this box</h2>
+<p><strong>Believing that if you grow users, money will follow eventually.</strong></p>
+<p>If there's no bridge between users and revenue, <strong>users are a cost.</strong> More servers, more support staff, more ways for something to go wrong.</p>
+<p>A company with a bridge earns more as users grow. A company without one loses more as users grow.</p>
+<p>Checking for the bridge is simple.</p>
+<p><strong>Ask what happens to revenue if users go up tenfold.</strong></p>
+<p>If the answer is <em>"ten times," there's a bridge.</em> If the answer is <em>"we'll figure that out when we get there,"</em> there isn't one.</p>
+<h2>◆ Diagnostic questions</h2>
+<p>Meeting a business for the first time, fill box one with these five.</p>
+<ol><li>Name the three largest parties depositing money into this company's account.</li><li>Are the user and the payer different? If so, what does the non-paying side pay with instead?</li><li>Which side is currently in short supply and holding back growth?</li><li>Who does the company least want to hear a discount request from?</li><li>If users went up tenfold, how much would revenue go up?</li></ol>
+<h2>◆ In short</h2>
+<p>Box one looks easy, and it's where most readings go wrong.</p>
+<p><strong>Get box one wrong and the other four are all wrong.</strong> Misidentify the customer and you'll misidentify the value, design the wrong payment method, and dig a moat in the wrong place.</p>
+<ul><li>The user and the customer are different. <strong>The customer opens the wallet.</strong></li><li>Customer structures come in three shapes: <strong>one-sided, multi-sided, subsidized.</strong></li><li>In a multi-sided structure, <strong>the side that doesn't pay is the product.</strong></li><li>With several customers, rank them by <strong>bottleneck, not revenue share.</strong></li><li>Without a bridge between users and revenue, <strong>users are a cost.</strong></li></ul></section>
+<section class="ch" id="s102"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 2 · Value — Nobody Buys the Product</h1><h2>◆ Same water, different price</h2>
+<p>A bottle of water at a corner shop is about a dollar. Past airport security it's four.</p>
+<p>Same company, same volume, same water. Same cost to make.</p>
+<p><strong>The price tripled because the alternatives disappeared.</strong> You can't carry water through the checkpoint, and going back out means queuing again.</p>
+<p>When someone pays four dollars, they aren't buying water. They're buying <em>not being thirsty, here, now.</em></p>
+<p>The question in box two is this:</p>
+<blockquote><p><strong>What exactly did they pay for?</strong></p></blockquote>
+<p>If the answer is <em>"our product,"</em> it isn't an answer yet. The product is a means.</p>
+<p>What the customer paid for is the <strong>inconvenience it removed</strong> or the <strong>state it created.</strong></p>
+<h2>◆ You sell the result, not the product</h2>
+<p><em>Nobody wants a drill, they want a hole in the wall.</em> It's an old line.</p>
+<p>What matters more than the line is what the view actually changes.</p>
+<p><strong>Think in holes and your list of competitors changes.</strong> A drill company competes with more than other drill companies. Adhesive hooks that need no hole, an installation service, furniture designed so nothing hangs on the wall — all competitors.</p>
+<p><strong>And the basis for the price changes.</strong> A drill's price doesn't come from the cost of its parts. It comes from <strong>what the hole costs by other means.</strong></p>
+<p>If hiring someone costs fifty dollars, a thirty-dollar drill is cheap.</p>
+<h2>◆ Five shapes of value</h2>
+<p>Sort out why money changes hands and you get roughly five. Few businesses are only one. Most mix two or more.</p>
+<h3>1. Time</h3>
+<p>The most common. Something that takes a long time yourself takes less.</p>
+<p>Delivery, laundry, cleaning, summarizing, search, automation.</p>
+<p><strong>The ceiling on price here is exact: what the customer could earn in that time.</strong></p>
+<p>Save two hours for someone who earns a hundred dollars an hour and you can charge up to two hundred. Save the same two hours for someone earning ten and the ceiling is twenty.</p>
+<p><strong>Same service, same hours, and the price differs by ten times depending on who the customer is.</strong></p>
+<h3>2. Risk removal</h3>
+<p>Lowering the chance of something bad, or the damage when it happens.</p>
+<p>Insurance, security, backups, certification, legal advice, a product with a known brand on it.</p>
+<p><strong>This is the best place in the world to set a price, because losses feel larger than gains.</strong></p>
+<p>The risk of losing a thousand dollars weighs far more than the chance of making a thousand. So businesses that remove risk generally carry higher margins than businesses that save time.</p>
+<p>It also has a nasty property. <strong>The better things go, the less visible the value.</strong></p>
+<p>No accident, and the premium feels wasted. Never been breached, and the security budget looks like overspending.</p>
+<p>Which means bad news is the best salesperson this category has. Uncomfortable, and true.</p>
+<h3>3. Access</h3>
+<p>Getting you somewhere you can't reach alone.</p>
+<p>Memberships, distribution, credentials, licenses, a place on a platform.</p>
+<p><strong>The price here is exactly proportional to how narrow the door is.</strong></p>
+<p>If anyone can walk in, the price falls to nothing. The narrower the door, the higher it climbs.</p>
+<p><strong>So this type of business destroys itself by widening the door.</strong> A membership that accepts unlimited members is not a membership.</p>
+<h3>4. Status</h3>
+<p>Creating a state that other people can see.</p>
+<p>Luxury goods, a certain car, a degree, an award, equipment with a particular name on it.</p>
+<p><strong>The link between cost and price is weakest here.</strong> So the margins are the largest — and the least stable.</p>
+<p>Status stands on other people's recognition, and the company doesn't control that. Sell more and scarcity falls. Scarcity falls and the status goes.</p>
+<p><strong>It's the only type where selling more actively weakens the product.</strong></p>
+<h3>5. Certainty</h3>
+<p>Reducing the variance of the outcome. Not being excellent — <strong>being the same every time.</strong></p>
+<p>A franchise that tastes identical anywhere on earth, a delivery that arrives when it said, standardized parts, software that shows the same screen.</p>
+<p>This one looks dull, because it isn't the best at anything.</p>
+<p>But in business the predictable option beats the excellent one more often than people expect.</p>
+<p>Someone in an unfamiliar city who wants a meal that won't be a mistake is not looking for the best restaurant.</p>
+<p><strong>Lower variance is, by itself, worth paying for.</strong></p>
+<h2>◆ Price doesn't come from cost</h2>
+<p>Cost plus a margin is easy to calculate and usually wrong.</p>
+<p>The basis for a price comes from one of three places.</p>
+<p><strong>One. What the alternative costs.</strong> What does the same result cost by another route? Hire someone — how much? Do it yourself — how many hours? Don't do it at all — what's the damage?</p>
+<p>Come in under that and it sells.</p>
+<p><strong>Two. The loss avoided.</strong> This is where risk-removal finds its number. The size of the prevented loss is the ceiling.</p>
+<p><strong>Three. What the customer earns with it.</strong> Most things sold to businesses are priced here. A machine that adds $100,000 a year can be sold for several years of that, collected up front.</p>
+<p><strong>Cost only sets the floor. The ceiling is always on the customer's side.</strong></p>
+<p>And the margin is decided by where between the two you choose to stand.</p>
+<h2>◆ Same product, different value</h2>
+<p>An identical object sells different value depending on the situation.</p>
+<p>A pharmacy next to a hospital and a pharmacy in a residential street sell the same medicine.</p>
+<p>The one by the hospital sells <em>solved within five minutes of the appointment.</em> The one in the neighborhood sells <em>near home, with someone to ask.</em></p>
+<p>As a result the two are busy at different hours, stock different things, and need different staff.</p>
+<p><strong>This is the part to be most careful with in box two. Same product does not mean same value.</strong></p>
+<p>Value comes from the situation, not the object.</p>
+<p>Which is how two companies selling the identical thing end up fighting over 3% margins and comfortably keeping 30%.</p>
+<h2>◆ When value expires</h2>
+<p>Box two has a shelf life.</p>
+<ul><li>When customers can do it themselves, <strong>time</strong> value goes.</li><li>When the risk genuinely falls, <strong>risk removal</strong> value goes.</li><li>When the door widens, <strong>access</strong> value goes.</li><li>When everyone has one, <strong>status</strong> value goes.</li><li>When competitors become equally reliable, <strong>certainty</strong> value goes.</li></ul>
+<p>Those five decay routes come back in Chapter 5, the fault line.</p>
+<p><strong>Fill box two properly and half of box five is already filled.</strong></p>
+<h2>◆ Worked example — a cup of coffee</h2>
+<p>The same coffee sells something different depending on where it's sold.</p>
+<p><strong>Office vending machine coffee sells time.</strong> No going out, no queue. So expectations of taste are low, the price is low, and location is everything.</p>
+<p><strong>A café seat sells access.</strong> Two hours of space, an outlet, wifi. Which is why turnover has to be managed and the seating plan decides revenue.</p>
+<p><strong>Carrying a particular cup mixes in status.</strong> So that brand spends money on cup design, prints the logo large, and changes it every season.</p>
+<p><strong>Franchise coffee sells certainty.</strong> The choice that won't fail in an unfamiliar neighborhood. So most of the effort goes into making every location taste the same.</p>
+<p>All four are coffee businesses. They need different capabilities and they fail for different reasons.</p>
+<p><strong>Get box two wrong and you pour effort into the wrong place.</strong> Upgrading the beans to improve vending machine coffee is exactly that mistake.</p>
+<h2>◆ Diagnostic questions</h2>
+<ol><li>If the customer hadn't spent this money, what would have happened?</li><li>What does the same result cost by another route?</li><li>Is this value closest to time, risk, access, status, or certainty?</li><li>Put the same product in a different situation — does the price rise or fall?</li><li>What would have to change for this value to disappear?</li></ol>
+<h2>◆ In short</h2>
+<ul><li>Customers don't buy products. They buy the inconvenience removed or the state created.</li><li>Value sorts into five: <strong>time, risk removal, access, status, certainty.</strong></li><li><strong>Cost sets only the floor.</strong> The ceiling comes from the customer's alternative.</li><li>Same product, different situation, different value — and so different margin.</li><li>Every value has a decay route, and that's the trailer for box five.</li></ul>
+<p>Next is box three. The price is set, so what's left is <strong>how you collect it.</strong></p>
+<p>Collect the same amount two different ways and you have two different companies.</p>
+<h2>◆ Try It Yourself</h2>
+<p>Think of <strong>the most expensive thing</strong> you've bought in the last month.</p>
+<p>Write one sentence on paper:</p>
+<blockquote><p><em>If I hadn't bought this, I would have ______.</em></p></blockquote>
+<p>Fill the blank, then ask the follow-up. What would that alternative have cost?</p>
+<p><strong>Whatever went in the blank is what the thing was actually worth.</strong> And it's usually not the number on the receipt.</p>
+<p><strong>Nobody who has seen that gap goes back to pricing from cost.</strong></p></section>
+<section class="ch" id="s103"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 3 · Payment — When You Collect Matters More Than What</h1><h2>◆ Two sandwich shops</h2>
+<p>Two shops on the same street. Same menu, same prices, same daily takings.</p>
+<p>The first one charges you when you finish eating.</p>
+<p>The second sells a ten-meal card up front, and you eat against the card.</p>
+<p>A year later their bank accounts look nothing alike.</p>
+<p>The second shop is always holding the money for meals not yet eaten. With it, they buy ingredients in bulk at a discount, or take the lease next door, or survive a bad month.</p>
+<p>The first shop doesn't have that money.</p>
+<p><strong>Same business. Only the collection differs.</strong></p>
+<p>The question in box three is this:</p>
+<blockquote><p><strong>How, and when, does the money arrive?</strong></p></blockquote>
+<h2>◆ Eight ways to collect</h2>
+<p>The world's payment methods sort into roughly eight.</p>
+<h3>1. Sales margin</h3>
+<p>Buy low, sell high. Make it and sell it. The oldest and most common.</p>
+<p>Its defining feature is that <strong>you have to sell it again every time.</strong> A hundred units last month doesn't produce a hundred this month. Every month restarts at zero.</p>
+<p>Which means when sales and marketing stop, revenue stops.</p>
+<h3>2. Subscription</h3>
+<p>Sell the right to use for a period, collect on a cycle.</p>
+<p>The power here isn't the revenue. It's <strong>the character of the revenue.</strong> Most of this month was already decided last month.</p>
+<p>So next month is visible, and what's visible can be invested against.</p>
+<p>In exchange you inherit a metric that sales margin doesn't have: <strong>churn.</strong> Bring in a hundred new people while a hundred existing ones leave and you've stood still.</p>
+<p><strong>The real fight in a subscription business is retention, not acquisition.</strong></p>
+<h3>3. Brokerage commission</h3>
+<p>Connect a transaction, take a share of it.</p>
+<p>The appeal is that <strong>there's no inventory and no cost of goods.</strong> Nothing to buy in advance, no loss if it doesn't sell. More transactions, more revenue, and nothing else moves.</p>
+<p>The weakness comes from the same place. Once the two sides know each other, next time they deal direct.</p>
+<p>So brokers are permanently occupied with <strong>making it hard to be skipped.</strong> Hold the payment. Stand in for trust. Handle the disputes. Or simply hide the contact details.</p>
+<h3>4. Advertising</h3>
+<p>Gather attention, then sell the attention.</p>
+<p>This is where Chapter 1's multi-sided structure attaches. The user and the payer are different people.</p>
+<p>Revenue here is a product of two things: <strong>volume of attention × price of attention.</strong> More users raises the first. Knowing more about those users raises the second.</p>
+<p>Which is why companies that earn from advertising all collect data. And why they all end up colliding with regulators over it.</p>
+<p><strong>That isn't an accident. It's the structure.</strong></p>
+<h3>5. Licensing and royalties</h3>
+<p>Don't make it — sell the right to use it. Usually an up-front fee plus a per-use rate.</p>
+<p>This method <strong>sells one thing many times.</strong> Copying costs almost nothing, so more usage barely adds cost. Margins can become extreme.</p>
+<p>But somebody else does the making. If they don't make anything, there are no royalties.</p>
+<p><strong>So revenue depends not on your effort but on your customer's success.</strong> Choosing good partners becomes most of the business.</p>
+<h3>6. Leasing and rental</h3>
+<p>Own it, lend it out. Equipment, space, vehicles.</p>
+<p>You spend a lot up front and collect slowly over a long period. So it needs capital to start, and what decides the outcome is <strong>what happens to the asset's value during the recovery period.</strong></p>
+<p>You have to recover faster than the thing wears out.</p>
+<h3>7. Franchising</h3>
+<p>Lend the name and the method, collect a fee plus a share of sales.</p>
+<p>It spreads much faster than opening your own locations, because <strong>it expands using other people's money.</strong></p>
+<p>In exchange you don't directly control quality at any location.</p>
+<p>So skill in a franchise business isn't cooking. <strong>It's building a standard and making it hold.</strong></p>
+<h3>8. Money up front</h3>
+<p>Collect first, deliver later.</p>
+<p>The meal card above. Gift cards, deposits, annual fees, insurance premiums.</p>
+<p>This one deserves its own section, and it gets one next.</p>
+<h2>◆ When you collect — working capital, the hidden force</h2>
+<p>Back to the sandwich shops. That money sitting in the second one has a name.</p>
+<p>On the books it's a liability, because it's an obligation to deliver something not yet delivered.</p>
+<p>But it's <strong>a liability with no interest, no maturity, and nobody calling to collect.</strong></p>
+<p>A business that takes money before spending on costs accumulates cash as it grows.</p>
+<p>A business that spends before collecting <strong>runs dry as it grows.</strong></p>
+<p>How large that difference is doesn't show easily. Two companies can have identical income statements while one goes to the bank as it grows and the other fills its vault.</p>
+<p><strong>The companies that sell well and die are usually dying on this side</strong> — running out of cash while growing.</p>
+<p>Revenue climbs. The money spent to produce that revenue hasn't been collected yet. The gap stacks up. And at some point there are receivables on paper and nothing in the account to pay the bank with.</p>
+<p>So when you fill box three, don't write only the method. Write the timing.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Check</th><th>Why</th></tr></thead><tbody><tr><td>When money arrives</td><td>Before or after delivery</td></tr><tr><td>When costs go out</td><td>Before or after the money</td></tr><tr><td>The gap between them</td><td>Days, or months</td></tr><tr><td>What the gap does as you grow</td><td>Widening means cash dries up. Narrowing means the business funds itself</td></tr></tbody></table></div></div>
+<p>Part Two has companies that pushed this to the limit — one that sells coffee while effectively running deposits, one that collects premiums and invests them.</p>
+<h2>◆ Same product, different collection, different company</h2>
+<p>Change box three and the company changes. Without touching the product at all.</p>
+<p>Take software.</p>
+<p><strong>Sell it as a package</strong> and a large sum arrives at once. Revenue spikes when a new version ships and vanishes when it doesn't. So the company bets everything on one big release every few years.</p>
+<p>The customer buys once and uses that version for a long time. They don't have to upgrade.</p>
+<p><strong>Sell it as a subscription</strong> and the first year's revenue collapses, because what used to arrive at once now arrives in twelve pieces. The company has to survive that valley for a few years.</p>
+<p>After that, revenue accumulates. And because the customer re-judges the price every month, the company has to improve every month.</p>
+<p><strong>The rhythm of product development itself changes.</strong></p>
+<p><strong>Charge by usage</strong> and the barrier to entry disappears. Use a little, pay a little.</p>
+<p>But revenue now tracks the customer's business exactly. When they do well you do well. When they struggle you struggle.</p>
+<p>Same software. Three different companies. Different capital requirements, different organizations, different survival periods, different ways to die.</p>
+<h2>◆ What box three decides in advance</h2>
+<p>The moment you pick a collection method, these follow. They're hard to change later.</p>
+<p><strong>Predictability.</strong> Subscription and licensing let you see next month. Sales margin doesn't. A business that can't see ahead has to keep inventory and staffing conservative, and misses opportunities in proportion.</p>
+<p><strong>Capital needed.</strong> Leasing spends heavily up front. Brokerage spends almost nothing. Someone without capital proposing a leasing business has a plan that was wrong at the first line.</p>
+<p><strong>The shape of growth.</strong> Money-up-front structures gain cash while growing, so they grow under their own power. Collect-later structures dry out while growing, so they need outside money — and dilute equity or pay interest getting it.</p>
+<p><strong>Room to change.</strong> Changing a collection method after the fact is far more dangerous than changing the product. Revenue bends once, customers get angry, and you need capital to survive the valley.</p>
+<p>Do it anyway and you become a different company. Part Two's software section has one that made the crossing.</p>
+<h2>◆ Diagnostic questions</h2>
+<ol><li>Which of the eight does this company use? If more than one, in what mix?</li><li>Does money come in first, or do costs go out first?</li><li>If revenue doubled, would cash increase or decrease?</li><li>What share of this month's revenue was already decided last month?</li><li>If the collection method changed, what company would this become?</li></ol>
+<h2>◆ In short</h2>
+<ul><li><strong>When</strong> you collect shapes the company more than <strong>what</strong> you collect.</li><li>There are roughly eight methods: sales margin, subscription, brokerage, advertising, licensing, leasing, franchising, money up front.</li><li>Collect-first structures gain cash while growing. Collect-later structures dry out.</li><li>The same product with a different collection method is a different company.</li><li>Picking this box also picks your capital needs, your organization, and the shape of your growth.</li></ul>
+<p>That's the first three boxes. You can now explain how a company earns <strong>now.</strong></p>
+<p>One question is left. Nobody watches a business earn this well and does nothing.</p>
+<p><strong>Why hasn't anyone taken it yet?</strong></p>
+<h2>◆ Try It Yourself</h2>
+<p>Write down everything that leaves your account automatically each month. Subscriptions, insurance, phone, utilities, installments. All of it.</p>
+<p>Next to each, write one word: <strong>before</strong> or <strong>after.</strong></p>
+<p>Most people are surprised by the finished list. There are more places than expected where <strong>you have handed someone your money in advance, for free.</strong></p>
+<p>Then the question flips.</p>
+<blockquote><p><strong>Where am I collecting first?</strong></p></blockquote>
+<p>That's the moment you start seeing box three from your own side.</p></section>
+<section class="ch" id="s104"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 4 · Moat — What If a Competitor Shows Up With Ten Times the Money?</h1><h2>◆ The better the business, the faster it disappears</h2>
+<p>A business making good money gets noticed. Once noticed, it gets copied. More copies push the price down. A lower price kills the margin.</p>
+<p><strong>That's the default behavior of a market.</strong></p>
+<p>So if a business earns for a long time, it means there is <strong>something preventing the copy.</strong></p>
+<p>This book calls that thing a <strong>moat</strong> — the water around a castle, there to stop anyone crossing.</p>
+<p>The question in box four is this:</p>
+<blockquote><p><strong>If a competitor shows up tomorrow with ten times the money, what can't they buy?</strong></p></blockquote>
+<p>That framing matters because <strong>most "strengths" can be bought.</strong> Good people can be hired away. Good equipment can be purchased. Good advertising can be outspent.</p>
+<p><strong>Only when you can name what money can't buy do you have a moat.</strong></p>
+<h2>◆ Five moats</h2>
+<h3>1. Economies of scale</h3>
+<p>Make more and the cost per unit falls. So the larger player sells cheaper and still profits, and the smaller one can't match the price without losing money.</p>
+<p>One caution. <strong>Being big isn't automatically a moat.</strong></p>
+<p>Scale becomes power only when <strong>fixed costs are a large share</strong> — factories, research, logistics networks, software. Things built once and used many times.</p>
+<p>When most of the cost is materials, making ten times as many barely moves the cost per unit.</p>
+<p>And scale has an end. Past a certain point, getting bigger stops lowering costs. <strong>If two or more competitors have already reached that point, scale is no longer a moat.</strong></p>
+<h3>2. Network effects</h3>
+<p>The more people use it, the better it gets for each of them. Messaging, marketplaces, payment networks, standards.</p>
+<p><strong>The strongest moat there is</strong>, because a latecomer with a better product still loses. A crowded bad marketplace beats an empty good one.</p>
+<p>But network effects come in grades.</p>
+<p><strong>Same-side effects are strongest.</strong> More users makes it better for users. Messaging works this way. Here, one person leaving hurts the ones who stay, so it rarely collapses.</p>
+<p><strong>Cross-side effects are weaker.</strong> More sellers makes it better for buyers. Marketplaces work this way. If sellers can list on several marketplaces at once, the effect is halved. When the same item is on all three, none of them is strong.</p>
+<p><strong>Locally trapped effects</strong> look national but are actually neighborhood-sized. Food delivery is the example. What matters is how many restaurants are in <em>your</em> area — a thousand in another city do nothing for you.</p>
+<p>Which means the fight has to be won again in every neighborhood.</p>
+<h3>3. Switching costs</h3>
+<p>Changing is annoying, expensive, or risky, so nobody changes.</p>
+<p><strong>Switching costs made of money are weak.</strong> A competitor can simply pay them.</p>
+<p><strong>Switching costs made of time and risk are strong.</strong> Years of accumulated data. An entire staff fluent in one screen. A cutover where a single day of downtime would be a disaster.</p>
+<p><strong>Money can't remove those.</strong></p>
+<p>Switching costs grow quietly. Low on the day of adoption, higher every year after.</p>
+<p>Which is why companies with this moat offer absurd discounts to new customers. <strong>They know that once you're in, leaving is hard.</strong></p>
+<h3>4. Intangible assets</h3>
+<p>Things protected by law or by perception. Three kinds.</p>
+<p><strong>Permits and licenses.</strong> The law stops anyone else from doing it. The most certain and the laziest moat.</p>
+<p>Certain, because a competitor with money still can't enter. Lazy, because a change in the law removes it overnight.</p>
+<p>Part Two's fishing section has an industry that lives on this moat.</p>
+<p><strong>Patents and plant varieties.</strong> These have an end date, and that date is the moat's end date. So a company leaning on this has to prepare the next thing before expiry, or move to a moat that doesn't expire.</p>
+<p><strong>Brand.</strong> Here there's a lot of confusion. <strong>Being well known is not a brand.</strong></p>
+<p>For a brand to be a moat it has to get past <em>they recognize it</em> all the way to <em>they pay more for it.</em></p>
+<p>Put the same object under a different label. <strong>Is there someone who'd pay more?</strong> If not, that's awareness, not a moat.</p>
+<h3>5. Cost advantage</h3>
+<p>A structural reason you can make it cheaper than anyone else.</p>
+<p><strong>Location.</strong> A smelter next to the mine. A warehouse at the port. A shop at the station exit. Locations can't be copied, and there is a fixed number of good ones.</p>
+<p><strong>Resource access.</strong> Something that only occurs in one region. Supply locked in by long contracts.</p>
+<p><strong>Process.</strong> A method others don't know, or know-how built up over years.</p>
+<p>But process leaks through people. <strong>When the key staff leave, it goes with them.</strong></p>
+<h2>◆ Things that are not moats</h2>
+<p>Filtering these out is half of this chapter.</p>
+<p><strong>Being first.</strong> A head start only buys time. If you don't build one of the five inside that time, it's nothing. The list of first movers beaten by latecomers is endless.</p>
+<p><strong>Superior technology.</strong> Technology usually gets caught. It becomes a moat only when locked up by patent, or when what matters is the switching cost built on top of it.</p>
+<p><strong>Technology isn't the moat. What accumulates on top of it is.</strong></p>
+<p><strong>A great team.</strong> People leave. A team becomes a moat only when what it built stays in the organization after it goes.</p>
+<p><strong>Having a lot of money.</strong> Capital is precisely the thing money buys. By definition it isn't a moat.</p>
+<p>Though capital can buy time, and a real moat can be built during that time.</p>
+<p><strong>Having a lot of customers.</strong> A customer count is not a moat.</p>
+<p>It becomes one only when those customers are connected to each other (network), or find it hard to leave (switching costs), or make the cost per unit fall (scale).</p>
+<h2>◆ Measuring a moat's strength</h2>
+<p>Having a moat and having a strong one are different things. Measure three ways.</p>
+<p><strong>Width — how many competitors does it stop?</strong> A moat that covers one neighborhood is not a moat that covers a country.</p>
+<p><strong>Depth — what does crossing it cost?</strong> You should be able to answer in numbers: how many years and how much money a competitor would need.</p>
+<p><strong>Lifespan — how long is it valid?</strong> Patents expire. Permits vanish when policy changes. Network effects collapse when people move elsewhere.</p>
+<p><strong>A moat with an expiry date has to be worked backwards from that date.</strong></p>
+<h2>◆ Moats stack</h2>
+<p>Strong companies don't have one moat. They have several, holding each other up.</p>
+<p>Scale makes it cheap to produce. Cheap means it sells more. Selling more accumulates data. Data improves the product. A better product makes people reluctant to switch.</p>
+<p>Now a competitor can't break through in one place. <strong>They have to break all of it at once.</strong></p>
+<p>So when filling box four, check <strong>how many</strong> and <strong>whether they interlock.</strong></p>
+<p>One moat, standing alone, means everything falls when that one falls.</p>
+<h2>◆ Diagnostic questions</h2>
+<ol><li>If a competitor arrives tomorrow with ten times the money, what can't they buy?</li><li>Which of the five is it? If several, do they interlock?</li><li>How many years and how much money would breaking it take?</li><li>Does this moat have an expiry date? When?</li><li>Has anyone actually tried to copy this and failed? Why did they fail?</li></ol>
+<p><strong>The last one is the most powerful.</strong> A failed pursuer means the moat is proven.</p>
+<p>If nobody has tried yet, you may not have a moat — <strong>you may just have a small market.</strong></p>
+<h2>◆ In short</h2>
+<ul><li>Any business earning well will attract copies. If it hasn't been taken, there's a reason.</li><li>Five moats: **scale, network effects, switching costs, intangible assets, cost advantage.**</li><li><strong>Anything money can buy is not a moat.</strong> That includes being first, technology, the team, and capital.</li><li>Measure a moat by <strong>width, depth, and lifespan.</strong></li><li>Strong companies have several, and they interlock.</li></ul>
+<p>One box left. And it's the most important one.</p>
+<p><strong>Because every moat stands on a condition, and conditions change.</strong></p>
+<h2>◆ Try It Yourself</h2>
+<p>Pick a place you go often. A café, a restaurant, a barber.</p>
+<p>Ask one question:</p>
+<blockquote><p><strong>If the price went up 20% tomorrow, would I still go?</strong></p></blockquote>
+<p>If yes, that place has a moat. Write one line saying what it is.</p>
+<p>If no, it doesn't, and it's surviving on price alone.</p>
+<p>That single question can carry this entire chapter.</p>
+<p><strong>And it works just as well on a company — or on your own job.</strong></p></section>
+<section class="ch" id="s105"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 5 · Fault Line — When the Moat Turns Into a Liability</h1><h2>◆ They die because they were strong</h2>
+<p>Look at companies that collapse and most of them didn't die from laziness.</p>
+<p><strong>They died from continuing to be good at the thing they were good at.</strong></p>
+<p>That sounds strange until you look at the structure.</p>
+<p>A moat is built on a condition. While the condition holds, the moat protects the company.</p>
+<p>When the condition changes, everything poured into building that moat becomes weight.</p>
+<p>A network of stores across a country is a moat while people go to stores. When they stop, what's left is rent and payroll.</p>
+<p>And you can't remove a store network overnight.</p>
+<p><strong>The moat has turned into a liability.</strong></p>
+<p>The question in box five is this:</p>
+<blockquote><p><strong>What would have to change to kill this business?</strong></p></blockquote>
+<h2>◆ Write the conditions down first</h2>
+<p>The way to find fault lines is to turn the moat over.</p>
+<p>For every moat in box four, write what has to be true for it to hold.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Moat</th><th>The condition it needs</th></tr></thead><tbody><tr><td>Economies of scale</td><td>Fixed costs are a large share, and the market keeps growing</td></tr><tr><td>Network effects</td><td>Users stay in one place</td></tr><tr><td>Switching costs</td><td>Changing still costs real time and risk</td></tr><tr><td>Permits and licenses</td><td>The regulation stays</td></tr><tr><td>Patents</td><td>The expiry date hasn't arrived</td></tr><tr><td>Brand</td><td>People still pay more for the name</td></tr><tr><td>Location</td><td>People still come to that spot</td></tr></tbody></table></div></div>
+<p>Written out like this, what to monitor becomes obvious.</p>
+<p><strong>Watch the conditions, not the competitors.</strong></p>
+<h2>◆ Five collapse routes</h2>
+<h3>1. Regulation changes</h3>
+<p>The most sudden. A door held shut by licensing opens, or something you were doing gets prohibited.</p>
+<p>A cap appears on fees. Data use gets restricted. Qualification requirements relax.</p>
+<p>A business leaning on regulation shouldn't be watching competitors. <strong>It should be watching legislatures and ministries.</strong></p>
+<p>And this change is usually announced. It's debated for years and then takes effect one day.</p>
+<p><strong>Nobody failed to see it. They failed to look.</strong></p>
+<h3>2. Technology substitutes</h3>
+<p>The inconvenience you removed disappears by another route.</p>
+<p>The thing to watch is that <strong>substitution doesn't come head-on.</strong> It isn't a better version of the same object. It's a different path that makes the object unnecessary.</p>
+<p><strong>What killed film companies wasn't better film.</strong></p>
+<p>So this risk is invisible if you're watching your own industry. You have to look through <strong>value</strong>, from Chapter 2.</p>
+<p><em>The inconvenience we used to remove — how are people solving it now?</em></p>
+<h3>3. Customers move</h3>
+<p>The composition or the habits of customers change. It happens naturally as generations turn over.</p>
+<p><strong>This collapse arrives slowest, which is why it's noticed last.</strong></p>
+<p>Revenue doesn't crash. It declines slightly. A few percent a year doesn't feel like a crisis.</p>
+<p>By the time anyone reacts, the average age of the customer base has climbed twenty years.</p>
+<p><strong>To see it in the numbers, don't look at revenue. Look at the age of new customers.</strong></p>
+<h3>4. Suppliers revolt</h3>
+<p>The risk flagged in Chapter 3, under licensing and brokerage.</p>
+<p>The two sides you introduced get to know each other and deal direct. The supplier who fed you starts selling to consumers. The people making the content open their own channel.</p>
+<p><strong>This risk grows because you succeeded.</strong></p>
+<p>The more you sell for a supplier, the bigger that supplier gets. Big enough, and they can do it alone.</p>
+<p>So companies in this structure manage supplier size deliberately. Don't concentrate on one. Spread across several. Always keep an alternative open.</p>
+<h3>5. Growth undermines itself</h3>
+<p>The most frequent route, and the hardest to notice. <strong>The act of growing the business eats the moat.</strong></p>
+<p>Chapter 2's access value is the example. The price was high because the door was narrow. Widen the door to raise revenue and the price falls.</p>
+<p>Status is the same. Sell more and scarcity goes. Scarcity goes and the status goes.</p>
+<p>Franchises do it too. Add locations quickly and revenue rises while quality control slips. Quality slips and the certainty value collapses. Once certainty is gone, there's no reason to be a franchise.</p>
+<p><strong>What makes this route frightening is that the destructive action looks like performance.</strong></p>
+<p>Store count up. Revenue up. Members up. Every indicator is green.</p>
+<p>And then it all gives way at once.</p>
+<h2>◆ Fault lines are usually announced</h2>
+<p>Read the record of companies that collapsed and the signals were almost always there in advance.</p>
+<p>They weren't missed. <strong>They were seen and not acted on.</strong></p>
+<p>The reason they weren't acted on isn't competence. It's structure.</p>
+<p>Acting requires denying the thing that currently pays the bills.</p>
+<p>When a company that earns through stores proposes closing stores, the block comes from inside first — because the person making that decision has a job that depends on the stores.</p>
+<p>Which is why <strong>box five is filled better by outsiders.</strong></p>
+<p><strong>It's easy to see in someone else's company and invisible in your own.</strong></p>
+<p>That's exactly why the last chapter of this book asks you to apply the frame to your own business.</p>
+<h2>◆ Three ways companies handle a fault line</h2>
+<p>Finding one doesn't mean death. Companies do three things.</p>
+<p><strong>Buy time.</strong> Slow the regulatory process, lock customers into longer contracts, pile on more switching cost.</p>
+<p>Not a solution, but it buys room to prepare the next move.</p>
+<p><strong>Change moats.</strong> Raise the brand's value before the patent expires. Build the network before the licensing opens up. The hardest option and the most durable.</p>
+<p><strong>Break it yourself.</strong> Do it before someone else does.</p>
+<p>Moving a well-selling package product to subscription is this decision. It means accepting that revenue bends once.</p>
+<p><strong>Which is why almost nobody does it.</strong></p>
+<p>Part Two has a company that actually did.</p>
+<h2>◆ Diagnostic questions</h2>
+<ol><li>For each moat in box four, what condition does it depend on?</li><li>Is any of those conditions currently moving?</li><li>To kill this business, would you touch regulation, technology, customers, or suppliers?</li><li>Is anything currently counted as performance quietly eating the moat?</li><li>If the company knows about this risk, why hasn't it acted?</li></ol>
+<p>The answer to the last one is rarely <em>"they don't know."</em></p>
+<p>Usually they know, and <strong>acting would mean denying what pays today.</strong></p>
+<p>Understanding that constraint is part of box five.</p>
+<h2>◆ In short</h2>
+<ul><li>Companies don't die from doing badly. They die from continuing to do well at the old thing.</li><li>Every moat stands on a condition. <strong>Write the condition down and watch it.</strong></li><li>Five collapse routes: **regulation, substitution, customers moving, suppliers revolting, growth's trap.**</li><li>The most dangerous is growth's trap, because the destructive action looks like success.</li><li>Fault lines are usually announced. They aren't missed — they're not acted on.</li></ul>
+<p>All five boxes are full. The next chapter turns this into a procedure you can run in thirty minutes.</p>
+<h2>◆ Try It Yourself</h2>
+<p>Go back to the place you picked in Chapter 4.</p>
+<p>If you answered <em>"I'd still go,"</em> you wrote down a reason.</p>
+<p>Now ask the reverse.</p>
+<blockquote><p><strong>What would have to change for me to stop going?</strong></p></blockquote>
+<p>Write three things.</p>
+<p>Once they're written, at least one of them is probably already happening a little.</p>
+<p><strong>That's the fault line.</strong> And it was usually in plain sight.</p>
+<p><strong>What you can see in someone else's shop, you can see in your own work.</strong></p>
+<p>The order just matters. You have to look at theirs first.</p></section>
+<section class="ch" id="s106"><span class="eyebrow">Part One · The Five Boxes</span><h1>Chapter 6 · Diagnosis — Thirty Minutes to Fill All Five</h1><h2>◆ A tool isn't a tool without a procedure</h2>
+<p>The last five chapters settled what to ask.</p>
+<p>But meeting an unfamiliar company for the first time, it's still unclear where to put your hands.</p>
+<p>This chapter is the procedure. Where to get material, what order to read it in, and what to do when a box won't fill.</p>
+<p>Once it's familiar, a first draft takes thirty minutes. The first few times it takes a couple of hours.</p>
+<h2>◆ Where the material comes from</h2>
+<p><strong>Don't start by searching the company's name.</strong></p>
+<p>The top of those results is usually material the company published itself, or somebody's summary of somebody else's summary.</p>
+<p><strong>Start with primary sources.</strong></p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>What you want</th><th>Where</th></tr></thead><tbody><tr><td>A US public company's revenue structure</td><td>SEC EDGAR — the 10-K, or the 20-F for foreign issuers</td></tr><tr><td>A UK public company</td><td>Annual report, and Companies House filings</td></tr><tr><td>Large private companies</td><td>Statutory accounts, where the jurisdiction requires filing</td></tr><tr><td>How the company describes itself</td><td>The investor relations page — earnings presentations</td></tr><tr><td>The size of a whole industry</td><td>International bodies. FAO for food and fisheries, UNWTO for tourism</td></tr><tr><td>Country-level indicators</td><td>World Bank, OECD, IMF, national statistics offices</td></tr></tbody></table></div></div>
+<p>In an annual report the first two places to look are <strong>the description of the business</strong> and <strong>revenue by segment.</strong></p>
+<p><strong>How a company chooses to divide its own reporting is the answer to box three.</strong></p>
+<p>If revenue is split into advertising and subscription, that is how the company understands itself.</p>
+<h2>◆ The order — 3 → 1 → 2 → 4 → 5</h2>
+<p>There's a faster route than filling the boxes by number.</p>
+<p><strong>Start with box three, payment.</strong></p>
+<p>Payment is stated most plainly in the source material — the segment revenue table gives it to you directly.</p>
+<p>And once you know how it collects, who pays follows. Large advertising revenue means advertisers are the customer. Large subscription revenue means users are.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Step</th><th>Box</th><th>What you do</th><th>Time</th></tr></thead><tbody><tr><td>1</td><td><strong>3. Payment</strong></td><td>List segment revenue, largest first</td><td>5 min</td></tr><tr><td>2</td><td><strong>1. Customer</strong></td><td>For each line, name who wires the money</td><td>5 min</td></tr><tr><td>3</td><td><strong>2. Value</strong></td><td>One sentence on what each of them gets</td><td>5 min</td></tr><tr><td>4</td><td><strong>4. Moat</strong></td><td>Why they don't go elsewhere. Find the failed pursuers</td><td>7 min</td></tr><tr><td>5</td><td><strong>5. Fault Line</strong></td><td>Invert the moat's conditions</td><td>5 min</td></tr></tbody></table></div></div>
+<p><strong>Box four takes the longest</strong>, because it's the only box that isn't written down anywhere.</p>
+<p><strong>Companies don't explain their moats. They hide them.</strong></p>
+<h2>◆ Practical ways to find box four</h2>
+<p><strong>Search for companies that tried and failed.</strong> Look for the name plus <em>shut down</em>, <em>exits</em>, <em>discontinued</em>. The traces of pursuers appear. <strong>Why they failed is what the moat is.</strong></p>
+<p><strong>Look at where the money goes.</strong> Research spending, capital expenditure, marketing as a share of revenue. A company spends to defend its moat. <strong>Where the money piles up is the moat.</strong></p>
+<p><strong>Look at contract length and renewal rates.</strong> Long and high means switching costs exist.</p>
+<p><strong>Look for a price increase.</strong> If they raised prices and customers didn't leave, there's a moat.</p>
+<p><strong>This is the strongest evidence available.</strong> A price increase is an experiment run on the moat.</p>
+<h2>◆ What to do with a box that won't fill</h2>
+<p>All five filling cleanly is the exception, not the rule. An empty box means one of three things.</p>
+<p><strong>One. You haven't read enough.</strong> The most common. You didn't open the annual report, or couldn't find the segment table, or skipped a document in another language. More looking fixes this.</p>
+<p><strong>Two. The company is hiding it.</strong> It's private, or it reports segments lumped together, or it won't disclose the revenue mix.</p>
+<p>Here <strong>the empty box is itself information.</strong> Ask why they won't say, and the answer usually appears.</p>
+<p><strong>Three. The box is genuinely empty.</strong> Businesses with no moat exist. So do businesses with unclear value.</p>
+<p><strong>An empty box four means margins are being ground down — now, or shortly.</strong></p>
+<p><strong>Not forcing a box is the important part.</strong></p>
+<p>Fill box four with <em>"brand power"</em> or <em>"accumulated know-how"</em> and you've stopped diagnosing and started writing an impression.</p>
+<p>If you can't produce evidence, leave it blank and write <em>needs checking.</em></p>
+<h2>◆ Five common traps</h2>
+<p><strong>1. Copying down the company's description of itself.</strong> Every company says it is a technology company, a platform, an innovator. <strong>Read the revenue table, not the adjectives.</strong></p>
+<p><strong>2. Mistaking the famous product for the main one.</strong> The product people know and the product that earns are often different. Part Two has several of these.</p>
+<p><strong>3. Being swayed by recent news.</strong> One quarter doesn't change a structure. Look at three years minimum.</p>
+<p><strong>4. Confusing growth rate with structure.</strong> Growing fast and earning well are separate questions. <strong>Growth rate doesn't appear in any of the five boxes.</strong></p>
+<p><strong>5. Reading a bad business as a bad company.</strong> There are excellent operators running structurally weak businesses.</p>
+<p>The five boxes look at <strong>the structure of the business</strong>, not the ability of the company. Mixing the two clouds the judgment.</p>
+<h2>◆ The table format</h2>
+<p>Make it fit on one page. Filled in, it looks like this.</p>
+<div class="table-wrap"><div class="tblwrap"><table><thead><tr><th>Box</th><th>Item</th><th>What goes in</th></tr></thead><tbody><tr><td>1</td><td>Customer</td><td>Who wires money, largest first. Mark the bottleneck</td></tr><tr><td>2</td><td>Value</td><td>One sentence per customer. Which of the five types</td></tr><tr><td>3</td><td>Payment</td><td>Which of the eight, in what mix, before or after</td></tr><tr><td>4</td><td>Moat</td><td>Which of the five, depth and lifespan, failed pursuers</td></tr><tr><td>5</td><td>Fault Line</td><td>The moat's conditions, and which are moving now</td></tr></tbody></table></div></div>
+<p>Every one of Part Two's eighteen chapters ends with this table.</p>
+<p>Collect the tables and businesses from completely different industries sit side by side, comparable.</p>
+<p><strong>That's where this book differs from a book of cases.</strong></p>
+<h2>◆ Comparing two companies</h2>
+<p>The real use of the five boxes shows up in comparison.</p>
+<p><strong>Compare box to box only.</strong> Comparing company A's moat against company B's payment method produces nothing.</p>
+<p><strong>Find the boxes that differ first.</strong> Two companies in the same industry usually share boxes one, two, and three. Which means the outcome is decided in four and five. Spend the time there.</p>
+<p><strong>Across different industries, start at box three.</strong> Two companies in unrelated industries sometimes use the identical collection structure.</p>
+<p>The moment they do, <strong>they are the same kind of business.</strong></p>
+<p>Part Two has a scene where a coffee company and an insurance company end up in the same seat.</p>
+<h2>◆ In short</h2>
+<ul><li>Start from primary sources, not search results. Filings and annual reports.</li><li>The order is <strong>3 → 1 → 2 → 4 → 5.</strong> Payment first is faster.</li><li><strong>Only box four isn't in the documents.</strong> Find it in failed pursuers and price increases.</li><li>Don't force an empty box. <strong>The blank is information.</strong></li><li>One page per table. Enough tables and you have a comparable database.</li></ul>
+<p>Part One is done. The tool is in your hands.</p>
+<p>Part Two points it at eighteen businesses across nine fields.</p>
+<p><strong>The first is a company that led the world and lost money for years.</strong></p>
+<h2>◆ Try It Yourself</h2>
+<p>Pick a company you care about. Where you work is fine. A brand you like is fine.</p>
+<p>Set a timer for thirty minutes and fill it in this order:</p>
+<p><strong>Box 3 → Box 1 → Box 2 → Box 4 → Box 5.</strong></p>
+<p>When a box won't fill, don't force it. Write <em>needs checking.</em></p>
+<p>Looking at the finished table after thirty minutes, most people find two things.</p>
+<p>There's a box they thought they knew and didn't. And a box they thought they didn't know and did.</p>
+<p><strong>That table is the actual output of this book.</strong></p>
+<p>Part Two is just filling it in eighteen more times.</p></section>
+<footer class="book">Who&#x27;s Actually Paying? · The Five Boxes Series · Book One</footer>
+</div>
+</body></html>
