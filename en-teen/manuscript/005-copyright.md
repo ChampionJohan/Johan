@@ -4,6 +4,7 @@ part: Title
 kind: front
 order: 5
 status: ready
+lint: skip   # 판권지는 종결 부호를 찍지 않는 것이 맞다
 ---
 
 ## Anatomy of Money for Teens

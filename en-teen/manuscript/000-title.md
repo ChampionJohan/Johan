@@ -4,6 +4,7 @@ part: Title
 kind: front
 order: 0
 status: ready
+lint: skip   # 표제지는 전시용 조판이라 종결 부호를 안 찍는다
 ---
 
 ## Anatomy of Money for Teens

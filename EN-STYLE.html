@@ -1,0 +1,93 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>English Edition — Style, Punctuation, and Localization Rules</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#8A2E2E;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#d98b8b;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap"><p class="meta">2026-09-09</p><h1>A correction to what I said last time</h1>
+<p>Last turn I wrote: <em>keep the Korean cases, add a one-clause gloss.</em></p>
+<p><strong>That is right for the adult books and wrong for the teen books.</strong></p>
+<p>The teen book's promise is printed on its own title page:</p>
+<blockquote><p>Part Two puts <strong>ten brands you already know</strong> through all five boxes.</p></blockquote>
+<p>An American fifteen-year-old does not know Compose Coffee, Musinsa, or Danggeun. Glossing them doesn't fix it — the chapter still opens by assuming recognition the reader doesn't have, and the whole premise of Part Two collapses.</p>
+<p>So the rule splits by book:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Policy</th><th>Why</th></tr></thead><tbody><tr><td><strong>Adult books</strong></td><td><strong>Keep and gloss</strong></td><td>The reader is analytical. Unfamiliar cases are the reason to buy <em>this</em> book instead of another one with Apple and Amazon in it.</td></tr><tr><td><strong>Teen books</strong></td><td><strong>Swap</strong></td><td>The book's promise is recognition. A case the reader doesn't recognize isn't a hard case — it's a dead chapter.</td></tr></tbody></table></div>
+<hr>
+<h1>1. Punctuation rules</h1>
+<p>English is stricter than Korean about terminal marks. These are enforced by <code>tools/en_lint.py</code>, which runs over the manuscript and reports violations.</p>
+<h2>The rules</h2>
+<p><strong>Every sentence in body text ends with a mark.</strong> No exceptions in prose. Korean tolerates a trailing clause that just stops. English reads it as an error.</p>
+<p><strong>Headings take no period.</strong> But they keep <code>?</code> and <code>!</code> when they earn them.</p>
+<blockquote><h2>Then who is?</h2>
+<h2>What if the spenders stop?</h2>
+<h2>This isn't only about games</h2></blockquote>
+<p><strong>Questions get <code>?</code> — including rhetorical ones.</strong></p>
+<blockquote><p>So how does that company cover its servers, pay its staff, and still buy ads?</p></blockquote>
+<p><strong>Rhetorical fragments that are not questions keep the period.</strong> This is the distinction the linter had to be taught, because it matters:</p>
+<blockquote><p>Why that app is free. Why that shop only takes cards.</p></blockquote>
+<p>Those are not questions. They are a list of things you will start to notice. A <code>?</code> there would be wrong.</p>
+<p><strong>Exclamation marks are rationed.</strong> The series voice is dry and confident; it does not shout. The teen books allow more than the adult books, but:</p>
+<ul><li>never more than <strong>two per paragraph</strong> (linter flags three)</li><li>never in the adult books except in quoted speech</li><li>never to manufacture excitement the sentence hasn't earned</li></ul>
+<p><strong>Em dashes</strong> for interruption, spaced or unspaced consistently — this project uses spaced em dashes, matching the Korean edition's use of <code>—</code>.</p>
+<p><strong>Colons</strong> introduce a payoff. Use them where the Korean used <code>:</code> or a line break before a punchline.</p>
+<h2>What the linter checks</h2>
+<pre><code>python3 tools/en_lint.py en-teen en-book en-teen2 en-book2</code></pre>
+<div class="table-wrap"><table><thead><tr><th>Check</th><th>Why it exists</th></tr></thead><tbody><tr><td>Paragraph with no terminal mark</td><td>The single most common translation slip</td></tr><tr><td>Inverted-auxiliary sentence ending in <code>.</code></td><td><em>"Is it worth it."</em> → needs <code>?</code></td></tr><tr><td>Three or more <code>!</code> in one paragraph</td><td>Voice drift</td></tr><tr><td>Hangul left in the file</td><td>Untranslated fragments hide easily at 100k words</td></tr></tbody></table></div>
+<p>Front matter can carry <code>lint: skip</code> for display pages (title page, colophon) where terminal marks are deliberately absent.</p>
+<hr>
+<h1>2. Voice</h1>
+<h2>Adult books</h2>
+<p>Declarative. Short sentences. The Korean uses plain <code>~다</code> endings and never addresses the reader as "you" except in the exercises. English keeps that: third person and impersonal in the analysis, second person in <strong>Try It Yourself</strong>.</p>
+<p><strong>Do not add hedges the Korean doesn't have.</strong> The Korean says <em>막아서 만든 전환 비용은 오래 못 간다</em> — "switching costs built by blocking the exit don't last." Not "tend not to last," not "may not last."</p>
+<h2>Teen books</h2>
+<p>Korean 반말 has no English equivalent. The register that does the same work is <strong>an older sibling who knows things</strong> — not a teacher, not a peer.</p>
+<div class="table-wrap"><table><thead><tr><th>Do</th><th>Don't</th></tr></thead><tbody><tr><td>Contractions everywhere</td><td>Slang (dates the book in three years)</td></tr><tr><td>Second person, direct</td><td>"Kids," "guys," "folks"</td></tr><tr><td>Short sentences. Fragments allowed.</td><td>Talking down</td></tr><tr><td>"Here's the thing."</td><td>"Let's dive in!"</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Korean</th><th>English</th></tr></thead><tbody><tr><td>너 그거 아니?</td><td>Here's the thing.</td></tr><tr><td>그거 정상이야</td><td>That's normal.</td></tr><tr><td>~할 거야</td><td>You'll… / What'll happen is…</td></tr><tr><td>절반만 맞아</td><td>Only half right.</td></tr><tr><td>딱 하나만</td><td>Exactly one.</td></tr></tbody></table></div>
+<hr>
+<h1>3. Brand localization — teen books</h1>
+<p>Ten brands in Part Two, six examples in Part One. Global brands stay. Korea-only brands are replaced by the closest <strong>mechanism</strong> match, not the closest category match — the chapter is teaching a mechanism.</p>
+<h2>Part One</h2>
+<div class="table-wrap"><table><thead><tr><th>Ch</th><th>Box</th><th>Korean</th><th>English</th><th>Mechanism preserved</th></tr></thead><tbody><tr><td>1</td><td>Customer</td><td>무료 모바일 게임</td><td><em>(unchanged)</em> — a free mobile game</td><td>Free user is the product</td></tr><tr><td>2</td><td>Value</td><td>다이소</td><td><strong>a dollar store</strong></td><td>Price point sets expectations</td></tr><tr><td>3</td><td>Payment</td><td>편의점 선불카드</td><td><strong>a gift card</strong></td><td>Money collected before use</td></tr><tr><td>4</td><td>Moat</td><td>배달앱</td><td><strong>DoorDash</strong></td><td>Two-sided network</td></tr><tr><td>5</td><td>Fault line</td><td>클럽하우스</td><td><em>(unchanged)</em> — Clubhouse</td><td>Already a global example</td></tr><tr><td>6</td><td>Diagnosis</td><td>유튜브 채널</td><td><em>(unchanged)</em></td><td>—</td></tr></tbody></table></div>
+<h2>Part Two</h2>
+<div class="table-wrap"><table><thead><tr><th>Ch</th><th>Korean</th><th>English</th><th>Why this one</th></tr></thead><tbody><tr><td>7</td><td>나이키</td><td><strong>Nike</strong></td><td>Global. Unchanged.</td></tr><tr><td>8</td><td>넷플릭스</td><td><strong>Netflix</strong></td><td>Global. Unchanged.</td></tr><tr><td>9</td><td>배달의민족</td><td><strong>DoorDash</strong></td><td>Takes a cut, cooks nothing</td></tr><tr><td>10</td><td>컴포즈커피</td><td><strong>Dunkin'</strong></td><td>Cheap coffee that still profits — and it sets up the Starbucks contrast in Ch 13, which was the point of the Korean pairing</td></tr><tr><td>11</td><td>무신사</td><td><strong>StockX</strong></td><td>Marketplace that became #1 without making the product</td></tr><tr><td>12</td><td>마인크래프트</td><td><strong>Roblox</strong></td><td>Better fit than Minecraft for <em>earning money inside a game</em> — Roblox actually pays creators</td></tr><tr><td>13</td><td>스타벅스</td><td><strong>Starbucks</strong></td><td>Global. Unchanged.</td></tr><tr><td>14</td><td>쿠팡</td><td><strong>Amazon</strong></td><td>Next-day delivery built on owned logistics</td></tr><tr><td>15</td><td>유튜브</td><td><strong>YouTube</strong></td><td>Global. Unchanged.</td></tr><tr><td>16</td><td>당근</td><td><strong>OfferUp</strong></td><td>Local secondhand, minimal margin</td></tr></tbody></table></div>
+<p><strong>Four of ten stay.</strong> That is the right ratio — enough global anchors that the book doesn't read as regional, enough substitution that every chapter lands.</p>
+<hr>
+<h1>4. Money and units</h1>
+<div class="table-wrap"><table><thead><tr><th>Korean</th><th>English</th><th>Note</th></tr></thead><tbody><tr><td>천 원으로 시작</td><td><strong>Start with five dollars</strong></td><td>1,000원 ≈ $0.75, which reads as nothing. $5 is the equivalent <em>gesture</em>.</td></tr><tr><td>8,000원 (sticker)</td><td><strong>$6</strong></td><td>Teaching numbers, not facts — convert freely</td></tr><tr><td>3,000원 (materials)</td><td><strong>$2.50</strong></td><td></td></tr><tr><td>Adult-book figures in €/$</td><td><strong>unchanged</strong></td><td>These are verified facts. Never convert.</td></tr></tbody></table></div>
+<p><strong>Rule: convert illustrative numbers, never factual ones.</strong></p>
+<hr>
+<h1>5. Chapters that need rewriting, not translating</h1>
+<p>Three chapters cannot be translated. The underlying facts are different.</p>
+<h2>Teen Ch 19 — 사업자등록 (business registration)</h2>
+<p>Korean business registration has no US equivalent. This chapter must be rebuilt around: sole proprietorship, whether a minor can sign, when an EIN is needed, and the fact that <strong>rules differ by state</strong>.</p>
+<p>And per the series' own rule — <em>don't pin down age limits and conditions, they change</em> — the chapter should teach the reader <strong>how to look it up for their own state</strong>, not state the rules.</p>
+<h2>Teen Ch 17 — 또래 창업 사례 (peer founder stories)</h2>
+<p>The Korean examples are Korean teenagers. English readers need English-language ones, and the series rule is that <strong>every fact must be checkable</strong>.</p>
+<p><strong>I could not verify any replacement from this environment</strong> — outbound access to the sources is blocked. This chapter is flagged, not written. It needs either verified US/UK teen-founder cases or a rewrite that teaches the pattern without naming anyone.</p>
+<h2>Both closings — 대한민국</h2>
+<p>Teen Ch and adult Book 2 both close on 「대한민국 창업민국」 / 「대한민국, 창업하는 나라」.</p>
+<p>Reframe to <strong>"Building From a Small Market"</strong>, as set out in the edition plan. The argument was never actually about Korea — it was about not having a large domestic market and not having capital. Korea stays as the author's worked example and the place he writes from.</p>
+<hr>
+<h1>6. Terms — quick reference</h1>
+<div class="table-wrap"><table><thead><tr><th>Korean</th><th>English</th></tr></thead><tbody><tr><td>다섯 칸</td><td>the Five Boxes</td></tr><tr><td>고객 · 가치 · 과금 · 해자 · 균열</td><td>Customer · Value · Payment · Moat · Fault Line</td></tr><tr><td>직접 해 보기</td><td>Try It Yourself</td></tr><tr><td>오늘 할 것</td><td>Do This Today</td></tr><tr><td>흔한 오해</td><td>The Common Misreading</td></tr><tr><td>절반만 맞다</td><td>Only half right.</td></tr><tr><td>먼저 아쉬운 쪽은?</td><td>Who needs the other more?</td></tr><tr><td>무너지는 조건</td><td>What has to change for this to break</td></tr><tr><td>이 장의 출처</td><td>Sources for this chapter</td></tr></tbody></table></div></div></body></html>
