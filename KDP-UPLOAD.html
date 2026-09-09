@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Amazon KDP — Upload Set and Checklist</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>The eight files</h1>
+<p>All in <code>release/</code>, with ASCII-safe filenames (three of the four titles contain <code>?</code>, which Windows rejects in a filename — the title inside each file is unaffected).</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Book</th><th>EPUB</th><th>PDF</th><th>Pages</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>428 KB</td><td>693 KB</td><td>366</td></tr><tr><td>02</td><td>The Fourth Box</td><td>393 KB</td><td>703 KB</td><td>358</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>243 KB</td><td>283 KB</td><td>115</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>297 KB</td><td>439 KB</td><td>185</td></tr></tbody></table></div>
+<p><strong>EPUB → Kindle ebook. PDF → paperback interior.</strong></p>
+<p>That split matters. KDP will accept a PDF for an ebook, and it reflows badly on a Kindle. Upload the EPUB for the ebook every time.</p>
+<hr>
+<h1>What was checked</h1>
+<h2>EPUB — all four pass</h2>
+<div class="table-wrap"><table><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>epubcheck 5.1.0</td><td><strong>0 fatals / 0 errors / 0 warnings</strong></td></tr><tr><td><code>dc:language</code></td><td><code>en</code> — not inherited from the Korean edition</td></tr><tr><td><code>dc:creator</code></td><td>Jaehyuk Choi</td></tr><tr><td><code>dc:identifier</code></td><td>Stable UUID, derived from the title, so a revision stays the same book</td></tr><tr><td>Navigation</td><td>EPUB3 <code>nav</code> <strong>and</strong> EPUB2 <code>toc.ncx</code>, for older Kindle pipelines</td></tr><tr><td>Cover</td><td>1600×2400, declared <code>cover-image</code>, first item in the spine</td></tr><tr><td>Series metadata</td><td><code>belongs-to-collection</code> with position 1 / 2</td></tr></tbody></table></div>
+<h2>PDF — all four meet KDP's print rules</h2>
+<p>The 6×9 inch trim is KDP's standard paperback size, so no trim conversion is needed at upload.</p>
+<div class="table-wrap"><table><thead><tr><th>Check</th><th>Requirement</th><th>Result</th></tr></thead><tbody><tr><td>Trim size</td><td>6 × 9 in</td><td><strong>6 × 9 in</strong></td></tr><tr><td>Inside (gutter) margin</td><td>0.625 in at 301–500 pp, 0.5 in at 151–300, 0.375 in at 24–150</td><td><strong>0.84 in minimum on every book</strong></td></tr><tr><td>All content from trim edge</td><td>≥ 0.25 in</td><td><strong>0.40 in minimum</strong></td></tr><tr><td>Fonts</td><td>embedded</td><td><strong>all embedded subsets</strong></td></tr><tr><td>Table of contents</td><td>page numbers matching final pagination</td><td><strong>converged</strong></td></tr></tbody></table></div>
+<p>Two things were fixed to get there.</p>
+<p><strong>Page numbers sat 0.21 in from the bottom trim edge</strong> — under KDP's 0.25 in minimum, which is a rejection at preflight. Chromium pins the footer to the very bottom of the margin band, so it's now lifted with padding. They print at 0.40 in.</p>
+<p><strong>Cover titles were breaking mid-word</strong> — "Who's Actually P / aying?". The cover generator wrapped per character, which is right for Korean and wrong for English. It now wraps on word boundaries for English, uses a Latin serif rather than a Korean one, and carries the series line and the author name at the foot.</p>
+<hr>
+<h1>What KDP still needs from you</h1>
+<p>The files are complete. Three things are account-side and can't be produced here.</p>
+<p><strong>1. A cover for each book.</strong></p>
+<p>The cover inside each EPUB is a working placeholder — title, subtitle, series, author, on a colour band. It's legitimate and it will pass review, and it isn't a cover that sells anything on a thumbnail-sized shelf.</p>
+<ul><li><strong>Ebook:</strong> upload a JPG or TIFF separately. KDP's ideal is 2560 × 1600 (1.6:1); the placeholders are 1600 × 2400 (1.5:1), inside the accepted range but not ideal.</li><li><strong>Paperback:</strong> KDP needs a single PDF wrapping front, spine and back. Spine width depends on page count and paper stock, so use KDP's cover template generator with the page counts in the table above.</li></ul>
+<p><strong>2. Categories, keywords and description.</strong></p>
+<p>The Korean book descriptions won't translate straight across — the shelves differ. Both adult books belong in Business &amp; Money → Economics or Entrepreneurship; both teen books in Teen &amp; Young Adult → Education &amp; Reference → Careers, or Business &amp; Economics.</p>
+<p><strong>3. Check the titles on Amazon before listing.</strong></p>
+<p><em>Anatomy of Money</em> was a crowded shelf, which is why these four titles are questions instead. That check was done from search results, not from Amazon directly — this environment can't reach it. Worth five minutes in a browser before you commit the titles.</p>
+<hr>
+<h1>Two things to know about the source</h1>
+<p><strong>The Korean editions were not rebuilt.</strong> The typesetting fixes here — table width, code-block wrapping, footer position, cover wrapping — apply to the whole toolchain, and the Korean books were never affected by the first two and would only change cosmetically under the rest.</p>
+<p>Their released files are byte-identical to what you already have. If you do rebuild them, rebuild all four together so their pagination stays consistent with each other.</p>
+<p><strong>Both adult books state their own verification limits in the colophon.</strong> Fact-checking was cross-referencing published reporting, not opening filings one by one. That's written plainly in <em>How This Book Was Made</em> in both books. It's honest, and it's the thing to strengthen first if you revise.</p>
+</div></body></html>

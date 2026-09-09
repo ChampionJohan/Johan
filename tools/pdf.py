@@ -74,9 +74,12 @@ def render_pdf(html_path, pdf_path, trim="A5"):
             print_background=True,
             display_header_footer=True,
             header_template="<span></span>",
+            # KDP 는 재단선에서 0.25in 안쪽에 모든 내용이 들어와야 한다.
+            # 크로뮴은 쪽 번호를 아래 여백 맨 끝에 붙여 0.21in 이 되므로
+            # 아래쪽 패딩으로 들어 올린다.
             footer_template=(
                 '<div style="width:100%;text-align:center;font-size:8px;'
-                'color:#999;font-family:sans-serif;">'
+                'color:#999;font-family:sans-serif;padding-bottom:18px;">'
                 '<span class="pageNumber"></span></div>'),
         )
         browser.close()

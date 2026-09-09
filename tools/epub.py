@@ -167,7 +167,7 @@ def kind_of(item):
         item["kind"], "bodymatter")
 
 
-def make_cover(out_dir, title, subtitle, accent):
+def make_cover(out_dir, title, subtitle, accent, lang="ko", author="", series=""):
     """Pillow 가 있으면 간단한 표지를, 없으면 건너뛴다. 없어도 등록엔 지장 없다."""
     try:
         from PIL import Image, ImageDraw, ImageFont
@@ -178,13 +178,16 @@ def make_cover(out_dir, title, subtitle, accent):
     draw = ImageDraw.Draw(img)
     draw.rectangle([0, 0, 28, h], fill=accent)
 
-    def font(size, bold=True):
-        for path in (
-            "/usr/share/fonts/truetype/nanum/NanumMyeongjoBold.ttf",
-            "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
-            "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
-            "/usr/share/fonts/truetype/nanum/NanumGothic.ttf",
-        ):
+    # 한글 제목은 명조로, 영문 제목은 라틴 세리프로 짠다.
+    KO = ("/usr/share/fonts/truetype/nanum/NanumMyeongjoBold.ttf",
+          "/usr/share/fonts/opentype/noto/NotoSerifCJK-Bold.ttc",
+          "/usr/share/fonts/truetype/nanum/NanumGothicBold.ttf",
+          "/usr/share/fonts/truetype/nanum/NanumGothic.ttf")
+    EN = ("/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf",
+          "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf") + KO
+
+    def font(size, faces=None):
+        for path in (faces or (EN if lang == "en" else KO)):
             if os.path.exists(path):
                 try:
                     return ImageFont.truetype(path, size)
@@ -193,29 +196,55 @@ def make_cover(out_dir, title, subtitle, accent):
         return ImageFont.load_default()
 
     def wrap(text, fnt, limit):
+        """영문은 낱말 단위로 접는다. 글자 단위로 접으면 낱말이 잘린다."""
+        if " " not in text.strip():
+            units, join = list(text), ""
+        else:
+            units, join = text.split(" "), " "
         lines, line = [], ""
-        for ch in text:
-            trial = line + ch
+        for unit in units:
+            trial = (line + join + unit) if line else unit
             if draw.textlength(trial, font=fnt) > limit and line:
                 lines.append(line)
-                line = ch
+                line = unit
             else:
                 line = trial
         if line:
             lines.append(line)
         return lines
 
-    title_font = font(176)
+    # 제목이 길면 글자 크기를 줄여 넉 줄 안에 넣는다.
+    size, title_font, lines = 176, None, None
+    while size >= 96:
+        title_font = font(size)
+        lines = wrap(title, title_font, w - 200)
+        if len(lines) <= 4:
+            break
+        size -= 16
     sub_font = font(52)
-    lines = wrap(title, title_font, w - 200)
-    y = h * 0.28
+    sub_lines = wrap(subtitle, sub_font, w - 240) if subtitle else []
+
+    # 제목 덩어리를 위쪽 삼분의 일에 앉히되 줄 수에 따라 균형을 잡는다.
+    step = int(size * 1.18)
+    block = len(lines) * step + (50 + len(sub_lines) * 72 if sub_lines else 0)
+    y = max(h * 0.20, h * 0.42 - block / 2)
     for line in lines:
         draw.text((100, y), line, font=title_font, fill="#1A1A1A")
-        y += 208
-    y += 50
-    for line in wrap(subtitle, sub_font, w - 240):
-        draw.text((120, y), line, font=sub_font, fill="#6E6C64")
-        y += 72
+        y += step
+    if sub_lines:
+        y += 50
+        for line in sub_lines:
+            draw.text((104, y), line, font=sub_font, fill="#6E6C64")
+            y += 72
+
+    # 아래쪽에 시리즈와 지은이. 표지에 지은이가 없으면 미완성으로 보인다.
+    foot = font(46)
+    fy = h - 260
+    if series:
+        draw.text((104, fy), series, font=foot, fill="#8A8880")
+        fy += 78
+    if author:
+        draw.text((104, fy), author, font=font(56), fill="#1A1A1A")
 
     path = os.path.join(out_dir, "cover.jpg")
     img.convert("RGB").save(path, quality=90)
@@ -311,7 +340,10 @@ def build(which):
                 '<content src="text/%s.xhtml"/></navPoint>' % (play_order, play_order, html.escape(label), fid))
             play_order += 1
 
-    cover_path = make_cover(out_dir, m.TITLE, m.SUBTITLE, accent)
+    cover_path = make_cover(out_dir, m.TITLE, m.SUBTITLE, accent,
+                            getattr(m, "LANG", "ko"),
+                            getattr(m, "AUTHOR", ""),
+                            getattr(m, "SERIES", ""))
     cover_meta = '\n    <meta name="cover" content="cover-image"/>' if cover_path else ""
     cover_item = ('\n    <item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>'
                   if cover_path else "")
