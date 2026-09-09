@@ -8,7 +8,7 @@ status: ready
 
 ## What is this book?
 
-There's a book for adults called *Anatomy of Money*.
+There's a book for adults called *Who's Actually Paying?*
 It takes companies apart using **five boxes** to see how they make money.
 
 This is the **teen edition**. The five boxes are exactly the same.
@@ -52,7 +52,7 @@ There is no "probably about right" in this book.
 
 ## There's a second book
 
-The next one is **Anatomy of Money for Teens II — I Started, So Why Isn't It Working?**
+The next one is **I Started. So Why Isn't It Working?**
 
 This book is the one that gets you started.
 The second one is the one that keeps you from quitting.

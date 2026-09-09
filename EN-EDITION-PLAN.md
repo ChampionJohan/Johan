@@ -64,40 +64,37 @@ name all inherit the mistake.
 
 ---
 
-# 3. Titles
+# 3. Titles — **decided**
 
 | | English title |
 |---|---|
-| 1 | **Anatomy of Money**<br>*How to Take Any Business Apart in Five Boxes* |
-| 2 | **Anatomy of Money II**<br>*Moats, Fault Lines, and How to Build One That Lasts* |
-| 3 | **Anatomy of Money for Teens**<br>*How Businesses Really Make Money — and How You Can Start* |
-| 4 | **Anatomy of Money for Teens II**<br>*I Started — So Why Isn't It Working?* |
+| 1 | **Who's Actually Paying?**<br>*Take Any Business Apart in Five Questions* |
+| 2 | **The Fourth Box**<br>*Why Some Businesses Can't Be Taken* |
+| 3 | **It's Free. So How Are They Rich?**<br>*How Money Actually Works — and How to Start* |
+| 4 | **I Started. So Why Isn't It Working?**<br>*The Part Nobody Warns You About* |
 
-## Why these
+Series: **The Five Boxes Series** · teen volumes sit in **The Five Boxes: Teen Edition**.
 
-**"Anatomy of Money" survives translation intact.** It is concrete, it promises
-dissection rather than advice, and it is not already taken by a major title.
+## Why these replaced "Anatomy of Money"
 
-**The subtitles do the search work.** On Amazon the subtitle is indexed. Book 1's
-subtitle carries the method; Book 2's carries *moats*, *fault lines*, and *build*,
-which is what people actually type.
+The original set was *Anatomy of Money I–II* and *…for Teens I–II*.
+Checking the shelf showed why that was a problem: *Anatomy of a Business Plan*,
+*Anatomy of Business*, *The Anatomy of Financial Success*,
+*The Anatomy of the Swipe*. **"Anatomy of ___" is a format, not a title.**
 
-**The teen books drop the Korean wordplay on purpose.** 「너 그거 아니?」 is a
-conspiratorial "hey, you know what?" — charming in Korean, limp in English
-("Hey, Did You Know?" reads like a children's trivia book). Instead the teen
-editions inherit the parent brand, which does three things at once:
+And at thumbnail size all four of ours began with the same two words,
+so they blurred into one grey smear instead of reading as four books.
 
-- parents searching **"business books for teens"** find it
-- the link to the adult series is visible on the cover
-- Book 4's subtitle keeps the original hook — *I started, so why isn't it working?*
+**Three of the four titles are now literally boxes from the framework** —
+Book 1 is Box One, Book 2 is Box Four, the teen book is Chapter 1's hook.
+Book 2 takes the noun form because its buyer has already read Book 1 and
+knows what the boxes are; for that reader *The Fourth Box* is more intriguing
+than another question, and it signals "sequel" on a series page.
 
-**One caution.** *Anatomy of Money* is a strong title but not a unique one; there
-are unrelated books using similar phrasing. Before you commit, search Amazon for
-the exact string and check the top results. If it's crowded, the fallback that
-keeps the same promise is **Take It Apart: How Any Business Actually Works.**
-I have not been able to check Amazon from here, so treat this as unverified.
+Full reasoning and the rejected sets: `EN-TITLES.md`.
 
----
+**Still to verify before publishing:** search each exact string on Amazon.
+I can search the open web but not Amazon's catalogue from here.
 
 # 4. What has to change in the text
 

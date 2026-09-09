@@ -13,8 +13,8 @@ import book as m
 
 m.MANUSCRIPT = os.path.join(m.ROOT, "en-book", "manuscript")
 m.SITE = os.path.join(m.ROOT, "en-book", "site")
-m.TITLE = "Anatomy of Money"
-m.SUBTITLE = "How to Take Any Business Apart in Five Boxes"
+m.TITLE = "Who's Actually Paying?"
+m.SUBTITLE = "Take Any Business Apart in Five Questions"
 m.SERIES = "The Five Boxes Series · Book One"
 m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"

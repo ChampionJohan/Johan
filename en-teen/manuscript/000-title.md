@@ -1,5 +1,5 @@
 ---
-title: Anatomy of Money for Teens
+title: It's Free. So How Are They Rich?
 part: Title
 kind: front
 order: 0
@@ -7,9 +7,9 @@ status: ready
 lint: skip   # 표제지는 전시용 조판이라 종결 부호를 안 찍는다
 ---
 
-## Anatomy of Money for Teens
+## It's Free. So How Are They Rich?
 
-### How Businesses Really Make Money — and How You Can Start
+### How Money Actually Works — and How to Start
 
 **The Five Boxes Series · Teen Edition, Book One**
 

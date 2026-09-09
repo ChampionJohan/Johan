@@ -9,8 +9,8 @@ import book as m
 
 m.MANUSCRIPT = os.path.join(m.ROOT, "en-teen2", "manuscript")
 m.SITE = os.path.join(m.ROOT, "en-teen2", "site")
-m.TITLE = "Anatomy of Money for Teens II"
-m.SUBTITLE = "I Started — So Why Isn't It Working?"
+m.TITLE = "I Started. So Why Isn't It Working?"
+m.SUBTITLE = "The Part Nobody Warns You About"
 m.SERIES = "The Five Boxes Series · Teen Edition, Book Two"
 m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"

@@ -7,9 +7,9 @@ status: ready
 lint: skip   # 판권지는 종결 부호를 찍지 않는 것이 맞다
 ---
 
-## Anatomy of Money for Teens
+## It's Free. So How Are They Rich?
 
-*How Businesses Really Make Money — and How You Can Start*
+*How Money Actually Works — and How to Start*
 The Five Boxes Series · Teen Edition, Book One
 
 Copyright © 2026 Jaehyuk Choi
