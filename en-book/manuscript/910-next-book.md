@@ -33,7 +33,7 @@ This book treated that point only briefly. It's a debt the second book pays.
 | Sport | Manchester United · Topgolf · Peloton · The NBA in China |
 | Economies | Estonia · Switzerland · Ireland · Icelandic tourism |
 | Farming | John Deere and the right to repair · Zespri · Yubari melons · Driscoll's |
-| Fishing | Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · abalone farming |
+| Fishing | Peruvian fishmeal · conveyor sushi's vertical integration · Thai Union · Maine lobster |
 
 ## And there is no third book
 

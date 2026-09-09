@@ -95,7 +95,7 @@ and fishmeal next to soft drinks.
 | 6 · Regulation changes | Robinhood · Grameen Bank · Estonia · Ireland |
 | 7 · Technology substitutes | Conveyor sushi · citizenM · Driscoll's |
 | 8 · Customers move | Dollar Shave Club · Liquid Death · Peloton |
-| 9 · Suppliers revolt | Nubank · abalone farming · Manchester United |
+| 9 · Suppliers revolt | Nubank · Maine lobster · Manchester United |
 | 10 · Growth breaks it | Haidilao · Chipotle · IKEA · the NBA in China · Icelandic tourism |
 
 ## Numbers and sources

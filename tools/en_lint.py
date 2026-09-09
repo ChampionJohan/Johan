@@ -39,7 +39,13 @@ MISMATCH = re.compile(r"^(?:do|don't|have|haven't|are|aren't|were|weren't)\s+"
 # 명령문 "Do these three in order..." — 명령형 do 뒤에는 인칭 주어만 올 수 있다.
 IMPERATIVE_DO = re.compile(r"^(?:do|don't)\s+(?!you\b|we\b|they\b|i\b)", re.I)
 # "Which is why ..." 처럼 관계사로 이어 붙인 조각은 직접 의문문이 아니다.
-RELATIVE = re.compile(r"^(?:which|that)\s+\w+\s+(?:\w+\s+){0,2}(?:why|how|means)\b", re.I)
+RELATIVE = re.compile(
+    r"^(?:which|that)\s+\w+\s+(?:\w+\s+){0,2}(?:why|how|means)\b"
+    # "Which is the same thing ...", "Which is what allowed ..." 처럼
+    # 앞 문장을 이어받는 관계절. 한정사나 부사가 뒤따르면 의문문이 아니다.
+    r"|^which\s+(?:is|was|are|were)\s+"
+    r"(?:the|a|an|what|why|how|when|where|not|also|already|exactly|"
+    r"precisely|roughly|largely|mostly|itself|one|two|three)\b", re.I)
 # 유사분열문(pseudo-cleft)은 의문사로 시작하지만 평서문이다.
 # "What was sold to the owner was the reservation network."
 # 의문사 + be동사 + 분사 ... + 두 번째 be동사 라는 어순으로만 좁게 잡는다.
