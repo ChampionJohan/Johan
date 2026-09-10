@@ -20,6 +20,7 @@ import html
 import importlib
 import os
 import re
+import shutil
 import sys
 import uuid
 import zipfile
@@ -340,10 +341,18 @@ def build(which):
                 '<content src="text/%s.xhtml"/></navPoint>' % (play_order, play_order, html.escape(label), fid))
             play_order += 1
 
-    cover_path = make_cover(out_dir, m.TITLE, m.SUBTITLE, accent,
-                            getattr(m, "LANG", "ko"),
-                            getattr(m, "AUTHOR", ""),
-                            getattr(m, "SERIES", ""))
+    # tools/cover.py 로 따로 만들어 둔 표지가 있으면 그것을 쓴다.
+    # 아마존에 올리는 표지와 책 안의 표지가 같아야 한다.
+    designed = os.path.join(m.ROOT, "release", "covers",
+                            "%s-cover.jpg" % which.rstrip("/"))
+    if os.path.exists(designed):
+        cover_path = os.path.join(out_dir, "cover.jpg")
+        shutil.copyfile(designed, cover_path)
+    else:
+        cover_path = make_cover(out_dir, m.TITLE, m.SUBTITLE, accent,
+                                getattr(m, "LANG", "ko"),
+                                getattr(m, "AUTHOR", ""),
+                                getattr(m, "SERIES", ""))
     cover_meta = '\n    <meta name="cover" content="cover-image"/>' if cover_path else ""
     cover_item = ('\n    <item id="cover-image" href="images/cover.jpg" media-type="image/jpeg" properties="cover-image"/>'
                   if cover_path else "")
