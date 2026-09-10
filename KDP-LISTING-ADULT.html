@@ -1,0 +1,143 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KDP 등록 입력값 — 성인판 1·2권</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>먼저 알아 둘 것 세 가지</h1>
+<p><strong>하나. 발행 뒤에 못 바꾸는 칸이 있습니다.</strong> <code>Book Title</code> · <code>Subtitle</code> · <code>Edition Number</code> 세 개는 출간 후 수정이 안 됩니다. 제목은 아마존에서 같은 제목이 있는지 한 번만 검색해 보고 확정하세요.</p>
+<p><strong>둘. 지은이 이름은 EPUB 안의 이름과 똑같아야 합니다.</strong> 파일 메타데이터에 <code>Jaehyuk Choi</code> 로 들어가 있습니다. KDP에도 <strong>First name: Jaehyuk / Last name: Choi</strong> 로 넣으세요. 다르면 저자 페이지가 갈라집니다.</p>
+<p><strong>셋. 시리즈는 1권에서 한 번 만들고, 2권은 거기에 붙입니다.</strong> 시리즈 이름에는 숫자를 넣지 않습니다. <code>The Five Boxes</code> 만 넣고 순번은 따로 지정합니다.</p>
+<hr>
+<h1>1권 — Who's Actually Paying?</h1>
+<h2>Book Title</h2>
+<pre><code>Who's Actually Paying?</code></pre>
+<h2>Subtitle</h2>
+<pre><code>Take Any Business Apart in Five Questions</code></pre>
+<p>KDP가 제목과 부제 사이에 콜론을 자동으로 넣습니다. 직접 넣지 마세요.</p>
+<h2>Series</h2>
+<p><code>Add to series</code> 를 누르고 새로 만듭니다.</p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Series Title</td><td><code>The Five Boxes</code></td></tr><tr><td>Reading order / 번호</td><td><code>1</code></td></tr></tbody></table></div>
+<h2>Edition Number</h2>
+<pre><code>1</code></pre>
+<h2>Author</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>First name</td><td><code>Jaehyuk</code></td></tr><tr><td>Last name</td><td><code>Choi</code></td></tr></tbody></table></div>
+<h2>Contributors</h2>
+<p><strong>비워 두세요.</strong> 번역자를 넣고 싶어도 본인이 직접 옮긴 책이라 넣을 필요가 없습니다.</p>
+<h2>Description</h2>
+<p>에디터 오른쪽 <strong><code>Source</code></strong> 버튼을 누르고 아래를 그대로 붙여 넣으세요. 버튼을 안 누르고 붙이면 태그가 글자로 보입니다.</p>
+<pre><code class="language-html">&lt;h4&gt;Five questions. Any business.&lt;/h4&gt;
+&lt;p&gt;Most people can tell you what a company sells. Far fewer can tell you who actually pays for it.&lt;/p&gt;
+&lt;p&gt;This book breaks any business into five questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Customer&lt;/b&gt; &amp;mdash; Who actually pays?&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Value&lt;/b&gt; &amp;mdash; What are they paying for?&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Payment&lt;/b&gt; &amp;mdash; How, and when, does the money arrive?&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Moat&lt;/b&gt; &amp;mdash; Why hasn't anyone taken it yet?&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Fault Line&lt;/b&gt; &amp;mdash; Where does it break?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Part One builds the five boxes one at a time. Part Two runs eighteen businesses across nine fields through all five: Spotify, Arm, Domino's, Starbucks, Visa, Berkshire Hathaway, Airbnb, Marriott, Red Bull, Patagonia, the NFL, Formula One, Singapore, Dubai, the Netherlands, Israel, Norwegian salmon farming and Iceland's fishing quotas.&lt;/p&gt;
+&lt;p&gt;A coffee chain and an insurance company turn out to collect money the same way. A semiconductor designer that owns no factory and a hotel group that owns no hotels turn out to be the same structure. The frame does not care what industry you are in.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Every figure carries a year and a source.&lt;/b&gt; Where a number could not be confirmed in a public source, it was left out rather than estimated, and the book says where those gaps are.&lt;/p&gt;
+&lt;p&gt;By the end you will be able to read companies that are not in this book. That is the only thing this book is for.&lt;/p&gt;</code></pre>
+<h2>Publishing Rights</h2>
+<p><strong><code>I own the copyright and I hold the necessary publishing rights.</code></strong> 를 고르세요.</p>
+<h2>Primary Audience</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Sexually Explicit Images or Title</td><td><strong>No</strong></td></tr><tr><td>Reading age</td><td><strong>비워 둡니다</strong> (성인 대상 책이라 지정하지 않습니다)</td></tr></tbody></table></div>
+<p>화면에 뜬 빨간 경고는 이 <code>No</code> 를 안 골라서 나온 것입니다. 고르면 카테고리 선택이 열립니다.</p>
+<h2>Primary marketplace</h2>
+<pre><code>Amazon.com</code></pre>
+<h2>Categories (최대 3개)</h2>
+<p><code>Choose categories</code> 에서 아래 경로를 찾습니다. 문구가 조금씩 다를 수 있으니 가장 가까운 것을 고르세요.</p>
+<ol><li><code>Business &amp; Money</code> → <code>Management &amp; Leadership</code> → <code>Strategic Planning</code></li><li><code>Business &amp; Money</code> → <code>Economics</code> → <code>Microeconomics</code></li><li><code>Business &amp; Money</code> → <code>Entrepreneurship &amp; Small Business</code> → <code>Entrepreneurship</code></li></ol>
+<h2>Keywords (7개, 각 50자 이내)</h2>
+<pre><code>business model breakdown
+how companies make money
+unit economics explained
+competitive moat analysis
+company case studies
+strategy for founders
+financial literacy for adults</code></pre>
+<p>제목·부제에 이미 있는 낱말과 카테고리 이름은 키워드에 넣지 마세요. 중복이라 낭비입니다.</p>
+<h2>Pre-order</h2>
+<p><strong><code>I am ready to release my book now</code></strong> 로 두세요. 1권을 먼저 내고 2권을 이어 붙이는 순서가 시리즈 페이지 만들기에 가장 단순합니다.</p>
+<hr>
+<h1>2권 — The Fourth Box</h1>
+<h2>Book Title</h2>
+<pre><code>The Fourth Box</code></pre>
+<h2>Subtitle</h2>
+<pre><code>Why Some Businesses Can't Be Taken</code></pre>
+<h2>Series</h2>
+<p><strong>새로 만들지 말고 1권에서 만든 시리즈에 붙입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Series Title</td><td><code>The Five Boxes</code></td></tr><tr><td>Reading order / 번호</td><td><code>2</code></td></tr></tbody></table></div>
+<h2>Edition Number</h2>
+<pre><code>1</code></pre>
+<h2>Author</h2>
+<p>1권과 <strong>완전히 동일하게</strong> — <code>Jaehyuk</code> / <code>Choi</code></p>
+<h2>Description</h2>
+<pre><code class="language-html">&lt;h4&gt;Why do some companies keep earning, and others stop?&lt;/h4&gt;
+&lt;p&gt;Book One asked how a business earns. This one asks whether it gets to keep earning.&lt;/p&gt;
+&lt;p&gt;It opens by grading its own predecessor. Eighteen predictions from Book One, checked against what actually happened: three wrong, three half right, eight right, three too early to call, one that could not be confirmed. The three wrong ones turned out to be wrong in the same place, and that finding shaped the rest of the book.&lt;/p&gt;
+&lt;p&gt;Then it digs into the two boxes made of time:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;The five types of moat&lt;/b&gt; &amp;mdash; economies of scale, network effects, switching costs, intangible assets, cost advantage&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;The five paths a moat breaks along&lt;/b&gt; &amp;mdash; regulation changes, technology substitutes, customers move, suppliers revolt, and growth breaking it from the inside&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thirty-six businesses, grouped by structure rather than by industry. Shein sits next to Peruvian fishmeal, John Deere next to Adobe, Estonia next to Grameen Bank, Maine lobster next to Manchester United.&lt;/p&gt;
+&lt;p&gt;Part Three asks why the largest companies rarely last fifty years while shops nobody has heard of pass two hundred. Part Four turns the diagnostic tool around and asks what you would build with it, including the two moats that cost time and decisions rather than capital, and a ninety-day plan with dates on it.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;The book states its own limits.&lt;/b&gt; How far the fact-checking went, where it stopped, and what was never confirmed are all written down inside.&lt;/p&gt;</code></pre>
+<h2>Publishing Rights · Primary Audience · Primary marketplace</h2>
+<p><strong>1권과 동일합니다.</strong> 저작권 보유, Sexually Explicit <strong>No</strong>, Reading age 비움, <code>Amazon.com</code>.</p>
+<h2>Categories</h2>
+<ol><li><code>Business &amp; Money</code> → <code>Management &amp; Leadership</code> → <code>Strategic Planning</code></li><li><code>Business &amp; Money</code> → <code>Entrepreneurship &amp; Small Business</code> → <code>Starting a Business</code></li><li><code>Business &amp; Money</code> → <code>Economics</code> → <code>Microeconomics</code></li></ol>
+<p>1권과 두 개를 겹치게 두는 것이 시리즈로 묶이는 데 유리합니다.</p>
+<h2>Keywords</h2>
+<pre><code>competitive moat analysis
+why companies fail
+business durability
+switching costs and network effects
+company longevity research
+building a business without capital
+business case studies</code></pre>
+<h2>Pre-order</h2>
+<p>두 가지 중에 고르시면 됩니다.</p>
+<ul><li><strong>지금 같이 내기</strong> — <code>I am ready to release my book now</code>. 가장 단순합니다.</li><li><strong>예약 판매로 걸기</strong> — 1권 발매 뒤 2권을 몇 주 뒤로 예약 걸면 1권 독자가 예약을 겁니다. 다만 <strong>정한 날짜에 원고를 못 올리면 1년간 예약 판매 자격이 정지됩니다.</strong> 파일이 이미 완성돼 있으니 위험은 낮지만, 굳이 필요 없다면 그냥 지금 내세요.</li></ul>
+<hr>
+<h1>다음 단계(Content)에서 필요한 것</h1>
+<p>이 화면에서 <code>Save and Continue</code> 를 누르면 파일을 올리는 단계로 넘어갑니다.</p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>올릴 것</th></tr></thead><tbody><tr><td>Manuscript</td><td><code>01_Whos-Actually-Paying.epub</code> / <code>02_The-Fourth-Box.epub</code></td></tr><tr><td>Kindle eBook Cover</td><td><strong>따로 만든 표지 JPG</strong> (아래 참고)</td></tr><tr><td>Kindle eBook Preview</td><td>미리보기로 한 번은 꼭 넘겨 보세요</td></tr><tr><td>ISBN</td><td>전자책은 <strong>필요 없습니다.</strong> 비워 두세요</td></tr></tbody></table></div>
+<p><strong>표지가 지금 유일한 숙제입니다.</strong> EPUB 안에 들어 있는 표지는 심사는 통과하지만 썸네일에서 팔리는 표지는 아닙니다. KDP 권장 크기는 <strong>2560 × 1600 픽셀 (세로:가로 1.6:1)</strong>, JPG 또는 TIFF입니다.</p>
+<p><code>Upload a cover you already have</code> 를 고르고 파일을 올리거나, KDP의 Cover Creator로 간단히 만들 수도 있습니다.</p>
+<hr>
+<h1>페이퍼백을 같이 낼 경우</h1>
+<p>전자책을 먼저 내고, 책 선반(Bookshelf)에서 <code>Create Paperback</code> 을 누르면 제목·저자·소개글이 그대로 복사됩니다. 다시 칠 필요가 없습니다.</p>
+<p>페이퍼백에서만 추가로 물어보는 것:</p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>ISBN</td><td><code>Get a free KDP ISBN</code> (무료입니다)</td></tr><tr><td>Trim size</td><td><strong>6 × 9 in</strong> — 보내 드린 PDF가 이 판형입니다</td></tr><tr><td>Bleed</td><td><code>No bleed</code></td></tr><tr><td>Paper type</td><td>흑백 본문이라 <code>Black &amp; white interior with cream paper</code> 를 권합니다</td></tr><tr><td>Cover finish</td><td><code>Matte</code> 가 이런 종류의 책에 무난합니다</td></tr><tr><td>Manuscript</td><td><code>01_Whos-Actually-Paying.pdf</code> / <code>02_The-Fourth-Box.pdf</code></td></tr></tbody></table></div>
+<p>페이퍼백 표지는 앞·책등·뒤가 한 장으로 된 PDF라 전자책 표지와 다릅니다. 책등 두께가 쪽수에 따라 달라지니 KDP 표지 템플릿 생성기에 아래 쪽수를 넣어 받으세요.</p>
+<ul><li><strong>1권 366쪽</strong> · <strong>2권 358쪽</strong></li></ul>
+<hr>
+<h1>마지막 점검</h1>
+<ul class="checklist"><li><input type="checkbox" disabled> 지은이 이름이 두 권 모두 <code>Jaehyuk Choi</code> 로 동일한가</li><li><input type="checkbox" disabled> 시리즈 이름이 두 권 모두 <code>The Five Boxes</code> 로 철자까지 같은가</li><li><input type="checkbox" disabled> 1권 순번 1, 2권 순번 2</li><li><input type="checkbox" disabled> Description을 <code>Source</code> 버튼 누르고 붙였는가</li><li><input type="checkbox" disabled> Sexually Explicit <strong>No</strong> 를 골라 카테고리가 열렸는가</li><li><input type="checkbox" disabled> 제목을 아마존에서 검색해 봤는가 (발행 후 수정 불가)</li></ul>
+</div></body></html>
