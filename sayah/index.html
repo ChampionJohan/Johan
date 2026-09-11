@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SayAh · 아파요 — Offline Medical Communication Card</title>
+<meta name="description" content="Point and tap to tell a doctor where it hurts, in 10 languages. Works completely offline. A communication aid, not a diagnosis tool.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-apple-180.png">
+<meta name="theme-color" content="#0e9488">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+  :root{
+    --bg:#f2f7f6; --card:#ffffff; --ink:#0f2320; --muted:#5c716d;
+    --line:#dde8e5; --accent:#0e9488; --accent-strong:#0b7a70; --accent-soft:#e2f4f1;
+    --hurt:#e14b3d; --hurt-soft:#fdeae7; --danger:#c9271b;
+    --shadow:0 2px 10px rgba(15,35,32,.07); --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1817; --card:#152423; --ink:#eaf4f2; --muted:#9db5b0;
+      --line:#263a37; --accent:#2bbfae; --accent-strong:#4dd6c5; --accent-soft:#17332f;
+      --hurt:#ff7a68; --hurt-soft:#3a1f1b; --danger:#ff6a58;
+      --shadow:0 2px 10px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--ink); min-height:100vh;
+    font-family:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+    font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:560px; margin:0 auto; padding:0 14px 140px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:30; background:var(--bg);
+    padding:calc(env(safe-area-inset-top) + 10px) 14px 8px; border-bottom:1px solid var(--line);
+  }
+  .head-top{max-width:560px; margin:0 auto; display:flex; align-items:baseline; gap:8px; margin-bottom:8px;}
+  .brand{font-size:19px; font-weight:800; letter-spacing:-.02em; color:var(--accent-strong);}
+  .tagline{font-size:11.5px; color:var(--muted); line-height:1.3;}
+  .lang-bar{max-width:560px; margin:0 auto; display:flex; align-items:center; gap:7px;}
+  .lang-field{flex:1; min-width:0;}
+  .lang-field label{display:block; font-size:10.5px; color:var(--muted); margin-bottom:2px; font-weight:600;}
+  select, input[type="text"], input[type="number"]{
+    width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:10px;
+    background:var(--card); color:var(--ink); font-size:15px; font-family:inherit;
+  }
+  .swap-btn{
+    flex:0 0 auto; margin-top:14px; width:38px; height:38px; border-radius:10px; border:1px solid var(--line);
+    background:var(--card); color:var(--accent-strong); font-size:17px; cursor:pointer;
+  }
+  .swap-btn:active{transform:scale(.93);}
+
+  /* ---------- tabs ---------- */
+  nav.tabs{
+    position:sticky; top:0; z-index:20; background:var(--bg); padding:8px 0 6px;
+    display:flex; gap:6px; overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    flex:0 0 auto; padding:9px 13px; border-radius:999px; border:1px solid var(--line);
+    background:var(--card); color:var(--muted); font-size:13.5px; font-weight:700;
+    cursor:pointer; white-space:nowrap; font-family:inherit;
+  }
+  .tab.active{background:var(--accent); border-color:var(--accent); color:#fff;}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:15px; margin-bottom:12px; box-shadow:var(--shadow);
+  }
+  .card h2{font-size:14px; margin:0 0 11px; letter-spacing:-.01em;}
+  .hint{font-size:12px; color:var(--muted); margin:0 0 10px;}
+
+  /* ---------- chips ---------- */
+  .chips{display:flex; flex-wrap:wrap; gap:7px;}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px; padding:10px 13px; border-radius:12px;
+    border:1.5px solid var(--line); background:var(--card); color:var(--ink);
+    font-size:14.5px; font-weight:600; cursor:pointer; font-family:inherit; text-align:left;
+    min-height:44px;
+  }
+  .chip .sub{display:block; font-size:11px; font-weight:500; color:var(--muted); line-height:1.25;}
+  .chip .txt{display:block;}
+  .chip.on{border-color:var(--hurt); background:var(--hurt-soft); color:var(--hurt);}
+  .chip.on .sub{color:var(--hurt);}
+  .chip.calm.on{border-color:var(--accent); background:var(--accent-soft); color:var(--accent-strong);}
+  .chip.calm.on .sub{color:var(--accent-strong);}
+  .chip:active{transform:scale(.97);}
+  .chip .emo{font-size:19px; line-height:1;}
+
+  /* ---------- body map ---------- */
+  .view-toggle{display:flex; gap:6px; margin-bottom:8px;}
+  .view-toggle button{
+    flex:1; padding:8px; border-radius:10px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--muted); font-weight:700; font-size:13.5px;
+    cursor:pointer; font-family:inherit;
+  }
+  .view-toggle button.active{border-color:var(--accent); background:var(--accent-soft); color:var(--accent-strong);}
+  .bodymap{display:flex; justify-content:center; padding:4px 0 2px;}
+  .bodymap svg{width:100%; max-width:250px; height:auto; touch-action:manipulation;}
+  .fig{fill:var(--accent-soft); stroke:var(--accent); stroke-width:1.4; stroke-linejoin:round;}
+  .zone{fill:transparent; stroke:transparent; cursor:pointer;}
+  .zone.on{fill:var(--hurt); fill-opacity:.62;}
+  .side-label{font-size:11px; font-weight:800; fill:var(--muted);}
+
+  /* ---------- pain slider ---------- */
+  .pain-row{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+  .pain-face{font-size:34px; line-height:1;}
+  .pain-num{font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; min-width:56px;}
+  input[type="range"]{width:100%; accent-color:var(--hurt); height:30px;}
+  .scale-ends{display:flex; justify-content:space-between; font-size:11px; color:var(--muted);}
+
+  /* ---------- info form ---------- */
+  .field{margin-bottom:11px;}
+  .field label{display:block; font-size:12.5px; font-weight:700; margin-bottom:4px;}
+  .field .note{font-size:11px; color:var(--muted); font-weight:500;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .check{display:flex; align-items:center; gap:9px; padding:10px; border:1.5px solid var(--line); border-radius:12px; cursor:pointer;}
+  .check input{width:20px; height:20px; accent-color:var(--accent);}
+  .privacy{
+    display:flex; gap:8px; font-size:11.5px; color:var(--muted);
+    background:var(--accent-soft); padding:10px 12px; border-radius:12px; margin-top:2px;
+  }
+
+  /* ---------- emergency ---------- */
+  .sos{
+    display:block; width:100%; text-align:center; text-decoration:none;
+    background:var(--danger); color:#fff; font-size:19px; font-weight:800;
+    padding:16px; border-radius:14px; margin-bottom:6px; border:none; font-family:inherit; cursor:pointer;
+  }
+  .sos small{display:block; font-size:12px; font-weight:600; opacity:.9; margin-top:2px;}
+  .num-list{display:flex; flex-direction:column; gap:6px;}
+  .num-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:11px 13px; border:1px solid var(--line); border-radius:12px; background:var(--card);
+  }
+  .num-row .lbl{font-size:13.5px; font-weight:600;}
+  .num-row .val{font-size:17px; font-weight:800; color:var(--danger); font-variant-numeric:tabular-nums;}
+  .num-row .val small{font-size:11px; color:var(--muted); font-weight:600; display:block; text-align:right;}
+
+  /* ---------- talk cards ---------- */
+  .say{
+    width:100%; text-align:left; padding:13px 14px; border-radius:13px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--ink); cursor:pointer; font-family:inherit; margin-bottom:7px;
+  }
+  .say .big{display:block; font-size:16px; font-weight:700; line-height:1.35;}
+  .say .small{display:block; font-size:12px; color:var(--muted); margin-top:3px;}
+  .say:active{border-color:var(--accent);}
+  .answer-grid{display:grid; grid-template-columns:1fr 1fr; gap:7px;}
+
+  /* ---------- footer bar ---------- */
+  .footbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:40;
+    background:var(--card); border-top:1px solid var(--line);
+    padding:10px 14px calc(env(safe-area-inset-bottom) + 10px);
+  }
+  .footbar-inner{max-width:560px; margin:0 auto; display:flex; gap:8px;}
+  .btn-main{
+    flex:1; padding:15px; border-radius:14px; border:none; background:var(--accent); color:#fff;
+    font-size:16.5px; font-weight:800; cursor:pointer; font-family:inherit;
+  }
+  .btn-main:disabled{background:var(--line); color:var(--muted); cursor:default;}
+  .btn-ghost{
+    flex:0 0 auto; padding:15px 15px; border-radius:14px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--muted); font-size:15px; cursor:pointer; font-family:inherit;
+  }
+
+  /* ---------- overlay card ---------- */
+  .overlay{
+    position:fixed; inset:0; z-index:60; background:rgba(8,20,18,.62);
+    display:none; align-items:flex-start; justify-content:center; padding:16px; overflow-y:auto;
+  }
+  .overlay.open{display:flex;}
+  .sheet{
+    background:var(--card); border-radius:20px; width:100%; max-width:520px;
+    padding:20px; margin:auto 0; box-shadow:0 12px 40px rgba(0,0,0,.3);
+  }
+  .sheet-lang{font-size:11.5px; font-weight:800; color:var(--accent-strong); text-transform:uppercase; letter-spacing:.08em;}
+  .sum-line{margin:0 0 13px;}
+  .sum-line .k{display:block; font-size:11.5px; color:var(--muted); font-weight:700; margin-bottom:1px;}
+  .sum-line .v{display:block; font-size:20px; font-weight:700; line-height:1.35;}
+  .sum-line.pain .v{color:var(--hurt);}
+  .mirror{border-top:1px dashed var(--line); margin-top:16px; padding-top:14px;}
+  .mirror .sum-line .v{font-size:14px; font-weight:600; color:var(--muted);}
+  .disclaim{
+    display:flex; gap:8px; font-size:11.5px; color:var(--muted); line-height:1.45;
+    background:var(--bg); border-radius:12px; padding:11px 12px; margin-top:16px;
+  }
+  .sheet-close{
+    width:100%; margin-top:14px; padding:14px; border-radius:14px; border:none;
+    background:var(--accent); color:#fff; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit;
+  }
+  .empty{text-align:center; color:var(--muted); font-size:14px; padding:22px 10px;}
+
+  .speak-btn{
+    margin-top:10px; width:100%; padding:12px; border-radius:12px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--accent-strong); font-size:14px; font-weight:700;
+    cursor:pointer; font-family:inherit;
+  }
+  .speak-btn[hidden]{display:none;}
+  [hidden]{display:none !important;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-top">
+    <span class="brand">SayAh</span>
+    <span class="tagline" id="tagline"></span>
+  </div>
+  <div class="lang-bar">
+    <div class="lang-field">
+      <label id="lblMyLang" for="myLang"></label>
+      <select id="myLang"></select>
+    </div>
+    <button class="swap-btn" id="swapLang" type="button" title="swap">⇄</button>
+    <div class="lang-field">
+      <label id="lblOtherLang" for="otherLang"></label>
+      <select id="otherLang"></select>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="body" type="button" id="tabBody"></button>
+    <button class="tab" data-tab="symptom" type="button" id="tabSymptom"></button>
+    <button class="tab" data-tab="talk" type="button" id="tabTalk"></button>
+    <button class="tab" data-tab="info" type="button" id="tabInfo"></button>
+    <button class="tab" data-tab="sos" type="button" id="tabSos"></button>
+  </nav>
+
+  <!-- ============ WHERE ============ -->
+  <section class="panel active" data-panel="body">
+    <div class="card">
+      <h2 id="hWhere"></h2>
+      <div class="view-toggle">
+        <button type="button" id="viewFront" class="active"></button>
+        <button type="button" id="viewBack"></button>
+      </div>
+      <p class="hint" id="bodyHint"></p>
+      <div class="bodymap" id="bodymap"></div>
+    </div>
+    <div class="card">
+      <h2 id="hFace"></h2>
+      <div class="chips" id="faceChips"></div>
+    </div>
+  </section>
+
+  <!-- ============ SYMPTOMS ============ -->
+  <section class="panel" data-panel="symptom">
+    <div class="card">
+      <h2 id="hSymptom"></h2>
+      <div class="chips" id="symptomChips"></div>
+    </div>
+    <div class="card">
+      <h2 id="hPain"></h2>
+      <div class="pain-row">
+        <span class="pain-face" id="painFace">🙂</span>
+        <span class="pain-num" id="painNum">0</span>
+      </div>
+      <input type="range" id="painRange" min="0" max="10" step="1" value="0">
+      <div class="scale-ends"><span id="painLow"></span><span id="painHigh"></span></div>
+    </div>
+    <div class="card">
+      <h2 id="hDuration"></h2>
+      <div class="chips" id="durationChips"></div>
+    </div>
+  </section>
+
+  <!-- ============ TALK ============ -->
+  <section class="panel" data-panel="talk">
+    <div class="card">
+      <h2 id="hPhrases"></h2>
+      <p class="hint" id="phraseHint"></p>
+      <div id="phraseList"></div>
+    </div>
+    <div class="card">
+      <h2 id="hDoctor"></h2>
+      <p class="hint" id="doctorHint"></p>
+      <div id="doctorList"></div>
+    </div>
+    <div class="card">
+      <h2 id="hAnswers"></h2>
+      <div class="answer-grid" id="answerList"></div>
+    </div>
+  </section>
+
+  <!-- ============ MY INFO ============ -->
+  <section class="panel" data-panel="info">
+    <div class="card">
+      <h2 id="hInfo"></h2>
+      <div class="field">
+        <label for="fAllergy" id="lblAllergy"></label>
+        <input type="text" id="fAllergy">
+      </div>
+      <div class="field">
+        <label for="fMeds" id="lblMeds"></label>
+        <input type="text" id="fMeds">
+      </div>
+      <div class="field">
+        <label for="fCond" id="lblCond"></label>
+        <input type="text" id="fCond">
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label for="fBlood" id="lblBlood"></label>
+          <select id="fBlood"></select>
+        </div>
+        <div class="field">
+          <label for="fAge" id="lblAge"></label>
+          <input type="number" id="fAge" min="0" max="120">
+        </div>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="fPregnant">
+        <span id="lblPregnant"></span>
+      </label>
+      <div class="privacy"><span>🔒</span><span id="privacyNote"></span></div>
+    </div>
+  </section>
+
+  <!-- ============ SOS ============ -->
+  <section class="panel" data-panel="sos">
+    <div class="card">
+      <h2 id="hNumbers"></h2>
+      <div class="field">
+        <label for="sosCountry" id="lblCountry"></label>
+        <select id="sosCountry"></select>
+      </div>
+      <div class="num-list" id="numList"></div>
+      <p class="hint" id="numNote" style="margin:10px 0 0;"></p>
+    </div>
+  </section>
+</div>
+
+<div class="footbar">
+  <div class="footbar-inner">
+    <button class="btn-main" id="showBtn" type="button"></button>
+    <button class="btn-ghost" id="clearBtn" type="button">↺</button>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <div class="sheet-lang" id="sheetLang"></div>
+    <div id="sheetMain"></div>
+    <button class="speak-btn" id="speakBtn" type="button" hidden></button>
+    <div class="mirror" id="sheetMirror"></div>
+    <div class="disclaim"><span>⚠️</span><span id="disclaimText"></span></div>
+    <button class="sheet-close" id="sheetClose" type="button"></button>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   SayAh — offline medical communication card.
+
+   Design rules this file follows:
+   - NOTHING leaves the device. No network calls at all, no analytics.
+     Health details typed in "My info" live only in this browser's
+     localStorage. That is the whole privacy story, and it is why an
+     undocumented worker or a tourist can use this without risk.
+   - This is a COMMUNICATION AID, never a diagnosis or treatment tool.
+     No advice, no dosages, no triage decisions — just translation of
+     what the patient already knows into words the clinician can read.
+   - Vocabulary is deliberately everyday, not clinical. Simple words
+     translate accurately and the patient can actually recognise them.
+   ========================================================================== */
+
+const LANGS = ["ko","en","zh","ja","vi","th","id","tl","es","ru"];
+const LANG_NAMES = {
+  ko:"한국어", en:"English", zh:"中文", ja:"日本語", vi:"Tiếng Việt",
+  th:"ไทย", id:"Bahasa Indonesia", tl:"Filipino", es:"Español", ru:"Русский"
+};
+/* BCP-47 tags, used only for optional text-to-speech and the <html lang> hint. */
+const LANG_LOCALE = {
+  ko:"ko-KR", en:"en-US", zh:"zh-CN", ja:"ja-JP", vi:"vi-VN",
+  th:"th-TH", id:"id-ID", tl:"fil-PH", es:"es-ES", ru:"ru-RU"
+};
+
+/* Translation helper: one pipe-separated string per phrase, in LANGS order.
+   Compact enough to keep every language for a phrase on one line, which is
+   what makes the table reviewable by a native speaker later. */
+function T(s){
+  const parts = s.split("|");
+  const out = {};
+  LANGS.forEach((l, i) => { out[l] = parts[i] !== undefined && parts[i] !== "" ? parts[i] : parts[1]; });
+  return out;
+}
+
+/* ---------------------------------------------------------------- UI text */
+const UI = {
+  tagline:      T("말이 안 통해도, 아픈 곳은 전할 수 있게|Point, tap, be understood|语言不通也能说清哪里疼|言葉が通じなくても、痛みは伝わる|Không cùng ngôn ngữ vẫn nói được chỗ đau|สื่อสารอาการได้แม้พูดคนละภาษา|Tetap bisa menjelaskan sakit tanpa bahasa yang sama|Maipaliwanag ang sakit kahit magkaibang wika|Explica tu dolor sin hablar el idioma|Объясните боль без общего языка"),
+  myLang:       T("내 언어|My language|我的语言|自分の言語|Ngôn ngữ của tôi|ภาษาของฉัน|Bahasa saya|Wika ko|Mi idioma|Мой язык"),
+  otherLang:    T("상대 언어|Their language|对方语言|相手の言語|Ngôn ngữ của họ|ภาษาของอีกฝ่าย|Bahasa mereka|Wika nila|Su idioma|Их язык"),
+  tabBody:      T("🧍 어디가|🧍 Where|🧍 哪里|🧍 どこ|🧍 Ở đâu|🧍 ตรงไหน|🧍 Di mana|🧍 Saan|🧍 Dónde|🧍 Где"),
+  tabSymptom:   T("🤒 증상|🤒 Symptoms|🤒 症状|🤒 症状|🤒 Triệu chứng|🤒 อาการ|🤒 Gejala|🤒 Sintomas|🤒 Síntomas|🤒 Симптомы"),
+  tabTalk:      T("💬 대화|💬 Talk|💬 对话|💬 会話|💬 Trò chuyện|💬 บทสนทนา|💬 Bicara|💬 Usapan|💬 Hablar|💬 Разговор"),
+  tabInfo:      T("🪪 내 정보|🪪 My info|🪪 我的信息|🪪 私の情報|🪪 Thông tin|🪪 ข้อมูลของฉัน|🪪 Info saya|🪪 Info ko|🪪 Mis datos|🪪 Мои данные"),
+  tabSos:       T("🚨 응급번호|🚨 Emergency|🚨 急救电话|🚨 緊急番号|🚨 Khẩn cấp|🚨 ฉุกเฉิน|🚨 Darurat|🚨 Emergency|🚨 Emergencia|🚨 Экстренно"),
+  hWhere:       T("어디가 아픈가요?|Where does it hurt?|哪里疼？|どこが痛いですか？|Bạn đau ở đâu?|เจ็บตรงไหน|Di mana yang sakit?|Saan masakit?|¿Dónde le duele?|Где болит?"),
+  hFace:        T("머리·얼굴 부위|Head and face|头部·面部|頭・顔|Đầu và mặt|ศีรษะและใบหน้า|Kepala dan wajah|Ulo at mukha|Cabeza y cara|Голова и лицо"),
+  front:        T("앞모습|Front|正面|前|Mặt trước|ด้านหน้า|Depan|Harap|Frente|Спереди"),
+  back:         T("뒷모습|Back|背面|後ろ|Mặt sau|ด้านหลัง|Belakang|Likod|Espalda|Сзади"),
+  bodyHintF:    T("나를 마주 본 그림입니다. 아픈 곳을 누르세요.|The figure faces you. Tap where it hurts.|图中人面向你。点按疼痛部位。|向かい合った図です。痛い所を押してください。|Hình đối diện bạn. Chạm vào chỗ đau.|รูปหันหน้าเข้าหาคุณ แตะจุดที่เจ็บ|Gambar menghadap Anda. Ketuk bagian yang sakit.|Nakaharap sa iyo ang larawan. Pindutin ang masakit.|La figura te mira de frente. Toca donde duele.|Фигура обращена к вам. Нажмите, где болит."),
+  bodyHintB:    T("등 뒤에서 본 그림입니다. 아픈 곳을 누르세요.|Seen from behind. Tap where it hurts.|从背后看的图。点按疼痛部位。|背中側から見た図です。痛い所を押してください。|Nhìn từ phía sau. Chạm vào chỗ đau.|มองจากด้านหลัง แตะจุดที่เจ็บ|Dilihat dari belakang. Ketuk bagian yang sakit.|Tanaw mula sa likod. Pindutin ang masakit.|Vista desde atrás. Toca donde duele.|Вид сзади. Нажмите, где болит."),
+  sideR:        T("오른쪽|Right|右|右|Phải|ขวา|Kanan|Kanan|Derecha|Правая"),
+  sideL:        T("왼쪽|Left|左|左|Trái|ซ้าย|Kiri|Kaliwa|Izquierda|Левая"),
+  hSymptom:     T("어떤 증상인가요?|What are the symptoms?|有什么症状？|どんな症状ですか？|Triệu chứng là gì?|มีอาการอย่างไร|Apa gejalanya?|Ano ang sintomas?|¿Qué síntomas tiene?|Какие симптомы?"),
+  hPain:        T("얼마나 아픈가요?|How bad is the pain?|有多疼？|痛みの強さは？|Đau nhiều không?|เจ็บมากแค่ไหน|Seberapa sakit?|Gaano kasakit?|¿Cuánto duele?|Насколько сильно болит?"),
+  painLow:      T("안 아파요|No pain|不疼|痛くない|Không đau|ไม่เจ็บ|Tidak sakit|Hindi masakit|Sin dolor|Не болит"),
+  painHigh:     T("참을 수 없어요|Unbearable|无法忍受|耐えられない|Không chịu nổi|ทนไม่ไหว|Tak tertahankan|Hindi makayanan|Insoportable|Невыносимо"),
+  hDuration:    T("언제부터인가요?|When did it start?|什么时候开始的？|いつからですか？|Bắt đầu khi nào?|เริ่มเมื่อไหร่|Sejak kapan?|Kailan nagsimula?|¿Cuándo empezó?|Когда началось?"),
+  hPhrases:     T("급할 때 하는 말|Urgent phrases|紧急用语|緊急のことば|Câu khẩn cấp|ประโยคฉุกเฉิน|Kalimat darurat|Mga urgent na pahayag|Frases urgentes|Срочные фразы"),
+  phraseHint:   T("누르면 상대 언어로 크게 보여줍니다.|Tap to show it large in their language.|点按后用对方语言大字显示。|押すと相手の言語で大きく表示します。|Chạm để hiện chữ lớn bằng ngôn ngữ của họ.|แตะเพื่อแสดงตัวใหญ่ในภาษาของอีกฝ่าย|Ketuk untuk menampilkan besar dalam bahasa mereka.|Pindutin para lumaki sa wika nila.|Toca para mostrarlo en grande en su idioma.|Нажмите, чтобы показать крупно на их языке."),
+  hDoctor:      T("의사·상대가 묻는 말|What they may ask you|对方可能问的话|相手が聞くこと|Họ có thể hỏi|สิ่งที่อีกฝ่ายอาจถาม|Yang mungkin mereka tanya|Maaaring itanong nila|Lo que pueden preguntarle|Что вас могут спросить"),
+  doctorHint:   T("상대가 누르면 내 언어로 크게 보입니다.|They tap it; you read it in your language.|对方点按，你用自己的语言看。|相手が押すと自分の言語で見えます。|Họ chạm, bạn đọc bằng ngôn ngữ của mình.|ให้อีกฝ่ายแตะ คุณจะอ่านเป็นภาษาของคุณ|Mereka ketuk, Anda baca dalam bahasa Anda.|Pinipindot nila, binabasa mo sa wika mo.|Ellos tocan y tú lo lees en tu idioma.|Они нажимают — вы читаете на своём языке."),
+  hAnswers:     T("빠른 대답|Quick answers|快速回答|かんたんな返事|Trả lời nhanh|ตอบสั้น ๆ|Jawaban cepat|Mabilis na sagot|Respuestas rápidas|Быстрые ответы"),
+  hInfo:        T("미리 적어두는 내 의료 정보|My medical info (fill in advance)|提前填写的医疗信息|事前に書く医療情報|Thông tin y tế điền trước|ข้อมูลสุขภาพที่กรอกไว้ล่วงหน้า|Info medis yang diisi lebih dulu|Medical info na inihanda|Mi información médica|Мои медицинские данные"),
+  lblAllergy:   T("약·음식 알레르기|Drug or food allergies|药物·食物过敏|薬・食べ物のアレルギー|Dị ứng thuốc hoặc thức ăn|แพ้ยาหรืออาหาร|Alergi obat atau makanan|Allergy sa gamot o pagkain|Alergias a medicamentos o alimentos|Аллергия на лекарства или еду"),
+  lblMeds:      T("지금 먹는 약|Medicines I take now|正在服用的药|服用中の薬|Thuốc đang dùng|ยาที่กินอยู่|Obat yang sedang diminum|Mga iniinom na gamot|Medicamentos actuales|Принимаемые лекарства"),
+  lblCond:      T("앓고 있는 병|Existing conditions|已有疾病|持病|Bệnh đang có|โรคประจำตัว|Penyakit yang diderita|Mga sakit na mayroon|Enfermedades que tengo|Хронические болезни"),
+  lblBlood:     T("혈액형|Blood type|血型|血液型|Nhóm máu|กรุ๊ปเลือด|Golongan darah|Blood type|Grupo sanguíneo|Группа крови"),
+  lblAge:       T("나이|Age|年龄|年齢|Tuổi|อายุ|Usia|Edad|Edad|Возраст"),
+  lblPregnant:  T("임신 중이에요|I am pregnant|我怀孕了|妊娠しています|Tôi đang mang thai|ฉันตั้งครรภ์|Saya sedang hamil|Buntis ako|Estoy embarazada|Я беременна"),
+  unknown:      T("모름|Unknown|不详|不明|Không rõ|ไม่ทราบ|Tidak tahu|Hindi alam|Desconocido|Неизвестно"),
+  privacyNote:  T("적으신 내용은 이 휴대폰 안에만 저장됩니다. 인터넷으로 전송되지 않습니다.|What you type stays on this phone only. It is never sent over the internet.|填写内容只保存在本机，不会上传网络。|入力内容はこの端末にのみ保存され、送信されません。|Nội dung chỉ lưu trên máy này, không gửi đi đâu cả.|ข้อมูลเก็บไว้ในเครื่องนี้เท่านั้น ไม่ถูกส่งออกไป|Data hanya tersimpan di ponsel ini, tidak dikirim ke internet.|Nananatili sa telepono mo ang impormasyon, hindi ipinapadala.|Lo que escribes se queda solo en este teléfono.|Введённое хранится только на этом телефоне."),
+  hNumbers:     T("응급 전화번호|Emergency numbers|急救电话|緊急電話番号|Số điện thoại khẩn cấp|เบอร์ฉุกเฉิน|Nomor darurat|Emergency numbers|Números de emergencia|Экстренные номера"),
+  lblCountry:   T("지금 있는 나라|Country I am in now|我所在的国家|今いる国|Nước tôi đang ở|ประเทศที่อยู่ตอนนี้|Negara saya sekarang|Bansang kinaroroonan|País donde estoy|Страна пребывания"),
+  labelAmb:     T("구급차|Ambulance|救护车|救急車|Xe cứu thương|รถพยาบาล|Ambulans|Ambulansya|Ambulancia|Скорая"),
+  labelPolice:  T("경찰|Police|警察|警察|Cảnh sát|ตำรวจ|Polisi|Pulis|Policía|Полиция"),
+  labelUniversal: T("휴대폰 공용 번호|Mobile fallback|手机通用号码|携帯共通番号|Số chung cho di động|เบอร์กลางมือถือ|Nomor umum ponsel|Pangkalahatang mobile|Número móvil universal|Универсальный мобильный"),
+  numNote:      T("112는 대부분의 나라에서 휴대폰으로 걸리는 공용 응급 번호입니다. 확실하지 않으면 112를 누르세요.|112 reaches emergency services from a mobile phone in most countries. If unsure, dial 112.|在多数国家，用手机拨 112 可接通急救。不确定时请拨 112。|112 は多くの国で携帯から通じる共通番号です。不明なときは 112 へ。|112 gọi được từ di động ở hầu hết các nước. Nếu không chắc, hãy gọi 112.|112 โทรจากมือถือได้ในเกือบทุกประเทศ ถ้าไม่แน่ใจให้กด 112|112 bisa dihubungi dari ponsel di sebagian besar negara. Jika ragu, tekan 112.|Umaabot ang 112 mula sa cellphone sa karamihan ng bansa. Kung hindi sigurado, i-dial ang 112.|El 112 funciona desde móvil en la mayoría de países. Si dudas, marca 112.|112 работает с мобильного в большинстве стран. Если не уверены — 112."),
+  showBtn:      T("의사에게 보여주기|Show the doctor|给医生看|医師に見せる|Cho bác sĩ xem|แสดงให้แพทย์ดู|Tunjukkan ke dokter|Ipakita sa doktor|Mostrar al médico|Показать врачу"),
+  showBtnN:     T("의사에게 보여주기|Show the doctor|给医生看|医師に見せる|Cho bác sĩ xem|แสดงให้แพทย์ดู|Tunjukkan ke dokter|Ipakita sa doktor|Mostrar al médico|Показать врачу"),
+  sumWhere:     T("아픈 곳|Where it hurts|疼痛部位|痛む場所|Chỗ đau|จุดที่เจ็บ|Bagian yang sakit|Lugar ng sakit|Dónde duele|Где болит"),
+  sumSymptom:   T("증상|Symptoms|症状|症状|Triệu chứng|อาการ|Gejala|Sintomas|Síntomas|Симптомы"),
+  sumPain:      T("통증 정도|Pain level|疼痛程度|痛みの強さ|Mức độ đau|ระดับความเจ็บ|Tingkat nyeri|Antas ng sakit|Nivel de dolor|Уровень боли"),
+  sumSince:     T("시작 시점|Started|开始时间|いつから|Bắt đầu|เริ่มเมื่อ|Mulai|Nagsimula|Comenzó|Началось"),
+  sumAllergy:   T("알레르기|Allergies|过敏|アレルギー|Dị ứng|ภูมิแพ้|Alergi|Allergy|Alergias|Аллергия"),
+  sumMeds:      T("복용 약|Medications|服药|服用薬|Thuốc dùng|ยาที่ใช้|Obat|Gamot|Medicamentos|Лекарства"),
+  sumCond:      T("기존 질환|Conditions|既往病史|持病|Bệnh nền|โรคประจำตัว|Kondisi|Kondisyon|Enfermedades|Заболевания"),
+  sumBlood:     T("혈액형|Blood type|血型|血液型|Nhóm máu|กรุ๊ปเลือด|Golongan darah|Blood type|Grupo sanguíneo|Группа крови"),
+  sumAge:       T("나이|Age|年龄|年齢|Tuổi|อายุ|Usia|Edad|Edad|Возраст"),
+  emptyMsg:     T("아픈 곳이나 증상을 먼저 골라주세요.|Choose where it hurts or a symptom first.|请先选择疼痛部位或症状。|まず痛む場所か症状を選んでください。|Hãy chọn chỗ đau hoặc triệu chứng trước.|กรุณาเลือกจุดที่เจ็บหรืออาการก่อน|Pilih dulu bagian yang sakit atau gejalanya.|Pumili muna ng masakit o sintomas.|Elige primero dónde duele o un síntoma.|Сначала выберите место боли или симптом."),
+  close:        T("닫기|Close|关闭|閉じる|Đóng|ปิด|Tutup|Isara|Cerrar|Закрыть"),
+  speak:        T("🔊 소리로 듣기|🔊 Read aloud|🔊 朗读|🔊 読み上げ|🔊 Đọc to|🔊 อ่านออกเสียง|🔊 Bacakan|🔊 Basahin nang malakas|🔊 Leer en voz alta|🔊 Прочитать вслух"),
+  disclaimer:   T("이 앱은 의사소통을 돕는 도구입니다. 진단이나 치료 조언을 하지 않습니다. 응급 상황에서는 반드시 응급 번호로 전화하세요.|This app only helps you communicate. It does not diagnose or give medical advice. In an emergency, always call your local emergency number.|本应用仅帮助沟通，不做诊断或医疗建议。紧急情况请拨打急救电话。|このアプリは意思疎通を助けるだけで、診断や医療助言はしません。緊急時は必ず緊急番号へ。|Ứng dụng chỉ hỗ trợ giao tiếp, không chẩn đoán hay tư vấn y tế. Khi khẩn cấp hãy gọi số cấp cứu.|แอปนี้ช่วยสื่อสารเท่านั้น ไม่ได้วินิจฉัยหรือให้คำแนะนำทางการแพทย์ กรณีฉุกเฉินโทรเบอร์ฉุกเฉิน|Aplikasi ini hanya membantu komunikasi, bukan diagnosis atau saran medis. Saat darurat hubungi nomor darurat.|Tumutulong lang ito sa komunikasyon, hindi nagdadayagnos. Sa emergency, tumawag sa emergency number.|Esta app solo ayuda a comunicarse; no diagnostica ni da consejo médico. En una emergencia, llame al número de emergencias.|Приложение только помогает общаться, не ставит диагноз. В экстренном случае звоните в скорую.")
+};
+
+/* ------------------------------------------------------------ body parts */
+const BODY = {
+  head:      T("머리|Head|头部|頭|Đầu|ศีรษะ|Kepala|Ulo|Cabeza|Голова"),
+  eye:       T("눈|Eye|眼睛|目|Mắt|ตา|Mata|Mata|Ojo|Глаз"),
+  ear:       T("귀|Ear|耳朵|耳|Tai|หู|Telinga|Tainga|Oído|Ухо"),
+  nose:      T("코|Nose|鼻子|鼻|Mũi|จมูก|Hidung|Ilong|Nariz|Нос"),
+  mouth:     T("입·이|Mouth or teeth|口腔·牙齿|口・歯|Miệng hoặc răng|ปากหรือฟัน|Mulut atau gigi|Bibig o ngipin|Boca o dientes|Рот или зубы"),
+  neck:      T("목|Neck or throat|脖子·喉咙|首・のど|Cổ hoặc họng|คอ|Leher atau tenggorokan|Leeg o lalamunan|Cuello o garganta|Шея или горло"),
+  chest:     T("가슴|Chest|胸部|胸|Ngực|หน้าอก|Dada|Dibdib|Pecho|Грудь"),
+  abdomen:   T("배|Stomach|腹部|お腹|Bụng|ท้อง|Perut|Tiyan|Estómago|Живот"),
+  pelvis:    T("아랫배|Lower abdomen|下腹部|下腹部|Bụng dưới|ท้องน้อย|Perut bawah|Ibabang tiyan|Bajo vientre|Низ живота"),
+  armR:      T("오른팔|Right arm|右臂|右腕|Cánh tay phải|แขนขวา|Lengan kanan|Kanang braso|Brazo derecho|Правая рука"),
+  armL:      T("왼팔|Left arm|左臂|左腕|Cánh tay trái|แขนซ้าย|Lengan kiri|Kaliwang braso|Brazo izquierdo|Левая рука"),
+  handR:     T("오른손|Right hand|右手|右手|Bàn tay phải|มือขวา|Tangan kanan|Kanang kamay|Mano derecha|Правая кисть"),
+  handL:     T("왼손|Left hand|左手|左手|Bàn tay trái|มือซ้าย|Tangan kiri|Kaliwang kamay|Mano izquierda|Левая кисть"),
+  legR:      T("오른다리|Right leg|右腿|右脚|Chân phải|ขาขวา|Kaki kanan|Kanang binti|Pierna derecha|Правая нога"),
+  legL:      T("왼다리|Left leg|左腿|左脚|Chân trái|ขาซ้าย|Kaki kiri|Kaliwang binti|Pierna izquierda|Левая нога"),
+  footR:     T("오른발|Right foot|右脚|右足|Bàn chân phải|เท้าขวา|Telapak kaki kanan|Kanang paa|Pie derecho|Правая стопа"),
+  footL:     T("왼발|Left foot|左脚|左足|Bàn chân trái|เท้าซ้าย|Telapak kaki kiri|Kaliwang paa|Pie izquierdo|Левая стопа"),
+  upperback: T("등|Upper back|上背部|背中|Lưng trên|หลังส่วนบน|Punggung atas|Itaas na likod|Espalda alta|Верх спины"),
+  lowerback: T("허리|Lower back|腰部|腰|Thắt lưng|เอว|Pinggang|Baywang|Zona lumbar|Поясница"),
+  hip:       T("엉덩이|Hip|臀部|おしり|Hông|สะโพก|Pinggul|Balakang|Cadera|Ягодицы")
+};
+const FACE_PARTS = ["eye","ear","nose","mouth"];
+
+/* -------------------------------------------------------------- symptoms */
+const SYMPTOMS = [
+  ["pain",       "😖", T("아파요|Pain|疼痛|痛い|Đau|ปวด|Nyeri|Masakit|Dolor|Боль")],
+  ["fever",      "🌡️", T("열이 나요|Fever|发烧|熱がある|Sốt|มีไข้|Demam|Lagnat|Fiebre|Температура")],
+  ["cough",      "😷", T("기침|Cough|咳嗽|咳|Ho|ไอ|Batuk|Ubo|Tos|Кашель")],
+  ["breath",     "🫁", T("숨쉬기 힘들어요|Hard to breathe|呼吸困难|息が苦しい|Khó thở|หายใจลำบาก|Sesak napas|Hirap huminga|Dificultad para respirar|Трудно дышать")],
+  ["chestPress", "❤️‍🔥", T("가슴이 조여요|Chest tightness|胸闷|胸が締めつけられる|Tức ngực|แน่นหน้าอก|Dada sesak|Paninikip ng dibdib|Opresión en el pecho|Давит в груди")],
+  ["dizzy",      "💫", T("어지러워요|Dizzy|头晕|めまい|Chóng mặt|เวียนหัว|Pusing|Nahihilo|Mareo|Головокружение")],
+  ["nausea",     "🤢", T("토할 것 같아요|Nausea|恶心|吐き気|Buồn nôn|คลื่นไส้|Mual|Nasusuka|Náuseas|Тошнота")],
+  ["vomit",      "🤮", T("토했어요|Vomiting|呕吐|嘔吐した|Nôn|อาเจียน|Muntah|Nagsuka|Vómitos|Рвота")],
+  ["diarrhea",   "🚽", T("설사|Diarrhea|腹泻|下痢|Tiêu chảy|ท้องเสีย|Diare|Pagtatae|Diarrea|Понос")],
+  ["bleeding",   "🩸", T("피가 나요|Bleeding|出血|出血|Chảy máu|เลือดออก|Berdarah|Dumudugo|Sangrado|Кровотечение")],
+  ["swelling",   "🎈", T("부었어요|Swelling|肿胀|腫れている|Sưng|บวม|Bengkak|Namamaga|Hinchazón|Отёк")],
+  ["rash",       "🔴", T("발진·두드러기|Rash|皮疹|発疹|Phát ban|ผื่น|Ruam|Pantal|Sarpullido|Сыпь")],
+  ["itch",       "🖐️", T("가려워요|Itching|瘙痒|かゆい|Ngứa|คัน|Gatal|Makati|Picazón|Зуд")],
+  ["chills",     "🥶", T("오한이 나요|Chills|发冷|悪寒|Ớn lạnh|หนาวสั่น|Menggigil|Nanginginig|Escalofríos|Озноб")],
+  ["fatigue",    "😴", T("기운이 없어요|Weakness|乏力|だるい|Mệt mỏi|อ่อนเพลีย|Lemas|Panghihina|Debilidad|Слабость")],
+  ["numb",       "🫳", T("저리고 감각이 없어요|Numbness|麻木|しびれ|Tê|ชา|Kebas|Manhid|Entumecimiento|Онемение")],
+  ["faint",      "😵", T("쓰러졌어요|Fainted|昏倒|気を失った|Ngất|เป็นลม|Pingsan|Nawalan ng malay|Desmayo|Обморок")],
+  ["injury",     "🤕", T("다쳤어요|Injury|受伤|けが|Bị thương|บาดเจ็บ|Cedera|Nasugatan|Lesión|Травма")],
+  ["burn",       "🔥", T("화상|Burn|烧伤|やけど|Bỏng|แผลไหม้|Luka bakar|Paso|Quemadura|Ожог")],
+  ["cantMove",   "🦯", T("움직일 수 없어요|Cannot move|不能动|動けない|Không cử động được|ขยับไม่ได้|Tidak bisa bergerak|Hindi makagalaw|No puedo moverme|Не могу двигаться")]
+];
+
+/* -------------------------------------------------------------- duration */
+const DURATIONS = [
+  ["now",    T("방금|Just now|刚刚|たった今|Vừa mới|เมื่อสักครู่|Baru saja|Ngayon lang|Ahora mismo|Только что")],
+  ["hours",  T("몇 시간 전|A few hours ago|几小时前|数時間前|Vài giờ trước|ไม่กี่ชั่วโมงก่อน|Beberapa jam lalu|Ilang oras na|Hace unas horas|Несколько часов назад")],
+  ["today",  T("오늘|Today|今天|今日|Hôm nay|วันนี้|Hari ini|Ngayong araw|Hoy|Сегодня")],
+  ["days",   T("며칠 전|A few days ago|几天前|数日前|Vài ngày trước|ไม่กี่วันก่อน|Beberapa hari lalu|Ilang araw na|Hace unos días|Несколько дней назад")],
+  ["week",   T("일주일 넘게|Over a week|一周以上|1週間以上|Hơn một tuần|มากกว่าหนึ่งสัปดาห์|Lebih dari seminggu|Mahigit isang linggo|Más de una semana|Больше недели")],
+  ["month",  T("한 달 넘게|Over a month|一个月以上|1か月以上|Hơn một tháng|มากกว่าหนึ่งเดือน|Lebih dari sebulan|Mahigit isang buwan|Más de un mes|Больше месяца")]
+];
+
+/* ------------------------------------------------------ urgent phrases */
+const PHRASES = [
+  T("구급차를 불러주세요|Please call an ambulance|请叫救护车|救急車を呼んでください|Hãy gọi xe cứu thương|ช่วยเรียกรถพยาบาลด้วย|Tolong panggil ambulans|Pakitawag ng ambulansya|Llame a una ambulancia, por favor|Вызовите скорую помощь"),
+  T("병원에 데려다 주세요|Please take me to a hospital|请送我去医院|病院に連れて行ってください|Đưa tôi đến bệnh viện|พาฉันไปโรงพยาบาลด้วย|Tolong antar saya ke rumah sakit|Dalhin ninyo ako sa ospital|Lléveme al hospital, por favor|Отвезите меня в больницу"),
+  T("도와주세요|Please help me|请帮帮我|助けてください|Xin hãy giúp tôi|ช่วยฉันด้วย|Tolong saya|Tulungan ninyo ako|Ayúdeme, por favor|Помогите мне"),
+  T("이 나라 말을 못 해요|I do not speak your language|我不会说这里的语言|この国の言葉が話せません|Tôi không nói được tiếng ở đây|ฉันพูดภาษาที่นี่ไม่ได้|Saya tidak bisa bahasa di sini|Hindi ako marunong ng wika rito|No hablo su idioma|Я не говорю на вашем языке"),
+  T("통역이 필요해요|I need an interpreter|我需要翻译|通訳が必要です|Tôi cần phiên dịch|ฉันต้องการล่าม|Saya butuh penerjemah|Kailangan ko ng interpreter|Necesito un intérprete|Мне нужен переводчик"),
+  T("가족에게 연락해 주세요|Please call my family|请联系我的家人|家族に連絡してください|Hãy gọi cho gia đình tôi|ช่วยติดต่อครอบครัวฉัน|Tolong hubungi keluarga saya|Pakitawagan ang pamilya ko|Llame a mi familia, por favor|Позвоните моей семье"),
+  T("여행자 보험이 있어요|I have travel insurance|我有旅行保险|旅行保険に入っています|Tôi có bảo hiểm du lịch|ฉันมีประกันการเดินทาง|Saya punya asuransi perjalanan|May travel insurance ako|Tengo seguro de viaje|У меня есть страховка"),
+  T("천천히 말해 주세요|Please speak slowly|请说慢一点|ゆっくり話してください|Xin nói chậm lại|กรุณาพูดช้า ๆ|Tolong bicara pelan-pelan|Pakidahan po ang pagsasalita|Hable despacio, por favor|Говорите медленнее, пожалуйста")
+];
+
+/* --------------------------------------------------- what they may ask */
+const DOCTOR_Q = [
+  T("언제부터 아팠어요?|When did it start?|什么时候开始的？|いつからですか？|Bắt đầu từ khi nào?|เริ่มเมื่อไหร่|Sejak kapan?|Kailan nagsimula?|¿Cuándo comenzó?|Когда началось?"),
+  T("약 알레르기가 있어요?|Do you have any drug allergies?|你有药物过敏吗？|薬のアレルギーはありますか？|Bạn có dị ứng thuốc không?|คุณแพ้ยาไหม|Apakah Anda alergi obat?|May allergy ka ba sa gamot?|¿Es alérgico a algún medicamento?|У вас аллергия на лекарства?"),
+  T("지금 먹는 약이 있어요?|Are you taking any medication?|你在服用什么药吗？|服用中の薬はありますか？|Bạn đang dùng thuốc gì không?|ตอนนี้กินยาอะไรอยู่ไหม|Sedang minum obat?|May iniinom ka bang gamot?|¿Toma algún medicamento?|Вы принимаете лекарства?"),
+  T("여기 누르면 아파요?|Does it hurt when I press here?|按这里疼吗？|ここを押すと痛いですか？|Ấn vào đây có đau không?|กดตรงนี้เจ็บไหม|Sakit kalau ditekan di sini?|Masakit ba kapag diniinan dito?|¿Le duele cuando presiono aquí?|Больно, когда я нажимаю здесь?"),
+  T("숨쉬기 힘들어요?|Do you have trouble breathing?|呼吸困难吗？|息が苦しいですか？|Bạn có khó thở không?|หายใจลำบากไหม|Apakah sesak napas?|Nahihirapan ka bang huminga?|¿Le cuesta respirar?|Вам трудно дышать?"),
+  T("임신했을 가능성이 있어요?|Could you be pregnant?|有可能怀孕吗？|妊娠の可能性はありますか？|Bạn có thể đang mang thai không?|มีโอกาสตั้งครรภ์ไหม|Mungkinkah Anda hamil?|Maaari bang buntis ka?|¿Podría estar embarazada?|Возможна ли беременность?"),
+  T("검사가 필요합니다|We need to do some tests|需要做检查|検査が必要です|Cần làm xét nghiệm|ต้องตรวจเพิ่มเติม|Perlu pemeriksaan|Kailangan ng pagsusuri|Necesitamos hacer pruebas|Нужны обследования"),
+  T("주사를 놓겠습니다|I will give you an injection|我要给你打针|注射をします|Tôi sẽ tiêm cho bạn|จะฉีดยาให้|Saya akan menyuntik|Tuturukan kita|Le pondré una inyección|Я сделаю вам укол"),
+  T("입원이 필요합니다|You need to stay in hospital|需要住院|入院が必要です|Bạn cần nhập viện|ต้องนอนโรงพยาบาล|Perlu rawat inap|Kailangan mong ma-admit|Necesita ingresar|Нужна госпитализация"),
+  T("심각하지 않습니다|It is not serious|不严重|深刻ではありません|Không nghiêm trọng|ไม่ร้ายแรง|Tidak serius|Hindi ito malubha|No es grave|Это не серьёзно"),
+  T("여기서 기다려 주세요|Please wait here|请在这里等|ここでお待ちください|Vui lòng đợi ở đây|กรุณารอตรงนี้|Silakan tunggu di sini|Maghintay po kayo rito|Espere aquí, por favor|Подождите здесь")
+];
+
+/* --------------------------------------------------------- quick answers */
+const ANSWERS = [
+  T("네|Yes|是|はい|Có|ใช่|Ya|Oo|Sí|Да"),
+  T("아니요|No|不是|いいえ|Không|ไม่ใช่|Tidak|Hindi|No|Нет"),
+  T("모르겠어요|I do not know|不知道|わかりません|Tôi không biết|ไม่ทราบ|Tidak tahu|Hindi ko alam|No lo sé|Не знаю"),
+  T("조금|A little|一点点|少し|Một chút|นิดหน่อย|Sedikit|Kaunti|Un poco|Немного"),
+  T("많이|A lot|很多|とても|Rất nhiều|มาก|Sangat|Sobra|Mucho|Очень"),
+  T("다시 말해 주세요|Please say it again|请再说一遍|もう一度お願いします|Xin nhắc lại|ช่วยพูดอีกครั้ง|Tolong ulangi|Pakiulit po|Repítalo, por favor|Повторите, пожалуйста")
+];
+
+/* ------------------------------------------------------ emergency numbers
+   Verified against public references (see README). "amb" is the number that
+   reaches an ambulance; some countries route everything through one number. */
+const SOS_NUMBERS = [
+  ["KR", "🇰🇷 " + "Korea",        "119", "112"],
+  ["JP", "🇯🇵 " + "Japan",        "119", "110"],
+  ["CN", "🇨🇳 " + "China",        "120", "110"],
+  ["TW", "🇹🇼 " + "Taiwan",       "119", "110"],
+  ["HK", "🇭🇰 " + "Hong Kong",    "999", "999"],
+  ["TH", "🇹🇭 " + "Thailand",     "1669", "191"],
+  ["VN", "🇻🇳 " + "Vietnam",      "115", "113"],
+  ["SG", "🇸🇬 " + "Singapore",    "995", "999"],
+  ["MY", "🇲🇾 " + "Malaysia",     "999", "999"],
+  ["ID", "🇮🇩 " + "Indonesia",    "118", "110"],
+  ["PH", "🇵🇭 " + "Philippines",  "911", "911"],
+  ["US", "🇺🇸 " + "USA / Canada", "911", "911"],
+  ["GB", "🇬🇧 " + "United Kingdom", "999", "999"],
+  ["EU", "🇪🇺 " + "Europe (EU)",  "112", "112"],
+  ["AU", "🇦🇺 " + "Australia",    "000", "000"]
+];
+
+const BLOOD_TYPES = ["A+","A-","B+","B-","O+","O-","AB+","AB-"];
+
+/* ========================================================== app state */
+const LS = {
+  my:"sayah_myLang", other:"sayah_otherLang", country:"sayah_country",
+  allergy:"sayah_allergy", meds:"sayah_meds", cond:"sayah_cond",
+  blood:"sayah_blood", age:"sayah_age", pregnant:"sayah_pregnant"
+};
+function lsGet(k, fallback){
+  try{ const v = localStorage.getItem(k); return v === null ? fallback : v; }
+  catch(e){ return fallback; }
+}
+function lsSet(k, v){ try{ localStorage.setItem(k, v); }catch(e){ /* private mode */ } }
+
+let myLang = lsGet(LS.my, (navigator.language || "en").slice(0,2).toLowerCase());
+if(!LANGS.includes(myLang)) myLang = "ko";
+let otherLang = lsGet(LS.other, myLang === "en" ? "ko" : "en");
+if(!LANGS.includes(otherLang)) otherLang = "en";
+
+const selected = { parts:new Set(), symptoms:new Set(), duration:null, pain:0 };
+let bodyView = "front";
+
+const t  = (key) => UI[key][myLang];          /* label in the user's language  */
+const to = (key) => UI[key][otherLang];       /* same label, other language    */
+const $  = (id) => document.getElementById(id);
+
+/* ================================================== language selectors */
+function fillLangSelects(){
+  const opts = LANGS.map(l => `<option value="${l}">${LANG_NAMES[l]}</option>`).join("");
+  $("myLang").innerHTML = opts;
+  $("otherLang").innerHTML = opts;
+  $("myLang").value = myLang;
+  $("otherLang").value = otherLang;
+}
+
+/* ============================================================ body map */
+/* Zone geometry is shared by both views; only the L/R meaning flips,
+   because a figure seen from the front shows its left on your right. */
+const FRONT_ZONES = [
+  ["head",   `<ellipse cx="100" cy="42" rx="26" ry="30"/>`],
+  ["neck",   `<rect x="89" y="68" width="22" height="16" rx="7"/>`],
+  ["chest",  `<rect x="61" y="82" width="78" height="56" rx="16"/>`],
+  ["abdomen",`<rect x="65" y="138" width="70" height="44" rx="12"/>`],
+  ["pelvis", `<rect x="67" y="182" width="66" height="34" rx="12"/>`],
+  ["armR",   `<rect x="32" y="84" width="26" height="128" rx="13"/>`],
+  ["handR",  `<ellipse cx="43" cy="224" rx="13" ry="15"/>`],
+  ["armL",   `<rect x="142" y="84" width="26" height="128" rx="13"/>`],
+  ["handL",  `<ellipse cx="157" cy="224" rx="13" ry="15"/>`],
+  ["legR",   `<rect x="69" y="214" width="28" height="152" rx="13"/>`],
+  ["footR",  `<ellipse cx="83" cy="376" rx="16" ry="11"/>`],
+  ["legL",   `<rect x="103" y="214" width="28" height="152" rx="13"/>`],
+  ["footL",  `<ellipse cx="117" cy="376" rx="16" ry="11"/>`]
+];
+/* Back view: same silhouette, torso split into upper back / lower back / hip,
+   and the arms and legs swap sides. */
+const BACK_ZONES = [
+  ["head",      `<ellipse cx="100" cy="42" rx="26" ry="30"/>`],
+  ["neck",      `<rect x="89" y="68" width="22" height="16" rx="7"/>`],
+  ["upperback", `<rect x="61" y="82" width="78" height="56" rx="16"/>`],
+  ["lowerback", `<rect x="65" y="138" width="70" height="44" rx="12"/>`],
+  ["hip",       `<rect x="67" y="182" width="66" height="34" rx="12"/>`],
+  ["armL",      `<rect x="32" y="84" width="26" height="128" rx="13"/>`],
+  ["handL",     `<ellipse cx="43" cy="224" rx="13" ry="15"/>`],
+  ["armR",      `<rect x="142" y="84" width="26" height="128" rx="13"/>`],
+  ["handR",     `<ellipse cx="157" cy="224" rx="13" ry="15"/>`],
+  ["legL",      `<rect x="69" y="214" width="28" height="152" rx="13"/>`],
+  ["footL",     `<ellipse cx="83" cy="376" rx="16" ry="11"/>`],
+  ["legR",      `<rect x="103" y="214" width="28" height="152" rx="13"/>`],
+  ["footR",     `<ellipse cx="117" cy="376" rx="16" ry="11"/>`]
+];
+const SILHOUETTE = `
+  <ellipse cx="100" cy="42" rx="26" ry="30"/>
+  <rect x="89" y="66" width="22" height="20" rx="7"/>
+  <rect x="61" y="82" width="78" height="58" rx="16"/>
+  <rect x="65" y="136" width="70" height="48" rx="12"/>
+  <rect x="67" y="180" width="66" height="38" rx="12"/>
+  <rect x="36" y="86" width="21" height="70" rx="10"/>
+  <rect x="34" y="150" width="19" height="62" rx="9"/>
+  <ellipse cx="43" cy="224" rx="12" ry="14"/>
+  <rect x="143" y="86" width="21" height="70" rx="10"/>
+  <rect x="147" y="150" width="19" height="62" rx="9"/>
+  <ellipse cx="157" cy="224" rx="12" ry="14"/>
+  <rect x="70" y="212" width="26" height="82" rx="12"/>
+  <rect x="72" y="288" width="22" height="80" rx="10"/>
+  <ellipse cx="83" cy="376" rx="15" ry="11"/>
+  <rect x="104" y="212" width="26" height="82" rx="12"/>
+  <rect x="106" y="288" width="22" height="80" rx="10"/>
+  <ellipse cx="117" cy="376" rx="15" ry="11"/>
+`;
+
+function renderBodyMap(){
+  const zones = bodyView === "front" ? FRONT_ZONES : BACK_ZONES;
+  /* On the front view the figure faces you, so its right side is drawn on
+     your left. On the back view you are behind it, so the sides line up. */
+  const leftMarker  = bodyView === "front" ? t("sideR") : t("sideL");
+  const rightMarker = bodyView === "front" ? t("sideL") : t("sideR");
+  const zoneSvg = zones.map(([id, shape]) => {
+    const on = selected.parts.has(id) ? " on" : "";
+    return shape.replace(/^<(\w+)/, `<$1 class="zone${on}" data-part="${id}" role="button" tabindex="0"`);
+  }).join("");
+  $("bodymap").innerHTML = `
+    <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" aria-label="body map">
+      <g class="fig">${SILHOUETTE}</g>
+      <text class="side-label" x="14" y="76" text-anchor="start">${leftMarker}</text>
+      <text class="side-label" x="186" y="76" text-anchor="end">${rightMarker}</text>
+      ${zoneSvg}
+    </svg>`;
+  $("bodyHint").textContent = bodyView === "front" ? t("bodyHintF") : t("bodyHintB");
+}
+
+/* =============================================================== chips */
+function chipHtml(id, emoji, primary, secondary, calm, on){
+  return `<button type="button" class="chip${calm ? " calm" : ""}${on ? " on" : ""}" data-id="${id}">
+    ${emoji ? `<span class="emo">${emoji}</span>` : ""}
+    <span><span class="txt">${primary}</span><span class="sub">${secondary}</span></span>
+  </button>`;
+}
+function renderFaceChips(){
+  $("faceChips").innerHTML = FACE_PARTS.map(id =>
+    chipHtml(id, "", BODY[id][myLang], BODY[id][otherLang], false, selected.parts.has(id))
+  ).join("");
+}
+function renderSymptomChips(){
+  $("symptomChips").innerHTML = SYMPTOMS.map(([id, emo, label]) =>
+    chipHtml(id, emo, label[myLang], label[otherLang], false, selected.symptoms.has(id))
+  ).join("");
+}
+function renderDurationChips(){
+  $("durationChips").innerHTML = DURATIONS.map(([id, label]) =>
+    chipHtml(id, "", label[myLang], label[otherLang], true, selected.duration === id)
+  ).join("");
+}
+
+/* ============================================================== talk */
+function sayHtml(list, bigLang, smallLang){
+  return list.map((p, i) =>
+    `<button type="button" class="say" data-say="${i}">
+       <span class="big">${p[bigLang]}</span>
+       <span class="small">${p[smallLang]}</span>
+     </button>`
+  ).join("");
+}
+function renderTalk(){
+  /* Phrases and answers are things I say, so the big line is THEIR language.
+     Doctor questions are things they say, so the big line is MY language. */
+  $("phraseList").innerHTML = sayHtml(PHRASES, otherLang, myLang);
+  $("doctorList").innerHTML = sayHtml(DOCTOR_Q, myLang, otherLang);
+  $("answerList").innerHTML = ANSWERS.map((p, i) =>
+    `<button type="button" class="say" data-answer="${i}">
+       <span class="big">${p[otherLang]}</span>
+       <span class="small">${p[myLang]}</span>
+     </button>`
+  ).join("");
+}
+
+/* ================================================= emergency numbers */
+function renderNumbers(){
+  const code = $("sosCountry").value;
+  const row = SOS_NUMBERS.find(r => r[0] === code) || SOS_NUMBERS[0];
+  const [, , amb, police] = row;
+  const rows = [
+    [t("labelAmb"), amb],
+    [t("labelPolice"), police],
+    [t("labelUniversal"), "112"]
+  ];
+  $("numList").innerHTML = rows.map(([label, num]) =>
+    `<a class="num-row" href="tel:${num}"><span class="lbl">${label}</span><span class="val">${num}</span></a>`
+  ).join("");
+}
+
+/* ================================================== the summary card */
+function selectedPartNames(langCode){
+  return [...selected.parts].map(id => BODY[id][langCode]);
+}
+function selectedSymptomNames(langCode){
+  return SYMPTOMS.filter(([id]) => selected.symptoms.has(id)).map(([, , label]) => label[langCode]);
+}
+function durationName(langCode){
+  const d = DURATIONS.find(([id]) => id === selected.duration);
+  return d ? d[1][langCode] : null;
+}
+function myInfo(){
+  return {
+    allergy: $("fAllergy").value.trim(),
+    meds:    $("fMeds").value.trim(),
+    cond:    $("fCond").value.trim(),
+    blood:   $("fBlood").value,
+    age:     $("fAge").value.trim(),
+    pregnant:$("fPregnant").checked
+  };
+}
+function hasSelection(){
+  return selected.parts.size > 0 || selected.symptoms.size > 0;
+}
+/* Builds the list of {labelKey, value} rows for one language. */
+function summaryRows(langCode){
+  const info = myInfo();
+  const rows = [];
+  const parts = selectedPartNames(langCode);
+  const symps = selectedSymptomNames(langCode);
+  if(parts.length) rows.push(["sumWhere", parts.join(", "), false]);
+  if(symps.length) rows.push(["sumSymptom", symps.join(", "), false]);
+  if(selected.pain > 0) rows.push(["sumPain", `${selected.pain} / 10`, true]);
+  const dur = durationName(langCode);
+  if(dur) rows.push(["sumSince", dur, false]);
+  if(info.allergy) rows.push(["sumAllergy", info.allergy, false]);
+  if(info.meds)    rows.push(["sumMeds", info.meds, false]);
+  if(info.cond)    rows.push(["sumCond", info.cond, false]);
+  if(info.blood)   rows.push(["sumBlood", info.blood, false]);
+  if(info.age)     rows.push(["sumAge", info.age, false]);
+  if(info.pregnant) rows.push([null, UI.lblPregnant[langCode], false]);
+  return rows;
+}
+function rowsHtml(langCode, rows){
+  return rows.map(([key, value, isPain]) =>
+    `<p class="sum-line${isPain ? " pain" : ""}">
+       ${key ? `<span class="k">${UI[key][langCode]}</span>` : ""}
+       <span class="v">${escapeHtml(value)}</span>
+     </p>`
+  ).join("");
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c]);
+}
+function openSummary(){
+  if(!hasSelection()){
+    $("sheetLang").textContent = "";
+    $("sheetMain").innerHTML = `<p class="empty">${t("emptyMsg")}</p>`;
+    $("sheetMirror").innerHTML = "";
+    $("speakBtn").hidden = true;
+  }else{
+    $("sheetLang").textContent = LANG_NAMES[otherLang];
+    $("sheetMain").innerHTML = rowsHtml(otherLang, summaryRows(otherLang));
+    $("sheetMirror").innerHTML =
+      `<div class="sheet-lang" style="margin-bottom:8px;">${LANG_NAMES[myLang]}</div>` +
+      rowsHtml(myLang, summaryRows(myLang));
+    setupSpeak(summaryRows(otherLang).map(r => r[1]).join(". "), otherLang);
+  }
+  $("disclaimText").textContent = to("disclaimer") + " / " + t("disclaimer");
+  $("sheetClose").textContent = t("close");
+  $("overlay").classList.add("open");
+}
+/* Read-aloud is a bonus, not a promise: only offered when the device
+   actually has a voice for that language, and it never blocks anything. */
+function setupSpeak(text, langCode){
+  const btn = $("speakBtn");
+  btn.hidden = true;
+  if(!("speechSynthesis" in window) || !text) return;
+  const tag = LANG_LOCALE[langCode];
+  const base = tag.split("-")[0];
+  const voices = window.speechSynthesis.getVoices() || [];
+  if(!voices.some(v => v.lang && v.lang.toLowerCase().startsWith(base))) return;
+  btn.hidden = false;
+  btn.textContent = t("speak");
+  btn.onclick = () => {
+    try{
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = tag;
+      u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){ /* nothing to do; the text is on screen anyway */ }
+  };
+}
+function showBig(text, sub){
+  $("sheetLang").textContent = "";
+  $("sheetMain").innerHTML =
+    `<p class="sum-line"><span class="v" style="font-size:27px;">${escapeHtml(text)}</span></p>`;
+  $("sheetMirror").innerHTML = `<p class="sum-line"><span class="v">${escapeHtml(sub)}</span></p>`;
+  $("disclaimText").textContent = to("disclaimer") + " / " + t("disclaimer");
+  $("sheetClose").textContent = t("close");
+  setupSpeak(text, otherLang);
+  $("overlay").classList.add("open");
+}
+
+/* ============================================== apply all static text */
+function applyText(){
+  document.documentElement.lang = myLang;
+  $("tagline").textContent    = t("tagline");
+  $("lblMyLang").textContent  = t("myLang");
+  $("lblOtherLang").textContent = t("otherLang");
+  $("tabBody").textContent    = t("tabBody");
+  $("tabSymptom").textContent = t("tabSymptom");
+  $("tabTalk").textContent    = t("tabTalk");
+  $("tabInfo").textContent    = t("tabInfo");
+  $("tabSos").textContent     = t("tabSos");
+  $("hWhere").textContent     = t("hWhere");
+  $("hFace").textContent      = t("hFace");
+  $("viewFront").textContent  = t("front");
+  $("viewBack").textContent   = t("back");
+  $("hSymptom").textContent   = t("hSymptom");
+  $("hPain").textContent      = t("hPain");
+  $("painLow").textContent    = t("painLow");
+  $("painHigh").textContent   = t("painHigh");
+  $("hDuration").textContent  = t("hDuration");
+  $("hPhrases").textContent   = t("hPhrases");
+  $("phraseHint").textContent = t("phraseHint");
+  $("hDoctor").textContent    = t("hDoctor");
+  $("doctorHint").textContent = t("doctorHint");
+  $("hAnswers").textContent   = t("hAnswers");
+  $("hInfo").textContent      = t("hInfo");
+  $("lblAllergy").textContent = t("lblAllergy");
+  $("lblMeds").textContent    = t("lblMeds");
+  $("lblCond").textContent    = t("lblCond");
+  $("lblBlood").textContent   = t("lblBlood");
+  $("lblAge").textContent     = t("lblAge");
+  $("lblPregnant").textContent = t("lblPregnant");
+  $("privacyNote").textContent = t("privacyNote");
+  $("hNumbers").textContent   = t("hNumbers");
+  $("lblCountry").textContent = t("lblCountry");
+  $("numNote").textContent    = t("numNote");
+  $("showBtn").textContent    = t("showBtn");
+
+  const bloodSel = $("fBlood");
+  const keepBlood = bloodSel.value;
+  bloodSel.innerHTML = `<option value="">${t("unknown")}</option>` +
+    BLOOD_TYPES.map(b => `<option value="${b}">${b}</option>`).join("");
+  bloodSel.value = keepBlood;
+
+  renderBodyMap();
+  renderFaceChips();
+  renderSymptomChips();
+  renderDurationChips();
+  renderTalk();
+  renderNumbers();
+}
+
+/* =========================================================== wiring */
+const PAIN_FACES = ["🙂","🙂","😐","😐","😕","😕","😣","😣","😖","😫","😱"];
+function updatePain(){
+  $("painNum").textContent = selected.pain;
+  $("painFace").textContent = PAIN_FACES[selected.pain];
+}
+
+$("myLang").addEventListener("change", (e) => {
+  myLang = e.target.value;
+  lsSet(LS.my, myLang);
+  applyText();
+});
+$("otherLang").addEventListener("change", (e) => {
+  otherLang = e.target.value;
+  lsSet(LS.other, otherLang);
+  applyText();
+});
+$("swapLang").addEventListener("click", () => {
+  const tmp = myLang; myLang = otherLang; otherLang = tmp;
+  lsSet(LS.my, myLang); lsSet(LS.other, otherLang);
+  $("myLang").value = myLang; $("otherLang").value = otherLang;
+  applyText();
+});
+
+$("tabs").addEventListener("click", (e) => {
+  const btn = e.target.closest(".tab");
+  if(!btn) return;
+  document.querySelectorAll(".tab").forEach(b => b.classList.toggle("active", b === btn));
+  const name = btn.dataset.tab;
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.dataset.panel === name));
+  window.scrollTo({ top:0, behavior:"smooth" });
+});
+
+$("viewFront").addEventListener("click", () => {
+  bodyView = "front";
+  $("viewFront").classList.add("active"); $("viewBack").classList.remove("active");
+  renderBodyMap();
+});
+$("viewBack").addEventListener("click", () => {
+  bodyView = "back";
+  $("viewBack").classList.add("active"); $("viewFront").classList.remove("active");
+  renderBodyMap();
+});
+
+function toggleBodyPart(id){
+  if(selected.parts.has(id)) selected.parts.delete(id); else selected.parts.add(id);
+  renderBodyMap();
+  renderFaceChips();
+}
+$("bodymap").addEventListener("click", (e) => {
+  const zone = e.target.closest("[data-part]");
+  if(zone) toggleBodyPart(zone.dataset.part);
+});
+/* The zones are focusable and announced as buttons, so they have to answer
+   to the keyboard too — this app is for people who are already struggling
+   to make themselves understood, and some of them navigate by switch or
+   keyboard rather than by touch. */
+$("bodymap").addEventListener("keydown", (e) => {
+  if(e.key !== "Enter" && e.key !== " " && e.key !== "Spacebar") return;
+  const zone = e.target.closest && e.target.closest("[data-part]");
+  if(!zone) return;
+  e.preventDefault();
+  const id = zone.dataset.part;
+  toggleBodyPart(id);
+  /* renderBodyMap() replaces the nodes, so move focus back to the same zone. */
+  const again = $("bodymap").querySelector(`[data-part="${id}"]`);
+  if(again && again.focus) again.focus();
+});
+$("faceChips").addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if(!chip) return;
+  const id = chip.dataset.id;
+  if(selected.parts.has(id)) selected.parts.delete(id); else selected.parts.add(id);
+  renderFaceChips();
+  renderBodyMap();
+});
+$("symptomChips").addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if(!chip) return;
+  const id = chip.dataset.id;
+  if(selected.symptoms.has(id)) selected.symptoms.delete(id); else selected.symptoms.add(id);
+  renderSymptomChips();
+});
+$("durationChips").addEventListener("click", (e) => {
+  const chip = e.target.closest(".chip");
+  if(!chip) return;
+  selected.duration = selected.duration === chip.dataset.id ? null : chip.dataset.id;
+  renderDurationChips();
+});
+$("painRange").addEventListener("input", (e) => {
+  selected.pain = Number(e.target.value);
+  updatePain();
+});
+
+$("phraseList").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-say]");
+  if(!btn) return;
+  const p = PHRASES[Number(btn.dataset.say)];
+  showBig(p[otherLang], p[myLang]);
+});
+$("doctorList").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-say]");
+  if(!btn) return;
+  const p = DOCTOR_Q[Number(btn.dataset.say)];
+  /* They asked it, so show it big in MY language. */
+  $("sheetLang").textContent = "";
+  $("sheetMain").innerHTML = `<p class="sum-line"><span class="v" style="font-size:27px;">${escapeHtml(p[myLang])}</span></p>`;
+  $("sheetMirror").innerHTML = `<p class="sum-line"><span class="v">${escapeHtml(p[otherLang])}</span></p>`;
+  $("disclaimText").textContent = to("disclaimer") + " / " + t("disclaimer");
+  $("sheetClose").textContent = t("close");
+  setupSpeak(p[myLang], myLang);
+  $("overlay").classList.add("open");
+});
+$("answerList").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-answer]");
+  if(!btn) return;
+  const p = ANSWERS[Number(btn.dataset.answer)];
+  showBig(p[otherLang], p[myLang]);
+});
+
+$("showBtn").addEventListener("click", openSummary);
+$("sheetClose").addEventListener("click", () => $("overlay").classList.remove("open"));
+$("overlay").addEventListener("click", (e) => {
+  if(e.target === $("overlay")) $("overlay").classList.remove("open");
+});
+$("clearBtn").addEventListener("click", () => {
+  selected.parts.clear();
+  selected.symptoms.clear();
+  selected.duration = null;
+  selected.pain = 0;
+  $("painRange").value = 0;
+  updatePain();
+  renderBodyMap(); renderFaceChips(); renderSymptomChips(); renderDurationChips();
+});
+
+/* My info persists locally so it is already filled in when it matters. */
+[["fAllergy", LS.allergy], ["fMeds", LS.meds], ["fCond", LS.cond], ["fAge", LS.age]]
+  .forEach(([id, key]) => {
+    const el = $(id);
+    el.value = lsGet(key, "");
+    el.addEventListener("input", () => lsSet(key, el.value));
+  });
+$("fBlood").addEventListener("change", () => lsSet(LS.blood, $("fBlood").value));
+$("fPregnant").addEventListener("change", () => lsSet(LS.pregnant, $("fPregnant").checked ? "1" : "0"));
+$("sosCountry").addEventListener("change", () => {
+  lsSet(LS.country, $("sosCountry").value);
+  renderNumbers();
+});
+
+/* ============================================================== boot */
+fillLangSelects();
+$("sosCountry").innerHTML = SOS_NUMBERS.map(([code, name]) =>
+  `<option value="${code}">${name}</option>`).join("");
+$("sosCountry").value = lsGet(LS.country, "KR");
+$("fPregnant").checked = lsGet(LS.pregnant, "0") === "1";
+applyText();
+$("fBlood").value = lsGet(LS.blood, "");
+updatePain();
+
+/* Voices load asynchronously on some browsers; re-check once they arrive. */
+if("speechSynthesis" in window){
+  window.speechSynthesis.onvoiceschanged = () => { /* next open() picks them up */ };
+}
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* offline cache is optional */ });
+  });
+}
+</script>
+</body>
+</html>
