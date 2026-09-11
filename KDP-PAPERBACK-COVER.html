@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>페이퍼백 표지 오류 — 원인과 해결</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>왜 났는가</h1>
+<p>오류 메시지가 이렇습니다.</p>
+<blockquote><p>Your expected cover size is <strong>12.455 x 9.250</strong> but the submitted file size is <strong>8.264 x 11.694</strong></p></blockquote>
+<p>문제가 <strong>셋</strong>입니다. 하나씩 짚겠습니다.</p>
+<h2>하나. 전자책 표지를 인쇄용으로 올리셨습니다</h2>
+<p><strong>둘은 완전히 다른 물건입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th>전자책 표지</th><th>페이퍼백 표지</th></tr></thead><tbody><tr><td>구성</td><td><strong>앞면만</strong></td><td><strong>뒤표지 + 책등 + 앞표지가 한 장</strong></td></tr><tr><td>형식</td><td>JPG / TIFF</td><td><strong>PDF만</strong></td></tr><tr><td>크기</td><td>1600 × 2560 고정</td><td><strong>쪽수에 따라 달라짐</strong></td></tr><tr><td>도련(bleed)</td><td>없음</td><td>사방 0.125인치 필요</td></tr></tbody></table></div>
+<p>말씀하신 대로 인쇄용은 <strong>PDF만</strong> 받습니다. 그런데 형식만 PDF로 바꾼다고 되는 게 아니라, <strong>내용물 자체가 달라야</strong> 합니다. 앞면만 있는 그림으로는 책등도 뒤표지도 만들 수 없습니다.</p>
+<p>미리보기 화면에서 바코드가 앞표지 한가운데에 얹혀 있는 것도 이 때문입니다. KDP는 "뒤표지 오른쪽 아래"에 바코드를 놓는데, 파일에 뒤표지가 없으니 엉뚱한 데 찍힌 겁니다.</p>
+<h2>둘. 변환하면서 A4로 바뀌었습니다</h2>
+<p>제출된 파일 크기 <strong>8.264 × 11.694 인치</strong> — 이건 <strong>A4 용지 크기</strong>입니다(210 × 297mm).</p>
+<p>JPG를 PDF로 바꾸는 도구 대부분이 기본값을 A4로 잡습니다. 그림을 A4 종이 위에 얹어 버린 것입니다. 그래서 크기가 안 맞습니다.</p>
+<h2>셋 — 이게 제일 중요합니다. 본문이 우리 PDF가 아닙니다</h2>
+<p>KDP가 요구한 표지 크기를 거꾸로 계산하면 본문이 몇 쪽인지 나옵니다.</p>
+<pre><code>12.455 = 0.125(도련) + 6(뒤표지) + 책등 + 6(앞표지) + 0.125(도련)
+책등 = 0.205 인치
+0.205 ÷ 0.002252(백색지 한 장 두께) = 91쪽</code></pre>
+<p>미리보기 아래쪽에도 <strong><code>/ 91</code></strong> 이라고 찍혀 있습니다.</p>
+<p><strong>그런데 제가 만들어 드린 본문 PDF는 115쪽입니다.</strong></p>
+<p>즉 KDP가 갖고 있는 본문은 우리 파일이 아닙니다. <strong>EPUB을 페이퍼백 원고 칸에 올리셨을 가능성이 큽니다.</strong> KDP가 그걸 자동 변환하면 쪽수가 다르게 나옵니다.</p>
+<h3>왜 이게 중요한가</h3>
+<p>자동 변환된 본문에는 <strong>우리가 맞춰 둔 것이 하나도 안 들어갑니다.</strong></p>
+<ul><li>안쪽 여백 0.84인치 (KDP 규정 0.625인치) — 맞춰 둔 것</li><li>재단선에서 0.40인치 (규정 0.25인치) — 쪽 번호를 올려서 맞춘 것</li><li>차례의 쪽 번호가 실제 쪽과 일치 — 수렴 계산으로 맞춘 것</li></ul>
+<p><strong>본문은 <code>03_Its-Free-So-How-Are-They-Rich.pdf</code> 를 올리세요.</strong> EPUB이 아니라 PDF입니다.</p>
+<hr>
+<h1>표지 네 장을 만들었습니다</h1>
+<p><code>release/covers/</code> 아래에 있습니다. <strong>앞·책등·뒤가 한 장인 PDF</strong>입니다.</p>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>책</th><th>크기</th><th>책등</th></tr></thead><tbody><tr><td><code>en-teen-wrap-115p.pdf</code></td><td>청소년 1권</td><td>12.537 × 9.250 in</td><td>0.2875 in</td></tr><tr><td><code>en-teen2-wrap-185p.pdf</code></td><td>청소년 2권</td><td>12.713 × 9.250 in</td><td>0.4625 in</td></tr><tr><td><code>en-book-wrap-366p.pdf</code></td><td>성인 1권</td><td>13.165 × 9.250 in</td><td>0.9150 in</td></tr><tr><td><code>en-book2-wrap-358p.pdf</code></td><td>성인 2권</td><td>13.145 × 9.250 in</td><td>0.8950 in</td></tr></tbody></table></div>
+<p><strong>전부 미색지(cream) 기준입니다.</strong> 이게 왜 중요한지는 바로 아래에 있습니다.</p>
+<h2>표지에 들어간 것</h2>
+<p><strong>앞표지</strong> — 전자책 표지와 같은 디자인입니다. 다섯 칸 중 그 책의 칸이 채워져 있습니다.</p>
+<p><strong>책등</strong> — 제목과 지은이. 영어권 관례대로 <strong>위에서 아래로</strong> 읽히게 세웠습니다. KDP는 <strong>100쪽 이상</strong>일 때만 책등 글자를 허용하는데, 네 권 다 넘습니다(115·185·366·358).</p>
+<p><strong>뒤표지</strong> — 짧은 소개글과 대상 연령, 그리고 <strong>바코드 자리</strong>. 오른쪽 아래에 2 × 1.2인치를 흰색으로 비워 뒀습니다. 거기에 KDP가 바코드를 얹습니다.</p>
+<hr>
+<h1>크기는 두 가지에 따라 달라집니다</h1>
+<p>이게 페이퍼백 표지의 전부입니다.</p>
+<pre><code>표지 폭 = 0.125 + 6 + (쪽수 × 종이 두께) + 6 + 0.125
+표지 높이 = 0.125 + 9 + 0.125 = 9.25   (항상 같음)</code></pre>
+<div class="table-wrap"><table><thead><tr><th>종이</th><th>한 장 두께</th></tr></thead><tbody><tr><td>흑백 · <strong>미색지(cream)</strong></td><td>0.0025 in</td></tr><tr><td>흑백 · 백색지(white)</td><td>0.002252 in</td></tr></tbody></table></div>
+<p><strong>쪽수가 바뀌거나 종이를 바꾸면 표지를 다시 만들어야 합니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>책</th><th>쪽수</th><th>미색지</th><th>백색지</th></tr></thead><tbody><tr><td>성인 1권</td><td>366</td><td><strong>13.165</strong></td><td>13.074</td></tr><tr><td>성인 2권</td><td>358</td><td><strong>13.145</strong></td><td>13.056</td></tr><tr><td>청소년 1권</td><td>115</td><td><strong>12.537</strong></td><td>12.509</td></tr><tr><td>청소년 2권</td><td>185</td><td><strong>12.713</strong></td><td>12.667</td></tr></tbody></table></div>
+<p>굵은 쪽이 제가 만들어 드린 것입니다.</p>
+<p><strong>백색지를 고르실 거면 다시 만들어야 합니다.</strong></p>
+<pre><code>python3 tools/wrap_cover.py en-teen 115 --paper white</code></pre>
+<p>쪽수가 달라진 경우도 같습니다. 숫자만 바꿔서 다시 돌리면 됩니다.</p>
+<hr>
+<h1>순서가 중요합니다</h1>
+<p><strong>표지를 먼저 올리면 안 됩니다.</strong> 반드시 이 순서로 하세요.</p>
+<p><strong>1 — 본문 PDF를 먼저 올립니다.</strong> <code>03_Its-Free-So-How-Are-They-Rich.pdf</code> (115쪽)</p>
+<p><strong>2 — 판형과 종이를 고릅니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Trim size</td><td><strong>6 × 9 in</strong></td></tr><tr><td>Bleed</td><td><strong>No bleed</strong> (본문에 배경색이 없습니다)</td></tr><tr><td>Paper type</td><td><strong>Black &amp; white interior with cream paper</strong></td></tr><tr><td>Cover finish</td><td>Matte</td></tr></tbody></table></div>
+<p><strong>3 — 여기서 KDP가 요구하는 표지 크기가 다시 계산됩니다.</strong> <code>12.5375 x 9.250</code> 으로 바뀌어야 정상입니다. 이게 우리 표지 크기와 같습니다.</p>
+<p><strong>4 — 그때 표지 PDF를 올립니다.</strong> <code>Upload a cover you already have</code> → <code>en-teen-wrap-115p.pdf</code></p>
+<p><strong>5 — 미리보기로 확인합니다.</strong> 바코드가 뒤표지 오른쪽 아래 흰 칸에 얹혔는지, 책등 글자가 접히는 선을 안 넘는지.</p>
+<hr>
+<h1>전자책 표지는 그대로 두세요</h1>
+<p>혼동하기 쉬운데, <strong>파일이 두 벌입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>상품</th><th>표지 파일</th></tr></thead><tbody><tr><td>킨들 전자책</td><td><code>03_...-cover.jpg</code> (1600 × 2560, 앞면만)</td></tr><tr><td>페이퍼백</td><td><code>en-teen-wrap-115p.pdf</code> (앞·책등·뒤)</td></tr></tbody></table></div>
+<p>전자책 쪽은 이미 올리셨으면 <strong>바꾸지 마세요.</strong> 그건 맞게 들어간 것입니다.</p>
+<hr>
+<h1>혹시 KDP 템플릿을 쓰고 싶으시면</h1>
+<p>제가 만든 표지가 마음에 안 드시면 KDP가 주는 템플릿을 받아서 직접 만드셔도 됩니다. <code>Cover</code> 단계에 <strong>Cover Template</strong> 내려받기 링크가 있고, 거기에 <strong>판형 · 쪽수 · 종이</strong>를 넣으면 접히는 선과 바코드 자리가 그려진 PNG/PDF가 나옵니다.</p>
+<p>다만 그 경우에도 <strong>쪽수를 먼저 확정해야</strong> 합니다. 같은 이유입니다.</p>
+<hr>
+<h1>정리</h1>
+<ul><li>인쇄용 표지는 <strong>앞·책등·뒤가 한 장인 PDF</strong>입니다. 전자책 표지와 다른 물건입니다</li><li>제출하신 파일은 <strong>A4</strong>였습니다. JPG를 PDF로 바꾸는 도구의 기본값입니다</li><li><strong>KDP가 갖고 있는 본문이 91쪽입니다.</strong> 우리 PDF는 115쪽이니 다른 파일입니다. EPUB 대신 <strong>PDF를 본문으로</strong> 올리세요</li><li>표지 네 장을 만들어 뒀습니다. <strong>미색지 기준</strong>입니다</li><li><strong>본문 → 종이 선택 → 표지</strong> 순서로 하셔야 크기가 맞습니다</li></ul>
+</div></body></html>
