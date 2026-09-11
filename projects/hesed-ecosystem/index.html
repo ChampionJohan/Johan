@@ -1,0 +1,783 @@
+<title>헤세드 생태계</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F3EE; --surface:#FAFBF8; --surface-2:#E8ECE4;
+  --ink:#16211C; --ink-2:#3B4A43; --muted:#63706A; --line:#D6DDD2; --line-2:#C2CBBD;
+  --accent:#0B7350; --accent-ink:#0B7350; --accent-soft:#E2EEE8;
+  --gold:#C2861A; --gold-ink:#8A5E11; --gold-soft:#F5EAD5;
+  --alert:#A33B31; --alert-ink:#A33B31; --alert-soft:#F5E3E0;
+  --owner:#0B7350; --investor:#C2861A;
+  --sans:"IBM Plex Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Gowun Batang","Nanum Myeongjo",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",monospace;
+  --r:3px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101410; --surface:#171C17; --surface-2:#1E241E;
+    --ink:#E7EDE5; --ink-2:#C4CEC3; --muted:#93A096; --line:#2B342C; --line-2:#3A453B;
+    --accent:#37A87F; --accent-ink:#5FC49B; --accent-soft:#16291F;
+    --gold:#B8862E; --gold-ink:#D8A648; --gold-soft:#2A2213;
+    --alert:#E0796C; --alert-ink:#E89184; --alert-soft:#2E1C19;
+    --owner:#37A87F; --investor:#B8862E;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101410; --surface:#171C17; --surface-2:#1E241E;
+  --ink:#E7EDE5; --ink-2:#C4CEC3; --muted:#93A096; --line:#2B342C; --line-2:#3A453B;
+  --accent:#37A87F; --accent-ink:#5FC49B; --accent-soft:#16291F;
+  --gold:#B8862E; --gold-ink:#D8A648; --gold-soft:#2A2213;
+  --alert:#E0796C; --alert-ink:#E89184; --alert-soft:#2E1C19;
+  --owner:#37A87F; --investor:#B8862E;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif); font-weight:700; text-wrap:balance; margin:0; line-height:1.3}
+p{margin:0}
+a{color:var(--accent-ink)}
+strong{font-weight:600; color:var(--ink)}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+.masthead{
+  background:var(--surface); border-bottom:1px solid var(--line);
+  padding-block:clamp(40px,7vw,72px) clamp(28px,5vw,44px); padding-inline:24px;
+}
+.mast-in{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:20px}
+.eyebrow{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--accent-ink); display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{content:""; width:26px; height:2px; background:var(--accent); display:block}
+.masthead h1{font-size:clamp(40px,7.5vw,68px); letter-spacing:-.01em}
+.masthead h1 .lat{font-family:var(--mono); font-size:.34em; font-weight:400; letter-spacing:.08em; color:var(--muted); vertical-align:.7em; margin-left:14px}
+.tagline{font-family:var(--serif); font-size:clamp(18px,2.4vw,23px); color:var(--ink-2); max-width:34em}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.chip{
+  font-family:var(--mono); font-size:12px; letter-spacing:.02em;
+  border:1px solid var(--line-2); border-radius:100px; padding:5px 13px; color:var(--ink-2); background:var(--paper);
+}
+.chip b{font-weight:500; color:var(--accent-ink)}
+
+/* ---------- shell ---------- */
+.shell{max-width:1180px; margin:0 auto; padding-inline:24px; padding-block:0 80px; display:grid; gap:48px; grid-template-columns:1fr}
+@media (min-width:1040px){ .shell{grid-template-columns:186px minmax(0,1fr); gap:56px} }
+nav.toc{display:none}
+@media (min-width:1040px){
+  nav.toc{display:block; position:sticky; top:0; align-self:start; padding-top:48px; max-height:100vh; overflow-y:auto}
+  nav.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+  nav.toc a{
+    display:flex; gap:9px; text-decoration:none; color:var(--muted); font-size:13px; line-height:1.45;
+    padding:4px 0; border-bottom:1px solid transparent;
+  }
+  nav.toc a:hover{color:var(--accent-ink)}
+  nav.toc .tn{font-family:var(--mono); font-size:11px; color:var(--line-2); padding-top:1px}
+}
+main{min-width:0; padding-top:48px; display:flex; flex-direction:column; gap:clamp(48px,6vw,76px)}
+section{scroll-margin-top:24px; display:flex; flex-direction:column; gap:20px}
+.s-head{display:flex; flex-direction:column; gap:6px; border-top:2px solid var(--ink); padding-top:14px}
+.s-num{font-family:var(--mono); font-size:12px; letter-spacing:.14em; color:var(--muted)}
+section h2{font-size:clamp(26px,3.6vw,34px)}
+section h3{font-size:19px; margin-top:8px; color:var(--ink)}
+.lead{font-size:17px; color:var(--ink-2); max-width:62ch}
+p, li{max-width:68ch}
+ul.plain{margin:0; padding-left:1.1em; display:flex; flex-direction:column; gap:7px; color:var(--ink-2)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:480px}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{
+  font-family:var(--mono); font-weight:500; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--muted); background:var(--surface-2); border-bottom:1px solid var(--line-2); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+tr.total td{background:var(--accent-soft); font-weight:600; color:var(--ink)}
+tr.sub td{color:var(--muted)}
+caption{caption-side:bottom; text-align:left; padding:9px 14px; font-size:12.5px; color:var(--muted); border-top:1px solid var(--line)}
+
+/* ---------- callouts ---------- */
+.note{
+  border-left:3px solid var(--accent); background:var(--accent-soft);
+  padding:16px 18px; border-radius:0 var(--r) var(--r) 0; display:flex; flex-direction:column; gap:8px; font-size:15px; color:var(--ink-2);
+}
+.note.warn{border-left-color:var(--alert); background:var(--alert-soft)}
+.note .nt{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--alert-ink)}
+.note:not(.warn) .nt{color:var(--accent-ink)}
+blockquote.pull{
+  margin:0; font-family:var(--serif); font-size:clamp(20px,2.8vw,26px); line-height:1.5; color:var(--ink);
+  border-top:1px solid var(--line-2); border-bottom:1px solid var(--line-2); padding-block:22px; max-width:24ch;
+}
+blockquote.pull span{color:var(--accent-ink)}
+
+/* ---------- principles ---------- */
+.principles{list-style:none; margin:0; padding:0; display:grid; gap:0; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--surface)}
+.principles li{display:flex; gap:16px; padding:14px 18px; border-bottom:1px solid var(--line); align-items:baseline; max-width:none}
+.principles li:last-child{border-bottom:0}
+.principles .pn{font-family:var(--mono); font-size:12px; color:var(--accent-ink); min-width:1.4em}
+.principles .pt{font-family:var(--serif); font-size:18px; color:var(--ink)}
+.principles li.key{background:var(--accent-soft)}
+
+/* ---------- slot chain ---------- */
+.chain{display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(148px,1fr))}
+.slot{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+  padding:12px 13px; display:flex; flex-direction:column; gap:5px; position:relative;
+}
+.slot .sn{font-family:var(--mono); font-size:12px; color:var(--muted)}
+.slot .st{font-family:var(--serif); font-size:16.5px; font-weight:700}
+.slot .sd{font-size:12.5px; color:var(--muted); line-height:1.55}
+.slot.entry{border-color:var(--accent); background:var(--accent-soft); box-shadow:inset 0 0 0 1px var(--accent)}
+.slot.entry .sn{color:var(--accent-ink)}
+.slot .tag{
+  position:absolute; top:-9px; right:10px; font-family:var(--mono); font-size:10px; letter-spacing:.08em;
+  background:var(--accent); color:#fff; padding:2px 7px; border-radius:100px;
+}
+.infra{display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.infra .slot{border-style:dashed}
+
+/* ---------- waterfall ---------- */
+.fall{border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--surface); font-size:14.5px}
+.fall .row{display:grid; grid-template-columns:22px 1fr auto; gap:12px; padding:9px 16px; border-bottom:1px solid var(--line); align-items:baseline}
+.fall .row:last-child{border-bottom:0}
+.fall .op{font-family:var(--mono); color:var(--muted); font-size:13px}
+.fall .amt{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink)}
+.fall .row.rule{background:var(--surface-2); font-weight:600}
+.fall .row.rule .amt{color:var(--accent-ink)}
+.fall .row.split{background:var(--accent-soft)}
+.fall .row .lbl small{display:block; color:var(--muted); font-size:12.5px; line-height:1.5}
+
+/* ---------- sunset chart ---------- */
+figure{margin:0; display:flex; flex-direction:column; gap:14px}
+figcaption{font-size:13px; color:var(--muted)}
+.legend{display:flex; gap:18px; flex-wrap:wrap; font-size:13px; color:var(--ink-2)}
+.legend span{display:flex; align-items:center; gap:7px}
+.swatch{width:11px; height:11px; border-radius:2px; display:inline-block}
+.bars{display:flex; flex-direction:column; gap:7px}
+.bar-row{display:grid; grid-template-columns:62px 1fr; gap:12px; align-items:center}
+.bar-row .yr{font-family:var(--mono); font-size:12.5px; color:var(--muted); text-align:right}
+.bar{display:flex; height:30px; gap:2px; border-radius:2px; overflow:hidden}
+.seg{display:flex; align-items:center; justify-content:flex-end; padding-inline:8px; font-family:var(--mono); font-size:12px; color:#fff; min-width:0}
+.seg.owner{background:var(--owner); border-radius:2px 0 0 2px}
+.seg.investor{background:var(--investor); border-radius:0 2px 2px 0; justify-content:flex-start}
+.seg.zero{flex:0 0 0; padding:0}
+
+/* ---------- security rail ---------- */
+.htp{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0; border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--surface)}
+.htp li{display:grid; grid-template-columns:30px 1fr; gap:14px; padding:14px 18px; border-bottom:1px solid var(--line); max-width:none}
+.htp li:last-child{border-bottom:0}
+.htp .hn{font-family:var(--mono); font-size:12px; color:#fff; background:var(--accent); width:22px; height:22px; border-radius:100px; display:grid; place-items:center}
+.htp .ht{font-weight:600; color:var(--ink); display:block; margin-bottom:2px}
+.htp .hd{font-size:14px; color:var(--ink-2)}
+
+/* ---------- severity cards ---------- */
+.tiers{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.tier{border:1px solid var(--line); border-top:4px solid var(--line-2); border-radius:var(--r); background:var(--surface); padding:16px 18px; display:flex; flex-direction:column; gap:8px}
+.tier .tl{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.tier h4{font-size:17px}
+.tier p{font-size:14px; color:var(--ink-2)}
+.tier.t1{border-top-color:var(--accent)} .tier.t1 .tl{color:var(--accent-ink)}
+.tier.t2{border-top-color:var(--gold)} .tier.t2 .tl{color:var(--gold-ink)}
+.tier.t3{border-top-color:var(--alert)} .tier.t3 .tl{color:var(--alert-ink)}
+
+/* ---------- agenda timeline ---------- */
+.agenda{list-style:none; margin:0; padding:0; display:flex; flex-direction:column}
+.agenda li{
+  display:grid; grid-template-columns:92px 1fr; gap:18px; padding:14px 0; border-bottom:1px solid var(--line); max-width:none;
+}
+.agenda li:first-child{border-top:1px solid var(--line)}
+.agenda .tm{font-family:var(--mono); font-size:13px; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.agenda .ac b{display:block; font-weight:600; margin-bottom:3px}
+.agenda .ac span{font-size:14px; color:var(--ink-2)}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--line); background:var(--surface); padding-block:40px; padding-inline:24px; margin-top:24px;
+}
+.foot-in{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:10px}
+.foot-in .cl{font-family:var(--serif); font-size:20px; color:var(--ink)}
+.foot-in .mt{font-family:var(--mono); font-size:12px; color:var(--muted)}
+@media print{
+  nav.toc{display:none} body{background:#fff} .shell{padding-block:0}
+  section{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="mast-in">
+    <div class="eyebrow">선교형 자립 생태계 모델 · v1.0</div>
+    <h1>헤세드 생태계<span class="lat">HESED ECOSYSTEM</span></h1>
+    <p class="tagline">난민과 선교사를 수혜자가 아니라 <strong>오너</strong>로 세우는 사업 모델.
+      아이템을 주지 않는다. 질문을 주고, 검증되면 자본을 붙인다.</p>
+    <div class="chips">
+      <span class="chip">대상 <b>미얀마 난민 청년 8~12명</b></span>
+      <span class="chip">1사이클 <b>90일</b></span>
+      <span class="chip">시드 <b>조당 RM 3,000</b></span>
+      <span class="chip">분배 <b>오너 5 : 투자자 5</b></span>
+      <span class="chip">일몰 <b>5년차 오너 100%</b></span>
+      <span class="chip">보안 <b>HTP 7중 장치</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="목차">
+    <ol>
+      <li><a href="#s1"><span class="tn">01</span> 요약과 제목</a></li>
+      <li><a href="#s2"><span class="tn">02</span> 왜 이 모델인가</a></li>
+      <li><a href="#s3"><span class="tn">03</span> 8슬롯 생태계 지도</a></li>
+      <li><a href="#s4"><span class="tn">04</span> 오너 스쿨 90일</a></li>
+      <li><a href="#s5"><span class="tn">05</span> 돈의 구조</a></li>
+      <li><a href="#s6"><span class="tn">06</span> 재무 예시</a></li>
+      <li><a href="#s7"><span class="tn">07</span> 신뢰 프로토콜</a></li>
+      <li><a href="#s8"><span class="tn">08</span> 실패와 부정</a></li>
+      <li><a href="#s9"><span class="tn">09</span> 운영규정 12조</a></li>
+      <li><a href="#s10"><span class="tn">10</span> 헤세드 상호부조</a></li>
+      <li><a href="#s11"><span class="tn">11</span> 리스크와 법적 현실</a></li>
+      <li><a href="#s12"><span class="tn">12</span> 내일 미팅 진행안</a></li>
+      <li><a href="#s13"><span class="tn">13</span> 로드맵과 양식</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <section id="s1">
+    <div class="s-head"><span class="s-num">01</span><h2>한 장 요약</h2></div>
+    <p class="lead">이미 그 사회 안에서 일하고 있는 사람에게 <strong>밸류체인에서 한 칸 위로 올라가는 사업</strong>을
+      스스로 설계하게 하고, 매일 발표시키고, 검증되면 자본을 붙인다.</p>
+    <div class="tw">
+      <table>
+        <tbody>
+          <tr><th style="width:150px">대상</th><td>미얀마 난민 청년 8~12명(1기), 각 지역 자비량 선교사</td></tr>
+          <tr><th>기간 구조</th><td>90일 1사이클 — 탐색 14일 → 검증 16일 → 파일럿 30일 → 투자심사 30일</td></tr>
+          <tr><th>운영 리듬</th><td>매일 19:00 저녁 등불 미팅(30분) · 매주 금 7분 프레젠테이션 · 4주마다 게이트 심사</td></tr>
+          <tr><th>자본</th><td>조당 시드 RM 3,000 내외, <strong>3회 분할 집행(트랜치)</strong>, 현물 70% 이상</td></tr>
+          <tr><th>분배</th><td>영업이익 → 원금회수 30% → 재투자 10% → 잔액을 <strong>오너 5 : 투자자 5</strong>, 각자 몫의 10%는 헤세드 펀드 환원</td></tr>
+          <tr><th>일몰 조항</th><td>투자자 지분은 3년차부터 감소(50 → 40 → 30 → 0). <strong>사업은 결국 오너의 것이 된다</strong></td></tr>
+          <tr><th>보안</th><td>헤세드 신뢰 프로토콜(HTP) 7중 장치 + 부정 3단계 규정 + 회복 경로</td></tr>
+          <tr class="total"><th>원칙</th><td>실패는 벌하지 않는다. 숨김을 벌한다.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>제목 가안</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:46px">#</th><th>가안</th><th>성격</th></tr></thead>
+        <tbody>
+          <tr class="total"><td class="n">1</td><td><strong>헤세드 생태계 (HESED Ecosystem)</strong> — 추천</td><td>신학적 근거와 사업 구조가 한 단어에 담긴다</td></tr>
+          <tr><td class="n">2</td><td>오너스 빌리지 (Owners' Village)</td><td>정체성 전환(“나는 오너다”)이 이름에 있다</td></tr>
+          <tr><td class="n">3</td><td>자비량 밸리 (Self-Support Valley)</td><td>실리콘밸리 비유가 직관적이다</td></tr>
+          <tr><td class="n">4</td><td>에잇 슬롯 (8 Slots)</td><td>밸류체인 8칸 = 사업 기회 8개</td></tr>
+          <tr><td class="n">5</td><td>하베스트 체인 (Harvest Chain)</td><td>농업 기반 1차 사업에 밀착</td></tr>
+        </tbody>
+        <caption>추천 근거 — ① 헤세드(חֶסֶד)는 “언약을 끝까지 지키는 인애”로, 돈이 오가는 공동체의 신뢰 규약을 설명할 수 있는 유일한 단어다. ② 난민 청년에게 동정이 아니라 <strong>언약의 파트너</strong>라는 지위를 준다. ③ 영문 표기가 짧아 브랜드·계좌명·문서명에 그대로 쓸 수 있다.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="s-head"><span class="s-num">02</span><h2>왜 이 모델인가</h2></div>
+    <p class="lead">난민은 이미 경제 안에 있다. 식당에서 일하고, 시장에서 사고, 방세를 낸다.
+      즉 이미 생태계의 한 칸에 서 있다. 우리가 할 일은 밖에서 새 생태계를 만들어 주는 것이 아니라,
+      <strong>그가 서 있는 칸 바로 옆·위 칸을 보게 만드는 것</strong>이다.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>기존 방식</th><th>결과</th><th>이유</th></tr></thead>
+        <tbody>
+          <tr><td>현금·물품 지급</td><td>지급이 끊기면 원점</td><td>수혜자는 수동적 위치에 고정된다</td></tr>
+          <tr><td>직업훈련</td><td>수료증은 남고 소득은 안 남음</td><td>훈련과 실제 판로가 분리되어 있다</td></tr>
+          <tr><td>소액대출</td><td>상환 압박이 관계를 파괴</td><td>사업 설계 없이 돈이 먼저 갔다</td></tr>
+          <tr class="total"><td>헤세드 생태계</td><td>스스로 찾고, 스스로 책임진다</td><td><strong>아이템을 우리가 정하지 않는다</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <blockquote class="pull">“당신이 지금 식당에서 일한다. 그 식당은 매일 고기와 채소를 산다.
+      <span>당신이 오너라면, 그 고기를 누가 납품하게 하겠는가?”</span></blockquote>
+    <p>이 질문 하나가 모델 전체의 엔진이다. 답을 주지 않는다. 계속 묻고, 리서치시키고, 발표시킨다. 결과가 말하게 한다.</p>
+
+    <h3>운영 원칙 5문장 — 첫 미팅에서 그대로 읽을 것</h3>
+    <ol class="principles">
+      <li><span class="pn">1</span><span class="pt">주는 것을 받지 않는다. 만들어서 나눈다.</span></li>
+      <li class="key"><span class="pn">2</span><span class="pt">실패는 벌하지 않는다. 숨김을 벌한다.</span></li>
+      <li><span class="pn">3</span><span class="pt">아이템은 우리가 정하지 않는다. 당신이 찾는다.</span></li>
+      <li><span class="pn">4</span><span class="pt">숫자가 없는 보고는 보고가 아니다.</span></li>
+      <li><span class="pn">5</span><span class="pt">자립은 목표가 아니라 출발선이다.</span></li>
+    </ol>
+  </section>
+
+  <section id="s3">
+    <div class="s-head"><span class="s-num">03</span><h2>4단계를 8슬롯으로 — 생태계 지도</h2></div>
+    <p class="lead">생산자–유통–마케팅–소비자 4단계를 실제 창업 기회 단위로 쪼개면 <strong>8개 슬롯과 2개 인프라</strong>가 된다.
+      슬롯이 잘게 쪼개질수록 자본이 적은 사람이 들어갈 자리가 생긴다.</p>
+
+    <div class="chain">
+      <div class="slot"><span class="sn">①</span><span class="st">투입재</span><span class="sd">종자·사료·비료·포장재</span></div>
+      <div class="slot"><span class="sn">②</span><span class="st">생산</span><span class="sd">농장·양계·양어·버섯</span></div>
+      <div class="slot entry"><span class="tag">1기 진입</span><span class="sn">③</span><span class="st">1차가공</span><span class="sd">세척·선별·손질·건조</span></div>
+      <div class="slot"><span class="sn">④</span><span class="st">2차가공</span><span class="sd">제조·조미·포장·브랜딩</span></div>
+      <div class="slot"><span class="sn">⑤</span><span class="st">물류·보관</span><span class="sd">배송·냉장·창고</span></div>
+      <div class="slot entry"><span class="tag">1기 진입</span><span class="sn">⑥</span><span class="st">유통·도매</span><span class="sd">소량 묶음 → 식당 납품</span></div>
+      <div class="slot entry"><span class="tag">1기 진입</span><span class="sn">⑦</span><span class="st">마케팅·판매</span><span class="sd">노점·식당·배달·온라인</span></div>
+      <div class="slot"><span class="sn">⑧</span><span class="st">소비자·커뮤니티</span><span class="sd">공동구매·단골 조직화</span></div>
+    </div>
+    <div class="infra">
+      <div class="slot"><span class="sn">Ⓐ 인프라</span><span class="st">자본</span><span class="sd">헤세드 펀드 — 무이자 회전 기금</span></div>
+      <div class="slot"><span class="sn">Ⓑ 인프라</span><span class="st">신뢰·데이터</span><span class="sd">장부·감사·교육·공개 대시보드</span></div>
+    </div>
+
+    <div class="note">
+      <span class="nt">1기가 시작할 자리 · ⑥ ⑦ ③</span>
+      <p>근거 3가지 — ① 초기자본 RM 1,000~3,000으로 진입 가능, ② 검증 주기가 <strong>7일 이내</strong>(주문–납품–수금),
+        ③ 실패해도 손실이 팀 전체를 무너뜨리지 않는다. ② 생산(농장·땅)은 자본과 회수기간이 커서
+        <strong>1기의 성공 사례 1개가 나온 뒤</strong>에 간다.</p>
+    </div>
+
+    <h3>슬롯 이동 질문지 — 각자 종이에 적게 할 것</h3>
+    <ul class="plain">
+      <li>내가 지금 서 있는 슬롯은 몇 번인가?</li>
+      <li>내 바로 위·옆 슬롯에서 매일 돈이 오가는 장면 3개는?</li>
+      <li>그 슬롯의 현재 공급자는 누구이고, 얼마에 넘기는가?</li>
+      <li>내가 대신하면 <strong>무엇이 더 싸거나 더 빠른가?</strong> (둘 중 하나는 반드시 있어야 한다)</li>
+      <li>내일 당장 확인할 수 있는 숫자 1개는? — <strong>여기에 답이 없으면 아직 아이템이 아니다.</strong></li>
+    </ul>
+  </section>
+
+  <section id="s4">
+    <div class="s-head"><span class="s-num">04</span><h2>오너 스쿨 90일 — 운영 시스템</h2></div>
+
+    <h3>매일의 리듬</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:130px">시간</th><th>활동</th><th>규칙</th></tr></thead>
+        <tbody>
+          <tr><td>주간</td><td>현장 — 인터뷰·납품·판매</td><td>현장 사진 1장 + 영수증 즉시 촬영</td></tr>
+          <tr class="total"><td class="num">19:00–19:30</td><td>저녁 등불 미팅 (Evening Lamp)</td><td>1인 3분 — ① 3줄 장부 낭독 ② 오늘의 숫자 1개 ③ 내일의 약속 1개</td></tr>
+          <tr><td class="num">21:00</td><td>일일보고 제출</td><td>미제출 = 결석 처리</td></tr>
+        </tbody>
+        <caption><strong>3줄 장부</strong> — 오늘 매출 / 오늘 지출 / 현재 현금잔고. 이 세 줄을 매일 소리 내어 읽는다. 숫자를 입으로 말하는 훈련이 회계 교육보다 강하다.</caption>
+      </table>
+    </div>
+
+    <h3>매주 금요일 20:00 — 프레젠테이션</h3>
+    <ul class="plain">
+      <li>발표 <strong>7분</strong> + 질의 <strong>8분</strong>. 타이머를 엄수한다.</li>
+      <li>1페이지 IR 양식 필수. 손글씨 가능.</li>
+      <li>청중은 동료 오너. <strong>동료가 첫 번째 투자심사위원</strong>이다.</li>
+      <li>3주 연속 “숫자 없는 발표”는 게이트 심사 자동 보류.</li>
+    </ul>
+
+    <h3>게이트 — 4주 단위 심사</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>게이트</th><th>시점</th><th>통과 조건</th><th>통과 시</th></tr></thead>
+        <tbody>
+          <tr><td><strong>G0 입학</strong></td><td class="num">D-0</td><td>서약서 서명 — 미팅 출석·장부·영수증</td><td>노트·영수증 봉투 지급</td></tr>
+          <tr><td><strong>G1 수요 검증</strong></td><td class="num">D-30</td><td>잠재고객 인터뷰 <strong>30건</strong> + 원가표 1장 + <strong>실제 판매 1건</strong></td><td>시드의 40% 집행</td></tr>
+          <tr><td><strong>G2 반복 검증</strong></td><td class="num">D-60</td><td><strong>4주 연속 매출</strong> + 원가율 산출 + 영수증 제출률 100%</td><td>시드의 30% 집행</td></tr>
+          <tr><td><strong>G3 투자 심사</strong></td><td class="num">D-90</td><td>3개월 손익계산서 + 12개월 계획 + 동료 평가</td><td>잔여 30% + 정식 투자합의서</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="nt">팀 구성 · 2인 1조</span>
+      <p>혼자는 장부를 속이기 쉽고, 3인 이상은 책임이 흐려진다. 조별로 <strong>영업 담당 / 장부 담당</strong>을 명시하고 매월 교대한다.
+        1기 정원 8~12명 = 4~6개 조.</p>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="s-head"><span class="s-num">05</span><h2>돈의 구조 — 5:5의 정확한 정의</h2></div>
+    <p class="lead">“5:5로 나눈다”는 합의는 <strong>무엇을 5:5로 나누는가</strong>가 정의되지 않으면 반드시 분쟁이 난다.
+      아래 폭포(waterfall)가 그 정의다. 숫자는 재무 예시 A(월 기준, RM)를 그대로 넣은 것이다.</p>
+
+    <div class="fall">
+      <div class="row"><span class="op"></span><span class="lbl">매출</span><span class="amt">16,250</span></div>
+      <div class="row"><span class="op">−</span><span class="lbl">매입원가 <small>물건값, 원가율 76%</small></span><span class="amt">12,350</span></div>
+      <div class="row"><span class="op">−</span><span class="lbl">운영비 <small>운송 480 · 포장 180 · 통신 40</small></span><span class="amt">700</span></div>
+      <div class="row"><span class="op">−</span><span class="lbl">오너 인건비 <small>고정 생계비 — 이익이 아니라 비용이다</small></span><span class="amt">1,000</span></div>
+      <div class="row rule"><span class="op">=</span><span class="lbl">영업이익</span><span class="amt">2,200</span></div>
+      <div class="row"><span class="op">−</span><span class="lbl">투자원금 회수 <small>영업이익의 30% · 원금 100% 회수 시까지</small></span><span class="amt">660</span></div>
+      <div class="row"><span class="op">−</span><span class="lbl">재투자 적립 <small>영업이익의 10% · 다음 사이클의 자기 자본</small></span><span class="amt">220</span></div>
+      <div class="row rule"><span class="op">=</span><span class="lbl">분배가능이익</span><span class="amt">1,320</span></div>
+      <div class="row split"><span class="op">→</span><span class="lbl">오너 50% <small>헤세드 펀드 10% 환원 후 594</small></span><span class="amt">660</span></div>
+      <div class="row split"><span class="op">→</span><span class="lbl">투자자 50% <small>헤세드 펀드 10% 환원 후 594</small></span><span class="amt">660</span></div>
+    </div>
+
+    <h3>핵심 3가지</h3>
+    <ul class="plain">
+      <li><strong>오너 인건비는 이익이 아니라 비용이다.</strong> 오너가 굶으면서 이익을 나누는 구조는 오래 못 간다. 월 고정액을 먼저 확정한다.</li>
+      <li><strong>원금 회수가 끝나면 30%가 사라진다.</strong> 회수 완료 시점부터 분배가능이익이 커진다 — 오너에게 명확한 동기가 된다.</li>
+      <li><strong>재투자 10%는 건드리지 않는다.</strong> 이것이 쌓여야 외부 투자에서 독립한다.</li>
+    </ul>
+
+    <h3>지분 일몰(Sunset) — 이 모델의 선교적 핵심</h3>
+    <figure>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--owner)"></i> 오너 몫</span>
+        <span><i class="swatch" style="background:var(--investor)"></i> 투자자 몫</span>
+      </div>
+      <div class="bars">
+        <div class="bar-row"><span class="yr">1년차</span><div class="bar"><div class="seg owner" style="flex:50">50%</div><div class="seg investor" style="flex:50">50%</div></div></div>
+        <div class="bar-row"><span class="yr">2년차</span><div class="bar"><div class="seg owner" style="flex:50">50%</div><div class="seg investor" style="flex:50">50%</div></div></div>
+        <div class="bar-row"><span class="yr">3년차</span><div class="bar"><div class="seg owner" style="flex:60">60%</div><div class="seg investor" style="flex:40">40%</div></div></div>
+        <div class="bar-row"><span class="yr">4년차</span><div class="bar"><div class="seg owner" style="flex:70">70%</div><div class="seg investor" style="flex:30">30%</div></div></div>
+        <div class="bar-row"><span class="yr">5년차</span><div class="bar"><div class="seg owner" style="flex:100">100%</div><div class="seg investor zero"></div></div></div>
+      </div>
+      <figcaption>분배가능이익의 배분 비율. 투자자가 회수한 몫은 헤세드 펀드로 들어가 다음 기수의 시드가 된다.
+        <strong>우리는 소유하러 온 것이 아니라 세우러 왔다.</strong> 이 그림 한 장이 “또 다른 착취 아니냐”는 의심을 해소한다.</figcaption>
+    </figure>
+
+    <h3>투자 집행 — 트랜치</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>트랜치</th><th class="n">비율</th><th>집행 조건</th><th>형태</th></tr></thead>
+        <tbody>
+          <tr><td>T1</td><td class="n">40%</td><td>G1 통과</td><td><strong>현물 우선</strong> — 자재·임차료 직접 결제</td></tr>
+          <tr><td>T2</td><td class="n">30%</td><td>G2 통과</td><td>현물 70% + 현금 30%</td></tr>
+          <tr><td>T3</td><td class="n">30%</td><td>G3 통과</td><td>투자합의서 서명 후</td></tr>
+        </tbody>
+        <caption><strong>현물 우선 원칙</strong> — 현금 전달 비율은 총액의 30% 이하로 유지한다. 공급처에 직접 결제하면 횡령 여지가 구조적으로 사라진다. 이것이 감시보다 강하다.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s6">
+    <div class="s-head"><span class="s-num">06</span><h2>재무 예시 — 검증 가능한 숫자로</h2></div>
+
+    <h3>예시 A · 식당 채소 납품 (슬롯 ⑥, 쿠알라룸푸르, 30일 내 시작)</h3>
+    <p>가정 — 미얀마·네팔계 식당 5곳에 주 3회 납품, 1회 평균 RM 250.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>항목</th><th class="n">월 금액 (RM)</th><th>산출 근거</th></tr></thead>
+        <tbody>
+          <tr><td>매출</td><td class="n"><strong>16,250</strong></td><td>RM 250 × 3회 × 5곳 × 4.33주</td></tr>
+          <tr><td>매입원가</td><td class="n">12,350</td><td>도매시장 매입, 원가율 76%</td></tr>
+          <tr><td>운송 — 연료·오토바이 임차</td><td class="n">480</td><td>일 RM 16 × 30일</td></tr>
+          <tr><td>포장·얼음</td><td class="n">180</td><td>—</td></tr>
+          <tr><td>통신·장부</td><td class="n">40</td><td>—</td></tr>
+          <tr><td>오너 인건비 (2인)</td><td class="n">1,000</td><td>1인 RM 500</td></tr>
+          <tr class="total"><td>영업이익</td><td class="n">2,200</td><td>영업이익률 13.5%</td></tr>
+          <tr class="sub"><td>− 원금회수 30%</td><td class="n">660</td><td>시드 RM 3,000 → <strong>4.5개월 회수</strong></td></tr>
+          <tr class="sub"><td>− 재투자 적립 10%</td><td class="n">220</td><td>—</td></tr>
+          <tr class="total"><td>분배가능이익</td><td class="n">1,320</td><td>오너 660 / 투자자 660</td></tr>
+        </tbody>
+        <caption>오너 1조의 월 총수입 = 인건비 1,000 + 분배 660 = <strong>RM 1,660</strong>.
+          KL 식당 노동 일당 RM 50~60 × 26일 ≒ RM 1,300~1,560이므로 <strong>첫 달부터 기존 소득 이상</strong>이며, 원금 회수 완료 후에는 RM 2,000을 넘는다.</caption>
+      </table>
+    </div>
+    <div class="note warn">
+      <span class="nt">가정치 경고</span>
+      <p>위 단가·원가율은 <strong>가정치</strong>다. G1 게이트의 첫 과제가 바로 이 표의 각 줄을 실제 시장 가격으로 바꿔 쓰는 것이다.
+        미팅에서 이 표를 보여줄 때 반드시 “이 숫자는 여러분이 고쳐 와야 할 숙제”라고 말할 것.</p>
+    </div>
+
+    <h3>예시 B · 옥수수 → 사료 가공·유통 (슬롯 ①②④⑥, 12개월, 2기 이후)</h3>
+    <p>메모의 “매출 7억 − 비용 3.5억 = 이익 3.5억” 구조를 항목별로 분해한 것이다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>항목</th><th class="n">금액 (억 원)</th><th>산출 근거</th></tr></thead>
+        <tbody>
+          <tr><td>매출</td><td class="n"><strong>7.00</strong></td><td>배합사료 1,000톤 × 70만원/톤</td></tr>
+          <tr><td>원재료 — 옥수수 매입·재배</td><td class="n">2.10</td><td>톤당 21만원</td></tr>
+          <tr><td>가공 — 파쇄·배합·펠릿·인건</td><td class="n">0.70</td><td>톤당 7만원</td></tr>
+          <tr><td>물류·보관</td><td class="n">0.40</td><td>톤당 4만원</td></tr>
+          <tr><td>마케팅·영업</td><td class="n">0.30</td><td>거래처 개척·샘플</td></tr>
+          <tr class="total"><td>총비용</td><td class="n">3.50</td><td>원가율 50%</td></tr>
+          <tr class="total"><td>영업이익</td><td class="n">3.50</td><td>—</td></tr>
+          <tr class="sub"><td>− 원금회수 30% / 재투자 10%</td><td class="n">1.40</td><td>—</td></tr>
+          <tr class="total"><td>분배가능이익</td><td class="n">2.10</td><td>오너 1.05 / 투자자 1.05</td></tr>
+        </tbody>
+        <caption>착수 전 반드시 검증할 숫자 3개 — ① 현지 사료 톤당 실거래가(계약서 사본), ② 옥수수 → 사료 <strong>수율</strong>, ③ <strong>미수금 회수기간</strong>. 사료업은 외상거래가 표준이라 흑자 도산 위험이 가장 크다.</caption>
+      </table>
+    </div>
+    <div class="note">
+      <span class="nt">1기는 B로 시작하지 않는다</span>
+      <p>이유 2가지 — 필요 자본이 예시 A의 약 1,000배이고, 검증 주기가 30일 대 12개월이다.
+        <strong>A로 신뢰와 장부 기록을 쌓은 사람에게만 B의 자본이 간다.</strong></p>
+    </div>
+  </section>
+
+  <section id="s7">
+    <div class="s-head"><span class="s-num">07</span><h2>헤세드 신뢰 프로토콜 (HTP) — 7중 장치</h2></div>
+    <p class="lead">돈이 들어오면 반드시 사고가 난다. 사람이 나빠서가 아니라 <strong>구조가 허술해서</strong> 난다.
+      아래 7개는 감시 장치가 아니라 <strong>오너를 지키는 장치</strong>다. 누명을 벗을 수 있는 유일한 방법이 기록이기 때문이다.</p>
+    <ol class="htp">
+      <li><span class="hn">1</span><span><b class="ht">공동명의 계좌 + 2인 서명</b><span class="hd">RM 500 이상 지출은 오너 2인 서명 또는 멘토 승인</span></span></li>
+      <li><span class="hn">2</span><span><b class="ht">분할 집행 (트랜치)</b><span class="hd">게이트 통과 전 자금 미집행. T1 40% / T2 30% / T3 30%</span></span></li>
+      <li><span class="hn">3</span><span><b class="ht">현물 우선</b><span class="hd">현금 비율 30% 이하. 자재·임차료는 공급처에 직접 결제</span></span></li>
+      <li><span class="hn">4</span><span><b class="ht">24시간 영수증 원칙</b><span class="hd">지출 24시간 내 사진 촬영 + 공용 대화방 업로드. <strong>미제출 지출은 개인 부담</strong></span></span></li>
+      <li><span class="hn">5</span><span><b class="ht">3줄 장부 매일 공개</b><span class="hd">매출·지출·현금잔고를 저녁 미팅에서 낭독. 기록 공백 3일 = 게이트 보류</span></span></li>
+      <li><span class="hn">6</span><span><b class="ht">월 1회 교차 감사</b><span class="hd">다른 조 오너 2인이 재고·현금·창고 실사. 감사자는 매월 무작위 배정</span></span></li>
+      <li><span class="hn">7</span><span><b class="ht">분기 외부 검증 + 공개 대시보드</b><span class="hd">멘토와 현지 회계 조력자가 확인. 전 팀 손익을 공개한다</span></span></li>
+    </ol>
+    <div class="note">
+      <span class="nt">대시보드 공개 항목</span>
+      <p>주간 매출 · 원가율 · 현금잔고 · 영수증 제출률 · 미팅 출석률 · 원금 회수 진행률.
+        투명성은 처벌 도구가 아니라 <strong>비교 학습 도구</strong>다. 남의 원가율이 나보다 낮으면 물어보게 된다.</p>
+    </div>
+  </section>
+
+  <section id="s8">
+    <div class="s-head"><span class="s-num">08</span><h2>실패와 부정의 구분</h2></div>
+    <div class="note">
+      <span class="nt">정직한 실패 · Honest Failure</span>
+      <p>장부가 있고, 보고가 있었고, 게이트에서 위험이 사전에 공유된 상태에서 결과가 목표에 미달한 경우.
+        <strong>처벌 없음. 2회까지 재도전 자격 유지.</strong> 단 실패 보고서 1페이지(무엇을 가정했고, 무엇이 틀렸는가)를 작성해 전체 발표한다.
+        이 보고서가 다음 기수의 교재가 된다.</p>
+    </div>
+    <blockquote class="pull">사업이 안 되는 것은 죄가 아니다. <span>안 되는 것을 숨기는 것이 죄다.</span></blockquote>
+
+    <h3>부정 — 3단계</h3>
+    <div class="tiers">
+      <div class="tier t1">
+        <span class="tl">1단계 · 경고</span>
+        <h4>오차 5% 이내, 24시간 내 자진 신고</h4>
+        <p>차액 보전 후 자격 유지. 기록만 남긴다.</p>
+      </div>
+      <div class="tier t2">
+        <span class="tl">2단계 · 자격정지</span>
+        <h4>미신고 유용 RM 100~1,000, 영수증 3회 반복 미제출</h4>
+        <p>전액 상환 + <strong>6개월 자격정지</strong> + 공동체 앞 소명. 상환 완료 시 복귀 가능.</p>
+      </div>
+      <div class="tier t3">
+        <span class="tl">3단계 · 퇴출</span>
+        <h4>RM 1,000 초과 유용, 문서·영수증 위조, 자금 잠적</h4>
+        <p>즉시 퇴출 + 상환계획 공증 + 네트워크 전체 기록 공유. 2년 후 재심 청구 가능.</p>
+      </div>
+    </div>
+    <div class="note warn">
+      <span class="nt">핵심 조항</span>
+      <p>장부가 아예 없는 경우는 ‘실패’가 아니라 <strong>2단계 부정으로 간주</strong>한다. 기록의 부재 자체가 위반이다.</p>
+    </div>
+
+    <h3>회복 경로 — 반드시 둘 것</h3>
+    <p>퇴출로 끝나면 그것은 세상의 방식이다. 헤세드는 언약이므로 문을 닫아걸지 않는다.</p>
+    <ul class="plain">
+      <li>상환계획 이행률 50% 도달 → 참관인 자격으로 미팅 참석 허용</li>
+      <li>100% 상환 + 멘토 2인 보증 → 재심 청구</li>
+      <li>재심 통과 → <strong>무자본 슬롯(⑧ 커뮤니티·공동구매)부터 재시작</strong></li>
+    </ul>
+
+    <h3>투자금 손실 시</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>상황</th><th>투자금 처리</th></tr></thead>
+        <tbody>
+          <tr><td><strong>정직한 실패</strong></td><td>상환 의무 <strong>없음</strong>. 이것은 대출이 아니라 지분 투자이며 손실은 투자자가 진다</td></tr>
+          <tr><td><strong>부정</strong></td><td>투자금 전액이 <strong>개인 채무로 전환</strong>된다. 투자합의서에 이 조항을 반드시 명시한다</td></tr>
+        </tbody>
+        <caption>이 구분이 명확해야 청년들이 <strong>두려움 없이 도전하고, 동시에 함부로 손대지 못한다.</strong></caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s9">
+    <div class="s-head"><span class="s-num">09</span><h2>운영규정 12조 — 정관 초안</h2></div>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:70px">조</th><th style="width:130px">제목</th><th>내용 요지</th></tr></thead>
+        <tbody>
+          <tr><td class="num">제1조</td><td>목적</td><td>자립·자생·자치를 통한 자비량 선교 생태계 구축, 하나님께 영광</td></tr>
+          <tr><td class="num">제2조</td><td>구성원</td><td>오너(사업 주체), 투자자(헤세드 펀드·후원자), 멘토(선교사·선배 오너)</td></tr>
+          <tr><td class="num">제3조</td><td>오너의 의무</td><td>저녁 미팅 출석, 3줄 장부, 24시간 영수증, 주간 발표</td></tr>
+          <tr><td class="num">제4조</td><td>아이템 선정</td><td>오너가 스스로 발굴한다. 운영진은 질문과 검증만 제공하며 지정하지 않는다</td></tr>
+          <tr><td class="num">제5조</td><td>자금 집행</td><td>트랜치 분할, 현물 우선, 2인 서명</td></tr>
+          <tr><td class="num">제6조</td><td>이익 분배</td><td>영업이익 폭포 구조. 오너 5 : 투자자 5, 각자 몫의 10% 헤세드 펀드 환원</td></tr>
+          <tr><td class="num">제7조</td><td>지분 일몰</td><td>3년차부터 투자자 지분 감소, 5년차 0%</td></tr>
+          <tr><td class="num">제8조</td><td>감사</td><td>월 교차감사, 분기 외부검증, 전 팀 대시보드 공개</td></tr>
+          <tr><td class="num">제9조</td><td>실패</td><td>정직한 실패는 무처벌, 2회 재도전. 실패 보고서 제출 의무</td></tr>
+          <tr><td class="num">제10조</td><td>부정</td><td>3단계 조치. 장부 부재는 2단계 부정으로 간주</td></tr>
+          <tr><td class="num">제11조</td><td>회복</td><td>상환·보증·재심을 통한 복귀 경로 보장</td></tr>
+          <tr><td class="num">제12조</td><td>상호부조</td><td>이익의 10% 환원, 1기 오너의 2기 멘토링 의무</td></tr>
+        </tbody>
+        <caption>서명 — 오너 본인 · 조 파트너 · 멘토(선교사) 3인 서명 후 각 1부 보관. <strong>현지어 번역본을 반드시 함께 만든다.</strong></caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s10">
+    <div class="s-head"><span class="s-num">10</span><h2>헤세드 상호부조</h2></div>
+    <p class="lead">헤세드(חֶסֶד)는 성경이 하나님의 성품을 말할 때 쓰는 단어로, <strong>언약 안에서 끊어지지 않는 신실한 사랑</strong>을 뜻한다.
+      시혜적 동정이 아니라 상호 책임을 동반한 관계다. 그래서 이 공동체에서는 받는 사람도 고개를 들 수 있다.</p>
+
+    <h3>3원칙</h3>
+    <ol class="principles">
+      <li><span class="pn">1</span><span class="pt">먼저 받은 자가 먼저 준다 — 1기는 2기의 후원자가 된다</span></li>
+      <li><span class="pn">2</span><span class="pt">대출이 아니라 언약이다 — 무이자 회전 기금</span></li>
+      <li><span class="pn">3</span><span class="pt">기록은 공개하고, 이름은 보호한다</span></li>
+    </ol>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:150px">장치</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td><strong>헤세드 펀드</strong></td><td>모든 분배금의 10% 자동 적립 → 다음 기수 시드 + 긴급 구제. 유대 공동체의 무이자 대부 기금(gemach) 개념을 응용했다</td></tr>
+          <tr><td><strong>긴급 구제</strong></td><td>질병·단속·화재 등 사업 외 위기 시 무이자 3개월 대여, 심사 24시간 내</td></tr>
+          <tr><td><strong>멘토 체인</strong></td><td>1기 오너는 2기 오너 2명을 주 1회 30분 의무 멘토링. <strong>갚는 방식은 돈이 아니라 사람이다</strong></td></tr>
+          <tr><td><strong>공동구매</strong></td><td>3개 조 이상이 같은 자재를 쓰면 묶어서 매입 — 원가 5~12% 절감</td></tr>
+          <tr><td><strong>판로 공유</strong></td><td>내 거래처가 다른 품목을 찾으면 동료 오너에게 연결. 소개 수수료 없음</td></tr>
+        </tbody>
+        <caption>공동구매와 판로 공유가 이 모델의 복리 효과다. <strong>사업체가 늘수록 각자의 원가가 내려간다</strong> — 이것이 “생태계”라는 말의 실제 내용이다.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s11">
+    <div class="s-head"><span class="s-num">11</span><h2>리스크와 법적 현실</h2></div>
+    <div class="note warn">
+      <span class="nt">가장 큰 제약 · 난민의 법적 지위</span>
+      <p>말레이시아는 1951년 난민협약 <strong>비준국이 아니며</strong>, UNHCR 카드 소지자에게도 공식 취업권·사업자 등록권이 부여되지 않는다.
+        따라서 난민 본인 명의의 사업자 등록과 법인 계좌 개설은 현실적으로 어렵다.
+        이 사실을 숨기고 사업을 설계하면, 우리가 만든 구조가 그들에게 단속 위험을 안기게 된다.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:120px">실행 구조</th><th>내용</th><th>유의점</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A. 합법 파트너 명의</strong></td><td>시민권자·영주권자 또는 선교사 법인이 사업자 등록, 난민은 <strong>공급 계약자</strong> 지위로 수익 분배</td><td>명의자 리스크. 계약서·분배 규정 문서화 필수</td></tr>
+          <tr><td><strong>B. 협동조합·사회적기업</strong></td><td>교회 부설 조합 아래 팀 단위 운영</td><td>투명성·명분은 확보되나 설립 기간 소요</td></tr>
+          <tr><td><strong>C. 타 지역 우선</strong></td><td>태국·미얀마 국내 등 등록 가능 지역에서 먼저 파일럿</td><td>현장 접근성</td></tr>
+        </tbody>
+        <caption>착수 전 필수 — 현지 변호사 또는 이민·노동 전문가 <strong>1회 자문</strong>. 어떤 수익성도 팀원의 신분 위험을 정당화하지 못한다. 1기는 위험이 낮은 슬롯(⑥·⑦·⑧)과 A안 구조를 권한다.</caption>
+      </table>
+    </div>
+
+    <h3>리스크 매트릭스</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>리스크</th><th>가능성</th><th>영향</th><th>대응</th></tr></thead>
+        <tbody>
+          <tr><td>단속·신분 문제</td><td>높음</td><td><strong>치명적</strong></td><td>A안 구조, 합법 명의, 야간 이동 최소화, 비상 연락망</td></tr>
+          <tr><td>자금 유용·횡령</td><td>중</td><td>높음</td><td>HTP 7중 장치</td></tr>
+          <tr><td>거래처 이탈</td><td>높음</td><td>중</td><td>거래처 5곳 이상 분산, 1곳 의존도 30% 이하</td></tr>
+          <tr><td>미수금·외상</td><td>높음</td><td>높음</td><td>초기 3개월 <strong>선불·현금 거래만</strong></td></tr>
+          <tr><td>환율·물가</td><td>중</td><td>중</td><td>월 단위 단가 재산정, 장기 고정가 계약 회피</td></tr>
+          <tr><td>기후·병해 (농업)</td><td>중</td><td>높음</td><td>2기 이후 진입, 품목 2개 이상</td></tr>
+          <tr><td>팀 이탈·이주</td><td>높음</td><td>중</td><td>2인 1조, 장부 공유, 역할 교대</td></tr>
+          <tr><td>기대 과열</td><td>높음</td><td>중</td><td>첫 미팅에서 <strong>“90일 안에 부자가 되지 않는다”</strong> 명시</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s12">
+    <div class="s-head"><span class="s-num">12</span><h2>내일 미팅 2시간 진행안</h2></div>
+    <p class="lead">준비물 — 노트 인원수만큼 · 볼펜 · 영수증 봉투 · 8슬롯 지도 인쇄물 · 화이트보드 또는 큰 종이 · 타이머</p>
+    <ol class="agenda">
+      <li><span class="tm">0:00–0:10</span><span class="ac"><b>인사 · 기도 · 자기소개</b><span>“오늘부터 여러분은 직원이 아니라 오너입니다.”</span></span></li>
+      <li><span class="tm">0:10–0:25</span><span class="ac"><b>모델 설명 — 8슬롯 지도 1장</b><span>“우리는 아이템을 주지 않습니다. 질문을 줍니다.”</span></span></li>
+      <li><span class="tm">0:25–0:45</span><span class="ac"><b>개인 작성 시간 — 조용히 종이에</b><span>Q1 매일 돈이 오가는 장면 3개 · Q2 내가 올라갈 수 있는 칸 · Q3 내일 확인 가능한 숫자 1개</span></span></li>
+      <li><span class="tm">0:45–1:15</span><span class="ac"><b>3~4명 발표 + 즉석 피드백</b><span>질문만 한다. 답을 주지 않는다.</span></span></li>
+      <li><span class="tm">1:15–1:35</span><span class="ac"><b>규칙 합의</b><span>매일 19시 미팅 · 3줄 장부 · 24시간 영수증 · 실패는 벌하지 않는다, 숨김을 벌한다</span></span></li>
+      <li><span class="tm">1:35–1:50</span><span class="ac"><b>1주차 과제 배정</b><span>수요 인터뷰 10건 + 원가표 1장</span></span></li>
+      <li><span class="tm">1:50–2:00</span><span class="ac"><b>2인 1조 편성 · 다음 미팅 확정</b><span>조별 대화방 개설, 서약서 배포</span></span></li>
+    </ol>
+
+    <div class="note warn">
+      <span class="nt">진행 시 3가지 주의</span>
+      <p><strong>1. 답을 주지 마십시오.</strong> 좋은 아이디어가 떠올라도 질문 형태로 돌려주십시오. 한 번 답을 주면 그 순간부터 다시 수혜자가 됩니다.<br>
+        <strong>2. 돈 이야기를 먼저 하지 마십시오.</strong> 투자 금액을 먼저 말하면 사업이 아니라 지원금 경쟁이 됩니다. 투자는 G1 통과 이후에만 언급하십시오.<br>
+        <strong>3. 첫날 과제는 작고 구체적으로.</strong> “인터뷰 10건”처럼 세면 되는 과제여야 다음 미팅에 성취감이 생깁니다.</p>
+    </div>
+
+    <h3>1기 선발 기준 (각 5점)</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>기준</th><th>확인 방법</th></tr></thead>
+        <tbody>
+          <tr><td>출석 신뢰성</td><td>1~2주차 출석·지각 기록</td></tr>
+          <tr><td>숫자를 적는가</td><td>노트에 숫자가 있는가</td></tr>
+          <tr><td>질문의 구체성</td><td>“얼마에?”, “누가?”를 묻는가</td></tr>
+          <tr><td>주변 관계망</td><td>접근 가능한 식당·상인·가족 수</td></tr>
+          <tr><td>실패 후 재시도 이력</td><td>과거 장사·이주 경험</td></tr>
+        </tbody>
+        <caption>경고 신호 3가지 — ① 빠르고 큰 돈을 먼저 말한다 ② 안 된 이유를 항상 남에게 돌린다 ③ 장부 기록을 거부하거나 “믿어 달라”고 한다.</caption>
+      </table>
+    </div>
+  </section>
+
+  <section id="s13">
+    <div class="s-head"><span class="s-num">13</span><h2>90일 로드맵과 양식</h2></div>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:86px">주차</th><th style="width:90px">단계</th><th>목표</th><th>산출물</th></tr></thead>
+        <tbody>
+          <tr><td class="num">W1–2</td><td>탐색</td><td>슬롯 인식, 수요 발굴</td><td>인터뷰 30건, 아이템 후보 3개</td></tr>
+          <tr><td class="num">W3–4</td><td>검증</td><td>원가 구조 파악</td><td>원가표, <strong>실제 판매 1건</strong> → G1</td></tr>
+          <tr><td class="num">W5–8</td><td>파일럿</td><td>반복 가능성 증명</td><td>4주 연속 매출, 3줄 장부 28일치 → G2</td></tr>
+          <tr><td class="num">W9–12</td><td>스케일·IR</td><td>투자 심사</td><td>3개월 손익계산서, 12개월 계획 → G3</td></tr>
+          <tr><td class="num">W13</td><td>2기 모집</td><td>1기 오너가 멘토로</td><td>실패·성공 보고서, 2기 명단</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>주간 KPI 대시보드</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>지표</th><th class="n">1기 목표</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>미팅 출석률</td><td class="n">≥ 90%</td><td>모든 것의 선행지표</td></tr>
+          <tr><td>영수증 제출률</td><td class="n"><strong>100%</strong></td><td>타협 없음</td></tr>
+          <tr><td>인터뷰 누적</td><td class="n">30건 / 인</td><td>수요 탐색의 양</td></tr>
+          <tr><td>실제 판매 발생 조</td><td class="n">4주차 100%</td><td>검증의 핵심</td></tr>
+          <tr><td>주간 매출</td><td class="n">8주차 RM 2,000+</td><td>조당</td></tr>
+          <tr><td>원가율</td><td class="n">≤ 80%</td><td>관리 가능성</td></tr>
+          <tr><td>원금 회수 진행률</td><td class="n">6개월 내 100%</td><td>지속가능성</td></tr>
+          <tr><td>2기 추천 인원</td><td class="n">1인당 1명</td><td>생태계 확장</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <blockquote class="pull">1기 6개 조 중 <span>2개 조가 6개월 후에도 스스로 돌아가고, 그중 1명이 2기 멘토가 되면 성공이다.</span></blockquote>
+    <p>전원 성공을 목표로 하면 기준을 낮추게 되고, 기준을 낮추면 모델 자체가 무너진다.
+      <strong>하나의 진짜 성공 사례가 백 마디 설명보다 강하다.</strong></p>
+
+    <h3>양식 3종 (별도 파일)</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th style="width:66px">부록</th><th>양식</th><th>쓰는 때</th></tr></thead>
+        <tbody>
+          <tr><td class="num">A</td><td>일일 3줄 장부</td><td>매일 19:00 미팅에서 낭독, 21:00 제출</td></tr>
+          <tr><td class="num">B</td><td>주간 1페이지 IR</td><td>매주 금 20:00 발표 7분</td></tr>
+          <tr><td class="num">C</td><td>투자합의서 체크리스트</td><td>G3 통과 후, 자금 집행 전 서명</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>첫 인사 (버마어)</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>한국어</th><th>버마어</th><th>발음</th></tr></thead>
+        <tbody>
+          <tr><td>안녕하세요</td><td>မင်္ဂလာပါ</td><td>밍글라바</td></tr>
+          <tr><td>만나서 반갑습니다</td><td>တွေ့ရတာ ဝမ်းသာပါတယ်</td><td>뜨웨 야다 원따바데</td></tr>
+          <tr><td>감사합니다</td><td>ကျေးဇူးတင်ပါတယ်</td><td>쩨주 띤바데</td></tr>
+          <tr><td>우리는 함께 갑니다</td><td>ကျွန်တော်တို့ အတူတူ</td><td>쭈노도 아뚜뚜</td></tr>
+        </tbody>
+        <caption><strong>중요</strong> — 미얀마 난민의 상당수는 친(Chin)·카렌(Karen)·카친(Kachin)·로힝야 등 소수민족으로 버마어가 모어가 아닐 수 있습니다. 첫 미팅에서 <strong>“여러분의 말로 인사를 가르쳐 주십시오”</strong>라고 요청하는 편이 훨씬 강한 관계 신호가 됩니다.</caption>
+      </table>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <p class="cl">자립(自立) · 자생(自生) · 자치(自治)</p>
+    <p class="mt">더 이상 의존하지 않고, 오너십으로 서서, 하나님의 영광을 위하여 — 헤세드 생태계 v1.0</p>
+  </div>
+</footer>
