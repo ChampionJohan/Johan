@@ -476,10 +476,171 @@ function footnote(s, txt, dark) {
   s.addNotes("어워드와 디그리는 같은 뜻입니다. Award가 더 넓은 개념이라 테일러스처럼 디플로마 복수 인증이 있는 곳이 이 표현을 씁니다. 공동 학위는 학위증이 한 장인 전혀 다른 제도입니다.");
 }
 
+/* ══ 11-A · 트위닝 제도 ═══════════════════════════════════════ */
+{
+  const s = slide(false);
+  head(s, "11", "TWINNING", "트위닝 제도 — 무엇이고 어디까지 가능한가", false);
+  lede(s, "말레이시아 대학에서 해외 본교 학위 과정을 이수하고 해외 본교 명의의 학위를 받는 제도입니다. \"3+0\", \"2+1\"의 숫자는 [말레이시아 수학 연수] + [해외 수학 연수]를 뜻합니다.", false);
+
+  const types = [
+    [th("유형"), th("구조"), th("해외 체류"), th("받는 학위")],
+    [rh("3+0"), "말레이시아 3년 + 해외 0년", { text: "없음", options: { bold: true, color: OK } }, "해외 본교 학위 또는 복수 학위"],
+    [rh("2+1"), "말레이시아 2년 + 해외 1년", "1년", "해외 본교 학위"],
+    [rh("1+2"), "말레이시아 1년 + 해외 2년", "2년", "해외 본교 학위"],
+    [rh("2+2 · 1+3"), "4년제 과정 (공학 등)", "2~3년", "해외 본교 학위"],
+    [rh("학점 이전 ADTP"), "1~2년 이수 후 편입", "2~3년", { text: "편입 대학 학위 · 보장 없음", options: { bold: true, color: BAD } }],
+  ];
+  s.addTable(types, {
+    x: M, y: 2.26, w: 5.86, colW: [1.28, 2.0, 0.78, 1.8], rowH: 0.38,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9, color: "1B2A44", valign: "middle",
+  });
+
+  s.addText("혼동하기 쉬운 3가지 구분", { x: 6.68, y: 2.26, w: 6.04, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 13, bold: true, color: NAVY });
+  const cmp = [
+    [th("제도"), th("학위증"), th("합격 보장")],
+    [rh("트위닝 3+0 / 2+1 / 1+2"), "해외 본교 1장", { text: "진급 요건 충족 시 보장", options: { bold: true, color: OK } }],
+    [rh("복수 학위 Dual Award"), { text: "2장", options: { bold: true } }, { text: "동일", options: { color: OK } }],
+    [rh("학점 이전 ADP / ADTP"), "편입 대학 1장", { text: "보장 없음", options: { bold: true, color: BAD } }],
+  ];
+  s.addTable(cmp, {
+    x: 6.68, y: 2.62, w: 6.04, colW: [2.42, 1.6, 2.02], rowH: 0.42,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+  card(s, 6.68, 4.46, 6.04, 0.86, "EAF3EC", OK);
+  s.addText("트위닝은 경로가 미리 확정된 제도이고, 학점 이전은 본인이 매년 새로 지원하는 경로입니다.\n상담 시 반드시 구분해서 확인하십시오.", {
+    x: 6.9, y: 4.58, w: 5.62, h: 0.64, isTextBox: true, margin: 0, fontFace: KR, fontSize: 10.5, color: "0E4A30", lineSpacing: 15,
+  });
+
+  s.addText("비용 — 3+0가 압도적으로 유리합니다", { x: M, y: 4.82, w: 5.86, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 13, bold: true, color: NAVY });
+  const cost = [
+    [th("구간"), th("연간 학비"), th("원화 환산")],
+    [rh("말레이시아"), "RM 30,000~50,000", "1,020만~1,700만 원"],
+    [rh("영국"), "£15,000~30,000", { text: "2,670만~5,340만 원", options: { bold: true, color: BAD } }],
+    [rh("호주"), "A$20,000~45,000", { text: "1,900만~4,275만 원", options: { bold: true, color: BAD } }],
+  ];
+  s.addTable(cost, {
+    x: M, y: 5.18, w: 5.86, colW: [1.3, 2.1, 2.46], rowH: 0.36,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+
+  card(s, 6.68, 5.5, 6.04, 1.35, "FDF0EC", ORANGE);
+  s.addText("경영학 3년 학위 기준 학비 비교", { x: 6.9, y: 5.6, w: 5.62, h: 0.26, isTextBox: true, margin: 0, fontFace: KR, fontSize: 11, bold: true, color: "A63C13" });
+  s.addText("· 3+0 (선웨이–랭커스터) : 약 3,050만 원 — 학위증 2장, 해외 체류 없음\n· 1+2 (말레이 1년 + 영국 2년) : 약 8,830만 원 + 영국 생활비 4,280만~5,340만 원\n해외 1년은 말레이시아 1년의 2~3배. 3+0도 영국 본교 학위증은 동일하게 받습니다.", {
+    x: 6.9, y: 5.9, w: 5.62, h: 0.86, isTextBox: true, margin: 0, fontFace: KR, fontSize: 9.5, color: "7A2E12", lineSpacing: 13,
+  });
+  footnote(s, "환율 £1 ≈ 1,780원 · A$1 ≈ 950원 · RM 1 ≈ 339원");
+  s.addNotes("트위닝과 학점 이전을 구분하는 것이 핵심입니다. 트위닝은 입학 시점에 해외 본교 프로그램에 이미 등록되어 경로가 확정되지만, ADTP는 매년 새로 지원해야 하고 합격 보장이 없습니다. 비용은 3+0가 압도적으로 유리합니다.");
+}
+
+/* ══ 11-B · 트위닝 가능 대학 ═════════════════════════════════ */
+{
+  const s = slide(false);
+  head(s, "12", "TWINNING PARTNERS", "트위닝 가능 대학", false, GOLD);
+
+  s.addText("선웨이 대학교", { x: M, y: 1.66, w: 6, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 14, bold: true, color: "8A6400" });
+  const sw = [
+    [th("프로그램"), th("구조"), th("내용")],
+    [rh("랭커스터 (영국)"), { text: "3+0", options: { bold: true } }, "전 과정 말레이시아 이수 후 선웨이·랭커스터 학위증 2장. 추가 비용 없음"],
+    [rh("랭커스터 이동"), "1+2 · 교환", "Global Mobility Scholarship 적용 시 교환학기 등록금 100% 면제"],
+    [rh("빅토리아대 (호주)"), { text: "3+0 / 2+1", options: { bold: true } }, "Sunway College가 말레이시아 유일 파트너(1994~). VU Bachelor of Business"],
+    [rh("ASU (미국)"), "패스웨이", "Cintana Alliance 공식 파트너 · 20개 이상 패스웨이 · 최대 90학점 이전"],
+    [rh("ADTP (미국)"), "1+3 / 2+2", { text: "트위닝 아닌 학점 이전 · 개별 지원 · 경쟁 심사", options: { color: BAD } }],
+  ];
+  s.addTable(sw, {
+    x: M, y: 1.96, w: 12.09, colW: [1.75, 1.35, 8.99], rowH: 0.33,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+  s.addText("ADTP 실제 편입 사례(합격 보장 아님) : 코넬 · NYU · 존스홉킨스 · 미시간 · 퍼듀 · 위스콘신 · 보스턴 · 펜스테이트 · 오하이오주립 · 러트거스 · NC주립 · 미시간주립 · 인디애나 · 시러큐스 · 콜로라도광산대 · 포덤 · 마켓", {
+    x: M, y: 4.02, w: 12.09, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 8.5, color: MUTED, italic: true,
+  });
+
+  s.addText("테일러스 대학교", { x: M, y: 4.42, w: 6, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 14, bold: true, color: "A63C13" });
+  const ty = [
+    [th("학부"), th("구조"), th("대상 국가")],
+    [rh("Business School"), { text: "1+2 · 1+3 (BIS 1+2.5)", options: { bold: true } }, "영국 · 호주 · 뉴질랜드"],
+    [rh("Business 복수 학위"), { text: "3+0", options: { bold: true } }, "UWE Bristol(영국) · QUT(호주)"],
+    [rh("Hospitality · Tourism"), "1+2 · 2+1.5", "영국 · 호주 등 (복수 학위 UT2J 프랑스)"],
+    [rh("Computer Science"), "1+2 · 1+2.5 · 2+1", "영국 · 호주"],
+    [rh("Engineering"), { text: "2+2 (기계 2월) · 2+2.5 (7월) · 1+3 (MEng 화공)", options: { bold: true } }, "영국 · 호주"],
+  ];
+  s.addTable(ty, {
+    x: M, y: 4.72, w: 12.09, colW: [2.25, 4.35, 5.49], rowH: 0.33,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+  s.addText("거론되는 파트너(전공·연도별 변동) — 영국 : UWE Bristol · Birmingham · Leeds · Reading · St George's / 호주 : Adelaide · Monash · Queensland · QUT · RMIT · UTS · Newcastle · Flinders · Deakin · South Australia · Melbourne / 뉴질랜드 : Auckland", {
+    x: M, y: 6.72, w: 12.09, h: 0.45, isTextBox: true, margin: 0, fontFace: KR, fontSize: 8.5, color: MUTED, italic: true, lineSpacing: 11,
+  });
+  s.addNotes("테일러스는 협약 내용이 전공과 연도에 따라 바뀐다고 공식적으로 밝히고 있습니다. 지원 시점에 해당 학부 사무실로 반드시 직접 확인해야 합니다.");
+}
+
+/* ══ 11-C · 공학 5년 비용 ════════════════════════════════════ */
+{
+  const s = slide(false);
+  head(s, "13", "ENGINEERING COST", "공학 계열 5년 총비용 — 선웨이 vs 테일러스", false);
+  lede(s, "공학·이학 계열은 파운데이션 1년이 본과 4년에 선행하므로 실제 소요는 5년입니다.", false);
+
+  s.addChart(pres.ChartType.bar, [{
+    name: "5년 총예산 상한",
+    labels: ["선웨이 공학 5년", "테일러스 공학 5년"],
+    values: [16880, 19100],
+  }], {
+    x: M, y: 2.3, w: 4.7, h: 3.0,
+    barDir: "col", barGapWidthPct: 90,
+    chartColors: [GOLD, ORANGE],
+    showTitle: true, title: "5년 총예산 상한 (만원)", titleFontFace: KR, titleFontSize: 12, titleColor: NAVY,
+    showValue: true, dataLabelPosition: "outEnd", dataLabelFontFace: "Calibri", dataLabelFontSize: 11, dataLabelColor: "1B2A44",
+    showLegend: false,
+    catAxisLabelFontFace: KR, catAxisLabelFontSize: 10, catAxisLabelColor: "1B2A44",
+    valAxisLabelFontFace: "Calibri", valAxisLabelFontSize: 9, valAxisLabelColor: MUTED,
+    valGridLine: { color: RULE, size: 0.75 }, catGridLine: { style: "none" },
+    valAxisMinVal: 0, valAxisMaxVal: 22000, valAxisMajorUnit: 5000,
+  });
+
+  const fee = [
+    [th("학비 항목"), th("선웨이"), th("테일러스")],
+    [rh("파운데이션 1년"), "RM 17,850~29,350\n610만~995만 원", "RM 44,044\n1,493만 원"],
+    [rh("화학공학 4년"), "RM 153,570 (5,206만)", "RM 168,960 (5,728만)"],
+    [rh("기계공학 4년"), "RM 153,800 (5,214만)", "RM 200,736 (6,805만)"],
+    [rh("전자전기 4년"), "RM 154,540 (5,239만)", "학부 확인 필요"],
+    [
+      { text: "5년 학비 합계\n(기계공학)", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
+      { text: "약 5,820만~6,210만 원", options: { bold: true, color: GOLD, fill: { color: NAVY } } },
+      { text: "약 8,300만 원", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
+    ],
+  ];
+  s.addTable(fee, {
+    x: 5.6, y: 2.3, w: 7.11, colW: [1.75, 2.72, 2.64], rowH: 0.42,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+
+  const tot = [
+    [th("총예산 항목"), th("선웨이 5년"), th("테일러스 5년")],
+    [rh("학비 + 6% SST"), "6,170만~6,580만", "8,800만"],
+    [rh("비자 갱신 · IM 운영비 · 용돈 · 입학금"), "9,700만~10,300만", "9,700만~10,300만"],
+    [
+      { text: "총 예산", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
+      { text: "약 1억 5,870만~1억 6,880만", options: { bold: true, color: GOLD, fill: { color: NAVY } } },
+      { text: "약 1억 8,500만~1억 9,100만", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
+    ],
+  ];
+  s.addTable(tot, {
+    x: 5.6, y: 5.0, w: 7.11, colW: [2.35, 2.42, 2.34], rowH: 0.42,
+    border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 9.5, color: "1B2A44", valign: "middle",
+  });
+
+  card(s, M, 5.5, 4.7, 1.35, "FEF6E2", GOLD);
+  s.addText("선웨이가 약 2,200만~2,600만 원 유리", { x: M + 0.22, y: 5.6, w: 4.26, h: 0.28, isTextBox: true, margin: 0, fontFace: KR, fontSize: 11.5, bold: true, color: "6B4E06" });
+  s.addText("다만 테일러스 기계공학은 영국·호주 대학과의 2+2 트위닝이 열려 있으므로, 해외 학위가 목표라면 비용만으로 결정하지 마십시오.", {
+    x: M + 0.22, y: 5.92, w: 4.26, h: 0.82, isTextBox: true, margin: 0, fontFace: KR, fontSize: 9.5, color: "6B4E06", lineSpacing: 13,
+  });
+  footnote(s, "환율 1링깃(RM) ≈ 339원 · IM 공동체 기준 · 6% 서비스세 포함");
+  s.addNotes("공학 지망이면 선웨이가 5년 총예산에서 2,200만에서 2,600만 원 유리합니다. 다만 테일러스는 2+2 트위닝 경로가 있어 해외 학위가 목표라면 달라집니다.");
+}
+
 /* ══ 12 · 지원 자격 ═════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "11", "ELIGIBILITY", "IM 말레이시아 지원 자격", false);
+  head(s, "14", "ELIGIBILITY", "IM 말레이시아 지원 자격", false);
   lede(s, "아래 네 가지 조건이 모두 준비된 학생만 지원 가능합니다.", false);
 
   const q = [
@@ -503,7 +664,7 @@ function footnote(s, txt, dark) {
 /* ══ 13 · 입학 절차 ════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "12", "ADMISSION PROCESS", "입학 절차 6단계", false);
+  head(s, "15", "ADMISSION PROCESS", "입학 절차 6단계", false);
   lede(s, "4단계 원서 접수 시점이 전체 일정을 좌우합니다. 개강 8주 전 마감이 원칙이며, 국제학생은 12~16주 전 접수를 권장합니다.", false);
 
   const steps = [
@@ -528,7 +689,7 @@ function footnote(s, txt, dark) {
 /* ══ 14 · 비자 절차 ════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "13", "STUDENT VISA", "비자 발급 절차와 리드타임", false);
+  head(s, "16", "STUDENT VISA", "비자 발급 절차와 리드타임", false);
 
   const v = [
     ["1", "입학허가서 수령 및 서명 후 제출", ""],
@@ -571,7 +732,7 @@ function footnote(s, txt, dark) {
 /* ══ 15 · A플랜 타임라인 ═══════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "14", "TIMELINE A", "A플랜 · 2027년 1~2월 입학", false);
+  head(s, "17", "TIMELINE A", "A플랜 · 2027년 1~2월 입학", false);
   lede(s, "선웨이 1월 / 테일러스 2월 인테이크 기준. 가장 여유 있는 최적 진입 시기입니다.", false);
 
   const rows = [
@@ -597,7 +758,7 @@ function footnote(s, txt, dark) {
 /* ══ 16 · B·C플랜 ═════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "15", "TIMELINE B · C", "B플랜 · C플랜", false);
+  head(s, "18", "TIMELINE B · C", "B플랜 · C플랜", false);
 
   s.addText("B플랜 · 2027년 4월 입학 (선웨이 · 테일러스 공통)", { x: M, y: 1.7, w: 8, h: 0.3, isTextBox: true, margin: 0, fontFace: KR, fontSize: 14, bold: true, color: NAVY });
   const rows = [
@@ -629,7 +790,7 @@ function footnote(s, txt, dark) {
 /* ══ 17 · 팩트체크 ════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "16", "FACT CHECK", "팩트체크 — 반드시 고쳐야 할 항목", false);
+  head(s, "19", "FACT CHECK", "팩트체크 — 반드시 고쳐야 할 항목", false);
   lede(s, "제시된 원문 표 18개 항목을 공개 자료로 검증했습니다. 아래는 발표 자리에서 반박당할 위험이 큰 상위 7건입니다.", false);
 
   const stat = [["4", "사실", OK], ["5", "부분 정확 · 보완", WARN], ["9", "수정 필요", BAD]];
@@ -658,13 +819,13 @@ function footnote(s, txt, dark) {
 /* ══ 18 · 비용 ════════════════════════════════════════════════ */
 {
   const s = slide(false);
-  head(s, "17", "BUDGET", "졸업까지 총 예산 — 수정판", false);
+  head(s, "20", "BUDGET", "졸업까지 총 예산 — 수정판", false);
   lede(s, "누락돼 있던 IM 입학금 · 비자 갱신비 · 6% 서비스세 · 점심/용돈을 모두 반영한 금액입니다.", false);
 
   s.addChart(pres.ChartType.bar, [{
     name: "졸업까지 총 예산",
-    labels: ["테일러스 3년제", "선웨이 3년제", "4년제 공학\n(파운데이션 포함)"],
-    values: [11150, 10190, 19350],
+    labels: ["테일러스 3년제", "선웨이 3년제", "공학 5년\n(파운데이션 포함)"],
+    values: [11150, 10190, 19100],
   }], {
     x: M, y: 2.3, w: 5.5, h: 3.3,
     barDir: "col", barGapWidthPct: 70,
@@ -679,7 +840,7 @@ function footnote(s, txt, dark) {
   });
 
   const rows = [
-    [th("항목"), th("테일러스 3년"), th("선웨이 3년"), th("공학 5년")],
+    [th("항목"), th("테일러스 3년"), th("선웨이 3년"), th("공학 5년 (5년제)")],
     [rh("연간 학비"), "약 1,500만", "910~1,290만", "1,430~1,710만"],
     [rh("6% 서비스세"), "약 90만", "55~77만", "86~103만"],
     [rh("학생비자 갱신"), "약 140만", "약 140만", "약 140만"],
@@ -691,7 +852,7 @@ function footnote(s, txt, dark) {
       { text: "졸업까지 총액", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
       { text: "1억 790만~\n1억 1,150만", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
       { text: "8,930만~\n1억 190만", options: { bold: true, color: GOLD, fill: { color: NAVY } } },
-      { text: "1억 7,300만~\n1억 9,350만", options: { bold: true, color: WHITE, fill: { color: NAVY } } },
+      { text: "1억 5,870만~\n1억 9,100만", options: { bold: true, color: GOLD, fill: { color: NAVY } } },
     ],
   ];
   s.addTable(rows, {
@@ -699,9 +860,9 @@ function footnote(s, txt, dark) {
     border: { type: "solid", color: RULE, pt: 0.75 },
     fontFace: KR, fontSize: 10, color: "1B2A44", valign: "middle", align: "center",
   });
-  s.addText("원안 대비 총액이 1,700만~2,000만 원 증가합니다. 공대·약대는 파운데이션 1년이 선행하므로 실제 소요는 5년입니다.", {
-    x: 6.45, y: 5.95, w: 6.27, h: 0.6, isTextBox: true, margin: 0,
-    fontFace: KR, fontSize: 11, bold: true, color: BAD, lineSpacing: 15,
+  s.addText("공학 5년 : 선웨이 1억 5,870만~1억 6,880만 / 테일러스 1억 8,500만~1억 9,100만 (슬라이드 13 상세)\n원안 대비 총액이 1,700만~2,000만 원 증가하며, 공대·약대는 파운데이션 1년이 선행해 실제 소요는 5년입니다.", {
+    x: 6.45, y: 6.02, w: 6.27, h: 0.72, isTextBox: true, margin: 0,
+    fontFace: KR, fontSize: 9.5, bold: true, color: BAD, lineSpacing: 13,
   });
   footnote(s, "환율 1링깃(RM) ≈ 339원 · IM 입학금 500만 원(1회성) 포함 · 단위 만원");
   s.addNotes("예산은 원안보다 1,700만에서 2,000만 원 늘어납니다. 특히 공대 지망자는 5년 예산을 잡아야 합니다.");
