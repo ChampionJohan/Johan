@@ -299,7 +299,7 @@ function footnote(s, txt, dark) {
   s.addText("학비 — 국제학생 기준 (2026)", { x: M, y: 1.68, w: 6, h: 0.32, isTextBox: true, margin: 0, fontFace: KR, fontSize: 14, bold: true, color: NAVY });
   const f = [
     [th("과정"), th("총 학비 (RM)"), th("원화 환산"), th("연간")],
-    [rh("파운데이션 1년"), "28,600~68,590", "970만~2,330만", "동일"],
+    [rh("파운데이션 1년"), { text: "44,044", options: { bold: true } }, { text: "약 1,490만", options: { bold: true } }, "동일"],
     [rh("학사 전체 범위"), "95,066~446,690", "3,220만~1억 5,140만", "전공별"],
     [rh("국제호텔경영 3년"), { text: "133,146", options: { bold: true } }, "약 4,510만", "약 1,500만"],
     [rh("기계공학 4년"), "연 50,184", "약 6,810만", "약 1,700만"],
@@ -309,7 +309,10 @@ function footnote(s, txt, dark) {
     x: M, y: 2.08, w: 6.1, colW: [1.58, 1.42, 2.0, 1.1], rowH: 0.42,
     border: { type: "solid", color: RULE, pt: 0.75 }, fontFace: KR, fontSize: 10, color: "1B2A44", valign: "middle",
   });
-  s.addText("6% 서비스세(SST) 별도 · 의약 계열이 상단값에 해당", { x: M, y: 4.82, w: 6.1, h: 0.28, isTextBox: true, margin: 0, fontFace: KR, fontSize: 9.5, color: MUTED, italic: true });
+  s.addText("6% SST 별도 · 학사 상단값(RM 446,690)은 의약 계열", { x: M, y: 4.8, w: 6.1, h: 0.26, isTextBox: true, margin: 0, fontFace: KR, fontSize: 9.5, color: MUTED, italic: true });
+  card(s, M, 5.12, 6.1, 1.42, "FDF0EC", ORANGE);
+  s.addText("파운데이션 학비 주의", { x: M + 0.22, y: 5.22, w: 5.7, h: 0.28, isTextBox: true, margin: 0, fontFace: KR, fontSize: 11.5, bold: true, color: "A63C13" });
+  s.addText("유학 정보 사이트의 \"RM 28,600~68,590\"은 파운데이션이 아니라 국제 프리유니버시티(A Level · SACE, 18~24개월)를 합친 범위입니다.\n테일러스에는 의대 파운데이션이 따로 없고 의학·약학도 FIS로 진학하므로 전공별 편차가 크지 않습니다.", { x: M + 0.22, y: 5.5, w: 5.7, h: 0.96, isTextBox: true, margin: 0, fontFace: KR, fontSize: 9.5, color: "7A2E12", lineSpacing: 13 });
 
   s.addText("글로벌 학위 · 편입 경로", { x: 7.05, y: 1.68, w: 6, h: 0.32, isTextBox: true, margin: 0, fontFace: KR, fontSize: 14, bold: true, color: NAVY });
 
@@ -428,7 +431,7 @@ function footnote(s, txt, dark) {
     ["복수 학위 파트너", "UWE Bristol · QUT · UT2J", { text: "랭커스터 (추가비용 $0)", options: { bold: true } }],
     ["미국 공식 파트너", "ADTP 학점 이전 중심", { text: "ASU (Cintana Alliance)", options: { bold: true } }],
     ["연간 학비 (학사)", "약 1,430만~1,710만 원", "약 910만~1,290만 원"],
-    ["파운데이션 학비", "약 970만~2,330만 원", { text: "약 610만~990만 원", options: { bold: true } }],
+    ["파운데이션 학비 (1년 총액)", "약 1,490만 원", { text: "약 610만~990만 원", options: { bold: true } }],
   ];
   s.addTable(rows, {
     x: M, y: 2.3, w: CW, colW: [3.4, 4.35, 4.34], rowH: 0.36,
