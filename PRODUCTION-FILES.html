@@ -1,0 +1,92 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Why Is This Still Here? — Production Files</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>First: do not upload these yet</h1>
+<p>The files are made. <strong>The book is not ready to publish.</strong></p>
+<pre><code>52 verification items, 3 TODOs.  Both have to be zero before publishing.</code></pre>
+<p>The 52 are <strong>primary-source checks</strong>, one attached to each case. What has been done so far is cross-checking public material, not opening the originals.</p>
+<p>The 3 TODOs are the blanks left in <em>How This Book Was Made</em>: <strong>how many items were cut, how many anecdotes were dropped, and how far verification actually went.</strong> All three can only be written accurately at publication time.</p>
+<p>What follows is for <strong>looking at the cover, checking the typesetting, and reading it through.</strong> It becomes uploadable when those two numbers are zero.</p>
+<hr>
+<h1>Covers</h1>
+<p>This book is not part of the Five Boxes series, so the five-box motif could not be used.</p>
+<p><strong>The motif is a peak and a plain.</strong></p>
+<p>Chapter 1 puts the two sales curves side by side. A bestseller is a tall narrow peak; a steady seller is a low wide plain. <strong>That drawing is the cover.</strong></p>
+<p>The two filled areas are sized to be roughly equal. <strong>That the heights differ and the areas don't is the argument of the book.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Size</th></tr></thead><tbody><tr><td><code>release/covers/bestseller-cover.jpg</code></td><td>1600 × 2560</td></tr><tr><td><code>release/covers/en-bestseller-cover.jpg</code></td><td>1600 × 2560</td></tr></tbody></table></div>
+<p>KDP's recommended 1.6:1 ratio.</p>
+<p>The Korean edition is set in <strong>Nanum Myeongjo</strong> — the Latin faces have no Hangul, so a separate family had to be wired in. The English edition uses Liberation Serif, the same as the four earlier books.</p>
+<p>The top line names the scope, so the cover says what the book covers before the title does.</p>
+<ul><li>Korean — 책 · 옷 · 가전 · 식품 · 미디어</li><li>English — BOOKS · CLOTHES · FOOD · FILM · MUSIC</li></ul>
+<hr>
+<h1>Ebooks</h1>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Pieces</th><th>Check</th></tr></thead><tbody><tr><td><code>release/ebook/Why Is This Still Here?.epub</code></td><td>31</td><td><strong>epubcheck: 0 errors</strong></td></tr><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러.epub</code></td><td>31</td><td><strong>epubcheck: 0 errors</strong></td></tr></tbody></table></div>
+<p>The cover is inside, and so is the EPUB nav table of contents.</p>
+<h2>One thing that had to be fixed</h2>
+<p>The first build produced an error.</p>
+<pre><code>ERROR(RSC-005): content.opf  character content of element "meta" invalid</code></pre>
+<p><strong>It was caused by this book not being part of a series.</strong> The four earlier books all are, so the <code>belongs-to-collection</code> metadata had a value. This one is empty, so an empty <code>&lt;meta&gt;</code> tag went out.</p>
+<p><code>tools/epub.py</code> now omits the collection metadata entirely when there is no series. <strong>The four earlier books were rebuilt to confirm nothing regressed.</strong></p>
+<h2>PDF ebook</h2>
+<p>For platforms that take PDF rather than EPUB.</p>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Trim</th><th>Pages</th></tr></thead><tbody><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러-A5-320p.pdf</code></td><td>A5</td><td>320</td></tr></tbody></table></div>
+<hr>
+<h1>Print — English edition</h1>
+<p>Built to KDP paperback specification.</p>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Size</th></tr></thead><tbody><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_interior-316p.pdf</code></td><td>6 × 9 in · 316 pages</td></tr><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_cover-316p-cream.pdf</code></td><td><strong>13.040 × 9.250 in</strong> · spine 0.790 in</td></tr></tbody></table></div>
+<p>Named by the same rule as the four earlier books. <strong>The page count and the paper are in the filename, so a mismatched pair is visible before upload.</strong></p>
+<h2>Specification checks</h2>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>Actual</th><th></th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>pass</td></tr><tr><td>Inside margin (301–500 pages)</td><td>0.625 in</td><td><strong>0.844 in</strong></td><td>pass</td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397 in</strong></td><td>pass</td></tr><tr><td>Wrap size</td><td>13.040 × 9.250</td><td>13.040 × 9.250</td><td>match</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>pass</td></tr></tbody></table></div>
+<p>The wrap is calculated like this.</p>
+<pre><code>0.125 + 6 + (316 pages × 0.0025) + 6 + 0.125 = 13.040 in</code></pre>
+<p>Cream paper. <strong>Switching to white means regenerating the wrap.</strong></p>
+<pre><code>python3 tools/wrap_cover.py en-bestseller 316 --paper white</code></pre>
+<p>The white rectangle at the lower right of the back cover is the barcode zone. <strong>It was left empty on purpose, not forgotten.</strong></p>
+<hr>
+<h1>Print — Korean edition is not built yet</h1>
+<p>There's a reason.</p>
+<p><code>tools/wrap_cover.py</code> is <strong>KDP-specific.</strong> Bleed, spine thickness and the barcode zone are all fixed to KDP's numbers.</p>
+<p>If the Korean edition goes to a domestic self-publishing service, <strong>the specification is different.</strong> A5 is common there and the spine formula differs.</p>
+<p>Tell me where it's going and it gets built to that specification. <strong>The interior PDF already exists at A5, so only the cover has to be redrawn.</strong></p>
+<p>If the Korean edition also goes to KDP, the interior has to be re-rendered at 6 × 9. That is also one line.</p>
+<hr>
+<h1>Changes made to the tools</h1>
+<p>Three files were changed for this book. All passed regression checks against the earlier books.</p>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>What</th></tr></thead><tbody><tr><td><code>tools/cover.py</code></td><td>Added the curve motif (<code>motif="curve"</code>) and Korean faces</td></tr><tr><td><code>tools/epub.py</code></td><td>Handles a standalone book with no series</td></tr><tr><td><code>tools/pdf.py</code></td><td>Added both editions of this book</td></tr></tbody></table></div>
+<p><code>cover.py</code> also got a guard so the top line can't collide. The English scope line was long enough to overlap the right-hand mark; <strong>it now tightens the letter-spacing first and reduces the size only if that isn't enough.</strong> No future book can collide there.</p>
+<h2>One thing worth knowing</h2>
+<p>While rebuilding the four earlier English ebooks as a regression check, their embedded covers came out <strong>different by a few pixels</strong> — same layout, slightly different glyph rendering.</p>
+<p>The cause is the environment, not the code. <code>cover.py</code>'s five-box path is untouched. The container was replaced mid-session and the font rendering shifted very slightly.</p>
+<p><strong>The four published ebooks were restored to their original bytes.</strong> <code>release/covers/&lt;key&gt;-cover.jpg</code> now holds the exact artwork that was uploaded, so future rebuilds reuse it rather than re-rendering.</p>
+<hr>
+<h1>What's left</h1>
+<ul class="checklist"><li><input type="checkbox" disabled> <strong>52 verification items</strong> — patent records, trademark registries, distributor records, official charts, manufacturer material</li><li><input type="checkbox" disabled> <strong>3 TODOs</strong> — the counts and the verification level in <em>How This Book Was Made</em></li><li><input type="checkbox" disabled> Check on Amazon whether <code>Why Is This Still Here?</code> is already taken. <strong>A title cannot be changed after publication</strong></li><li><input type="checkbox" disabled> Decide where the Korean edition goes, then build its print cover</li><li><input type="checkbox" disabled> If a shop you have seen yourself turns up, swap it into the two slots in the opening and the closing</li></ul>
+<p><strong>The first line takes the longest.</strong> Everything else is under half a day.</p>
+</div></body></html>

@@ -80,6 +80,11 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <h1>도구에 더한 것</h1>
 <p>이 책 때문에 세 파일을 고쳤습니다. 모두 앞의 네 권 회귀 검사를 통과했습니다.</p>
 <div class="table-wrap"><table><thead><tr><th>파일</th><th>무엇을</th></tr></thead><tbody><tr><td><code>tools/cover.py</code></td><td>곡선 모티프(<code>motif="curve"</code>)와 한글 글꼴을 더했다</td></tr><tr><td><code>tools/epub.py</code></td><td>시리즈가 없는 단행본을 처리하게 고쳤다</td></tr><tr><td><code>tools/pdf.py</code></td><td>이 책 두 판을 목록에 넣었다</td></tr></tbody></table></div>
+<h2>알아 두실 것 하나</h2>
+<p>앞의 영어판 네 권 EPUB을 회귀 검사로 다시 만들었더니 <strong>안에 든 표지가 몇 픽셀 달라졌습니다.</strong> 배치는 같고 글자 렌더링만 미세하게 달랐습니다.</p>
+<p>원인은 코드가 아니라 환경입니다. <code>cover.py</code> 의 다섯 칸 경로는 손대지 않았습니다. 작업 도중에 컨테이너가 바뀌면서 글꼴 렌더링이 아주 조금 달라진 것입니다.</p>
+<p><strong>발행된 네 권은 원래 바이트로 되돌려 놓았습니다.</strong> 그리고 <code>release/covers/&lt;이름&gt;-cover.jpg</code> 에 실제로 업로드한 그림을 넣어 두어, 다음에 다시 만들 때도 새로 그리지 않고 그 파일을 그대로 쓰게 했습니다.</p>
+<hr>
 <p><code>cover.py</code> 에는 윗줄이 겹치지 않게 하는 장치도 넣었습니다. 영어판 갈래 줄이 길어서 오른쪽 표시와 겹쳤는데, <strong>자간을 먼저 줄이고 그래도 넘치면 글자 크기를 줄이도록</strong> 했습니다. 다음에 어떤 책을 넣어도 안 겹칩니다.</p>
 <hr>
 <h1>남은 일</h1>
