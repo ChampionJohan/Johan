@@ -148,7 +148,11 @@ The second landing bridge.
 Among building-block toys there is an old one.²
 What matters isn't the toy. It's **the coupling.**
 
-Blocks made decades ago fit blocks made now.²
+That coupling was patented more than sixty years ago.²
+**Blocks made then fit blocks made now.**²
+
+To hold that one fact, the company gave something up.
+**For sixty years it did not move to a better coupling.**
 
 That single fact does a great deal of work.
 
@@ -241,9 +245,9 @@ And ten years from now doesn't appear in this quarter's report.
 1. The release period and original purpose of a running or basketball shoe
    still produced on an old design, and when it moved to everyday wear.
    Only what the manufacturer's material and contemporaneous records confirm.
-2. When the coupling system of the building-block toy was introduced, and
-   whether current product is compatible with older product. Only what the
-   manufacturer's announcements confirm.
+2. When the coupling system of the building-block toy (LEGO) was patented,
+   and whether product made then is compatible with current product.
+   Only what patent records and the manufacturer's announcements confirm.
 
 <!-- 확인: 해당 운동화의 출시 시기와 원래 용도 — 제조사 자료 -->
 <!-- 확인: 경기용에서 일상용으로 옮겨 간 시기를 무엇으로 확인하는가 -->

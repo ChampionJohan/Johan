@@ -8,13 +8,21 @@ status: ready
 
 ## The adhesive that doesn't stick well
 
-Someone developing an adhesive produced one that doesn't stick well.¹
+Someone trying to make a strong adhesive produced one that doesn't stick well.¹
 
 It holds, but weakly. Pull and it comes off.
 As an adhesive, a failure.
 
-A few years later that substance became something in every office.
-A note you stick on and peel off.¹
+The person who made it didn't throw it away.
+With no use for it, he **spent years walking it around the company, showing it.**¹
+
+Much later another researcher saw it and thought of something.
+Paper bookmarks kept falling out of his hymnal in the church choir.¹
+
+That substance became something in every office.
+A note you stick on and peel off.
+
+**Twelve years passed between the discovery and the product.**¹
 
 Something needs checking.
 
@@ -42,6 +50,14 @@ So the question isn't whether the accident happened.
 
 If that failure had come out somewhere else,
 it would have left one line in a record and ended.
+
+Look again at what actually happened in that case.
+
+**The person who made it spent years carrying it around and showing it to people.**
+
+What this book sets down later as a prescription, he was already doing.
+And the one who found the use was not the maker.
+**It was somebody else who saw it.**
 
 Look at the things that survived by changing use and there are three routes.
 
@@ -85,6 +101,16 @@ Leave it blank if it's blank. It might take years to fill.
 ## Second route · From the rough place to the comfortable one
 
 A boot made for a worksite is on a stage.²
+
+That boot, built on an air-cushioned sole, was first worn by
+**postal workers and factory workers.**²
+It was a cheap work boot.
+
+Some years later one group of young people started wearing them.
+Then the next group, and the group after that.²
+
+**The maker never tried to sell to any of them.**
+
 A food made for army supply became home cooking.³
 
 The direction here is consistent. **Always from rough to comfortable.**
@@ -212,15 +238,20 @@ Chapter 12 shows nothing until the signal arrives.
 
 ## Sources for this chapter
 
-1. How a weakly adhesive adhesive came to be developed, and how long it took
-   to become a stick-and-peel note product. Only what the manufacturer's
-   material confirms.
-2. The original purpose and release period of a boot developed for work, and
-   when it came to be worn on stages and in daily life.
+1. How a weakly adhesive adhesive came to be developed, how long its inventor
+   spent trying to find a use for it inside the company, how another researcher
+   arrived at the application, the test-marketing and formal launch dates, and
+   the total years from discovery to product (Post-it Notes). Only what the
+   manufacturer's material confirms.
+2. The release period and original wearers of an air-cushioned-sole boot
+   (Dr. Martens 1460), and when subcultures began wearing it. Only what the
+   manufacturer's material and contemporaneous records confirm.
 3. How a processed food supplied to armed forces became an everyday food in a
    particular region, and when.
 
 <!-- 확인: 약한 접착제의 개발 경위와 제품화까지 걸린 기간 — 제조사 자료 -->
+<!-- 확인: 개발자가 사내에 알리려 한 기간과 방식 — 제조사 자료 또는 본인 진술 -->
+<!-- 확인: 찬송가집 갈피 일화의 출처 — 제조사 공식 자료에 있는지 확인, 없으면 뺀다 -->
 <!-- 확인: 작업화의 원래 용도와 출시 시기 — 제조사 자료 -->
 <!-- 확인: 그 신발이 무대와 일상으로 옮겨 간 시기를 무엇으로 확인하는가 -->
 <!-- 확인: 군용 가공식품이 현지 음식이 된 경위 — 1차 자료. 통설만 있으면 뺀다 -->

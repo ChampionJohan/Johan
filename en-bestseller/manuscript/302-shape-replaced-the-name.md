@@ -84,6 +84,15 @@ The buyer sees it a few times a year. The maker sees it daily.
 
 > **The one who got bored is the maker, not the buyer.**
 
+There's a piece of evidence the law has attached to this.
+
+**Sometimes the shape itself is registered as a trademark.**¹
+
+Not the logo, not the name — **the shape of the bottle** is the mark.
+Make a bottle of that shape and you have used the trademark by doing so.
+
+A position given only to words and pictures went to a form.
+
 **Three. It has to come from function.**
 
 The most important and the most often missed.
@@ -185,6 +194,22 @@ Keep only the proportion, remove the rest. Still recognized?
 
 Hold that one and everything else can change.
 
+The law has attached evidence here too.
+
+The company behind that bottle once tried to register **a new bottle shape
+with the grooves removed** as a shape trademark.
+**It was refused.**¹
+
+The reason is this chapter, exactly.
+**That shape hadn't accumulated yet.**
+
+Same company, same name, same drink — the form changed
+and the shape asset didn't come with it.
+
+> **A shape doesn't belong to the company. It belongs to that form.**
+
+Which is why changing means finding the skeleton by erasure first.
+
 This work costs almost nothing. Paper and ten people.
 **Not many companies have done it.**
 
@@ -211,13 +236,18 @@ The recognizable element slowly disappears, and
 
 ## Sources for this chapter
 
-Cases where a shape itself is registered as a trademark can be confirmed
-through national trademark registries.
-This chapter names no specific product and describes only structure.
-If a name is put into the text, whether that shape is registered and when
-must be confirmed against the registry first.
+1. A case where the shape of a bottle is itself registered as a trademark
+   (the Coca-Cola contour bottle), and the case of the same company's attempt
+   to register a new bottle shape with the grooves removed, which was refused.
+   To be confirmed against national trademark registries and the decisions.
 
-<!-- 확인: 형태 자체가 상표로 등록된 사례와 등록 시점 — 각국 상표 등록 기록 -->
+**The registration date is not given in the text.**
+Different sources give different years, and first registration appears to be
+mixed up with renewals and additional filings.
+No year goes in until the registry itself settles which is correct.
+
+<!-- 확인: 컨투어 병의 형태 상표 최초 등록 시점 — 자료마다 연도가 다르다. 등록 기록 원본으로 확정한다 -->
+<!-- 확인: 홈 없는 새 병 모양의 형태 상표 등록이 거절된 건 — 심결 또는 판결 원문 -->
 <!-- 확인: 소리나 냄새가 상표로 등록된 사례가 있는지 — 등록 기록 -->
 <!-- 확인: 밑창 무늬 · 병 굴곡의 기능적 유래. 확인 안 되면 일반 서술로 둔다 -->
 

@@ -138,6 +138,14 @@ Then it quietly went away.
 A personal vehicle you stood on and rode went a similar way.⁴
 The claim that cities would be redesigned around it followed it everywhere.
 
+For this one there's a confirmable number.
+
+Around the time production stopped, that machine accounted for
+**a little over one percent** of the company's total revenue.⁴
+
+Everyone knew the name and the revenue wasn't there.
+**Recognition and demand can diverge that far.**
+
 These two differ decisively from the first two.
 
 **They never had a slot before losing it.**
@@ -164,6 +172,12 @@ The real danger of pushing is elsewhere.
 
 Somebody came in to buy a big screen and the 3D function went out attached to it.
 The number climbs while few people ever turn the function on.
+
+And the reason the manufacturers gave when they dropped the function
+was exactly that. **There was no demand.**³
+
+It's the reason stated by the people who had been doing the pushing,
+at the moment they stopped.
 
 **When units sold and units used diverge, that number is not a signal.**
 
@@ -222,15 +236,21 @@ The better it's made, the deeper it's tied to that function.
 1. The MiniDisc: release period, history of revisions, and the end of
    production. Only what the manufacturer's announcements confirm.
 2. The formation and disappearance of the small-laptop category called netbooks.
-3. Home 3D television: the period of introduction, the manufacturers'
-   discontinuation announcements and their stated reasons.
-4. The stand-on personal transporter: release and end of production.
+3. Home 3D television: the period of introduction, when manufacturers
+   dropped the function from new product lines, and the reasons they gave.
+   Several manufacturers dropped it in succession and cited lack of demand.
+   Only what their announcements and contemporaneous reporting confirm.
+4. The stand-on personal transporter (Segway PT): release and end of
+   production, and the share of company revenue that product accounted for
+   around the time production ended. Only what the company's statements
+   and contemporaneous reporting confirm.
 
 <!-- 확인: 미니디스크 생산 종료 시점 — 제조사 발표 -->
 <!-- 확인: 넷북 범주가 사라진 시기와 경위 — 1차 출처 -->
 <!-- 확인: 가정용 입체 텔레비전 중단 발표 — 제조사 공식 자료 -->
 <!-- 확인: 개인용 이동 기계의 생산 종료 시점 — 제조사 발표 -->
 <!-- 확인: 입체 기능이 상위 모델에 기본 탑재되어 팔렸다는 서술 — 확인 안 되면 뺀다 -->
+<!-- 확인: 세그웨이 PT 가 회사 매출에서 차지한 비중 — 회사 발표 또는 동시대 보도 -->
 
 ## One Line Today
 

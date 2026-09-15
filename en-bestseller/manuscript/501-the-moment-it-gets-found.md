@@ -58,6 +58,20 @@ Here they split differently. These are the fast ones.
 An object gets used in a drama or a film and people who watched go looking.
 A song used in one scene returning to the charts is the same structure.¹
 
+There's one very clear example.
+
+A singer released a song a long time ago.
+That song was used in one scene of a drama season.¹
+
+A few weeks later it was **number one on the national chart.**
+**Thirty-seven years after it was released.**¹
+
+The gap between that singer's previous number one and this one was forty-four years,
+**the longest gap in that chart's history.**¹
+
+**The singer did nothing during any of it.**
+No re-recording, no re-release, no promotion.
+
 What matters is that **it wasn't advertising.**
 
 An object that appeared in an advertisement gets processed as advertising.
@@ -66,6 +80,11 @@ An object that was inside a story gets processed as part of that story.
 **Two. A different generation saw it as new.**
 
 This one happens most often and is understood least.
+
+That song is the example.
+Most of the people who put it at number one hadn't been born when it first came out.
+
+**To them it wasn't an old song. It was a song they were hearing for the first time.**
 
 To someone seeing it for the first time, an old thing is a new thing.
 
@@ -224,9 +243,11 @@ If the cause is unknown, the question has to change.
 
 ## Sources for this chapter
 
-1. For a song released long ago that re-entered national charts after being
-   used in a screen work: the original release date, when it was used, and
-   when it re-entered. Only what official chart records confirm.
+1. For a song released long ago that reached number one after being used in a
+   screen work (Kate Bush, "Running Up That Hill"): the original release date,
+   when it was used, when it reached number one, the number of years between
+   release and number one, and the gap from that singer's previous number one.
+   Only what the national official chart records confirm.
 
 This chapter does not identify a cause of rediscovery.
 The cases that did not get rediscovered under the same conditions can't be counted.

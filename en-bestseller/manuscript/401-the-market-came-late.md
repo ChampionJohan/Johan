@@ -70,7 +70,17 @@ Because you can write down in advance which price has to fall.
 
 A film that failed in cinemas sometimes becomes a classic later.¹
 
-The film didn't change. It's the same print.
+One prison film did this.
+In cinemas it didn't earn back what it cost to make. It won no awards.¹
+
+Then the distributor pressed a large run of rental tapes the following year
+and pushed them out.¹
+It went to number one on the rental charts that year.¹
+
+A few years later a cable channel took the broadcast rights and ran it repeatedly.¹
+It became a fixture of that channel's schedule.
+
+**The film didn't change. It's the same print.**
 What changed is **where it's watched.**
 
 A cinema is a hard place.
@@ -81,6 +91,11 @@ Watching at home is different.
 It costs far less, you can stop halfway, you can follow a recommendation.
 
 **The same object, and the hurdle differs by place.**
+
+That film lost in cinemas not because it was bad.
+**The other films opening the same week looked safer.**
+
+In a cinema the safe thing wins. In a living room that criterion disappears.
 
 This structure isn't only in film.
 
@@ -218,10 +233,12 @@ is Part Five.
 
 ## Sources for this chapter
 
-1. A film with weak theatrical results that later became widely known through
-   broadcast and home media: its opening performance, and the distribution
-   route and timing afterwards. Only what distributor records and
-   contemporaneous reporting confirm.
+1. A prison film with weak theatrical results that later became widely known
+   through home media and broadcast (*The Shawshank Redemption*): its production
+   budget and theatrical gross, the quantity of rental tapes distributed the
+   following year and its rental ranking, and when a cable channel took the
+   broadcast rights. Only what distributor records and contemporaneous
+   reporting confirm.
 2. A novel whose sales were poor on publication and which later entered
    school curricula: its sales during the author's life and when it entered
    curricula. Only what publisher material and curriculum records confirm.
