@@ -49,8 +49,11 @@ RELATIVE = re.compile(
 # 유사분열문(pseudo-cleft)은 의문사로 시작하지만 평서문이다.
 # "What was sold to the owner was the reservation network."
 # 의문사 + be동사 + 분사 ... + 두 번째 be동사 라는 어순으로만 좁게 잡는다.
+# 조동사가 낀 수동형("What can be swallowed is ...")도 같은 어순이다.
 COP = r"(?:is|are|was|were)"
-CLEFT = re.compile(r"^what\s+%s\s+\w+(?:d|n|t)\b.*\s%s\s" % (COP, COP), re.I)
+MODAL = r"(?:can|could|will|would|should|must|may|might)\s+be"
+CLEFT = re.compile(r"^what\s+(?:%s|%s)\s+\w+(?:d|n|t)\b.*\s%s\s"
+                   % (COP, MODAL, COP), re.I)
 
 
 def is_question(sentence):
