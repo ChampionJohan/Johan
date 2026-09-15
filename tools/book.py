@@ -110,8 +110,8 @@ STYLE = """
  --paper:#FBFAF7;--ink:#1A1A1A;--muted:#6E6C64;--rule:#DFDCD3;--hair:#EDEAE2;
  --accent:#8A2E2E;--flagbg:#FBF0D2;--flagink:#6B4E00;
  --track:.16em;
- --serif:"Nanum Myeongjo","Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
- --sans:"Nanum Barun Gothic","IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+ --serif:"Nanum Myeongjo",NanumMyeongjo,"Noto Serif KR",Georgia,"Times New Roman",Batang,serif;
+ --sans:"Nanum Barun Gothic",NanumBarunGothic,"IBM Plex Sans KR","Helvetica Neue",Arial,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
  --paper:#14150F;--ink:#EAE7DE;--muted:#9A968B;--rule:#2E3029;--hair:#232520;
  --accent:#D9906A;--flagbg:#332A12;--flagink:#E8C97A}}
@@ -181,6 +181,12 @@ tbody tr:last-child td{border-bottom:0}
 .flags p{margin:0 0 6px;font-size:.86rem;font-family:var(--sans);line-height:1.7}
 footer.book{border-top:1px solid var(--rule);padding-top:28px;color:var(--muted);
  font-size:.84rem;font-family:var(--sans);text-align:center}
+/* 코드 블록에 글꼴을 지정하지 않으면 브라우저 기본 고정폭으로 떨어지는데,
+   그 글꼴에 한글이 없으면 중국어 글꼴로 대체되어 인쇄본에 그대로 나온다.
+   한글이 있는 고정폭을 먼저 세워 둔다. */
+pre,code,kbd,samp{font-family:"Nanum Gothic Coding",NanumGothicCoding,
+ "D2Coding",ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+
 @media print{.flags{display:none}
  nav.toc,section.part,section.ch,section.front{page-break-before:always}
  /* 인쇄에서는 표가 인쇄 폭보다 넓어지면 안 된다. 넓어지면 크로뮴이

@@ -4,6 +4,7 @@
     python3 tools/pdf.py book         # book/site/돈의 해부학.pdf
     python3 tools/pdf.py book2        # book2/site/....pdf
     python3 tools/pdf.py en-book      # en-book/site/....pdf (6x9)
+    python3 tools/pdf.py bestseller --trim 6x9   # 아마존 인쇄용으로 다시 뽑는다
 
 book/site/index.html (또는 book-teen/site/index.html) 을 먼저 최신으로 만든 뒤,
 headless 크롬으로 그 화면을 그대로 인쇄해서 PDF 로 저장한다.
@@ -133,14 +134,14 @@ def page_map(pdf_path, items):
     return mapping
 
 
-def to_pdf(m, max_passes=6, trim=None):
+def to_pdf(m, max_passes=6, trim=None, suffix=""):
     """차례에 쪽 번호를 박아 넣고, 그 번호가 실제 쪽과 맞을 때까지 다시 그린다.
 
     쪽 번호를 넣으면 차례가 길어지고, 차례가 한 쪽 늘어나면 뒤의 모든 쪽이
     한 칸씩 밀린다. 그래서 한 번만 다시 그리면 번호가 1씩 어긋난 채로 굳는다.
     측정한 쪽 번호가 두 번 연속 같아질 때까지 반복한다.
     """
-    pdf_path = os.path.join(m.SITE, "%s.pdf" % m.TITLE)
+    pdf_path = os.path.join(m.SITE, "%s%s.pdf" % (m.TITLE, suffix))
     html_path = os.path.join(m.SITE, "index.html")
     numbered_html = os.path.join(m.SITE, "index.print.html")
 
@@ -169,8 +170,17 @@ def main():
     if not sys.argv[1:]:
         print(__doc__)
         return 1
-    m = build_html(sys.argv[1])
-    to_pdf(m)
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    trim = None
+    if "--trim" in sys.argv:
+        trim = sys.argv[sys.argv.index("--trim") + 1]
+        if trim not in TRIM:
+            raise SystemExit("--trim 은 %s 중 하나여야 합니다." % " · ".join(TRIM))
+    m = build_html(args[0])
+    # 판형을 덮어쓸 때는 파일 이름에 그 판형을 붙인다.
+    # 그래야 A5 전자책용과 6x9 인쇄용이 같은 폴더에서 안 덮어쓴다.
+    suffix = "-%s" % trim if trim and trim != getattr(m, "TRIM", "A5") else ""
+    to_pdf(m, trim=trim, suffix=suffix)
     return 0
 
 

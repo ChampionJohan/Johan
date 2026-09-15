@@ -1,0 +1,130 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Amazon Print — Both Editions of Why Is This Still Here?</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>Four files</h1>
+<p>All in <code>release/paperback/</code>. <strong>Interior and wrap come in pairs.</strong></p>
+<pre><code>05_Why-Is-This-Still-Here_interior-326p.pdf
+05_Why-Is-This-Still-Here_cover-326p-cream.pdf
+
+06_베스트셀러-스테디셀러_본문-294p.pdf
+06_베스트셀러-스테디셀러_표지-294p-미색.pdf</code></pre>
+<p>Same naming rule as the four earlier books. <strong>The page count and the paper are in the filename, so a mismatched pair is visible before upload.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Edition</th><th>Pages</th><th>Wrap size</th><th>Spine</th></tr></thead><tbody><tr><td>English</td><td>326</td><td>13.0650 × 9.2500 in</td><td>0.8150 in</td></tr><tr><td>Korean</td><td>294</td><td>12.9850 × 9.2500 in</td><td>0.7350 in</td></tr></tbody></table></div>
+<p>Both <strong>6 × 9 inches, cream paper.</strong></p>
+<hr>
+<h1>The Korean edition was re-rendered at 6 × 9</h1>
+<p>The Korean PDF supplied earlier was <strong>A5</strong> — the domestic self-publishing trim.</p>
+<p>Amazon's standard is 6 × 9, so it was rendered again at that size.</p>
+<pre><code>python3 tools/pdf.py bestseller --trim 6x9</code></pre>
+<p>The A5 version still exists at <code>release/ebook/베스트셀러 &amp; 스테디셀러-A5.pdf</code>, for the ebook or a domestic printer. <strong>They are different files.</strong></p>
+<hr>
+<h1>Two typesetting faults found and fixed</h1>
+<p>Rendering the Korean edition for print surfaced <strong>a font that had been wrong all along.</strong></p>
+<h2>One · The body text was being set in a Chinese font</h2>
+<p>The first PDF's font list contained this.</p>
+<pre><code>WenQuanYiZenHei</code></pre>
+<p>That is a Chinese face. <strong>The entire body of a Korean book was being set in it.</strong></p>
+<p>The cause was one space.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>Name in the CSS</td><td><code>"Nanum Myeongjo"</code> — with a space</td></tr><tr><td>Name actually installed</td><td><code>NanumMyeongjo</code> — no space</td></tr></tbody></table></div>
+<p>No match, so the browser substituted any font that had Hangul, and that font was Chinese.</p>
+<p><strong>The unspaced name is now listed after the spaced one.</strong> Where the spaced name exists, it still wins. Nothing changes there.</p>
+<h2>Two · Hangul in code blocks had the same problem</h2>
+<p>This book uses code blocks for its checklists.</p>
+<pre><code>when it broke out → what was being sold → when it turned → what got cut first</code></pre>
+<p>No font was ever specified for code blocks, so they fell to the browser's default monospace, which has no Hangul — and the substitution happened again.</p>
+<p><strong>A monospace face that has Hangul (Nanum Gothic Coding) now comes first.</strong></p>
+<h2>After the fix</h2>
+<pre><code>Chinese font remaining: 1 place — 一文字屋和輔</code></pre>
+<p>That is the Kyoto shop's name in kanji. <strong>Kanji set in a CJK font is correct.</strong></p>
+<p><strong>The page counts changed,</strong> because changing a font re-flows every line.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Korean</td><td>298</td><td><strong>294</strong></td></tr><tr><td>English</td><td>316</td><td><strong>326</strong></td></tr></tbody></table></div>
+<p>The English count changed too, because specifying a code-block font also changed its monospace face. <strong>So both wraps were rebuilt at the new counts.</strong> The old 316-page wrap was deleted.</p>
+<h2>And this was not only this book's problem</h2>
+<p>After the fix, the earlier books were checked too.</p>
+<div class="table-wrap"><table><thead><tr><th>Book</th><th>Result</th></tr></thead><tbody><tr><td>돈의 해부학</td><td>Chinese font in the body</td></tr><tr><td>돈의 해부학 2</td><td>Chinese font in the body</td></tr><tr><td>너 그거 아니? 돈 버는 머리!</td><td>Chinese font in the body</td></tr><tr><td>너 그거 아니? 돈 버는 머리! 2</td><td>Chinese font in the body</td></tr></tbody></table></div>
+<p><strong>All four Korean editions had the same fault.</strong></p>
+<p>So did the files in the <code>발간본/</code> folder. In a thirty-page sample, <strong>more than half the text spans were in the Chinese font.</strong></p>
+<blockquote><p><strong>The PDFs of the two already-published books went out in that state.</strong></p></blockquote>
+<p>All four have been re-rendered. All four now set in Nanum Myeongjo.</p>
+<div class="table-wrap"><table><thead><tr><th>Book</th><th>Pages</th></tr></thead><tbody><tr><td>돈의 해부학</td><td>301</td></tr><tr><td>돈의 해부학 2</td><td>304</td></tr><tr><td>너 그거 아니? 돈 버는 머리!</td><td>103</td></tr><tr><td>너 그거 아니? 돈 버는 머리! 2</td><td>180</td></tr></tbody></table></div>
+<p><strong>The <code>발간본/</code> folder was left untouched.</strong> It is the record of what was published, so it seemed right to leave it alone.</p>
+<p>Whether to re-upload is your call. Here is what the decision needs.</p>
+<ul><li>The Chinese font does contain Hangul, so <strong>it is readable</strong></li><li>But the stroke shapes differ from Korean type, and two faces mix inside one paragraph</li><li><strong>It shows more in print.</strong> The difference is larger on paper than on screen</li></ul>
+<hr>
+<h1>Specification checks</h1>
+<p>Both pass.</p>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>English</th><th>Korean</th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>6.0000 × 9.0000</td></tr><tr><td>Inside margin</td><td>0.625 / 0.5</td><td><strong>0.843</strong></td><td><strong>0.847</strong></td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397</strong></td><td><strong>0.397</strong></td></tr><tr><td>Wrap size</td><td>matches the formula</td><td>13.0650 × 9.2500</td><td>12.9850 × 9.2500</td></tr><tr><td>Spine text clearance</td><td>0.0625 in</td><td><strong>0.200</strong></td><td><strong>0.180</strong></td></tr><tr><td>Ink outside the spine</td><td>none allowed</td><td>none</td><td>none</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>all embedded</td></tr></tbody></table></div>
+<p>The inside-margin requirement differs because the books sit in different page bands.</p>
+<ul><li>151–300 pages → 0.5 in</li><li>301–500 pages → 0.625 in</li></ul>
+<p><strong>The Korean edition is 294 pages, one band lower.</strong></p>
+<p>The wrap is calculated like this.</p>
+<pre><code>0.125 + 6 + (pages × 0.0025) + 6 + 0.125
+
+English  0.125 + 6 + 0.815 + 6 + 0.125 = 13.0650
+Korean   0.125 + 6 + 0.735 + 6 + 0.125 = 12.9850</code></pre>
+<p>0.0025 in per page is the thickness of cream stock.</p>
+<hr>
+<h1>What the wrap looks like</h1>
+<p>One PDF page holds <strong>back cover, spine and front cover, left to right.</strong></p>
+<pre><code>┌──────────────┬──┬──────────────┐
+│  back        │sp│   front      │
+│              │in│              │
+│  blurb       │e │  title       │
+│              │  │  peak+plain  │
+│  ┌────────┐  │  │  author      │
+│  │ barcode│  │  │              │
+└──┴────────┴──┴──┴──────────────┘</code></pre>
+<p><strong>Front</strong> — the peak and the plain. Chapter 1's two curves are the cover.</p>
+<p><strong>Spine</strong> — title centred, author below. Reads top to bottom when the book stands up. The Korean spine now sets correctly in Hangul; it had been picking up a Latin face and was fixed along with the rest.</p>
+<p><strong>Back</strong> — the blurb. The white rectangle at the lower right is the barcode zone. <strong>It was left empty on purpose, not forgotten.</strong></p>
+<hr>
+<h1>Upload order</h1>
+<p>Same as last time.</p>
+<p><strong>1. Create Paperback</strong> — a <strong>separate product</strong> from the ebook. Leave the EPUB you already uploaded alone.</p>
+<p><strong>2. Print Options</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Field</th><th>Choose</th></tr></thead><tbody><tr><td>Ink and Paper Type</td><td><strong>Black &amp; white interior with cream paper</strong></td></tr><tr><td>Trim Size</td><td><strong>6 x 9 in</strong></td></tr><tr><td>Bleed</td><td><strong>No Bleed</strong></td></tr><tr><td>Cover Finish</td><td>Matte or Glossy, your preference</td></tr></tbody></table></div>
+<p><strong>Choosing cream matters.</strong> The wrap is calculated on cream thickness.</p>
+<p>To switch to white, the wrap has to be rebuilt. One line.</p>
+<pre><code>python3 tools/wrap_cover.py bestseller 294 --paper white
+python3 tools/wrap_cover.py en-bestseller 326 --paper white</code></pre>
+<p><strong>3. Manuscript</strong> — upload the <code>_interior-</code> / <code>_본문-</code> file. <strong>It is a PDF, not an EPUB.</strong></p>
+<p><strong>4. Book Cover</strong> — choose <em>Upload a cover you already have</em> and give it the <code>_cover-</code> / <code>_표지-</code> file. <strong>The cover must also be a PDF.</strong> The JPG is for the ebook.</p>
+<p><strong>5. Previewer</strong> — check that the size KDP asks for matches the table above. If it doesn't, the page count is wrong.</p>
+<hr>
+<h1>Final checklist</h1>
+<ul class="checklist"><li><input type="checkbox" disabled> Interior uploaded as <strong>PDF</strong> (not EPUB)</li><li><input type="checkbox" disabled> Cover uploaded as <strong>PDF</strong> (not JPG)</li><li><input type="checkbox" disabled> Page counts in the two filenames match (<code>326p</code> ↔ <code>326p</code>)</li><li><input type="checkbox" disabled> <strong>Cream</strong> paper selected</li><li><input type="checkbox" disabled> <strong>No Bleed</strong> selected</li><li><input type="checkbox" disabled> The size KDP asks for matches the table above</li><li><input type="checkbox" disabled> In the previewer, the barcode sits at the <strong>lower right of the back cover</strong></li><li><input type="checkbox" disabled> Spine text does not cross the fold lines</li><li><input type="checkbox" disabled> The Korean interior displays in a <strong>Hangul font</strong> in the previewer</li></ul>
+<p>Please check that last line. <strong>That is what sent this back for a re-render this time.</strong></p>
+<hr>
+<h1>Still not ready to publish</h1>
+<pre><code>52 verification items, 3 TODOs.  Both have to be zero.</code></pre>
+<p>These files are for <strong>looking at the cover and checking the typesetting.</strong></p>
+<p>The 52 are primary-source checks, one per case. What has been done is cross-checking public material, not opening the originals.</p>
+<p>And before publishing, check whether <strong><code>Why Is This Still Here?</code></strong> already exists on Amazon. <strong>A title cannot be changed after publication.</strong></p>
+</div></body></html>

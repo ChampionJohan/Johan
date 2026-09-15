@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from cover import (BOOKS, CREAM, DIM, MUTED, ROOT, SANS_B, SERIF, SERIF_R,
-                   draw_front, font, track, track_width, wrap)
+                   draw_front, faces, font, track, track_width, wrap)
 
 DPI = 300
 TRIM_W, TRIM_H = 6.0, 9.0
@@ -46,6 +46,7 @@ def px(inches):
 
 def draw_back(d, ox, oy, w, h, spec):
     """뒤표지. 바코드 자리는 비워 둔다."""
+    f_serif, f_serif_r, f_sans_b = faces(spec)
     accent = spec["accent"]
     s = w / 1600.0
     pad = w * 0.08125
@@ -54,17 +55,20 @@ def draw_back(d, ox, oy, w, h, spec):
 
     d.rectangle([L, oy + h * 0.0586, ox + w - pad, oy + h * 0.0586 + 4 * s],
                 fill=accent)
-    f_eye = font(SANS_B, 40 * s)
-    track(d, (L, oy + h * 0.0781), spec["series"], f_eye, MUTED, 8 * s)
+    f_eye = font(f_sans_b, 40 * s)
+    sp = 8 * s
+    while track_width(d, spec["series"], f_eye, sp) > inner and sp > 0:
+        sp -= 1 * s
+    track(d, (L, oy + h * 0.0781), spec["series"], f_eye, MUTED, max(0, sp))
 
     y = oy + h * 0.17
-    f_head = font(SERIF, 86 * s)
+    f_head = font(f_serif, 86 * s)
     for line in wrap(d, spec["back_head"], f_head, inner):
         d.text((L, y), line, font=f_head, fill=CREAM)
         y += 100 * s
 
     y += 54 * s
-    f_body = font(SERIF_R, 52 * s)
+    f_body = font(f_serif_r, 52 * s)
     for para in spec["back"]:
         for line in wrap(d, para, f_body, inner):
             d.text((L, y), line, font=f_body, fill=DIM)
@@ -72,7 +76,7 @@ def draw_back(d, ox, oy, w, h, spec):
         y += 34 * s
 
     if spec.get("age"):
-        f_age = font(SANS_B, 40 * s)
+        f_age = font(f_sans_b, 40 * s)
         track(d, (L, y + 20 * s), spec["age"].upper(), f_age, accent, 6 * s)
 
     # 바코드 자리 — 흰 바탕을 깔아 두면 바코드가 얹혔을 때 깔끔하다
@@ -90,25 +94,44 @@ def draw_spine(d, ox, oy, w, h, spec, pages):
     """
     if pages < SPINE_TEXT_MIN or w < px(0.2):
         return None
+    f_serif, _f_serif_r, f_sans_b = faces(spec)
     strip = Image.new("RGB", (int(h), int(w)), spec["ink"])
     sd = ImageDraw.Draw(strip)
 
     # 아래쪽에 지은이 자리를 먼저 잡아 두고, 제목은 남은 자리에 맞춘다
-    fa = font(SANS_B, w * 0.30)
-    author = "Jaehyuk Choi"
+    author = spec.get("author", "Jaehyuk Choi")
+    a_size = w * 0.30
+    fa = font(f_sans_b, a_size)
+    while a_size > 6:
+        ab = fa.getbbox(author)
+        if (ab[3] - ab[1]) <= w * 0.52:
+            break
+        a_size -= 1
+        fa = font(f_sans_b, a_size)
     aw = sd.textlength(author, font=fa)
     author_x = h - px(0.6) - aw
 
     room = author_x - px(0.5) - px(0.4)
+
+    # 글자가 책등 폭을 넘으면 안 된다. 폭과 높이를 둘 다 본다.
+    # 한글은 글자가 네모를 꽉 채워서 라틴 기준 크기로는 넘친다.
+    limit = w * 0.66
     size = w * 0.52
-    f = font(SERIF, size)
-    while sd.textlength(spec["title"], font=f) > room and size > 10:
+    f = font(f_serif, size)
+    while size > 10:
+        bb = f.getbbox(spec["title"])
+        if sd.textlength(spec["title"], font=f) <= room and (bb[3] - bb[1]) <= limit:
+            break
         size -= 2
-        f = font(SERIF, size)
+        f = font(f_serif, size)
+
     tw = sd.textlength(spec["title"], font=f)
-    sd.text((px(0.5) + (room - tw) / 2, (w - size * 1.15) / 2),
+    bb = f.getbbox(spec["title"])
+    sd.text((px(0.5) + (room - tw) / 2, (w - (bb[3] - bb[1])) / 2 - bb[1]),
             spec["title"], font=f, fill=CREAM)
-    sd.text((author_x, (w - w * 0.30 * 1.2) / 2), author, font=fa,
+
+    ab = fa.getbbox(author)
+    sd.text((author_x, (w - (ab[3] - ab[1])) / 2 - ab[1]), author, font=fa,
             fill=spec["accent"])
     return strip.rotate(-90, expand=True)
 

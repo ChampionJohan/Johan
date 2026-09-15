@@ -86,7 +86,7 @@ For platforms that take PDF rather than EPUB.
 
 | File | Trim | Pages |
 |---|---|---|
-| `release/ebook/베스트셀러 & 스테디셀러-A5-320p.pdf` | A5 | 320 |
+| `release/ebook/베스트셀러 & 스테디셀러-A5.pdf` | A5 | 314 |
 
 ---
 
@@ -96,8 +96,8 @@ Built to KDP paperback specification.
 
 | File | Size |
 |---|---|
-| `release/paperback/05_Why-Is-This-Still-Here_interior-316p.pdf` | 6 × 9 in · 316 pages |
-| `release/paperback/05_Why-Is-This-Still-Here_cover-316p-cream.pdf` | **13.040 × 9.250 in** · spine 0.790 in |
+| `release/paperback/05_Why-Is-This-Still-Here_interior-326p.pdf` | 6 × 9 in · 326 pages |
+| `release/paperback/05_Why-Is-This-Still-Here_cover-326p-cream.pdf` | **13.065 × 9.250 in** · spine 0.815 in |
 
 Named by the same rule as the four earlier books.
 **The page count and the paper are in the filename, so a mismatched pair
@@ -108,21 +108,21 @@ is visible before upload.**
 | Item | KDP requires | Actual | |
 |---|---|---|---|
 | Trim | 6 × 9 in | 6.0000 × 9.0000 | pass |
-| Inside margin (301–500 pages) | 0.625 in | **0.844 in** | pass |
+| Inside margin (301–500 pages) | 0.625 in | **0.843 in** | pass |
 | Inside the trim line | 0.25 in | **0.397 in** | pass |
-| Wrap size | 13.040 × 9.250 | 13.040 × 9.250 | match |
+| Wrap size | 13.065 × 9.250 | 13.065 × 9.250 | match |
 | Fonts | must be embedded | all embedded | pass |
 
 The wrap is calculated like this.
 
 ```
-0.125 + 6 + (316 pages × 0.0025) + 6 + 0.125 = 13.040 in
+0.125 + 6 + (326 pages × 0.0025) + 6 + 0.125 = 13.065 in
 ```
 
 Cream paper. **Switching to white means regenerating the wrap.**
 
 ```
-python3 tools/wrap_cover.py en-bestseller 316 --paper white
+python3 tools/wrap_cover.py en-bestseller 326 --paper white
 ```
 
 The white rectangle at the lower right of the back cover is the barcode zone.
