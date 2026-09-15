@@ -25,13 +25,15 @@ sys.path.insert(0, os.path.join(ROOT, "tools"))
 OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "en-teen": "en_teen", "en-teen2": "en_teen2",
            "book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
-           "book-teen2": "book_teen2", "teen2": "book_teen2"}
+           "book-teen2": "book_teen2", "teen2": "book_teen2",
+           "bestseller": "bestseller", "en-bestseller": "en_bestseller"}
 
 
 def build_html(which):
     which = which.rstrip("/")
     if which not in OVERLAY and which not in ("book", "adult"):
-        raise SystemExit("첫 인자는 book · book2 · book-teen · book-teen2 중 하나여야 합니다.")
+        raise SystemExit("첫 인자로 쓸 수 있는 것: book, %s"
+                         % ", ".join(sorted(OVERLAY)))
     script = OVERLAY.get(which, "book") + ".py"
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", script)], check=True, cwd=ROOT)
     import book as m

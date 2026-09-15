@@ -35,11 +35,13 @@ VOID = re.compile(r"<(br|hr|img|input|meta|source|wbr)([^<>]*?)\s*/?>")
 OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "en-teen": "en_teen", "en-teen2": "en_teen2",
            "book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
-           "book-teen2": "book_teen2", "teen2": "book_teen2"}
+           "book-teen2": "book_teen2", "teen2": "book_teen2",
+           "bestseller": "bestseller", "en-bestseller": "en_bestseller"}
 ACCENT = {"en-book": "#8A2E2E", "en-book2": "#1F4E5F",
           "en-teen": "#E85D2F", "en-teen2": "#2E7D52",
           "book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
-          "book-teen2": "#2E7D52", "teen2": "#2E7D52"}
+          "book-teen2": "#2E7D52", "teen2": "#2E7D52",
+          "bestseller": "#4A5D3A", "en-bestseller": "#4A5D3A"}
 
 
 def load_module(which):
@@ -52,7 +54,8 @@ def load_module(which):
     elif which in OVERLAY:
         importlib.import_module(OVERLAY[which])
     else:
-        raise SystemExit("첫 인자는 book · book2 · book-teen · book-teen2 중 하나여야 합니다.")
+        raise SystemExit("첫 인자로 쓸 수 있는 것: book, %s"
+                         % ", ".join(sorted(OVERLAY)))
     return m
 
 
@@ -121,10 +124,7 @@ OPF = """<?xml version="1.0" encoding="utf-8"?>
     <dc:language>%(lang)s</dc:language>
     <dc:date>%(date)s</dc:date>
     <meta property="dcterms:modified">%(modified)s</meta>
-    <meta refines="#bookid" property="identifier-type" scheme="onix:codelist5">01</meta>
-    <meta property="belongs-to-collection" id="series">%(series_name)s</meta>
-    <meta refines="#series" property="collection-type">series</meta>
-    <meta refines="#series" property="group-position">%(series_pos)s</meta>%(cover_meta)s
+    <meta refines="#bookid" property="identifier-type" scheme="onix:codelist5">01</meta>%(series_meta)s%(cover_meta)s
   </metadata>
   <manifest>
     <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
@@ -360,10 +360,20 @@ def build(which):
     book_uuid = stable_uuid(m.TITLE)
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     series_name, series_pos = series_parts(getattr(m, "SERIES", ""))
+    # 시리즈가 없는 단행본이면 collection 메타를 통째로 뺀다.
+    # 빈 <meta> 를 남기면 EPUB3 검사에서 오류가 난다.
+    if series_name:
+        series_meta = (
+            '\n    <meta property="belongs-to-collection" id="series">%s</meta>'
+            '\n    <meta refines="#series" property="collection-type">series</meta>'
+            '\n    <meta refines="#series" property="group-position">%s</meta>'
+            % (html.escape(series_name), series_pos or "1"))
+    else:
+        series_meta = ""
     opf = OPF % {
         "uuid": book_uuid, "title": html.escape(m.TITLE), "author": html.escape(author),
         "date": datetime.now().strftime("%Y-%m-%d"), "modified": now,
-        "series_name": html.escape(series_name), "series_pos": series_pos,
+        "series_meta": series_meta,
         "lang": getattr(m, "LANG", "ko"),
         "cover_meta": cover_meta, "cover_item": cover_item,
         "manifest": "\n".join(manifest_lines) + "\n",

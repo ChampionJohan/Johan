@@ -26,6 +26,11 @@ SERIF_R = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
 SANS = "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
 SANS_B = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
+# 한국어판 표지용. 라틴 글꼴에는 한글이 없어서 따로 잡는다.
+KO_SERIF = "/usr/share/fonts/truetype/nanum/NanumMyeongjoBold.ttf"
+KO_SERIF_R = "/usr/share/fonts/truetype/nanum/NanumMyeongjo.ttf"
+KO_SANS_B = "/usr/share/fonts/truetype/nanum/NanumBarunGothicBold.ttf"
+
 LABELS = ["CUSTOMER", "VALUE", "PAYMENT", "MOAT", "FAULT LINE"]
 
 # 책마다: 제목 · 부제 · 시리즈 줄 · 강조색 · 채울 칸(1~5) · 뒤표지 글
@@ -90,6 +95,42 @@ BOOKS = {
             "It ends with the chapter nobody writes: how to quit well.",
         ],
         age="Ages 12–18"),
+
+    # 다섯 칸 시리즈가 아닌 단행본. 그림은 봉우리와 평지다.
+    "bestseller": dict(
+        title="베스트셀러 & 스테디셀러",
+        subtitle="왜 어떤 것은 터지고 사라지며, 어떤 것은 조용히 남는가",
+        series="책 · 옷 · 가전 · 식품 · 미디어", volume="스무 장",
+        accent="#D9552F", accent2="#8FA97A", ink="#14181A",
+        motif="curve", lang="ko", author="최재혁",
+        curve_labels=["베스트셀러", "스테디셀러"],
+        back_head="작년에 줄 서 있던 가게는 지금 없다.",
+        back=[
+            "같은 길 끝의 오래된 가게는 아직 있다. 어느 쪽이 장사를 잘한 것인가? "
+            "이 질문부터가 잘못됐다는 것이 이 책의 시작이다.",
+            "두 해 만에 오백 개를 연 프랜차이즈와 천 년 동안 한 가지만 파는 가게를 "
+            "같은 자로 잰다. 시계 셋과 다리 넷, 그리고 네 개의 길.",
+            "그리고 오래 남은 것들의 대부분은 계획된 것이 아니라 안 없어진 것이다. "
+            "그래서 이것은 늦게 시작한 사람에게 유리한 게임이다.",
+        ]),
+
+    "en-bestseller": dict(
+        title="Why Is This Still Here?",
+        subtitle="How Things Go from Selling Out to Never Leaving",
+        series="BOOKS · CLOTHES · FOOD · FILM · MUSIC", volume="20 CHAPTERS",
+        accent="#D9552F", accent2="#8FA97A", ink="#14181A",
+        motif="curve", lang="en", author="Jaehyuk Choi",
+        curve_labels=["BESTSELLER", "STEADY SELLER"],
+        back_head="The shop with the queue last year is gone.",
+        back=[
+            "The old one at the end of the same street is still there. Which was "
+            "better at business? That the question is wrong is where this book starts.",
+            "A franchise that opened five hundred stores in two years and a shop that "
+            "has sold one thing for a thousand years, measured with the same ruler. "
+            "Three clocks, four bridges, and four paths.",
+            "Most things that lasted were not planned. They just never disappeared. "
+            "Which makes this a game that favours whoever started late.",
+        ]),
 }
 
 CREAM = "#F4F1EA"
@@ -131,12 +172,141 @@ def wrap(d, text, fnt, limit):
     return lines
 
 
+def faces(spec):
+    """책마다 쓸 글꼴 세 벌을 고른다. 한국어판은 나눔 계열을 쓴다."""
+    if spec.get("lang") == "ko":
+        return KO_SERIF, KO_SERIF_R, KO_SANS_B
+    return SERIF, SERIF_R, SANS_B
+
+
+def peak(d, ox, oy, w, h, color):
+    """봉우리 — 높고 좁다. 가운데가 솟은 종 모양으로 채운다."""
+    pts = [(ox, oy + h)]
+    n = 60
+    for i in range(n + 1):
+        t = i / n
+        # 가운데가 1, 양끝이 0 이 되는 매끄러운 종 모양
+        v = (1 - abs(2 * t - 1)) ** 2.2
+        pts.append((ox + w * t, oy + h - h * v))
+    pts.append((ox + w, oy + h))
+    d.polygon(pts, fill=color)
+
+
+def plain(d, ox, oy, w, h, color):
+    """평지 — 낮고 넓다. 천천히 올라 오래 유지되다 천천히 내린다."""
+    pts = [(ox, oy + h)]
+    n = 80
+    for i in range(n + 1):
+        t = i / n
+        if t < 0.18:
+            v = (t / 0.18) ** 1.6
+        elif t > 0.88:
+            v = ((1 - t) / 0.12) ** 1.6
+        else:
+            v = 1.0
+        pts.append((ox + w * t, oy + h - h * v))
+    pts.append((ox + w, oy + h))
+    d.polygon(pts, fill=color)
+
+
+def draw_front_curve(d, ox, oy, w, h, spec):
+    """봉우리와 평지를 그림으로 쓰는 앞표지.
+
+    다섯 칸 시리즈가 아닌 책이 쓴다. 이 책의 1장이 그대로 그림이 된다.
+    두 도형의 넓이를 비슷하게 잡아 두었다. 높이는 다르고 넓이는 비슷하다는
+    것이 이 책의 주장이기 때문이다.
+    """
+    f_serif, f_serif_r, f_sans_b = faces(spec)
+    accent = spec["accent"]
+    cool = spec["accent2"]
+    s = w / 1600.0
+    pad = w * 0.08125
+    inner = w - pad * 2
+    L = ox + pad
+
+    # 위쪽 가는 선과 갈래 표시
+    d.rectangle([L, oy + h * 0.0586, ox + w - pad, oy + h * 0.0586 + 4 * s],
+                fill=accent)
+    ey = oy + h * 0.0781
+
+    # 왼쪽 갈래 줄과 오른쪽 표시가 겹치면 안 된다.
+    # 자간을 먼저 줄이고, 그래도 넘치면 글자를 줄인다.
+    size_eye, sp = 36 * s, 6 * s
+    while size_eye >= 22 * s:
+        f_eye = font(f_sans_b, size_eye)
+        left = track_width(d, spec["series"], f_eye, sp)
+        right = track_width(d, spec["volume"], f_eye, sp)
+        if left + right + inner * 0.06 <= inner:
+            break
+        if sp > 2 * s:
+            sp -= 1 * s
+        else:
+            size_eye -= 2 * s
+    track(d, (L, ey), spec["series"], f_eye, MUTED, sp)
+    vw = track_width(d, spec["volume"], f_eye, sp)
+    track(d, (ox + w - pad - vw, ey), spec["volume"], f_eye, cool, sp)
+
+    # 제목
+    size = 190 * s
+    while size >= 100 * s:
+        f_title = font(f_serif, size)
+        lines = wrap(d, spec["title"], f_title, inner)
+        if len(lines) <= 3:
+            break
+        size -= 8 * s
+    step = size * 1.2
+    f_sub = font(f_serif_r, 56 * s)
+    sub_lines = wrap(d, spec["subtitle"], f_sub, inner)
+
+    TOP, BOTTOM = oy + h * 0.16, oy + h * 0.50
+    block = len(lines) * step + 46 * s + len(sub_lines) * 78 * s
+    y = TOP + max(0, (BOTTOM - TOP - block) / 2)
+    for line in lines:
+        d.text((L, y), line, font=f_title, fill=CREAM)
+        y += step
+    y += 46 * s
+    for line in sub_lines:
+        d.text((L + 4 * s, y), line, font=f_sub, fill=DIM)
+        y += 78 * s
+
+    # 두 곡선 — 높이는 다르고 넓이는 비슷하다
+    base = oy + h * 0.775
+    gap = inner * 0.09
+    pw = inner * 0.34                     # 봉우리는 좁고
+    lw = inner - pw - gap                 # 평지는 넓다
+    ph = h * 0.20                         # 봉우리는 높고
+    lh = h * 0.068                        # 평지는 낮다
+
+    peak(d, L, base - ph, pw, ph, accent)
+    plain(d, L + pw + gap, base - lh, lw, lh, cool)
+
+    # 바닥선
+    d.rectangle([L, base, ox + w - pad, base + 3 * s], fill="#3A4148")
+
+    # 두 이름
+    f_lab = font(f_sans_b, 30 * s)
+    ly = base + 30 * s
+    w1 = track_width(d, spec["curve_labels"][0], f_lab, 5 * s)
+    track(d, (L + (pw - w1) / 2, ly), spec["curve_labels"][0], f_lab, accent, 5 * s)
+    w2 = track_width(d, spec["curve_labels"][1], f_lab, 5 * s)
+    track(d, (L + pw + gap + (lw - w2) / 2, ly), spec["curve_labels"][1],
+          f_lab, cool, 5 * s)
+
+    # 아래쪽 지은이
+    d.rectangle([L, oy + h * 0.895, L + 120 * s, oy + h * 0.895 + 4 * s],
+                fill=accent)
+    d.text((L, oy + h * 0.920), spec.get("author", "Jaehyuk Choi"),
+           font=font(f_serif, 60 * s), fill=CREAM)
+
+
 def draw_front(d, ox, oy, w, h, spec):
     """앞표지를 (ox, oy) 에서 시작하는 w x h 영역에 그린다.
 
     전자책 표지와 인쇄용 표지 앞면이 이 함수 하나를 같이 쓴다.
     가로세로 비가 달라도 되도록 좌표를 전부 비율로 잡는다.
     """
+    if spec.get("motif") == "curve":
+        return draw_front_curve(d, ox, oy, w, h, spec)
     accent = spec["accent"]
     s = w / 1600.0                      # 글자 크기는 폭에 맞춘다
     pad = w * 0.08125

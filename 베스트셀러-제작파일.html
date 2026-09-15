@@ -1,0 +1,88 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>『베스트셀러 & 스테디셀러』 제작 파일 — 표지 · EPUB · 인쇄용</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>먼저, 지금 올리면 안 됩니다</h1>
+<p>파일은 다 만들었습니다. <strong>다만 아직 발행할 상태가 아닙니다.</strong></p>
+<pre><code>확인 52건, TODO 3건.  둘 다 0 이어야 발행할 수 있습니다.</code></pre>
+<p>확인 52건은 사례마다 걸어 둔 <strong>1차 출처 대조</strong> 항목입니다. 지금까지 한 것은 공개 자료를 맞춰 본 것이지 원문을 열어 본 것이 아닙니다.</p>
+<p>TODO 3건은 「만든 방식」에 남겨 둔 자리입니다. <strong>뺀 항목 수, 뺀 일화 수, 실제 확인 수준.</strong> 셋 다 발행 직전에만 정확히 적을 수 있어서 비워 두었습니다.</p>
+<p>아래 파일들은 <strong>표지를 눈으로 보고, 조판을 확인하고, 미리 읽어 보기 위한 것</strong>입니다. 그대로 올릴 수 있는 상태가 되는 것은 위의 두 숫자가 0이 된 다음입니다.</p>
+<hr>
+<h1>표지</h1>
+<p>이 책은 다섯 칸 시리즈가 아니라서 표지 모티프를 새로 만들었습니다.</p>
+<p><strong>봉우리와 평지입니다.</strong></p>
+<p>1장에서 두 곡선을 나란히 놓았습니다. 베스트셀러는 높고 좁은 봉우리, 스테디셀러는 낮고 넓은 평지. <strong>그 그림이 그대로 표지가 됩니다.</strong></p>
+<p>두 도형의 넓이를 비슷하게 잡아 두었습니다. <strong>높이는 다르고 넓이는 비슷하다는 것이 이 책의 주장이기 때문입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>크기</th></tr></thead><tbody><tr><td><code>release/covers/bestseller-cover.jpg</code></td><td>1600 × 2560</td></tr><tr><td><code>release/covers/en-bestseller-cover.jpg</code></td><td>1600 × 2560</td></tr></tbody></table></div>
+<p>KDP 권장 비율(1.6:1)에 맞췄습니다.</p>
+<p><strong>한국어판 글꼴은 나눔명조</strong>입니다. 라틴 글꼴에는 한글이 없어서 따로 잡았습니다. 영어판은 앞의 네 권과 같은 Liberation Serif 입니다.</p>
+<p>윗줄에 갈래를 적었습니다. 이 책이 무엇을 다루는지 표지가 먼저 말하게 했습니다.</p>
+<ul><li>한국어판 — 책 · 옷 · 가전 · 식품 · 미디어</li><li>영어판 — BOOKS · CLOTHES · FOOD · FILM · MUSIC</li></ul>
+<hr>
+<h1>전자책</h1>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>꼭지</th><th>검사</th></tr></thead><tbody><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러.epub</code></td><td>31</td><td><strong>epubcheck 무오류</strong></td></tr><tr><td><code>release/ebook/Why Is This Still Here?.epub</code></td><td>31</td><td><strong>epubcheck 무오류</strong></td></tr></tbody></table></div>
+<p>표지가 안에 들어 있고, 목차(EPUB nav)도 들어 있습니다.</p>
+<h2>만드는 도중에 고친 것</h2>
+<p>처음 만든 EPUB에서 오류가 하나 나왔습니다.</p>
+<pre><code>ERROR(RSC-005): content.opf  character content of element "meta" invalid</code></pre>
+<p><strong>이 책이 시리즈가 아니어서 생긴 문제</strong>였습니다. 앞의 네 권은 전부 시리즈라 <code>belongs-to-collection</code> 메타에 값이 있었는데, 이 책은 비어 있어서 빈 <code>&lt;meta&gt;</code> 태그가 나갔습니다.</p>
+<p>시리즈가 없으면 그 메타를 통째로 빼도록 <code>tools/epub.py</code> 를 고쳤습니다. <strong>앞의 네 권을 다시 만들어 회귀가 없는 것도 확인했습니다.</strong></p>
+<h2>PDF 전자책</h2>
+<p>전자책을 EPUB 대신 PDF로 받는 곳을 위해 하나 더 만들었습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>판형</th><th>쪽수</th></tr></thead><tbody><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러-A5-320p.pdf</code></td><td>A5</td><td>320</td></tr></tbody></table></div>
+<hr>
+<h1>인쇄용 — 영어판</h1>
+<p>KDP 종이책 규격으로 맞췄습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>크기</th></tr></thead><tbody><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_interior-316p.pdf</code></td><td>6 × 9 in · 316쪽</td></tr><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_cover-316p-cream.pdf</code></td><td><strong>13.040 × 9.250 in</strong> · 책등 0.790 in</td></tr></tbody></table></div>
+<p>앞의 네 권과 같은 규칙으로 이름을 지었습니다. <strong>쪽수와 용지가 파일 이름에 들어 있어서 짝이 안 맞으면 올리기 전에 눈에 띕니다.</strong></p>
+<h2>규격 검사 결과</h2>
+<div class="table-wrap"><table><thead><tr><th>항목</th><th>KDP 요구</th><th>실제</th><th></th></tr></thead><tbody><tr><td>판형</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>통과</td></tr><tr><td>안쪽 여백 (301~500쪽)</td><td>0.625 in 이상</td><td><strong>0.844 in</strong></td><td>통과</td></tr><tr><td>재단선에서 안쪽</td><td>0.25 in 이상</td><td><strong>0.397 in</strong></td><td>통과</td></tr><tr><td>겉표지 크기</td><td>13.040 × 9.250</td><td>13.040 × 9.250</td><td>일치</td></tr><tr><td>글꼴</td><td>임베드 필수</td><td>전부 임베드됨</td><td>통과</td></tr></tbody></table></div>
+<p>겉표지 계산은 이렇습니다.</p>
+<pre><code>0.125 + 6 + (316쪽 × 0.0025) + 6 + 0.125 = 13.040 in</code></pre>
+<p>미색지(cream) 기준입니다. <strong>백색지로 바꾸려면 표지를 다시 만들어야 합니다.</strong></p>
+<pre><code>python3 tools/wrap_cover.py en-bestseller 316 --paper white</code></pre>
+<p>뒤표지 오른쪽 아래 흰 칸은 바코드 자리입니다. <strong>비워 둔 것이지 빠뜨린 것이 아닙니다.</strong></p>
+<hr>
+<h1>인쇄용 — 한국어판은 아직 안 만들었습니다</h1>
+<p>이유가 있습니다.</p>
+<p><code>tools/wrap_cover.py</code> 는 <strong>KDP 종이책 규격 전용</strong>입니다. 재단 여백, 책등 두께, 바코드 자리가 전부 KDP 기준으로 박혀 있습니다.</p>
+<p>한국어판을 부크크나 교보 퍼플 같은 국내 자가출판으로 낸다면 <strong>그쪽 규격이 KDP와 다릅니다.</strong> 판형도 A5가 흔하고 책등 계산식도 다릅니다.</p>
+<p>어디로 내실지 정해 주시면 그 규격으로 만들겠습니다. <strong>본문 PDF는 A5로 이미 나와 있으니 표지만 다시 그리면 됩니다.</strong></p>
+<p>한국어판도 KDP로 내신다면 6×9로 다시 뽑아야 합니다. 그것도 한 줄이면 됩니다.</p>
+<hr>
+<h1>도구에 더한 것</h1>
+<p>이 책 때문에 세 파일을 고쳤습니다. 모두 앞의 네 권 회귀 검사를 통과했습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>파일</th><th>무엇을</th></tr></thead><tbody><tr><td><code>tools/cover.py</code></td><td>곡선 모티프(<code>motif="curve"</code>)와 한글 글꼴을 더했다</td></tr><tr><td><code>tools/epub.py</code></td><td>시리즈가 없는 단행본을 처리하게 고쳤다</td></tr><tr><td><code>tools/pdf.py</code></td><td>이 책 두 판을 목록에 넣었다</td></tr></tbody></table></div>
+<p><code>cover.py</code> 에는 윗줄이 겹치지 않게 하는 장치도 넣었습니다. 영어판 갈래 줄이 길어서 오른쪽 표시와 겹쳤는데, <strong>자간을 먼저 줄이고 그래도 넘치면 글자 크기를 줄이도록</strong> 했습니다. 다음에 어떤 책을 넣어도 안 겹칩니다.</p>
+<hr>
+<h1>남은 일</h1>
+<ul class="checklist"><li><input type="checkbox" disabled> <strong>확인 52건</strong> — 1차 출처 대조. 특허 기록, 상표 등록 원본, 배급사 기록, 공식 차트, 제조사 자료</li><li><input type="checkbox" disabled> <strong>TODO 3건</strong> — 「만든 방식」의 뺀 항목 수와 실제 확인 수준</li><li><input type="checkbox" disabled> 영어 제목 <code>Why Is This Still Here?</code> 가 아마존에 이미 있는지 확인 — <strong>제목은 발행 뒤 못 바꿉니다</strong></li><li><input type="checkbox" disabled> 한국어판을 어디로 낼지 정하기 (그 뒤에 인쇄용 표지)</li><li><input type="checkbox" disabled> 직접 보신 가게가 생기면 여는 글·닫는 글의 두 자리에 바꿔 끼우기</li></ul>
+<p><strong>첫 줄이 제일 오래 걸립니다.</strong> 나머지는 전부 반나절 안쪽입니다.</p>
+</div></body></html>
