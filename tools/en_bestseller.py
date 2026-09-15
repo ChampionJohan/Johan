@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""영어판 『베스트셀러 & 스테디셀러』 — Why Is This Still Here?
+
+    python3 tools/en_bestseller.py           # en-bestseller/site/index.html
+    python3 tools/en_bestseller.py --stat    # 분량 · 남은 확인 항목
+
+한국어판과 같은 색을 쓴다. 같은 책이기 때문이다.
+"""
+
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import book as m
+
+m.MANUSCRIPT = os.path.join(m.ROOT, "en-bestseller", "manuscript")
+m.SITE = os.path.join(m.ROOT, "en-bestseller", "site")
+m.TITLE = "Why Is This Still Here?"
+m.SUBTITLE = "How Things Go from Selling Out to Never Leaving"
+m.SERIES = ""
+m.AUTHOR = "Jaehyuk Choi"
+m.LANG = "en"
+# 영문은 자간을 넓히면 낱말이 흩어져 보인다
+m.STYLE = m.STYLE.replace("--track:.16em;", "--track:.06em;")
+m.TRIM = "6x9"
+m.TARGET = 40000  # 낱말 수 기준
+
+m.STYLE = m.STYLE.replace("--accent:#8A2E2E;", "--accent:#4A5D3A;")
+m.STYLE = m.STYLE.replace("--accent:#D9906A;", "--accent:#A8C08C;")
+
+if __name__ == "__main__":
+    raise SystemExit(m.main())
