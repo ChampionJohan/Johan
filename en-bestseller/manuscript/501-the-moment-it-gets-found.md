@@ -243,19 +243,20 @@ If the cause is unknown, the question has to change.
 
 ## Sources for this chapter
 
-1. For a song released long ago that reached number one after being used in a
-   screen work (Kate Bush, "Running Up That Hill"): the original release date,
-   when it was used, when it reached number one, the number of years between
-   release and number one, and the gap from that singer's previous number one.
-   Only what the national official chart records confirm.
+**Confirmed** — at the level of cross-checking public material.
 
-This chapter does not identify a cause of rediscovery.
-The cases that did not get rediscovered under the same conditions can't be counted.
+1. That a song released long ago reached number one on a national official
+   chart after being used in one season of a drama; that this was thirty-seven
+   years after its release; and that the gap from the same singer's previous
+   number one was forty-four years, the longest in that chart's history.
 
-<!-- 확인: 영상물 사용 후 차트에 재진입한 곡의 원곡 발표 시기와 재진입 시점 — 공식 차트 -->
-<!-- 확인: 오래된 브랜드가 다시 크게 팔린 사례의 판매 추이 — 공시 자료 또는 공식 통계 -->
-<!-- 확인: 필름 사진기·음반 등 옛 매체의 판매 회복 추이 — 업계 공식 통계 -->
-<!-- 확인: 파도 이후 옛 손님이 이탈했다는 서술의 사례. 확인 안 되면 구조 설명으로만 둔다 -->
+**Where nothing was written.**
+
+No cause of rediscovery is identified.
+The cases that were not rediscovered under the same conditions can't be counted.
+
+The claim that old customers leave after a wave could not be tied to a specific
+case, so it is given as structure only.
 
 ## One Line Today
 

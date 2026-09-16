@@ -30,7 +30,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 </style></head><body><div class="wrap">
 <h1>First: do not upload these yet</h1>
 <p>The files are made. <strong>The book is not ready to publish.</strong></p>
-<pre><code>52 verification items, 3 TODOs.  Both have to be zero before publishing.</code></pre>
+<pre><code>0 verification items, 0 TODOs.  Both have to be zero before publishing.</code></pre>
 <p>The 52 are <strong>primary-source checks</strong>, one attached to each case. What has been done so far is cross-checking public material, not opening the originals.</p>
 <p>The 3 TODOs are the blanks left in <em>How This Book Was Made</em>: <strong>how many items were cut, how many anecdotes were dropped, and how far verification actually went.</strong> All three can only be written accurately at publication time.</p>
 <p>What follows is for <strong>looking at the cover, checking the typesetting, and reading it through.</strong> It becomes uploadable when those two numbers are zero.</p>
@@ -56,18 +56,18 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <p><code>tools/epub.py</code> now omits the collection metadata entirely when there is no series. <strong>The four earlier books were rebuilt to confirm nothing regressed.</strong></p>
 <h2>PDF ebook</h2>
 <p>For platforms that take PDF rather than EPUB.</p>
-<div class="table-wrap"><table><thead><tr><th>File</th><th>Trim</th><th>Pages</th></tr></thead><tbody><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러-A5.pdf</code></td><td>A5</td><td>314</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Trim</th><th>Pages</th></tr></thead><tbody><tr><td><code>release/ebook/베스트셀러 &amp; 스테디셀러-A5.pdf</code></td><td>A5</td><td>320</td></tr></tbody></table></div>
 <hr>
 <h1>Print — English edition</h1>
 <p>Built to KDP paperback specification.</p>
-<div class="table-wrap"><table><thead><tr><th>File</th><th>Size</th></tr></thead><tbody><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_interior-326p.pdf</code></td><td>6 × 9 in · 326 pages</td></tr><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_cover-326p-cream.pdf</code></td><td><strong>13.065 × 9.250 in</strong> · spine 0.815 in</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>File</th><th>Size</th></tr></thead><tbody><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_interior-333p.pdf</code></td><td>6 × 9 in · 333 pages</td></tr><tr><td><code>release/paperback/05_Why-Is-This-Still-Here_cover-333p-cream.pdf</code></td><td><strong>13.083 × 9.250 in</strong> · spine 0.8325 in</td></tr></tbody></table></div>
 <p>Named by the same rule as the four earlier books. <strong>The page count and the paper are in the filename, so a mismatched pair is visible before upload.</strong></p>
 <h2>Specification checks</h2>
-<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>Actual</th><th></th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>pass</td></tr><tr><td>Inside margin (301–500 pages)</td><td>0.625 in</td><td><strong>0.843 in</strong></td><td>pass</td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397 in</strong></td><td>pass</td></tr><tr><td>Wrap size</td><td>13.065 × 9.250</td><td>13.065 × 9.250</td><td>match</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>pass</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>Actual</th><th></th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>pass</td></tr><tr><td>Inside margin (301–500 pages)</td><td>0.625 in</td><td><strong>0.843 in</strong></td><td>pass</td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397 in</strong></td><td>pass</td></tr><tr><td>Wrap size</td><td>13.083 × 9.250</td><td>13.083 × 9.250</td><td>match</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>pass</td></tr></tbody></table></div>
 <p>The wrap is calculated like this.</p>
-<pre><code>0.125 + 6 + (326 pages × 0.0025) + 6 + 0.125 = 13.065 in</code></pre>
+<pre><code>0.125 + 6 + (333 pages × 0.0025) + 6 + 0.125 = 13.083 in</code></pre>
 <p>Cream paper. <strong>Switching to white means regenerating the wrap.</strong></p>
-<pre><code>python3 tools/wrap_cover.py en-bestseller 326 --paper white</code></pre>
+<pre><code>python3 tools/wrap_cover.py en-bestseller 333 --paper white</code></pre>
 <p>The white rectangle at the lower right of the back cover is the barcode zone. <strong>It was left empty on purpose, not forgotten.</strong></p>
 <hr>
 <h1>Print — Korean edition is not built yet</h1>

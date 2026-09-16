@@ -36,7 +36,34 @@ Wrap it in "reportedly," "roughly," "at one point very," and the sentence surviv
 
 A hedged sentence isn't honesty. It's a transfer of responsibility.
 
-<!-- TODO: before publication, record here how many items were cut -->
+### What was cut, and how much
+
+**Cut whole — two.**
+
+One is in Chapter 6. The claim that the 3D function was bundled into higher-end
+models could not be confirmed, so it was removed. Only the reason the
+manufacturers gave when they stopped was kept.
+
+The other is in Chapter 10. A recently created gift-giving custom was going to
+serve as an example, but accounts of how it formed differ from source to source,
+so the example was cut whole. Only the conditions remain.
+
+**Names or figures deliberately left out — nine.**
+
+| Chapter | Left out | Why |
+|---|---|---|
+| 5 | Figures for the asymmetry of a fad curve | No source found. Kept as observation |
+| 7 | The revenue mix of a franchise head office | No specific company's figures confirmed |
+| 7 | The three shops on one street | A general scene, not a specific case |
+| 8 | When the shoe moved to the street | No source fixes the moment |
+| 8 | The title of a novel that entered curricula | No case could be identified |
+| 9 | The registration year of the bottle shape | Sources give different years |
+| 10 | Cash-flow figures for a seasonal business | No disclosure filing found |
+| 11 | The title of a novel unsold in its time | No case could be identified |
+| 12 | The country and product of the army food | Origin not confirmable primarily |
+
+In all nine, **the structural explanation stays and only the names and numbers
+are gone.** Writing the explanations so they hold without figures paid off here.
 
 ## Rule two · Don't invent a cause after knowing the outcome
 
@@ -94,7 +121,17 @@ Listing only the successes without that number reverses the chapter's argument.
 Both chapters keep the structure and drop the names. **The stories got flatter.**
 That was judged the better price to pay.
 
-<!-- TODO: before publication, record how many anecdotes were dropped as unverifiable -->
+**Chapters with every anecdote dropped — two.**
+
+Chapters 13 and 15. Neither contains a single case name.
+
+What Chapter 13 would have used are the widely told stories about a record that
+sold poorly and a painter who sold almost nothing in his lifetime. They have
+been repeated many times and the person who first told them can't be found.
+
+In Chapter 15, naming cases would mean listing only the successes, which
+reverses the chapter's argument — the number that met the same conditions and
+had nothing happen can't be counted.
 
 ## The limit of studying only survivors
 
@@ -148,7 +185,37 @@ Those words age a book faster than anything else.
 
 This is where it gets uncomfortable, so it goes in.
 
-<!-- TODO: before publication, state exactly how far verification went. Distinguish opening primary sources directly from cross-checking public reporting. Never call cross-checking verification. -->
+**The fact-checking for this book was done by cross-checking public material
+along several lines.**
+
+Company press releases and published histories, official chart records,
+reporting that cites government statistics, encyclopaedia entries, and
+contemporaneous articles. These were compared against each other, and only
+what came out the same in several places went in.
+
+**The things not done have to be written down too.**
+
+Trademark registries were not opened to confirm registration numbers.
+Patents were not pulled by number.
+Franchise disclosure filings and audit reports were not opened one by one.
+Chart records were not checked week by week against the original.
+
+**So this is not primary-source verification. It is cross-checking.**
+
+The book therefore handled it this way.
+
+- Where the lines disagreed, **the item was cut whole.** The two above are those
+- Where they did not disagree, it was recorded not as "confirmed" but as
+  **"no evidence found that it's wrong"**
+- Where sources gave different years, **no year was written.** That is why
+  Chapter 9 has no dates
+
+Twenty-three items need raising one level, and they are kept as a separate list.
+**The next edition will check them against originals and rewrite this passage.**
+
+> **Cross-checking and verifying are different.**
+> Writing that difference down here is the only way the author avoids doing
+> exactly what Chapter 13 warns against.
 
 **Cross-checking and verifying are different.**
 Calling them by the same word means doing exactly what Chapter 13 warns against.

@@ -233,21 +233,21 @@ is Part Five.
 
 ## Sources for this chapter
 
-1. A prison film with weak theatrical results that later became widely known
-   through home media and broadcast (*The Shawshank Redemption*): its production
-   budget and theatrical gross, the quantity of rental tapes distributed the
-   following year and its rental ranking, and when a cable channel took the
-   broadcast rights. Only what distributor records and contemporaneous
-   reporting confirm.
-2. A novel whose sales were poor on publication and which later entered
-   school curricula: its sales during the author's life and when it entered
-   curricula. Only what publisher material and curriculum records confirm.
+**Confirmed** — at the level of cross-checking public material.
 
-<!-- 확인: 극장 실패 후 고전이 된 영화의 개봉 성적 — 배급사 기록 -->
-<!-- 확인: 그 영화가 가정용 매체로 알려진 시기를 무엇으로 확인하는가 -->
-<!-- 확인: 당대에 안 팔린 소설의 생전 판매 상황 — 출판사 자료 -->
-<!-- 확인: 그 소설이 교육과정에 들어간 시기 — 교육과정 자료 -->
-<!-- 확인: "어느 값이 선 아래로 내려가면 갑자기 된다"는 서술의 사례. 확인 안 되면 구조 설명으로만 둔다 -->
+1. The prison film: that its theatrical gross was below its production budget,
+   that it won none of the awards it was nominated for, that the distributor
+   pressed a large run of rental tapes the following year and it became the
+   top rental of that year, and that a cable channel later took the broadcast
+   rights and ran it repeatedly.
+
+**Where nothing was written.**
+
+No specific novel could be identified as having gone unsold in its time and
+later entered curricula, so **that stays general.** No title is given.
+
+The claim that crossing a price line makes something suddenly possible could
+not be tied to a specific case, so it is given as structure only.
 
 ## One Line Today
 

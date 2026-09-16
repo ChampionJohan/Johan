@@ -242,17 +242,20 @@ And ten years from now doesn't appear in this quarter's report.
 
 ## Sources for this chapter
 
-1. The release period and original purpose of a running or basketball shoe
-   still produced on an old design, and when it moved to everyday wear.
-   Only what the manufacturer's material and contemporaneous records confirm.
-2. When the coupling system of the building-block toy (LEGO) was patented,
-   and whether product made then is compatible with current product.
-   Only what patent records and the manufacturer's announcements confirm.
+**Confirmed** — at the level of cross-checking public material.
 
-<!-- 확인: 해당 운동화의 출시 시기와 원래 용도 — 제조사 자료 -->
-<!-- 확인: 경기용에서 일상용으로 옮겨 간 시기를 무엇으로 확인하는가 -->
-<!-- 확인: 블록 결합 방식의 도입 시기와 옛 제품 호환 — 제조사 발표 -->
-<!-- 확인: 화제작 소설이 교육과정에 들어간 사례. 확인 안 되면 일반 서술로 둔다 -->
+1. A shoe still produced on an old design: that it was originally made for the
+   game and is now worn in daily life.
+2. The building-block toy: that the coupling was patented more than sixty years
+   ago, and that blocks made then fit current product.
+
+**Where nothing was written.**
+
+No source was found to fix the moment the shoe moved from the arena to the
+street. **No date is given** — only that it moved.
+
+No specific novel could be identified as having entered school curricula,
+so that stays a general statement.
 
 ## One Line Today
 

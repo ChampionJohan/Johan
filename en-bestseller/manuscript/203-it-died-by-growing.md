@@ -255,21 +255,22 @@ The talk ended; the slot vanished.
 
 ## Sources for this chapter
 
-1. The snack with a prolonged shortage: release date, the length of the
-   supply shortage, when capacity was expanded, and the sales trend after.
-   Only what the manufacturer's announcements and official statistics confirm.
-2. The five-hundredth-store announcement and the store count seven months later
-   for the dessert franchise. To be confirmed against company announcements and
-   franchise disclosure filings. Same item as in the opening's sources.
+**Confirmed** — at the level of cross-checking public material.
 
-The revenue structure of franchising is described only as the general structure
+1. The snack with a prolonged shortage: release date, how long the shortage ran,
+   when expansion was decided and when the new plant came online and doubled
+   supply, and how the product declined afterwards.
+2. The dessert franchise's five-hundredth-store announcement and its store count
+   seven months later. Same item as in the opening's sources.
+
+**Where no figure was used.**
+
+The revenue structure of franchising is given only as the general structure
 visible in public disclosure filings. No specific company's fees or supply
-prices are used until confirmed.
+prices appear.
 
-<!-- 확인: 품절이 이어진 과자의 공급 부족 기간과 증설 시점 — 제조사 발표 -->
-<!-- 확인: 증설 이후 판매 추이 — 공식 통계 또는 공시 -->
-<!-- 확인: 가맹 본부 매출에서 가맹비와 재료 공급이 차지하는 비중 — 공시 자료 -->
-<!-- 확인: 한 골목 세 매장 장면을 실제 사례로 바꿀 수 있는지. 못 바꾸면 일반 장면으로 둔다 -->
+The three identical signboards on one street are **a general scene, not a
+specific case.** No company is named, so it reads as one.
 
 ## One Line Today
 

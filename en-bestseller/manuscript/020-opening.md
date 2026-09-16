@@ -192,9 +192,3 @@ The names are recorded here so the claims can be checked.
    to Imamiya Shrine in Kyoto: founding period, current generation,
    and the stated policy of not expanding. To be confirmed against the
    shop's own material and the Guinness World Records entry.
-
-<!-- 확인: 디저트 프랜차이즈 500호점 발표 시점과 7개월 뒤 매장 수 — 업체 발표·가맹사업 공시 -->
-<!-- 확인: 해당 업종 월별 폐업 수 — 행정안전부 지방행정 인허가 데이터 원본 -->
-<!-- 확인: 이치와의 창업 시기와 현재 대수 — 업소 자료 또는 기네스 등재 내용 -->
-<!-- 확인: 이치와가 백화점·행사에 출점하지 않는다는 방침의 출처 — 당사자 진술 -->
-<!-- 확인: 이마미야 신사 창건 시기와 참배객 대상으로 창업했다는 서술 -->

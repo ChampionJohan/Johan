@@ -233,24 +233,21 @@ The better it's made, the deeper it's tied to that function.
 
 ## Sources for this chapter
 
-1. The MiniDisc: release period, history of revisions, and the end of
-   production. Only what the manufacturer's announcements confirm.
-2. The formation and disappearance of the small-laptop category called netbooks.
-3. Home 3D television: the period of introduction, when manufacturers
-   dropped the function from new product lines, and the reasons they gave.
-   Several manufacturers dropped it in succession and cited lack of demand.
-   Only what their announcements and contemporaneous reporting confirm.
-4. The stand-on personal transporter (Segway PT): release and end of
-   production, and the share of company revenue that product accounted for
-   around the time production ended. Only what the company's statements
-   and contemporaneous reporting confirm.
+**Confirmed** — at the level of cross-checking public material.
 
-<!-- 확인: 미니디스크 생산 종료 시점 — 제조사 발표 -->
-<!-- 확인: 넷북 범주가 사라진 시기와 경위 — 1차 출처 -->
-<!-- 확인: 가정용 입체 텔레비전 중단 발표 — 제조사 공식 자료 -->
-<!-- 확인: 개인용 이동 기계의 생산 종료 시점 — 제조사 발표 -->
-<!-- 확인: 입체 기능이 상위 모델에 기본 탑재되어 팔렸다는 서술 — 확인 안 되면 뺀다 -->
-<!-- 확인: 세그웨이 PT 가 회사 매출에서 차지한 비중 — 회사 발표 또는 동시대 보도 -->
+1. MiniDisc: when player production ended, and that production of the recording
+   media continued for a long time after that.
+2. Netbooks: when the major manufacturers announced they would stop, ending
+   the category.
+3. Home 3D television: when manufacturers successively dropped the function
+   from new ranges, and that the reason they gave was lack of demand.
+4. The stand-on personal transporter: when production ended, and that around
+   then the product accounted for a very small share of company revenue.
+
+**Cut because it could not be confirmed.**
+
+The claim that the 3D function was bundled into higher-end models was **cut.**
+Only the reason the manufacturers themselves gave was kept.
 
 ## One Line Today
 

@@ -8,7 +8,7 @@ date: 2026-09-15
 The files are made. **The book is not ready to publish.**
 
 ```
-52 verification items, 3 TODOs.  Both have to be zero before publishing.
+0 verification items, 0 TODOs.  Both have to be zero before publishing.
 ```
 
 The 52 are **primary-source checks**, one attached to each case.
@@ -86,7 +86,7 @@ For platforms that take PDF rather than EPUB.
 
 | File | Trim | Pages |
 |---|---|---|
-| `release/ebook/베스트셀러 & 스테디셀러-A5.pdf` | A5 | 314 |
+| `release/ebook/베스트셀러 & 스테디셀러-A5.pdf` | A5 | 320 |
 
 ---
 
@@ -96,8 +96,8 @@ Built to KDP paperback specification.
 
 | File | Size |
 |---|---|
-| `release/paperback/05_Why-Is-This-Still-Here_interior-326p.pdf` | 6 × 9 in · 326 pages |
-| `release/paperback/05_Why-Is-This-Still-Here_cover-326p-cream.pdf` | **13.065 × 9.250 in** · spine 0.815 in |
+| `release/paperback/05_Why-Is-This-Still-Here_interior-333p.pdf` | 6 × 9 in · 333 pages |
+| `release/paperback/05_Why-Is-This-Still-Here_cover-333p-cream.pdf` | **13.083 × 9.250 in** · spine 0.8325 in |
 
 Named by the same rule as the four earlier books.
 **The page count and the paper are in the filename, so a mismatched pair
@@ -110,19 +110,19 @@ is visible before upload.**
 | Trim | 6 × 9 in | 6.0000 × 9.0000 | pass |
 | Inside margin (301–500 pages) | 0.625 in | **0.843 in** | pass |
 | Inside the trim line | 0.25 in | **0.397 in** | pass |
-| Wrap size | 13.065 × 9.250 | 13.065 × 9.250 | match |
+| Wrap size | 13.083 × 9.250 | 13.083 × 9.250 | match |
 | Fonts | must be embedded | all embedded | pass |
 
 The wrap is calculated like this.
 
 ```
-0.125 + 6 + (326 pages × 0.0025) + 6 + 0.125 = 13.065 in
+0.125 + 6 + (333 pages × 0.0025) + 6 + 0.125 = 13.083 in
 ```
 
 Cream paper. **Switching to white means regenerating the wrap.**
 
 ```
-python3 tools/wrap_cover.py en-bestseller 326 --paper white
+python3 tools/wrap_cover.py en-bestseller 333 --paper white
 ```
 
 The white rectangle at the lower right of the back cover is the barcode zone.

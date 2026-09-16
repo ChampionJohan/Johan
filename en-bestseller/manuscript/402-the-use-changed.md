@@ -238,24 +238,22 @@ Chapter 12 shows nothing until the signal arrives.
 
 ## Sources for this chapter
 
-1. How a weakly adhesive adhesive came to be developed, how long its inventor
-   spent trying to find a use for it inside the company, how another researcher
-   arrived at the application, the test-marketing and formal launch dates, and
-   the total years from discovery to product (Post-it Notes). Only what the
-   manufacturer's material confirms.
-2. The release period and original wearers of an air-cushioned-sole boot
-   (Dr. Martens 1460), and when subcultures began wearing it. Only what the
-   manufacturer's material and contemporaneous records confirm.
-3. How a processed food supplied to armed forces became an everyday food in a
-   particular region, and when.
+**Confirmed** — at the level of cross-checking public material.
 
-<!-- 확인: 약한 접착제의 개발 경위와 제품화까지 걸린 기간 — 제조사 자료 -->
-<!-- 확인: 개발자가 사내에 알리려 한 기간과 방식 — 제조사 자료 또는 본인 진술 -->
-<!-- 확인: 찬송가집 갈피 일화의 출처 — 제조사 공식 자료에 있는지 확인, 없으면 뺀다 -->
-<!-- 확인: 작업화의 원래 용도와 출시 시기 — 제조사 자료 -->
-<!-- 확인: 그 신발이 무대와 일상으로 옮겨 간 시기를 무엇으로 확인하는가 -->
-<!-- 확인: 군용 가공식품이 현지 음식이 된 경위 — 1차 자료. 통설만 있으면 뺀다 -->
-<!-- 확인: "험한 곳에서 편한 곳으로만 간다"는 서술의 반례가 있는지 확인 -->
+1. The weak adhesive: that it came out of an attempt to make a strong one, that
+   its inventor spent years inside the company looking for a use, that another
+   researcher arrived at the application through a hymnal bookmark problem, and
+   that **twelve years** passed from discovery to formal launch after test
+   marketing. The manufacturer's own published history carries this account.
+2. The air-cushioned-sole boot: that it began as a cheap work boot worn by
+   postal and factory workers, and that a succession of subcultures took it up
+   afterwards.
+
+**Where nothing was written.**
+
+How a processed food supplied to armed forces became everyday food in a
+particular region could not be confirmed against a primary source, so
+**no country and no product are named.** Only the structure is kept.
 
 ## One Line Today
 

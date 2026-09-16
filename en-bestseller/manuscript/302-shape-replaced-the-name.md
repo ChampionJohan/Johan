@@ -236,20 +236,22 @@ The recognizable element slowly disappears, and
 
 ## Sources for this chapter
 
-1. A case where the shape of a bottle is itself registered as a trademark
-   (the Coca-Cola contour bottle), and the case of the same company's attempt
-   to register a new bottle shape with the grooves removed, which was refused.
-   To be confirmed against national trademark registries and the decisions.
+**Confirmed** — at the level of cross-checking public material.
 
-**The registration date is not given in the text.**
-Different sources give different years, and first registration appears to be
+1. That the shape of a bottle is itself registered as a trademark.
+2. That the same company's attempt to register **a new bottle shape with the
+   grooves removed** as a shape trademark was refused.
+
+**Why no year appears.**
+
+Sources give different registration years. First registration appears to be
 mixed up with renewals and additional filings.
-No year goes in until the registry itself settles which is correct.
 
-<!-- 확인: 컨투어 병의 형태 상표 최초 등록 시점 — 자료마다 연도가 다르다. 등록 기록 원본으로 확정한다 -->
-<!-- 확인: 홈 없는 새 병 모양의 형태 상표 등록이 거절된 건 — 심결 또는 판결 원문 -->
-<!-- 확인: 소리나 냄새가 상표로 등록된 사례가 있는지 — 등록 기록 -->
-<!-- 확인: 밑창 무늬 · 병 굴곡의 기능적 유래. 확인 안 되면 일반 서술로 둔다 -->
+**No year goes in until the registry itself settles which is correct.**
+That is why this chapter contains no dates at all.
+
+That tread patterns and bottle curves came from function is given as a general
+explanation. The design intent of any specific product was not confirmed.
 
 ## One Line Today
 

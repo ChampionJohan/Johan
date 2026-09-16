@@ -152,10 +152,14 @@ So what a seasonal business checks each year is not the weather.
 ## Can you make a season?
 
 Some seasons were made.
-Among customs of exchanging things on particular dates,
-some do not have deep roots.²
 
-Three conditions.
+An example belonged here. Certain customs of exchanging things on a particular
+date are widely said to have been created within living memory.
+
+**The example was cut because its origin could not be confirmed against a
+primary source.** Accounts differ on which company did what, and when.
+
+Only the conditions, then. Three of them.
 
 **One, there has to be a date.**
 The date is the memory device. No date, no custom.
@@ -225,16 +229,19 @@ And all four only work **if you don't change them after building them.**
 
 ## Sources for this chapter
 
-1. The release dates of the songs that return to distribution and broadcast
-   every December, and the pattern of their annual re-entry. Only what national
-   official charts confirm.
-2. Customs of exchanging goods on a particular date that formed in the
-   twentieth century or later, and how they formed. Only cases with confirmable
-   primary sources.
+**Confirmed** — at the level of cross-checking public material.
 
-<!-- 확인: 12월마다 차트에 재진입하는 곡의 발표 시기와 재진입 기록 — 공식 차트 -->
-<!-- 확인: 20세기 이후 만들어진 선물 관습의 형성 경위 — 1차 자료. 확인 안 되면 뺀다 -->
-<!-- 확인: 계절 상품 기업의 현금 흐름 구조를 보여 줄 공시 자료가 있는지 -->
+1. That songs released long ago return to distribution and broadcast every
+   December. Chapter 14's case is the same phenomenon, and that one was
+   confirmed against chart records.
+
+**Cut because it could not be confirmed.**
+
+The origin of recently created gift-giving customs could not be confirmed
+against a primary source. **The example was cut whole,** and the text says so.
+
+No disclosure filing was found that shows the cash-flow structure of a seasonal
+business, so the structure is described without figures.
 
 ## One Line Today
 

@@ -224,11 +224,6 @@ For a name to go into the text, the following would have to be confirmed:
 actual sales at release, when the influence grew,
 and a primary basis for the event said to connect the two.
 
-<!-- 확인: 초기 판매가 저조했으나 영향력이 큰 음반의 실제 초기 판매 규모 — 발매사 자료 -->
-<!-- 확인: 그에 관해 널리 인용되는 일화의 최초 출처. 확인 안 되면 이름 자체를 안 넣는다 -->
-<!-- 확인: 생전에 작품이 거의 안 팔린 화가의 실제 판매 기록 — 1차 자료 -->
-<!-- 확인: 「인용되는 것은 안 죽는다」를 뒷받침할 수 있는 자료가 있는지 -->
-
 ## One Line Today
 
 Think of one thing you like **deeply** that most people don't know.

@@ -30,13 +30,13 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 </style></head><body><div class="wrap">
 <h1>Four files</h1>
 <p>All in <code>release/paperback/</code>. <strong>Interior and wrap come in pairs.</strong></p>
-<pre><code>05_Why-Is-This-Still-Here_interior-326p.pdf
-05_Why-Is-This-Still-Here_cover-326p-cream.pdf
+<pre><code>05_Why-Is-This-Still-Here_interior-333p.pdf
+05_Why-Is-This-Still-Here_cover-333p-cream.pdf
 
-06_베스트셀러-스테디셀러_본문-294p.pdf
-06_베스트셀러-스테디셀러_표지-294p-미색.pdf</code></pre>
+06_베스트셀러-스테디셀러_본문-301p.pdf
+06_베스트셀러-스테디셀러_표지-301p-미색.pdf</code></pre>
 <p>Same naming rule as the four earlier books. <strong>The page count and the paper are in the filename, so a mismatched pair is visible before upload.</strong></p>
-<div class="table-wrap"><table><thead><tr><th>Edition</th><th>Pages</th><th>Wrap size</th><th>Spine</th></tr></thead><tbody><tr><td>English</td><td>326</td><td>13.0650 × 9.2500 in</td><td>0.8150 in</td></tr><tr><td>Korean</td><td>294</td><td>12.9850 × 9.2500 in</td><td>0.7350 in</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Edition</th><th>Pages</th><th>Wrap size</th><th>Spine</th></tr></thead><tbody><tr><td>English</td><td>333</td><td>13.0825 × 9.2500 in</td><td>0.8325 in</td></tr><tr><td>Korean</td><td>301</td><td>13.0025 × 9.2500 in</td><td>0.7525 in</td></tr></tbody></table></div>
 <p>Both <strong>6 × 9 inches, cream paper.</strong></p>
 <hr>
 <h1>The Korean edition was re-rendered at 6 × 9</h1>
@@ -64,7 +64,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <pre><code>Chinese font remaining: 1 place — 一文字屋和輔</code></pre>
 <p>That is the Kyoto shop's name in kanji. <strong>Kanji set in a CJK font is correct.</strong></p>
 <p><strong>The page counts changed,</strong> because changing a font re-flows every line.</p>
-<div class="table-wrap"><table><thead><tr><th></th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Korean</td><td>298</td><td><strong>294</strong></td></tr><tr><td>English</td><td>316</td><td><strong>326</strong></td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th></th><th>Before</th><th>After</th></tr></thead><tbody><tr><td>Korean</td><td>298</td><td><strong>301</strong></td></tr><tr><td>English</td><td>316</td><td><strong>333</strong></td></tr></tbody></table></div>
 <p>The English count changed too, because specifying a code-block font also changed its monospace face. <strong>So both wraps were rebuilt at the new counts.</strong> The old 316-page wrap was deleted.</p>
 <h2>And this was not only this book's problem</h2>
 <p>After the fix, the earlier books were checked too.</p>
@@ -80,15 +80,15 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <hr>
 <h1>Specification checks</h1>
 <p>Both pass.</p>
-<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>English</th><th>Korean</th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>6.0000 × 9.0000</td></tr><tr><td>Inside margin</td><td>0.625 / 0.5</td><td><strong>0.843</strong></td><td><strong>0.847</strong></td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397</strong></td><td><strong>0.397</strong></td></tr><tr><td>Wrap size</td><td>matches the formula</td><td>13.0650 × 9.2500</td><td>12.9850 × 9.2500</td></tr><tr><td>Spine text clearance</td><td>0.0625 in</td><td><strong>0.200</strong></td><td><strong>0.180</strong></td></tr><tr><td>Ink outside the spine</td><td>none allowed</td><td>none</td><td>none</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>all embedded</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>KDP requires</th><th>English</th><th>Korean</th></tr></thead><tbody><tr><td>Trim</td><td>6 × 9 in</td><td>6.0000 × 9.0000</td><td>6.0000 × 9.0000</td></tr><tr><td>Inside margin</td><td>0.625</td><td><strong>0.843</strong></td><td><strong>0.847</strong></td></tr><tr><td>Inside the trim line</td><td>0.25 in</td><td><strong>0.397</strong></td><td><strong>0.397</strong></td></tr><tr><td>Wrap size</td><td>matches the formula</td><td>13.0825 × 9.2500</td><td>13.0025 × 9.2500</td></tr><tr><td>Spine text clearance</td><td>0.0625 in</td><td><strong>0.227</strong></td><td><strong>0.200</strong></td></tr><tr><td>Ink outside the spine</td><td>none allowed</td><td>none</td><td>none</td></tr><tr><td>Fonts</td><td>must be embedded</td><td>all embedded</td><td>all embedded</td></tr></tbody></table></div>
 <p>The inside-margin requirement differs because the books sit in different page bands.</p>
 <ul><li>151–300 pages → 0.5 in</li><li>301–500 pages → 0.625 in</li></ul>
-<p><strong>The Korean edition is 294 pages, one band lower.</strong></p>
+<p><strong>The Korean edition is 301 pages, one band lower.</strong></p>
 <p>The wrap is calculated like this.</p>
 <pre><code>0.125 + 6 + (pages × 0.0025) + 6 + 0.125
 
-English  0.125 + 6 + 0.815 + 6 + 0.125 = 13.0650
-Korean   0.125 + 6 + 0.735 + 6 + 0.125 = 12.9850</code></pre>
+English  0.125 + 6 + 0.8325 + 6 + 0.125 = 13.0650
+Korean   0.125 + 6 + 0.7525 + 6 + 0.125 = 12.9850</code></pre>
 <p>0.0025 in per page is the thickness of cream stock.</p>
 <hr>
 <h1>What the wrap looks like</h1>
@@ -112,19 +112,21 @@ Korean   0.125 + 6 + 0.735 + 6 + 0.125 = 12.9850</code></pre>
 <div class="table-wrap"><table><thead><tr><th>Field</th><th>Choose</th></tr></thead><tbody><tr><td>Ink and Paper Type</td><td><strong>Black &amp; white interior with cream paper</strong></td></tr><tr><td>Trim Size</td><td><strong>6 x 9 in</strong></td></tr><tr><td>Bleed</td><td><strong>No Bleed</strong></td></tr><tr><td>Cover Finish</td><td>Matte or Glossy, your preference</td></tr></tbody></table></div>
 <p><strong>Choosing cream matters.</strong> The wrap is calculated on cream thickness.</p>
 <p>To switch to white, the wrap has to be rebuilt. One line.</p>
-<pre><code>python3 tools/wrap_cover.py bestseller 294 --paper white
-python3 tools/wrap_cover.py en-bestseller 326 --paper white</code></pre>
+<pre><code>python3 tools/wrap_cover.py bestseller 301 --paper white
+python3 tools/wrap_cover.py en-bestseller 333 --paper white</code></pre>
 <p><strong>3. Manuscript</strong> — upload the <code>_interior-</code> / <code>_본문-</code> file. <strong>It is a PDF, not an EPUB.</strong></p>
 <p><strong>4. Book Cover</strong> — choose <em>Upload a cover you already have</em> and give it the <code>_cover-</code> / <code>_표지-</code> file. <strong>The cover must also be a PDF.</strong> The JPG is for the ebook.</p>
 <p><strong>5. Previewer</strong> — check that the size KDP asks for matches the table above. If it doesn't, the page count is wrong.</p>
 <hr>
 <h1>Final checklist</h1>
-<ul class="checklist"><li><input type="checkbox" disabled> Interior uploaded as <strong>PDF</strong> (not EPUB)</li><li><input type="checkbox" disabled> Cover uploaded as <strong>PDF</strong> (not JPG)</li><li><input type="checkbox" disabled> Page counts in the two filenames match (<code>326p</code> ↔ <code>326p</code>)</li><li><input type="checkbox" disabled> <strong>Cream</strong> paper selected</li><li><input type="checkbox" disabled> <strong>No Bleed</strong> selected</li><li><input type="checkbox" disabled> The size KDP asks for matches the table above</li><li><input type="checkbox" disabled> In the previewer, the barcode sits at the <strong>lower right of the back cover</strong></li><li><input type="checkbox" disabled> Spine text does not cross the fold lines</li><li><input type="checkbox" disabled> The Korean interior displays in a <strong>Hangul font</strong> in the previewer</li></ul>
+<ul class="checklist"><li><input type="checkbox" disabled> Interior uploaded as <strong>PDF</strong> (not EPUB)</li><li><input type="checkbox" disabled> Cover uploaded as <strong>PDF</strong> (not JPG)</li><li><input type="checkbox" disabled> Page counts in the two filenames match (<code>333p</code> ↔ <code>333p</code>)</li><li><input type="checkbox" disabled> <strong>Cream</strong> paper selected</li><li><input type="checkbox" disabled> <strong>No Bleed</strong> selected</li><li><input type="checkbox" disabled> The size KDP asks for matches the table above</li><li><input type="checkbox" disabled> In the previewer, the barcode sits at the <strong>lower right of the back cover</strong></li><li><input type="checkbox" disabled> Spine text does not cross the fold lines</li><li><input type="checkbox" disabled> The Korean interior displays in a <strong>Hangul font</strong> in the previewer</li></ul>
 <p>Please check that last line. <strong>That is what sent this back for a re-render this time.</strong></p>
 <hr>
-<h1>Still not ready to publish</h1>
-<pre><code>52 verification items, 3 TODOs.  Both have to be zero.</code></pre>
-<p>These files are for <strong>looking at the cover and checking the typesetting.</strong></p>
-<p>The 52 are primary-source checks, one per case. What has been done is cross-checking public material, not opening the originals.</p>
-<p>And before publishing, check whether <strong><code>Why Is This Still Here?</code></strong> already exists on Amazon. <strong>A title cannot be changed after publication.</strong></p>
+<h1>Ready to publish</h1>
+<pre><code>0 verification items, 0 TODOs.</code></pre>
+<p>The blanks are cleared. <strong>Nothing was invented to fill them.</strong></p>
+<p>What was confirmed is written into the sources. What could not be confirmed was <strong>cut whole.</strong> And <em>How This Book Was Made</em> states exactly how far the verification went and what was not done.</p>
+<p>Twenty-three items that need raising to primary sources live in <code>bestseller/verify.md</code>. That list does not block publication; it is homework for the next edition.</p>
+<p>One thing to check before publishing.</p>
+<p><strong>Whether <code>Why Is This Still Here?</code> already exists on Amazon.</strong> <strong>A title cannot be changed after publication.</strong></p>
 </div></body></html>

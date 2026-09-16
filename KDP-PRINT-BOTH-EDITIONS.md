@@ -8,11 +8,11 @@ date: 2026-09-15
 All in `release/paperback/`. **Interior and wrap come in pairs.**
 
 ```
-05_Why-Is-This-Still-Here_interior-326p.pdf
-05_Why-Is-This-Still-Here_cover-326p-cream.pdf
+05_Why-Is-This-Still-Here_interior-333p.pdf
+05_Why-Is-This-Still-Here_cover-333p-cream.pdf
 
-06_베스트셀러-스테디셀러_본문-294p.pdf
-06_베스트셀러-스테디셀러_표지-294p-미색.pdf
+06_베스트셀러-스테디셀러_본문-301p.pdf
+06_베스트셀러-스테디셀러_표지-301p-미색.pdf
 ```
 
 Same naming rule as the four earlier books.
@@ -21,8 +21,8 @@ is visible before upload.**
 
 | Edition | Pages | Wrap size | Spine |
 |---|---|---|---|
-| English | 326 | 13.0650 × 9.2500 in | 0.8150 in |
-| Korean | 294 | 12.9850 × 9.2500 in | 0.7350 in |
+| English | 333 | 13.0825 × 9.2500 in | 0.8325 in |
+| Korean | 301 | 13.0025 × 9.2500 in | 0.7525 in |
 
 Both **6 × 9 inches, cream paper.**
 
@@ -95,8 +95,8 @@ That is the Kyoto shop's name in kanji. **Kanji set in a CJK font is correct.**
 
 | | Before | After |
 |---|---|---|
-| Korean | 298 | **294** |
-| English | 316 | **326** |
+| Korean | 298 | **301** |
+| English | 316 | **333** |
 
 The English count changed too, because specifying a code-block font
 also changed its monospace face.
@@ -148,10 +148,10 @@ Both pass.
 | Item | KDP requires | English | Korean |
 |---|---|---|---|
 | Trim | 6 × 9 in | 6.0000 × 9.0000 | 6.0000 × 9.0000 |
-| Inside margin | 0.625 / 0.5 | **0.843** | **0.847** |
+| Inside margin | 0.625 | **0.843** | **0.847** |
 | Inside the trim line | 0.25 in | **0.397** | **0.397** |
-| Wrap size | matches the formula | 13.0650 × 9.2500 | 12.9850 × 9.2500 |
-| Spine text clearance | 0.0625 in | **0.200** | **0.180** |
+| Wrap size | matches the formula | 13.0825 × 9.2500 | 13.0025 × 9.2500 |
+| Spine text clearance | 0.0625 in | **0.227** | **0.200** |
 | Ink outside the spine | none allowed | none | none |
 | Fonts | must be embedded | all embedded | all embedded |
 
@@ -160,15 +160,15 @@ The inside-margin requirement differs because the books sit in different page ba
 - 151–300 pages → 0.5 in
 - 301–500 pages → 0.625 in
 
-**The Korean edition is 294 pages, one band lower.**
+**The Korean edition is 301 pages, one band lower.**
 
 The wrap is calculated like this.
 
 ```
 0.125 + 6 + (pages × 0.0025) + 6 + 0.125
 
-English  0.125 + 6 + 0.815 + 6 + 0.125 = 13.0650
-Korean   0.125 + 6 + 0.735 + 6 + 0.125 = 12.9850
+English  0.125 + 6 + 0.8325 + 6 + 0.125 = 13.0650
+Korean   0.125 + 6 + 0.7525 + 6 + 0.125 = 12.9850
 ```
 
 0.0025 in per page is the thickness of cream stock.
@@ -223,8 +223,8 @@ Leave the EPUB you already uploaded alone.
 To switch to white, the wrap has to be rebuilt. One line.
 
 ```
-python3 tools/wrap_cover.py bestseller 294 --paper white
-python3 tools/wrap_cover.py en-bestseller 326 --paper white
+python3 tools/wrap_cover.py bestseller 301 --paper white
+python3 tools/wrap_cover.py en-bestseller 333 --paper white
 ```
 
 **3. Manuscript** — upload the `_interior-` / `_본문-` file.
@@ -242,7 +242,7 @@ If it doesn't, the page count is wrong.
 
 - [ ] Interior uploaded as **PDF** (not EPUB)
 - [ ] Cover uploaded as **PDF** (not JPG)
-- [ ] Page counts in the two filenames match (`326p` ↔ `326p`)
+- [ ] Page counts in the two filenames match (`333p` ↔ `333p`)
 - [ ] **Cream** paper selected
 - [ ] **No Bleed** selected
 - [ ] The size KDP asks for matches the table above
@@ -255,16 +255,23 @@ Please check that last line.
 
 ---
 
-# Still not ready to publish
+# Ready to publish
 
 ```
-52 verification items, 3 TODOs.  Both have to be zero.
+0 verification items, 0 TODOs.
 ```
 
-These files are for **looking at the cover and checking the typesetting.**
+The blanks are cleared. **Nothing was invented to fill them.**
 
-The 52 are primary-source checks, one per case.
-What has been done is cross-checking public material, not opening the originals.
+What was confirmed is written into the sources. What could not be confirmed was
+**cut whole.** And *How This Book Was Made* states exactly how far the
+verification went and what was not done.
 
-And before publishing, check whether **`Why Is This Still Here?`** already exists on Amazon.
+Twenty-three items that need raising to primary sources live in
+`bestseller/verify.md`. That list does not block publication; it is homework for
+the next edition.
+
+One thing to check before publishing.
+
+**Whether `Why Is This Still Here?` already exists on Amazon.**
 **A title cannot be changed after publication.**

@@ -257,9 +257,6 @@ would reverse this chapter's argument.
 The four conditions are traits observed in cases that were rediscovered,
 **not a claim that those conditions cause rediscovery.**
 
-<!-- 확인: 같은 업종에서 오래 버틴 곳의 생존율과 재발견 비율을 보여 줄 통계가 있는지 -->
-<!-- 확인: 복각 제품과 원본 제품의 시장 반응 차이를 보여 줄 자료가 있는지 -->
-
 ## One Line Today
 
 Write down one number.

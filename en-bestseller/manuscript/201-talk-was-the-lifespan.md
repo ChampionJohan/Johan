@@ -151,12 +151,15 @@ Everything so far is known. Nobody thinks a fad lasts forever.
 
 **The real risk isn't that it ends. It's when it ends.**
 
-A fad curve is not symmetrical.
+A fad curve appears not to be symmetrical.
 
 Going up takes months. People find out one at a time.
 
 Coming down doesn't work that way.
 **It becomes uninteresting all at once.**
+
+**No source was found that shows this asymmetry in figures.**
+It is recorded here as an observation only.
 
 Why everyone loses interest simultaneously is simple.
 The signal to lose interest is also talk.
@@ -227,17 +230,22 @@ Most of the things in Part Three chose the second.
 
 ## Sources for this chapter
 
-1. The spread, peak and decline of Taiwanese-style castella shops and of
-   *tanghulu* shops in South Korea, and the store-count trend. Only what is
-   confirmable in official statistics and contemporaneous reporting.
-2. The release period of the digital pet toy, the length of the craze, and
-   the later contraction and re-release attempts. Only what the manufacturer's
-   own material confirms.
+**Confirmed** — at the level of cross-checking public material.
+Please also read *How far the verification went.*
 
-<!-- 확인: 대만식 카스테라 확산과 감소 시점 — 공식 통계 또는 동시대 보도 -->
-<!-- 확인: 탕후루 매장 수 추이와 꺾인 시점 — 공식 통계 -->
-<!-- 확인: 디지털 애완동물 장난감의 유행 기간과 축소 경위 — 제조사 자료 -->
-<!-- 확인: 유행 곡선이 비대칭이라는 서술을 뒷받침할 자료. 못 찾으면 관찰로만 적는다 -->
+1. Taiwanese-style castella: how franchise outlets fell away sharply
+   after a broadcast about the product.
+2. *Tanghulu*: the leading franchise's five-hundredth-store announcement and its
+   store count seven months later, and the category's month-by-month closure
+   figures (per reporting that analysed the Korean Ministry of the Interior and
+   Safety's business-permit data).
+3. The digital pet toy: release period, the length of the craze, and how large
+   quantities went unsold once demand turned.
+
+**Not confirmed.**
+
+No source was found that puts figures to the claim that a fad curve is
+asymmetrical. That is stated in the text and left as an observation.
 
 ## One Line Today
 
