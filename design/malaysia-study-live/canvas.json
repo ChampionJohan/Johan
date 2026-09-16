@@ -1,0 +1,10 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 794, "h": 1123, "title": "1안 · 딥틸 임팩트", "print": "fixed" },
+    { "file": "AltPaper.dc.html", "x": 914, "y": 0, "w": 794, "h": 1123, "title": "2안 · 페이퍼 에디토리얼", "print": "fixed" }
+  ],
+  "annotations": [
+    { "id": "note-brief", "x": 0, "y": -150, "w": 500, "text": "말레이시아 유학 1탄 · 유튜브 라이브 홍보 포스터 (A4 794x1123, 96dpi)\n대괄호 [ ] 표시는 실제 값으로 채워 넣을 자리입니다." }
+  ],
+  "launch": { "view": "canvas" }
+}
