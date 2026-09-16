@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01_체크리스트</title>
+<style>
+:root{--bg:#fbfaf8;--fg:#1c1b19;--muted:#6b6862;--line:#e3dfd8;--accent:#8a5a2b;
+  --code:#f2efe9;--mark:#fff3d6}
+@media (prefers-color-scheme:dark){:root{--bg:#16151a;--fg:#e8e5df;--muted:#9a958c;
+  --line:#2e2c33;--accent:#d9a978;--code:#232228;--mark:#3a3320}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);line-height:1.75;
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",
+  "Malgun Gothic",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 5rem}
+h1{font-size:1.7rem;letter-spacing:-.02em;margin:0 0 .6rem;line-height:1.35}
+h2{font-size:1.25rem;margin:3rem 0 .9rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+h3{font-size:1.02rem;margin:2rem 0 .6rem;color:var(--accent)}
+p,li{font-size:.97rem}
+a{color:var(--accent)}
+code{background:var(--code);padding:.12em .38em;border-radius:4px;font-size:.88em}
+pre{background:var(--code);padding:1rem 1.15rem;border-radius:8px;overflow-x:auto;
+  font-size:.86rem;line-height:1.6}
+pre code{background:none;padding:0}
+blockquote{margin:1.4rem 0;padding:.2rem 0 .2rem 1.1rem;border-left:3px solid var(--accent);
+  color:var(--muted)}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+.tablebox{overflow-x:auto;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:22rem}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--code);font-weight:650;white-space:nowrap}
+ul,ol{padding-left:1.35rem}
+li{margin:.3rem 0}
+ul.checklist{list-style:none;padding-left:0}
+ul.checklist li{display:flex;gap:.6rem;align-items:flex-start}
+ul.checklist input{margin-top:.42rem;width:1.05rem;height:1.05rem;flex:0 0 auto;
+  accent-color:var(--accent);cursor:pointer}
+ul.checklist li:has(input:checked){color:var(--muted);text-decoration:line-through}
+ul.checklist li:not(:has(input)){padding-left:1.65rem;color:var(--muted);font-size:.9rem}
+strong{font-weight:650}
+.meta{color:var(--muted);font-size:.84rem;margin:0 0 2.5rem}
+@media print{
+  body{background:#fff;color:#000}
+  .wrap{max-width:none;padding:0}
+  h2{break-before:auto;page-break-inside:avoid}
+  table,pre,blockquote{page-break-inside:avoid}
+  a{color:#000;text-decoration:none}
+}
+</style>
+<div class="wrap">
+<h1>크몽 전자책 등록 체크리스트</h1>
+<p><strong>결론부터</strong>: 전자책 상품 하나를 파는 데 필요한 작업은 크게 4단계, 순수 작업 시간 기준 <strong>12~16시간</strong>이다.<br>원고가 아니라 <strong>등록 이후의 리뷰 확보</strong>가 매출을 가른다. 아래 순서대로 진행한다.</p>
+<div class="table-wrap"><div class="tablebox"><table><thead><tr><th>단계</th><th>기간</th><th>작업 시간</th><th>산출물</th></tr></thead><tbody><tr><td>A. 계정·정산 준비</td><td>D-14</td><td>1h</td><td>판매 회원 전환 완료</td></tr><tr><td>B. 상품 설계</td><td>D-13 ~ D-10</td><td>3h</td><td>타깃·가격·패키지 확정</td></tr><tr><td>C. 원고·파일</td><td>D-9 ~ D-3</td><td>8h</td><td>PDF 본편 + 부록 템플릿</td></tr><tr><td>D. 등록·심사</td><td>D-2 ~ D-day</td><td>2h</td><td>서비스 승인</td></tr><tr><td>E. 발행 후 운영</td><td>D+1 ~ D+30</td><td>주 1h</td><td>리뷰 3건, 문안 개선</td></tr></tbody></table></div></div>
+<hr>
+<h2>A. 계정·정산 준비 (D-14)</h2>
+<ul class="checklist"><li><input type="checkbox"> 크몽 회원가입 → <strong>전문가(판매) 전환</strong> 신청</li><li><input type="checkbox"> 본인 인증 완료</li><li><input type="checkbox"> 정산 계좌 등록 (예금주 = 가입자 본인 명의)</li><li><input type="checkbox"> 사업자 여부 결정: 개인(비사업자) / 개인사업자 중 선택</li><li>비사업자로 시작 가능. 다만 연간 수입이 쌓이면 사업자 등록·종합소득세 신고 대상이 된다.</li><li>판단 기준과 세율은 국세청 기준으로 확인한다: https://www.nts.go.kr/</li><li><input type="checkbox"> <strong>수수료율·정산 주기 확인 후 아래 표에 직접 기입</strong> (플랫폼이 변경하므로 값을 옮겨 적지 않는다)</li></ul>
+<div class="table-wrap"><div class="tablebox"><table><thead><tr><th>항목</th><th>확인한 값</th><th>확인 날짜</th><th>출처</th></tr></thead><tbody><tr><td>판매 수수료율</td><td>&lt;!-- TODO: 확인 후 기입 --&gt;</td><td></td><td>https://kmong.com/help</td></tr><tr><td>정산 주기</td><td>&lt;!-- TODO: 확인 후 기입 --&gt;</td><td></td><td>https://kmong.com/help</td></tr><tr><td>전자책 카테고리 등록 요건</td><td>&lt;!-- TODO: 확인 후 기입 --&gt;</td><td></td><td>https://kmong.com/help</td></tr></tbody></table></div></div>
+<blockquote><p>정가 설계는 수수료를 <strong>뺀 실수령액</strong> 기준으로 한다. 정가에서 역산하지 않으면 가격을 두 번 고치게 된다.</p></blockquote>
+<hr>
+<h2>B. 상품 설계 (D-13 ~ D-10)</h2>
+<h3>B-1. 타깃 한 문장으로 고정</h3>
+<ul class="checklist"><li><input type="checkbox"> 아래 문장을 채운다. 채워지지 않으면 상세페이지도 안 써진다.</li></ul>
+<pre><code>이 전자책은 ( 누가 )가 ( 어떤 상황 )에서 ( 무엇 )을 ( 얼마 만에 ) 끝내게 해 준다.</code></pre>
+<p>기본 후보: <strong>공공 IT 운영·구축 사업에 처음 투입된 협력사 PM/사업관리 담당자</strong>가<br><strong>착수계부터 검사·인수까지의 산출물 순서를 모르는 상황</strong>에서<br><strong>사업 전 주기 산출물 구조</strong>를 <strong>반나절 만에</strong> 파악하게 해 준다.</p>
+<ul class="checklist"><li><input type="checkbox"> 경쟁 상품 5개 조사 → 아래 표 채우기</li></ul>
+<div class="table-wrap"><div class="tablebox"><table><thead><tr><th>경쟁 상품 제목</th><th>가격</th><th>리뷰 수</th><th>내가 더 나은 점</th></tr></thead><tbody><tr><td>&lt;!-- TODO --&gt;</td><td></td><td></td><td></td></tr></tbody></table></div></div>
+<p>조사 방법: 크몽 검색창에 <code>사업관리</code>, <code>공공사업</code>, <code>제안서</code>, <code>산출물</code>, <code>PM 실무</code> 입력 → 전자책 카테고리 정렬.</p>
+<h3>B-2. 가격·패키지 3종 확정</h3>
+<p>크몽은 STANDARD / DELUXE / PREMIUM 3패키지 구조를 쓴다. <strong>중간 패키지를 팔기 위해 양옆을 설계한다.</strong></p>
+<ul class="checklist"><li><input type="checkbox"> 3패키지 내용과 가격 확정 (상세 문안은 <code>02_서비스문안.md</code>)</li><li><input type="checkbox"> 각 패키지의 실수령액 계산 (수수료 차감 후)</li></ul>
+<h3>B-3. 부록(템플릿) 목록 확정</h3>
+<p>전자책 단독보다 <strong>템플릿 묶음</strong>이 전환율을 올린다. 다만 <strong>실제 사업 산출물 원본은 절대 사용하지 않는다.</strong><br>빈 양식으로 새로 만든다.</p>
+<ul class="checklist"><li><input type="checkbox"> 주간보고 양식 (빈 양식)</li><li><input type="checkbox"> 이슈·리스크 관리대장 양식</li><li><input type="checkbox"> 산출물 체크리스트 (단계별)</li><li><input type="checkbox"> 회의록 양식</li><li><input type="checkbox"> &lt;!-- TODO: 추가 후보 --&gt;</li></ul>
+<hr>
+<h2>C. 원고·파일 (D-9 ~ D-3)</h2>
+<ul class="checklist"><li><input type="checkbox"> <code>03_전자책원고.md</code> 의 <code>TODO</code> 전부 채우기 ← <strong>가장 오래 걸리는 작업</strong></li><li><input type="checkbox"> NDA 경계선 재검토 (README 규칙 2번): 발주처 실명, 금액, 식별 가능한 일화 삭제</li><li><input type="checkbox"> 분량 확인: 본문 기준 A4 40쪽 이상 (크몽 전자책 구매자의 최소 기대치)</li><li><input type="checkbox"> PDF 변환</li><li><input type="checkbox"> <strong>PDF 보안 설정</strong>: 수정 제한, 구매자 식별 문구(주문번호 워터마크) 표기 여부 결정</li><li><input type="checkbox"> 파일명 규칙: <code>공공IT사업관리실무_v1.0_YYYYMMDD.pdf</code></li><li><input type="checkbox"> 오탈자 점검 (소리 내어 1회 통독)</li><li><input type="checkbox"> 부록 템플릿 파일 묶음 (.xlsx / .docx) 준비</li><li><input type="checkbox"> 압축본 준비 (본편 PDF + 부록 폴더)</li></ul>
+<hr>
+<h2>D. 등록·심사 (D-2 ~ D-day)</h2>
+<ul class="checklist"><li><input type="checkbox"> 카테고리 선택: 전자책 &gt; 직무·실무 계열 (정확한 경로는 등록 화면에서 확인)</li><li><input type="checkbox"> 서비스 제목 입력 (<code>02_서비스문안.md</code> 후보 중 1개)</li><li><input type="checkbox"> 썸네일 제작 — 텍스트 3줄 이내, 모바일에서 읽히는 크기</li><li><input type="checkbox"> 상세 설명 붙여넣기 (<code>02_서비스문안.md</code>)</li><li><input type="checkbox"> 패키지 3종 + 가격 입력</li><li><input type="checkbox"> FAQ 5개 입력</li><li><input type="checkbox"> 취소·환불 규정 문구 입력 (디지털 콘텐츠 특성 명시)</li><li><input type="checkbox"> 제출 → 심사 결과 대기</li><li><input type="checkbox"> <strong>반려 시</strong>: 사유를 이 파일 하단 로그에 기록하고 수정 후 재제출</li></ul>
+<h3>반려를 부르는 흔한 원인</h3>
+<ol><li>상세페이지에 <strong>외부 연락처</strong>(카카오톡 ID, 이메일, 전화번호, 개인 블로그 링크) 노출</li><li>타 플랫폼 유도 문구</li><li>근거 없는 효과 보장 표현("무조건", "100% 합격", "수익 보장")</li><li>저작권이 불명확한 이미지 사용</li><li>제공 범위가 불명확한 패키지 구성</li></ol>
+<hr>
+<h2>E. 발행 후 운영 (D+1 ~ D+30)</h2>
+<p><strong>리뷰 3건이 임계점이다.</strong> 리뷰 0건 상품은 노출되어도 팔리지 않는다.</p>
+<ul class="checklist"><li><input type="checkbox"> D+1: 지인·동료에게 <strong>정가 구매 후 솔직한 후기</strong> 요청 (대가성 후기 유도 금지)</li><li><input type="checkbox"> 매주: 조회수 / 문의수 / 구매수 기록</li></ul>
+<div class="table-wrap"><div class="tablebox"><table><thead><tr><th>주차</th><th>조회</th><th>문의</th><th>구매</th><th>리뷰</th><th>조치</th></tr></thead><tbody><tr><td>W1</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>W2</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>W3</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>W4</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div></div>
+<ul class="checklist"><li><input type="checkbox"> 조회는 있는데 구매가 없다 → <strong>썸네일·제목이 아니라 상세페이지 앞 3줄</strong>을 고친다</li><li><input type="checkbox"> 조회 자체가 없다 → 제목 키워드를 바꾼다 (<code>사업관리</code> → <code>공공 SI 운영 PM</code> 등 검색어 변형)</li><li><input type="checkbox"> 문의는 오는데 결제가 없다 → 가격대가 아니라 <strong>"무엇이 들어있는지"</strong> 가 불명확한 경우가 많다</li><li><input type="checkbox"> D+30: 2트랙 블로그 글에서 유입된 구매가 있는지 확인 → <code>blog-auto/logs/</code> 에 기록</li></ul>
+<hr>
+<h2>심사·수정 로그</h2>
+<div class="table-wrap"><div class="tablebox"><table><thead><tr><th>날짜</th><th>이벤트</th><th>내용</th><th>조치</th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td></tr></tbody></table></div></div>
+</div>
