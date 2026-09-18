@@ -18,37 +18,78 @@ h1{font-size:1.5rem;letter-spacing:-.02em;margin:0 0 .5rem}
 .sub{color:var(--muted);font-size:.88rem;margin:0}
 .total{margin:1.5rem 0 2rem;padding:1.25rem 1.4rem;background:var(--card);border:1px solid var(--line);border-radius:.6rem}
 .total .label{font-size:.78rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.total .value{font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-.02em;line-height:1.25;margin-top:.2rem}
+.total .value{font-size:2.1rem;font-weight:700;color:var(--accent);letter-spacing:-.02em;line-height:1.25;margin-top:.2rem}
 .total .meta{color:var(--muted);font-size:.85rem;margin-top:.35rem}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.75rem;margin:0 0 2.5rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.9rem 1rem}
 .card .k{font-size:.75rem;color:var(--muted)}
-.card .v{font-size:1.15rem;font-weight:650;letter-spacing:-.01em;margin-top:.15rem;
-  font-variant-numeric:tabular-nums}
+.card .v{font-size:1.1rem;font-weight:650;letter-spacing:-.01em;margin-top:.15rem;font-variant-numeric:tabular-nums}
 h2{font-size:1.1rem;margin:2.75rem 0 1rem;border-bottom:1px solid var(--line);padding-bottom:.5rem}
 h3{font-size:.95rem;margin:1.75rem 0 .6rem;color:var(--accent)}
 table{width:100%;border-collapse:collapse;font-size:.92rem}
 th,td{padding:.55rem .6rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.03em;white-space:nowrap}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.sub{color:var(--muted)}
 .up{color:var(--up)}.down{color:var(--down)}
 .pill{display:inline-block;font-size:.72rem;padding:.08rem .5rem;border-radius:2rem;border:1px solid var(--line)}
 .pill.reg{color:var(--accent);border-color:var(--accent)}
 .bar{display:block;height:3px;background:var(--accent);border-radius:2px;margin-top:.3rem;opacity:.55}
 tr.sum td{border-bottom:none;color:var(--muted);font-size:.84rem;padding-top:.5rem}
 tfoot td{font-weight:700;border-top:2px solid var(--line);border-bottom:none}
-.note{color:var(--muted);font-size:.85rem;border-left:3px solid var(--line);padding:.2rem 0 .2rem .9rem;margin:1rem 0}
+.note{color:var(--muted);font-size:.85rem;border-left:3px solid var(--line);padding:.2rem 0 .2rem .9rem;margin:1.25rem 0}
 .empty{color:var(--muted);background:var(--code);padding:1.25rem;border-radius:.5rem}
 .scroll{overflow-x:auto}
-@media (max-width:32rem){.wrap{padding:1.75rem 1rem 3rem}.total .value{font-size:1.6rem}table{font-size:.85rem}}
+@media (max-width:32rem){.wrap{padding:1.75rem 1rem 3rem}.total .value{font-size:1.65rem}table{font-size:.85rem}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>말레이시아지부 후원금 내역</h1>
 <p class="sub">기준일 2026-09-18</p>
-<div class="total"><div class="label">총 후원금</div><div class="value">0원</div><div class="meta">등록된 내역 없음</div></div>
-<p class="empty">아직 등록된 내역이 없다. <code>donations/malaysia.csv</code> 에 한 줄씩 채우면 여기에 쌓인다.</p>
+<div class="total"><div class="label">총 후원금</div><div class="value">892,429원</div><div class="meta">4건 · 2026-08-31 ~ 2026-09-18 · 2개월 · 원통화 700,000원 + RM 500.00 + $20.00</div></div>
+<div class="cards"><div class="card"><div class="k">후원자 수</div><div class="v">4명</div></div><div class="card"><div class="k">정기 / 일시</div><div class="v">0 / 4명</div></div><div class="card"><div class="k">월평균</div><div class="v">446,214원</div></div><div class="card"><div class="k">건당 평균</div><div class="v">223,107원</div></div></div>
+<h2>1. 월별 집계</h2>
+<div class="scroll"><table><thead><tr><th>월</th><th class="num">건수</th><th class="num">금액</th><th class="num">누계</th><th class="num">전월 대비</th></tr></thead><tbody>
+<tr><td>2026-08<span class="bar" style="width:22.6%"></span></td><td class="num">1건</td><td class="num">164,745원</td><td class="num">164,745원</td><td class="num"><span class="">-</span></td></tr>
+<tr><td>2026-09<span class="bar" style="width:100.0%"></span></td><td class="num">3건</td><td class="num">727,684원</td><td class="num">892,429원</td><td class="num"><span class="up">+341.7%</span></td></tr>
+</tbody></table></div>
+<h2>2. 날짜별 내역</h2>
+<h3>2026-08-31 (월)</h3>
+<div class="scroll"><table><thead><tr><th>후원자</th><th class="num">금액</th><th class="num">원화 환산</th><th>방법</th><th>비고</th></tr></thead><tbody>
+<tr><td>조지혁 목사</td><td class="num">RM 500.00</td><td class="num sub">164,745원</td><td>-</td><td>-</td></tr>
+</tbody><tbody><tr class="sum"><td colspan="5">소계 164,745원 · 누계 164,745원</td></tr></tbody></table></div>
+<h3>2026-09-03 (목)</h3>
+<div class="scroll"><table><thead><tr><th>후원자</th><th class="num">금액</th><th class="num">원화 환산</th><th>방법</th><th>비고</th></tr></thead><tbody>
+<tr><td>드보라 선교사</td><td class="num">$20.00</td><td class="num sub">27,684원</td><td>-</td><td>-</td></tr>
+</tbody><tbody><tr class="sum"><td colspan="5">소계 27,684원 · 누계 192,429원</td></tr></tbody></table></div>
+<h3>2026-09-16 (수)</h3>
+<div class="scroll"><table><thead><tr><th>후원자</th><th class="num">금액</th><th class="num">원화 환산</th><th>방법</th><th>비고</th></tr></thead><tbody>
+<tr><td>클라라 선교사</td><td class="num">500,000원</td><td class="num sub">-</td><td>-</td><td>-</td></tr>
+</tbody><tbody><tr class="sum"><td colspan="5">소계 500,000원 · 누계 692,429원</td></tr></tbody></table></div>
+<h3>2026-09-18 (금)</h3>
+<div class="scroll"><table><thead><tr><th>후원자</th><th class="num">금액</th><th class="num">원화 환산</th><th>방법</th><th>비고</th></tr></thead><tbody>
+<tr><td>그레이스 선교사</td><td class="num">200,000원</td><td class="num sub">-</td><td>-</td><td>-</td></tr>
+</tbody><tbody><tr class="sum"><td colspan="5">소계 200,000원 · 누계 892,429원</td></tr></tbody></table></div>
+<h2>3. 후원자별 집계</h2>
+<div class="scroll"><table><thead><tr><th>후원자</th><th>구분</th><th class="num">건수</th><th class="num">합계</th><th class="num">비중</th><th>첫 후원</th><th>최근 후원</th></tr></thead><tbody>
+<tr><td>클라라 선교사</td><td><span class="pill">일시</span></td><td class="num">1건</td><td class="num">500,000원</td><td class="num">56.0%</td><td>2026-09-16</td><td>2026-09-16</td></tr>
+<tr><td>그레이스 선교사</td><td><span class="pill">일시</span></td><td class="num">1건</td><td class="num">200,000원</td><td class="num">22.4%</td><td>2026-09-18</td><td>2026-09-18</td></tr>
+<tr><td>조지혁 목사</td><td><span class="pill">일시</span></td><td class="num">1건</td><td class="num">164,745원</td><td class="num">18.5%</td><td>2026-08-31</td><td>2026-08-31</td></tr>
+<tr><td>드보라 선교사</td><td><span class="pill">일시</span></td><td class="num">1건</td><td class="num">27,684원</td><td class="num">3.1%</td><td>2026-09-03</td><td>2026-09-03</td></tr>
+</tbody></table></div>
+<h2>4. 합계</h2>
+<div class="scroll"><table><thead><tr><th>통화</th><th class="num">원통화 금액</th><th class="num">원화 환산</th></tr></thead><tbody>
+<tr><td>KRW</td><td class="num">700,000원</td><td class="num">700,000원</td></tr>
+<tr><td>MYR</td><td class="num">RM 500.00</td><td class="num">164,745원</td></tr>
+<tr><td>USD</td><td class="num">$20.00</td><td class="num">27,684원</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num"></td><td class="num">892,429원</td></tr></tfoot></table></div>
+<h2>5. 적용 환율</h2>
+<div class="scroll"><table><thead><tr><th>통화</th><th class="num">환율 (1단위당 원)</th><th>기준일</th><th>출처</th></tr></thead><tbody>
+<tr><td>MYR</td><td class="num">329.49</td><td>2026-09-11</td><td>Wise 중간환율 (검색 확인)</td></tr>
+<tr><td>USD</td><td class="num">1,384.19</td><td>2026-09-16</td><td>Investing.com USD/KRW (검색 확인)</td></tr>
+</tbody></table></div>
+<p class="note">환율은 고시 시점에 따라 달라진다. 정산·보고용으로 확정하려면 은행 매매기준율로 <code>donations/rates.csv</code> 를 덮어쓰고 다시 빌드할 것.</p>
 </div>
 </body>
 </html>
