@@ -5,29 +5,42 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>말레이시아지부 후원금 내역</title>
 <style>
-:root{--bg:#fbfaf8;--fg:#1c1b19;--muted:#6b6862;--line:#e3dfd8;--accent:#8a5a2b;--card:#fff;--code:#f2efe9}
-@media (prefers-color-scheme:dark){:root{--bg:#16151a;--fg:#e8e5df;--muted:#9a958c;--line:#2e2c33;--accent:#d9a978;--card:#1d1c22;--code:#232228}}
+:root{--bg:#fbfaf8;--fg:#1c1b19;--muted:#6b6862;--line:#e3dfd8;--accent:#8a5a2b;--card:#fff;--code:#f2efe9;
+  --up:#1f7a4d;--down:#a33a3a}
+@media (prefers-color-scheme:dark){:root{--bg:#16151a;--fg:#e8e5df;--muted:#9a958c;--line:#2e2c33;--accent:#d9a978;
+  --card:#1d1c22;--code:#232228;--up:#5fbf8a;--down:#e08585}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);
   font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   line-height:1.7;-webkit-text-size-adjust:100%}
-.wrap{max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.wrap{max-width:52rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
 h1{font-size:1.5rem;letter-spacing:-.02em;margin:0 0 .5rem}
 .sub{color:var(--muted);font-size:.88rem;margin:0}
-.total{margin:1.5rem 0 2.5rem;padding:1.25rem 1.4rem;background:var(--card);border:1px solid var(--line);border-radius:.6rem}
+.total{margin:1.5rem 0 2rem;padding:1.25rem 1.4rem;background:var(--card);border:1px solid var(--line);border-radius:.6rem}
 .total .label{font-size:.78rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
 .total .value{font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-.02em;line-height:1.25;margin-top:.2rem}
 .total .meta{color:var(--muted);font-size:.85rem;margin-top:.35rem}
-h2{font-size:1.1rem;margin:2.5rem 0 1rem;border-bottom:1px solid var(--line);padding-bottom:.5rem}
-h3{font-size:.95rem;margin:2rem 0 .6rem;color:var(--accent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.75rem;margin:0 0 2.5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:.5rem;padding:.9rem 1rem}
+.card .k{font-size:.75rem;color:var(--muted)}
+.card .v{font-size:1.15rem;font-weight:650;letter-spacing:-.01em;margin-top:.15rem;
+  font-variant-numeric:tabular-nums}
+h2{font-size:1.1rem;margin:2.75rem 0 1rem;border-bottom:1px solid var(--line);padding-bottom:.5rem}
+h3{font-size:.95rem;margin:1.75rem 0 .6rem;color:var(--accent)}
 table{width:100%;border-collapse:collapse;font-size:.92rem}
 th,td{padding:.55rem .6rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.03em}
+th{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.03em;white-space:nowrap}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.up{color:var(--up)}.down{color:var(--down)}
+.pill{display:inline-block;font-size:.72rem;padding:.08rem .5rem;border-radius:2rem;border:1px solid var(--line)}
+.pill.reg{color:var(--accent);border-color:var(--accent)}
+.bar{display:block;height:3px;background:var(--accent);border-radius:2px;margin-top:.3rem;opacity:.55}
 tr.sum td{border-bottom:none;color:var(--muted);font-size:.84rem;padding-top:.5rem}
 tfoot td{font-weight:700;border-top:2px solid var(--line);border-bottom:none}
+.note{color:var(--muted);font-size:.85rem;border-left:3px solid var(--line);padding:.2rem 0 .2rem .9rem;margin:1rem 0}
 .empty{color:var(--muted);background:var(--code);padding:1.25rem;border-radius:.5rem}
-@media (max-width:30rem){.wrap{padding:1.75rem 1rem 3rem}.total .value{font-size:1.6rem}table{font-size:.85rem}}
+.scroll{overflow-x:auto}
+@media (max-width:32rem){.wrap{padding:1.75rem 1rem 3rem}.total .value{font-size:1.6rem}table{font-size:.85rem}}
 </style>
 </head>
 <body>
