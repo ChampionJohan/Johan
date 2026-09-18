@@ -18,6 +18,7 @@ plan.md 주제 큐  →  자동으로 오늘자 초고 생성  →  내가 TODO 
 | `python3 tools/build.py` | `writing/posts/*.md` → `writing/site/` (index + 글 + RSS) |
 | `python3 tools/export.py` | 완성본을 매체별 붙여넣기용 텍스트로 내보내기 |
 | `python3 tools/export.py --all` | 초고까지 전부 내보내기 |
+| `python3 tools/donation.py` | `donations/malaysia.csv` → 날짜별 정리 md + html (합계 포함) |
 
 의존성 없음. Python 3.8+ 만 있으면 된다.
 
@@ -30,12 +31,33 @@ writing/
   posts/       원고 (마크다운, front matter 포함)
   site/        빌드된 HTML + RSS
   export/      매체별 붙여넣기용 텍스트 (git 추적 안 함)
+donations/
+  malaysia.csv   말레이시아지부 후원금 원장 ← 여기에만 한 줄씩 추가한다
+  malaysia.md    날짜별 정리본 (자동 생성)
+  malaysia.html  날짜별 정리본 + 총액 카드 (자동 생성)
 tools/
   mdlite.py    의존성 없는 마크다운 → HTML 변환기
   build.py     정적 사이트 빌더
   new_post.py  오늘자 초고 스캐폴딩
   export.py    매체별 내보내기
+  donation.py  후원금 원장 → md/html 정리
 ```
+
+## 후원금 원장
+
+`donations/malaysia.csv` 열 구성은 `date,donor,amount,currency,method,note` 다.
+
+```csv
+date,donor,amount,currency,method,note
+2026-09-05,김철수,500000,KRW,계좌이체,9월 정기
+2026-09-12,Ahmad,1200.50,MYR,transfer,지부 직접
+```
+
+- 날짜는 `2026-09-05` · `2026.09.05` · `20260905` 다 받는다. 순서대로 안 넣어도 빌드할 때 날짜순으로 정렬된다.
+- 금액은 `1,000,000` · `1000000원` 다 받는다. `currency` 를 비우면 KRW.
+- 통화가 섞이면 임의 환산하지 않고 **통화별로 따로** 합산한다.
+- 빌드하면 날짜별 표 + 소계/누계 + 총액이 md 와 html 양쪽에 생긴다.
+
 
 ## 매체별 내보내기 규칙
 
