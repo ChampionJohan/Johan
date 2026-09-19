@@ -74,9 +74,8 @@ confirmed everything.
 But these past few days, the phrase kept catching on something.
 
 *The Scales measures weight. The Scales does not measure direction.
-I already knew that. It wasn't a lesson from Book Two — it was
-something I'd learned in the first ten days after I arrived in this
-city. But faced with that sentence, I'd been deliberately forgetting
+I already knew that. It was something I'd learned in the first ten
+days after I arrived in this city. But faced with that sentence, I'd been deliberately forgetting
 it. Why I'd been forgetting it, I still wasn't honest enough with
 myself to say.*
 

@@ -95,13 +95,13 @@ city's sin, sentence by sentence."
 
 "Wouldn't someone from the city know better?" I asked. "If they've
 lived here their whole life, wouldn't they know more than the
-reader?"
+herald?"
 
 "They'd know it differently," the Adjudicator said. "Someone from
 this city knows it by living it. They know who wronged whom, by
 rumor, in their body. But they don't know it as exact numbers. What
 weight the Scales assigned to their neighbor's wrongdoing — they can
-only guess, not know precisely. The reader is different. The reader
+only guess, not know precisely. The herald is different. The herald
 read that number, that item, that sentence aloud, without dropping a
 single word. Knowledge no citizen of this city holds."
 
