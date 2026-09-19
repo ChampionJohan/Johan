@@ -1,0 +1,833 @@
+<title>말레이시아 유학 안내서</title>
+<style>
+  :root{
+    --paper:#FBFAF7; --surface:#FFFFFF; --sunk:#F3F1EB;
+    --ink:#17212B; --ink-2:#3E4C55; --muted:#6E7C80;
+    --rule:#DFDBD1; --rule-soft:#ECE8DF;
+    --teal:#0F6D6A; --teal-soft:#E4EFEC;
+    --brick:#A8412C; --brick-soft:#F6E9E4;
+    --gold:#9C7420; --gold-soft:#F5EEDC;
+    --shadow:0 1px 2px rgba(23,33,43,.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#12171B; --surface:#181F24; --sunk:#1E262C;
+      --ink:#E8E6E0; --ink-2:#B9C2C4; --muted:#8B989B;
+      --rule:#2C363C; --rule-soft:#232C32;
+      --teal:#5FB5AC; --teal-soft:#152B2B;
+      --brick:#E08A73; --brick-soft:#2C1D1A;
+      --gold:#D3AB5C; --gold-soft:#2A2317;
+      --shadow:0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12171B; --surface:#181F24; --sunk:#1E262C;
+    --ink:#E8E6E0; --ink-2:#B9C2C4; --muted:#8B989B;
+    --rule:#2C363C; --rule-soft:#232C32;
+    --teal:#5FB5AC; --teal-soft:#152B2B;
+    --brick:#E08A73; --brick-soft:#2C1D1A;
+    --gold:#D3AB5C; --gold-soft:#2A2317;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif;
+    font-size:15px; line-height:1.72; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 16px}
+
+  /* ── 머리말 ─────────────────────────── */
+  header.masthead{border-bottom:2px solid var(--ink); padding-block:34px 22px}
+  .org{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+    font-size:12px; letter-spacing:.16em; color:var(--teal); font-weight:600;
+  }
+  .org .x{color:var(--muted)}
+  .org .asof{margin-left:auto; color:var(--muted); letter-spacing:.08em; font-weight:400}
+  h1{
+    font-family:'Gowun Batang',serif; font-weight:700;
+    font-size:clamp(34px,7vw,58px); line-height:1.18; letter-spacing:-.02em;
+    margin:18px 0 0; text-wrap:balance;
+  }
+  .standfirst{
+    margin:14px 0 0; max-width:62ch; color:var(--ink-2); font-size:16px;
+  }
+
+  /* ── 본문 배치 ─────────────────────────── */
+  .layout{display:grid; grid-template-columns:200px minmax(0,1fr); gap:56px; padding-block:40px 80px}
+  @media (max-width:860px){ .layout{grid-template-columns:1fr; gap:0} }
+
+  nav.toc{position:sticky; top:calc(env(safe-area-inset-top,0px) + 24px); align-self:start; font-size:13px}
+  @media (max-width:860px){
+    nav.toc{position:static; margin-bottom:36px; padding-bottom:22px; border-bottom:1px solid var(--rule)}
+  }
+  nav.toc .lbl{font-size:11px; letter-spacing:.16em; color:var(--muted); font-weight:600; margin-bottom:12px}
+  nav.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px}
+  @media (max-width:860px){ nav.toc ol{flex-direction:row; flex-wrap:wrap; gap:8px 16px} }
+  nav.toc a{
+    color:var(--ink-2); text-decoration:none; display:flex; gap:8px;
+    border-left:2px solid transparent; padding-left:9px; margin-left:-11px;
+  }
+  @media (max-width:860px){ nav.toc a{border-left:0; padding-left:0; margin-left:0} }
+  nav.toc a:hover{color:var(--teal); border-left-color:var(--teal)}
+  nav.toc .n{font-family:'IBM Plex Mono',monospace; color:var(--muted); font-size:11px; padding-top:3px}
+
+  main{min-width:0}
+  section{scroll-margin-top:80px}
+  h2{
+    font-family:'Gowun Batang',serif; font-weight:700;
+    font-size:clamp(23px,3.4vw,30px); line-height:1.34; letter-spacing:-.01em;
+    margin:58px 0 6px; padding-top:20px; border-top:1px solid var(--ink); text-wrap:balance;
+  }
+  h2:first-child, section:first-child h2{margin-top:0}
+  h2 .pn{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:.18em; color:var(--teal); font-weight:500; margin-bottom:9px;
+  }
+  h3{
+    font-size:16px; font-weight:600; margin:34px 0 8px; color:var(--ink);
+    letter-spacing:-.005em;
+  }
+  h4{font-size:14px; font-weight:600; margin:22px 0 6px; color:var(--teal)}
+  p{margin:10px 0; max-width:66ch}
+  a{color:var(--teal)}
+  a:hover{color:var(--ink)}
+  strong{font-weight:600}
+  ul,ol{max-width:66ch; padding-left:20px; margin:10px 0}
+  li{margin:5px 0}
+  li::marker{color:var(--muted)}
+  hr{border:0; border-top:1px solid var(--rule-soft); margin:26px 0}
+
+  /* ── 표 ─────────────────────────── */
+  .tw{overflow-x:auto; margin:16px 0; border:1px solid var(--rule); border-radius:2px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:580px}
+  th:first-child,td:first-child{min-width:7em}
+  th,td{text-align:left; padding:9px 13px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{
+    background:var(--sunk); font-weight:600; font-size:12px; letter-spacing:.03em;
+    color:var(--ink); border-bottom:1px solid var(--rule); white-space:nowrap;
+  }
+  tbody tr:last-child td{border-bottom:0}
+  td.num,th.num{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+
+  /* ── 요약 ─────────────────────────── */
+  .summary{background:var(--surface); border:1px solid var(--rule); border-radius:2px; padding:26px 24px; margin-bottom:8px; box-shadow:var(--shadow)}
+  .summary .cap{font-size:11px; letter-spacing:.18em; color:var(--teal); font-weight:600; margin-bottom:16px}
+  .summary ol{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; max-width:none; counter-reset:s}
+  .summary li{display:grid; grid-template-columns:26px minmax(0,1fr); gap:12px; margin:0; counter-increment:s; max-width:74ch}
+  .summary li::before{
+    content:counter(s,decimal-leading-zero);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold);
+    padding-top:5px; font-weight:500;
+  }
+
+  /* ── 콜아웃 ─────────────────────────── */
+  .note{border-left:3px solid var(--teal); background:var(--teal-soft); padding:14px 18px; margin:18px 0; border-radius:0 2px 2px 0}
+  .warn{border-left:3px solid var(--brick); background:var(--brick-soft); padding:14px 18px; margin:18px 0; border-radius:0 2px 2px 0}
+  .fact{border-left:3px solid var(--gold); background:var(--gold-soft); padding:14px 18px; margin:18px 0; border-radius:0 2px 2px 0}
+  .note p,.warn p,.fact p{margin:6px 0; max-width:62ch}
+  .note p:first-child,.warn p:first-child,.fact p:first-child{margin-top:0}
+  .note p:last-child,.warn p:last-child,.fact p:last-child{margin-bottom:0}
+  .note .k,.warn .k,.fact .k{font-size:11px; letter-spacing:.14em; font-weight:600; display:block; margin-bottom:6px}
+  .note .k{color:var(--teal)} .warn .k{color:var(--brick)} .fact .k{color:var(--gold)}
+
+  /* ── 대사(멘트) ─────────────────────────── */
+  .say{
+    font-family:'Gowun Batang',serif; font-size:17px; line-height:1.68;
+    color:var(--ink); border-left:2px solid var(--gold); padding:4px 0 4px 18px; margin:20px 0; max-width:60ch;
+  }
+
+  /* ── 회계 장부 ─────────────────────────── */
+  .ledger{
+    font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    background:var(--surface); border:1px solid var(--rule); border-radius:2px;
+    padding:20px 22px; margin:18px 0; font-size:13px; max-width:520px;
+  }
+  .ledger .lt{font-family:'IBM Plex Sans KR',sans-serif; font-size:12px; letter-spacing:.1em; color:var(--muted); margin-bottom:14px}
+  .ledger .row{display:flex; justify-content:space-between; gap:16px; padding:5px 0}
+  .ledger .row.total{border-top:2px solid var(--ink); margin-top:10px; padding-top:11px; font-weight:600; font-size:15px}
+  .ledger .row.total .v{color:var(--teal)}
+
+  /* ── 흐름도 ─────────────────────────── */
+  .flow{overflow-x:auto; margin:18px 0; background:var(--sunk); border-radius:2px; padding:18px 20px}
+  .flow pre{
+    margin:0; font-family:'IBM Plex Mono','D2Coding',monospace;
+    font-size:12.5px; line-height:1.65; color:var(--ink-2); white-space:pre;
+  }
+
+  /* ── 학교 카드 ─────────────────────────── */
+  .schools{display:grid; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); gap:14px; margin:18px 0}
+  .school{background:var(--surface); border:1px solid var(--rule); border-radius:2px; padding:17px 18px}
+  .school .nm{font-family:'Gowun Batang',serif; font-size:19px; font-weight:700; line-height:1.3}
+  .school .kind{font-size:11px; letter-spacing:.1em; color:var(--teal); font-weight:600; margin-top:5px}
+  .school .body{font-size:13px; color:var(--ink-2); margin-top:10px; line-height:1.6}
+  .school .fee{
+    font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums;
+    font-size:12px; color:var(--muted); margin-top:11px; padding-top:9px; border-top:1px solid var(--rule-soft);
+  }
+
+  /* ── 문답 ─────────────────────────── */
+  .qa{border-top:1px solid var(--rule-soft); padding:13px 0}
+  .qa:last-of-type{border-bottom:1px solid var(--rule-soft)}
+  .qa .q{font-weight:600; margin:0 0 4px}
+  .qa .a{margin:0; color:var(--ink-2); font-size:14px}
+
+  /* ── 체크리스트 ─────────────────────────── */
+  .checks{list-style:none; padding:0; max-width:66ch}
+  .checks li{display:grid; grid-template-columns:18px minmax(0,1fr); gap:10px; margin:7px 0; font-size:14px}
+  .checks li::before{content:"☐"; color:var(--muted); padding-top:1px}
+
+  /* ── 코드 ─────────────────────────── */
+  pre.mail{
+    overflow-x:auto; background:var(--sunk); border:1px solid var(--rule); border-radius:2px;
+    padding:18px 20px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; line-height:1.62;
+    color:var(--ink-2); margin:16px 0;
+  }
+
+  /* ── 꼬리말 ─────────────────────────── */
+  footer{border-top:2px solid var(--ink); padding-block:24px 60px; font-size:12.5px; color:var(--muted)}
+  footer a{color:var(--teal); word-break:break-word}
+  .srcgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px; margin-top:16px}
+  .srcgrid h5{font-size:11px; letter-spacing:.14em; color:var(--ink); margin:0 0 6px; font-weight:600}
+  .srcgrid p{font-size:12px; line-height:1.7; margin:0; max-width:none}
+
+  a:focus-visible,nav.toc a:focus-visible{outline:2px solid var(--teal); outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+  @media print{
+    nav.toc{display:none} .layout{grid-template-columns:1fr; gap:0}
+    body{background:#fff; color:#000; font-size:10.5pt}
+    h2{page-break-after:avoid} .tw,.ledger,.school,.flow{page-break-inside:avoid}
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<div class="wrap">
+<header class="masthead">
+  <div class="org">
+    <span>필리핀 해외선교본부</span><span class="x">✕</span><span>말레이시아 지부</span>
+    <span class="asof">2026년 9월 기준</span>
+  </div>
+  <h1>말레이시아 유학,<br>처음부터 끝까지</h1>
+  <p class="standfirst">현황과 이유부터 학교·비용·비자·취업까지. 설명회 진행자와 학부모가 같은 자료를 보고 판단할 수 있도록 만든 통합 안내서입니다.</p>
+</header>
+
+<div class="layout">
+<nav class="toc" aria-label="목차">
+  <div class="lbl">목차</div>
+  <ol>
+    <li><a href="#p1"><span class="n">01</span><span>현황</span></a></li>
+    <li><a href="#p2"><span class="n">02</span><span>왜 유학인가</span></a></li>
+    <li><a href="#p3"><span class="n">03</span><span>진입 경로</span></a></li>
+    <li><a href="#p4"><span class="n">04</span><span>네 개 대학</span></a></li>
+    <li><a href="#p5"><span class="n">05</span><span>비용</span></a></li>
+    <li><a href="#p6"><span class="n">06</span><span>생활</span></a></li>
+    <li><a href="#p7"><span class="n">07</span><span>취업과 진로</span></a></li>
+    <li><a href="#p8"><span class="n">08</span><span>지원 절차</span></a></li>
+    <li><a href="#p9"><span class="n">09</span><span>자주 묻는 질문</span></a></li>
+    <li><a href="#p10"><span class="n">10</span><span>설명회 운용</span></a></li>
+    <li><a href="#apx"><span class="n">—</span><span>부록</span></a></li>
+  </ol>
+</nav>
+
+<main>
+<div class="summary">
+  <div class="cap">한 장 요약</div>
+  <ol>
+    <li><span><strong>말레이시아에는 영국·호주 대학의 분교가 있습니다.</strong> 졸업장에 본교 이름이 찍히고, 학위 수여 주체가 본교입니다.</span></li>
+    <li><span><strong>비용은 본교의 3분의 1 수준입니다.</strong> 4년 총액이 한국 사립대보다 조금 더 드는 선에서 영국·호주 학위가 나옵니다.</span></li>
+    <li><span><strong>강의는 전부 영어입니다.</strong> 병원·관공서·쇼핑몰에서도 영어가 통해 생활 자체가 영어 환경입니다.</span></li>
+    <li><span><strong>검정고시·GED 출신은 파운데이션 1년을 거쳐 들어갑니다.</strong> 학부 졸업장은 정규고 출신과 동일합니다.</span></li>
+    <li><span><strong>한국에서 6시간, 시차 1시간입니다.</strong> 부모가 학기 중에 다녀올 수 있는 거리입니다.</span></li>
+    <li><span><strong>현지 취업의 문턱은 생각보다 높습니다.</strong> 2026년 6월부터 외국인 취업비자 최저 기본급이 월 RM 5,000으로 올랐습니다.</span></li>
+    <li><span><strong>그래서 말레이시아는 목적지가 아니라 발판으로 설계할 때 가장 강합니다.</strong> 졸업 후 어디로 갈 것인지를 입학 전에 정해야 합니다.</span></li>
+  </ol>
+</div>
+
+<section id="p1">
+<h2><span class="pn">PART 01</span>현황 — 지금 말레이시아에서 무슨 일이 일어나고 있나</h2>
+
+<h3>말레이시아는 어떤 나라인가</h3>
+<div class="tw"><table>
+<thead><tr><th>항목</th><th>수치</th><th>한국과 비교</th></tr></thead>
+<tbody>
+<tr><td>인구</td><td class="num">약 3,640만 명</td><td>한국의 약 70%</td></tr>
+<tr><td>면적</td><td class="num">330,803 km²</td><td>남한의 <strong>3.3배</strong></td></tr>
+<tr><td>1인당 GDP (명목)</td><td class="num">약 15,100 USD</td><td>한국의 약 40%</td></tr>
+<tr><td>1인당 GDP (PPP)</td><td class="num">약 47,000 USD</td><td>한국과 큰 차이 없음</td></tr>
+<tr><td>종족</td><td>부미푸트라 62.5% / 중국계 20.6% / 인도계 6.7%</td><td>다민족 국가</td></tr>
+<tr><td>공용어</td><td>말레이어 (Bahasa Malaysia)</td><td>—</td></tr>
+<tr><td>실질 통용어</td><td><strong>영어</strong> (강의·비즈니스·의료)</td><td>유학의 핵심 조건</td></tr>
+<tr><td>종교</td><td>이슬람 63.5%(국교) / 불교 / 기독교 / 힌두교</td><td>종교 자유 보장</td></tr>
+<tr><td>시차</td><td class="num">한국 −1시간</td><td>한국 밤 9시 = 현지 8시</td></tr>
+<tr><td>비행시간</td><td class="num">약 6시간 30분</td><td>인천 → 쿠알라룸푸르 직항</td></tr>
+<tr><td>기후</td><td class="num">연중 24~33℃</td><td>겨울옷 불필요</td></tr>
+<tr><td>통화</td><td class="num">RM 1 ≈ 300원대</td><td>설명 시점 환율로 재계산</td></tr>
+</tbody></table></div>
+
+<div class="note"><span class="k">짚어야 할 포인트</span>
+<p><strong>PPP 기준 1인당 GDP가 한국과 큰 차이가 없습니다.</strong> 명목 소득은 한국의 40%지만 구매력으로 보면 생활 수준 격차가 숫자만큼 크지 않습니다. 유학생 생활비가 낮게 유지되는 구조적 이유입니다.</p></div>
+
+<h3>유학 시장 현황 — 학생들이 실제로 몰리고 있습니다</h3>
+<p>말레이시아 정부는 고등교육 발전계획(2015–2025)에서 외국인 유학생 <strong>25만 명</strong>을 목표로 잡았고, 이미 <strong>15만 명 선을 넘어섰습니다.</strong> 2년이 채 안 되는 기간에 <strong>63% 증가</strong>했습니다.</p>
+
+<div class="tw"><table>
+<thead><tr><th>국가</th><th class="num">2024년 지원</th><th class="num">2025년(1~11월) 등록</th><th>추세</th></tr></thead>
+<tbody>
+<tr><td><strong>중국</strong></td><td class="num">33,216건</td><td class="num">29,388명</td><td>전체의 약 39%</td></tr>
+<tr><td><strong>방글라데시</strong></td><td class="num">6,917건</td><td class="num">8,957명</td><td><strong>전년 대비 +47%</strong></td></tr>
+<tr><td>인도네시아</td><td class="num">5,556건</td><td class="num">—</td><td>꾸준</td></tr>
+<tr><td>인도</td><td class="num">2,591건</td><td class="num">3,410명</td><td>증가</td></tr>
+<tr><td>파키스탄</td><td class="num">2,417건</td><td class="num">—</td><td>증가</td></tr>
+</tbody></table></div>
+
+<p class="say">"중국 학생이 3만 명 넘게 갑니다. 이 숫자가 말하는 건 하나입니다 — 아시아의 학부모들이 이미 이 답을 찾았다는 것입니다."</p>
+
+<div class="warn"><span class="k">함께 말할 것</span>
+<p>2025년 중국 학생이 소폭(3%) 줄었는데, 인기가 식어서가 아니라 <strong>상위권 대학들이 외국인 정원(quota)을 채웠기 때문</strong>입니다. 인기 학과는 지원 시기를 놓치면 자리가 없습니다.</p></div>
+
+<h3>왜 몰리는가 — 구조적 이유 셋</h3>
+<ol>
+<li><strong>영연방 교육 시스템.</strong> 영국 식민지 역사로 교육 제도가 영국식입니다. A-Level, 파운데이션, 3년제 학사 구조가 그대로 있어 영국·호주 대학이 분교를 세우기에 제도적 마찰이 없었습니다.</li>
+<li><strong>국가 전략.</strong> 유학생 유치가 정부 정책 목표입니다. MQA 인증 과정만 외국인 모집이 허용되는 등 품질 관리도 함께 갑니다.</li>
+<li><strong>비용 대비 학위 가치.</strong> 영국·호주 본교의 3분의 1 비용으로 동일 학위가 나옵니다. 이 격차가 시장을 만들었습니다.</li>
+</ol>
+
+<h3>한국인 유학생은 얼마나 되나</h3>
+<div class="warn"><span class="k">데이터 공백</span>
+<p><strong>한국인 유학생 수의 확정 통계를 이 자료에서는 제시하지 않습니다.</strong> 교육부 교육통계서비스(KESS)와 KOSIS에 국가별 유학생·조기유학 통계가 있으나 작성 시점에 원자료를 확인하지 못했습니다. 설명회에서 반드시 나오는 질문이므로 <strong>미리 확인해 확정 수치로 답하십시오.</strong></p></div>
+<p>말할 수 있는 것은 흐름입니다. 한국의 조기유학 수요가 서구권에서 동남아로 분산되고 있으며, 그 배경에는 입시 부담과 사교육비, 그리고 문화적 이질감이 덜한 환경이 있습니다.</p>
+</section>
+
+<section id="p2">
+<h2><span class="pn">PART 02</span>왜 유학인가 — 다섯 가지 이유와 정직한 반론</h2>
+
+<h3>1. 비용 — 같은 학위, 3분의 1 가격</h3>
+<div class="tw"><table>
+<thead><tr><th>경로</th><th class="num">4년 학비 추정</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>영국 본교 직행</td><td class="num">1억 5천만 ~ 2억 원</td><td>생활비 별도, 환율 부담</td></tr>
+<tr><td>호주 본교 직행</td><td class="num">1억 5천만 ~ 2억 원</td><td>—</td></tr>
+<tr><td><strong>말레이시아 분교</strong></td><td class="num"><strong>4,000만 ~ 8,000만 원</strong></td><td>동일 학위</td></tr>
+<tr><td>한국 사립대</td><td class="num">3,000만 ~ 4,500만 원</td><td>학위 국내 한정</td></tr>
+</tbody></table></div>
+
+<h3>2. 영어 — 생활 자체가 환경입니다</h3>
+<p>모든 강의가 영어로 진행되고, 병원·관공서·은행·쇼핑몰에서도 영어가 통합니다. <strong>교실 밖에서도 영어를 씁니다.</strong> 동시에 중국어와 말레이어가 일상에 있어 3개 언어에 노출됩니다.</p>
+
+<h3>3. 학위의 이동성 — 여기서 끝나지 않습니다</h3>
+<p>말레이시아 유학의 진짜 장점은 학교가 아니라 <strong>경로 설계의 자유도</strong>입니다. 3+0으로 비용을 최소화할 수도, 2+1로 영국에서 마지막 1년을 보낼 수도, 듀얼디그리로 졸업장 두 장을 받을 수도, ADP로 미국 대학 3학년에 편입할 수도 있습니다. <strong>같은 학생이 예산과 목표에 따라 다른 경로를 고를 수 있습니다.</strong></p>
+
+<h3>4. 거리 — 부모가 갈 수 있는 거리입니다</h3>
+<p>인천에서 6시간 30분, 시차 1시간. 학기 중에 다녀올 수 있습니다. 미국·영국이면 부모의 방문이 연 1회 행사가 되지만, 말레이시아는 주말에 다녀올 수 있습니다.</p>
+
+<h3>5. 신앙생활 — 이슬람 국가지만 가능합니다</h3>
+<p>이슬람이 국교(63.5%)지만 종교 자유가 보장되며 기독교 인구가 약 9%입니다. 쿠알라룸푸르 일대에 한인교회와 영어예배 공동체가 있고, <strong>말레이시아 지부를 통한 현지 신앙 공동체 연결</strong>이 가능합니다. 유학원이 제공할 수 없는 부분입니다.</p>
+
+<h3>정직한 반론 — 유학이 답이 아닌 경우 넷</h3>
+<div class="warn"><span class="k">이 대목을 빼지 마십시오</span>
+<p>단점을 말하는 설명회가 신뢰를 얻습니다.</p>
+<ol>
+<li><strong>현지 취업이 목표라면 재고하십시오.</strong> 임금 수준이 한국·싱가포르보다 낮고, 취업비자 문턱이 2026년에 더 높아졌습니다.</li>
+<li><strong>한인 커뮤니티 안에만 있으면 영어가 늘지 않습니다.</strong> 영어 환경은 기회지 보장이 아닙니다.</li>
+<li><strong>학교 간 편차가 큽니다.</strong> "말레이시아 대학"이라고 다 같지 않습니다.</li>
+<li><strong>자기 관리가 안 되는 학생에게는 위험합니다.</strong> 물가가 싸고 감독이 없는 환경은 양날의 칼입니다.</li>
+</ol></div>
+</section>
+
+<section id="p3">
+<h2><span class="pn">PART 03</span>어떻게 가는가 — 학력별 진입 경로</h2>
+
+<h3>관문은 두 개입니다</h3>
+<div class="flow"><pre>[1관문]  대학 입학처(Admissions) — 학력 요건 심사
+            ↓  합격해도 끝이 아님
+[2관문]  EMGS — 말레이시아 고등교육부 산하 유학생 비자 심사기관
+            ↓
+         eVAL → SEV → 입국 → Student Pass</pre></div>
+<p>학교가 "입학 가능"이라고 해도 EMGS 학력 심사에서 막히는 경우가 있습니다. 상담 시 <strong>"이 학력으로 EMGS 승인 사례가 있는지"</strong>를 반드시 물으십시오.</p>
+
+<h3>학력별 진입 경로</h3>
+<div class="tw"><table>
+<thead><tr><th>학력</th><th>일반적 취급</th><th>실제 진입 경로</th></tr></thead>
+<tbody>
+<tr><td>A-Level / IB / STPM / SAM</td><td>대학입시 자격으로 인정</td><td><strong>학부 1학년 직접 입학</strong></td></tr>
+<tr><td>한국 일반고 졸업</td><td>대체로 파운데이션 경유</td><td>파운데이션 1년 → 학부</td></tr>
+<tr><td><strong>한국 검정고시</strong></td><td>고졸 학력으로는 인정, 학부 직접 입학 요건으로는 통상 부족</td><td><strong>파운데이션 또는 디플로마 경유</strong></td></tr>
+<tr><td><strong>GED</strong></td><td>학교·점수에 따라 파운데이션·디플로마 입학</td><td>점수에 따라 상이</td></tr>
+<tr><td>중국 검정고시</td><td>인정 범위가 더 까다로움</td><td>파운데이션 경유</td></tr>
+</tbody></table></div>
+
+<p><strong>학교 성격에 따라 문이 다릅니다.</strong> 모나쉬·노팅엄 같은 해외 분교는 본교 학력 기준을 그대로 적용해 A-Level·IB 같은 정규 대학입시 자격을 요구하는 경향이 있어 <strong>파운데이션 경유가 기본값</strong>입니다. 테일러스·선웨이 같은 현지 사립 명문은 GED·검정고시에 대해 <strong>파운데이션·디플로마 문을 여는 편</strong>입니다.</p>
+
+<div class="warn"><span class="k">확인 필요</span>
+<p>이 표는 일반적 구조이며 <strong>학교별 정책은 매년 바뀝니다.</strong> 부록 A의 문의 메일로 네 개 대학 회신을 받아 확정하십시오. 설명회에서는 <strong>"학교 회신 기준으로는"</strong>을 붙여 말씀하십시오.</p></div>
+
+<h3>파운데이션과 디플로마</h3>
+<div class="flow"><pre>                     ┌─ ① 파운데이션 1년 ──┐
+검정고시 / GED ──────┤                      ├─→ 학부 1학년 ─→ 졸업
+                     └─ ② 디플로마 2~2.5년 ┘      (2학년 편입)</pre></div>
+
+<h4>① 파운데이션 (Foundation)</h4>
+<ul>
+<li>기간 <strong>1년</strong>, 대학이 자체 운영하며 해당 대학 학부로 연결</li>
+<li>비용 연 RM 20,000~35,000 (약 600만~1,100만 원)</li>
+<li><strong>계열별로 나뉩니다</strong> (Arts / Science / Business / Design). 진학할 학부에 맞는 계열을 골라야 합니다.</li>
+<li>주의: <strong>A대학 파운데이션은 A대학 진학용</strong>입니다. 타 대학 인정 여부는 별도 확인.</li>
+</ul>
+
+<h4>② 디플로마 (Diploma)</h4>
+<ul>
+<li>기간 2~2.5년, 이수 후 <strong>학사 2학년 편입</strong></li>
+<li>파운데이션보다 길지만 실무 자격이 남고, 중간에 취업 전환이 가능</li>
+</ul>
+
+<div class="note"><span class="k">"파운데이션은 버리는 1년 아닌가요?"</span>
+<p>영어 학술글쓰기, 전공 기초, 현지 적응을 1년에 끝내는 과정입니다. 이 1년 없이 바로 들어간 학생이 1학년에 무너지는 경우가 더 많습니다. 선웨이의 경우 <strong>파운데이션 성적이 듀얼디그리 학부 진입 요건</strong>이 되므로, 영국 학위로 가는 티켓을 사는 1년이기도 합니다.</p></div>
+
+<h3>학위 경로 다섯 가지</h3>
+<h4>① 3년 과정 vs 4년 과정</h4>
+<div class="tw"><table>
+<thead><tr><th>구분</th><th class="num">기간</th><th>해당</th></tr></thead>
+<tbody>
+<tr><td>영국식 학사</td><td class="num"><strong>3년</strong></td><td>노팅엄, 선웨이-랭커스터 등</td></tr>
+<tr><td>호주식 학사</td><td class="num">3~4년</td><td>모나쉬 등</td></tr>
+<tr><td>공학·건축·약학·의학</td><td class="num">4~5년</td><td>전 학교 공통</td></tr>
+</tbody></table></div>
+<p>3년제 학사도 한국에서 정식 학사학위로 인정되어 국내 대학원 진학이 가능합니다. 다만 일부 국가고시·공공기관 채용은 개별 확인이 필요합니다.</p>
+
+<h4>② 듀얼 디그리 — 졸업장 두 장</h4>
+<div class="flow"><pre>        ┌────────────────────────────────┐
+        │   선웨이대학교에서 전 과정 수학   │
+        └───────────────┬────────────────┘
+                        │  졸업 시
+           ┌────────────┴────────────┐
+           ▼                         ▼
+   ┌───────────────┐      ┌───────────────────────┐
+   │  Sunway 학위증 │      │ Lancaster(영국) 학위증 │
+   └───────────────┘      └───────────────────────┘
+       졸업장 2장 · 추가 유학 없이 영국 학위 취득</pre></div>
+<div class="note"><span class="k">오해 방지</span>
+<p>졸업장이 두 장이어도 <strong>학비가 두 배는 아닙니다.</strong> 한 과정을 이수하고 두 기관이 각각 학위를 수여하는 구조입니다. 다만 본교 이동 수학을 선택하면 그 기간 비용은 별도입니다.</p></div>
+
+<h4>③ 트위닝 / ④ 편입</h4>
+<div class="tw"><table>
+<thead><tr><th>형태</th><th>구조</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><strong>3+0</strong></td><td>말레이시아에서 3년 전부</td><td>비용 최저, 학위는 본교 명의</td></tr>
+<tr><td><strong>2+1</strong></td><td>말레이시아 2년 + 본국 1년</td><td>졸업장에 해외 수학 경력</td></tr>
+<tr><td><strong>1+2</strong></td><td>말레이시아 1년 + 본국 2년</td><td>비용은 높지만 현지 적응 유리</td></tr>
+<tr><td><strong>ADP</strong></td><td>말레이시아 2년 + 미국 대학 2년</td><td>미국 학위 목표 시 (테일러스)</td></tr>
+</tbody></table></div>
+
+<h4>⑤ 영어 요건</h4>
+<ul>
+<li>학부: IELTS 6.0~6.5 수준 / 파운데이션: IELTS 5.0~5.5 수준</li>
+<li>미보유 시 <strong>교내 집중영어과정(Intensive English)</strong> 선이수 경로가 있습니다. (학교별 확인 필요)</li>
+</ul>
+
+<h3>파운데이션 없이 바로 갈 수 있는 학과</h3>
+<ul>
+<li><strong>비교적 열려 있는 쪽</strong>: 경영·회계·호텔관광·디자인·IT 계열의 <strong>디플로마</strong> 과정</li>
+<li><strong>어려운 쪽</strong>: 의학·약학·치의학·법학 — 성적 요건이 높고 자격 제한이 엄격</li>
+<li><strong>공학</strong>: 수학·물리 이수 증빙이 핵심 변수. 검정고시 출신은 파운데이션에서 이 과목을 채우는 구조</li>
+</ul>
+</section>
+<section id="p4">
+<h2><span class="pn">PART 04</span>어느 학교인가 — 네 개 대학</h2>
+
+<div class="schools">
+  <div class="school">
+    <div class="nm">테일러스</div>
+    <div class="kind">말레이시아 사립 명문 · 1969</div>
+    <div class="body">수방자야 레이크사이드 캠퍼스. <strong>호텔·관광 세계 26위</strong>, 디자인·마케팅 세계 100위권. 미국 편입(ADP) 경로 보유.</div>
+    <div class="fee">학부 RM 34,000~71,000 / 년</div>
+  </div>
+  <div class="school">
+    <div class="nm">선웨이</div>
+    <div class="kind">말레이시아 사립 명문 · 비영리 재단</div>
+    <div class="body">선웨이시티. <strong>랭커스터(영국) 듀얼디그리</strong>, 회계·금융·계리학. 몰·병원·역이 도보권.</div>
+    <div class="fee">학부 RM 30,000~55,000 / 년</div>
+  </div>
+  <div class="school">
+    <div class="nm">모나쉬 말레이시아</div>
+    <div class="kind">호주 모나쉬대 분교 · 1998</div>
+    <div class="body">반다르선웨이. <strong>호주 본교와 동일 학위.</strong> 공학·의학·경영·이학.</div>
+    <div class="fee">학부 RM 44,000~60,000 / 년</div>
+  </div>
+  <div class="school">
+    <div class="nm">노팅엄 말레이시아</div>
+    <div class="kind">영국 노팅엄대 분교</div>
+    <div class="body">스므니 캠퍼스. <strong>영국 학위 3년제.</strong> 공학·약학·경영.</div>
+    <div class="fee">학부 RM 40,000~55,000 / 년</div>
+  </div>
+</div>
+
+<h3>테일러스 — QS 과목별 랭킹 2026</h3>
+<div class="tw"><table>
+<thead><tr><th>분야</th><th>성적</th></tr></thead>
+<tbody>
+<tr><td><strong>Hospitality &amp; Leisure Management</strong></td><td><strong>세계 26위 · 동남아 1위</strong> (7년 연속 세계 20위권)</td></tr>
+<tr><td>Art &amp; Design</td><td>세계 100위권</td></tr>
+<tr><td>Marketing</td><td>세계 100위권</td></tr>
+<tr><td>Accounting &amp; Finance / Economics / Biological Sciences</td><td>동남아 사립대 1위</td></tr>
+<tr><td>랭크된 과목 수</td><td class="num"><strong>20개</strong> — 동남아 사립대 최다</td></tr>
+</tbody></table></div>
+<p>주요 계열은 호텔·관광·요리, 경영·회계·금융, 디자인·건축, 컴퓨터·IT, 의학·약학·생명과학, 커뮤니케이션입니다. 주요 인테이크는 연 2회 중심(3월·8월)이며 과정별로 다릅니다.</p>
+<p class="say">"호텔·관광 쪽을 생각하신다면 이 분야에서 테일러스보다 나은 선택지는 아시아에 거의 없습니다. 반대로 공학을 생각하신다면 모나쉬·노팅엄을 보십시오. 학교에 서열이 아니라 결이 있습니다."</p>
+
+<h3>선웨이 — 입지와 듀얼디그리</h3>
+<p>선웨이시티(반다르선웨이)는 쇼핑몰·병원·호텔·경전철이 한 도시 안에 있고, 캠퍼스에서 마트·병원·역까지 도보권입니다. 도시 자체가 게이티드 구조라 <strong>학부모의 치안 질문 절반이 이 한 장으로 해결됩니다.</strong> 모나쉬 말레이시아와도 도보 거리입니다.</p>
+<p>강점 학과는 회계·금융(전문자격 과목 면제 폭 확인), <strong>계리학</strong>, 비즈니스 애널리틱스, 컴퓨터과학(AI), 심리학, 생의학, 조리·호텔입니다. 영국 랭커스터대와의 듀얼디그리 외에 미국 애리조나주립대(ASU) 듀얼 어워드 과정도 있으며, 본교 이동 수학 장학 트랙(LU Global Mobility Scholarship)이 운영됩니다.</p>
+<div class="warn"><span class="k">숫자 읽을 때 주의</span>
+<p>선웨이 공식 자료는 <strong>과정 전체 총액</strong>으로 표기하는 경우가 있어 연간 학비와 혼동하기 쉽습니다. 반드시 <strong>"연간"인지 "총액"인지 명시</strong>하십시오.</p></div>
+
+<h3>모나쉬 말레이시아 · 노팅엄 말레이시아</h3>
+<p><strong>모나쉬</strong>는 1998년 말레이시아 교육부 초청으로 선웨이 그룹과 협력해 설립된 호주 모나쉬대 분교이며, 호주 본교와 동일한 학위가 수여됩니다. <strong>노팅엄</strong>은 영국 노팅엄대 분교로 영국식 3년제 학사 구조입니다. 파운데이션 입학 요건은 SPM·O-Level 기준 5C 이상(약학은 5B), 영어 IELTS 5.5(각 영역 5.0 이상)입니다.</p>
+<div class="warn"><span class="k">문서로 확인하십시오</span>
+<p><strong>검정고시 직접 입학 가능 여부는 구두 안내와 공식 요건이 다른 사례가 자주 있습니다.</strong> 부록 A 문안으로 회신을 받아 캡처해 두시면 그 자체가 설명회 자료가 됩니다.</p></div>
+
+<h3>선택 기준 넷</h3>
+<ol>
+<li><strong>전공이 정해졌는가</strong> → 정해졌다면 학교가 아니라 <strong>그 전공의 순위</strong>를 보십시오. 호텔·디자인은 테일러스, 회계·계리는 선웨이, 공학·의약학은 모나쉬·노팅엄.</li>
+<li><strong>최종 학위를 어디 것으로 원하는가</strong> → 영국이면 선웨이 듀얼디그리 또는 노팅엄, 호주면 모나쉬, 미국이면 테일러스 ADP.</li>
+<li><strong>아이가 혼자 살아야 하는가</strong> → 생활 자립이 걱정되면 선웨이시티 입지가 유리합니다.</li>
+<li><strong>예산 상한이 얼마인가</strong> → 4년 총액으로 계산하십시오.</li>
+</ol>
+<div class="note"><span class="k">하지 말아야 할 말</span>
+<p>"어디가 더 좋은 학교인가요?"라는 질문에 순위로 답하지 마십시오. <strong>"무엇을 할 것인가에 따라 답이 바뀐다"</strong>로 되돌리는 것이 정직하고, 상담 전환에도 유리합니다.</p></div>
+</section>
+
+<section id="p5">
+<h2><span class="pn">PART 05</span>돈 — 총비용</h2>
+
+<h3>학비 (국제학생, 연간)</h3>
+<div class="tw"><table>
+<thead><tr><th>학교</th><th class="num">학부 연 학비</th><th class="num">원화 (RM1≈300원)</th></tr></thead>
+<tbody>
+<tr><td>테일러스</td><td class="num">RM 34,000 ~ 71,000</td><td class="num">1,000만 ~ 2,100만 원</td></tr>
+<tr><td>모나쉬 말레이시아</td><td class="num">RM 44,000 ~ 60,000</td><td class="num">1,300만 ~ 1,800만 원</td></tr>
+<tr><td>선웨이</td><td class="num">RM 30,000 ~ 55,000</td><td class="num">900만 ~ 1,650만 원</td></tr>
+<tr><td>노팅엄 말레이시아</td><td class="num">RM 40,000 ~ 55,000</td><td class="num">1,200만 ~ 1,650만 원</td></tr>
+<tr><td>파운데이션 (공통)</td><td class="num">RM 20,000 ~ 35,000</td><td class="num">600만 ~ 1,100만 원</td></tr>
+</tbody></table></div>
+<p>의학·약학·건축은 위 범위를 크게 넘어섭니다. <strong>전공별 편차가 크다</strong>는 점을 반드시 말씀하십시오.</p>
+
+<h3>생활비 (월, 학생 1인)</h3>
+<div class="tw"><table>
+<thead><tr><th>항목</th><th class="num">금액 (RM)</th><th class="num">원화</th></tr></thead>
+<tbody>
+<tr><td>주거 (기숙사 / 콘도 셰어)</td><td class="num">700 ~ 1,500</td><td class="num">21만 ~ 45만</td></tr>
+<tr><td>식비 (현지식 한 끼 RM 8~15)</td><td class="num">600 ~ 1,000</td><td class="num">18만 ~ 30만</td></tr>
+<tr><td>교통 (MRT + Grab)</td><td class="num">100 ~ 200</td><td class="num">3만 ~ 6만</td></tr>
+<tr><td>통신·기타</td><td class="num">150 ~ 300</td><td class="num">5만 ~ 9만</td></tr>
+<tr><td><strong>월 합계</strong></td><td class="num"><strong>RM 1,600 ~ 3,000</strong></td><td class="num"><strong>50만 ~ 90만 원</strong></td></tr>
+</tbody></table></div>
+
+<h3>4년 총액 — 이 한 장이 설명회의 요약입니다</h3>
+<div class="ledger">
+  <div class="lt">검정고시 출신 → 파운데이션 1년 → 학부 3년</div>
+  <div class="row"><span>파운데이션 학비</span><span class="v">800만 원</span></div>
+  <div class="row"><span>학부 학비 (3년)</span><span class="v">4,200만 원</span></div>
+  <div class="row"><span>생활비 (4년 × 800만)</span><span class="v">3,200만 원</span></div>
+  <div class="row"><span>비자·보험·항공</span><span class="v">500만 원</span></div>
+  <div class="row total"><span>4년 총액</span><span class="v">약 8,700만 원</span></div>
+</div>
+<p class="say">"같은 학위를 영국 본교에서 하면 2억 원대입니다."</p>
+
+<h3>재정 증명과 신원보증금 — 가장 많이 오해받는 대목</h3>
+<p><strong>말레이시아는 잔고 기준 금액도, 유지 기간 요건도 공시하지 않습니다.</strong> 영국(재정요건 고시)이나 호주(GS 제도)와 구조가 다릅니다.</p>
+
+<h4>EMGS 공식 필수서류는 다섯 가지입니다</h4>
+<div class="tw"><table>
+<thead><tr><th>필수서류</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>여권용 사진</td><td>EMGS 규격 (일반 증명사진으로는 반려)</td></tr>
+<tr><td>여권 인적사항면</td><td>잔여 유효기간 18개월 이상</td></tr>
+<tr><td>오퍼레터 (Offer Letter)</td><td>대학 발행</td></tr>
+<tr><td>건강선언서 (Declaration of Health)</td><td>EMGS 양식</td></tr>
+<tr><td>학력증명서 · 성적증명서</td><td>영문 아닐 경우 번역공증</td></tr>
+</tbody></table></div>
+<p><strong>이 목록에 잔고증명이 없습니다.</strong> 유학 컨설팅 사이트마다 RM 10,000 · 40,000 · 50,000으로 금액이 갈리는 것이 그 방증이며, "3~6개월 유지"도 업계 관행이지 EMGS 규정이 아닙니다.</p>
+
+<div class="fact"><span class="k">공시된 유일한 금액</span>
+<p><strong>Personal Bond (신원보증금) — 한국 국적 RM 750 (약 23만 원)</strong></p>
+<p>이민규정 1963 제18조에 따라 모든 유학생이 예치하는 <strong>환급성 보증금</strong>입니다. 국적별로 RM 300~2,000이며 한국은 RM 750. 졸업·중도포기 시 학생비자를 정상 취소하면 돌려받습니다. <strong>잔고가 아니라 학교를 통해 납부하는 돈입니다.</strong></p></div>
+
+<h4>잔고증명이 요구되는 단계는 셋입니다</h4>
+<div class="tw"><table>
+<thead><tr><th>단계</th><th>요구 여부</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td>EMGS 학생비자 심사</td><td><strong>필수서류 아님</strong></td><td>위 공식 목록에 없음</td></tr>
+<tr><td>대학 입학 심사</td><td>학교 재량</td><td>스폰서(부모) 확인 목적</td></tr>
+<tr><td>주한 말레이시아 대사관 SEV 발급</td><td><strong>요구 가능성 가장 높음</strong></td><td>한국은 SEV 필요 국가</td></tr>
+</tbody></table></div>
+<p><strong>준비 기준(공식 요건 아님, 권고치)</strong>: 1년 치 학비 + 생활비, 대략 <strong>RM 6만~8만(약 1,800만~2,400만 원)</strong>. 학생 본인 명의 계좌가 없으면 부모 스폰서 레터 + 부모 잔고증명 + 영문 가족관계증명 조합이 일반적입니다.</p>
+
+<h3>장학금</h3>
+<p>네 학교 모두 <strong>성적 기반 학비 감면(merit scholarship)</strong>을 운영합니다. 감면 폭과 기준은 학교·학과·입학 시기에 따라 다르므로, 지원 전 장학금 페이지를 확인하고 <strong>오퍼레터 수령 시 장학 적용 여부를 반드시 문의</strong>하십시오.</p>
+</section>
+
+<section id="p6">
+<h2><span class="pn">PART 06</span>생활 — 치안 · 의료 · 주거 · 신앙</h2>
+
+<h3>치안</h3>
+<p>도시 지역은 비교적 안전합니다. 다만 <strong>오토바이 날치기(snatch theft)</strong>와 <strong>스캠 전화(경찰·세관·택배 사칭)</strong>가 실제 다발 유형입니다. 캠퍼스 대부분이 게이티드 커뮤니티 안에 있어 통학 동선이 짧습니다.</p>
+<div class="note"><span class="k">학생 안전 수칙 셋</span>
+<p>① 가방은 인도 안쪽으로 &nbsp;② 심야 도보 이동 대신 Grab &nbsp;③ 계좌·개인정보를 요구하는 전화는 무조건 끊기</p></div>
+
+<h3>의료</h3>
+<p>말레이시아는 <strong>의료관광 수용국</strong> 수준의 사립병원 인프라를 갖추고 있고 의료진 영어 소통이 가능합니다. 학생비자 발급 과정에서 건강검진과 의료보험 가입이 의무이며, 입국 후 <strong>7영업일 이내</strong> EMGS 지정 클리닉에서 검진을 받아야 합니다. 한국 국민건강보험은 해외 진료에 적용되지 않으므로 <strong>유학생 보험 추가 가입</strong>을 권고합니다.</p>
+
+<h3>주거</h3>
+<p>기숙사(on-campus), 대학 제휴 레지던스, 콘도 셰어가 일반적입니다. 월 RM 700~1,500 수준이며, 선웨이시티처럼 생활 인프라가 도보권인 지역은 초기 정착이 쉽습니다.</p>
+
+<h3>신앙생활</h3>
+<p>쿠알라룸푸르 일대에 한인교회와 영어예배 공동체가 있습니다. <strong>말레이시아 지부를 통한 현지 공동체 연결</strong>이 가능하며, 이는 유학원이 제공할 수 없는 부분입니다.</p>
+</section>
+<section id="p7">
+<h2><span class="pn">PART 07</span>취업과 진로 — 가장 정직하게 말해야 할 대목</h2>
+
+<h3>졸업생 취업률 — 숫자의 성격을 함께 말하십시오</h3>
+<div class="tw"><table>
+<thead><tr><th>학교</th><th>공표 수치</th></tr></thead>
+<tbody>
+<tr><td><strong>선웨이</strong></td><td>2024년 졸업생 취업률 100%, <strong>말레이시아 취업경쟁력 5년 연속 1위</strong> (2022–2026, Talentbank 기준)</td></tr>
+<tr><td><strong>테일러스</strong></td><td>졸업생 취업률 99%</td></tr>
+<tr><td>UCSI</td><td>100%</td></tr>
+</tbody></table></div>
+<div class="warn"><span class="k">이 숫자를 그대로 인용하지 마십시오</span>
+<p>학교 공표 또는 민간 평가기관(Talentbank) 기준이며 <strong>정부 통계가 아닙니다.</strong> 산정 방식(집계 시점, 응답률, 대학원 진학 포함 여부)이 공개되지 않은 경우가 많습니다. <strong>"학교 공표 기준으로는"</strong>을 붙이고, 아래 제도적 현실과 함께 제시하십시오. 그래야 신뢰를 잃지 않습니다.</p></div>
+
+<h3>현지 취업의 진짜 문턱 — 2026년 6월 제도 개정</h3>
+<p>외국인이 말레이시아에서 일하려면 <strong>Employment Pass(EP)</strong>가 필요하고, 최저 기본급 기준이 <strong>2026년 6월 1일자로 인상</strong>되었습니다.</p>
+<div class="tw"><table>
+<thead><tr><th>등급</th><th class="num">최저 기본급 (월)</th><th class="num">체류 상한</th></tr></thead>
+<tbody>
+<tr><td><strong>Category I</strong></td><td class="num"><strong>RM 20,000 이상</strong></td><td class="num">최장 10년</td></tr>
+<tr><td><strong>Category II</strong></td><td class="num"><strong>RM 10,000 ~ 19,999</strong></td><td class="num">최장 10년</td></tr>
+<tr><td><strong>Category III</strong></td><td class="num"><strong>RM 5,000 ~ 9,999</strong><br>제조업·제조 관련 서비스업 RM 7,000 ~ 9,999</td><td class="num">최장 5년</td></tr>
+</tbody></table></div>
+
+<h4>반드시 함께 설명해야 할 셋</h4>
+<ol>
+<li><strong>기본급만 산정됩니다.</strong> 수당·상여·기타 지급액은 최저 기준 계산에 포함되지 않습니다.</li>
+<li><strong>Category II·III는 말레이시아인 승계계획(succession plan) 제출이 의무화</strong>되었습니다. 해당 직무를 장차 현지인에게 넘기는 계획을 회사가 문서로 내야 합니다.</li>
+<li><strong>이것이 의미하는 바</strong>: 학부 갓 졸업한 외국인이 현지에 남으려면 <strong>기본급 월 RM 5,000(약 150만 원) 이상을 주는 자리</strong>를 잡아야 합니다. 말레이시아 신입 평균 임금을 웃도는 수준이므로, 회사가 그 비용을 감수할 만한 전공·역량이 필요합니다.</li>
+</ol>
+
+<p class="say">"취업률 99%라는 숫자만 보시면 안 됩니다. 그 숫자에는 현지인과 대학원 진학자가 함께 들어 있습니다. 외국인 학부 졸업생이 현지에 남으려면 기본급 RM 5,000짜리 자리를 잡아야 한다 — 이게 제도가 정한 현실입니다. 그래서 말레이시아는 목적지보다 발판으로 설계할 때 훨씬 강합니다."</p>
+
+<h3>졸업 후 네 갈래</h3>
+<div class="flow"><pre>                     ┌─ ① 말레이시아 현지 취업 (Employment Pass)
+                     ├─ ② 싱가포르 · 홍콩 등 역내 진출
+   졸업 ─────────────┤
+                     ├─ ③ 본교(영국/호주) 대학원 진학
+                     └─ ④ 한국 복귀 — 외국계 · 상사 · 항공 · 호텔</pre></div>
+
+<div class="tw"><table>
+<thead><tr><th>경로</th><th>현실</th><th>유리한 준비</th></tr></thead>
+<tbody>
+<tr><td>① 현지 취업</td><td>EP Cat III 기본급 RM 5,000 문턱</td><td>회계·IT·엔지니어링, 인턴십 경력</td></tr>
+<tr><td>② 역내 진출</td><td>영어 학위 + 동남아 경험이 싱가포르 시장에서 통용</td><td>재학 중 지역 네트워크</td></tr>
+<tr><td>③ 대학원 진학</td><td>분교 졸업생은 본교 진학 절차가 간명</td><td><strong>듀얼디그리·트위닝 이수자가 특히 유리</strong></td></tr>
+<tr><td>④ 한국 복귀</td><td>3년제 학사 포함 국내 학사로 인정</td><td>영어 + 제3언어(중국어·말레이어)</td></tr>
+</tbody></table></div>
+
+<h3>전공별 현실</h3>
+<ul>
+<li><strong>유리한 쪽</strong>: 회계·금융(전문자격 연계), IT·데이터, 엔지니어링, 계리학 — 임금 수준이 EP 문턱을 넘기 쉽습니다.</li>
+<li><strong>주의할 쪽</strong>: 인문·사회계열 단독 학위 — 현지 취업 시 임금이 EP 기준에 못 미칠 가능성이 큽니다. 대학원 진학이나 한국 복귀를 기본 설계로 잡으십시오.</li>
+<li><strong>호텔·관광</strong>: 테일러스의 세계 순위가 강점이지만 산업 특성상 초임이 낮습니다. <strong>글로벌 체인 본사 트랙</strong>을 목표로 설계해야 합니다.</li>
+</ul>
+
+<h3>한국 복귀 시 학위 인정</h3>
+<p>3년제 영국식 학사도 <strong>한국에서 정식 학사학위로 인정</strong>되며 국내 대학원 진학이 가능합니다. 다만 일부 국가고시·공공기관 채용은 개별 확인이 필요합니다. <strong>"인정됩니다"라고 단정하지 말고 "대학원 진학은 가능하며, 특정 시험은 개별 확인이 필요합니다"로 말씀하십시오.</strong></p>
+</section>
+
+<section id="p8">
+<h2><span class="pn">PART 08</span>실행 — 지원 절차와 타임라인</h2>
+
+<h3>비자는 학생이 직접 신청할 수 없습니다</h3>
+<div class="flow"><pre>① 학교 지원 → 오퍼레터(Offer Letter) 수령
+② 학비 디포짓 납부
+③ 학교가 EMGS에 대신 신청        ← 학생 본인은 신청 불가
+④ EMGS 학력 심사                 ← 검정고시가 걸리는 지점
+⑤ eVAL(전자 비자승인서) 발급      — 완전한 신청 기준 14 영업일
+⑥ 주한 말레이시아 대사관 SEV 발급  ← 한국은 SEV 필요 국가
+⑦ 입국 → 7영업일 이내 EMGS 지정 클리닉 건강검진
+⑧ 학교가 여권 제출 → 이민국 Student Pass 스티커 (2~4주)</pre></div>
+<p>비용은 EMGS 수수료 등 약 RM 1,500~2,500에 Personal Bond RM 750(환급성)이 더해집니다.</p>
+<div class="note"><span class="k">핵심</span>
+<p>③번 때문에 <strong>학교 선택이 곧 비자 대행사 선택</strong>입니다. 검정고시 학생을 처리해 본 경험이 있는 학교의 국제입학처가 훨씬 빠릅니다.</p></div>
+
+<h3>9월 입학 기준 역산 타임라인</h3>
+<div class="tw"><table>
+<thead><tr><th class="num">시기</th><th>할 일</th></tr></thead>
+<tbody>
+<tr><td class="num">3~4월</td><td>학교 문의, 검정고시 합격증 <strong>아포스티유 + 영문 번역공증</strong> (2~3주 소요)</td></tr>
+<tr><td class="num">5월</td><td>지원서 제출 → 오퍼레터 수령</td></tr>
+<tr><td class="num">6월</td><td>디포짓 납부 → 학교가 EMGS 접수</td></tr>
+<tr><td class="num">7월</td><td>EMGS 심사 → eVAL 발급</td></tr>
+<tr><td class="num">8월</td><td>SEV 발급, 항공권·기숙사 확정</td></tr>
+<tr><td class="num">9월</td><td>입국 → 7영업일 내 건강검진 → Student Pass</td></tr>
+</tbody></table></div>
+<div class="warn"><span class="k">못 박으십시오</span>
+<p>피크 인테이크(9월·1월)에는 심사가 밀립니다. <strong>"최소 4개월 전 착수"</strong>를 설명회에서 반복하십시오.</p></div>
+
+<h3>서류 체크리스트</h3>
+<ul class="checks">
+<li>여권 — <strong>잔여 유효기간 18개월 이상</strong></li>
+<li>검정고시 합격증 + 성적증명 — <strong>아포스티유 + 영문 번역공증</strong></li>
+<li>(해당 시) 고교 성적증명서 — 동일 처리</li>
+<li>영어 성적표 (IELTS / TOEFL) 또는 교내 영어과정 신청</li>
+<li>여권용 사진 — <strong>EMGS 규격</strong> (흰 배경, 얼굴 비율 규정)</li>
+<li>건강 선언서 (Declaration of Health)</li>
+<li>(요구 시) 재정 증명 — EMGS 필수서류 아님</li>
+<li>Personal Bond RM 750 납부 안내 확인</li>
+</ul>
+
+<h3>실제로 자주 막히는 다섯 가지</h3>
+<ol>
+<li><strong>여권 영문명과 성적증명 영문명 불일치</strong> — 가장 흔한 반려 사유입니다.</li>
+<li><strong>아포스티유 누락</strong> — 번역공증만으로는 부족한 경우가 많습니다.</li>
+<li><strong>사진 규격 미달</strong> — EMGS 사진 규격은 까다롭습니다. 일반 증명사진으로 반려됩니다.</li>
+<li><strong>여권 유효기간 부족</strong> — 12개월 남은 여권으로 신청했다가 재발급하느라 한 인테이크를 놓칩니다.</li>
+<li><strong>재정증명 잔고 기간 미충족</strong> — 신청 직전에 몰아서 입금한 잔고는 인정되지 않을 수 있습니다.</li>
+</ol>
+<p class="say">"이 다섯 가지 때문에 한 학기를 통째로 미루는 학생을 매년 봅니다."</p>
+</section>
+
+<section id="p9">
+<h2><span class="pn">PART 09</span>자주 묻는 질문 15</h2>
+
+<div class="qa"><p class="q">1. 검정고시인데 정말 갈 수 있나요?</p><p class="a">갈 수 있습니다. 출발선이 파운데이션으로 한 칸 뒤일 뿐, 학부 졸업장은 동일합니다.</p></div>
+<div class="qa"><p class="q">2. 파운데이션은 시간 낭비 아닌가요?</p><p class="a">영어 학술글쓰기·전공 기초·현지 적응을 1년에 끝내는 과정입니다. 이 1년 없이 들어간 학생이 1학년에 무너지는 경우가 더 많습니다.</p></div>
+<div class="qa"><p class="q">3. 영어를 못하는데 가능한가요?</p><p class="a">교내 집중영어과정 선이수 경로가 있습니다. 학부 IELTS 6.0~6.5, 파운데이션 5.0~5.5 수준이 목표입니다.</p></div>
+<div class="qa"><p class="q">4. 학위가 한국에서 인정되나요?</p><p class="a">인정됩니다. 3년제 학사 포함 국내 대학원 진학 가능. 일부 국가고시는 개별 확인이 필요합니다.</p></div>
+<div class="qa"><p class="q">5. 졸업장 두 장이면 학비도 두 배인가요?</p><p class="a">아닙니다. 한 과정을 이수하고 두 기관이 각각 수여하는 구조입니다.</p></div>
+<div class="qa"><p class="q">6. 안전한가요?</p><p class="a">도시 지역은 비교적 안전합니다. 날치기와 스캠 전화가 실제 유형이며 수칙 세 가지로 대부분 예방됩니다.</p></div>
+<div class="qa"><p class="q">7. 아프면 어떡하나요?</p><p class="a">사립병원 수준이 높고 영어가 통합니다. 학생비자에 보험이 포함되며 추가 가입을 권합니다.</p></div>
+<div class="qa"><p class="q">8. 부모가 동반할 수 있나요?</p><p class="a">미성년 학생의 보호자 비자 제도가 있습니다. 학교 국제처에 개별 확인하십시오.</p></div>
+<div class="qa"><p class="q">9. 기독교 신앙생활이 가능한가요?</p><p class="a">가능합니다. 종교 자유가 보장되며 한인교회·영어예배 공동체가 있습니다.</p></div>
+<div class="qa"><p class="q">10. 졸업하면 현지에 취업할 수 있나요?</p><p class="a">제도적으로는 가능하나 문턱이 높습니다. EP 최저 기본급 월 RM 5,000입니다.</p></div>
+<div class="qa"><p class="q">11. 한 학기 휴학하고 준비할까요, 바로 갈까요?</p><p class="a">인테이크(주로 1·3·9월)를 확인하고 서류 준비 기간 최소 4개월을 역산해 결정하십시오.</p></div>
+<div class="qa"><p class="q">12. 재정증명은 얼마가 필요한가요?</p><p class="a">공시 금액이 없습니다. 1년 치 학비+생활비, 대략 RM 6만~8만을 권합니다.</p></div>
+<div class="qa"><p class="q">13. 어느 학교가 제일 좋나요?</p><p class="a">전공에 따라 답이 바뀝니다. 호텔·디자인은 테일러스, 회계·계리는 선웨이, 공학·의약학은 모나쉬·노팅엄.</p></div>
+<div class="qa"><p class="q">14. 장학금이 있나요?</p><p class="a">네 학교 모두 성적 기반 학비 감면을 운영합니다. 오퍼레터 수령 시 적용 여부를 문의하십시오.</p></div>
+<div class="qa"><p class="q">15. 유학원을 꼭 써야 하나요?</p><p class="a">비자 신청은 학교가 대행하므로 필수는 아닙니다. 다만 검정고시 등 비표준 학력은 처리 경험이 있는 곳의 도움이 유효합니다.</p></div>
+</section>
+
+<section id="p10">
+<h2><span class="pn">PART 10</span>이 자료를 어떻게 쓰는가</h2>
+
+<h3>형식별 구성</h3>
+<div class="tw"><table>
+<thead><tr><th>형식</th><th class="num">시간</th><th>다룰 범위</th></tr></thead>
+<tbody>
+<tr><td><strong>1탄 (개괄)</strong></td><td class="num">60분</td><td>Part 1 → 2 → 3 → 4 개요 → 5 → 6 → 7 진로</td></tr>
+<tr><td><strong>2탄 (학교 심화)</strong></td><td class="num">60분</td><td>Part 4 전체 → 5 재정증명 → 8</td></tr>
+<tr><td><strong>개별 상담</strong></td><td class="num">30분</td><td>Part 3 학력 진단 → 4 학교 선택 → 5 예산 → 8 타임라인</td></tr>
+<tr><td><strong>전체 설명회</strong></td><td class="num">90~120분</td><td>전체, Part 9를 Q&amp;A로</td></tr>
+</tbody></table></div>
+
+<h3>운영 원칙 넷</h3>
+<ol>
+<li><strong>질문 전담자를 따로 두십시오.</strong> 진행자는 질문을 읽지 않습니다.</li>
+<li><strong>숫자는 반드시 화면에 띄우십시오.</strong> 말로만 하는 금액은 아무도 기억하지 못합니다.</li>
+<li><strong>환율을 당일 기준으로 다시 계산하고 "○월 ○일 환율 기준"을 표기하십시오.</strong> 숫자 신뢰도가 자료 전체의 신뢰도입니다.</li>
+<li><strong>상담 신청 경로를 세 번 언급하십시오.</strong> 설명회의 성과 지표는 참석자 수가 아니라 상담 신청 건수입니다.</li>
+</ol>
+
+<h3>꼭 띄워야 할 슬라이드 다섯 장</h3>
+<ol>
+<li>말레이시아 국가 데이터 표</li>
+<li>유학생 국가별 현황 — "중국 3만 명"</li>
+<li><strong>4년 총액 시뮬레이션</strong></li>
+<li>학위 경로 다이어그램</li>
+<li><strong>EP 최저 기본급 표</strong></li>
+</ol>
+</section>
+
+<section id="apx">
+<h2><span class="pn">부록</span>문의 문안과 확인 목록</h2>
+
+<h3>부록 A. 대학 문의 메일 문안</h3>
+<p>네 개 대학 국제입학처에 그대로 보내고, 회신을 한 장의 표로 정리해 자료에 넣으십시오.</p>
+<pre class="mail">Subject: Entry requirements, financial proof and personal bond for
+         a Korean applicant with the High School Qualification Exam
+
+I am a Korean student who completed the Korean High School
+Qualification Examination (검정고시, GED-equivalent issued by the
+Korean Ministry of Education), not a regular high school diploma.
+
+Admission
+1) Is this qualification accepted for DIRECT entry into Year 1 of
+   your undergraduate degree programmes?
+2) If not, which Foundation or Diploma programme should I apply to?
+3) Has EMGS previously approved a Student Pass for this
+   qualification at your institution?
+
+Student Pass / EMGS
+4) Does your institution require proof of funds (bank statement)
+   at the admission stage? If so, what minimum amount and how many
+   months of statements?
+5) Does EMGS require a bank statement for Korean nationals?
+6) What is the current Personal Bond amount for Korean nationals?
+7) Is a sponsor letter from a parent accepted in place of the
+   student's own account?
+
+Practical
+8) What are the next intake dates and their application deadlines?
+9) Which scholarships are available to international students, and
+   are they applied at the offer stage?</pre>
+
+<h3>부록 B. 확인이 필요한 항목</h3>
+<div class="warn"><span class="k">설명회 전에 채우십시오</span>
+<p>이 자료는 접근 가능한 공개 자료를 교차 확인해 작성했으나, 아래 항목은 <strong>공식 1차 자료로 확정하지 못했습니다.</strong></p></div>
+<ul class="checks">
+<li>네 개 대학의 검정고시·GED 직접 입학 가능 여부 (부록 A 회신) — <strong>최우선</strong></li>
+<li>각 대학 공식 페이지 기준 학비 (연간/총액 구분)</li>
+<li>각 대학 다음 인테이크 날짜와 지원 마감일</li>
+<li>각 대학 국제학생 수·비율 (Facts &amp; Figures 페이지)</li>
+<li>선웨이 랭커스터 듀얼디그리 운영 학과 목록 (전 학과 아님)</li>
+<li><strong>한국인 말레이시아 유학생 수</strong> — 교육통계서비스(KESS) / KOSIS</li>
+<li>Personal Bond 한국 국적 요율 재확인 (개정 가능)</li>
+<li>주한 말레이시아 대사관 SEV 요구 서류</li>
+<li>설명 당일 환율 기준 원화 환산표</li>
+</ul>
+</section>
+</main>
+</div>
+</div>
+
+<footer>
+<div class="wrap">
+  <div class="srcgrid">
+    <div>
+      <h5>국가 데이터</h5>
+      <p><a href="https://www.worldometers.info/world-population/malaysia-population/">Worldometer</a> · <a href="https://www.dosm.gov.my/portal-main/release-content/current-population-estimates-2026">DOSM 2026</a> · <a href="https://en.wikipedia.org/wiki/Malaysia">Wikipedia</a></p>
+    </div>
+    <div>
+      <h5>유학 현황</h5>
+      <p><a href="https://www.malaymail.com/news/malaysia/2024/10/18/zambry-target-for-250000-international-students-in-malaysia-includes-both-public-and-private-institutions/154008">Malay Mail</a> · <a href="https://monitor.icef.com/2025/01/malaysias-growing-appeal-as-a-study-destination/">ICEF Monitor</a> · <a href="https://thepienews.com/international-students-flock-to-malaysia-as-demand-surges/">The PIE News</a> · <a href="https://educationmalaysia.gov.my/more/student-data/international-student-data">EMGS Student Data</a></p>
+    </div>
+    <div>
+      <h5>대학</h5>
+      <p><a href="https://university.taylors.edu.my/en/student-life/news/2026/taylors-university-maintains-global-presence-with-20-subjects-ranked.html">Taylor's QS 2026</a> · <a href="https://www.topuniversities.com/university-subject-rankings/hospitality-leisure-management">QS Hospitality</a> · <a href="https://sunwayuniversity.edu.my/sunway-university-lancaster-university/programmes">Sunway × Lancaster</a> · <a href="https://www.monash.edu.my/study/entry-requirements">Monash Malaysia</a> · <a href="https://www.nottingham.edu.my/Study/Foundation-courses/index.aspx">Nottingham Malaysia</a></p>
+    </div>
+    <div>
+      <h5>비자 · 보증금</h5>
+      <p><a href="https://visa.educationmalaysia.gov.my/guidelines/required-documents">EMGS 필수서류</a> · <a href="https://visa.educationmalaysia.gov.my/media/docs/Personal-Bond-Requirementsv1.2.pdf">Personal Bond 요율</a> · <a href="https://esd.imi.gov.my/portal/pdf/personal-security-bond-rates-v3.pdf">이민국 보증금 요율</a> · <a href="https://visa.educationmalaysia.gov.my/guidelines/sev-required-countries">SEV 필요 국가</a></p>
+    </div>
+    <div>
+      <h5>취업</h5>
+      <p><a href="https://www.bakermckenzie.com/en/insight/publications/2026/01/malaysia-increase-in-employment-pass-salary-requirements">Baker McKenzie — EP 최저급여 인상</a> · <a href="https://www.fragomen.com/insights/malaysia-minimum-salary-requirements-for-employment-pass-to-be-increased.html">Fragomen</a> · <a href="https://www.mdec.my/expats/announcement/revision-to-employment-pass-ep-minimum-salary-requirements-for-expatriates">MDEC</a></p>
+    </div>
+  </div>
+  <p style="margin-top:24px; max-width:70ch">
+    <strong>자료 성격 고지.</strong> 학비·인테이크·듀얼디그리 운영 학과 등 일부 수치는 3자 집계 사이트에서 확인한 값입니다. 작성 환경의 네트워크 정책상 각 대학과 말레이시아 정부기관의 공식 사이트를 직접 열람하지 못했습니다. 대외 배포 자료에는 부록 B의 확인 절차를 거친 수치만 사용하십시오.
+  </p>
+  <p style="margin-top:14px">필리핀 해외선교본부 · 말레이시아 지부 연합 &nbsp;|&nbsp; 2026년 9월</p>
+</div>
+</footer>
