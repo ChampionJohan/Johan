@@ -7,6 +7,9 @@
     python3 tools/build_ebook.py ko2   # Book 2, Korean
     python3 tools/build_ebook.py en2   # Book 2, English
     python3 tools/build_ebook.py both2 # Book 2, both languages
+    python3 tools/build_ebook.py ko3   # Book 3, Korean
+    python3 tools/build_ebook.py en3   # Book 3, English
+    python3 tools/build_ebook.py both3 # Book 3, both languages
     python3 tools/build_ebook.py all   # every book/language combination
 
 PDF는 Playwright(Chromium)로, EPUB는 ebooklib으로 만든다. 둘 다 이 저장소에
@@ -24,10 +27,13 @@ import mdlite
 
 ROOT1 = "/home/user/Johan/writing/novel/루프-연대기"
 ROOT2 = "/home/user/Johan/writing/novel/울음-장부"
+ROOT3 = "/home/user/Johan/writing/novel/사십일-조항"
 OUT1 = os.path.join(ROOT1, "build")
 OUT2 = os.path.join(ROOT2, "build")
+OUT3 = os.path.join(ROOT3, "build")
 os.makedirs(OUT1, exist_ok=True)
 os.makedirs(OUT2, exist_ok=True)
+os.makedirs(OUT3, exist_ok=True)
 
 AUTHOR_PLACEHOLDER_KO = "Johan Choi"
 AUTHOR_PLACEHOLDER_EN = "Johan Choi"
@@ -83,6 +89,32 @@ CONFIGS = {
         toc_label="Table of Contents",
         cover_kicker="A NOVEL",
         out_base="the-weeping-ledger-en",
+        part_word="Part",
+    ),
+    "ko3": dict(
+        src_dir=ROOT3,
+        out_dir=OUT3,
+        pattern=re.compile(r"^\d{2}장.*\.md$"),
+        lang="ko",
+        title="사십 일 조항",
+        subtitle="루프 연대기 3권 · 요나 4장에서 시작하는 이야기",
+        author=AUTHOR_PLACEHOLDER_KO,
+        toc_label="목차",
+        cover_kicker="장편 소설",
+        out_base="the-forty-day-clause-ko",
+        part_word="부",
+    ),
+    "en3": dict(
+        src_dir=os.path.join(ROOT3, "english"),
+        out_dir=OUT3,
+        pattern=re.compile(r"^\d{2}-.*\.md$"),
+        lang="en",
+        title="The Forty-Day Clause",
+        subtitle="Loop Chronicles Book 3 · A novel that begins at Jonah 4",
+        author=AUTHOR_PLACEHOLDER_EN,
+        toc_label="Table of Contents",
+        cover_kicker="A NOVEL",
+        out_base="the-forty-day-clause-en",
         part_word="Part",
     ),
 }
@@ -287,8 +319,10 @@ def main():
             expanded += ["ko", "en"]
         elif t == "both2":
             expanded += ["ko2", "en2"]
+        elif t == "both3":
+            expanded += ["ko3", "en3"]
         elif t == "all":
-            expanded += ["ko", "en", "ko2", "en2"]
+            expanded += ["ko", "en", "ko2", "en2", "ko3", "en3"]
         else:
             expanded.append(t)
     for t in expanded:
