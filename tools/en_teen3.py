@@ -21,7 +21,7 @@ m.AUTHOR = "Jaehyuk Choi"
 m.LANG = "en"
 m.STYLE = m.STYLE.replace("--track:.16em;", "--track:.06em;")
 m.TRIM = "6x9"
-m.TARGET = 17000  # 낱말 수 기준
+m.TARGET = 22000  # 낱말 수 기준
 
 m.STYLE = m.STYLE.replace("--accent:#E85D2F;", "--accent:#B5542F;")
 m.STYLE = m.STYLE.replace("--accent:#FF8A5C;", "--accent:#E0895F;")
