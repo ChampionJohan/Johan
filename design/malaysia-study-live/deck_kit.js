@@ -3,7 +3,9 @@ const PptxGenJS = require('pptxgenjs');
 const fs = require('fs');
 
 
-const W = 10, H = 5.625, M = 0.5;
+const SIZES = { standard:{ W:10, H:5.625, M:0.5, layout:'LAYOUT_16x9' },
+                wide:{ W:13.333, H:7.5, M:0.7, layout:'LAYOUT_WIDE' } };
+let W = SIZES.standard.W, H = SIZES.standard.H, M = SIZES.standard.M;
 const C = {
   ink:'0C2E2C', deep:'134744', mid:'1F6B66',
   gold:'C08A2E', goldSoft:'F5EEDC',
@@ -14,9 +16,11 @@ const C = {
 const F = '맑은 고딕';
 
 
-function createDeck(title){
+function createDeck(title, size){
+  const dim = SIZES[size || 'standard'];
+  W = dim.W; H = dim.H; M = dim.M;
   const pres = new PptxGenJS();
-  pres.layout = 'LAYOUT_16x9';
+  pres.layout = dim.layout;
   pres.author = '필리핀 해외선교본부 · 말레이시아 지부';
   pres.title = title;
 
