@@ -18,6 +18,8 @@ plan.md 주제 큐  →  자동으로 오늘자 초고 생성  →  내가 TODO 
 | `python3 tools/build.py` | `writing/posts/*.md` → `writing/site/` (index + 글 + RSS) |
 | `python3 tools/export.py` | 완성본을 매체별 붙여넣기용 텍스트로 내보내기 |
 | `python3 tools/export.py --all` | 초고까지 전부 내보내기 |
+| `python3 tools/diary.py new` | 오늘자 일기 뼈대 생성 (`new 2026-09-22` 로 날짜 지정) |
+| `python3 tools/diary.py build` | `writing/diary/*.md` → `writing/diary/html/` (일기 목록 + 글) |
 
 의존성 없음. Python 3.8+ 만 있으면 된다.
 
@@ -30,11 +32,14 @@ writing/
   posts/       원고 (마크다운, front matter 포함)
   site/        빌드된 HTML + RSS
   export/      매체별 붙여넣기용 텍스트 (git 추적 안 함)
+  diary/       하루를 돌아보는 일기 (원고 아님, RSS·사이트 빌드 대상 아님)
+    html/      일기 HTML
 tools/
   mdlite.py    의존성 없는 마크다운 → HTML 변환기
   build.py     정적 사이트 빌더
   new_post.py  오늘자 초고 스캐폴딩
   export.py    매체별 내보내기
+  diary.py     일기 작성/빌드
 ```
 
 ## 매체별 내보내기 규칙
