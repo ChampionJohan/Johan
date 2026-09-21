@@ -27,7 +27,9 @@ OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "en-teen": "en_teen", "en-teen2": "en_teen2",
            "book2": "book2", "book-teen": "book_teen", "teen": "book_teen",
            "book-teen2": "book_teen2", "teen2": "book_teen2",
-           "bestseller": "bestseller", "en-bestseller": "en_bestseller"}
+           "bestseller": "bestseller", "en-bestseller": "en_bestseller",
+           "book-teen3": "book_teen3", "teen3": "book_teen3",
+           "en-teen3": "en_teen3"}
 
 
 def build_html(which):

@@ -131,6 +131,46 @@ BOOKS = {
             "Most things that lasted were not planned. They just never disappeared. "
             "Which makes this a game that favours whoever started late.",
         ]),
+
+    # 위 단행본의 청소년판. 같은 봉우리와 평지를 쓰되 색을 낮춘다.
+    "teen3": dict(
+        title="다들 갖고 있었잖아. 다 어디 갔지?",
+        title_lines=["다들 갖고 있었잖아.", "다 어디 갔지?"],
+        subtitle="유행은 왜 끝나고, 어떤 건 왜 안 끝날까",
+        series="『베스트셀러 & 스테디셀러』 청소년판", volume="열여섯 장",
+        accent="#B5542F", accent2="#5E8CA6", ink="#141A1E",
+        motif="curve", lang="ko", author="최재혁",
+        curve_labels=["유행하는 것", "계속 쓰는 것"],
+        back_head="작년에 다들 갖고 있던 거, 지금 누가 갖고 있어?",
+        back=[
+            "없어진 날짜도 없어. 누가 그만두자고 한 것도 아니고. "
+            "그냥 어느 순간 아무도 안 하고 있어.",
+            "그런데 같은 교실에 몇 년째 그대로 있는 것도 있어. "
+            "아무도 유행이라고 안 하는데 다들 계속 써. 둘은 다른 거야.",
+            "시계 셋이랑 다리 넷으로 그 차이를 열여섯 장에 걸쳐 봐. "
+            "그리고 마지막 장은, 이 게임은 늦게 시작해도 된다는 얘기야.",
+        ],
+        age="청소년 12~18"),
+
+    "en-teen3": dict(
+        title="Everyone Had One. Where Did They All Go?",
+        title_lines=["Everyone Had One.", "Where Did They All Go?"],
+        subtitle="Why Fads End, and Why Some Things Don't",
+        series="TEEN EDITION OF WHY IS THIS STILL HERE?", volume="16 CHAPTERS",
+        accent="#B5542F", accent2="#5E8CA6", ink="#141A1E",
+        motif="curve", lang="en", author="Jaehyuk Choi",
+        curve_labels=["THE FAD", "THE KEEPER"],
+        back_head="Everyone had one last year. Who has one now?",
+        back=[
+            "There is no date it ended. Nobody voted to stop. At some point "
+            "everyone just wasn't doing it anymore.",
+            "But some things in that same room have been there for years. "
+            "Nobody calls them a trend and everybody keeps using them. "
+            "Those are two different things.",
+            "Three clocks and four bridges, across sixteen chapters. And a last "
+            "chapter about why this is a game you can start late.",
+        ],
+        age="Ages 12-18"),
 }
 
 CREAM = "#F4F1EA"
@@ -158,7 +198,12 @@ def track_width(d, text, fnt, spacing):
 
 
 def wrap(d, text, fnt, limit):
-    """낱말 단위로 접는다."""
+    """낱말 단위로 접는다. 여러 줄이 넘어오면 줄마다 따로 접는다."""
+    if isinstance(text, (list, tuple)):
+        out = []
+        for part in text:
+            out.extend(wrap(d, part, fnt, limit))
+        return out
     lines, line = [], ""
     for word in text.split(" "):
         trial = (line + " " + word) if line else word
@@ -250,7 +295,7 @@ def draw_front_curve(d, ox, oy, w, h, spec):
     size = 190 * s
     while size >= 100 * s:
         f_title = font(f_serif, size)
-        lines = wrap(d, spec["title"], f_title, inner)
+        lines = wrap(d, spec.get("title_lines") or spec["title"], f_title, inner)
         if len(lines) <= 3:
             break
         size -= 8 * s
@@ -326,14 +371,14 @@ def draw_front(d, ox, oy, w, h, spec):
     size = 200 * s
     while size >= 110 * s:
         f_title = font(SERIF, size)
-        lines = wrap(d, spec["title"], f_title, inner)
+        lines = wrap(d, spec.get("title_lines") or spec["title"], f_title, inner)
         if len(lines) <= 4:
             break
         size -= 10 * s
     # 조금만 줄여서 줄 수가 하나 준다면 그쪽이 낫다
     for trial in range(int(size - 6 * s), int(size * 0.85), -int(max(1, 4 * s))):
         f2 = font(SERIF, trial)
-        l2 = wrap(d, spec["title"], f2, inner)
+        l2 = wrap(d, spec.get("title_lines") or spec["title"], f2, inner)
         if len(l2) < len(lines):
             size, f_title, lines = trial, f2, l2
             break
