@@ -10,6 +10,9 @@
     python3 tools/build_ebook.py ko3   # Book 3, Korean
     python3 tools/build_ebook.py en3   # Book 3, English
     python3 tools/build_ebook.py both3 # Book 3, both languages
+    python3 tools/build_ebook.py ko4   # Book 4, Korean
+    python3 tools/build_ebook.py en4   # Book 4, English
+    python3 tools/build_ebook.py both4 # Book 4, both languages
     python3 tools/build_ebook.py all   # every book/language combination
 
 PDF는 Playwright(Chromium)로, EPUB는 ebooklib으로 만든다. 둘 다 이 저장소에
@@ -28,12 +31,15 @@ import mdlite
 ROOT1 = "/home/user/Johan/writing/novel/루프-연대기"
 ROOT2 = "/home/user/Johan/writing/novel/울음-장부"
 ROOT3 = "/home/user/Johan/writing/novel/사십일-조항"
+ROOT4 = "/home/user/Johan/writing/novel/이삭-줍는-자리"
 OUT1 = os.path.join(ROOT1, "build")
 OUT2 = os.path.join(ROOT2, "build")
 OUT3 = os.path.join(ROOT3, "build")
+OUT4 = os.path.join(ROOT4, "build")
 os.makedirs(OUT1, exist_ok=True)
 os.makedirs(OUT2, exist_ok=True)
 os.makedirs(OUT3, exist_ok=True)
+os.makedirs(OUT4, exist_ok=True)
 
 AUTHOR_PLACEHOLDER_KO = "Johan Choi"
 AUTHOR_PLACEHOLDER_EN = "Johan Choi"
@@ -115,6 +121,32 @@ CONFIGS = {
         toc_label="Table of Contents",
         cover_kicker="A NOVEL",
         out_base="the-forty-day-clause-en",
+        part_word="Part",
+    ),
+    "ko4": dict(
+        src_dir=ROOT4,
+        out_dir=OUT4,
+        pattern=re.compile(r"^\d{2}장.*\.md$"),
+        lang="ko",
+        title="이삭 줍는 자리",
+        subtitle="루프 연대기 4권 · 룻기 1장 16절에서 시작하는 이야기",
+        author=AUTHOR_PLACEHOLDER_KO,
+        toc_label="목차",
+        cover_kicker="장편 소설",
+        out_base="the-gleaning-ground-ko",
+        part_word="부",
+    ),
+    "en4": dict(
+        src_dir=os.path.join(ROOT4, "english"),
+        out_dir=OUT4,
+        pattern=re.compile(r"^\d{2}-.*\.md$"),
+        lang="en",
+        title="The Gleaning Ground",
+        subtitle="Loop Chronicles Book 4 · A novel that begins at Ruth 1:16",
+        author=AUTHOR_PLACEHOLDER_EN,
+        toc_label="Table of Contents",
+        cover_kicker="A NOVEL",
+        out_base="the-gleaning-ground-en",
         part_word="Part",
     ),
 }
@@ -321,8 +353,10 @@ def main():
             expanded += ["ko2", "en2"]
         elif t == "both3":
             expanded += ["ko3", "en3"]
+        elif t == "both4":
+            expanded += ["ko4", "en4"]
         elif t == "all":
-            expanded += ["ko", "en", "ko2", "en2", "ko3", "en3"]
+            expanded += ["ko", "en", "ko2", "en2", "ko3", "en3", "ko4", "en4"]
         else:
             expanded.append(t)
     for t in expanded:
