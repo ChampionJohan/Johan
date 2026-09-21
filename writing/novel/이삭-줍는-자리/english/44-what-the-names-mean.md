@@ -163,7 +163,7 @@ eventually, and I think now is the time."
 
 I held my breath.
 
-"…Lytron." Mena said. "λύτρον. Greek."
+"…Lytron," Mena said. "λύτρον. Greek."
 
 "…What does it mean?"
 
