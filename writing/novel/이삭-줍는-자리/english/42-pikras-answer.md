@@ -146,7 +146,7 @@ I sat quiet for a long while, then said,
 I thought that would be a sad answer. Pikra's face wasn't sad. It was,
 if anything, a face that had settled something.
 
-"…The bitter didn't go away." Pikra said. "I just learned I could live
+"…The bitter didn't go away," Pikra said. "I just learned I could live
 with it still there."
 
 ---

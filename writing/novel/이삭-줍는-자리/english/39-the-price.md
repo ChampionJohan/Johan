@@ -120,7 +120,7 @@ Pikra asked again.
 Something went cold in me at that. He had already decided to cross some
 bridge with his family. In the direction there was no going back from.
 
-"…They'll have things to say, later." Pikra said.
+"…They'll have things to say, later," Pikra said.
 
 "…I know," he said. "But if I don't do it now, I don't think I ever
 will."
