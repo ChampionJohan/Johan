@@ -230,6 +230,8 @@ const bottom = t => text({ t, x:M, y:H-0.5, w:CW, h:0.28, size:9, color:C.muted,
 {
   slide(false);
   head('08','INTAKE','학사 입학 시기','입학 시기가 전체 일정을 결정합니다. 원서는 개강 12~16주 전에 접수해야 합니다.');
+  rect({ x:W-M-1.86, y:0.6, w:1.86, h:0.36, fill:C.deep, radius:0.05 });
+  text({ t:'학교 확인 완료', x:W-M-1.86, y:0.6, w:1.86, h:0.36, size:11, bold:true, color:C.gold, align:'center', valign:'middle' });
   const sch = [
     { nm:'선웨이 대학교', ug:['1월','4월','9월'], fd:'FIA · FIST  1월 · 4월 · 8월\nMUFY  1월 · 7월 · 8월' },
     { nm:'테일러스 대학교', ug:['2월','4월','9월'], fd:'2월 · 4월 · 8월' },
@@ -252,7 +254,7 @@ const bottom = t => text({ t, x:M, y:H-0.5, w:CW, h:0.28, size:9, color:C.muted,
   rect({ x:M+6.07, y:4.9, w:5.86, h:1.5, fill:C.brickSoft, radius:0.08 });
   text({ t:'9월 입학을 택할 때 주의', x:M+6.37, y:5.04, w:5.26, h:0.28, size:13, bold:true, color:C.brick });
   text({ t:'9월은 두 학교 공통 인테이크지만 전 세계 지원이 몰리는 피크입니다. 인기 학과는 외국인 정원이 먼저 차고 EMGS 심사도 밀립니다. 최소 16주 전 접수를 권합니다.', x:M+6.37, y:5.34, w:5.26, h:0.94, size:12, color:C.text, lh:1.45 });
-  bottom('※ 인테이크 월은 학과·과정별로 달라질 수 있습니다. 지망 학과 기준으로 학교에 최종 확인하십시오.');
+  bottom('※ 학사·파운데이션 입학 시기는 두 학교에 직접 문의해 확인한 내용입니다.');
   note('학부모가 가장 먼저 묻는 것이 "언제 들어가느냐"입니다. 선웨이 1월, 테일러스 2월. 이 두 숫자만 기억하시면 됩니다.');
 }
 
@@ -525,7 +527,7 @@ const bottom = t => text({ t, x:M, y:H-0.5, w:CW, h:0.28, size:9, color:C.muted,
   slide(true);
   head('19','CHECKLIST','설명회 전에 확인할 것','아래는 학교·기관에 직접 확인해 확정해야 하는 항목입니다', true);
   const items = [
-    ['학사·파운데이션 인테이크 확정','지망 학과 기준으로 월·마감일을 학교에 재확인'],
+    ['학과별 지원 마감일','입학 시기는 확인 완료. 학과별 원서 마감일만 추가 확인'],
     ['검정고시로 본과 직행 가능 여부','두 학교 입학처 서면 회신 확보'],
     ['복수 학위·트위닝 운영 학과 목록','전 학과가 아니므로 지망 전공 포함 여부 확인'],
     ['학비 — 연간인지 총액인지','공식 Fees Schedule 원본으로 대조'],
@@ -541,7 +543,7 @@ const bottom = t => text({ t, x:M, y:H-0.5, w:CW, h:0.28, size:9, color:C.muted,
   rect({ x:M, y:4.96, w:CW, h:1.4, fill:C.deep, radius:0.08 });
   text({ t:'출처', x:M+0.3, y:5.08, w:CW-0.6, h:0.24, size:10.5, bold:true, color:C.gold, cs:1.5 });
   text({ t:'IM 말레이시아 입학안내문 2027 원본  ·  Sunway University — School of American Education / Center for American Education 연혁 / ADTP 동문  ·  Lancaster University — Sunway Partnership  ·  Taylor\'s University — ADTP, Successful University Placements, University Transfers, Dual Awards  ·  UWE Bristol  ·  헤이그 아포스티유 협약 가입국 현황', x:M+0.3, y:5.36, w:CW-0.6, h:0.9, size:11, color:C.onDarkMute, lh:1.45 });
-  text({ t:'학비·순위·인테이크 등 일부 수치는 원본 안내문과 3자 집계 자료에서 가져왔습니다. 대외 배포 전 위 6개 항목을 확인해 확정하십시오.', x:M, y:6.5, w:CW, h:0.34, size:11, color:C.onDarkMute });
+  text({ t:'학사·파운데이션 입학 시기와 과정 구성은 학교 문의로 확인된 내용입니다. 학비·순위 등 나머지 수치는 원본 안내문과 3자 집계 자료 기준이므로, 대외 배포 전 위 6개 항목을 확정하십시오.', x:M, y:6.44, w:CW, h:0.48, size:11, color:C.onDarkMute, lh:1.3 });
   note('이 슬라이드는 내부용입니다. 학부모 배포본에서는 빼십시오.');
 }
 
