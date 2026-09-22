@@ -1,0 +1,174 @@
+<title>cover5</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=EB+Garamond:ital,wght@0,500;1,500&display=swap">
+<style>
+  html,body{margin:0;padding:0;width:2560px;height:4096px;background:#0c1520;overflow:hidden;}
+  .cover{
+    position:relative; width:2560px; height:4096px;
+    background:
+      radial-gradient(1400px 1400px at 50% 38%, #1c3548 0%, #101d2b 55%, #070d15 100%);
+    font-family:"EB Garamond", Georgia, serif;
+    color:#f2ecd9;
+  }
+  .stars{position:absolute; inset:0;}
+
+  .series-banner{
+    position:absolute; top:520px; left:50%; transform:translateX(-50%);
+    width:2400px; text-align:center;
+    font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:118px; letter-spacing:0.075em; color:#f6efdd;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .series-rule{
+    position:absolute; top:672px; left:50%; transform:translateX(-50%);
+    width:300px; height:2px; background:linear-gradient(90deg, transparent, #d8bd85, transparent);
+  }
+  .book-tag{
+    position:absolute; top:718px; left:50%; transform:translateX(-50%);
+    letter-spacing:0.5em; font-size:27px; color:#d8bd85; text-transform:uppercase;
+  }
+
+  .ring{
+    position:absolute; left:50%; top:1580px; transform:translate(-50%,-50%);
+    width:1420px; height:1420px; border-radius:50%;
+    border:6px solid rgba(230,196,120,0.55);
+    box-shadow: 0 0 140px 10px rgba(230,196,120,0.10) inset, 0 0 60px rgba(230,196,120,0.10);
+  }
+  .ring::before{
+    content:""; position:absolute; inset:65px; border-radius:50%;
+    border:1.5px solid rgba(230,196,120,0.28);
+  }
+  .glyph{
+    position:absolute; left:50%; top:1580px; transform:translate(-50%,-50%);
+    color:rgba(242,236,217,0.92);
+  }
+
+  .kicker{
+    position:absolute; top:2350px; left:50%; transform:translateX(-50%);
+    letter-spacing:0.5em; font-size:26px; color:#8a95a3; text-transform:uppercase;
+  }
+
+  .title{
+    position:absolute; top:2440px; left:50%; transform:translateX(-50%);
+    width:2300px; text-align:center;
+    font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:186px; line-height:1.05; letter-spacing:0.005em; color:#f6efdd;
+    text-shadow: 0 6px 40px rgba(0,0,0,0.55);
+  }
+  .rule{
+    position:absolute; top:2900px; left:50%; transform:translateX(-50%);
+    width:340px; height:2px; background:linear-gradient(90deg, transparent, #d8bd85, transparent);
+  }
+  .subtitle{
+    position:absolute; top:2970px; left:50%; transform:translateX(-50%);
+    font-size:44px; letter-spacing:0.06em; color:#c9bfa0; font-style:italic;
+  }
+  .verse{
+    position:absolute; top:3330px; left:50%; transform:translateX(-50%);
+    width:1900px; text-align:center; font-size:32px; line-height:1.55; color:#a9a08a;
+    font-style:italic;
+  }
+  .author{
+    position:absolute; top:3860px; left:50%; transform:translateX(-50%);
+    font-size:50px; letter-spacing:0.25em; color:#e7dcb8; text-transform:uppercase;
+  }
+</style>
+<div class="cover">
+  <svg class="stars" width="2560" height="500" viewBox="0 0 2560 500">
+    <g fill="#f2ecd9">
+      <circle cx="180" cy="60" r="2.4" opacity="0.8"/>
+      <circle cx="360" cy="140" r="1.6" opacity="0.5"/>
+      <circle cx="520" cy="40" r="2" opacity="0.6"/>
+      <circle cx="760" cy="110" r="1.8" opacity="0.55"/>
+      <circle cx="980" cy="30" r="2.2" opacity="0.7"/>
+      <circle cx="1180" cy="80" r="1.5" opacity="0.45"/>
+      <circle cx="1420" cy="40" r="2" opacity="0.6"/>
+      <circle cx="1640" cy="120" r="1.7" opacity="0.5"/>
+      <circle cx="1860" cy="60" r="2.3" opacity="0.75"/>
+      <circle cx="2080" cy="130" r="1.6" opacity="0.5"/>
+      <circle cx="2280" cy="70" r="2" opacity="0.65"/>
+      <circle cx="2420" cy="150" r="1.5" opacity="0.4"/>
+      <circle cx="90" cy="220" r="1.3" opacity="0.35"/>
+      <circle cx="2470" cy="230" r="1.3" opacity="0.35"/>
+    </g>
+  </svg>
+
+  <div class="series-banner">LOOP CHRONICLES</div>
+  <div class="series-rule"></div>
+  <div class="book-tag">Book Five</div>
+
+  <div class="ring"></div>
+
+  <!-- The dry valley: two slopes, a cracked floor, bones, a thread of water
+       coming down from above, and one sprig of green where it reaches. -->
+  <svg class="glyph" width="1230" height="1046" viewBox="60 40 940 800">
+
+    <!-- valley slopes -->
+    <path d="M110 190 C 250 396, 340 528, 470 574 C 600 528, 690 396, 830 190"
+          fill="none" stroke="#d8bd85" stroke-width="5" opacity="0.55"/>
+    <path d="M182 250 C 300 426, 372 538, 470 582 C 568 538, 640 426, 758 250"
+          fill="none" stroke="#d8bd85" stroke-width="2.2" opacity="0.2"/>
+
+    <!-- valley floor, cracked -->
+    <line x1="190" y1="616" x2="778" y2="616" stroke="#d8bd85" stroke-width="4" opacity="0.45"/>
+    <g stroke="#d8bd85" stroke-width="1.8" opacity="0.18" stroke-linecap="round">
+      <line x1="266" y1="616" x2="242" y2="680"/>
+      <line x1="352" y1="616" x2="368" y2="694"/>
+      <line x1="626" y1="616" x2="608" y2="688"/>
+      <line x1="706" y1="616" x2="730" y2="674"/>
+      <line x1="242" y1="680" x2="190" y2="706"/>
+      <line x1="368" y1="694" x2="428" y2="726"/>
+      <line x1="608" y1="688" x2="664" y2="720"/>
+    </g>
+
+    <!-- bones on the floor: plain strokes with knobbed ends, spare.
+         The centre is left open so the sprig stands alone. -->
+    <g stroke="#f2ecd9" stroke-width="9" opacity="0.66" stroke-linecap="round">
+      <line x1="222" y1="590" x2="330" y2="582"/>
+      <line x1="262" y1="546" x2="350" y2="532"/>
+      <line x1="372" y1="602" x2="462" y2="596"/>
+      <line x1="392" y1="552" x2="458" y2="542"/>
+      <line x1="650" y1="586" x2="756" y2="574"/>
+      <line x1="668" y1="542" x2="744" y2="552"/>
+      <line x1="694" y1="606" x2="760" y2="604"/>
+    </g>
+    <g fill="#f2ecd9" opacity="0.66">
+      <circle cx="219" cy="588" r="9"/><circle cx="333" cy="583" r="9"/>
+      <circle cx="259" cy="547" r="7"/><circle cx="353" cy="531" r="7"/>
+      <circle cx="369" cy="603" r="9"/><circle cx="465" cy="595" r="9"/>
+      <circle cx="389" cy="553" r="7"/><circle cx="461" cy="541" r="7"/>
+      <circle cx="647" cy="587" r="9"/><circle cx="759" cy="573" r="9"/>
+      <circle cx="665" cy="541" r="7"/><circle cx="747" cy="553" r="7"/>
+      <circle cx="691" cy="607" r="7"/><circle cx="763" cy="604" r="7"/>
+    </g>
+
+    <!-- the thread of water, dug down from the city above, bending
+         toward the one place it is let out -->
+    <path d="M498 110 C 490 240, 524 342, 518 430 C 512 506, 542 560, 545 610"
+          fill="none" stroke="#9fc4dc" stroke-width="6" opacity="0.62" stroke-linecap="round"/>
+    <path d="M498 110 C 490 240, 524 342, 518 430 C 512 506, 542 560, 545 610"
+          fill="none" stroke="#dff0fa" stroke-width="1.8" opacity="0.38" stroke-linecap="round"/>
+    <g fill="#9fc4dc" opacity="0.5">
+      <circle cx="518" cy="372" r="6"/>
+      <circle cx="521" cy="498" r="5"/>
+      <circle cx="538" cy="566" r="4"/>
+    </g>
+
+    <!-- where the water touches: one sprig, a finger's width -->
+    <circle cx="545" cy="620" r="44" fill="#8fae7e" opacity="0.10"/>
+    <path d="M545 620 C 542 588, 540 564, 537 540" fill="none"
+          stroke="#8fae7e" stroke-width="6" opacity="0.95" stroke-linecap="round"/>
+    <path d="M540 576 C 518 568, 504 554, 498 534" fill="none"
+          stroke="#8fae7e" stroke-width="4.6" opacity="0.88" stroke-linecap="round"/>
+    <path d="M542 594 C 566 586, 580 572, 586 552" fill="none"
+          stroke="#8fae7e" stroke-width="4.6" opacity="0.88" stroke-linecap="round"/>
+  </svg>
+
+  <div class="kicker">A NOVEL</div>
+
+  <div class="title">THE<br>DRY VALLEY</div>
+  <div class="rule"></div>
+  <div class="subtitle">a novel that begins at Ezekiel 37:3</div>
+
+  <div class="verse">&ldquo;Son of man, can these bones live?<br>And I answered, O Lord GOD, thou knowest.&rdquo;</div>
+  <div class="author">JOHAN CHOI</div>
+</div>
