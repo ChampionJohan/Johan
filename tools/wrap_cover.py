@@ -3,6 +3,7 @@
 
     python3 tools/wrap_cover.py en-teen 115
     python3 tools/wrap_cover.py en-teen 115 --paper white
+    python3 tools/wrap_cover.py en-teen3 255 --barcode white
     python3 tools/wrap_cover.py --all
 
 전자책 표지와 전혀 다른 물건이다. 전자책은 앞면만 있는 이미지이고,
@@ -35,6 +36,16 @@ PAPER = {"cream": 0.0025, "white": 0.002252, "color": 0.002347}
 
 # KDP 가 뒤표지 오른쪽 아래에 바코드를 얹는다. 이만큼 비워 둔다.
 BARCODE_W, BARCODE_H = 2.0, 1.2
+
+# 바코드 자리를 재단선에서 얼마나 띄울지. KDP 요구는 0.25 이상인데
+# 딱 0.25 로 두면 저쪽 검사에서 반올림으로 모자라게 읽힐 수 있어 넉넉히 준다.
+BARCODE_PAD = 0.375
+
+# 그 자리에 무엇을 둘지.
+#   none  — 아무것도 안 둔다. 아마존이 자기 바코드를 얹는다 (기본값)
+#   white — 흰 바탕을 깐다. 아마존 바코드가 흰 바탕 없이 찍힐 때를 대비한 것인데,
+#           KDP 검사가 이 사각형을 '직접 넣은 바코드'로 읽고 막는 경우가 있다.
+BARCODE_FILL = "none"
 
 # 책등에 글자를 넣으려면 쪽수가 이 이상이어야 한다
 SPINE_TEXT_MIN = 100
@@ -79,10 +90,11 @@ def draw_back(d, ox, oy, w, h, spec):
         f_age = font(f_sans_b, 40 * s)
         track(d, (L, y + 20 * s), spec["age"].upper(), f_age, accent, 6 * s)
 
-    # 바코드 자리 — 흰 바탕을 깔아 두면 바코드가 얹혔을 때 깔끔하다
-    bx = ox + w - px(SAFE) - px(BARCODE_W)
-    by = oy + h - px(SAFE) - px(BARCODE_H)
-    d.rectangle([bx, by, bx + px(BARCODE_W), by + px(BARCODE_H)], fill="#FFFFFF")
+    # 바코드 자리 — 비워 두는 것이 기본이다. 위의 BARCODE_FILL 설명을 볼 것.
+    if BARCODE_FILL == "white":
+        bx = ox + w - px(BARCODE_PAD) - px(BARCODE_W)
+        by = oy + h - px(BARCODE_PAD) - px(BARCODE_H)
+        d.rectangle([bx, by, bx + px(BARCODE_W), by + px(BARCODE_H)], fill="#FFFFFF")
 
 
 def draw_spine(d, ox, oy, w, h, spec, pages):
@@ -136,7 +148,7 @@ def draw_spine(d, ox, oy, w, h, spec, pages):
     return strip.rotate(-90, expand=True)
 
 
-def make(key, pages, paper="cream", out_dir=None):
+def make(key, pages, paper="cream", out_dir=None, suffix=""):
     spec = BOOKS[key]
     spine = pages * PAPER[paper]
     w_in = BLEED * 2 + TRIM_W * 2 + spine
@@ -165,7 +177,7 @@ def make(key, pages, paper="cream", out_dir=None):
     img.save(jpg, quality=94, subsampling=0)
 
     # 크기가 정확해야 하므로 PDF 는 포인트 단위로 직접 만든다 (1in = 72pt)
-    pdf_path = os.path.join(out_dir, "%s-wrap-%dp.pdf" % (key, pages))
+    pdf_path = os.path.join(out_dir, "%s-wrap-%dp%s.pdf" % (key, pages, suffix))
     doc = pymupdf.open()
     page = doc.new_page(width=w_in * 72, height=h_in * 72)
     page.insert_image(pymupdf.Rect(0, 0, w_in * 72, h_in * 72), filename=jpg)
@@ -186,12 +198,22 @@ def main():
         paper = sys.argv[sys.argv.index("--paper") + 1]
     out_dir = os.path.join(ROOT, "release", "covers")
 
-    jobs = DEFAULT if ("--all" in sys.argv or not args) else [(args[0], int(args[1]))]
+    if "--barcode" in sys.argv:
+        global BARCODE_FILL
+        BARCODE_FILL = sys.argv[sys.argv.index("--barcode") + 1]
+        if BARCODE_FILL not in ("none", "white"):
+            raise SystemExit("--barcode 는 none 또는 white 입니다")
+
+    # 인자 없이 부르면 이미 낸 책들의 표지를 말없이 다시 그린다. 그래서 막아 둔다.
+    if not args and "--all" not in sys.argv:
+        raise SystemExit(__doc__)
+    jobs = DEFAULT if "--all" in sys.argv else [(args[0], int(args[1]))]
     for key, pages in jobs:
-        path, w, h, spine = make(key, pages, paper, out_dir)
+        suffix = "-barcode-white" if BARCODE_FILL == "white" else ""
+        path, w, h, spine = make(key, pages, paper, out_dir, suffix)
         note = "" if pages >= SPINE_TEXT_MIN else "  (100쪽 미만이라 책등 글자 없음)"
-        print("만들었습니다: %s\n   %.3f x %.3f in · 책등 %.4f in · %s · %d쪽%s"
-              % (os.path.relpath(path, ROOT), w, h, spine, paper, pages, note))
+        print("만들었습니다: %s\n   %.3f x %.3f in · 책등 %.4f in · %s · %d쪽 · 바코드 자리 %s%s"
+              % (os.path.relpath(path, ROOT), w, h, spine, paper, pages, BARCODE_FILL, note))
     return 0
 
 
