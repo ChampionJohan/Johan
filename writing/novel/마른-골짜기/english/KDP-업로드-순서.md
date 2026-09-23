@@ -122,7 +122,7 @@ A story about a boy who counts things because he cannot keep them, an official w
 
 ## 업로드 전 최종 확인
 
-- [ ] EPUB 최신본 확인 (`the-dry-valley-en.epub`, 48장, ENPAGESp)
+- [ ] EPUB 최신본 확인 (`the-dry-valley-en.epub`, 48장, 633p)
 - [ ] 표지 2560×4096px JPG 확인
 - [ ] Book Title 칸에 `The Dry Valley`만 들어갔는지 저장 직후 재확인
 - [ ] Series가 **기존** `Loop Chronicles`에 붙었는지, 번호가 `5`인지 확인
@@ -138,6 +138,6 @@ A story about a boy who counts things because he cannot keep them, an official w
 | 2 | The Weeping Ledger | 531p | 508p |
 | 3 | The Forty-Day Clause | 509p | 502p |
 | 4 | The Gleaning Ground | 574p | 571p |
-| 5 | The Dry Valley | 618p | ENPAGESp |
+| 5 | The Dry Valley | 618p | 633p |
 
 막히는 부분이 생기면 그 화면만 캡처해서 보내주세요.
