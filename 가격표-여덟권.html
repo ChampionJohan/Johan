@@ -1,0 +1,99 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>여덟 권 값 매기기 — 전자책과 종이책</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>한눈에</h1>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>전자책</th><th>종이책</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td><strong>$4.99</strong></td><td><strong>$13.99</strong></td></tr><tr><td>02</td><td>The Fourth Box</td><td><strong>$6.99</strong></td><td><strong>$13.99</strong></td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td><strong>$3.99</strong></td><td><strong>$9.99</strong></td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td><strong>$4.99</strong></td><td><strong>$10.99</strong></td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td><strong>$6.99</strong></td><td><strong>$12.99</strong></td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td><strong>$5.99</strong></td><td><strong>$11.99</strong></td></tr><tr><td>07</td><td>Everyone Had One. Where Did They All Go?</td><td><strong>$4.99</strong></td><td><strong>$11.99</strong></td></tr><tr><td>08</td><td>다들 갖고 있었잖아. 다 어디 갔지?</td><td><strong>$4.99</strong></td><td><strong>$10.99</strong></td></tr></tbody></table></div>
+<p>아래는 이 숫자가 어디서 나왔는지입니다.</p>
+<hr>
+<h1>전자책</h1>
+<h2>규칙 두 개만 알면 됩니다</h2>
+<p><strong>하나. $2.99 ~ $9.99 사이에서만 70% 를 받습니다.</strong> 그 밖은 전부 35% 입니다.</p>
+<p>$2.99 와 $9.99 는 <strong>절벽</strong>입니다. $2.98 로 내리면 수익이 절반 밑으로 떨어집니다.</p>
+<p><strong>둘. 70% 구간에서는 전송료가 빠집니다.</strong> 파일 1MB당 $0.15 입니다.</p>
+<p>우리 책은 파일이 작아서 (0.34~0.52MB) <strong>권당 5~8센트</strong>입니다. 신경 안 쓰셔도 됩니다.</p>
+<h2>권당 얼마가 들어오나</h2>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>MB</th><th>정가</th><th>전송료</th><th><strong>권당 수익</strong></th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>0.52</td><td>$4.99</td><td>$0.08</td><td><strong>$3.42</strong></td></tr><tr><td>02</td><td>The Fourth Box</td><td>0.48</td><td>$6.99</td><td>$0.07</td><td><strong>$4.82</strong></td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>0.34</td><td>$3.99</td><td>$0.05</td><td><strong>$2.74</strong></td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>0.38</td><td>$4.99</td><td>$0.06</td><td><strong>$3.44</strong></td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td>0.49</td><td>$6.99</td><td>$0.07</td><td><strong>$4.82</strong></td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>0.51</td><td>$5.99</td><td>$0.08</td><td><strong>$4.12</strong></td></tr><tr><td>07</td><td>Everyone Had One.</td><td>0.44</td><td>$4.99</td><td>$0.07</td><td><strong>$3.43</strong></td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>0.45</td><td>$4.99</td><td>$0.07</td><td><strong>$3.43</strong></td></tr></tbody></table></div>
+<h2>왜 이 값인지</h2>
+<p><strong>01 은 일부러 싸게 잡았습니다.</strong></p>
+<p>시리즈 첫 권이라 <strong>미끼</strong>입니다. 여기서 읽은 사람이 02 로 넘어가는 게 목적입니다. $4.99 로 들어와서 $6.99 를 한 권 더 사면 합쳐서 $8.24 입니다. 01 을 $6.99 로 올려서 02 를 안 사면 $4.82 입니다.</p>
+<p><strong>첫 권 값은 그 권의 수익이 아니라 시리즈의 입구 값입니다.</strong></p>
+<p><strong>02 와 05 가 제일 비쌉니다.</strong> 둘 다 성인 대상이고 350쪽 안팎입니다. 02 는 시리즈를 따라온 사람이 사는 책이라 값에 덜 민감합니다. 05 는 단행본이라 첫 권 노릇을 할 필요가 없습니다.</p>
+<p><strong>03 이 제일 쌉니다.</strong> 115쪽이고 십대가 첫 권으로 집는 책입니다. $3.99 는 청소년책 전자책에서 부담 없이 눌리는 자리입니다.</p>
+<p><strong>한국어판 둘은 중간입니다.</strong> 아마존의 한국어 전자책 시장은 작고 값에 민감합니다. 06 을 영어판(05, $6.99)과 같게 두지 않고 $5.99 로 내린 이유입니다.</p>
+<h2>하면 안 되는 것 둘</h2>
+<p><strong>$9.99 를 넘기지 마세요.</strong> 한 푼이라도 넘으면 35% 로 떨어집니다. $10.99 로 팔면 $3.85 인데, $9.99 로 팔면 $6.91 입니다. <strong>비싸게 팔고 덜 법니다.</strong></p>
+<p><strong>$0.99 로 내리지 마세요.</strong> 35% 구간이라 권당 $0.35 입니다. 그리고 한 번 내리면 정가로 돌아갔을 때 안 팔립니다. 싼 책이라는 기억이 남습니다.</p>
+<h2>KDP Select 는 어떻게 할까요</h2>
+<p>지금은 <strong>넣는 쪽을 권합니다.</strong></p>
+<p>90일 동안 아마존에만 팔겠다고 약속하면 무제한 구독(Kindle Unlimited)에 들어갑니다. 거기서는 <strong>읽은 쪽수만큼</strong> 받습니다. 쪽당 대략 반 센트 안팎으로 알려져 있습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>책</th><th>끝까지 읽으면</th></tr></thead><tbody><tr><td>01 (366쪽)</td><td>$1.5 ~ $1.8</td></tr><tr><td>07 (255쪽)</td><td>$1.0 ~ $1.3</td></tr></tbody></table></div>
+<p>한 권 판 것($3.42)보다 적습니다. <strong>대신 사람들이 훨씬 많이 집습니다.</strong> 공짜니까요. 그리고 그게 다음 권 판매로 이어집니다.</p>
+<p><strong>아직 아무도 모르는 작가한테는 읽히는 게 먼저입니다.</strong> 이름이 붙고 나면 그때 빼면 됩니다. 90일마다 고를 수 있습니다.</p>
+<p><em>쪽당 단가는 달마다 바뀌고 제가 KDP를 직접 열지 못해 확인하지 못했습니다. 대시보드에서 실제 값을 보시고 두 번째 90일에 다시 정하시면 됩니다.</em></p>
+<hr>
+<h1>종이책</h1>
+<h2>인쇄비부터 깝니다</h2>
+<p>미국 아마존, 흑백, 6x9, 미색 종이 기준입니다.</p>
+<blockquote><p><strong>인쇄비 = $1.00 + (쪽수 x $0.012)</strong></p></blockquote>
+<p>이 돈은 무조건 먼저 나갑니다. 정가에서 이걸 빼고 남은 것에서 royalty가 나옵니다.</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>쪽</th><th>인쇄비</th><th>최소 정가</th><th><strong>권장 정가</strong></th><th>권당 수익</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>366</td><td>$5.39</td><td>$8.99</td><td><strong>$13.99</strong></td><td>$3.00</td></tr><tr><td>02</td><td>The Fourth Box</td><td>358</td><td>$5.30</td><td>$8.83</td><td><strong>$13.99</strong></td><td>$3.10</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>115</td><td>$2.38</td><td>$3.97</td><td><strong>$9.99</strong></td><td>$3.61</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>185</td><td>$3.22</td><td>$5.37</td><td><strong>$10.99</strong></td><td>$3.37</td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td>333</td><td>$5.00</td><td>$8.33</td><td><strong>$12.99</strong></td><td>$2.80</td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>301</td><td>$4.61</td><td>$7.69</td><td><strong>$11.99</strong></td><td>$2.58</td></tr><tr><td>07</td><td>Everyone Had One.</td><td>255</td><td>$4.06</td><td>$6.77</td><td><strong>$11.99</strong></td><td>$3.13</td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>224</td><td>$3.69</td><td>$6.15</td><td><strong>$10.99</strong></td><td>$2.91</td></tr></tbody></table></div>
+<h2>왜 전부 $9.99 이상인가</h2>
+<p><strong>$9.99 밑으로 내려가면 남는 게 거의 없습니다.</strong></p>
+<p>03 을 예로 들겠습니다. 인쇄비가 $2.38 입니다.</p>
+<div class="table-wrap"><table><thead><tr><th>정가</th><th>권당 수익</th></tr></thead><tbody><tr><td>$7.99</td><td>$1.61</td></tr><tr><td><strong>$9.99</strong></td><td><strong>$3.61</strong></td></tr><tr><td>$11.99</td><td>$4.81</td></tr></tbody></table></div>
+<p>$2 를 올렸는데 수익이 두 배가 넘습니다. <strong>115쪽짜리를 $9.99 에 파는 게 부담스러우시겠지만, 그 밑은 팔아도 안 남습니다.</strong></p>
+<p>그리고 앞서 정리해 드린 대로 <strong>$9.99 가 60% 구간의 문턱</strong>입니다. 이 문턱은 제가 KDP 도움말을 직접 열지 못해 재확인은 못 했습니다. 다만 문턱이 있든 없든 $9.99 이상이 유리하다는 결론은 같습니다. <strong>그래서 전부 $9.99 위로 잡았습니다.</strong></p>
+<h2>전자책과의 간격</h2>
+<p>종이책이 전자책보다 <strong>두 배에서 세 배</strong> 비쌉니다. 일부러 그렇게 뒀습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>전자책</th><th>종이책</th><th>배</th></tr></thead><tbody><tr><td>01</td><td>$4.99</td><td>$13.99</td><td>2.8배</td></tr><tr><td>03</td><td>$3.99</td><td>$9.99</td><td>2.5배</td></tr><tr><td>07</td><td>$4.99</td><td>$11.99</td><td>2.4배</td></tr></tbody></table></div>
+<p>간격이 좁으면 사람들이 종이책을 삽니다. 좋아 보이지만 <strong>권당 수익은 종이책이 더 낮습니다.</strong> 01 을 보면 전자책 $3.42, 종이책 $3.00 입니다.</p>
+<p><strong>간격을 벌려서 전자책 쪽으로 보내는 게 맞습니다.</strong> 종이책은 선물하거나 소장하려는 사람을 위한 것이고, 그 사람들은 값을 덜 봅니다.</p>
+<h2>확장 유통(Expanded Distribution)</h2>
+<p>서점과 도서관에 넣는 옵션입니다.</p>
+<p><strong>켜도 됩니다. 다만 수익이 줄어드는 건 아셔야 합니다.</strong> 아마존에서 파는 것보다 몫이 작습니다. 대신 아예 안 닿던 곳에 닿습니다.</p>
+<p>지금은 <strong>07·08 만 켜 보시는 걸 권합니다.</strong> 청소년책은 학교 도서관이 실제로 삽니다.</p>
+<hr>
+<h1>값을 올리는 건 나중에 언제든 됩니다</h1>
+<p><strong>전자책도 종이책도 값은 아무 때나 바꿀 수 있습니다.</strong> 몇 시간이면 반영됩니다.</p>
+<p>그래서 이렇게 하시면 됩니다.</p>
+<p><strong>처음 석 달</strong> — 위의 값 그대로 갑니다. 01 은 미끼로 두고요.</p>
+<p><strong>석 달 뒤 볼 것 두 개</strong></p>
+<ul><li>01 을 산 사람 중 <strong>몇 %가 02 를 샀나</strong> — 20%가 넘으면 미끼가 먹힌 겁니다</li><li>리뷰가 붙었나 — <strong>리뷰 열 개가 붙으면 값을 올릴 수 있습니다</strong></li></ul>
+<p><strong>올릴 때는 한 번에 $1 씩.</strong> 그리고 올린 뒤 2주를 봅니다. 판매가 그대로면 잘 올린 거고, 절반으로 줄면 되돌립니다.</p>
+<p><strong>내릴 때는 신중하게.</strong> 내린 값은 올리기 어렵습니다.</p>
+<hr>
+<h1>마지막으로 — 값보다 먼저인 것</h1>
+<p>여덟 권 값을 다 매겨 놨지만, 정직하게 말씀드리면 이렇습니다.</p>
+<p><strong>아무도 모르는 책은 $4.99 든 $9.99 든 안 팔립니다.</strong></p>
+<p>값은 사려고 마음먹은 사람이 마지막에 보는 것이고, 지금 필요한 건 <strong>그 앞 단계</strong>입니다. 이름이 붙는 일요.</p>
+<p>그 얘기는 작가님 책 16장에 이미 적혀 있습니다.</p>
+<blockquote><p>맞히는 게임은 빠른 쪽이 이기고, 남는 게임은 안 그만둔 쪽이 이긴다.</p></blockquote>
+<p>여덟 권이 이미 있다는 건 <strong>이미 그 게임 안에 들어와 있다</strong>는 뜻입니다. 값은 오늘 정하고, 석 달 뒤에 숫자를 보고 다시 정하면 됩니다.</p>
+</div></body></html>
