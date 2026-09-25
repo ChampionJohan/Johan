@@ -10,6 +10,7 @@
 """
 
 import os
+import re
 import sys
 from datetime import date
 
@@ -20,6 +21,7 @@ from build import CSS, PAGE, ROOT, esc
 DIARY_DIR = os.path.join(ROOT, "writing", "diary")
 HTML_DIR = os.path.join(DIARY_DIR, "html")
 WEEKDAYS = ("월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "주일")
+ENTRY_NAME = re.compile(r"^\d{4}-\d{2}-\d{2}\.md$")  # README 등 일기가 아닌 파일은 건너뛴다
 
 TEMPLATE = """---
 title: {day} 기록
@@ -46,7 +48,7 @@ def entries():
     """날짜 내림차순으로 (날짜, 메타, 본문, 슬러그) 목록을 돌려준다."""
     found = []
     for name in sorted(os.listdir(DIARY_DIR), reverse=True):
-        if not name.endswith(".md"):
+        if not ENTRY_NAME.match(name):
             continue
         path = os.path.join(DIARY_DIR, name)
         with open(path, encoding="utf-8") as handle:
