@@ -15,6 +15,7 @@
     python3 tools/build_ebook.py both4 # Book 4, both languages
     python3 tools/build_ebook.py both5 # Book 5, both languages
     python3 tools/build_ebook.py both6 # Book 6, both languages
+    python3 tools/build_ebook.py both7 # Book 7, both languages
     python3 tools/build_ebook.py all   # every book/language combination
 
 PDF는 Playwright(Chromium)로, EPUB는 ebooklib으로 만든다. 둘 다 이 저장소에
@@ -36,18 +37,21 @@ ROOT3 = "/home/user/Johan/writing/novel/사십일-조항"
 ROOT4 = "/home/user/Johan/writing/novel/이삭-줍는-자리"
 ROOT5 = "/home/user/Johan/writing/novel/마른-골짜기"
 ROOT6 = "/home/user/Johan/writing/novel/저자-없는-책"
+ROOT7 = "/home/user/Johan/writing/novel/마지막-방"
 OUT1 = os.path.join(ROOT1, "build")
 OUT2 = os.path.join(ROOT2, "build")
 OUT3 = os.path.join(ROOT3, "build")
 OUT4 = os.path.join(ROOT4, "build")
 OUT5 = os.path.join(ROOT5, "build")
 OUT6 = os.path.join(ROOT6, "build")
+OUT7 = os.path.join(ROOT7, "build")
 os.makedirs(OUT1, exist_ok=True)
 os.makedirs(OUT2, exist_ok=True)
 os.makedirs(OUT3, exist_ok=True)
 os.makedirs(OUT4, exist_ok=True)
 os.makedirs(OUT5, exist_ok=True)
 os.makedirs(OUT6, exist_ok=True)
+os.makedirs(OUT7, exist_ok=True)
 
 AUTHOR_PLACEHOLDER_KO = "Johan Choi"
 AUTHOR_PLACEHOLDER_EN = "Johan Choi"
@@ -207,6 +211,32 @@ CONFIGS = {
         toc_label="Table of Contents",
         cover_kicker="A NOVEL",
         out_base="the-unsigned-book-en",
+        part_word="Part",
+    ),
+    "ko7": dict(
+        src_dir=ROOT7,
+        out_dir=OUT7,
+        pattern=re.compile(r"^\d{2}장.*\.md$"),
+        lang="ko",
+        title="마지막 방",
+        subtitle="루프 연대기 7권 · 다니엘 12장 4절에서 시작하는 이야기",
+        author=AUTHOR_PLACEHOLDER_KO,
+        toc_label="목차",
+        cover_kicker="장편 소설",
+        out_base="the-last-room-ko",
+        part_word="부",
+    ),
+    "en7": dict(
+        src_dir=os.path.join(ROOT7, "english"),
+        out_dir=OUT7,
+        pattern=re.compile(r"^\d{2}-.*\.md$"),
+        lang="en",
+        title="The Last Room",
+        subtitle="Loop Chronicles Book 7 \u00b7 A novel that begins at Daniel 12:4",
+        author=AUTHOR_PLACEHOLDER_EN,
+        toc_label="Table of Contents",
+        cover_kicker="A NOVEL",
+        out_base="the-last-room-en",
         part_word="Part",
     ),
 }
@@ -419,9 +449,12 @@ def main():
             expanded += ["ko5", "en5"]
         elif t == "both6":
             expanded += ["ko6", "en6"]
+        elif t == "both7":
+            expanded += ["ko7", "en7"]
         elif t == "all":
             expanded += ["ko", "en", "ko2", "en2", "ko3", "en3",
-                         "ko4", "en4", "ko5", "en5", "ko6", "en6"]
+                         "ko4", "en4", "ko5", "en5", "ko6", "en6",
+                         "ko7", "en7"]
         else:
             expanded.append(t)
     for t in expanded:
