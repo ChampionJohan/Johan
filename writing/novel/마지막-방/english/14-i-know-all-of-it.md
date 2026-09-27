@@ -145,7 +145,7 @@ He started speaking before he even opened it.
 
 "…If it comes right after the scene where Mena takes off her shoes,
 then it's the part where Grandfather writes 'Not yet' in the margin of
-the book of Daniel. He wrote it seventeen times. On the last page
+the oldest bundle. He wrote it seventeen times. On the last sheet
 there's one more line in a different hand —"
 
 He stopped for a moment.
@@ -156,14 +156,14 @@ I was already too curious to wait.
 
 "…Yes, tell me."
 
-"…'It is finished.' That one line."
+"…'You don't have to wait any more.' That one line."
 
 I opened it and checked. It matched. Exactly right. The note even said
 the handwriting was different, just as he'd described.
 
-I read that line again. "It is finished." A short sentence, but my eyes
-stayed on it strangely long. I didn't know then why they stayed so
-long.
+I read that line again. "You don't have to wait any more." A short
+sentence, but my eyes stayed on it strangely long. I didn't know then
+why they stayed so long.
 
 "…What do you think this means?" I asked, half to myself.
 
