@@ -427,9 +427,9 @@ still again. It didn't come loose. I noticed that too.
 write it as some great miracle. I'm not writing an ending where the
 valley becomes a forest overnight. This isn't that kind of book.*
 
-*At the start of this book, I mentioned that valley from the book of
-Ezekiel. The valley full of bones, the very dry ones. And that
-question. Can these bones live. To the very end of this book, I never
+*Speon told me a very old story once. A valley full of bones, the
+very dry ones. And that question. Can these bones live. I had never
+heard that story until he told it to me. To the very end of this book, I never
 answered yes to that question. I never answered no, either. I only
 set down that I saw one very small green thing. That was the whole of
 what I could do.*
