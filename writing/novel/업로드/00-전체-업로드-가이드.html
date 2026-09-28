@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>루프 연대기 업로드 가이드</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#f7f5f0; --panel:#fff; --ink:#1e2530; --muted:#6b7480;
+  --line:#e2ddd2; --gold:#a8812f; --navy:#16253a; --warn:#8a3a2a;
+  --warnbg:#fdf2ee; --okbg:#eef4ee; --ok:#2f6b41;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1520; --panel:#161f2c; --ink:#e8e4da; --muted:#96a0ae;
+  --line:#26313f; --gold:#d8bd85; --navy:#dfe6ef; --warn:#e8a08c;
+  --warnbg:#2a1c18; --okbg:#16231a; --ok:#8fc49f;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1520; --panel:#161f2c; --ink:#e8e4da; --muted:#96a0ae;
+  --line:#26313f; --gold:#d8bd85; --navy:#dfe6ef; --warn:#e8a08c;
+  --warnbg:#2a1c18; --okbg:#16231a; --ok:#8fc49f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.75;
+  font-size:16px;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:56px 16px 96px}
+header{text-align:center;padding-bottom:36px;border-bottom:1px solid var(--line);margin-bottom:40px}
+.kicker{letter-spacing:.42em;font-size:12px;color:var(--gold);text-transform:uppercase}
+h1{font-family:"Noto Serif KR",serif;font-weight:600;font-size:clamp(28px,6vw,40px);
+  margin:.5em 0 .25em;line-height:1.25}
+.sub{color:var(--muted);font-size:15px;margin:0}
+h2{font-family:"Noto Serif KR",serif;font-size:clamp(20px,4.4vw,25px);font-weight:600;
+  margin:52px 0 6px;padding-bottom:10px;border-bottom:2px solid var(--gold);line-height:1.35}
+h3{font-size:16px;font-weight:700;margin:30px 0 8px;color:var(--navy)}
+p{margin:.85em 0}
+code{background:var(--panel);border:1px solid var(--line);border-radius:5px;
+  padding:2px 7px;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.88em;
+  word-break:break-all}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:16px;overflow-x:auto;font-size:13px;line-height:1.65}
+pre code{background:none;border:0;padding:0;word-break:normal}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px;
+  background:var(--panel);border-radius:10px;overflow:hidden}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--navy);color:var(--bg);font-weight:600;font-size:13.5px;white-space:nowrap}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) th{color:#0f1520}}
+:root[data-theme="dark"] th{color:#0f1520}
+tr:last-child td{border-bottom:0}
+td:first-child{white-space:nowrap;font-weight:600;color:var(--gold)}
+.note{border-left:4px solid var(--gold);background:var(--panel);
+  padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0}
+.warn{border-left:4px solid var(--warn);background:var(--warnbg);
+  padding:14px 18px;border-radius:0 10px 10px 0;margin:18px 0}
+.warn strong{color:var(--warn)}
+.big{background:var(--okbg);border:1px solid var(--line);border-radius:12px;
+  padding:20px 22px;margin:22px 0;text-align:center}
+.big .n{font-family:"Noto Serif KR",serif;font-size:clamp(22px,5vw,30px);
+  font-weight:600;color:var(--ok);display:block;line-height:1.4}
+ol,ul{padding-left:1.3em;margin:.8em 0}
+li{margin:.45em 0}
+.chk{list-style:none;padding-left:0}
+.chk li{padding-left:30px;position:relative}
+.chk li::before{content:"☐";position:absolute;left:4px;top:0;color:var(--gold);font-size:17px}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:14px;text-align:center}
+</style>
+<div class="wrap">
+<header>
+  <div class="kicker">Loop Chronicles</div>
+  <h1>1~7권 KDP 업로드 가이드</h1>
+  <p class="sub">시리즈 완결 · 336장 · 영어 3,909페이지</p>
+</header>
+
+<h2>폴더 구성</h2>
+<pre><code>업로드/
+  00-전체-업로드-가이드.md / .html    ← 이 문서
+  1권-loop-chronicles/
+    01-loop-chronicles-EN-영어.epub    ← KDP에 올리는 원고
+    01-loop-chronicles-EN-영어.pdf     ← 검토용
+    01-loop-chronicles-ko-한국어.epub  ← 한국어판
+    01-loop-chronicles-ko-한국어.pdf
+    01-loop-chronicles-표지.jpg        ← KDP에 올리는 표지
+    01-KDP-업로드-순서.md              ← 이 권만의 상세 순서
+  2권-the-weeping-ledger/ … 7권-the-last-room/</code></pre>
+<div class="note"><strong>KDP에 올리는 건 <code>EN-영어.epub</code>과 <code>표지.jpg</code> 두 개뿐입니다.</strong>
+PDF는 미리보기·검토용이고, <code>ko-한국어</code> 파일은 국내 연재·배포용입니다.</div>
+
+<h2>시작 전에 — 이것만은 꼭</h2>
+<div class="warn"><strong>① 시리즈는 한 번만 만듭니다.</strong><br>
+1권을 올릴 때 <code>Loop Chronicles</code> 시리즈를 <b>새로 만들고</b>,
+2~7권은 반드시 <b>기존 시리즈를 목록에서 선택</b>합니다.
+권마다 새로 만들면 별개 시리즈 7개가 생기고 연결이 끊깁니다.</div>
+<div class="warn"><strong>② Book Title 칸에는 제목만.</strong><br>
+<code>Series title:</code> 같은 라벨을 같이 붙여넣지 마세요.
+1권 등록 때 실제로 있었던 실수입니다. 저장 직후 한 번 더 확인하세요.</div>
+<ul>
+<li><b>표지는 JPG만</b> 됩니다. PNG는 업로드가 막힙니다.</li>
+<li><b>표지 버튼이 안 눌리면</b> 원고(EPUB)를 먼저 올린 뒤 다시 시도하세요.</li>
+<li><b>Sexually Explicit 항목을 먼저</b> 고르세요. 그래야 Categories 버튼이 활성화됩니다.</li>
+</ul>
+
+<h2>7권 공통 설정</h2>
+<p>매번 똑같이 넣는 값입니다.</p>
+<div class="tablewrap"><table>
+<tr><th>항목</th><th>값</th></tr>
+<tr><td>Language</td><td><code>English</code></td></tr>
+<tr><td>Author</td><td>First <code>Johan</code> / Last <code>Choi</code></td></tr>
+<tr><td>Publishing Rights</td><td>I own the copyright and I hold the necessary publishing rights.</td></tr>
+<tr><td>Sexually Explicit</td><td><code>No</code></td></tr>
+<tr><td>Reading age</td><td><code>13</code> ~ <code>18</code></td></tr>
+<tr><td>Marketplace</td><td><code>Amazon.com</code></td></tr>
+<tr><td>Categories</td><td>Literature &amp; Fiction → Religious &amp; Inspirational → Fantasy<br>Teen &amp; Young Adult → Religious Fiction<br>Science Fiction &amp; Fantasy → Fantasy</td></tr>
+<tr><td>Pre-order</td><td>I am ready to release my book now</td></tr>
+<tr><td>DRM</td><td>No, do not apply DRM</td></tr>
+<tr><td>AI Content</td><td><code>Yes</code> → <code>Text</code>, <code>Translation</code> 체크</td></tr>
+<tr><td>비워 둘 칸</td><td>ISBN · Publisher · Edition · Contributors</td></tr>
+<tr><td>Accessibility</td><td>None of the informative images… + 확인 체크</td></tr>
+<tr><td>Territories</td><td>All territories</td></tr>
+<tr><td>Royalty / Price</td><td><code>70%</code> / <code>$4.99</code></td></tr>
+<tr><td>KDP Select</td><td>등록 추천</td></tr>
+</table></div>
+<div class="note"><b>Accessibility 주의</b> — 본문 이미지가 0개인 순수 텍스트 소설입니다.
+<code>All…</code>을 고르면 없는 이미지에 접근성을 주장하는 셈이 되니 고르지 마세요.</div>
+
+<h2>권별로 다른 것</h2>
+<p>Description(책 소개) 전문은 각 권 폴더의 <code>KDP-업로드-순서.md</code>에 있습니다.</p>
+<div class="tablewrap"><table>
+<tr><th>권</th><th>Book Title</th><th>Series no.</th><th>영어</th></tr>
+<tr><td>1</td><td>Loop Chronicles</td><td><b>1 · 시리즈 새로 만들기</b></td><td>550p</td></tr>
+<tr><td>2</td><td>The Weeping Ledger</td><td>2</td><td>508p</td></tr>
+<tr><td>3</td><td>The Forty-Day Clause</td><td>3</td><td>502p</td></tr>
+<tr><td>4</td><td>The Gleaning Ground</td><td>4</td><td>571p</td></tr>
+<tr><td>5</td><td>The Dry Valley</td><td>5</td><td>633p</td></tr>
+<tr><td>6</td><td>The Unsigned Book</td><td>6</td><td>547p</td></tr>
+<tr><td>7</td><td>The Last Room</td><td>7 · 마지막</td><td>598p</td></tr>
+</table></div>
+
+<h3>Subtitle</h3>
+<div class="tablewrap"><table>
+<tr><th>권</th><th>Subtitle</th></tr>
+<tr><td>1</td><td>A Novel of Daniel's Prophecy and the Machine That Answers Everything</td></tr>
+<tr><td>2</td><td>A Novel of a Father Who Forgot His Name</td></tr>
+<tr><td>3</td><td>A Novel of a City Given Forty Days</td></tr>
+<tr><td>4</td><td>A Novel of a Field Where Nothing Falls</td></tr>
+<tr><td>5</td><td>A Novel of a City Where No One Dies</td></tr>
+<tr><td>6</td><td>A Novel of a City Where Nobody Decides</td></tr>
+<tr><td>7</td><td>The Final Novel of the Loop Chronicles</td></tr>
+</table></div>
+
+<h3>Keywords — 7칸에 하나씩</h3>
+<p><b>1~7권 공통 3개</b>: <code>christian fantasy</code> ·
+<code>christian young adult fiction</code> · <code>allegorical christian fiction</code></p>
+<div class="tablewrap"><table>
+<tr><th>권</th><th>나머지 4개</th></tr>
+<tr><td>1</td><td>daniel prophecy fiction · time loop fantasy · AI dystopia christian fiction · coming of age christian fiction</td></tr>
+<tr><td>2</td><td>exodus retelling fiction · AI dystopia christian fiction · grief and faith fiction · coming of age christian fiction</td></tr>
+<tr><td>3</td><td>jonah retelling fiction · AI judgment dystopia fiction · mercy and justice fiction · forgiveness fiction teen</td></tr>
+<tr><td>4</td><td>ruth retelling fiction · AI dystopia christian fiction · belonging and mercy fiction · outsider story christian teen</td></tr>
+<tr><td>5</td><td>ezekiel 37 dry bones fiction · AI dystopia christian fiction · immortality and mortality fiction · grief and resurrection teen fiction</td></tr>
+<tr><td>6</td><td>book of esther retelling · AI bureaucracy dystopia fiction · providence and coincidence fiction · moral courage teen fiction</td></tr>
+<tr><td>7</td><td>christian fantasy series finale · daniel 12 sealed book fiction · knowing and believing fiction · seven book fantasy series conclusion</td></tr>
+</table></div>
+
+<h2>권별 한 줄 — 소개 쓸 때 참고</h2>
+<div class="tablewrap"><table>
+<tr><th>권</th><th>씨앗 본문</th><th>시스템</th><th>그 시스템이 하지 못하는 것</th></tr>
+<tr><td>1</td><td>다니엘 12:4</td><td>아르케</td><td>무엇이든 답하지만 <b>"왜"는 답하지 못한다</b></td></tr>
+<tr><td>2</td><td>출애굽 계열</td><td>장부</td><td>모든 고통을 해결하지만 <b>들어 주지는 않는다</b></td></tr>
+<tr><td>3</td><td>요나 4장</td><td>저울</td><td><b>단 한 번도 틀리지 않는다</b> — 다만 돌이킴은 못 잰다</td></tr>
+<tr><td>4</td><td>룻 1:16</td><td>명부</td><td><b>단 한 번도 법을 어기지 않는다</b> — 다만 떨어지는 이삭이 없다</td></tr>
+<tr><td>5</td><td>에스겔 37:3</td><td>영속</td><td><b>약속을 정확히 지킨다</b> — 보존된 사람은 웃지도 울지도 않는다</td></tr>
+<tr><td>6</td><td>에스더 4:14</td><td>총의</td><td><b>아무것도 숨기지 않는다</b> — 기록은 완전한데 저자가 없다</td></tr>
+<tr><td>7</td><td>다니엘 12:4<br>요한 14:2</td><td>아르케<br>(회귀)</td><td><b>아무것도 끝내지 못한다</b> — 종결 조건이 정의된 적이 없다</td></tr>
+</table></div>
+
+<h2>업로드 후 확인</h2>
+<ul class="chk">
+<li>1권 등록 직후 Book Title 칸에 제목만 들어갔는지 재확인</li>
+<li>2~7권이 <b>기존</b> <code>Loop Chronicles</code>에 붙었는지, 번호가 맞는지</li>
+<li>7권까지 게시된 뒤 시리즈 페이지에서 <b>1~7권이 순서대로 전부</b> 보이는지</li>
+<li>각 권 상세 페이지에서 표지가 깨지지 않았는지</li>
+</ul>
+
+<h2>시리즈 최종 현황</h2>
+<div class="big"><span class="n">336장 · 7권 완결</span>
+한국어 3,935페이지 · 영어 3,909페이지</div>
+<div class="tablewrap"><table>
+<tr><th>권</th><th>제목</th><th>한국어</th><th>영어</th></tr>
+<tr><td>1</td><td>Loop Chronicles</td><td>560p</td><td>550p</td></tr>
+<tr><td>2</td><td>The Weeping Ledger</td><td>531p</td><td>508p</td></tr>
+<tr><td>3</td><td>The Forty-Day Clause</td><td>509p</td><td>502p</td></tr>
+<tr><td>4</td><td>The Gleaning Ground</td><td>574p</td><td>571p</td></tr>
+<tr><td>5</td><td>The Dry Valley</td><td>618p</td><td>633p</td></tr>
+<tr><td>6</td><td>The Unsigned Book</td><td>535p</td><td>547p</td></tr>
+<tr><td>7</td><td>The Last Room</td><td>608p</td><td>598p</td></tr>
+</table></div>
+
+<footer>막히는 부분이 생기면 그 화면만 캡처해서 보내주세요.</footer>
+</div>
+</html>
