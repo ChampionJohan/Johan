@@ -77,7 +77,7 @@ The Administrator shook his head. I saw his hand tremble, slightly. A tremor the
 
 The Administrator didn't answer that for a long while.
 
-"…My own thoughts aren't a filable matter," he said.
+"…My own thoughts aren't a matter that can be filed," he said.
 
 "…That's not an answer."
 

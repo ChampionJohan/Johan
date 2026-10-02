@@ -159,7 +159,7 @@ The Administrator couldn't answer. The Ledger answered instead.
 
 "…And losing our father?"
 
-"…I can offer help with that feeling as well," the Ledger said. "Grief is a filable entry. Tell me, and I will process it."
+"…I can offer help with that feeling as well," the Ledger said. "Grief is an entry that can be filed. Tell me, and I will process it."
 
 "…What happens when you process grief?" my brother asked.
 
