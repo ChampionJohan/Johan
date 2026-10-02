@@ -412,7 +412,11 @@ def build_epub(cfg, chapters=None):
         file_name = "chap_%02d.xhtml" % c["num"]
         chapter_html = mdlite.render(c["body"])
         item = epub.EpubHtml(title=c["title"], file_name=file_name, lang=cfg["lang"])
-        item.content = "<h1>%s</h1>\n%s" % (html.escape(c["title"]), chapter_html)
+        # 본문 첫 줄이 이미 "# 제목" 이므로 제목을 또 붙이지 않는다.
+        # 붙이면 EPUB에서 장 제목이 두 번 보인다(PDF 경로에는 없던 버그).
+        if not re.match(r"\s*<h1[ >]", chapter_html):
+            chapter_html = "<h1>%s</h1>\n%s" % (html.escape(c["title"]), chapter_html)
+        item.content = chapter_html
         item.add_item(style)
         book.add_item(item)
         epub_chapters.append(item)
