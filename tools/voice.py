@@ -88,8 +88,10 @@ def measure(key):
     text = "".join(body(f) for f in chapters)
     sent = (split_en if en else split_ko)(text)
     size = [len(s.split()) if en else len(s) for s in sent]
+    # 인용 블록은 남의 말을 옮긴 것이라 글쓴이의 문단으로 세지 않는다.
+    # paragraphs() 와 같은 기준을 쓴다.
     paras = [p for p in text.split("\n\n")
-             if p.strip() and not p.strip().startswith(("#", "-", "|"))]
+             if p.strip() and not p.strip().startswith(("#", "-", "|", "`", ">"))]
     plines = [len(p.strip().split("\n")) for p in paras]
 
     long_cut = 30 if en else 60
