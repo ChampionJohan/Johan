@@ -17,3 +17,8 @@ book-teen3/site/
 발간본/
 발간본.zip
 발간본-EN/
+
+# 원고 폴더의 HTML 은 보내려고 그때그때 만드는 임시 파일이다.
+# 원고는 md 가 원본이고, 묶은 결과는 site/index.html 이다.
+*/manuscript/*.html
+ai-book/site/
