@@ -42,13 +42,22 @@ def body(path):
     return s
 
 
+def paragraphs(text):
+    """문단 안의 줄바꿈은 읽기 편하라고 넣은 것이지 문장 끝이 아니다.
+    줄 단위로 끊으면 한 문장이 두 문장으로 세어져 긴 문장이 사라진다."""
+    text = re.sub(r"\*+", "", text)
+    out = []
+    for p in text.split("\n\n"):
+        p = re.sub(r"\s*\n\s*", " ", p).strip()
+        if p and not p.startswith(("#", "-", "|", "`", ">")):
+            out.append(p)
+    return out
+
+
 def split_ko(text):
     out = []
-    for line in re.sub(r"\*+", "", text).split("\n"):
-        line = line.strip()
-        if not line or line.startswith(("#", "-", "|", "`")):
-            continue
-        for t in re.split(r"(?<=[.!?…])\s+", line):
+    for p in paragraphs(text):
+        for t in re.split(r"(?<=다\.)\s+|(?<=[.!?…])\s+", p):
             t = t.strip()
             if len(t) > 3:
                 out.append(t)
@@ -56,9 +65,10 @@ def split_ko(text):
 
 
 def split_en(text):
-    text = re.sub(r"^#.*$", "", re.sub(r"\*+", "", text), flags=re.M)
-    text = re.sub(r"^[-|`].*$", "", text, flags=re.M)
-    return [t.strip() for t in re.split(r"(?<=[.!?])\s+", text) if len(t.strip()) > 3]
+    out = []
+    for p in paragraphs(text):
+        out += [t.strip() for t in re.split(r"(?<=[.!?])\s+", p) if len(t.strip()) > 3]
+    return out
 
 
 def bar(value, floor, good, invert=False):
