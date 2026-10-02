@@ -42,10 +42,16 @@ BARCODE_W, BARCODE_H = 2.0, 1.2
 BARCODE_PAD = 0.375
 
 # 그 자리에 무엇을 둘지.
-#   none  — 아무것도 안 둔다. 아마존이 자기 바코드를 얹는다 (기본값)
-#   white — 흰 바탕을 깐다. 아마존 바코드가 흰 바탕 없이 찍힐 때를 대비한 것인데,
-#           KDP 검사가 이 사각형을 '직접 넣은 바코드'로 읽고 막는 경우가 있다.
-BARCODE_FILL = "none"
+#   white — 흰 바탕을 깐다 (기본값). 아마존이 그 안에 자기 바코드를 찍는다.
+#   none  — 아무것도 안 둔다. 어두운 표지에서는 바코드가 안 읽힐 수 있다.
+#
+# 2026-10-02: 한때 기본값을 none 으로 바꿨었다. 07번이 KDP 에서
+# "valid barcode 를 못 찾겠다" 로 막혔을 때 이 흰 사각형을 의심했기 때문이다.
+# 그런데 똑같이 만든 05번 표지는 같은 검사를 통과했고, 미리보기를 보니
+# 아마존 바코드가 이 흰 바탕 안에 깔끔하게 찍혀 있었다. 표지가 원인이 아니었다.
+# 진짜 원인은 title setup 의 저내용(low-content) 체크와 그에 딸린 ISBN 선택이었다.
+# 그래서 white 로 되돌린다.
+BARCODE_FILL = "white"
 
 # 책등에 글자를 넣으려면 쪽수가 이 이상이어야 한다
 SPINE_TEXT_MIN = 100
@@ -209,7 +215,7 @@ def main():
         raise SystemExit(__doc__)
     jobs = DEFAULT if "--all" in sys.argv else [(args[0], int(args[1]))]
     for key, pages in jobs:
-        suffix = "-barcode-white" if BARCODE_FILL == "white" else ""
+        suffix = "" if BARCODE_FILL == "white" else "-barcode-%s" % BARCODE_FILL
         path, w, h, spine = make(key, pages, paper, out_dir, suffix)
         note = "" if pages >= SPINE_TEXT_MIN else "  (100쪽 미만이라 책등 글자 없음)"
         print("만들었습니다: %s\n   %.3f x %.3f in · 책등 %.4f in · %s · %d쪽 · 바코드 자리 %s%s"
