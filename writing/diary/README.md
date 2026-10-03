@@ -12,6 +12,12 @@
 writing/diary/2026-09-24.md  +  writing/diary/html/2026-09-24.html
 ```
 
+## 전제: 언젠가 한 권으로 낸다
+
+이 일기는 책의 원재료다. 계획은 `책구상.md` 에 있다.
+그래서 살을 붙일 때 장면·대화·숫자·관계·감정의 변화를 챙긴다 (책구상 4항).
+민감한 과거는 연수와 장소를 특정하지 않는다 (책구상 5항).
+
 ## 살을 붙일 때 지키는 것
 
 1. **메모에 없는 사실은 쓰지 않는다.** 식당 이름, 요금, 인원, 소요 시간을 추측해 채우지 않는다.
@@ -37,6 +43,7 @@ python3 tools/diary.py new           # 오늘자 뼈대 (날짜·요일 자동, 
 python3 tools/diary.py new 2026-09-26
 python3 tools/diary.py build         # 전체 HTML 재생성 + 독서 진행표 갱신
 python3 tools/diary.py reading       # 독서 진행표만 다시 만들기
+python3 tools/diary.py book          # 전체 일기를 한 권 원고로 묶기
 ```
 
 ## 독서 진행표

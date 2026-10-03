@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>책 구상</title>
+<meta name="description" content="책 구상">
+<meta property="og:title" content="책 구상"><meta property="og:description" content="책 구상">
+<meta property="og:type" content="article">
+<style>
+:root{--bg:#fbfaf8;--fg:#1c1b19;--muted:#6b6862;--line:#e3dfd8;--accent:#8a5a2b;--card:#fff;--code:#f2efe9}
+@media (prefers-color-scheme:dark){:root{--bg:#16151a;--fg:#e8e5df;--muted:#9a958c;--line:#2e2c33;--accent:#d9a978;--card:#1d1c22;--code:#232228}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  line-height:1.75;-webkit-text-size-adjust:100%}
+.wrap{max-width:44rem;margin:0 auto;padding:0 1.25rem}
+header.site{border-bottom:1px solid var(--line);padding:2.5rem 0 1.75rem;margin-bottom:2.5rem}
+header.site h1{font-size:1.35rem;margin:0 0 .4rem;letter-spacing:-.02em}
+header.site h1 a{color:inherit;text-decoration:none}
+header.site p{margin:0;color:var(--muted);font-size:.9rem}
+.stats{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1.25rem;font-size:.82rem;color:var(--muted)}
+.stats b{display:block;font-size:1.4rem;color:var(--accent);font-weight:650;line-height:1.2}
+.series{margin:2.5rem 0 1rem;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--line);padding-bottom:.5rem}
+ul.posts{list-style:none;padding:0;margin:0}
+ul.posts li{padding:1.1rem 0;border-bottom:1px solid var(--line)}
+ul.posts a{color:inherit;text-decoration:none;font-size:1.05rem;font-weight:600;letter-spacing:-.01em}
+ul.posts a:hover{color:var(--accent)}
+ul.posts .sum{color:var(--muted);font-size:.9rem;margin:.35rem 0 0}
+.meta{color:var(--muted);font-size:.78rem;margin-top:.4rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.tag{background:var(--code);border-radius:2rem;padding:.1rem .55rem;font-size:.72rem}
+.badge{border:1px solid var(--line);border-radius:2rem;padding:.1rem .55rem;font-size:.72rem}
+.badge.draft{color:var(--accent);border-color:var(--accent)}
+article h1{font-size:1.9rem;line-height:1.35;letter-spacing:-.025em;margin:0 0 .6rem}
+article h2{font-size:1.3rem;margin:2.5rem 0 .75rem;letter-spacing:-.015em}
+article h3{font-size:1.08rem;margin:2rem 0 .6rem}
+article p{margin:0 0 1.15rem}
+article ul,article ol{padding-left:1.3rem}
+article li{margin:.35rem 0}
+article blockquote{margin:1.5rem 0;padding:.2rem 0 .2rem 1.1rem;border-left:3px solid var(--accent);color:var(--muted)}
+article img{max-width:100%;height:auto;border-radius:.4rem}
+article a{color:var(--accent)}
+code{background:var(--code);padding:.1rem .35rem;border-radius:.25rem;font-size:.88em;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);padding:1rem;border-radius:.5rem;overflow-x:auto}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.6}
+.table-wrap{overflow-x:auto;margin:1.5rem 0}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{border-bottom:1px solid var(--line);padding:.55rem .7rem;text-align:left}
+th{font-weight:650}
+hr{border:0;border-top:1px solid var(--line);margin:2.5rem 0}
+ul.checklist{list-style:none;padding-left:.2rem}
+ul.checklist li{margin:.5rem 0}
+ul.checklist input{margin-right:.5rem;accent-color:var(--accent)}
+footer.site{border-top:1px solid var(--line);margin:4rem 0 0;padding:1.75rem 0 3rem;
+  color:var(--muted);font-size:.82rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer.site a{color:var(--muted)}
+.back{display:inline-block;margin-bottom:2rem;color:var(--muted);text-decoration:none;font-size:.85rem}
+.back:hover{color:var(--accent)}
+</style></head>
+<body><div class="wrap"><a class="back" href="index.html">← 일기 목록</a><article><h1>책 구상 - 말레이시아 일기</h1>
+<p>일기를 쌓는 목적 하나를 적어 둔다. 언젠가 한 권으로 낸다.<br>그래서 매일의 기록은 책의 원재료다. 이 문서는 그 전제를 잊지 않기 위한 메모다.</p>
+<h2>1. 지금 가진 것</h2>
+<div class="table-wrap"><table><thead><tr><th>항목</th><th>현재</th></tr></thead><tbody><tr><td>기록 기간</td><td>2026-09-20 ~ 2026-10-03 (14편)</td></tr><tr><td>분량</td><td>공백 제외 약 9,600자 / 공백 포함 약 13,000자</td></tr><tr><td>편당 평균</td><td>공백 제외 약 690자</td></tr><tr><td>자동 묶음</td><td><code>python3 tools/diary.py book</code> → <code>writing/diary/book/원고.md</code></td></tr></tbody></table></div>
+<h2>2. 목표 분량</h2>
+<p>한국 에세이 단행본은 보통 원고지 400~800매다.<br>원고지 1매가 200자(공백 포함)이므로 8만~16만 자다.<br>첫 책은 가벼운 쪽을 목표로 잡는다.</p>
+<div class="table-wrap"><table><thead><tr><th>구분</th><th>수치</th></tr></thead><tbody><tr><td>목표</td><td>공백 포함 100,000자 (원고지 약 500매)</td></tr><tr><td>현재</td><td>공백 포함 약 13,000자 (13%)</td></tr><tr><td>하루 1편 유지 시 수집 편수</td><td>2026-12-31까지 약 100편</td></tr><tr><td>책에 실을 편수</td><td>60편 선별</td></tr><tr><td>선별한 편의 목표 분량</td><td>편당 1,700자 (공백 포함)</td></tr><tr><td>계산</td><td>60편 × 1,700자 = 102,000자</td></tr></tbody></table></div>
+<p>일기를 그대로 묶으면 책이 되지 않는다.<br><strong>100편을 모으고, 60편을 골라, 각 편을 두 배로 키우는</strong> 것이 계획이다.</p>
+<h2>3. 구성안 - 5부</h2>
+<p>시간순을 뼈대로 하되, 부마다 주제를 세운다.</p>
+<div class="table-wrap"><table><thead><tr><th>부</th><th>제목(가제)</th><th>내용</th><th>현재 재료</th></tr></thead><tbody><tr><td>1부</td><td>도착에는 순서가 있다</td><td>비자·거주지·계좌·학교, 행정의 한 달</td><td>9/20 서문, 브런치 초고</td></tr><tr><td>2부</td><td>네 번의 주일</td><td>필리핀·중국·인도·이스라엘, 열방의 예배</td><td>9/20, 9/27, 10/3</td></tr><tr><td>3부</td><td>두리안과 해변</td><td>사람, 밥상, 호스피스, 받을 수 없었던 돈</td><td>9/24, 9/25, 9/26</td></tr><tr><td>4부</td><td>길을 만드는 일</td><td>유학 설명회, 캠프, 어학원이라는 벽</td><td>9/21, 9/28, 10/2, 10/3</td></tr><tr><td>5부</td><td>혼자 있는 저녁</td><td>가족과의 거리, 월세, 전화 한 통</td><td>10/1, 10/3</td></tr></tbody></table></div>
+<h2>4. 지금부터 기록에 더할 다섯 가지</h2>
+<p>일기로는 충분하지만 책으로는 부족한 것들이다. 메모를 보낼 때 한 줄씩 보태면 된다.</p>
+<ol><li><strong>장면</strong> - 날씨, 소리, 냄새, 그 사람의 옷차림. 독자는 설명이 아니라 장면을 읽는다.</li><li><strong>대화 한 줄</strong> - 그 사람이 실제로 한 말. 요약한 말보다 들은 말이 힘이 있다.</li><li><strong>숫자</strong> - 거리, 금액, 시간, 인원. 이미 잘하고 있다(10km·20분, 3,000링깃).</li><li><strong>이름과 관계</strong> - 처음 등장하는 사람의 한 줄 소개. 책에서는 독자가 처음 만나는 사람이다.</li><li><strong>감정의 변화</strong> - 아침과 저녁이 어떻게 달라졌는지. 같은 하루 안의 변화가 글의 동력이다.</li></ol>
+<h2>5. 사람을 보호하는 원칙</h2>
+<p>책은 일기보다 멀리 간다. 그래서 세 가지를 지킨다.</p>
+<ul><li>민감한 과거는 연수와 장소를 특정하지 않는다 (9월 26일 기록을 그렇게 고쳤다).</li><li>실명이 필요한 자리와 가명으로 충분한 자리를 구분한다.</li><li>사진·연락처·금액 같은 개인정보는 원고에 넣지 않는다.</li></ul>
+<h2>6. 일정</h2>
+<div class="table-wrap"><table><thead><tr><th>단계</th><th>기간</th><th>할 일</th></tr></thead><tbody><tr><td>1단계 수집</td><td>2026-10 ~ 2026-12</td><td>하루 1편. 위의 다섯 가지를 메모에 섞는다</td></tr><tr><td>2단계 선별</td><td>2027-01</td><td>100편에서 60편 고르기. 기준: 장면이 있는가, 변화가 있는가, 남이 읽을 이유가 있는가</td></tr><tr><td>3단계 확장</td><td>2027-02 ~ 2027-03</td><td>60편을 편당 1,700자로 키우기</td></tr><tr><td>4단계 구성</td><td>2027-04</td><td>5부로 재배열, 부마다 서문 2쪽</td></tr><tr><td>5단계 투고</td><td>2027-05</td><td>기획서 + 샘플 원고 3편</td></tr></tbody></table></div>
+<h2>7. 다음에 만들 것</h2>
+<ul><li>선별 표 (편별 점수: 장면 / 변화 / 보편성)</li><li>출간 기획서 초안 (콘셉트·독자·경쟁 도서·목차·저자 소개)</li><li>브런치 연재와 책 목차의 대응표</li></ul></article>
+<footer class="site"><span>일기</span></footer>
+</div></body></html>

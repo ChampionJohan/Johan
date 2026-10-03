@@ -21,6 +21,7 @@ plan.md 주제 큐  →  자동으로 오늘자 초고 생성  →  내가 TODO 
 | `python3 tools/diary.py new` | 오늘자 일기 뼈대 생성 (`new 2026-09-22` 로 날짜 지정) |
 | `python3 tools/diary.py build` | `writing/diary/*.md` → `writing/diary/html/` (일기 목록 + 글) |
 | `python3 tools/diary.py reading` | 일기의 말씀 기록 → `writing/diary/독서진행표.md` (+ HTML). `build` 가 자동 호출 |
+| `python3 tools/diary.py book` | 전체 일기 → `writing/diary/book/원고.md` (메모 섹션 제외, 월별 부 구성). `build` 가 자동 호출 |
 
 의존성 없음. Python 3.8+ 만 있으면 된다.
 
@@ -36,6 +37,8 @@ writing/
   diary/       하루를 돌아보는 일기 (원고 아님, RSS·사이트 빌드 대상 아님)
     html/      일기 HTML
     독서진행표.md  말씀 기록 자동 집계 (직접 고치지 말 것)
+    책구상.md      한 권으로 낼 때의 구성·분량·일정 계획
+    book/        묶인 원고 (자동 생성)
 tools/
   mdlite.py    의존성 없는 마크다운 → HTML 변환기
   build.py     정적 사이트 빌더

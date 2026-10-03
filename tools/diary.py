@@ -5,6 +5,7 @@
     python3 tools/diary.py new 2026-09-22
     python3 tools/diary.py build         # writing/diary/*.md -> writing/diary/html/
     python3 tools/diary.py reading       # 일기에서 말씀 기록만 뽑아 독서 진행표 생성
+    python3 tools/diary.py book          # 전체 일기를 한 권 원고로 묶기 (메모 섹션 제외)
 
 원고(writing/posts)와 달리 일기는 사이트 빌드·RSS 대상이 아니다.
 매체에 낼 글이 아니라 기록이므로 TODO 규칙도 적용하지 않는다.
@@ -25,6 +26,10 @@ WEEKDAYS = ("월요일", "화요일", "수요일", "목요일", "금요일", "�
 ENTRY_NAME = re.compile(r"^\d{4}-\d{2}-\d{2}\.md$")  # README 등 일기가 아닌 파일은 건너뛴다
 READING_MD = "독서진행표.md"
 READING_HTML = "독서진행표.html"
+BOOK_MD = os.path.join("book", "원고.md")
+BOOK_HTML = "원고.html"
+MEMO_HEAD = re.compile(r"^##\s*메모")
+DOCS = (("책구상.md", "책구상.html", "책 구상"),)  # 일기가 아닌 문서도 함께 렌더링한다
 PASSAGE_ROW = re.compile(r"^\|\s*말씀\s*\|\s*([^|]+?)\s*\|")
 PASSAGE_HEAD = re.compile(r"^##\s*말씀\s*[-\u2013\u2014]\s*(.+?)\s*$")
 NUMBERS = re.compile(r"\d+")
@@ -85,7 +90,8 @@ def render_entry(day, meta, body):
 
 def render_index(found):
     rows = ["<header class=\"site\"><h1>일기</h1><p>하루를 돌아보며 남기는 기록. %d편 · "
-        "<a href=\"%s\">독서 진행표</a></p></header>" % (len(found), READING_HTML),
+        "<a href=\"%s\">독서 진행표</a> · <a href=\"%s\">원고</a> · <a href=\"%s\">책 구상</a></p></header>"
+        % (len(found), READING_HTML, BOOK_HTML, DOCS[0][1]),
             '<ul class="posts">']
     for day, meta, _body, slug in found:
         head = " · ".join(x for x in (day, meta.get("weekday", ""), meta.get("place", "")) if x)
@@ -217,6 +223,91 @@ def cmd_reading(_args):
     return 0
 
 
+def without_memo(body):
+    """원고에서는 '메모 (채울 것)' 섹션을 뺀다. 책에 들어갈 글이 아니다."""
+    kept = []
+    skipping = False
+    for line in body.splitlines():
+        if line.startswith("## "):
+            skipping = bool(MEMO_HEAD.match(line))
+        if not skipping:
+            kept.append(line)
+    return "\n".join(kept).strip()
+
+
+def demote(text):
+    """원고에서는 부(#)와 장(##)을 쓰므로 일기의 소제목을 한 단계 내린다."""
+    return re.sub(r"^## ", "### ", text, flags=re.M)
+
+
+def book_markdown(found):
+    """날짜 오름차순으로 월별 부 + 날짜별 장 구조의 원고를 만든다."""
+    out = ["# 말레이시아 일기", "",
+           "일기(`writing/diary/*.md`)에서 자동으로 묶은 원고다. 직접 고치지 말 것.",
+           "`python3 tools/diary.py book` 으로 다시 만든다.",
+           "구성과 분량 계획은 `책구상.md` 를 본다.", ""]
+    part = 0
+    month = None
+    chars = 0
+    for day, meta, body, _slug in sorted(found, key=lambda e: e[0]):
+        if day[:7] != month:
+            month = day[:7]
+            part += 1
+            year, mon = month.split("-")
+            out += ["", "# %d부 · %s년 %d월" % (part, year, int(mon)), ""]
+        head = "%d월 %d일" % (int(day[5:7]), int(day[8:10]))
+        weekday = meta.get("weekday", "")
+        title = meta.get("title", day)
+        out += ["## %s%s - %s" % (head, " " + weekday if weekday else "", title), ""]
+        text = demote(without_memo(body))
+        out += [text, ""]
+        chars += len(re.sub(r"\s", "", text))
+    out += ["", "---", "",
+            "현재 원고: %d편 · %d자 (공백 제외)" % (len(found), chars), ""]
+    return "\n".join(out), chars
+
+
+def cmd_book(_args):
+    found = entries()
+    if not found:
+        print("일기가 없습니다.")
+        return 1
+    text, chars = book_markdown(found)
+    os.makedirs(os.path.join(DIARY_DIR, "book"), exist_ok=True)
+    os.makedirs(HTML_DIR, exist_ok=True)
+    with open(os.path.join(DIARY_DIR, BOOK_MD), "w", encoding="utf-8") as handle:
+        handle.write(text)
+    page = PAGE.format(
+        title=esc("말레이시아 일기 - 원고"), desc=esc("일기를 한 권으로 묶은 원고"),
+        ogtype="article", css=CSS,
+        body='<a class="back" href="index.html">← 일기 목록</a><article>%s</article>' % mdlite.render(text),
+        footer_left=esc("일기"),
+    ).replace('<span><a href="../feed.xml">RSS</a></span>', "")
+    with open(os.path.join(HTML_DIR, BOOK_HTML), "w", encoding="utf-8") as handle:
+        handle.write(page)
+    print("원고 묶음: %d편 · %d자 (공백 제외) · %s" % (
+        len(found), chars, os.path.relpath(os.path.join(DIARY_DIR, BOOK_MD), ROOT)))
+    return 0
+
+
+def render_doc(source, target, label):
+    """일기 폴더의 문서(책 구상 등)를 같은 서식의 HTML 로 만든다."""
+    path = os.path.join(DIARY_DIR, source)
+    if not os.path.exists(path):
+        return False
+    with open(path, encoding="utf-8") as handle:
+        _meta, body = mdlite.split_front_matter(handle.read())
+    page = PAGE.format(
+        title=esc(label), desc=esc(label), ogtype="article", css=CSS,
+        body='<a class="back" href="index.html">← 일기 목록</a><article>%s</article>' % mdlite.render(body),
+        footer_left=esc("일기"),
+    ).replace('<span><a href="../feed.xml">RSS</a></span>', "")
+    os.makedirs(HTML_DIR, exist_ok=True)
+    with open(os.path.join(HTML_DIR, target), "w", encoding="utf-8") as handle:
+        handle.write(page)
+    return True
+
+
 def cmd_new(args):
     day = args[0] if args else date.today().isoformat()
     try:
@@ -247,12 +338,16 @@ def cmd_build(_args):
     with open(os.path.join(HTML_DIR, "index.html"), "w", encoding="utf-8") as handle:
         handle.write(render_index(found))
     print("빌드 완료: %d편 · %s" % (len(found), os.path.relpath(HTML_DIR, ROOT)))
-    return cmd_reading([])
+    for source, target, label in DOCS:
+        if render_doc(source, target, label):
+            print("문서: %s" % target)
+    cmd_reading([])
+    return cmd_book([])
 
 
 def main():
     command = sys.argv[1] if len(sys.argv) > 1 else "build"
-    handlers = {"new": cmd_new, "build": cmd_build, "reading": cmd_reading}
+    handlers = {"new": cmd_new, "build": cmd_build, "reading": cmd_reading, "book": cmd_book}
     if command not in handlers:
         print(__doc__)
         return 1
