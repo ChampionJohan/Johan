@@ -35,5 +35,19 @@ writing/diary/2026-09-24.md  +  writing/diary/html/2026-09-24.html
 ```
 python3 tools/diary.py new           # 오늘자 뼈대 (날짜·요일 자동, 일요일은 '주일')
 python3 tools/diary.py new 2026-09-26
-python3 tools/diary.py build         # 전체 HTML 재생성
+python3 tools/diary.py build         # 전체 HTML 재생성 + 독서 진행표 갱신
+python3 tools/diary.py reading       # 독서 진행표만 다시 만들기
 ```
+
+## 독서 진행표
+
+`독서진행표.md` 는 일기에서 자동으로 뽑는다. 손으로 고치면 다음 빌드에 덮어쓰인다.
+
+읽는 규칙은 둘 중 하나다.
+
+1. 오늘 진행한 일 표에 `| 말씀 | 출애굽기 29~31장 |` 행을 둔다
+2. 또는 `## 말씀 - 출애굽기 29~31장` 소제목을 둔다 (front matter `passage:` 로 적어도 된다)
+
+`그날의 한 줄` 은 말씀 섹션의 첫 문장을 그대로 가져온다.
+`흐름` 열은 앞 기록과 비교해 이어짐 · 겹침 N장 · 건너뜀 N장 · 새 권으로 표시한다.
+설교자 이름처럼 장 번호가 없는 `말씀` 행은 본문으로 보지 않는다.
