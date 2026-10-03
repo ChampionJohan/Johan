@@ -1,0 +1,179 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>업로드 묶음 — 09 What It Could Not Tell Me · 10 기계가 말하지 못한 것</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>이 문서 하나만 보시면 됩니다</h1>
+<p><code>KDP-LISTING-AIBOOK.md</code> 의 내용을 <strong>실제로 올리는 순서</strong>로 다시 짠 것입니다. 화면에 나오는 순서대로 적었으니 위에서 아래로 따라가시면 됩니다.</p>
+<hr>
+<h1>한눈에 — 네 번 올립니다</h1>
+<div class="table-wrap"><table><thead><tr><th></th><th>무엇</th><th>쪽·크기</th><th>값</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>영어 전자책 <code>What It Could Not Tell Me</code></td><td>0.37MB</td><td><strong>$4.99</strong></td></tr><tr><td><strong>2</strong></td><td>영어 종이책</td><td><strong>113쪽</strong></td><td><strong>$9.99</strong></td></tr><tr><td><strong>3</strong></td><td>한국어 전자책 『기계가 말하지 못한 것』</td><td>0.36MB</td><td><strong>$4.99</strong></td></tr><tr><td><strong>4</strong></td><td>한국어 종이책</td><td><strong>107쪽</strong></td><td><strong>$9.99</strong></td></tr></tbody></table></div>
+<p><strong>순서를 지키세요.</strong> 1번이 살아나야(보통 몇 시간~하루) 2번을 같은 책에 붙일 수 있습니다. 3번은 1번과 <strong>별개의 책</strong>으로 새로 만듭니다. 같은 책의 다른 판이 아닙니다.</p>
+<hr>
+<h1>올릴 파일 — 열 장입니다</h1>
+<pre><code>release/covers/      표지 JPG 두 장        (전자책용)
+release/ebook/       EPUB 두 장 · PDF 두 장 (PDF 는 예비)
+release/paperback/   본문·표지 PDF 네 장    (종이책용)</code></pre>
+<div class="table-wrap"><table><thead><tr><th></th><th>영어판</th><th>한국어판</th></tr></thead><tbody><tr><td><strong>전자책 표지</strong></td><td><code>09_What-It-Could-Not-Tell-Me-cover.jpg</code></td><td><code>10_기계가-말하지-못한-것-cover.jpg</code></td></tr><tr><td><strong>전자책 본문</strong></td><td><code>What It Could Not Tell Me.epub</code></td><td><code>기계가 말하지 못한 것.epub</code></td></tr><tr><td>전자책 예비 PDF</td><td><code>What It Could Not Tell Me.pdf</code></td><td><code>기계가 말하지 못한 것-A5.pdf</code></td></tr><tr><td><strong>종이책 본문</strong></td><td><code>09_…_interior-113p.pdf</code></td><td><code>10_…_본문-107p.pdf</code></td></tr><tr><td><strong>종이책 표지</strong></td><td><code>09_…_cover-113p-cream.pdf</code></td><td><code>10_…_표지-107p-미색.pdf</code></td></tr></tbody></table></div>
+<p><strong>예비 PDF 는 EPUB 이 안 올라갈 때만 씁니다.</strong> 평소에는 EPUB 을 올리세요.</p>
+<p><strong>전자책 표지는 JPG, 종이책 표지는 PDF 입니다.</strong> 서로 바꿔 올리면 거부됩니다.</p>
+<p>본문 PDF 둘 다 글꼴이 파일 안에 묻어 있는 것을 확인했습니다(각 다섯 벌). KDP가 글꼴을 못 찾아 막는 일은 없습니다.</p>
+<hr>
+<h1>네 번 다 틀리면 안 되는 네 칸</h1>
+<p>05번이 여기서 막혔고 07번 바코드 오류도 같은 원인이었습니다. <strong>표지를 의심하기 전에 이 네 칸을 먼저 보세요.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>탭</th><th>칸</th><th>값</th><th>어디에</th></tr></thead><tbody><tr><td>Details</td><td>Categories 의 <strong>저내용(low-content) 체크</strong></td><td><strong>끔</strong></td><td>네 번 다</td></tr><tr><td>Content</td><td><strong>Print ISBN</strong></td><td><strong>Get a free KDP ISBN</strong></td><td>종이책만</td></tr><tr><td>Content</td><td><strong>Ink and Paper Type</strong></td><td><strong>cream paper</strong></td><td>종이책만</td></tr><tr><td>Content</td><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td><td>종이책만</td></tr></tbody></table></div>
+<p><strong>셋째를 틀리면 책등이 어긋납니다.</strong> 표지는 미색 두께(쪽당 0.0025in)로 계산했습니다. 흰 종이를 고르면 책등이 얇아져서 글자가 앞표지로 넘어갑니다.</p>
+<p><strong>넷째를 켜면 "valid barcode 를 못 찾겠다" 로 막힙니다.</strong> 우리 표지에는 바코드가 없고 <strong>흰 자리만</strong> 있습니다. 아마존이 거기에 자기 바코드를 찍습니다.</p>
+<hr>
+<h1>1 · 영어 전자책</h1>
+<p><code>Create</code> → <code>Kindle eBook</code></p>
+<h2>Details 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Language</td><td><code>English</code></td></tr><tr><td>Book Title</td><td><code>What It Could Not Tell Me</code></td></tr><tr><td>Subtitle</td><td><code>A Record of One Person and One Machine</code></td></tr><tr><td>Series</td><td><strong>비움</strong> — <code>Add to series</code> 누르지 마세요</td></tr><tr><td>Edition Number</td><td><code>1</code></td></tr><tr><td>Author</td><td>First <code>Jaehyuk</code> / Last <code>Choi</code></td></tr><tr><td>Contributors</td><td><strong>비움</strong></td></tr><tr><td>Publishing Rights</td><td><code>I own the copyright…</code></td></tr><tr><td>Sexually Explicit</td><td><code>No</code></td></tr><tr><td>Reading age</td><td><strong>비움</strong></td></tr><tr><td>Primary marketplace</td><td><code>Amazon.com</code></td></tr><tr><td>저내용(low-content)</td><td><strong>끔</strong></td></tr></tbody></table></div>
+<h3>Description</h3>
+<p>에디터 오른쪽 <strong><code>Source</code></strong> 버튼을 먼저 누르고 붙여 넣으세요. 안 누르고 붙이면 태그가 글자로 보입니다.</p>
+<pre><code class="language-html">&lt;h4&gt;I published eight books with a machine. This is the record.&lt;/h4&gt;
+&lt;p&gt;Most of what gets written about AI is written from outside it &amp;mdash; by people who haven't used it, or used it twice, or are selling something. I ran a business on it. Eight times. Some of it worked and some of it went wrong.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;So this book starts with what I saw, and only then with what I asked.&lt;/b&gt; Five parts, eighteen chapters, and a coda.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;What I saw&lt;/b&gt; &amp;mdash; including the measurement that found twenty long sentences in one thousand six hundred and ninety, and what that turned out to mean about who had been writing&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;What it is made of&lt;/b&gt; &amp;mdash; four chapters, and not one of them produces a clean answer&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;What does not change&lt;/b&gt; &amp;mdash; not the difference now, but the difference that does not wear away. The last of the three is physics&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;If it passes us&lt;/b&gt; &amp;mdash; and the day that arrives well before the one everybody is braced for&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Then what about people&lt;/b&gt; &amp;mdash; the part that side could not answer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The title is not a figure of speech. Where no answer came, the place was left empty rather than smoothed over, and the cover draws those empty places. &lt;b&gt;They are the most important thing in the book.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;It is a short book. A conversation that gets padded stops being a conversation.&lt;/p&gt;</code></pre>
+<h3>Categories (최대 3개)</h3>
+<ol><li><code>Computers &amp; Technology</code> → <code>Computer Science</code> → <code>AI &amp; Machine Learning</code></li><li><code>Politics &amp; Social Sciences</code> → <code>Philosophy</code> → <code>Ethics &amp; Morality</code></li><li><code>Business &amp; Money</code> → <code>Industries</code> → <code>Computers &amp; Technology</code></li></ol>
+<p><strong>2번이 이 책의 진짜 자리입니다.</strong> 1번에만 걸면 기술책을 찾아온 사람이 별 하나를 줍니다.</p>
+<p><strong>종교 쪽 분류는 쓰지 않습니다.</strong> 그 칸에 넣으면 독자가 마지막 장을 읽기 전에 답을 알고 들어옵니다. 읽고 나서 알아보게 두는 것이 이 책의 전부입니다.</p>
+<h3>Keywords (7개)</h3>
+<pre><code>living with artificial intelligence
+what separates humans from machines
+writing a book with AI
+questions AI cannot answer
+philosophy of technology
+self publishing with AI tools
+future of human work and meaning</code></pre>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Manuscript</td><td><code>What It Could Not Tell Me.epub</code></td></tr><tr><td>Book Cover</td><td><code>Upload a cover you already have</code> → <code>09_What-It-Could-Not-Tell-Me-cover.jpg</code></td></tr><tr><td>ISBN</td><td>전자책은 <strong>안 넣어도 됩니다</strong> (ASIN 이 붙습니다)</td></tr><tr><td>DRM</td><td><strong>끄는 쪽</strong></td></tr><tr><td>AI 문항</td><td>Text <strong>Yes</strong> · Images <strong>Yes</strong> · Translation <strong>Yes</strong> · 정도는 <strong>전체</strong></td></tr></tbody></table></div>
+<p>표지 만들기(Cover Creator)는 쓰지 않습니다.</p>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>KDP Select</td><td><strong>넣습니다</strong></td></tr><tr><td>Royalty</td><td><strong>70%</strong></td></tr><tr><td>List Price (Amazon.com)</td><td><strong>$4.99</strong></td></tr></tbody></table></div>
+<p>다른 나라 값은 <strong>자동 환산</strong>에 맡기시면 됩니다.</p>
+<hr>
+<h1>2 · 영어 종이책</h1>
+<p><strong>1번이 살아난 뒤에</strong> 같은 책 화면에서 <code>Create paperback</code> 을 누릅니다. 제목·설명·분류·키워드는 전자책에서 복사됩니다. <strong>그대로 두세요.</strong></p>
+<h2>Details 탭</h2>
+<p>전자책과 같습니다. <strong>저내용(low-content) 체크만 다시 확인하세요.</strong> 꺼져 있어야 합니다.</p>
+<h2>Content 탭 — 여기가 종이책의 전부입니다</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td><strong>Print ISBN</strong></td><td><strong><code>Get a free KDP ISBN</code></strong></td></tr><tr><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td></tr><tr><td>Print Options</td><td><code>Black &amp; white interior with **cream** paper</code></td></tr><tr><td>Trim Size</td><td><code>6 x 9 in</code></td></tr><tr><td>Bleed</td><td><code>No bleed</code></td></tr><tr><td>Paperback cover finish</td><td><code>Matte</code></td></tr><tr><td>Manuscript</td><td><code>09_What-It-Could-Not-Tell-Me_interior-113p.pdf</code></td></tr><tr><td>Book Cover</td><td><code>Upload a cover you already have (print-ready PDF)</code> → <code>09_…_cover-113p-cream.pdf</code></td></tr></tbody></table></div>
+<p><strong>전자책 ISBN 과 다른 번호를 받습니다.</strong> 같은 걸 쓰면 안 됩니다.</p>
+<p>표지 크기는 쪽수에 맞춰 이미 계산해 뒀습니다.</p>
+<div class="table-wrap"><table><thead><tr><th>쪽</th><th>폭 x 높이</th><th>책등</th></tr></thead><tbody><tr><td>113쪽</td><td><strong>12.5325 x 9.2500 in</strong></td><td><strong>0.2825 in</strong></td></tr></tbody></table></div>
+<p>미리보기(Previewer)에서 <strong>책등 글자가 앞뒤로 안 넘어갔는지</strong> 한 번 보세요. 100쪽을 넘어서 책등에 글자가 들어가 있습니다.</p>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Expanded Distribution</td><td><strong>켭니다</strong></td></tr><tr><td>List Price (Amazon.com)</td><td><strong>$9.99</strong></td></tr></tbody></table></div>
+<p>인쇄비 $2.36 이 먼저 나가고, 권당 <strong>$3.63</strong> 이 남습니다.</p>
+<hr>
+<h1>3 · 한국어 전자책</h1>
+<p><code>Create</code> → <code>Kindle eBook</code>. <strong>1번과 별개의 새 책입니다.</strong></p>
+<h2>Details 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Language</td><td><code>Korean</code></td></tr><tr><td>Book Title</td><td><code>기계가 말하지 못한 것</code></td></tr><tr><td>Subtitle</td><td><code>사람 하나와 기계 하나가 나눈 기록</code></td></tr><tr><td>Series</td><td><strong>비움</strong></td></tr><tr><td>Edition Number</td><td><code>1</code></td></tr><tr><td>Author</td><td><code>최재혁</code> (나누라고 하면 First <code>재혁</code> / Last <code>최</code>)</td></tr><tr><td>Reading age</td><td><strong>비움</strong></td></tr><tr><td>Primary marketplace</td><td><code>Amazon.com</code></td></tr><tr><td>저내용(low-content)</td><td><strong>끔</strong></td></tr></tbody></table></div>
+<h3>Description</h3>
+<p><strong><code>Source</code></strong> 버튼을 누르고 붙여 넣으세요.</p>
+<pre><code class="language-html">&lt;h4&gt;나는 그 기계로 책 여덟 권을 냈습니다. 이 책은 그 기록입니다.&lt;/h4&gt;
+&lt;p&gt;AI에 대해 나오는 말은 대부분 밖에서 본 것입니다. 써 보지 않고 말하거나, 한두 번 써 보고 말하거나, 팔려는 쪽에서 말합니다. 저는 그 기계로 일을 했습니다. 여덟 번 했습니다. 잘된 것도 있고 틀어진 것도 있었습니다.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;그래서 이 책은 제가 본 것으로 시작하고, 그다음에야 물은 것이 나옵니다.&lt;/b&gt; 다섯 부에 열여덟 장, 그리고 코다입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;내가 본 것&lt;/b&gt; &amp;mdash; 문장 천육백구십 개 중에 긴 문장이 스무 개였다는 측정과, 그게 누가 쓰고 있었는가에 대해 무슨 뜻이었는지&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;무엇으로 만들어졌나&lt;/b&gt; &amp;mdash; 네 장인데 어느 장에서도 답이 깔끔하게 나오지 않습니다&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;무엇이 바뀌지 않는가&lt;/b&gt; &amp;mdash; 지금의 차이가 아니라 안 닳는 차이. 셋째 장에 적힌 것은 물리입니다&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;넘어서면&lt;/b&gt; &amp;mdash; 그리고 사람들이 걱정하는 그날보다 훨씬 먼저 오는 날&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;그럼 사람은&lt;/b&gt; &amp;mdash; 저쪽이 답할 수 없었던 자리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;제목은 비유가 아닙니다. 답이 안 나온 자리를 얼버무리지 않고 비워 두었고, 표지가 그 비워 둔 자리를 그린 것입니다. &lt;b&gt;그 자리가 이 책에서 제일 중요한 자리입니다.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;짧은 책입니다. 대화편이라 늘리면 대화가 아니게 됩니다.&lt;/p&gt;</code></pre>
+<h3>Categories</h3>
+<p>한국어책은 분류가 영어판과 다르게 나옵니다. 가장 가까운 것으로 고르세요.</p>
+<ol><li><code>Computers &amp; Technology</code> → <code>Computer Science</code></li><li><code>Politics &amp; Social Sciences</code> → <code>Philosophy</code></li><li><code>Business &amp; Money</code> → <code>Industries</code></li></ol>
+<h3>Keywords</h3>
+<pre><code>AI와 인간의 차이
+인공지능 교양서
+AI와 함께 글쓰기
+기계가 답하지 못하는 질문
+인공지능 철학
+AI 시대 사람의 자리
+자가출판 AI 활용</code></pre>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Manuscript</td><td><code>기계가 말하지 못한 것.epub</code></td></tr><tr><td>Book Cover</td><td><code>10_기계가-말하지-못한-것-cover.jpg</code></td></tr><tr><td>DRM</td><td><strong>끄는 쪽</strong></td></tr><tr><td>AI 문항</td><td>영어판과 같습니다</td></tr></tbody></table></div>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>KDP Select</td><td><strong>넣습니다</strong></td></tr><tr><td>Royalty</td><td><strong>70%</strong></td></tr><tr><td>List Price</td><td><strong>$4.99</strong></td></tr></tbody></table></div>
+<hr>
+<h1>4 · 한국어 종이책</h1>
+<p><strong>이것 하나만 먼저 확인하셔야 합니다.</strong></p>
+<blockquote><p>전자책은 한국어를 받지만, <strong>인쇄본 지원 언어에 한국어가 없다</strong>는 자료가 여럿입니다. <code>kdp.amazon.com</code> 이 막혀 있어 제가 직접 확인하지 못했습니다.</p></blockquote>
+<p><code>Create paperback</code> 을 누르고 <strong><code>Language</code> 칸에 Korean 이 있는지</strong> 보세요.</p>
+<ul><li><strong>있으면</strong> — 2번과 똑같이 진행하면 됩니다. 아래 표만 바꾸세요.</li><li><strong>없으면</strong> — 한국어 종이책은 국내 인쇄로 가야 합니다. 파일은 이미 다 있습니다.</li></ul>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td><strong>Print ISBN</strong></td><td><strong><code>Get a free KDP ISBN</code></strong></td></tr><tr><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td></tr><tr><td>Print Options</td><td><code>Black &amp; white interior with **cream** paper</code></td></tr><tr><td>Trim Size</td><td><code>6 x 9 in</code></td></tr><tr><td>Bleed</td><td><code>No bleed</code></td></tr><tr><td>Cover finish</td><td><code>Matte</code></td></tr><tr><td>Manuscript</td><td><code>10_기계가-말하지-못한-것_본문-107p.pdf</code></td></tr><tr><td>Book Cover</td><td><code>10_기계가-말하지-못한-것_표지-107p-미색.pdf</code></td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>쪽</th><th>폭 x 높이</th><th>책등</th></tr></thead><tbody><tr><td>107쪽</td><td><strong>12.5175 x 9.2500 in</strong></td><td><strong>0.2675 in</strong></td></tr></tbody></table></div>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Expanded Distribution</td><td><strong>켭니다</strong></td></tr><tr><td>List Price</td><td><strong>$9.99</strong></td></tr></tbody></table></div>
+<p>인쇄비 $2.28, 권당 <strong>$3.71</strong> 이 남습니다.</p>
+<hr>
+<h1>값 — 한 장에</h1>
+<h2>전자책</h2>
+<p><strong>$2.99 ~ $9.99 사이에서만 70%를 받습니다.</strong> 그 밖은 전부 35%입니다. 70% 구간에서는 <strong>1MB당 $0.15 전송료</strong>가 빠지는데, 우리 책은 0.36~0.37MB라 5~6센트입니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>정가</th><th>전송료</th><th><strong>권당 수익</strong></th></tr></thead><tbody><tr><td>영어판</td><td>$4.99</td><td>$0.06</td><td><strong>$3.44</strong></td></tr><tr><td>한국어판</td><td>$4.99</td><td>$0.05</td><td><strong>$3.44</strong></td></tr></tbody></table></div>
+<p>짧은 책이라 05번 자리($6.99)로 올리지 않았습니다. <strong>$2.99 밑으로 내리지 마세요.</strong> 70% 구간에서 떨어집니다.</p>
+<h2>종이책</h2>
+<blockquote><p><strong>인쇄비 = $1.00 + (쪽수 x $0.012)</strong></p></blockquote>
+<div class="table-wrap"><table><thead><tr><th></th><th>쪽</th><th>인쇄비</th><th>최소 정가</th><th><strong>정가</strong></th><th><strong>권당 수익</strong></th></tr></thead><tbody><tr><td>영어판</td><td>113</td><td>$2.36</td><td>$3.93</td><td><strong>$9.99</strong></td><td><strong>$3.63</strong></td></tr><tr><td>한국어판</td><td>107</td><td>$2.28</td><td>$3.81</td><td><strong>$9.99</strong></td><td><strong>$3.71</strong></td></tr></tbody></table></div>
+<p>최소 정가보다 훨씬 위에 잡은 이유는 하나입니다.</p>
+<p><strong>$9.99 가 60% 구간의 문턱입니다.</strong> 그 밑은 50%입니다. $7.99로 내리면 권당 $1.63, $9.99면 $3.63 입니다. <strong>$2 올렸는데 수익이 두 배가 넘습니다.</strong></p>
+<p><em>이 문턱은 <code>kdp.amazon.com</code> 이 막혀 있어 재확인하지 못했습니다. 다만 문턱이 있든 없든 $9.99 이상이 유리하다는 결론은 같습니다.</em></p>
+<h2>전자책과 종이책의 간격</h2>
+<p><strong>두 배입니다.</strong> 앞의 권들(2.4~2.8배)보다 좁게 뒀습니다. 113쪽짜리를 $11.99에 두면 두께를 본 사람이 안 삽니다. <strong>짧은 책은 간격을 좁히고 전자책 쪽으로 보내는 게 맞습니다.</strong></p>
+<hr>
+<h1>다 올린 뒤 볼 것</h1>
+<p><strong>하나. 종이책 미리보기를 끝까지 넘겨 보세요.</strong> 특히 <strong>책등</strong>입니다. 글자가 앞표지나 뒤표지로 넘어가 있으면 종이 종류가 틀린 것입니다. <code>cream</code> 인지 다시 보세요.</p>
+<p><strong>둘. 전자책은 실제 기기에서 한 번 열어 보세요.</strong> Kindle Previewer 로 <strong>코다까지</strong> 넘어가는지 보시면 됩니다. 마지막 쪽이 이 책의 전부입니다.</p>
+<p><strong>셋. 영어판과 한국어판이 서로 연결되지 않습니다.</strong> 아마존에서 같은 책의 다른 언어판으로 묶어 주지 않습니다. 각각 따로 삽니다.</p>
+<hr>
+<h1>번호에 대해</h1>
+<p><code>release/</code> 의 파일 번호는 01부터 08까지 와 있었습니다. 이 책이 <strong>09(영어판)과 10(한국어판)</strong> 입니다. 작가님의 <strong>아홉 번째 책</strong>입니다.</p>
+<hr>
+<h1>아직 안 끝난 것 둘</h1>
+<p><strong>하나. 05번과 07번이 아직 그대로입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th>고칠 것</th></tr></thead><tbody><tr><td>05번</td><td>Print ISBN 을 <strong>free KDP ISBN</strong> 으로, 종이를 <strong>cream</strong> 으로</td></tr><tr><td>07번</td><td><strong>"내 표지에 바코드가 있다" 체크를 끄기</strong></td></tr></tbody></table></div>
+<p>07번은 그 체크 하나 때문에 막혔던 것입니다. 표지는 멀쩡합니다.</p>
+<p><strong>둘. 17장과 18장·코다를 한 번 읽어 주세요.</strong></p>
+<p>3장은 작가님이 확인하셨습니다. 남은 둘은 사실이 아니라 생각이라 틀렸다고 할 수 있는 종류가 아닙니다. <strong>작가님 생각과 다르지 않은지만</strong> 보시면 됩니다.</p>
+<p>다르면 그 자리는 제가 아니라 작가님이 고치셔야 합니다.</p>
+</div></body></html>
