@@ -171,6 +171,47 @@ BOOKS = {
             "chapter about why this is a game you can start late.",
         ],
         age="Ages 12-18"),
+
+    # 사람 하나와 기계 하나의 대화편. 그림은 번갈아 오는 말차례다.
+    # 비어 있는 칸이 기계가 모르겠다고 한 자리고, 그게 제목이다.
+    "aibook": dict(
+        title="기계가 말하지 못한 것",
+        title_lines=["기계가 말하지", "못한 것"],
+        subtitle="사람 하나와 기계 하나가 나눈 기록",
+        series="기록 · 재료 · 차이 · 권한 · 사람", volume="열여덟 장과 코다",
+        accent="#C08A43", accent2="#5B8CA0", ink="#0F1419",
+        motif="dialog", lang="ko", author="최재혁",
+        curve_labels=["묻는 쪽", "답하는 쪽"],
+        motif_note="빈 칸이 모르겠다고 한 자리다",
+        back_head="나는 그 기계로 책 여덟 권을 냈다.",
+        back=[
+            "그래서 이 책은 밖에서 본 이야기가 아니다. 먼저 내가 본 것을 적고, "
+            "그다음에 물은 것을 적는다. 다섯 부에 열여덟 장이다.",
+            "무엇으로 만들어졌는가. 사람과 저것 사이에 안 닳는 차이가 있는가. "
+            "넘어서면 무슨 일이 벌어지는가. 그럼 사람은.",
+            "답이 안 나온 자리를 얼버무리지 않고 비워 두었다. "
+            "그 비워 둔 자리가 이 책에서 제일 중요한 자리다.",
+        ]),
+
+    "en-aibook": dict(
+        title="What It Could Not Tell Me",
+        subtitle="A Record of One Person and One Machine",
+        series="RECORD · MATERIAL · DIFFERENCE · AUTHORITY · US",
+        volume="18 CHAPTERS + CODA",
+        accent="#C08A43", accent2="#5B8CA0", ink="#0F1419",
+        motif="dialog", lang="en", author="Jaehyuk Choi",
+        curve_labels=["THE ONE ASKING", "THE ONE ANSWERING"],
+        motif_note="The hollow ones are where it did not know",
+        back_head="I published eight books with the machine.",
+        back=[
+            "So this is not a book written from outside it. What I saw comes first "
+            "and what I asked comes after, across five parts and eighteen chapters.",
+            "What is it made of. Is there a difference between a person and that "
+            "which does not wear away. What happens if it passes us. Then what "
+            "about people.",
+            "Where no answer came, the place was left empty rather than smoothed "
+            "over. Those empty places are the most important thing in the book.",
+        ]),
 }
 
 CREAM = "#F4F1EA"
@@ -344,6 +385,122 @@ def draw_front_curve(d, ox, oy, w, h, spec):
            font=font(f_serif, 60 * s), fill=CREAM)
 
 
+# 말차례 — (쪽, 길이, 비어 있나). 0 이 묻는 쪽, 1 이 답하는 쪽이다.
+# 비어 있는 둘이 기계가 모르겠다고 한 자리고, 마지막 줄이 그 자리다.
+TURNS = [
+    (0, 0.95, False),
+    (1, 0.72, False),
+    (0, 0.54, False),
+    (1, 0.90, False),
+    (0, 0.78, False),
+    (1, 0.46, True),
+    (0, 0.63, False),
+    (1, 0.92, False),
+    (0, 0.50, False),
+    (1, 0.34, True),
+]
+
+
+def draw_front_dialog(d, ox, oy, w, h, spec):
+    """번갈아 오는 말차례를 그림으로 쓰는 앞표지.
+
+    왼쪽 칸이 묻는 쪽, 오른쪽 칸이 답하는 쪽이다. 막대가 가운데를 향해
+    자라서 가운데가 들쭉날쭉해진다. 테두리만 있는 막대가 답이 안 온 자리고,
+    그 자리가 이 책의 제목이다. 그래서 마지막 줄을 비워 두었다.
+    """
+    f_serif, f_serif_r, f_sans_b = faces(spec)
+    warm = spec["accent"]
+    cool = spec["accent2"]
+    s = w / 1600.0
+    pad = w * 0.08125
+    inner = w - pad * 2
+    L = ox + pad
+    R = ox + w - pad
+
+    # 위쪽 가는 선과 다섯 부 표시
+    d.rectangle([L, oy + h * 0.0586, R, oy + h * 0.0586 + 4 * s], fill=warm)
+    ey = oy + h * 0.0781
+
+    # 왼쪽 줄과 오른쪽 표시가 겹치면 안 된다. 자간부터 줄이고 그래도 넘치면
+    # 글자를 줄인다. draw_front_curve 와 같은 방식이다.
+    size_eye, sp = 34 * s, 5 * s
+    while size_eye >= 20 * s:
+        f_eye = font(f_sans_b, size_eye)
+        left = track_width(d, spec["series"], f_eye, sp)
+        right = track_width(d, spec["volume"], f_eye, sp)
+        if left + right + inner * 0.06 <= inner:
+            break
+        if sp > 1 * s:
+            sp -= 1 * s
+        else:
+            size_eye -= 2 * s
+    track(d, (L, ey), spec["series"], f_eye, MUTED, sp)
+    vw = track_width(d, spec["volume"], f_eye, sp)
+    track(d, (R - vw, ey), spec["volume"], f_eye, cool, sp)
+
+    # 제목
+    size = 190 * s
+    while size >= 100 * s:
+        f_title = font(f_serif, size)
+        lines = wrap(d, spec.get("title_lines") or spec["title"], f_title, inner)
+        if len(lines) <= 3:
+            break
+        size -= 8 * s
+    step = size * 1.2
+    f_sub = font(f_serif_r, 56 * s)
+    sub_lines = wrap(d, spec["subtitle"], f_sub, inner)
+
+    TOP, BOTTOM = oy + h * 0.155, oy + h * 0.47
+    block = len(lines) * step + 46 * s + len(sub_lines) * 78 * s
+    y = TOP + max(0, (BOTTOM - TOP - block) / 2)
+    for line in lines:
+        d.text((L, y), line, font=f_title, fill=CREAM)
+        y += step
+    y += 46 * s
+    for line in sub_lines:
+        d.text((L + 4 * s, y), line, font=f_sub, fill=DIM)
+        y += 78 * s
+
+    # 말차례 — 가운데를 향해 자라는 막대 열 개
+    top = oy + h * 0.515
+    bot = oy + h * 0.785
+    col = inner * 0.455
+    rh = (bot - top) / len(TURNS)
+    bh = rh * 0.42
+    edge = max(2, int(5 * s))
+    for i, (side, frac, hollow) in enumerate(TURNS):
+        y0 = top + i * rh + (rh - bh) / 2
+        length = col * frac
+        if side == 0:
+            x0, x1, color = L, L + length, warm
+        else:
+            x0, x1, color = R - length, R, cool
+        if hollow:
+            d.rectangle([x0, y0, x1, y0 + bh], outline=color, width=edge)
+        else:
+            d.rectangle([x0, y0, x1, y0 + bh], fill=color)
+
+    # 가운데 가는 세로선 — 두 쪽을 가르는 자리
+    mx = ox + w / 2
+    d.rectangle([mx - 1 * s, top, mx + 1 * s, bot], fill="#2A3238")
+
+    # 두 쪽의 이름
+    f_lab = font(f_sans_b, 28 * s)
+    ly = bot + 22 * s
+    track(d, (L, ly), spec["curve_labels"][0], f_lab, warm, 5 * s)
+    w2 = track_width(d, spec["curve_labels"][1], f_lab, 5 * s)
+    track(d, (R - w2, ly), spec["curve_labels"][1], f_lab, cool, 5 * s)
+
+    if spec.get("motif_note"):
+        f_note = font(f_serif_r, 36 * s)
+        d.text((L, bot + 86 * s), spec["motif_note"], font=f_note, fill=MUTED)
+
+    # 아래쪽 지은이
+    d.rectangle([L, oy + h * 0.895, L + 120 * s, oy + h * 0.895 + 4 * s], fill=warm)
+    d.text((L, oy + h * 0.920), spec.get("author", "Jaehyuk Choi"),
+           font=font(f_serif, 60 * s), fill=CREAM)
+
+
 def draw_front(d, ox, oy, w, h, spec):
     """앞표지를 (ox, oy) 에서 시작하는 w x h 영역에 그린다.
 
@@ -352,6 +509,8 @@ def draw_front(d, ox, oy, w, h, spec):
     """
     if spec.get("motif") == "curve":
         return draw_front_curve(d, ox, oy, w, h, spec)
+    if spec.get("motif") == "dialog":
+        return draw_front_dialog(d, ox, oy, w, h, spec)
     accent = spec["accent"]
     s = w / 1600.0                      # 글자 크기는 폭에 맞춘다
     pad = w * 0.08125

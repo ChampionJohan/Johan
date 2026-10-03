@@ -351,9 +351,21 @@ def build(which):
 
     # tools/cover.py 로 따로 만들어 둔 표지가 있으면 그것을 쓴다.
     # 아마존에 올리는 표지와 책 안의 표지가 같아야 한다.
-    designed = os.path.join(m.ROOT, "release", "covers",
-                            "%s-cover.jpg" % which.rstrip("/"))
-    if os.path.exists(designed):
+    # 책을 가리키는 이름이 여럿이다(ai-book / aibook, book-teen3 / teen3).
+    # tools/cover.py 는 그중 하나로만 파일을 만들어 두므로 같은 책의 다른
+    # 이름들도 같이 찾아본다. 안 그러면 애써 만든 표지를 두고 임시 표지가 나간다.
+    key = which.rstrip("/")
+    names = [key]
+    mod = OVERLAY.get(key)
+    if mod:
+        names += [k for k, v in OVERLAY.items() if v == mod and k != key]
+    designed = ""
+    for name in names:
+        cand = os.path.join(m.ROOT, "release", "covers", "%s-cover.jpg" % name)
+        if os.path.exists(cand):
+            designed = cand
+            break
+    if designed:
         cover_path = os.path.join(out_dir, "cover.jpg")
         shutil.copyfile(designed, cover_path)
     else:
