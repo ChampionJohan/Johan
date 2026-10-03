@@ -1,0 +1,62 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>장 설계표 — 장을 쓰기 전에 채우는 아홉 칸</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>쓰는 법</h1>
+<p>장 하나에 표 하나입니다. <strong>쓰기 전에 채웁니다.</strong></p>
+<p>빈 칸이 있으면 그 장은 아직 쓸 준비가 안 된 것입니다. 특히 <strong>사례</strong>와 <strong>안 푸는 것</strong> 둘이 비면 쓰기 시작하지 마세요.</p>
+<ul><li>사례가 없으면 그 장은 일반론이 됩니다</li><li>안 푸는 것이 없으면 그 장은 너무 매끈해집니다</li></ul>
+<p>표는 원고에 안 들어갑니다. 쓰는 동안만 보는 것입니다. 이 파일을 복사해서 <code>&lt;책&gt;/설계/NN-&lt;가제&gt;.md</code> 로 두시면 됩니다.</p>
+<hr>
+<h1>빈 표</h1>
+<pre><code>## N장 · &lt;가제&gt;
+
+| 칸 | 적을 것 |
+|---|---|
+| **이 장의 한 문장** | 이 장에서 움직이는 것 하나. 명사 말고 움직임으로 |
+| **여는 모양** | 장면 / 질문 / 결론부터 / 앞 장에서 못 푼 것 |
+| **사례** | 언제·어디서·누가 + 어디서 확인했는지 |
+| **뺀 사례** | 확인이 안 돼서 뺀 것. 「이 장의 출처」에 그대로 들어감 |
+| **작가의 구체** | 작가만 아는 것 한 개. 없으면 `&lt;!-- 확인: 겪은 일 --&gt;` 로 비워 둠 |
+| **안 푸는 것** | 이 장에서 답 안 하고 넘어갈 것 하나 |
+| **「정리하면」** | 붙임 / 안 붙임 — 절반의 장에만 |
+| **끝내는 모양** | 다음 장으로 넘김 / 질문으로 닫음 / 할 것 하나 |
+| **앞뒤 연결** | 어느 장을 받고, 어느 장으로 넘기는지 |</code></pre>
+<hr>
+<h1>채운 보기</h1>
+<h2>2장 · 먼저 걸어 두면 달라진다</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>적을 것</th></tr></thead><tbody><tr><td><strong>이 장의 한 문장</strong></td><td>잃을 것을 먼저 내놓으면 안 믿던 사람이 믿기 시작한다</td></tr><tr><td><strong>여는 모양</strong></td><td>장면 — 계약금을 건네는 자리</td></tr><tr><td><strong>사례</strong></td><td>&lt;!-- 확인: 보증금 제도가 언제부터 있었는지 공개 자료로 대조할 것 --&gt;</td></tr><tr><td><strong>뺀 사례</strong></td><td>(아직 없음)</td></tr><tr><td><strong>작가의 구체</strong></td><td>&lt;!-- 확인: 겪은 일 — 작가가 먼저 돈을 걸어 본 일 한 개 --&gt;</td></tr><tr><td><strong>안 푸는 것</strong></td><td>얼마를 걸어야 믿어지는지. 그 금액을 정하는 법은 나도 모른다</td></tr><tr><td><strong>「정리하면」</strong></td><td>붙임</td></tr><tr><td><strong>끝내는 모양</strong></td><td>다음 장으로 — 걸 것이 없는 사람은 어떻게 하나</td></tr><tr><td><strong>앞뒤 연결</strong></td><td>1장(먼저 주는 쪽)을 받고, 3장(걸 것이 없을 때)으로 넘김</td></tr></tbody></table></div>
+<p><strong>빈 칸 둘을 <code>&lt;!-- 확인: --&gt;</code> 로 적어 뒀습니다.</strong></p>
+<p>설계표는 원고가 아니라서 <code>--stat</code> 이 여기까지 세지 않습니다. <strong>그 표시를 원고의 그 자리에도 같이 박아 두세요.</strong> 원고에 있어야 세어지고, 세어져야 안 채운 채로 발행되는 일이 없습니다.</p>
+<hr>
+<h1>한 부를 다 채우고 나서 볼 것</h1>
+<p>장 설계표를 그 부의 장 수만큼 채웠으면, <strong>세로로 읽어 봅니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>볼 것</th><th>걸리면</th></tr></thead><tbody><tr><td><strong>여는 모양</strong>이 다 같은가</td><td>섞습니다. 넷 중 하나로 쏠리면 안 됩니다</td></tr><tr><td><strong>「정리하면」</strong>이 절반을 넘나</td><td>뺍니다</td></tr><tr><td><strong>안 푸는 것</strong>이 서로 비슷한가</td><td>하나는 다른 종류로 바꿉니다</td></tr><tr><td><strong>사례</strong>가 한 분야에 몰렸나</td><td>분야를 벌립니다</td></tr><tr><td><strong>작가의 구체</strong>가 비었나</td><td>그 부는 아직 못 씁니다</td></tr></tbody></table></div>
+<p>마지막 줄이 제일 중요합니다. <strong>작가의 구체가 하나도 없는 부는 쓰기 시작하면 안 됩니다.</strong> 쓰고 나서 끼워 넣으면 그 자리만 떠 보입니다.</p>
+</div></body></html>
