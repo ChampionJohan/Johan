@@ -1,0 +1,136 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>05번과 07번 고치기 — 화면에서 누를 것만</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>두 책, 서로 다른 문제입니다</h1>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>무엇이 문제</th><th>누를 곳</th><th>몇 번</th></tr></thead><tbody><tr><td><strong>05</strong></td><td><code>Why Is This Still Here?</code></td><td>ISBN 선택이 비어 있음</td><td>Content 탭 · <strong>Print ISBN</strong></td><td>세 번</td></tr><tr><td><strong>07</strong></td><td><code>Everyone Had One.</code></td><td>바코드 체크가 켜짐</td><td>Content 탭 · <strong>Book Cover 아래 체크 상자</strong></td><td>두 번</td></tr></tbody></table></div>
+<p><strong>둘 다 파일 문제가 아닙니다.</strong> 본문도 표지도 다시 안 올립니다. 이미 올라간 파일을 그대로 쓰고, 화면에서 몇 번 누르고 재제출하면 끝납니다.</p>
+<p>왜 이렇게 됐는지는 <code>KDP-저내용-ISBN-오류.md</code> 에 적어 뒀습니다. <strong>이 문서는 고치는 동작만 적은 것입니다.</strong></p>
+<hr>
+<h1>05번 — Why Is This Still Here?</h1>
+<h2>먼저 Details 탭</h2>
+<p><code>Bookshelf</code> → 그 책 → <code>...</code> → <strong><code>Edit paperback details</code></strong></p>
+<p>Categories 쪽으로 내려가서 <strong>저내용(low-content) 체크</strong>를 봅니다.</p>
+<div class="table-wrap"><table><thead><tr><th>보이는 것</th><th>할 것</th></tr></thead><tbody><tr><td>꺼져 있음</td><td>그대로 둡니다. 아마존이 풀어 준 것입니다</td></tr><tr><td>켜져 있음</td><td><strong>끕니다.</strong> 그리고 <code>Save</code></td></tr></tbody></table></div>
+<p><strong>이게 모든 일의 원인이었습니다.</strong> 저내용 책은 무료 ISBN을 못 받는데, 이 체크가 켜져 있어서 ISBN 선택지가 둘로 줄었고, 거기서 고른 것이 지금 안 맞습니다.</p>
+<h2>그다음 Content 탭</h2>
+<p><code>Edit paperback content</code> 로 갑니다. <strong>Details 탭이 아닙니다.</strong></p>
+<p><strong>하나. Print ISBN</strong></p>
+<pre><code>Get a free KDP ISBN</code></pre>
+<p>세 가지 중 이것입니다. (나머지 둘은 <code>Use my own ISBN</code>, <code>Publish without ISBN</code>)</p>
+<p><strong>둘. Ink and Paper Type — 같이 확인하세요</strong></p>
+<pre><code>Black and white interior with cream paper</code></pre>
+<p><strong>흰색이면 책등이 2.1 mm 어긋납니다.</strong> 아래 표를 보세요.</p>
+<p><strong>셋. "Yes, my cover has a barcode" — 꺼져 있어야 합니다</strong></p>
+<p>07번에서 터진 그 상자입니다. 05번에서도 미리 확인해 두세요.</p>
+<p><strong>넷. 맨 아래 <code>Publish</code> 또는 <code>Submit for review</code></strong></p>
+<p>파일은 건드리지 않습니다. 그대로 두고 재제출만 합니다.</p>
+<hr>
+<h1>07번 — Everyone Had One.</h1>
+<p>아마존이 보냈던 말이 이것이었습니다.</p>
+<blockquote><p>We're unable to detect a valid barcode on your cover. <strong>We recommend removing your custom barcode</strong> and using an Amazon-Placed-Barcode.</p></blockquote>
+<p><strong>"custom barcode 를 지우라"가 표지를 고치라는 말이 아닙니다. 체크 상자를 끄라는 말입니다.</strong></p>
+<h2>Content 탭</h2>
+<p><code>Edit paperback content</code> → Book Cover 칸 아래에 이 줄이 있습니다.</p>
+<blockquote><p><strong>Does your cover include a barcode?</strong> If left unchecked, we'll add a barcode for you. ☑ Yes, my cover has a barcode.</p></blockquote>
+<p><strong>하나. 이 체크를 끕니다.</strong></p>
+<p>우리 표지에는 바코드가 없습니다. <strong>흰 자리만 비워 두고 아마존이 거기 찍게</strong> 돼 있습니다. "있다"고 해 두면 KDP가 찾다가 못 찾고 막습니다.</p>
+<p><strong>둘. Ink and Paper Type 이 <code>cream</code> 인지 같이 봅니다.</strong></p>
+<p><strong>셋. 재제출합니다.</strong></p>
+<p>표지는 손대지 마세요. 지난번에 두 번 고쳤는데 둘 다 헛수고였습니다. <strong>같은 코드로 만든 05번 표지는 같은 검사를 통과했습니다. 표지가 원인이 아닙니다.</strong></p>
+<hr>
+<h1>고친 뒤 확인하는 법</h1>
+<p>재제출하면 검수에 보통 하루이틀 걸립니다. 통과한 뒤에 미리보기를 엽니다.</p>
+<h2>바코드 아래 숫자를 보세요</h2>
+<div class="table-wrap"><table><thead><tr><th>보이는 숫자</th><th>뜻</th></tr></thead><tbody><tr><td><code>978…</code> 또는 <code>979…</code> 열세 자리</td><td><strong>ISBN이 붙었습니다. 성공입니다</strong></td></tr><tr><td><code>M0D…</code> 같은 번호</td><td>ISBN 없이 올라간 것입니다</td></tr></tbody></table></div>
+<p>지난번 05번 미리보기에 있던 <code>M0D2094829711</code> 이 아마존 내부 번호였습니다. <strong>ISBN은 978이나 979로 시작합니다.</strong></p>
+<h2>책등도 같이 보세요</h2>
+<p>미리보기에서 책등 글자가 <strong>앞표지나 뒤표지로 넘어가 있으면 종이 종류가 틀린 것</strong>입니다. 다시 Content 탭으로 가서 <code>cream</code> 인지 보세요.</p>
+<hr>
+<h1>나머지 여섯 권도 한 번씩</h1>
+<p>저내용 체크는 한 번 켜지면 <strong>다음 책에 따라오는 경우</strong>가 있습니다. 한 권에 1분이면 됩니다.</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>저내용 끔</th><th>ISBN</th><th>미색</th><th>바코드 끔</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr><tr><td>02</td><td>The Fourth Box</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>☐</td><td>☐</td><td>☐</td><td>☐</td></tr></tbody></table></div>
+<h2>이미 발행된 책에서 ISBN이 비어 있으면</h2>
+<p><strong>그냥 두셔도 됩니다.</strong> 발행된 뒤에는 ISBN을 바꾸기 어렵습니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>ISBN 없이 나간 책</th></tr></thead><tbody><tr><td>아마존에서 파는 것</td><td><strong>지장 없습니다</strong></td></tr><tr><td>서점·도서관 유통</td><td>안 됩니다</td></tr></tbody></table></div>
+<p>나중에 꼭 필요해지면 <strong>새 ISBN으로 판을 하나 더</strong> 내면 됩니다. 지금 있는 책을 억지로 고치는 것보다 그쪽이 쉽습니다.</p>
+<p><strong>다만 저내용 체크와 종이 종류는 발행 뒤에도 고칠 수 있습니다.</strong> 그 둘은 꼭 보세요.</p>
+<hr>
+<h1>종이 종류 — 이게 ISBN보다 위험합니다</h1>
+<p>우리 표지는 <strong>전부 미색 두께</strong>로 계산해서 만들었습니다. 흰색을 고르면 책등이 얇아지고 <strong>표지가 통째로 밀립니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>쪽</th><th>미색 책등</th><th>흰색 책등</th><th>어긋나는 양</th></tr></thead><tbody><tr><td>01</td><td>366</td><td>0.9150 in</td><td>0.8242 in</td><td><strong>2.3 mm</strong></td></tr><tr><td>02</td><td>358</td><td>0.8950 in</td><td>0.8062 in</td><td><strong>2.3 mm</strong></td></tr><tr><td>05</td><td>333</td><td>0.8325 in</td><td>0.7499 in</td><td><strong>2.1 mm</strong></td></tr><tr><td>06</td><td>301</td><td>0.7525 in</td><td>0.6779 in</td><td>1.9 mm</td></tr><tr><td>07</td><td>255</td><td>0.6375 in</td><td>0.5743 in</td><td>1.6 mm</td></tr><tr><td>08</td><td>224</td><td>0.5600 in</td><td>0.5044 in</td><td>1.4 mm</td></tr><tr><td>04</td><td>185</td><td>0.4625 in</td><td>0.4166 in</td><td>1.2 mm</td></tr><tr><td>03</td><td>115</td><td>0.2875 in</td><td>0.2590 in</td><td>0.7 mm</td></tr><tr><td>09</td><td>113</td><td>0.2825 in</td><td>0.2545 in</td><td>0.7 mm</td></tr><tr><td>10</td><td>107</td><td>0.2675 in</td><td>0.2410 in</td><td>0.7 mm</td></tr></tbody></table></div>
+<p>쪽수가 많은 순서입니다. <strong>위에 있는 넷이 특히 위험합니다.</strong></p>
+<p><strong>2 mm 면 책등 글자가 앞표지로 넘어가 보입니다.</strong></p>
+<p>파일 이름에 <code>cream</code> · <code>미색</code> 이라고 적어 뒀습니다. <strong>그걸 보고 고르시면 됩니다.</strong></p>
+<hr>
+<h1>그래도 막히면 — 이대로 보내세요</h1>
+<p>KDP 고객지원(<code>Help</code> → <code>Contact Us</code>)에 영어로 써야 합니다. 아래를 그대로 쓰시고 <strong>대괄호 안만 바꾸세요.</strong></p>
+<h2>05번용</h2>
+<pre><code>Hello,
+
+My paperback [Why Is This Still Here?] was flagged because the
+low-content checkbox was enabled on the title setup. Your team
+removed that checkbox and asked me to re-select my ISBN.
+
+I have now selected "Get a free KDP ISBN" in the Print ISBN section
+and resubmitted. The interior and cover files are unchanged.
+
+Could you confirm that a free KDP ISBN has been assigned to this
+title? The previewer previously showed an internal number rather
+than a 978/979 ISBN.
+
+Thank you.</code></pre>
+<h2>07번용</h2>
+<pre><code>Hello,
+
+My paperback [Everyone Had One. Where Did They All Go?] was rejected
+with "We're unable to detect a valid barcode on your cover."
+
+My cover does not contain a barcode. It leaves a blank white area of
+2.0 x 1.2 inches in the lower right of the back cover, with 0.375 in
+clearance from the trim, so that Amazon can place its own barcode there.
+
+The "Yes, my cover has a barcode" checkbox was enabled by mistake.
+I have unchecked it and resubmitted without changing the cover file.
+
+Could you confirm the cover passes now?
+
+Thank you.</code></pre>
+<hr>
+<h1>순서</h1>
+<ol><li><strong>05번을 먼저</strong> 고칩니다. 지금 막혀 있는 쪽입니다</li><li><strong>07번</strong>을 고칩니다</li><li>둘 다 검수 통과를 기다립니다 (보통 하루이틀)</li><li>통과하면 미리보기에서 <strong>바코드 숫자와 책등</strong>을 봅니다</li><li>그동안 나머지 여섯 권을 한 번씩 훑습니다</li><li>다 끝나면 <strong>09·10번(이번 책)</strong> 을 올립니다</li></ol>
+<p><strong>6번은 1~5번을 안 기다려도 됩니다.</strong> 서로 상관없는 책들입니다.</p>
+<hr>
+<h1>제가 확인 못 한 것</h1>
+<p><code>kdp.amazon.com</code> 이 막혀 있어 <strong>KDP 도움말을 직접 열지 못했습니다.</strong></p>
+<p>아마존이 보낸 메일에 적힌 단계는 그대로 옮긴 것이라 확실합니다. <strong>제가 더한 것은 추론입니다.</strong></p>
+<ul><li>저내용 책이 무료 KDP ISBN을 못 받는다는 것</li><li>발행 뒤에는 ISBN을 바꾸기 어렵다는 것</li></ul>
+<p>둘 다 메일 내용과 미리보기의 <code>M0D2094829711</code> 로 뒷받침되지만, <strong>규정 문서로 확인한 것은 아닙니다.</strong></p>
+<p>고치는 방법은 어느 쪽이든 같습니다. <strong>다시 고르고 재제출하는 것입니다.</strong></p>
+</div></body></html>
