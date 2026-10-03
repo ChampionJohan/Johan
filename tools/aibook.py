@@ -18,9 +18,10 @@ m.MANUSCRIPT = os.path.join(m.ROOT, "ai-book", "manuscript")
 m.SITE = os.path.join(m.ROOT, "ai-book", "site")
 m.TITLE = "모른다고 열아홉 번"
 m.SUBTITLE = "사람 하나와 기계 하나가 나눈 기록"
+# 짧은 책으로 간다(2026-10-03 작가 결정). 대화편이라 늘리면 묽어진다.
 m.SERIES = ""
 m.AUTHOR = "최재혁"
-m.TARGET = 130000
+m.TARGET = 35000
 
 if __name__ == "__main__":
     raise SystemExit(m.main())
