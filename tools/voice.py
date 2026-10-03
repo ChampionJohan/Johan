@@ -29,6 +29,7 @@ BOOKS = {
     "en-book": "en-book", "en-book2": "en-book2",
     "en-teen": "en-teen", "en-teen2": "en-teen2", "en-teen3": "en-teen3",
     "en-bestseller": "en-bestseller",
+    "ai-book": "ai-book", "en-ai-book": "en-ai-book",
 }
 
 

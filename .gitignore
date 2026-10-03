@@ -22,3 +22,5 @@ book-teen3/site/
 # 원고는 md 가 원본이고, 묶은 결과는 site/index.html 이다.
 */manuscript/*.html
 ai-book/site/
+
+en-ai-book/site/
