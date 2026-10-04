@@ -33,7 +33,7 @@
 → 비워 둠
 
 **6. Author**
-→ First name: `Johan`
+→ First name: `Jaehyuk`
 → Last name: `Choi`
 
 **7. Contributors**

@@ -53,8 +53,8 @@ os.makedirs(OUT5, exist_ok=True)
 os.makedirs(OUT6, exist_ok=True)
 os.makedirs(OUT7, exist_ok=True)
 
-AUTHOR_PLACEHOLDER_KO = "Johan Choi"
-AUTHOR_PLACEHOLDER_EN = "Johan Choi"
+AUTHOR_PLACEHOLDER_KO = "Jaehyuk Choi"
+AUTHOR_PLACEHOLDER_EN = "Jaehyuk Choi"
 
 CONFIGS = {
     "ko": dict(

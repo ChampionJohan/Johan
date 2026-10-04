@@ -29,7 +29,7 @@
 
 **5. Edition Number** → 비워 둠
 
-**6. Author** → First name: `Johan` / Last name: `Choi`
+**6. Author** → First name: `Jaehyuk` / Last name: `Choi`
 
 **7. Contributors** → 비워 둠
 
