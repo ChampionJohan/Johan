@@ -1,0 +1,663 @@
+<title>어학원 미팅 팩</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F1F0EB; --sheet:#FFFFFF; --sheet-2:#F7F6F2;
+  --ink:#191E26; --ink-2:#3C434E; --muted:#6B7078; --line:#DFDDD6; --line-2:#C7C4BA;
+  --acc:#1D5B7E; --acc-ink:#1D5B7E; --acc-soft:#E3EDF3;
+  --warn:#A8481C; --warn-ink:#A8481C; --warn-soft:#F6E8E0;
+  --ok:#2C6A52; --ok-ink:#2C6A52; --ok-soft:#E3EEE8;
+  --sans:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#111419; --sheet:#191D24; --sheet-2:#20252D;
+    --ink:#E6E9EE; --ink-2:#C3C9D2; --muted:#8D949E; --line:#2B313A; --line-2:#3B424D;
+    --acc:#5BAED6; --acc-ink:#7CC3E4; --acc-soft:#152934;
+    --warn:#E0885C; --warn-ink:#EFA179; --warn-soft:#2E1E16;
+    --ok:#5BBE95; --ok-ink:#75CCA8; --ok-soft:#152720;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111419; --sheet:#191D24; --sheet-2:#20252D;
+  --ink:#E6E9EE; --ink-2:#C3C9D2; --muted:#8D949E; --line:#2B313A; --line-2:#3B424D;
+  --acc:#5BAED6; --acc-ink:#7CC3E4; --acc-soft:#152934;
+  --warn:#E0885C; --warn-ink:#EFA179; --warn-soft:#2E1E16;
+  --ok:#5BBE95; --ok-ink:#75CCA8; --ok-soft:#152720;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:700;margin:0;line-height:1.35;text-wrap:balance}
+p{margin:0} a{color:var(--acc-ink)} strong{font-weight:500;color:var(--ink)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* ---- masthead ---- */
+.mast{background:var(--sheet);border-bottom:1px solid var(--line);padding-inline:20px;
+  padding-block:clamp(32px,6vw,56px) clamp(24px,4vw,36px)}
+.in{max-width:1080px;margin:0 auto}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc-ink);
+  display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kicker::before{content:"";width:22px;height:2px;background:var(--acc)}
+.mast h1{font-size:clamp(30px,5.6vw,46px);letter-spacing:-.01em}
+.mast .sub{margin-top:12px;font-size:16px;color:var(--ink-2);max-width:60ch}
+.goals{margin-top:26px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(246px,1fr))}
+.goal{background:var(--acc-soft);border-radius:3px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.goal .gn{font-family:var(--mono);font-size:12px;color:var(--sheet);background:var(--acc);width:21px;height:21px;
+  border-radius:50%;display:grid;place-items:center;flex:0 0 auto;margin-top:3px}
+.goal p{font-size:14.5px;color:var(--ink-2);line-height:1.6}
+.goal b{display:block;color:var(--ink);font-weight:500;margin-bottom:2px}
+
+/* ---- sticky nav ---- */
+.nav{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line);
+  padding-inline:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-in{max-width:1080px;margin:0 auto;display:flex;gap:6px;padding-block:9px;white-space:nowrap}
+.nav a{font-family:var(--mono);font-size:12px;text-decoration:none;color:var(--muted);
+  border:1px solid var(--line);border-radius:100px;padding:4px 11px;background:var(--sheet)}
+.nav a:hover,.nav a:focus-visible{color:var(--acc-ink);border-color:var(--acc)}
+
+/* ---- layout ---- */
+main{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:40px 72px;
+  display:flex;flex-direction:column;gap:clamp(36px,5vw,56px)}
+section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:60px}
+.s-head{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--ink);padding-top:13px}
+.s-num{font-family:var(--mono);font-size:11.5px;letter-spacing:.13em;color:var(--muted)}
+section h2{font-size:clamp(22px,3.3vw,29px)}
+.lead{font-size:16.5px;color:var(--ink-2);max-width:64ch}
+p,li{max-width:70ch}
+ul.plain{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px;color:var(--ink-2);font-size:15px}
+
+/* ---- agenda sheet ---- */
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.sheet-head{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;padding:15px 20px;
+  border-bottom:1px solid var(--line);background:var(--sheet-2)}
+.sheet-head .no{font-family:var(--mono);font-size:13px;color:var(--acc-ink);font-weight:500}
+.sheet-head h3{font-size:19px;flex:1 1 auto;min-width:200px}
+.tier{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-radius:100px;padding:3px 10px;
+  border:1px solid var(--line-2);color:var(--muted);white-space:nowrap}
+.tier.a{border-color:var(--acc);color:var(--acc-ink);background:var(--acc-soft)}
+.tier.b{border-color:var(--ok);color:var(--ok-ink);background:var(--ok-soft)}
+.sheet-body{padding:18px 20px;display:flex;flex-direction:column;gap:20px}
+.blk{display:flex;flex-direction:column;gap:9px;border-left:2px solid var(--line-2);padding-left:14px}
+.blk.ask{border-left-color:var(--acc)}
+.blk.offer{border-left-color:var(--ok)}
+.blk.risk{border-left-color:var(--warn)}
+.blk .bl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.blk.ask .bl{color:var(--acc-ink)} .blk.offer .bl{color:var(--ok-ink)} .blk.risk .bl{color:var(--warn-ink)}
+.blk p{font-size:15px;color:var(--ink-2)}
+.note{background:var(--sheet-2);border-radius:3px;padding:13px 15px;font-size:14.5px;color:var(--ink-2)}
+.note.warn{background:var(--warn-soft)}
+.note.key{background:var(--acc-soft)}
+
+/* ---- tables ---- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:430px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);background:var(--sheet-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hi td{background:var(--acc-soft);font-weight:500}
+caption{caption-side:bottom;text-align:left;padding:9px 14px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line)}
+
+/* ---- pull quote ---- */
+blockquote.pull{margin:0;font-family:var(--serif);font-size:clamp(18px,2.5vw,23px);line-height:1.55;color:var(--ink);
+  border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2);padding-block:18px;max-width:28ch}
+blockquote.pull span{color:var(--acc-ink)}
+
+/* ---- checklist ---- */
+.check{background:var(--sheet);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.check li{list-style:none;max-width:none;border-bottom:1px solid var(--line)}
+.check ul{margin:0;padding:0}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:11px 18px;cursor:pointer;font-size:15px;color:var(--ink-2)}
+.check input{margin:5px 0 0;width:16px;height:16px;accent-color:var(--acc);flex:0 0 auto}
+.check input:checked ~ span{color:var(--muted);text-decoration:line-through}
+.check li:last-child{border-bottom:0}
+.memo{display:flex;flex-direction:column;gap:8px}
+.memo label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.memo textarea{width:100%;min-height:150px;background:var(--sheet);color:var(--ink);border:1px solid var(--line);
+  border-radius:4px;padding:13px 15px;font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.7;resize:vertical}
+.memo textarea:focus-visible,.nav a:focus-visible,.check label:focus-within{outline:2px solid var(--acc);outline-offset:2px}
+.saved{font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+/* ---- agenda timeline ---- */
+.run{list-style:none;margin:0;padding:0}
+.run li{display:grid;grid-template-columns:96px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);max-width:none}
+.run li:first-child{border-top:1px solid var(--line)}
+.run .tm{font-family:var(--mono);font-size:13px;color:var(--acc-ink)}
+.run b{display:block;font-weight:500;margin-bottom:2px}
+.run span.d{font-size:14px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);background:var(--sheet);padding-block:32px;padding-inline:20px}
+footer .in{display:flex;flex-direction:column;gap:7px}
+footer .f1{font-family:var(--serif);font-size:17px}
+footer .f2{font-size:13px;color:var(--muted)}
+@media print{.nav,.memo textarea{display:none}body{background:#fff}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="mast">
+  <div class="in">
+    <div class="kicker">2026. 10. 05 (월) · 어학원 협력 미팅</div>
+    <h1>말레이시아 어학원 미팅 팩</h1>
+    <p class="sub">7개 안건 사전 정리 · 추가로 짚을 7가지 · 질문지 · 2시간 진행안.
+      우리는 학생을 보내는 고객이 아니라, 상품을 같이 만드는 파트너로 앉는다.</p>
+    <div class="goals">
+      <div class="goal"><span class="gn">1</span><p><b>겨울캠프 파일럿, 한다 / 안 한다</b>하겠다면 정원 · 일정 · 가격 뼈대까지</p></div>
+      <div class="goal"><span class="gn">2</span><p><b>학생관리를 지금 무엇으로 하는가</b>이 답 하나가 시스템 제안 전부를 결정한다</p></div>
+      <div class="goal"><span class="gn">3</span><p><b>다음 미팅 날짜</b>날짜 없는 합의는 합의가 아니다</p></div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="목차">
+  <div class="nav-in">
+    <a href="#s0">전략</a><a href="#a1">① 캠프</a><a href="#a2">② 채용</a><a href="#a3">③ 교재</a>
+    <a href="#a4">④ 시스템</a><a href="#a5">⑤ 단기팀</a><a href="#a6">⑥ 봉사</a><a href="#a7">⑦ 비자</a>
+    <a href="#plus">추가 안건</a><a href="#num">원가 모델</a><a href="#q">질문지</a><a href="#run">진행안</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="s0">
+  <div class="s-head"><span class="s-num">전략</span><h2>7개를 다 결정하려 하면 하나도 결정되지 않는다</h2></div>
+  <p class="lead">안건의 성격이 셋으로 갈린다. 미팅 시간의 배분도 이 분류를 따른다.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:130px">구분</th><th>안건</th><th>이번 미팅에서</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td><strong>A. 우리가 파는 것</strong></td><td>④ 학생관리 시스템 · ③ 교재 개발</td><td><strong>수주 기회 — 가장 공들일 것</strong></td></tr>
+        <tr><td><strong>B. 함께 만드는 것</strong></td><td>① 어학캠프 · ⑤ 단기팀 2시간 과정</td><td>구조 합의까지만. 가격은 다음에</td></tr>
+        <tr><td><strong>C. 묻고 확인할 것</strong></td><td>② 채용 · ⑥ 봉사·증명서 · ⑦ 비자</td><td>답만 받아 온다</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <blockquote class="pull">캠프는 한 철 장사지만,<span> 시스템은 매달 들어오는 매출이 된다.</span></blockquote>
+</section>
+
+<section id="a1">
+  <div class="s-head"><span class="s-num">안건 01</span><h2>어학캠프 상품 개발</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">①</span><h3>말레이시아 + 싱가포르 1개월 캠프</h3><span class="tier b">B · 함께 만드는 것</span></div>
+    <div class="sheet-body">
+      <p class="lead">한국 방학(여름·겨울) 1개월 · 초4~고1 · 영어 수업 + 방과후 학습 + 숙식 + 주말 액티비티.</p>
+
+      <div class="blk ask">
+        <span class="bl">물어볼 것</span>
+        <ul class="plain">
+          <li>캠프 기간에 <strong>정규 수업과 분리된 반</strong>을 짤 수 있는가</li>
+          <li>주당 수업시간과 반 정원은? (주 20시간 / 1반 8명 이하가 한국 학부모 기대치)</li>
+          <li>레벨 테스트는 사전 온라인인가, 도착 후인가</li>
+          <li>외국인 단기 학생을 받아 본 경험 — 국적 · 인원 · 기간</li>
+          <li>숙소 제휴가 있는가, 식사는 어떻게 되는가</li>
+          <li><strong>주말 액티비티를 학원이 운영하는가, 외주인가</strong> — 안전 책임 소재가 여기서 갈린다</li>
+          <li>미성년 단체의 싱가포르 국경 통과 경험이 있는가</li>
+          <li>성수기(1월 · 7~8월) 강사 수급이 가능한가</li>
+        </ul>
+      </div>
+
+      <div class="blk offer">
+        <span class="bl">우리 제안</span>
+        <p><strong>4주 기본형 + 2주 단기형.</strong> 2주형은 “처음 보내 보는 학부모”의 진입 장벽을 낮추는 미끼 상품이다.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:120px">시간</th><th>평일 일과</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">09:00–12:00</td><td>어학원 정규 수업 (3시간)</td></tr>
+              <tr><td class="mono">13:30–15:30</td><td>회화 · 액티비티 수업 (2시간)</td></tr>
+              <tr class="hi"><td class="mono">16:00–18:00</td><td><strong>방과후 학습 — 숙제 / 한국 수학 / 영어 일기</strong></td></tr>
+              <tr><td class="mono">19:30–21:00</td><td>자율학습 · 단어 시험 · 하루 보고</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note key"><strong>방과후 2시간이 이 상품의 차별점이다.</strong> 필리핀 캠프와 경쟁할 때 한국 학부모가 가장 불안해하는 지점은 “한 달 놀다 오면 수학 다 까먹는다”이다. 한국 수학 진도를 봐 주는 캠프는 설명이 필요 없는 상품이 된다.</div>
+        <p>주말 — 토요일 액티비티 2~3회(KLCC · 바투동굴 · 레고랜드 등), 캠프 중 <strong>싱가포르 1박2일</strong> 1회.</p>
+      </div>
+
+      <div class="blk">
+        <span class="bl">결정 필요</span>
+        <ul class="plain">
+          <li>정원과 손익분기 인원 (가안: 최소 10명, 적정 15~20명)</li>
+          <li>인솔교사 비율 — <strong>학생 10명당 한국인 인솔 1명</strong> 권장</li>
+          <li>가격 결정 주체 — 우리가 정하고 학원에 단가를 지급(우리가 리스크) vs 학원 정가 + 우리 수수료(학원이 리스크)</li>
+          <li>모객 마감일 — 겨울캠프라면 <strong>11월 중순 확정, 12월 초 잔금</strong></li>
+        </ul>
+      </div>
+
+      <div class="blk risk">
+        <span class="bl">리스크</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:150px">리스크</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td>미성년자 사고 · 질병</td><td>여행자보험 전원 가입 의무화, 24시간 비상 연락, 현지 병원 사전 지정</td></tr>
+              <tr><td>싱가포르 국경 지연</td><td>평일 이동, 단체 명단 사전 제출, 여권 원본 관리 담당 1인 고정</td></tr>
+              <tr><td>모객 미달</td><td><strong>최소 인원 미달 시 전액 환불</strong>을 먼저 공지 — 신뢰가 다음 기수를 만든다</td></tr>
+              <tr><td>입국 신분</td><td>한국 여권 관광 무비자 90일. 3개월 미만 단기 어학은 통상 관광 입국으로 진행되나 과정 성격에 따라 Student Pass가 필요할 수 있어 <strong>학원 확인 필수</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a2">
+  <div class="s-head"><span class="s-num">안건 02</span><h2>잡말레이시아 — 채용</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">②</span><h3>어학원 교사 · 음악 교사 · 난민 참여</h3><span class="tier">C · 묻고 확인</span></div>
+    <div class="sheet-body">
+      <div class="blk ask">
+        <span class="bl">물어볼 것</span>
+        <ul class="plain">
+          <li>현재 구인 중인 포지션과 급여 범위</li>
+          <li>외국인 교사의 <strong>비자 스폰서(Employment Pass)를 학원이 내 주는가</strong></li>
+          <li>요구 조건 — 학위, TESOL/CELTA, 경력 연수</li>
+          <li>한국인 교사(수학 · 음악 · 한국어) 수요가 있는가</li>
+          <li>파트타임 · 프리랜서 형태가 가능한가</li>
+        </ul>
+      </div>
+      <div class="blk offer">
+        <span class="bl">우리 제안</span>
+        <p>한국인 교사 풀을 소개하고 성사 시 수수료 또는 무상 소개 중 선택. 음악 · 미술 · 태권도 등 <strong>방과후 특기 교사</strong>는 캠프 상품과 묶으면 양쪽 활용도가 올라간다.</p>
+      </div>
+      <div class="blk risk">
+        <span class="bl">난민 고용 — 여기서는 솔직해야 한다</span>
+        <p>말레이시아는 난민협약 비준국이 아니며 <strong>UNHCR 카드 소지자에게 합법적 취업권이 없다.</strong> “난민을 교사로 채용”은 학원에 법적 위험을 안긴다. 학원이 난처해질 질문을 먼저 던지면 관계가 상한다.</p>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:46px">#</th><th>대안</th><th>비고</th></tr></thead>
+            <tbody>
+              <tr><td class="n">1</td><td>캠프 액티비티 보조 · 통역 · 문화 체험 진행 등 단발 과업</td><td>보수 지급 시 회색지대 — 현지 자문 필요</td></tr>
+              <tr><td class="n">2</td><td>교재 삽화 · 녹음 · 번역 등 결과물 납품</td><td>원격 · 과업 단위라 부담이 적다</td></tr>
+              <tr class="hi"><td class="n">3</td><td>난민 아동 대상 학원의 <strong>CSR 수업</strong></td><td>학원에는 명분, 난민에게는 기회 — <strong>여기서부터 꺼낸다</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a3">
+  <div class="s-head"><span class="s-num">안건 03</span><h2>교재 — 보유 확인, 없으면 개발</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">③</span><h3>캠프 전용 4주 교재부터</h3><span class="tier a">A · 우리가 파는 것</span></div>
+    <div class="sheet-body">
+      <div class="blk ask">
+        <span class="bl">물어볼 것</span>
+        <ul class="plain">
+          <li>자체 교재가 있는가, 시판 교재(Oxford · Cambridge 등)를 쓰는가</li>
+          <li>있다면 누가 만들었고, 개정 주기는, 인쇄는 어디서 하는가</li>
+          <li>없다면 <strong>왜 안 만들었는가</strong> — 비용인가, 인력인가, 필요를 못 느껴서인가</li>
+          <li>캠프 전용 4주 완성형 교재에 대한 생각은</li>
+        </ul>
+      </div>
+      <div class="blk offer">
+        <span class="bl">우리 제안</span>
+        <p>정규 교재는 범위가 크고 검증이 오래 걸린다. <strong>캠프 교재는 4주 안에 결과가 나온다.</strong> 여기서 시작한다.</p>
+        <p>구성 — 1일 2쪽 × 20일 + 주말 리뷰 4회 + 단어장 + <strong>학부모용 주간 리포트 양식</strong>. 학부모는 교재보다 리포트를 본다. 제작 범위는 기획 · 원고 · 디자인 · 인쇄 전부 가능하다.</p>
+      </div>
+      <div class="blk">
+        <span class="bl">결정 필요</span>
+        <ul class="plain">
+          <li>저작권 귀속 — 공동 보유 / 학원 귀속 + 사용료 / 우리 귀속 + 라이선스</li>
+          <li>제작비 산정 — 총액 수주 vs 권당 단가</li>
+          <li>초판 부수와 개정 책임</li>
+        </ul>
+      </div>
+      <div class="blk risk">
+        <span class="bl">리스크</span>
+        <p>시판 교재를 쓰는 진짜 이유는 대개 <strong>강사 교육 부담</strong>이다. 교재만 주면 안 쓴다. <strong>교사용 지도서(1쪽 요약)를 함께 주는 조건</strong>이어야 실제로 쓰인다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a4">
+  <div class="s-head"><span class="s-num">안건 04</span><h2>학생관리 시스템 — 이번 미팅의 본론</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">④</span><h3>IT 인프라 15년이 가장 직접적으로 쓰이는 안건</h3><span class="tier a">A · 우리가 파는 것</span></div>
+    <div class="sheet-body">
+      <div class="blk ask">
+        <span class="bl">물어볼 것 — 순서대로, 답을 받아 적을 것</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:40px">#</th><th>질문</th></tr></thead>
+            <tbody>
+              <tr><td class="n">1</td><td>지금 학생 정보를 <strong>어디에 보관</strong>하는가? (종이 / 엑셀 / 구글 시트 / 프로그램)</td></tr>
+              <tr><td class="n">2</td><td>출결은 어떻게 체크하고, 결석을 학부모에게 어떻게 알리는가</td></tr>
+              <tr><td class="n">3</td><td>수납 · 미납 관리는 누가, 무엇으로 하는가</td></tr>
+              <tr><td class="n">4</td><td>성적 · 레벨 변동 이력이 남는가</td></tr>
+              <tr><td class="n">5</td><td>학부모 소통 채널은? 누가 답하는가</td></tr>
+              <tr><td class="n">6</td><td>강사 시수와 급여 정산은 어떻게 계산하는가</td></tr>
+              <tr class="hi"><td class="n">7</td><td><strong>원장님이 매일 아침 가장 먼저 확인하는 숫자는?</strong> — 이 답이 1순위 기능이다</td></tr>
+              <tr class="hi"><td class="n">8</td><td><strong>월말에 가장 오래 걸리는 반복 작업은?</strong></td></tr>
+              <tr><td class="n">9</td><td>“IT 비즈니스”란 구체적으로 무엇인가 — 우리가 경쟁자인지 파트너인지 여기서 갈린다</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="blk offer">
+        <span class="bl">우리 제안 — 3단계로 쪼개서 간다</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:84px">단계</th><th>범위</th><th style="width:80px">기간</th><th>목적</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td><strong>1단계</strong></td><td>출결 + <strong>학부모 자동 알림</strong> + 학생 마스터</td><td class="mono">4~6주</td><td>가장 아프고 가장 빨리 효과 나는 것 하나</td></tr>
+              <tr><td><strong>2단계</strong></td><td>수납 · 미납 + 성적 이력 + 월말 리포트 자동화</td><td class="mono">6~8주</td><td>원장의 월말 야근을 없앤다</td></tr>
+              <tr><td><strong>3단계</strong></td><td>캠프 모듈(숙소 · 액티비티 · 건강) + 강사 시수 · 급여 + 학부모 화면</td><td class="mono">8~10주</td><td>캠프 상품과 결합</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note key"><strong>1단계를 먼저, 작게, 무료에 가깝게 한다.</strong> 쓰게 만드는 것이 파는 것보다 먼저다. 쓰기 시작하면 2 · 3단계는 요청이 들어온다.</div>
+        <p>기술 방향 — 웹 기반(설치 없음, 휴대폰에서 바로), 기존 엑셀 · 시트는 <strong>Playwright 자동화로 이관</strong>(데이터를 손으로 옮기게 하지 않는다), 알림은 WhatsApp 우선 · 한국 학부모는 카카오 병행.</p>
+      </div>
+
+      <div class="blk">
+        <span class="bl">결정 필요</span>
+        <ul class="plain">
+          <li>과금 모델 — 구축비 일시불 / 학생 수 기준 월 구독 / 캠프 수익 배분과 묶기</li>
+          <li>데이터 소유권과 보관 위치</li>
+          <li>1단계 파일럿 시작일과 대상 반</li>
+        </ul>
+      </div>
+
+      <div class="blk risk">
+        <span class="bl">리스크</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:190px">리스크</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td><strong>개인정보보호법(PDPA 2010)</strong> — 미성년자 정보</td><td>수집 동의 · 보관 기간 · 접근 권한 설계. 동의서 양식을 1단계에 포함</td></tr>
+              <tr><td>강사들이 안 쓴다</td><td>입력 항목 5개 이하로 시작. 기능이 아니라 <strong>습관</strong>을 설계한다</td></tr>
+              <tr><td>학원이 직접 만들려 한다</td><td>경쟁하지 말고 <strong>그 팀과 같이 만드는 구조</strong>를 제안</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a5">
+  <div class="s-head"><span class="s-num">안건 05</span><h2>단기선교팀 2시간 어학 과정</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">⑤</span><h3>저비용 매출 · 가장 기억에 남는 일정</h3><span class="tier b">B · 함께 만드는 것</span></div>
+    <div class="sheet-body">
+      <div class="blk ask">
+        <span class="bl">물어볼 것</span>
+        <ul class="plain">
+          <li>한국 단기팀(10~30명) 대상 2시간 특별 수업을 열 수 있는가</li>
+          <li>인당 단가와 최소 인원</li>
+          <li>강사 섭외에 며칠 전 통보가 필요한가</li>
+          <li>한국어 가능한 스태프가 있는가</li>
+        </ul>
+      </div>
+      <div class="blk offer">
+        <span class="bl">우리 제안 — 2시간 구성</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:80px">시간</th><th>내용</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">30분</td><td>생존 영어 — 바로 쓰는 표현</td></tr>
+              <tr class="hi"><td class="mono">50분</td><td><strong>현지 학생과 1:1 대화</strong></td></tr>
+              <tr><td class="mono">30분</td><td>문화 교류 · 발표</td></tr>
+              <tr><td class="mono">10분</td><td>수료증 수여</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>⑥번 봉사 증명서와 묶으면 참가자 입장에서 명분이 하나 더 붙는다.</p>
+      </div>
+      <div class="blk">
+        <span class="bl">결정 필요</span>
+        <p>연간 몇 팀을 보낼 수 있는지 <strong>우리가 먼저 숫자를 말해야 한다.</strong> 막연히 “보내겠다”는 말로는 단가를 못 받는다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a6">
+  <div class="s-head"><span class="s-num">안건 06</span><h2>봉사활동과 증명서 발급</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">⑥</span><h3>학원 안이 아니라, 학원이 연결해 주는 곳에서</h3><span class="tier">C · 묻고 확인</span></div>
+    <div class="sheet-body">
+      <div class="blk ask">
+        <span class="bl">물어볼 것</span>
+        <ul class="plain">
+          <li>학원 이름으로 <strong>봉사활동 확인서를 발급할 수 있는가</strong> (직인 · 영문 양식)</li>
+          <li>어떤 활동을 봉사로 인정하는가 — 수업 보조, 교재 제작, 행사 진행, 정리</li>
+          <li>1일 인정 시간과 서류 처리 기간</li>
+          <li>연계된 지역 기관 · 고아원 · 난민 학교가 있는가</li>
+        </ul>
+      </div>
+      <div class="blk offer">
+        <span class="bl">우리 제안</span>
+        <p>봉사는 학원 안보다 <strong>학원이 연결해 주는 지역 기관</strong>에서 하는 쪽이 명분과 안전 모두 낫다. 학원은 연결과 증명서 발급을 맡는다.</p>
+        <div class="note">증명서 필수 항목 — 영문 성명(여권 표기) · 기간 · 총 시간 · 활동 내용 · 기관 직인 · 담당자 서명과 연락처. 한국 학교 · 대학 제출용이라면 <strong>영문 + 직인</strong>이 필수다.</div>
+      </div>
+      <div class="blk risk">
+        <span class="bl">리스크</span>
+        <p>단순 무보수 단기 봉사는 통상 관광 입국 상태에서 이루어지지만, <strong>보수 · 숙식 · 수당이 제공되면 ‘취업’으로 해석될 수 있다.</strong> 장기 · 정기 봉사라면 스폰서가 있는 Professional Visit Pass(최대 12개월)를 봐야 한다. 캠프 학생의 봉사는 <strong>단시간 · 무보수 · 교육 목적</strong>으로 한정한다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="a7">
+  <div class="s-head"><span class="s-num">안건 07</span><h2>비자 — 체류와 IT 비즈니스 설립</h2></div>
+  <div class="sheet">
+    <div class="sheet-head"><span class="no">⑦</span><h3>말레이시아에 ‘선교사 비자’는 사실상 없다</h3><span class="tier">C · 묻고 확인</span></div>
+    <div class="sheet-body">
+      <div class="note warn">아래는 공개 자료 기준 정리다. <strong>금액 · 기준은 자주 바뀌므로 현지 이민 대행사 또는 회계법인의 1회 유료 자문을 반드시 거친다.</strong> 이 문서로 신청을 진행하지 않는다.</div>
+
+      <div class="blk">
+        <span class="bl">체류 경로 4가지</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th style="width:150px">경로</th><th>조건</th><th>적합도</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td><strong>Employment Pass</strong></td><td>말레이시아 법인(Sdn Bhd) 설립 후 그 법인이 스폰서</td><td>IT 비즈니스를 할 것이라면 <strong>정석</strong></td></tr>
+              <tr><td><strong>Professional Visit Pass</strong></td><td>현지 스폰서 기관 필요, <strong>최대 12개월</strong>, 연구 · 자원봉사 · 교육 등 허용</td><td>과도기 또는 협력 신분</td></tr>
+              <tr><td><strong>MM2H</strong></td><td>자산 · 예치금 요건 (등급별 상이, 변동 잦음)</td><td>사업을 안 할 경우의 대안</td></tr>
+              <tr><td>배우자 · 학생 등</td><td>가족 또는 학업 기반</td><td>상황에 따라</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="blk">
+        <span class="bl">법인 설립 + EP 기준 (2026년 공개 자료)</span>
+        <div class="tw">
+          <table>
+            <thead><tr><th>구분</th><th class="n">요구 납입자본</th></tr></thead>
+            <tbody>
+              <tr class="hi"><td>100% 외국인 소유 Sdn Bhd — 서비스업</td><td class="n">RM 500,000</td></tr>
+              <tr><td>무역 · F&amp;B · WRT 라이선스 업종</td><td class="n">RM 1,000,000</td></tr>
+              <tr><td>외국인 지분 30% 이상 합작</td><td class="n">RM 350,000</td></tr>
+              <tr><td>100% 현지 소유</td><td class="n">RM 250,000</td></tr>
+              <tr><td>EP 급여 기준 (2026.6.1 시행) — Cat III / II / I</td><td class="n">RM 5,000 / 10,000 / 20,000</td></tr>
+            </tbody>
+            <caption>⚠️ SSM(등기소)의 최소 납입자본 RM 1은 <strong>이민국 기준과 다르다.</strong> 법인만 만들고 비자가 안 나오는 경우가 여기서 생긴다.</caption>
+          </table>
+        </div>
+      </div>
+
+      <div class="blk offer">
+        <span class="bl">IT 업종이라면 — Malaysia Digital (MD) Status</span>
+        <p>MDEC가 부여하는 디지털 기업 지위. 받으면 MDEC 전담 창구(Expats Service Centre)를 통한 외국인력 절차를 쓸 수 있고 세제 · 인력 혜택이 따른다. 단 <strong>Sdn Bhd 설립이 선행</strong>되어야 하며, 2026년 5월 25일부터 외국인력 인원 승인이 다시 심사제로 바뀌었다.</p>
+      </div>
+
+      <div class="blk ask">
+        <span class="bl">학원에 물어볼 것</span>
+        <ul class="plain">
+          <li>학원은 <strong>어떤 비자로 외국인 강사를 쓰고 있는가</strong> — 실제 사례가 가장 정확한 정보다</li>
+          <li>쓰고 있는 <strong>이민 대행사 · 회계법인을 소개받을 수 있는가</strong></li>
+          <li>학원 법인에 협력 형태로 올라탈 여지가 있는가 (PVP 스폰서 등)</li>
+          <li>캠프 학생들의 입국 신분은 무엇으로 처리해 왔는가</li>
+        </ul>
+      </div>
+
+      <div class="blk offer">
+        <span class="bl">전략 — 순서를 거꾸로 가지 않는다</span>
+        <p>법인부터 만들고 비자를 알아보면 자본금이 묶인다. ① 현지 대행사 유료 자문 1회(가장 싼 보험) → ② 사업 형태 확정, 학원 시스템 수주가 실제 매출이 되는지 확인 → ③ 매출 근거가 생긴 뒤 법인 설립 + MD Status 검토 → ④ EP 신청.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="plus">
+  <div class="s-head"><span class="s-num">추가</span><h2>학원이 먼저 꺼내지 않을 7가지</h2></div>
+  <p class="lead">7개 안건에 빠져 있지만 <strong>돈과 사고가 걸린 항목</strong>들이다. 지금 정하지 않으면 나중에 관계로 갚게 된다.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:40px">#</th><th style="width:170px">항목</th><th>왜 지금인가</th><th>미팅에서 할 말</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td><strong>수익 배분과 계약 형태</strong></td><td>누가 모객하고 누가 수금하는가에 따라 세금 · 환불 책임이 갈린다</td><td>“정산을 어느 쪽 통장으로 받는 구조가 편하십니까?”</td></tr>
+        <tr class="hi"><td class="n">2</td><td><strong>미성년자 안전 · 보험</strong></td><td>사고 한 번이면 사업이 끝난다</td><td>“보험은 저희가 전원 가입시키겠습니다. 지정 병원만 알려 주십시오”</td></tr>
+        <tr><td class="n">3</td><td>사고 · 질병 대응 매뉴얼</td><td>새벽 2시에 아이가 아프면 누가 어디로 가는가</td><td>“비상 연락 체계를 한 장으로 만들어 두시죠”</td></tr>
+        <tr><td class="n">4</td><td>개인정보(PDPA) 동의 절차</td><td>미성년자 정보를 다루는 시스템은 동의서가 먼저다</td><td>④번 1단계에 양식 포함</td></tr>
+        <tr><td class="n">5</td><td>모객 채널 · 마케팅 비용 분담</td><td>한국 모객 비용을 누가 대는가</td><td>“첫 기수는 저희가 모객하고, 성과가 나오면 분담을 논의하시죠”</td></tr>
+        <tr><td class="n">6</td><td>환불 · 취소 규정</td><td>모객 미달, 중도 귀국, 질병</td><td>3단계 명문화 — 출발 30일 전 / 14일 전 / 이후</td></tr>
+        <tr><td class="n">7</td><td>경쟁 상품 대비 포지셔닝</td><td>필리핀 세부 · 클락이 이미 시장을 잡고 있다</td><td>안전 + 영어·중국어 동시 노출 + 싱가포르 연계 + 한국 수학 관리</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="num">
+  <div class="s-head"><span class="s-num">숫자</span><h2>4주 캠프 원가 모델 (가안)</h2></div>
+  <div class="note warn"><strong>전부 가정치다.</strong> 미팅에서 이 표의 각 줄을 학원의 실제 단가로 바꾸는 것이 목적이다. 환율 RM 1 = 330원 가정, 항공권 별도.</div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>항목</th><th class="n">1인 (RM)</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>어학원 수업료</td><td class="n">2,400</td><td>주 20시간 × 4주</td></tr>
+        <tr><td>숙식 (28일, 3식)</td><td class="n">3,360</td><td>일 RM 120</td></tr>
+        <tr><td>방과후 학습 관리</td><td class="n">800</td><td>튜터 인건비 분담</td></tr>
+        <tr><td>주말 액티비티 + 싱가포르 1박2일</td><td class="n">1,200</td><td>입장료 · 교통 · 숙박</td></tr>
+        <tr><td>픽업 · 현지 교통 · 보험</td><td class="n">400</td><td>—</td></tr>
+        <tr><td>인솔교사 비용 분담</td><td class="n">600</td><td>교사 1인 체류비 RM 6,000 ÷ 10명</td></tr>
+        <tr class="hi"><td><strong>원가 합계</strong></td><td class="n"><strong>8,760</strong></td><td>약 289만원</td></tr>
+        <tr class="hi"><td><strong>판매가 가안 / 1인 마진</strong></td><td class="n"><strong>450만원</strong></td><td>마진 약 <strong>161만원 (36%)</strong>, 항공권 별도</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="n">모객 인원</th><th class="n">총 매출</th><th class="n">총 마진</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td class="n">8명</td><td class="n">3,600만원</td><td class="n">1,288만원</td><td>손익분기 부근 (고정비 감안)</td></tr>
+        <tr class="hi"><td class="n">15명</td><td class="n">6,750만원</td><td class="n">2,415만원</td><td><strong>적정 규모</strong></td></tr>
+        <tr><td class="n">20명</td><td class="n">9,000만원</td><td class="n">3,220만원</td><td>인솔 2명 필요</td></tr>
+      </tbody>
+      <caption>확인할 숫자 3개 — ① 학원 수업료 실제 단가 ② 숙소 임차 · 식사 단가 ③ 싱가포르 1박2일 실비. 참고로 필리핀 4주 캠프 시세가 350~450만원대다. <strong>가격으로 이기려 하지 말고 안전 · 관리로 이긴다.</strong></caption>
+    </table>
+  </div>
+</section>
+
+<section id="q">
+  <div class="s-head"><span class="s-num">질문지</span><h2>미팅에서 그대로 묻고 적을 것</h2></div>
+  <p class="lead">우선순위 순이다. 체크와 메모는 이 기기에 저장되므로 휴대폰으로 열어 두고 써도 된다.</p>
+  <div class="check">
+    <ul id="qlist">
+      <li><label><input type="checkbox" id="q1"><span>지금 학생 정보를 어디에 보관하는가? (종이 / 엑셀 / 시트 / 프로그램)</span></label></li>
+      <li><label><input type="checkbox" id="q2"><span>원장님이 매일 아침 가장 먼저 확인하는 숫자는?</span></label></li>
+      <li><label><input type="checkbox" id="q3"><span>월말에 가장 오래 걸리는 반복 작업은?</span></label></li>
+      <li><label><input type="checkbox" id="q4"><span>“IT 비즈니스”란 구체적으로 무엇인가?</span></label></li>
+      <li><label><input type="checkbox" id="q5"><span>1개월 집중 캠프반을 별도로 편성할 수 있는가?</span></label></li>
+      <li><label><input type="checkbox" id="q6"><span>캠프 기간 수업료 단가 (1인 4주 기준)</span></label></li>
+      <li><label><input type="checkbox" id="q7"><span>숙소를 학원이 제공하는가, 우리가 구하는가?</span></label></li>
+      <li><label><input type="checkbox" id="q8"><span>주말 액티비티 운영 주체는?</span></label></li>
+      <li><label><input type="checkbox" id="q9"><span>자체 교재가 있는가? 없다면 왜?</span></label></li>
+      <li><label><input type="checkbox" id="q10"><span>외국인 강사 비자를 어떻게 처리하는가? 대행사 소개 가능한가?</span></label></li>
+      <li><label><input type="checkbox" id="q11"><span>봉사 확인서를 영문 · 직인으로 발급할 수 있는가?</span></label></li>
+      <li><label><input type="checkbox" id="q12"><span>단기팀 2시간 과정의 인당 단가와 최소 인원은?</span></label></li>
+      <li><label><input type="checkbox" id="q13"><span>겨울캠프(2027년 1월) 파일럿이 가능한가?</span></label></li>
+      <li><label><input type="checkbox" id="q14"><span>다음 미팅 날짜는?</span></label></li>
+    </ul>
+  </div>
+  <div class="memo">
+    <label for="memo">현장 메모 — 참석자 / 통점 / 학원이 먼저 요청한 것 / 받아 온 숫자</label>
+    <textarea id="memo" placeholder="학원 측 참석자:&#10;&#10;가장 아파하는 지점(통점):&#10;&#10;학원이 먼저 요청한 것:&#10;&#10;숫자로 받아 온 것:"></textarea>
+    <span class="saved" id="saved">이 기기에만 저장됩니다</span>
+  </div>
+</section>
+
+<section id="run">
+  <div class="s-head"><span class="s-num">진행안</span><h2>2시간 운영과 미팅 후 72시간</h2></div>
+  <ol class="run">
+    <li><span class="tm">0:00–0:10</span><span><b>인사 · 소개</b><span class="d">우리 소개는 3문장 이내</span></span></li>
+    <li><span class="tm">0:10–0:30</span><span><b>학원 이야기 듣기 — 현재 운영과 어려움</b><span class="d">④번 질문 1~9를 여기서 자연스럽게</span></span></li>
+    <li><span class="tm">0:30–0:55</span><span><b>① 어학캠프 — 구조와 일과표 제시</b><span class="d">가격은 아직 꺼내지 않는다</span></span></li>
+    <li><span class="tm">0:55–1:20</span><span><b>④ 학생관리 시스템 — 1단계 제안</b><span class="d">오늘의 본론</span></span></li>
+    <li><span class="tm">1:20–1:35</span><span><b>③ 교재 / ⑤ 단기팀 / ⑥ 봉사</b><span class="d">각 5분, 답만 받는다</span></span></li>
+    <li><span class="tm">1:35–1:45</span><span><b>② 채용 / ⑦ 비자 — 정보 요청</b><span class="d">대행사 소개 요청</span></span></li>
+    <li><span class="tm">1:45–2:00</span><span><b>정리 — 결정 3가지 복창, 다음 미팅 확정</b><span class="d">그 자리에서 날짜를 잡는다</span></span></li>
+  </ol>
+  <div class="note key"><strong>진행 3원칙</strong> — ① 첫 20분은 질문만 한다. 통점을 모르고 던지는 제안은 안 팔린다. ② 구조에 합의한 뒤 숫자를 꺼낸다. ③ 마지막 15분을 비워 둔다. 결론 없이 끝난 미팅은 다음 미팅을 만들지 못한다.</div>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:92px">기한</th><th>할 일</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">당일 저녁</td><td>미팅 메모 정리, 결정 3가지와 미결 사항 분리</td></tr>
+        <tr><td class="mono">D+1</td><td>감사 메시지 + <strong>합의 사항 요약본</strong> 발송 — 기록이 곧 신뢰</td></tr>
+        <tr class="hi"><td class="mono">D+2</td><td>④번 1단계 <strong>화면 예시 1장</strong> 제작해 전달 — 말보다 그림이 수주를 만든다</td></tr>
+        <tr><td class="mono">D+3</td><td>캠프 원가표를 학원 실제 단가로 갱신, 판매가 재산정</td></tr>
+        <tr><td class="mono">D+7</td><td>현지 이민 대행사 자문 예약</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="src">
+  <div class="s-head"><span class="s-num">참고</span><h2>근거 자료</h2></div>
+  <p class="lead">비자 · 법인 항목의 출처다. 금액과 기준은 자주 바뀌므로 반드시 현지 전문가 확인을 거친다.</p>
+  <ul class="plain">
+    <li><a href="https://mishu.my/blog/visa/employment-pass-malaysia/">The Employer's Guide To Malaysian Employment Pass Applications (2026) — MISHU</a></li>
+    <li><a href="https://www.htlca.my/sdn-bhd-paid-up-capital-malaysia/">Sdn Bhd Paid-Up Capital Malaysia: Practical Guide — HTLCA</a></li>
+    <li><a href="https://mishu.my/blog/visa/mdec-employment-pass/">A Guide To MDEC Employment Pass Applications (2026) — MISHU</a></li>
+    <li><a href="https://www.mdec.my/md-documents/guidelines-on-malaysia-digital-status">Guidelines on Malaysia Digital Status — MDEC</a></li>
+    <li><a href="https://www.fragomen.com/insights/malaysia-foreign-knowledge-worker-projection-requests-reintroduced.html">Foreign Knowledge Worker Projection Requests Reintroduced — Fragomen</a></li>
+    <li><a href="https://www.imi.gov.my/index.php/en/main-services/pass/professional-visitor-pass/">Professional Visitor Pass — Jabatan Imigresen Malaysia</a></li>
+    <li><a href="https://mishu.my/blog/visa/professional-visit-pass/">A Full Guide To Malaysian Professional Visit Pass — MISHU</a></li>
+    <li><a href="https://visa.educationmalaysia.gov.my/media/docs/Student_Visa_Application_User_Guide.pdf">Student Visa Application User Guide — EMGS</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Visa_policy_of_Malaysia">Visa policy of Malaysia — Wikipedia</a></li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <div class="in">
+    <p class="f1">먼저 듣고, 구조에 합의하고, 그다음 숫자를 꺼낸다.</p>
+    <p class="f2">말레이시아 어학원 협력 미팅 팩 · 2026.10.05 · 조한</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = "mym-20261005-";
+  function load(id, fn){ try{ var v = localStorage.getItem(KEY+id); if(v!==null) fn(v); }catch(e){} }
+  function save(id, v){ try{ localStorage.setItem(KEY+id, v); }catch(e){} }
+  var boxes = document.querySelectorAll('#qlist input[type="checkbox"]');
+  boxes.forEach(function(b){
+    load(b.id, function(v){ b.checked = v === "1"; });
+    b.addEventListener("change", function(){ save(b.id, b.checked ? "1" : "0"); });
+  });
+  var m = document.getElementById("memo"), s = document.getElementById("saved"), t;
+  if(m){
+    load("memo", function(v){ m.value = v; });
+    m.addEventListener("input", function(){
+      clearTimeout(t);
+      t = setTimeout(function(){ save("memo", m.value); if(s) s.textContent = "저장됨 · 이 기기에만"; }, 400);
+    });
+  }
+})();
+</script>
