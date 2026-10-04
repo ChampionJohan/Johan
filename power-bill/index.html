@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>얼마나와 — 전기요금 누진세 계산기</title>
+<meta name="description" content="이번 달 전기요금이 얼마 나올지, 그리고 지금 1kWh 더 쓰면 얼마가 더 붙는지 누진 구간까지 계산해서 보여줍니다.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-apple-180.png">
+<meta name="theme-color" content="#d97706">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+  :root{
+    --bg:#fffaf0; --card:#ffffff; --ink:#1c1410; --muted:#7a6a58;
+    --line:#f0e3d0; --accent:#d97706; --accent-soft:#fef3c7;
+    --t1:#16a34a; --t2:#f59e0b; --t3:#dc2626;
+    --danger:#dc2626; --danger-soft:#fee2e2;
+    --shadow:0 2px 12px rgba(80,50,10,.07); --radius:16px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#17120c; --card:#221a12; --ink:#f7eee2; --muted:#b4a08a;
+      --line:#3a2c1d; --accent:#fbbf24; --accent-soft:#3a2a10;
+      --t1:#4ade80; --t2:#fbbf24; --t3:#f87171;
+      --danger:#f87171; --danger-soft:#3b1c1c;
+      --shadow:0 2px 12px rgba(0,0,0,.4);
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+    font-size:16px; line-height:1.55; -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:540px; margin:0 auto; padding:calc(env(safe-area-inset-top) + 16px) 14px 40px;}
+  .brand{display:flex; align-items:baseline; gap:8px; margin-bottom:14px;}
+  .brand h1{font-size:21px; margin:0; letter-spacing:-.02em;}
+  .brand span{font-size:12px; color:var(--muted);}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px; margin-bottom:12px; box-shadow:var(--shadow);
+  }
+  .card h2{font-size:13px; margin:0 0 12px; color:var(--muted); letter-spacing:.01em;}
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    background:linear-gradient(135deg,#f59e0b 0%,#ea580c 100%);
+    color:#fff; border:none; text-align:center; padding:22px 18px 18px;
+  }
+  .hero .label{font-size:12.5px; opacity:.92; margin-bottom:2px;}
+  .hero .amount{font-size:42px; font-weight:800; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.1;}
+  .hero .per{font-size:12.5px; opacity:.92; margin-top:4px;}
+
+  /* ---------------- input ---------------- */
+  .kwh-row{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .kwh-row input[type="number"]{
+    width:104px; padding:10px; font-size:21px; font-weight:800; text-align:right;
+    border:1.5px solid var(--line); border-radius:11px; background:var(--card); color:var(--ink);
+    font-variant-numeric:tabular-nums; font-family:inherit;
+  }
+  .kwh-row .unit{font-size:16px; font-weight:700; color:var(--muted);}
+  .kwh-row .spacer{flex:1;}
+  .step-btn{
+    width:42px; height:42px; border-radius:11px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--accent); font-size:19px; font-weight:800;
+    cursor:pointer; font-family:inherit;
+  }
+  .step-btn:active{transform:scale(.93);}
+  input[type="range"]{width:100%; accent-color:var(--accent); height:34px;}
+  .range-ends{display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:-4px;}
+
+  .seg{display:flex; gap:6px; margin-top:12px;}
+  .seg button{
+    flex:1; padding:9px 6px; border-radius:10px; border:1.5px solid var(--line);
+    background:var(--card); color:var(--muted); font-size:13px; font-weight:700;
+    cursor:pointer; font-family:inherit; line-height:1.3;
+  }
+  .seg button.on{border-color:var(--accent); background:var(--accent-soft); color:var(--accent);}
+  .seg button small{display:block; font-size:10.5px; font-weight:500; opacity:.85;}
+  select{
+    width:100%; padding:10px; border:1.5px solid var(--line); border-radius:10px;
+    background:var(--card); color:var(--ink); font-size:15px; font-family:inherit; margin-top:10px;
+  }
+
+  /* ---------------- tier gauge ---------------- */
+  .gauge{margin-top:4px;}
+  .gauge-bar{display:flex; height:30px; border-radius:9px; overflow:hidden; border:1px solid var(--line);}
+  .gauge-seg{position:relative; display:flex; align-items:center; justify-content:center;
+             font-size:10.5px; font-weight:800; color:#fff; opacity:.3; transition:opacity .15s;}
+  .gauge-seg.on{opacity:1;}
+  .gauge-seg.s1{background:var(--t1);} .gauge-seg.s2{background:var(--t2);} .gauge-seg.s3{background:var(--t3);}
+  /* Two separate rows: tier edges on top, the "you are here" marker below.
+     Sharing one row made them collide and overprint whenever the current
+     usage sat near an edge — which is exactly when people look at it. */
+  .gauge-marks{position:relative; height:16px; font-size:10.5px; color:var(--muted); margin-top:3px;}
+  .gauge-marks span{position:absolute; transform:translateX(-50%); white-space:nowrap;}
+  .gauge-you{position:relative; height:17px; font-size:11px; margin-top:1px;}
+  .gauge-you span{position:absolute; transform:translateX(-50%); white-space:nowrap;
+                  color:var(--accent); font-weight:800;}
+  .tier-now{display:flex; align-items:baseline; gap:7px; margin-top:9px;}
+  .tier-now .big{font-size:16px; font-weight:800;}
+  .tier-now .big.t1{color:var(--t1);} .tier-now .big.t2{color:var(--t2);} .tier-now .big.t3{color:var(--t3);}
+  .tier-now .sub{font-size:12.5px; color:var(--muted);}
+
+  /* ---------------- cliff warning ---------------- */
+  .cliff{
+    border:1.5px solid var(--danger); background:var(--danger-soft);
+    border-radius:13px; padding:13px 14px; margin-top:12px;
+  }
+  .cliff .top{font-size:12.5px; color:var(--danger); font-weight:700; margin-bottom:3px;}
+  .cliff .mid{font-size:18px; font-weight:800; line-height:1.35;}
+  .cliff .mid em{font-style:normal; color:var(--danger);}
+  .cliff .bot{font-size:12px; color:var(--muted); margin-top:5px;}
+  .safe{
+    border:1.5px solid var(--t1); background:transparent; border-radius:13px;
+    padding:13px 14px; margin-top:12px; font-size:13.5px; color:var(--t1); font-weight:700;
+  }
+
+  /* ---------------- appliance ---------------- */
+  .appl-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:7px;}
+  .appl{
+    padding:9px 6px; border-radius:11px; border:1.5px solid var(--line); background:var(--card);
+    color:var(--ink); font-size:12px; font-weight:700; cursor:pointer; font-family:inherit;
+    text-align:center; line-height:1.3;
+  }
+  .appl .emo{display:block; font-size:19px; margin-bottom:2px;}
+  .appl .w{display:block; font-size:10px; font-weight:500; color:var(--muted);}
+  .appl.on{border-color:var(--accent); background:var(--accent-soft); color:var(--accent);}
+  .appl.on .w{color:var(--accent);}
+  .appl-ctl{display:flex; gap:9px; align-items:flex-end; margin-top:12px;}
+  .appl-ctl .f{flex:1;}
+  .appl-ctl label{display:block; font-size:11.5px; color:var(--muted); font-weight:700; margin-bottom:3px;}
+  .appl-ctl input{
+    width:100%; padding:9px; border:1.5px solid var(--line); border-radius:10px;
+    background:var(--card); color:var(--ink); font-size:15px; font-family:inherit;
+    text-align:right; font-variant-numeric:tabular-nums;
+  }
+  .appl-out{
+    margin-top:12px; padding:13px 14px; border-radius:12px;
+    background:var(--accent-soft); border:1.5px solid var(--accent);
+  }
+  .appl-out .k{font-size:12px; color:var(--muted); font-weight:700;}
+  .appl-out .v{font-size:23px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; line-height:1.25;}
+  .appl-out .n{font-size:12px; color:var(--muted); margin-top:3px;}
+
+  /* ---------------- forecast ---------------- */
+  .fc-row{display:flex; gap:9px;}
+  .fc-row .f{flex:1;}
+  .fc-row label{display:block; font-size:11.5px; color:var(--muted); font-weight:700; margin-bottom:3px;}
+  .fc-row input{
+    width:100%; padding:9px; border:1.5px solid var(--line); border-radius:10px;
+    background:var(--card); color:var(--ink); font-size:15px; font-family:inherit;
+    text-align:right; font-variant-numeric:tabular-nums;
+  }
+  .fc-out{margin-top:11px; font-size:14px; line-height:1.6;}
+  .fc-out b{font-size:17px; color:var(--accent);}
+  .fc-out[hidden]{display:none;}
+
+  /* ---------------- breakdown ---------------- */
+  details{border:1px solid var(--line); border-radius:13px; background:var(--card); margin-bottom:12px;}
+  summary{padding:14px 16px; font-size:13.5px; font-weight:700; cursor:pointer; color:var(--muted); list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:" ▾"; float:right;}
+  details[open] summary::after{content:" ▴";}
+  .dt{padding:0 16px 14px;}
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  td{padding:7px 0; border-bottom:1px solid var(--line);}
+  td:last-child{text-align:right; font-variant-numeric:tabular-nums; font-weight:600;}
+  tr:last-child td{border-bottom:none; font-weight:800; font-size:15px; padding-top:11px;}
+  tr.sum td{border-top:2px solid var(--line); font-weight:800;}
+  .rate-tbl td{font-size:12.5px;}
+  .rate-tbl td:last-child{font-weight:700;}
+  .note{font-size:11.5px; color:var(--muted); line-height:1.6; margin:10px 0 0;}
+  .note a{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <h1>얼마나와</h1>
+    <span>전기요금 누진세 계산기</span>
+  </div>
+
+  <div class="card hero">
+    <div class="label">이번 달 예상 청구금액</div>
+    <div class="amount" id="total">—</div>
+    <div class="per" id="perDay">—</div>
+  </div>
+
+  <div class="card">
+    <h2>이번 달 사용량</h2>
+    <div class="kwh-row">
+      <button class="step-btn" id="minus" type="button" aria-label="10 줄이기">−</button>
+      <input type="number" id="kwh" min="0" max="2000" step="1" value="350" inputmode="numeric">
+      <span class="unit">kWh</span>
+      <span class="spacer"></span>
+      <button class="step-btn" id="plus" type="button" aria-label="10 늘리기">+</button>
+    </div>
+    <input type="range" id="kwhRange" min="0" max="1000" step="1" value="350">
+    <div class="range-ends"><span>0</span><span>500</span><span>1,000 kWh</span></div>
+
+    <div class="seg" id="typeSeg">
+      <button type="button" data-type="low" class="on">저압<small>단독·다세대</small></button>
+      <button type="button" data-type="high">고압<small>대부분 아파트</small></button>
+    </div>
+    <select id="month"></select>
+  </div>
+
+  <div class="card">
+    <h2>지금 몇 단계인가요</h2>
+    <div class="gauge">
+      <div class="gauge-bar">
+        <div class="gauge-seg s1" id="g1">1단계</div>
+        <div class="gauge-seg s2" id="g2">2단계</div>
+        <div class="gauge-seg s3" id="g3">3단계</div>
+      </div>
+      <div class="gauge-marks" id="gaugeMarks"></div>
+      <div class="gauge-you" id="gaugeYou"></div>
+      <div class="tier-now">
+        <span class="big" id="tierNow">—</span>
+        <span class="sub" id="tierSub"></span>
+      </div>
+    </div>
+    <div id="cliffBox"></div>
+  </div>
+
+  <div class="card">
+    <h2>이 가전을 더 쓰면 얼마 더 나올까</h2>
+    <div class="appl-grid" id="applGrid"></div>
+    <div class="appl-ctl">
+      <div class="f">
+        <label for="watt">소비전력 (W)</label>
+        <input type="number" id="watt" min="1" max="10000" step="10" value="1800" inputmode="numeric">
+      </div>
+      <div class="f">
+        <label for="hours">하루 사용 (시간)</label>
+        <input type="number" id="hours" min="0" max="24" step="0.5" value="4" inputmode="decimal">
+      </div>
+      <div class="f">
+        <label for="days">남은 일수</label>
+        <input type="number" id="days" min="0" max="31" step="1" value="10" inputmode="numeric">
+      </div>
+    </div>
+    <div class="appl-out">
+      <div class="k">추가로 내게 될 금액</div>
+      <div class="v" id="applCost">—</div>
+      <div class="n" id="applNote"></div>
+    </div>
+    <p class="note">소비전력은 제품마다 다릅니다. 보통 제품 뒷면 라벨이나 설명서에 적혀 있으니, 정확히 하려면 그 숫자로 바꿔 넣으세요.</p>
+  </div>
+
+  <div class="card">
+    <h2>검침일까지 이대로 쓰면</h2>
+    <div class="fc-row">
+      <div class="f">
+        <label for="usedSoFar">지금까지 쓴 양 (kWh)</label>
+        <input type="number" id="usedSoFar" min="0" max="2000" step="1" inputmode="numeric" placeholder="예: 180">
+      </div>
+      <div class="f">
+        <label for="daysPassed">지난 일수</label>
+        <input type="number" id="daysPassed" min="1" max="31" step="1" inputmode="numeric" placeholder="예: 12">
+      </div>
+      <div class="f">
+        <label for="daysLeft">남은 일수</label>
+        <input type="number" id="daysLeft" min="0" max="31" step="1" inputmode="numeric" placeholder="예: 18">
+      </div>
+    </div>
+    <div class="fc-out" id="fcOut" hidden></div>
+    <p class="note">계량기를 중간에 한 번 보면 월말 요금을 미리 알 수 있습니다. 검침일은 고지서에 적혀 있습니다.</p>
+  </div>
+
+  <details>
+    <summary>요금 내역 자세히 보기</summary>
+    <div class="dt"><table id="breakdown"></table></div>
+  </details>
+
+  <details>
+    <summary>적용된 요금표와 출처</summary>
+    <div class="dt">
+      <table class="rate-tbl" id="rateTable"></table>
+      <p class="note">
+        한국전력 주택용 전력 요금표 기준입니다. 기후환경요금 9.0원/kWh, 연료비조정액 +5.0원/kWh
+        (2026년 4분기 기준, 11분기 연속 동결), 부가가치세 10%, 전력산업기반기금 3.7%를 적용했습니다.
+        전력량요금·기후환경요금·연료비조정액은 원 미만 절사, 기금은 10원 미만 절사, 청구액은 10원 미만
+        절사로 계산합니다.
+        <br><br>
+        복지할인·다자녀 할인·에너지캐시백 등 개별 할인은 반영하지 않았으므로, 해당되시면 실제 고지서는
+        이보다 적게 나옵니다. 요금표가 바뀌면 숫자도 달라지니 큰 금액을 판단하실 때는
+        <a href="https://cyber.kepco.co.kr/ckepco/front/jsp/CY/J/J/CYJJPP000_SM.jsp" target="_blank" rel="noopener">한전 사이버지점 공식 계산기</a>로
+        한 번 더 확인하세요.
+      </p>
+    </div>
+  </details>
+
+  <p class="note" style="text-align:center;">
+    입력한 내용은 이 기기에만 저장되고 어디로도 전송되지 않습니다. 인터넷 없이도 동작합니다.
+  </p>
+</div>
+
+<script>
+/* ===========================================================================
+   얼마나와 — 한국전력 주택용 전기요금 계산기
+
+   계산식은 한전 고지서 구조 그대로입니다:
+     전기요금계 = 기본요금 + 전력량요금 + 기후환경요금 + 연료비조정액
+     청구금액   = 전기요금계 + 부가세(10%) + 전력산업기반기금(3.7%)
+
+   누진제의 핵심은 단가만 오르는 게 아니라 **기본요금 자체가 계단처럼 뛴다**는
+   점입니다. 기타계절 400kWh에서 401kWh로 1kWh 넘어가는 순간 기본요금이
+   1,600원에서 7,300원으로 바뀌어, 그 1kWh의 실제 비용이 6,840원이 됩니다.
+   이 앱이 보여주려는 게 바로 그 절벽입니다.
+
+   한계비용은 공식을 따로 세우지 않고 calcBill(지금+추가) − calcBill(지금)으로
+   구합니다. 그래야 구간을 넘는 경우까지 자동으로 정확해집니다.
+   =========================================================================== */
+
+const TARIFF = {
+  low:  { name:"저압", basic:[910,1600,7300], energy:[120.0,214.6,307.3] },
+  high: { name:"고압", basic:[730,1260,6060], energy:[105.0,174.0,242.3] }
+};
+const TIER_EDGE = { summer:[300,450], other:[200,400] };
+const CLIMATE = 9.0, FUEL = 5.0, VAT_RATE = 0.10, FUND_RATE = 0.037;
+
+function calcBill(kwh, type, isSummer){
+  const t = TARIFF[type];
+  const [e1, e2] = isSummer ? TIER_EDGE.summer : TIER_EDGE.other;
+  const tier = kwh <= e1 ? 0 : (kwh <= e2 ? 1 : 2);
+
+  const b1 = Math.min(kwh, e1);
+  const b2 = Math.min(Math.max(kwh - e1, 0), e2 - e1);
+  const b3 = Math.max(kwh - e2, 0);
+
+  const basic   = t.basic[tier];
+  const energy  = Math.floor(b1*t.energy[0] + b2*t.energy[1] + b3*t.energy[2]);
+  const climate = Math.floor(kwh * CLIMATE);
+  const fuel    = Math.floor(kwh * FUEL);
+
+  const subtotal = basic + energy + climate + fuel;
+  const vat  = Math.round(subtotal * VAT_RATE);
+  const fund = Math.floor(subtotal * FUND_RATE / 10) * 10;
+  const total = Math.floor((subtotal + vat + fund) / 10) * 10;
+  return { kwh, tier, basic, energy, climate, fuel, subtotal, vat, fund, total, b1, b2, b3 };
+}
+
+const APPLIANCES = [
+  ["에어컨 스탠드", "❄️", 1800],
+  ["에어컨 벽걸이", "🌬️", 750],
+  ["전기장판",      "🛏️", 150],
+  ["온풍기",        "🔥", 2000],
+  ["제습기",        "💧", 300],
+  ["건조기",        "👕", 1500],
+  ["세탁기",        "🫧", 500],
+  ["식기세척기",    "🍽️", 1200],
+  ["전기밥솥 보온", "🍚", 100],
+  ["전자레인지",    "📡", 1000],
+  ["헤어드라이어",  "💨", 1500],
+  ["데스크톱 PC",   "🖥️", 200],
+  ["TV",            "📺", 100],
+  ["공기청정기",    "🍃", 30],
+  ["냉장고",        "🧊", 40]
+];
+
+const LS = { kwh:"eol_kwh", type:"eol_type", month:"eol_month", watt:"eol_watt",
+             hours:"eol_hours", days:"eol_days", appl:"eol_appl" };
+const get = (k, d) => { try{ const v = localStorage.getItem(k); return v === null ? d : v; }catch(e){ return d; } };
+const set = (k, v) => { try{ localStorage.setItem(k, v); }catch(e){} };
+const $ = id => document.getElementById(id);
+const won = n => Math.round(n).toLocaleString("ko-KR") + "원";
+
+let state = {
+  kwh: Number(get(LS.kwh, 350)),
+  type: get(LS.type, "low"),
+  month: Number(get(LS.month, new Date().getMonth() + 1)),
+  appl: Number(get(LS.appl, 0))
+};
+const isSummer = () => state.month === 7 || state.month === 8;
+
+/* --------------------------------------------------------------- rendering */
+function render(){
+  const s = isSummer();
+  const bill = calcBill(state.kwh, state.type, s);
+  const [e1, e2] = s ? TIER_EDGE.summer : TIER_EDGE.other;
+
+  $("total").textContent = won(bill.total);
+  $("perDay").textContent = state.kwh > 0
+    ? `하루 평균 ${won(bill.total / 30)} · 1kWh당 평균 ${won(bill.total / state.kwh)}`
+    : "사용량을 입력하세요";
+
+  /* ---- tier gauge: segment widths follow the real kWh ranges ---- */
+  const MAX = Math.max(600, Math.ceil((state.kwh + 60) / 100) * 100);
+  const pct = v => (v / MAX) * 100;
+  $("g1").style.width = pct(e1) + "%";
+  $("g2").style.width = pct(e2 - e1) + "%";
+  $("g3").style.width = (100 - pct(e2)) + "%";
+  [0,1,2].forEach(i => $("g" + (i+1)).classList.toggle("on", bill.tier >= i));
+  $("gaugeMarks").innerHTML =
+    `<span style="left:${pct(e1)}%">${e1}</span><span style="left:${pct(e2)}%">${e2}</span>`;
+  /* Keep the marker inside the track so it never runs off either edge. */
+  const youPos = Math.max(5, Math.min(pct(state.kwh), 95));
+  $("gaugeYou").innerHTML = `<span style="left:${youPos}%">▲ ${state.kwh.toLocaleString("ko-KR")}kWh</span>`;
+
+  const tierEl = $("tierNow");
+  tierEl.textContent = (bill.tier + 1) + "단계";
+  tierEl.className = "big t" + (bill.tier + 1);
+  const unitRate = TARIFF[state.type].energy[bill.tier];
+  $("tierSub").textContent =
+    `${s ? "하계(7·8월)" : "기타계절"} · ${TARIFF[state.type].name} · 지금 구간 단가 ${unitRate.toFixed(1)}원/kWh`;
+
+  /* ---- the cliff: what the next tier actually costs ---- */
+  const box = $("cliffBox");
+  if(bill.tier < 2){
+    const edge = bill.tier === 0 ? e1 : e2;
+    const left = edge - state.kwh;
+    const jump = calcBill(edge + 1, state.type, s).total - calcBill(edge, state.type, s).total;
+    const nearly = left <= 30;
+    box.innerHTML = `
+      <div class="${nearly ? "cliff" : "cliff"}" ${nearly ? "" : 'style="border-color:var(--line); background:transparent;"'}>
+        <div class="top" ${nearly ? "" : 'style="color:var(--muted);"'}>
+          ${nearly ? "⚠️ 다음 단계가 코앞입니다" : "다음 단계까지"}
+        </div>
+        <div class="mid">${left.toLocaleString("ko-KR")}kWh 더 쓰면 <em>${bill.tier + 2}단계</em></div>
+        <div class="bot">
+          그 선을 넘는 <b>단 1kWh</b>에 <b style="color:var(--danger);">${won(jump)}</b>이 붙습니다
+          (기본요금이 ${TARIFF[state.type].basic[bill.tier].toLocaleString("ko-KR")}원 →
+          ${TARIFF[state.type].basic[bill.tier+1].toLocaleString("ko-KR")}원으로 뛰기 때문)
+        </div>
+      </div>`;
+  }else{
+    box.innerHTML = `<div class="safe">이미 최고 단계(3단계)입니다. 여기서부터는 단가가 더 오르지는 않습니다.</div>`;
+  }
+
+  renderAppliance(bill);
+  renderForecast();
+  renderBreakdown(bill, s);
+  renderRateTable(s);
+}
+
+/* The honest way to price "one more hour": recompute the whole bill with the
+   extra kWh added and take the difference. A flat unit-rate multiplication
+   would understate it badly whenever the extra usage crosses a tier. */
+function renderAppliance(bill){
+  const w = Number($("watt").value) || 0;
+  const h = Number($("hours").value) || 0;
+  const d = Number($("days").value) || 0;
+  const extraKwh = (w * h * d) / 1000;
+  if(extraKwh <= 0){
+    $("applCost").textContent = "—";
+    $("applNote").textContent = "소비전력·시간·일수를 입력하세요.";
+    return;
+  }
+  const after = calcBill(state.kwh + extraKwh, state.type, isSummer());
+  const diff = after.total - bill.total;
+  $("applCost").textContent = "+ " + won(diff);
+  const crossed = after.tier > bill.tier;
+  $("applNote").innerHTML =
+    `전기 ${extraKwh.toFixed(1)}kWh를 더 씁니다 → 합계 ${Math.round(state.kwh + extraKwh).toLocaleString("ko-KR")}kWh` +
+    (crossed
+      ? `<br><b style="color:var(--danger);">이 사용량이면 ${after.tier + 1}단계로 넘어갑니다.</b>`
+      : "");
+}
+
+function renderForecast(){
+  const used = Number($("usedSoFar").value);
+  const passed = Number($("daysPassed").value);
+  const left = Number($("daysLeft").value);
+  const out = $("fcOut");
+  if(!used || !passed || passed <= 0 || left === "" || isNaN(left)){
+    out.hidden = true;
+    return;
+  }
+  const perDay = used / passed;
+  const projected = Math.round(used + perDay * left);
+  const bill = calcBill(projected, state.type, isSummer());
+  const s = isSummer();
+  const [e1, e2] = s ? TIER_EDGE.summer : TIER_EDGE.other;
+  const edge = projected <= e1 ? e1 : (projected <= e2 ? e2 : null);
+  let advice = "";
+  if(edge !== null){
+    const room = edge - projected;
+    advice = room >= 0
+      ? `<br>이 속도면 ${edge}kWh 선까지 <b>${room.toLocaleString("ko-KR")}kWh</b> 남습니다.`
+      : "";
+  }
+  out.hidden = false;
+  out.innerHTML =
+    `하루 평균 <b>${perDay.toFixed(1)}kWh</b>로 쓰고 계십니다.<br>` +
+    `월말 예상 사용량 <b>${projected.toLocaleString("ko-KR")}kWh</b> → 예상 청구액 <b>${won(bill.total)}</b>` +
+    advice +
+    `<br><button class="step-btn" id="applyFc" type="button" style="width:auto; padding:7px 14px; font-size:13px; margin-top:9px;">이 값으로 계산하기</button>`;
+  $("applyFc").addEventListener("click", () => {
+    setKwh(projected);
+  });
+}
+
+function renderBreakdown(b, s){
+  const rows = [
+    ["기본요금", `${(b.tier+1)}단계`, b.basic],
+    [`1단계 전력량요금`, `${Math.round(b.b1)}kWh × ${TARIFF[state.type].energy[0].toFixed(1)}원`, null],
+    [`2단계 전력량요금`, `${Math.round(b.b2)}kWh × ${TARIFF[state.type].energy[1].toFixed(1)}원`, null],
+    [`3단계 전력량요금`, `${Math.round(b.b3)}kWh × ${TARIFF[state.type].energy[2].toFixed(1)}원`, null]
+  ];
+  let html = `<tr><td>기본요금 <span style="color:var(--muted);">(${b.tier+1}단계)</span></td><td>${won(b.basic)}</td></tr>`;
+  const segs = [b.b1, b.b2, b.b3];
+  segs.forEach((kw, i) => {
+    if(kw <= 0) return;
+    const rate = TARIFF[state.type].energy[i];
+    html += `<tr><td>${i+1}단계 전력량요금 <span style="color:var(--muted);">${kw.toFixed(0)}kWh × ${rate.toFixed(1)}원</span></td><td>${won(kw*rate)}</td></tr>`;
+  });
+  html += `<tr><td>기후환경요금 <span style="color:var(--muted);">${b.kwh.toFixed(0)}kWh × ${CLIMATE.toFixed(1)}원</span></td><td>${won(b.climate)}</td></tr>`;
+  html += `<tr><td>연료비조정액 <span style="color:var(--muted);">${b.kwh.toFixed(0)}kWh × ${FUEL.toFixed(1)}원</span></td><td>${won(b.fuel)}</td></tr>`;
+  html += `<tr class="sum"><td>전기요금계</td><td>${won(b.subtotal)}</td></tr>`;
+  html += `<tr><td>부가가치세 <span style="color:var(--muted);">10%</span></td><td>${won(b.vat)}</td></tr>`;
+  html += `<tr><td>전력산업기반기금 <span style="color:var(--muted);">3.7%</span></td><td>${won(b.fund)}</td></tr>`;
+  html += `<tr><td>청구금액</td><td>${won(b.total)}</td></tr>`;
+  $("breakdown").innerHTML = html;
+}
+
+function renderRateTable(s){
+  const t = TARIFF[state.type];
+  const [e1, e2] = s ? TIER_EDGE.summer : TIER_EDGE.other;
+  const ranges = [`0 ~ ${e1}kWh`, `${e1+1} ~ ${e2}kWh`, `${e2}kWh 초과`];
+  let html = `<tr><td colspan="2" style="font-weight:800; border-bottom:2px solid var(--line);">
+      주택용 ${t.name} · ${s ? "하계(7·8월)" : "기타계절(1~6월, 9~12월)"}</td></tr>`;
+  ranges.forEach((r, i) => {
+    html += `<tr><td>${i+1}단계 <span style="color:var(--muted);">${r}</span></td>
+             <td>기본 ${t.basic[i].toLocaleString("ko-KR")}원 / ${t.energy[i].toFixed(1)}원·kWh</td></tr>`;
+  });
+  $("rateTable").innerHTML = html;
+}
+
+/* ------------------------------------------------------------------ wiring */
+function setKwh(v){
+  state.kwh = Math.max(0, Math.min(2000, Math.round(v)));
+  $("kwh").value = state.kwh;
+  $("kwhRange").value = Math.min(state.kwh, 1000);
+  set(LS.kwh, state.kwh);
+  render();
+}
+
+$("kwh").addEventListener("input", e => {
+  const v = Number(e.target.value);
+  if(e.target.value === "" || isNaN(v)) return;
+  state.kwh = Math.max(0, Math.min(2000, v));
+  $("kwhRange").value = Math.min(state.kwh, 1000);
+  set(LS.kwh, state.kwh);
+  render();
+});
+$("kwh").addEventListener("blur", () => { if($("kwh").value === "") setKwh(0); });
+$("kwhRange").addEventListener("input", e => setKwh(Number(e.target.value)));
+$("minus").addEventListener("click", () => setKwh(state.kwh - 10));
+$("plus").addEventListener("click", () => setKwh(state.kwh + 10));
+
+$("typeSeg").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if(!b) return;
+  state.type = b.dataset.type;
+  set(LS.type, state.type);
+  document.querySelectorAll("#typeSeg button").forEach(x => x.classList.toggle("on", x === b));
+  render();
+});
+
+$("month").innerHTML = Array.from({length:12}, (_, i) =>
+  `<option value="${i+1}">${i+1}월${(i+1)===7||(i+1)===8 ? " — 하계 (누진 구간 완화)" : ""}</option>`).join("");
+$("month").value = state.month;
+$("month").addEventListener("change", e => {
+  state.month = Number(e.target.value);
+  set(LS.month, state.month);
+  render();
+});
+
+/* appliance picker */
+$("applGrid").innerHTML = APPLIANCES.map(([name, emo, w], i) =>
+  `<button type="button" class="appl${i === state.appl ? " on" : ""}" data-i="${i}" data-w="${w}">
+     <span class="emo">${emo}</span>${name}<span class="w">${w.toLocaleString("ko-KR")}W</span>
+   </button>`).join("");
+$("applGrid").addEventListener("click", e => {
+  const b = e.target.closest(".appl");
+  if(!b) return;
+  state.appl = Number(b.dataset.i);
+  set(LS.appl, state.appl);
+  document.querySelectorAll(".appl").forEach(x => x.classList.toggle("on", x === b));
+  $("watt").value = b.dataset.w;
+  set(LS.watt, b.dataset.w);
+  render();
+});
+["watt","hours","days"].forEach(id => {
+  const key = id === "watt" ? LS.watt : (id === "hours" ? LS.hours : LS.days);
+  $(id).value = get(key, $(id).value);
+  $(id).addEventListener("input", () => { set(key, $(id).value); render(); });
+});
+["usedSoFar","daysPassed","daysLeft"].forEach(id =>
+  $(id).addEventListener("input", renderForecast));
+
+/* boot */
+$("kwh").value = state.kwh;
+$("kwhRange").value = Math.min(state.kwh, 1000);
+document.querySelectorAll("#typeSeg button").forEach(b =>
+  b.classList.toggle("on", b.dataset.type === state.type));
+$("watt").value = get(LS.watt, APPLIANCES[state.appl][2]);
+render();
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

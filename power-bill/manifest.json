@@ -1,0 +1,18 @@
+{
+  "name": "얼마나와 — 전기요금 누진세 계산기",
+  "short_name": "얼마나와",
+  "description": "이번 달 전기요금이 얼마 나올지, 그리고 지금 1kWh 더 쓰면 얼마가 더 붙는지 누진 구간까지 계산해서 보여줍니다.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#d97706",
+  "orientation": "portrait",
+  "lang": "ko",
+  "icons": [
+    { "src": "icons/icon-any-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-any-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
