@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1020" width="1400" height="1020" role="img" aria-label="통합 지원센터 3개 센터 구조도">
+<style>
+svg{
+  --paper:#F6F5F1; --sf:#FFFFFF; --sf2:#ECEFF4;
+  --ink:#16202E; --ink2:#3A4657; --muted:#6A7585; --line:#D5DAE2; --line2:#BFC6D1;
+  --c1:#1B3A6B; --c1s:#E6EBF3;
+  --c2:#0F6457; --c2s:#E0EEEA;
+  --c3:#8A5A14; --c3s:#F5EADA;
+  --onc:#FFFFFF;
+  font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  svg:root, :root:not([data-theme="light"]) svg{
+    --paper:#0E1218; --sf:#161C25; --sf2:#1D2531;
+    --ink:#E6EAF0; --ink2:#C2CAD6; --muted:#8D97A6; --line:#28313D; --line2:#39434F;
+    --c1:#6E9FD8; --c1s:#152233;
+    --c2:#3FA994; --c2s:#102722;
+    --c3:#C9972F; --c3s:#2A2314;
+    --onc:#0E1218;
+  }
+}
+:root[data-theme="dark"] svg{
+  --paper:#0E1218; --sf:#161C25; --sf2:#1D2531;
+  --ink:#E6EAF0; --ink2:#C2CAD6; --muted:#8D97A6; --line:#28313D; --line2:#39434F;
+  --c1:#6E9FD8; --c1s:#152233; --c2:#3FA994; --c2s:#102722; --c3:#C9972F; --c3s:#2A2314; --onc:#0E1218;
+}
+.bg{fill:var(--paper)} .sf{fill:var(--sf)} .sf2{fill:var(--sf2)}
+.ln{stroke:var(--line);fill:none}
+.t1{fill:var(--ink)} .t2{fill:var(--ink2)} .t3{fill:var(--muted)}
+.onc{fill:var(--onc)}
+.eb{font-size:11.5px;letter-spacing:.14em;fill:var(--muted);font-family:'JetBrains Mono',ui-monospace,monospace}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.ser{font-family:'Noto Serif KR',Georgia,serif;font-weight:700}
+.c1{fill:var(--c1)} .c2{fill:var(--c2)} .c3{fill:var(--c3)}
+.c1s{fill:var(--c1s)} .c2s{fill:var(--c2s)} .c3s{fill:var(--c3s)}
+</style>
+
+<rect class="bg" x="0" y="0" width="1400" height="1020"/>
+
+<!-- header -->
+<rect class="sf" x="0" y="0" width="1400" height="106"/>
+<line class="ln" x1="0" y1="106" x2="1400" y2="106" stroke-width="1"/>
+<rect class="c1" x="48" y="30" width="24" height="3"/>
+<text class="eb" x="82" y="36">INTEGRATED SUPPORT CENTER · 구조 V2.0</text>
+<text class="ser t1" x="48" y="74" font-size="32">통합 지원센터</text>
+<text class="t2" x="300" y="74" font-size="14.5">세 개의 센터가 하나의 토대 위에 선다 — 학원 · 유학 · 비즈니스</text>
+<text class="mono t3" x="1352" y="74" font-size="12" text-anchor="end">3 센터 · 9 카테고리</text>
+
+<!-- ========== PART 1 ========== -->
+<rect class="c1" x="48" y="140" width="418" height="66" rx="5"/>
+<text class="mono onc" x="70" y="166" font-size="11.5" opacity="0.85">PART 1</text>
+<text class="ser onc" x="70" y="194" font-size="22">학원지원센터</text>
+<text class="mono onc" x="444" y="194" font-size="11" text-anchor="end" opacity="0.8">고객 · 학원 · 교회</text>
+
+<rect class="sf" x="48" y="218" width="418" height="212" rx="5"/><rect x="48" y="218" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c1" x="48" y="218" width="4" height="212"/>
+<text class="mono t3" x="72" y="246" font-size="11.5">01</text>
+<text class="t1 ser" x="72" y="276" font-size="19">어학캠프</text>
+<text class="t2" x="72" y="312" font-size="13.5">● 말레이시아 &amp; 싱가포르 캠프</text>
+<text class="t3" x="86" y="332" font-size="12.5">IM 선교회 소속</text>
+<text class="t2" x="72" y="360" font-size="13.5">● 말레이시아 &amp; 싱가포르 캠프</text>
+<text class="t3" x="86" y="380" font-size="12.5">한국 일반 학원 · 초 · 중 · 고</text>
+<text class="t2" x="72" y="408" font-size="13.5">● 미국 캠프 — IM 선교회</text>
+
+<rect class="sf" x="48" y="442" width="418" height="212" rx="5"/><rect x="48" y="442" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c1" x="48" y="442" width="4" height="212"/>
+<text class="mono t3" x="72" y="470" font-size="11.5">02</text>
+<text class="t1 ser" x="72" y="500" font-size="19">홍보</text>
+<text class="t2" x="72" y="536" font-size="13.5">● 홈페이지 · 블로그</text>
+<text class="t2" x="72" y="566" font-size="13.5">● 인스타그램 · 유튜브</text>
+<text class="t2" x="72" y="596" font-size="13.5">● 숏츠 · 후기 콘텐츠</text>
+<text class="t3" x="72" y="628" font-size="12.5">가맹 학원 공동 집행으로 단가 절감</text>
+
+<rect class="sf" x="48" y="666" width="418" height="212" rx="5"/><rect x="48" y="666" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c1" x="48" y="666" width="4" height="212"/>
+<text class="mono t3" x="72" y="694" font-size="11.5">03</text>
+<text class="t1 ser" x="72" y="724" font-size="19">관리 시스템</text>
+<text class="t2" x="72" y="760" font-size="13.5">● 온라인 학원 관리 서비스</text>
+<text class="t2" x="72" y="790" font-size="13.5">● 출결 · 수납 · 학부모 알림</text>
+<text class="t2" x="72" y="820" font-size="13.5">● 캠프 운영 모듈</text>
+<text class="t3" x="72" y="852" font-size="12.5">설치 없는 웹 서비스 · 휴대폰 우선</text>
+
+<!-- ========== PART 2 ========== -->
+<rect class="c2" x="491" y="140" width="418" height="66" rx="5"/>
+<text class="mono onc" x="513" y="166" font-size="11.5" opacity="0.85">PART 2</text>
+<text class="ser onc" x="513" y="194" font-size="22">유학지원센터</text>
+<text class="mono onc" x="887" y="194" font-size="11" text-anchor="end" opacity="0.8">고객 · 학부모 · 학생</text>
+
+<rect class="sf" x="491" y="218" width="418" height="212" rx="5"/><rect x="491" y="218" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c2" x="491" y="218" width="4" height="212"/>
+<text class="mono t3" x="515" y="246" font-size="11.5">01</text>
+<text class="t1 ser" x="515" y="276" font-size="19">유학 설명 · 한국</text>
+<text class="t2" x="515" y="312" font-size="13.5">● 말레이시아 유학 설명회</text>
+<text class="t2" x="515" y="342" font-size="13.5">● 학교 · 비용 · 비자 안내</text>
+<text class="t2" x="515" y="372" font-size="13.5">● 온라인 상담 · 자료집</text>
+<text class="t3" x="515" y="404" font-size="12.5">교회 · 학원 · 지역 커뮤니티 단위로</text>
+
+<rect class="sf" x="491" y="442" width="418" height="212" rx="5"/><rect x="491" y="442" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c2" x="491" y="442" width="4" height="212"/>
+<text class="mono t3" x="515" y="470" font-size="11.5">02</text>
+<text class="t1 ser" x="515" y="500" font-size="19">유학 지원 · 현지</text>
+<text class="t2" x="515" y="536" font-size="13.5">● 학교 탐방 · 투어</text>
+<text class="t2" x="515" y="566" font-size="13.5">● 입학 상담 · 서류 지원</text>
+<text class="t2" x="515" y="596" font-size="13.5">● 정착 지원 — 주거 · 생활</text>
+<text class="t3" x="515" y="628" font-size="12.5">학생비자(EMGS) 절차 동행</text>
+
+<rect class="sf" x="491" y="666" width="418" height="212" rx="5"/><rect x="491" y="666" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c2" x="491" y="666" width="4" height="212"/>
+<text class="mono t3" x="515" y="694" font-size="11.5">03</text>
+<text class="t1 ser" x="515" y="724" font-size="19">말레이시아 &amp; 싱가포르</text>
+<text class="t2" x="515" y="760" font-size="13.5">● 국제학교 · 대학 진학</text>
+<text class="t2" x="515" y="790" font-size="13.5">● 싱가포르 연계 과정</text>
+<text class="t2" x="515" y="820" font-size="13.5">● 장학 · 입학 경로 안내</text>
+<text class="t3" x="515" y="852" font-size="12.5">캠프 중 대학 탐방과 바로 연결</text>
+
+<!-- ========== PART 3 ========== -->
+<rect class="c3" x="934" y="140" width="418" height="66" rx="5"/>
+<text class="mono onc" x="956" y="166" font-size="11.5" opacity="0.85">PART 3</text>
+<text class="ser onc" x="956" y="194" font-size="22">비즈니스지원센터</text>
+<text class="mono onc" x="1330" y="194" font-size="11" text-anchor="end" opacity="0.85">프랜차이즈</text>
+
+<rect class="sf" x="934" y="218" width="418" height="212" rx="5"/><rect x="934" y="218" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c3" x="934" y="218" width="4" height="212"/>
+<text class="mono t3" x="958" y="246" font-size="11.5">01</text>
+<text class="t1 ser" x="958" y="276" font-size="19">IT 비즈니스</text>
+<text class="t2" x="958" y="312" font-size="13.5">● 홈페이지 · 블로그</text>
+<text class="t2" x="958" y="342" font-size="13.5">● 인스타 · 유튜브 운영</text>
+<text class="t2" x="958" y="372" font-size="13.5">● 학원 관리 시스템</text>
+<text class="t2" x="958" y="402" font-size="13.5">● 앱 개발 — AI 영어</text>
+
+<rect class="sf" x="934" y="442" width="418" height="212" rx="5"/><rect x="934" y="442" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c3" x="934" y="442" width="4" height="212"/>
+<text class="mono t3" x="958" y="470" font-size="11.5">02</text>
+<text class="t1 ser" x="958" y="500" font-size="19">출판</text>
+<text class="t2" x="958" y="536" font-size="13.5">● 영어학원 자체 교재 개발</text>
+<text class="t2" x="958" y="566" font-size="13.5">● 기획 · 디자인 · 인쇄</text>
+<text class="t2" x="958" y="596" font-size="13.5">● 교사용 지도서</text>
+<text class="t3" x="958" y="628" font-size="12.5">같은 교재 = 같은 수업 = 품질 통제</text>
+
+<rect class="sf" x="934" y="666" width="418" height="212" rx="5"/><rect x="934" y="666" width="418" height="212" rx="5" class="ln" stroke-width="1"/>
+<rect class="c3" x="934" y="666" width="4" height="212"/>
+<text class="mono t3" x="958" y="694" font-size="11.5">03</text>
+<text class="t1 ser" x="958" y="724" font-size="19">리크루팅 · 교육</text>
+<text class="t2" x="958" y="760" font-size="13.5">● 인턴십 프로그램</text>
+<text class="t2" x="958" y="790" font-size="13.5">● 한국 · 말레이시아 대학 연계</text>
+<text class="t2" x="958" y="820" font-size="13.5">● 교사 양성 · 배치</text>
+<text class="t3" x="958" y="852" font-size="12.5">확장의 병목은 언제나 사람이다</text>
+
+<!-- foundation -->
+<rect class="sf2" x="48" y="906" width="1304" height="72" rx="5"/>
+<rect x="48" y="906" width="1304" height="72" rx="5" stroke="var(--c1)" fill="none" stroke-width="1.5"/>
+<text class="mono t3" x="72" y="932" font-size="11">공통 토대 · FOUNDATION</text>
+<text class="ser t1" x="72" y="960" font-size="18">교육부 인가 어학원 · 학생비자 발급 권한 · 현지 네트워크</text>
+<text class="t2" x="700" y="960" font-size="13">세 센터가 같은 토대를 쓴다. 하나를 세우면 나머지 둘이 쉬워진다.</text>
+
+<text class="mono t3" x="48" y="1004" font-size="11">Part 1 학원 → Part 2 학생 → Part 3 복제 · 캠프로 만난 학생이 유학생이 되고, 유학 수요가 학원을 늘린다</text>
+<text class="mono t3" x="1352" y="1004" font-size="11" text-anchor="end">V2.0</text>
+</svg>
