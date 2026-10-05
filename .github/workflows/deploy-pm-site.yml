@@ -1,9 +1,9 @@
-name: build-site
+name: deploy-pm-site
 
 on:
   push:
-    branches: ["**"]
-    paths: ["writing/posts/**", "tools/**", ".github/workflows/build-site.yml"]
+    branches: ["main"]
+    paths: ["site/**", "tools/mdlite.py", ".github/workflows/deploy-pm-site.yml"]
   workflow_dispatch:
 
 permissions:
@@ -23,17 +23,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: 사이트 빌드
-        run: python3 tools/build.py
-      - name: 매체별 원고 내보내기
-        run: python3 tools/export.py --all
+      - name: 사이트 빌드 (status: ready 글만 공개)
+        run: python3 site/build.py
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: writing/site
+          path: site/public
 
   deploy:
-    # Pages 를 켠 저장소에서만 배포한다. 설정 > Pages > Source 를 GitHub Actions 로.
-    if: false  # 사업관리 템플릿 사이트(deploy-pm-site.yml)가 Pages 를 사용한다
     needs: build
     runs-on: ubuntu-latest
     environment:

@@ -1,0 +1,17 @@
+{
+  "name": "사업관리 템플릿 노트",
+  "tagline": "공공 IT 사업관리 실무에서 바로 쓰는 양식과 체크리스트",
+  "description": "공공 IT 사업관리 현장에서 15년간 쓰고 다듬은 회의록·주간보고·검수·산출물 템플릿과 작성 요령을 공유합니다.",
+  "url": "https://championjohan.github.io/Johan",
+  "custom_domain": "",
+  "author": "조한",
+  "email": "imtv2414@gmail.com",
+  "adsense_client": "",
+  "ga_id": "",
+  "categories": {
+    "meeting": "회의·보고",
+    "deliverable": "산출물",
+    "inspection": "검수·인수",
+    "ai": "업무용 AI"
+  }
+}
