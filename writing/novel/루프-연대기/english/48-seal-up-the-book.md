@@ -165,4 +165,4 @@ And someday, new feet will walk into this ravine. The way Temel's did, the way S
 
 *The book is sealed. But the story is not sealed. Many will still run to and fro, and knowledge will keep increasing. And before all of it, the one who finished it will go on being here, in the place we cannot see.*
 
-*(End of Part Four.)*
+*(The End.)*
