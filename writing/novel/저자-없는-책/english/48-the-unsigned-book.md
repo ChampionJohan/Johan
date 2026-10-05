@@ -106,7 +106,7 @@ this city, beside a number, written by hand.
 *I want to set this moment beside that earlier signature. Nothing had
 happened then, either. Nothing happened this time either. The person
 at the reception desk wasn't surprised. They stamped it, and filed it.
-I think these two ordinarinesses are the whole of what I learned in
+I think these two ordinary moments are the whole of what I learned in
 this book. A thing that changes the world comes in a shape the world
 doesn't notice.*
 

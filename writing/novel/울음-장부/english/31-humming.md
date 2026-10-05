@@ -203,7 +203,7 @@ I said nothing and just listened. I thought if I interrupted, he'd close back up
 
 "…Not strange," I said. "I have something like that too."
 
-I really did feel that. I couldn't say exactly what it was. But that day, the certainty that something uneraseable existed inside me too felt unusually clear.
+I really did feel that. I couldn't say exactly what it was. But that day, the certainty that something unerasable existed inside me too felt unusually clear.
 
 My brother looked at me. A little surprised.
 

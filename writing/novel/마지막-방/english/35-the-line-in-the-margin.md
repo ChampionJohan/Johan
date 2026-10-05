@@ -167,8 +167,8 @@ Reading that sentence, I thought of my own nine moves. Every time, I'd shrunk my
 *Writing this part, I felt the temptation to set up a contrast. That I
 lived by shrinking, and this house was built generous. But that would
 have been too neat a comparison. In fact, that day, I hadn't thought it
-through so tidily. I'd just found that sentence strangely, foreignly
-good.*
+through so tidily. I'd just found that sentence strange, and good in a way
+that did not belong to me.*
 
 Mena read the sentence quietly and said,
 

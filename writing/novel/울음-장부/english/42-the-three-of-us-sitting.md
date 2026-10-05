@@ -141,7 +141,7 @@ I was surprised by that naturalness. A few months earlier, Father would have fou
 
 Father's shoulder touched mine lightly. I felt that warmth. It was warm. I thought that warmth was different from, yet somehow similar to, the warmth of that man from earlier.
 
-I set those two warmths side by side in my mind. One was a father's warmth, the other a nameless guest's warmth. I found it strange that the two didn't compete with each other. If anything, they seemed to fill each other in.
+I set those two kinds of warmth side by side in my mind. One was a father's warmth, the other a nameless guest's warmth. I found it strange that the two didn't compete with each other. If anything, they seemed to fill each other in.
 
 *I set down this moment exactly as it was. Father didn't know what we had talked about. But in that moment, just the three of us sitting side by side, I felt something being completed.*
 

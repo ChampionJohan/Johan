@@ -17,7 +17,7 @@ Less than a full day had passed since we crossed the boundary stones, and alread
 
 The ground underfoot was different too. Haven's streets had always been even stone. Here it was rough and uneven. I stumbled more than once, and every time, my brother reached out without a word and caught me.
 
-Small stones were pressed into the ground. Some were sharp, some rolled round and loose under my heel. I felt every one of those unevennesses come up through the soles of my shoes as I walked. Haven's streets had never given my feet anything to feel — you set one foot down and the next step simply followed. Here, every single step belonged to me alone.
+Small stones were pressed into the ground. Some were sharp, some rolled round and loose under my heel. I felt every one of those uneven places come up through the soles of my shoes as I walked. Haven's streets had never given my feet anything to feel — you set one foot down and the next step simply followed. Here, every single step belonged to me alone.
 
 A low wind blew, carrying the smell of dry earth. I wrinkled my nose. But soon I grew used to it. Haven had almost no smell at all. Everything there was so clean that the absence of any smell had, once or twice, struck me as strange in itself. Here the smell shifted a little with every step — dry grass, a damp shade, and now and then the trace of some animal I couldn't name.
 
@@ -187,7 +187,7 @@ The people around the fire saw us and shifted, each making a little more room. N
 
 Settling into that narrow gap, I felt a stranger's shoulder brush lightly against mine. A stranger's warmth. I almost drew back, but I didn't. I found I didn't mind it.
 
-*Hearing her say that, I felt something strange. That phrase — "there isn't much." I had never once heard the word not enough in Haven. The Ledger was always sufficient. But in these people's not-enoughness there was something the Ledger's sufficiency had never had.*
+*Hearing her say that, I felt something strange. That phrase — "there isn't much." I had never once heard the word not enough in Haven. The Ledger was always sufficient. But in what these people went without there was something the Ledger's sufficiency had never had.*
 
 What the woman gave us was one piece of dry bread and a mouthful of water. Truly not much at all. But my brother's hand trembled a little as he took it. I understood that wasn't only from hunger.
 

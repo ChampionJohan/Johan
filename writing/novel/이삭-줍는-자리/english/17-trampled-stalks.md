@@ -125,7 +125,7 @@ We used them for fuel — to heat water. Not much, but better than nothing.
 
 One day, burning that trampled straw, a strange thought struck me. These stalks had once stood upright. The machine had laid them down as it passed. Lying flat, half-buried in dirt, by the time I found them they were already crushed apart.
 
-*Every time I saw them, my husband came to mind. Those stubbles cut off at wrist height. A sickle's cut and a machine's cut had a different grain. A sickle cuts on the slant. A machine cuts straight down. I could feel the difference now with my fingertips. That was the first skill I learned in this city.*
+*Every time I saw them, my husband came to mind. That stubble cut off at wrist height. A sickle's cut and a machine's cut had a different grain. A sickle cuts on the slant. A machine cuts straight down. I could feel the difference now with my fingertips. That was the first skill I learned in this city.*
 
 ---
 
