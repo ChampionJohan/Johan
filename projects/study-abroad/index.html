@@ -1,0 +1,384 @@
+<title>말레이시아 유학 자료집</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F2F3F0; --sheet:#FFFFFF; --sheet2:#EAF0EE;
+  --ink:#16221F; --ink2:#3A4A46; --muted:#66756F; --line:#D7DEDA; --line2:#BDC8C3;
+  --acc:#0F6457; --accs:#E0EEEA; --on-acc:#FFFFFF;
+  --sand:#8A6A1E; --sands:#F5EEDC;
+  --warn:#9E3F23; --warns:#F7E6DE;
+  --sans:"Noto Sans KR",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR",Georgia,serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1413; --sheet:#171E1C; --sheet2:#1E2724;
+  --ink:#E5EBE8; --ink2:#C1CCC8; --muted:#8C9994; --line:#2A3431; --line2:#3A4542;
+  --acc:#45B49E; --accs:#122722; --on-acc:#0F1413;
+  --sand:#C79A33; --sands:#2A2314; --warn:#D97A55; --warns:#2C1A13;
+}}
+:root[data-theme="dark"]{
+  --paper:#0F1413; --sheet:#171E1C; --sheet2:#1E2724;
+  --ink:#E5EBE8; --ink2:#C1CCC8; --muted:#8C9994; --line:#2A3431; --line2:#3A4542;
+  --acc:#45B49E; --accs:#122722; --on-acc:#0F1413;
+  --sand:#C79A33; --sands:#2A2314; --warn:#D97A55; --warns:#2C1A13;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;
+  font-size:15.5px;line-height:1.7;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0;line-height:1.35;text-wrap:balance}
+p{margin:0} strong{font-weight:500;color:var(--ink)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.topbar{background:var(--sheet);border-bottom:1px solid var(--line);padding:14px 20px}
+.topbar .in{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.topbar h1{font-size:17px}
+.topbar span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+.book{max-width:900px;margin:0 auto;padding:22px 16px 60px;display:flex;flex-direction:column;gap:22px}
+.pg{background:var(--sheet);border:1px solid var(--line);border-radius:3px;padding:clamp(24px,4.5vw,48px);
+  display:flex;flex-direction:column;gap:16px}
+.pg-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:4px}
+.pg-head .no{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:var(--acc)}
+.pg-head .bk{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.pg h2{font-size:clamp(20px,3vw,26px)}
+.pg h3{font-size:17px;margin-top:8px}
+.lead{color:var(--ink2);max-width:62ch}
+p,li{max-width:66ch}
+ul.plain{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:6px;color:var(--ink2)}
+ol.plain{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:7px;color:var(--ink2)}
+
+/* cover */
+.cover{min-height:420px;justify-content:center;align-items:center;text-align:center;gap:22px;
+  background:var(--acc);border-color:var(--acc)}
+.cover .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--on-acc);opacity:.8}
+.cover h2{font-size:clamp(30px,6vw,46px);color:var(--on-acc)}
+.cover .tag{font-family:var(--serif);font-size:clamp(16px,2.4vw,20px);color:var(--on-acc);opacity:.92;max-width:26ch}
+.cover .meta{color:var(--on-acc);opacity:.88;font-size:14.5px;display:flex;flex-direction:column;gap:5px}
+.bl{display:inline-block;min-width:2.6em;border-bottom:1px solid currentColor;opacity:.65}
+.bl.w{min-width:6em} .bl.xw{min-width:11em}
+
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:3px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);background:var(--sheet2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.fill{background:var(--sheet2);min-width:84px}
+tr.hi td{background:var(--accs);font-weight:500}
+caption{caption-side:bottom;text-align:left;padding:8px 12px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+
+.note{border-left:3px solid var(--acc);background:var(--accs);padding:14px 16px;border-radius:0 3px 3px 0;
+  font-size:14.5px;color:var(--ink2);display:flex;flex-direction:column;gap:6px}
+.note.warn{border-left-color:var(--warn);background:var(--warns)}
+.note.sand{border-left-color:var(--sand);background:var(--sands)}
+.note .nt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc)}
+.note.warn .nt{color:var(--warn)} .note.sand .nt{color:var(--sand)}
+
+.faq{display:flex;flex-direction:column;gap:14px}
+.faq .q{font-weight:500;color:var(--ink);font-size:15px}
+.faq .q b{color:var(--acc);font-family:var(--mono);font-size:13px;margin-right:7px}
+.faq .a{color:var(--ink2);font-size:14.5px;max-width:66ch}
+
+.form{border:1px dashed var(--line2);border-radius:3px;padding:20px;display:flex;flex-direction:column;gap:13px}
+.form .row{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:14.5px;color:var(--ink2)}
+.form .row span{display:inline-flex;align-items:baseline;gap:6px}
+.cut{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.3em;text-align:center}
+.box{display:inline-block;width:12px;height:12px;border:1px solid var(--line2);border-radius:2px;
+  vertical-align:-1px;margin-right:4px}
+.wline{flex:1 1 140px;border-bottom:1px solid var(--line2);min-height:1.4em}
+
+@media print{
+  body{background:#fff;font-size:10.5pt}
+  .topbar{display:none}
+  .book{max-width:none;padding:0;gap:0}
+  .pg{border:0;border-radius:0;padding:14mm;break-after:page;min-height:auto}
+  .pg:last-child{break-after:auto}
+  .cover{background:#0F6457 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="topbar"><div class="in">
+  <h1>말레이시아 유학 설명회 자료집 — 10쪽</h1>
+  <span>인쇄: A4 세로 · 배포 전 금액을 학교 공식 자료로 교체</span>
+</div></div>
+
+<div class="book">
+
+<!-- 1 -->
+<section class="pg cover">
+  <p class="eyebrow">STUDY IN MALAYSIA</p>
+  <h2>말레이시아 유학 설명회</h2>
+  <p class="tag">영어와 중국어를 함께,<br>한국 비용의 절반으로</p>
+  <div class="meta">
+    <p>2026년 <span class="bl"></span>월 <span class="bl"></span>일 <span class="bl"></span>요일 · <span class="bl"></span>시</p>
+    <p>장소 <span class="bl xw"></span></p>
+    <p>주최 <span class="bl xw"></span> · 문의 <span class="bl xw"></span></p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">2 / 10</span><span class="bk">말레이시아 유학 설명회</span></div>
+  <h2>왜 말레이시아인가</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:36px">#</th><th style="width:150px">이유</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td><strong>영어 + 중국어</strong></td><td>수업은 영어, 생활에서 중국어와 말레이어를 듣는다. 아이가 언어를 두 개 이상 만나는 환경이다</td></tr>
+        <tr><td class="n">2</td><td><strong>비용</strong></td><td>영미권 대비 학비 · 생활비 부담이 크게 낮다. 같은 커리큘럼(IGCSE · A-Level · IB)을 더 적은 비용으로</td></tr>
+        <tr class="hi"><td class="n">3</td><td><strong>해외 대학 분교</strong></td><td>모나쉬(호주) · 노팅엄(영국) 등 <strong>본교 학위를 말레이시아에서</strong></td></tr>
+        <tr><td class="n">4</td><td><strong>거리와 시차</strong></td><td>인천–쿠알라룸푸르 직항 약 6시간 30분, 시차 1시간. <strong>부모가 자주 갈 수 있다</strong></td></tr>
+        <tr><td class="n">5</td><td><strong>생활 환경</strong></td><td>한인 커뮤니티와 한국 식료품 접근성, 의료 인프라</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note warn">
+    <span class="nt">솔직하게 말씀드릴 것</span>
+    <p>· 말레이시아는 <strong>영어 원어민 국가가 아닙니다.</strong> 학교 밖에서는 말레이어 · 중국어가 더 많이 들립니다<br>
+      · 학교 편차가 큽니다. <strong>“말레이시아 유학”이 아니라 “어느 학교냐”가 전부입니다</strong><br>
+      · 한국 학적 · 검정고시 문제는 가정마다 다르므로 <strong>개별 확인이 필요합니다</strong></p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">3 / 10</span><span class="bk">학교 종류</span></div>
+  <h2>학교 종류와 고르는 기준</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:140px">유형</th><th style="width:130px">커리큘럼</th><th>특징</th><th style="width:150px">적합한 경우</th></tr></thead>
+      <tbody>
+        <tr><td><strong>영국식 국제학교</strong></td><td>IGCSE → A-Level</td><td>학교 수가 가장 많고 선택지가 넓다</td><td>영국 · 호주 · 말레이시아 대학</td></tr>
+        <tr><td><strong>미국식 국제학교</strong></td><td>AP · 미국 고교</td><td>수가 상대적으로 적다</td><td>미국 대학</td></tr>
+        <tr><td><strong>IB 학교</strong></td><td>IB Diploma</td><td>학비가 높고 학업 강도가 세다</td><td>전 세계 대학 지원</td></tr>
+        <tr><td><strong>현지 사립</strong></td><td>말레이시아 과정 + 영어</td><td>학비가 낮다</td><td>비용 우선 · 현지 정착</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>학교를 고를 때 보는 것 5가지</h3>
+  <ol class="plain">
+    <li><strong>한국 학생 비율</strong> — 너무 높으면 영어가 늘지 않고, 너무 낮으면 적응이 어렵다</li>
+    <li><strong>ESL(영어 보충) 프로그램 유무와 기간</strong> — 입학 초기 1년을 좌우한다</li>
+    <li>학급당 인원</li>
+    <li><strong>졸업생 진학 실적</strong> — 최근 3년, 학교에 서면으로 요청한다</li>
+    <li><strong>통학 거리</strong> — 쿠알라룸푸르 교통 체증을 반드시 감안한다</li>
+  </ol>
+</section>
+
+<!-- 4 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">4 / 10</span><span class="bk">학년 매칭</span></div>
+  <h2>학년 매칭과 가는 시기</h2>
+  <p class="lead">한국 학년을 그대로 가져가는 것이 아닙니다. <strong>학교가 영어 수준을 보고 한 학년 아래로 배정하는 경우가 흔합니다.</strong></p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>한국</th><th>영국식 (Year)</th><th>미국식 (Grade)</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>초등 1~3</td><td>Year 2~4</td><td>Grade 1~3</td><td></td></tr>
+        <tr class="hi"><td>초등 4~6</td><td>Year 5~7</td><td>Grade 4~6</td><td><strong>입학 적기 구간 시작</strong></td></tr>
+        <tr><td>중학 1</td><td>Year 8</td><td>Grade 7</td><td></td></tr>
+        <tr class="hi"><td>중학 2</td><td>Year 9</td><td>Grade 8</td><td><strong>IGCSE 직전 — 늦어도 이때까지</strong></td></tr>
+        <tr><td>중학 3 ~ 고등 1</td><td>Year 10~11</td><td>Grade 9~10</td><td>IGCSE 과정</td></tr>
+        <tr><td>고등 2~3</td><td>Year 12~13</td><td>Grade 11~12</td><td>A-Level 과정</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:120px">시기</th><th>장점</th><th>유의점</th></tr></thead>
+      <tbody>
+        <tr><td>초4~초6</td><td>영어 습득이 빠르고 적응이 쉽다</td><td>보호자 동반이 사실상 필요하다</td></tr>
+        <tr class="hi"><td><strong>중1~중2</strong></td><td><strong>IGCSE 시작 전 2년의 준비 기간</strong></td><td>가장 권하는 구간</td></tr>
+        <tr><td>중3 이후</td><td>목표가 분명하다</td><td>IGCSE가 바로 시작되어 영어 부담이 크다</td></tr>
+      </tbody>
+      <caption><strong>학기 시작</strong> — 영국식은 보통 8~9월 시작(학교에 따라 1월 입학도 가능). 중간 입학 가능 여부는 학교마다 다르므로 반드시 확인합니다.</caption>
+    </table>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">5 / 10</span><span class="bk">비용 구조</span></div>
+  <h2>비용 구조 — 무엇이 드는가</h2>
+  <div class="note warn">
+    <span class="nt">반드시 읽어 주십시오</span>
+    <p>아래 금액은 <strong>공개 자료 기준의 일반 범위</strong>입니다. 학교 · 지역 · 연도에 따라 편차가 큽니다.
+      오른쪽 칸에 <strong>학교 공식 자료(연도 표기)로 확인한 금액</strong>을 적어 사용하십시오.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>항목</th><th style="width:56px">주기</th><th class="n" style="width:140px">일반 범위 (RM)</th><th style="width:110px">확인 금액</th></tr></thead>
+      <tbody>
+        <tr><td>학비 — 보급형 국제학교</td><td>연</td><td class="n">20,000 ~ 35,000</td><td class="fill"></td></tr>
+        <tr><td>학비 — 중급 국제학교</td><td>연</td><td class="n">40,000 ~ 70,000</td><td class="fill"></td></tr>
+        <tr><td>학비 — 프리미엄 국제학교</td><td>연</td><td class="n">80,000 ~ 130,000</td><td class="fill"></td></tr>
+        <tr><td>입학금 (환급 없음)</td><td>1회</td><td class="n">5,000 ~ 20,000</td><td class="fill"></td></tr>
+        <tr><td>보증금 (환급)</td><td>1회</td><td class="n">1개월 ~ 1학기분</td><td class="fill"></td></tr>
+        <tr><td>교복 · 교재 · 활동비</td><td>연</td><td class="n">2,000 ~ 6,000</td><td class="fill"></td></tr>
+        <tr><td>통학버스</td><td>연</td><td class="n">3,000 ~ 6,000</td><td class="fill"></td></tr>
+        <tr><td>주거 (콘도 2~3룸)</td><td>월</td><td class="n">2,500 ~ 5,000</td><td class="fill"></td></tr>
+        <tr><td>생활비 (보호자 1 + 학생 1)</td><td>월</td><td class="n">3,000 ~ 5,000</td><td class="fill"></td></tr>
+        <tr><td>보험</td><td>연</td><td class="n">1,000 ~ 2,500</td><td class="fill"></td></tr>
+        <tr><td>학생비자 (EMGS)</td><td>연</td><td class="n">학교 안내 기준</td><td class="fill"></td></tr>
+        <tr><td>항공 (연 2~3회 왕복)</td><td>연</td><td class="n">가정별 상이</td><td class="fill"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note sand">
+    <span class="nt">숫자를 말하는 방식</span>
+    <p>“대략 얼마”라고 말하지 않습니다. 대신 이렇게 말합니다 —
+      <strong>“○○학교 2026학년도 공식 자료 기준 연 학비 RM ______, 확인 날짜 ___월 ___일입니다.”</strong><br>
+      출처와 날짜를 함께 말하면 신뢰가 생기고, 나중에 숫자가 바뀌어도 문제가 되지 않습니다.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">6 / 10</span><span class="bk">3년 시뮬레이션</span></div>
+  <h2>3년 비용 시뮬레이션</h2>
+  <p class="lead">환율 RM 1 = <span class="bl w"></span> 원 · 작성일 <span class="bl"></span>월 <span class="bl"></span>일</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>항목</th><th class="n">1년차</th><th class="n">2년차</th><th class="n">3년차</th><th class="n">합계</th></tr></thead>
+      <tbody>
+        <tr><td>학비</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>입학금 · 보증금</td><td class="fill"></td><td>—</td><td>—</td><td class="fill"></td></tr>
+        <tr><td>교복 · 교재 · 활동비</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>통학</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>주거 (월 ______ × 12)</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>생활비 (월 ______ × 12)</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>보험 · 비자</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr><td>항공</td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr class="hi"><td><strong>연 합계 (RM)</strong></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+        <tr class="hi"><td><strong>원화 환산</strong></td><td class="fill"></td><td class="fill"></td><td class="fill"></td><td class="fill"></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>함께 계산해야 할 것</h3>
+  <ul class="plain">
+    <li><strong>보호자 체류 비용</strong> — 동반 시 비자 유형에 따라 비용과 조건이 다릅니다. 이민 전문가 확인이 필요합니다</li>
+    <li><strong>한국에서 유지되는 비용</strong> — 집 · 보험 · 학원 정리 여부</li>
+    <li><strong>예비비</strong> — 연 총액의 10%를 권합니다. 의료 · 이사 · 환율 변동</li>
+  </ul>
+</section>
+
+<!-- 7 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">7 / 10</span><span class="bk">학생비자</span></div>
+  <h2>학생비자(Student Pass) 절차</h2>
+  <p class="lead">말레이시아 유학은 <strong>EMGS</strong>(Education Malaysia Global Services)를 통해 학생비자를 신청하며, 보통 <strong>학교가 대행</strong>합니다.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:40px">#</th><th>단계</th><th style="width:110px">예상 기간</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td>학교 지원 · 입학 허가(Offer Letter)</td><td>2~4주</td></tr>
+        <tr><td class="n">2</td><td>EMGS 신청 — 학교가 대행</td><td>접수</td></tr>
+        <tr><td class="n">3</td><td>서류 심사 · 건강검진 서류</td><td>4~8주</td></tr>
+        <tr class="hi"><td class="n">4</td><td><strong>VAL(Visa Approval Letter) 발급</strong></td><td>승인 후</td></tr>
+        <tr><td class="n">5</td><td>입국 — 공항에서 비자 확인</td><td>입국 시</td></tr>
+        <tr><td class="n">6</td><td>입국 후 건강검진 · 여권에 Student Pass 부착</td><td>2~4주</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>준비 서류</h3>
+  <p>여권 사본(유효기간 18개월 이상 권장) · 증명사진 · <strong>영문 성적증명서</strong>(최근 2~3년) · <strong>영문 재학/졸업증명서</strong> · 출생증명 또는 가족관계증명서 영문본 · 건강검진 서류 · 예방접종 기록 · 학교 지정 양식 <span class="mono">(학교마다 다르므로 반드시 목록을 받습니다)</span></p>
+  <div class="note warn">
+    <span class="nt">반드시 확인할 것</span>
+    <p>① <strong>미성년자 보호자 · 가디언 요건</strong> — 학교와 이민국 기준이 다를 수 있습니다<br>
+      ② <strong>보호자 체류 비자</strong> — 동반 부모의 체류 자격은 별도 문제입니다<br>
+      ③ <strong>소요 기간</strong> — 성수기에는 더 걸립니다. 입학 희망일 <strong>4~6개월 전</strong>에 시작합니다<br>
+      ④ 아포스티유 · 번역 공증이 필요한 서류가 있습니다</p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">8 / 10</span><span class="bk">준비 체크리스트</span></div>
+  <h2>준비 체크리스트</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:92px">시점</th><th>할 일</th><th style="width:48px">확인</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="mono">D-6개월</td><td><strong>학교 후보 3~5곳 선정, 공식 학비표 받기</strong></td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-6개월</td><td>가족 회의 — 보호자 동반 여부 결정</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-5개월</td><td>현지 학교 탐방 (3박4일)</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-5개월</td><td>영문 서류 준비 시작 (성적 · 재학증명)</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-4개월</td><td>학교 지원 · 레벨 테스트 · 입학 허가 수령</td><td><span class="box"></span></td></tr>
+        <tr class="hi"><td class="mono">D-4개월</td><td><strong>EMGS 학생비자 신청 (학교 대행)</strong></td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-3개월</td><td>주거 탐색 — 통학 거리 우선</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-3개월</td><td>건강검진 · 예방접종 기록 정리</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-2개월</td><td>보험 가입, 항공 예약</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-2개월</td><td>한국 학교 처리 (유학 신고 · 휴학 등)</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-1개월</td><td>주거 계약, 통신 · 은행 준비</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">D-2주</td><td>교복 · 학용품 주문, 짐 정리</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">출국</td><td>VAL 원본 · 여권 · 서류 사본 2부 지참</td><td><span class="box"></span></td></tr>
+        <tr><td class="mono">입국 후 2주</td><td>건강검진, Student Pass 부착 확인</td><td><span class="box"></span></td></tr>
+      </tbody>
+      <caption><strong>가장 흔한 실수</strong> — 비자 신청을 늦게 시작합니다. 학기 시작에 못 맞춰 한 학기를 늦추는 경우가 매년 나옵니다. <strong>D-4개월을 지키십시오.</strong></caption>
+    </table>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">9 / 10</span><span class="bk">자주 묻는 질문</span></div>
+  <h2>자주 묻는 질문</h2>
+  <div class="faq">
+    <div><p class="q"><b>Q1</b>영어를 전혀 못 하는데 가능합니까?</p><p class="a">학교의 ESL(영어 보충) 프로그램 유무와 기간을 먼저 봅니다. 초등 저학년은 비교적 빨리 따라가지만, 중등 이상은 <strong>입학 전 1년 정도의 영어 준비</strong>를 권합니다.</p></div>
+    <div><p class="q"><b>Q2</b>부모가 꼭 같이 가야 합니까?</p><p class="a">학생 나이와 학교 정책에 따라 다릅니다. <strong>미성년자는 보호자 또는 가디언 요건이 있는 경우가 많아</strong> 반드시 개별 확인이 필요합니다.</p></div>
+    <div><p class="q"><b>Q3</b>한국 학적은 어떻게 됩니까?</p><p class="a">가정과 학교마다 처리가 다릅니다. 유학 신고 · 휴학 · 자퇴 중 무엇이 맞는지 <strong>거주지 교육청과 재학 학교에 직접 확인</strong>하셔야 합니다. 이 부분은 저희가 단정해 드릴 수 없습니다.</p></div>
+    <div><p class="q"><b>Q4</b>한국 대학에 돌아올 수 있습니까?</p><p class="a">재외국민 특별전형 등 경로가 있으나 <strong>체류 기간 · 학교 유형 요건이 까다롭습니다.</strong> 목표가 한국 대학이라면 <strong>출국 전에</strong> 지원 자격부터 확인하셔야 합니다.</p></div>
+    <div><p class="q"><b>Q5</b>안전합니까?</p><p class="a">전반적으로 안정적이지만 지역 편차가 있습니다. 주거는 보안 관리가 되는 콘도를 권합니다.</p></div>
+    <div><p class="q"><b>Q6</b>중간에 돌아오면 어떻게 됩니까?</p><p class="a">학비 환불은 <strong>학교 규정</strong>을 따릅니다. 계약 전 환불 규정을 반드시 서면으로 받으십시오.</p></div>
+    <div><p class="q"><b>Q7</b>학비 외에 생각보다 많이 드는 항목은?</p><p class="a">입학금 · 보증금, 통학버스, 활동비, 그리고 <strong>한국 왕복 항공료</strong>입니다. 5쪽 표로 함께 계산하십시오.</p></div>
+    <div><p class="q"><b>Q8</b>국제학교와 현지 사립의 차이는?</p><p class="a">학비 · 학생 구성 · 커리큘럼이 다릅니다. <strong>졸업 후 어느 나라 대학을 목표로 하는지</strong>로 결정하십시오.</p></div>
+    <div><p class="q"><b>Q9</b>싱가포르는 어떻습니까?</p><p class="a">학비와 생활비가 훨씬 높고 입학 경쟁이 치열합니다. <strong>말레이시아에서 공부하다 싱가포르 대학으로 진학하는 경로</strong>를 더 현실적으로 봅니다.</p></div>
+    <div><p class="q"><b>Q10</b>먼저 경험해 볼 방법이 있습니까?</p><p class="a"><strong>방학 어학캠프 4주</strong>를 권합니다. 아이가 적응하는지, 가족이 감당할 수 있는지를 <strong>적은 비용으로 미리 확인</strong>할 수 있습니다.</p></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="pg">
+  <div class="pg-head"><span class="no">10 / 10</span><span class="bk">상담 신청</span></div>
+  <h2>저희가 하는 일 · 상담 신청</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th style="width:40px">#</th><th>단계</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td>사전 상담 — 학년 · 영어 수준 · 예산</td></tr>
+        <tr class="hi"><td class="n">2</td><td><strong>학교 탐방 투어 (3박4일, 학교 3~5곳)</strong></td></tr>
+        <tr><td class="n">3</td><td>입학 상담 · 레벨 테스트 동행</td></tr>
+        <tr><td class="n">4</td><td>서류 지원 — 영문 서류 · 공증</td></tr>
+        <tr class="hi"><td class="n">5</td><td><strong>학생비자(EMGS) 신청 동행</strong></td></tr>
+        <tr><td class="n">6</td><td>정착 — 주거 · 통신 · 은행 · 교통 · 보험</td></tr>
+        <tr><td class="n">7</td><td>사후 관리 — 월 1회 점검, 학부모 보고</td></tr>
+      </tbody>
+      <caption>학교로부터 소개 수수료를 받는 경우 <strong>사전에 밝힙니다.</strong> 숨기지 않는 것이 저희 원칙입니다.</caption>
+    </table>
+  </div>
+  <p class="cut">— — — — — — — — — — 절 취 선 — — — — — — — — — —</p>
+  <div class="form">
+    <div class="row"><span>학부모 성함 <i class="wline"></i></span><span>연락처 <i class="wline"></i></span></div>
+    <div class="row"><span>이메일 <i class="wline"></i></span></div>
+    <div class="row"><span>학생 이름 <i class="wline"></i></span><span>현재 학년 <i class="wline"></i></span></div>
+    <div class="row"><span>영어 수준</span><span><span class="box"></span>초급</span><span><span class="box"></span>중급</span><span><span class="box"></span>상급</span></div>
+    <div class="row"><span>희망 시기</span><span><span class="box"></span>6개월 내</span><span><span class="box"></span>1년 내</span><span><span class="box"></span>2년 내</span><span><span class="box"></span>미정</span></div>
+    <div class="row"><span>관심 사항</span><span><span class="box"></span>국제학교</span><span><span class="box"></span>대학 진학</span><span><span class="box"></span>어학캠프 먼저</span><span><span class="box"></span>비용 상담</span></div>
+    <div class="row"><span>보호자 동반</span><span><span class="box"></span>동반 예정</span><span><span class="box"></span>미동반</span><span><span class="box"></span>미정</span></div>
+    <div class="row"><span>가장 궁금한 것 한 가지 <i class="wline"></i></span></div>
+    <div class="row"><span>상담 희망 방식</span><span><span class="box"></span>전화</span><span><span class="box"></span>온라인</span><span><span class="box"></span>현지 방문</span></div>
+  </div>
+  <div class="note">
+    <span class="nt">문의 · 다음 일정</span>
+    <p>문의 <span class="bl xw"></span> · <span class="bl xw"></span><br>
+      현지 학교 탐방 투어 <span class="bl"></span>월 <span class="bl"></span>일 출발 · 정원 <span class="bl"></span>가족</p>
+  </div>
+</section>
+
+</div>
