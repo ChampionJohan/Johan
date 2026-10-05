@@ -8,6 +8,7 @@
 재는 것은 문체가 아니라 습관이다. 사람이 쓴 글에는 길이가 들쑥날쑥하고,
 긴 문장이 섞여 있고, 굵은 글씨가 드물고, 장마다 생김새가 다르다.
 기계 글은 그 반대다. 그래서 아래 다섯 개를 세면 대체로 갈린다.
+책에 따라 '쓰면 생각이 멈추는 말'을 하나 더 센다. WATCH 를 볼 것.
 
 기준값은 사람이 쓴 교양서를 몇 권 훑어 잡은 눈금이지 법이 아니다.
 목표는 만점이 아니라 '전부 한쪽으로 쏠려 있지 않은 상태'다.
@@ -30,6 +31,14 @@ BOOKS = {
     "en-teen": "en-teen", "en-teen2": "en-teen2", "en-teen3": "en-teen3",
     "en-bestseller": "en-bestseller",
     "ai-book": "ai-book", "en-ai-book": "en-ai-book",
+}
+
+
+# 책마다 '쓰면 생각이 멈추는 말'. 그 말을 쓰면 그 자리에서 더 설명할 게 없어진다.
+# 목록이 있는 책에만 줄이 하나 더 나온다. 나머지 책은 지금과 똑같이 나온다.
+WATCH = {
+    "person": (5, ["존엄", "가치", "소중", "귀하"]),
+    "en-person": (5, ["dignity", "inherent worth", "precious", "sacred"]),
 }
 
 
@@ -125,6 +134,18 @@ def measure(key):
           % (bar(len(same), 4, 2, invert=True), len(same)))
     for c, h in same[:6]:
         print("       %2d/%d장   %s" % (c, len(chapters), h))
+
+    # 지켜보는 말 — 목록이 있는 책만
+    if key in WATCH:
+        cap, words = WATCH[key]
+        low = text.lower()
+        hits = [(w, low.count(w.lower())) for w in words]
+        total = sum(c for _w, c in hits)
+        print("  %s지켜보는 말         %5d번  (기준 %d번 이하)"
+              % (bar(total, cap * 3, cap, invert=True), total, cap))
+        for w, c in sorted(hits, key=lambda x: -x[1]):
+            if c:
+                print("       %2d번   %s" % (c, w))
     return long_pct, sd, deep_pct, bold_pct, len(same)
 
 
