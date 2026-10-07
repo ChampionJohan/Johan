@@ -61,7 +61,7 @@ BUNDLES = {
     #
     # 쪽수가 파일 이름에 들어 있다. 작가의 장면 열여덟이 채워지면 쪽수가 늘어나니
     # 그때 아래 네 줄과 표지를 같이 고쳐야 한다. 안 고치면 check() 가 막아 준다.
-    # 지금 한국어 본문은 131쪽이다(장면 전).
+    # 지금 한국어 본문은 148쪽이다(장면 열여덟이 들어간 뒤).
     "person": dict(
         name="11-12_사람을-사람으로-보는-법",
         docs=["업로드-사람책.md", "업로드-사람책.html"],
@@ -70,17 +70,17 @@ BUNDLES = {
                 "release/ebook/How to See a Person.epub",
                 "release/covers/11_How-to-See-a-Person-cover.jpg"]),
             ("2-영어-종이책", [
-                "release/paperback/11_How-to-See-a-Person_interior-131p.pdf",
-                "release/paperback/11_How-to-See-a-Person_cover-131p-cream.pdf"]),
+                "release/paperback/11_How-to-See-a-Person_interior-148p.pdf",
+                "release/paperback/11_How-to-See-a-Person_cover-148p-cream.pdf"]),
             ("3-한국어-전자책", [
                 "release/ebook/사람을 사람으로 보는 법.epub",
                 "release/covers/12_사람을-사람으로-보는-법-cover.jpg"]),
             ("4-한국어-종이책", [
-                "release/paperback/12_사람을-사람으로-보는-법_본문-131p.pdf",
-                "release/paperback/12_사람을-사람으로-보는-법_표지-131p-미색.pdf"]),
+                "release/paperback/12_사람을-사람으로-보는-법_본문-148p.pdf",
+                "release/paperback/12_사람을-사람으로-보는-법_표지-148p-미색.pdf"]),
         ],
         spare=[],
-        pages={"영어": 131, "한국어": 131},
+        pages={"영어": 148, "한국어": 148},
     ),
 }
 
