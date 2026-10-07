@@ -41,8 +41,7 @@ OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "en-teen3": "en_teen3",
            "ai-book": "aibook", "aibook": "aibook",
            "en-ai-book": "en_aibook", "en-aibook": "en_aibook",
-           # 영어판 원고가 생기면 "en-person": "en_person" 을 여기 넣는다.
-           "person": "person"}
+           "person": "person", "en-person": "en_person"}
 ACCENT = {"en-book": "#8A2E2E", "en-book2": "#1F4E5F",
           "en-teen": "#E85D2F", "en-teen2": "#2E7D52",
           "book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
