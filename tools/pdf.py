@@ -31,7 +31,9 @@ OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "book-teen3": "book_teen3", "teen3": "book_teen3",
            "en-teen3": "en_teen3",
            "ai-book": "aibook", "aibook": "aibook",
-           "en-ai-book": "en_aibook", "en-aibook": "en_aibook"}
+           "en-ai-book": "en_aibook", "en-aibook": "en_aibook",
+           # 영어판 원고가 생기면 "en-person": "en_person" 을 여기 넣는다.
+           "person": "person"}
 
 
 def build_html(which):

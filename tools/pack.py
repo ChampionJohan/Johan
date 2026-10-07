@@ -55,6 +55,33 @@ BUNDLES = {
             "release/ebook/기계가 말하지 못한 것-A5.pdf"],
         pages={"영어": 113, "한국어": 107},
     ),
+
+    # 11·12번. 아직 안 만든 것이 있어서 지금 돌리면 '없는 파일' 로 막힌다.
+    # 그게 맞는 동작이다. 남은 것은 영어 원고, 업로드 문서, 그리고 종이책 PDF 넷.
+    #
+    # 쪽수가 파일 이름에 들어 있다. 작가의 장면 열여덟이 채워지면 쪽수가 늘어나니
+    # 그때 아래 네 줄과 표지를 같이 고쳐야 한다. 안 고치면 check() 가 막아 준다.
+    # 지금 한국어 본문은 131쪽이다(장면 전).
+    "person": dict(
+        name="11-12_사람을-사람으로-보는-법",
+        docs=["업로드-사람책.md", "업로드-사람책.html"],
+        steps=[
+            ("1-영어-전자책", [
+                "release/ebook/How to See a Person.epub",
+                "release/covers/11_How-to-See-a-Person-cover.jpg"]),
+            ("2-영어-종이책", [
+                "release/paperback/11_How-to-See-a-Person_interior-131p.pdf",
+                "release/paperback/11_How-to-See-a-Person_cover-131p-cream.pdf"]),
+            ("3-한국어-전자책", [
+                "release/ebook/사람을 사람으로 보는 법.epub",
+                "release/covers/12_사람을-사람으로-보는-법-cover.jpg"]),
+            ("4-한국어-종이책", [
+                "release/paperback/12_사람을-사람으로-보는-법_본문-131p.pdf",
+                "release/paperback/12_사람을-사람으로-보는-법_표지-131p-미색.pdf"]),
+        ],
+        spare=[],
+        pages={"영어": 131, "한국어": 131},
+    ),
 }
 
 

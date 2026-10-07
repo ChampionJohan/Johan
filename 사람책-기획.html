@@ -188,6 +188,14 @@ python3 tools/voice.py en-person</code></pre>
 <p><strong>첫째를 추천하는 이유 하나.</strong> 1936년의 그 책이 <code>How to Win Friends and Influence People</code> 입니다. 8장이 그 책에서 갈라서는 장이고, 제목이 같은 생김새면 서점에서 그 옆에 놓입니다. 그게 이 책이 찾는 독자가 있는 자리입니다.</p>
 <p>둘째도 셉니다. 책의 마지막 줄이 제목이 되는 건 좋은데, <strong>마지막 줄을 표지에 적으면 읽기 전에 질문을 받는 셈</strong>이라 17장이 조금 약해집니다.</p>
 <p><strong>KDP 는 발행 뒤에 제목을 못 바꿉니다.</strong> 작가님이 고르시면 그걸로 갑니다.</p>
+<h3>쪽수를 잘못 셌습니다 — 실제는 131쪽입니다</h3>
+<p><strong>도구를 등록하고 PDF 를 뽑아 보니 제가 쓴 쪽수가 틀렸습니다.</strong> 바로잡습니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>제가 말씀드린 것</th><th>실제</th></tr></thead><tbody><tr><td>열일곱 장</td><td>98쪽</td><td>—</td></tr><tr><td>전체(장면 전)</td><td>107쪽</td><td><strong>131쪽</strong></td></tr><tr><td>장면 열여덟을 채운 뒤</td><td>120~123쪽</td><td><strong>150쪽 안팎</strong></td></tr></tbody></table></div>
+<p><strong>왜 틀렸나.</strong> 제가 글자를 셀 때 <strong>띄어쓰기와 줄바꿈을 뺀 숫자</strong>를 썼는데, 쪽수를 환산한 비율(09·10번의 34,040자 → 107쪽)은 <code>--stat</code> 이 세는 <strong>띄어쓰기를 넣은 숫자</strong>에서 나온 것입니다. 서로 다른 자를 섞어 썼습니다.</p>
+<p><code>--stat</code> 기준으로 지금 원고는 <strong>46,799자</strong>입니다. 그리고 PDF 를 실제로 뽑아서 센 쪽수가 <strong>131쪽</strong>(6x9)입니다. 이게 추정이 아니라 센 숫자입니다.</p>
+<p><strong>좋은 쪽으로 틀렸습니다.</strong></p>
+<ul><li>100쪽 문턱 걱정이 없어집니다. 책등에 글자가 넉넉히 들어갑니다</li><li>09·10번(107쪽)보다 두껍고, 카네기 선반(300쪽 안팎) 쪽으로 한 걸음 갑니다</li><li><strong>2부를 두껍게 고칠 이유가 없어졌습니다.</strong> 2부가 얇은 것은 작가님 장면이 들어갈 자리를 비워 둔 것이고, 그 자리가 채워지면 제 두께가 됩니다</li></ul>
+<p><strong>값은 쪽수가 정해진 뒤에 다시 계산합니다.</strong> 인쇄비가 <code>$1.00 + 쪽수 x $0.012</code> 라 150쪽이면 $2.80 이고, 60% 구간의 최저가가 $4.67 입니다. 기획서 뒤쪽의 240쪽 기준 표는 지금 쓸 수 없습니다.</p>
 <h3>이제 남은 것은 작가님 몫입니다</h3>
 <div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>1. 작가님 자리 열여덟</strong></td><td><code>&lt;!-- 확인: 겪은 일 --&gt;</code> 열여덟 개. 이게 안 채워지면 <code>--stat</code> 이 0 이 안 되고 발행이 막힙니다</td></tr><tr><td>2. 원문 확인</td><td>9장 1984년 논문, 13장 『베니티 페어』, 3장 판결문, 16장 마리엔탈. 따옴표를 단 글은 전부</td></tr><tr><td><del>3. 부 여는 글 다섯 · 앞뒤글</del></td><td><strong>끝났습니다.</strong> 닫는 글은 안 씁니다</td></tr><tr><td>3. <strong>제목 결정</strong></td><td>위의 셋 중 하나. 발행 뒤에는 못 바꿉니다</td></tr><tr><td>4. 도구 등록</td><td><code>cover.py</code> · <code>epub.py</code> · <code>pdf.py</code> · <code>pack.py</code> 넷 다</td></tr><tr><td>5. 영어판</td><td>한국어가 끝난 뒤에</td></tr></tbody></table></div>
 <p><strong>2부가 제일 얇습니다.</strong> 평균 1,481자로 다른 부의 삼분의 이쯤입니다. 일부러 그렇게 뒀습니다 — 2부 네 장은 <strong>작가님의 장면이 곧 사례</strong>라서, 그 자리가 채워지면 2부가 제 두께가 됩니다. 지금 얇은 것은 <strong>비어 있어서</strong> 얇은 겁니다. <strong>작가님 자리 열여덟 중 2부의 넷이 제일 급합니다.</strong></p>

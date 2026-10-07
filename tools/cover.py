@@ -212,6 +212,54 @@ BOOKS = {
             "Where no answer came, the place was left empty rather than smoothed "
             "over. Those empty places are the most important thing in the book.",
         ]),
+
+    # 쓸모를 하나씩 빼면 위는 아무것도 안 남고 아래 한 줄만 남는다.
+    # 그 한 줄이 제목이다. 09·10 과 같은 선반에 놓이도록 글꼴과 짜임은 같게 두고
+    # 색만 바꿨다. 금빛·쪽빛이 저쪽이고 이쪽은 붉은흙·잿빛초록이다.
+    "person": dict(
+        title="사람을 사람으로 보는 법",
+        title_lines=["사람을 사람으로", "보는 법"],
+        subtitle="쓸모를 빼고 사람을 보는 법",
+        series="셈 · 빼기 · 할 것 · 둘 사이 · 그다음",
+        volume="열일곱 장",
+        accent="#C2563C", accent2="#7E9A86", ink="#141A1F",
+        motif="subtract", lang="ko", author="최재혁",
+        curve_labels=["쌓인 것", "다 빠진 자리"],
+        motif_note="아래 줄은 어느 칸에서도 안 빠진다",
+        back_head="사람에게 값이 있다고 쓰려다 그만뒀다.",
+        back=[
+            "반박할 수 없는 문장이라서 그만뒀다. 반박할 수 없는 문장 앞에서 "
+            "사람은 생각을 멈춘다. 그래서 주장을 버리고, 쓸모가 실제로 0이 되는 "
+            "자리로 갔다.",
+            "아직 아무것도 못 하는 사람, 한동안 멈춘 사람, 할 수 있던 것을 "
+            "하나씩 돌려주는 사람, 할 줄 아는데 쓸 데가 없어진 사람. 그 네 자리에서 "
+            "사람들이 하는 일이 서로 닮아 있다. 행동은 반박이 안 된다.",
+            "열일곱 장이고 장마다 오늘 할 것 하나가 붙어 있다. 그리고 장마다 "
+            "하나는 안 풀고 끝낸다. 마지막 장은 질문 하나로 닫고 그 뒤에 한 줄도 없다.",
+        ]),
+
+    "en-person": dict(
+        title="How to See a Person",
+        subtitle="What Is Left When Usefulness Is Taken Away",
+        series="COUNTING · SUBTRACTION · DOING · BETWEEN · AFTER",
+        volume="17 CHAPTERS",
+        accent="#C2563C", accent2="#7E9A86", ink="#141A1F",
+        motif="subtract", lang="en", author="Jaehyuk Choi",
+        curve_labels=["WHAT IS STACKED", "WHAT IS TAKEN"],
+        motif_note="The bottom row is never taken away",
+        back_head="I started to write that a person has worth, and stopped.",
+        back=[
+            "I stopped because the sentence cannot be argued with, and nobody "
+            "thinks in front of a sentence like that. So I dropped the argument "
+            "and went to the places where usefulness really does fall to zero.",
+            "Someone who cannot do anything yet. Someone stopped for a while. "
+            "Someone handing back one ability at a time. Someone skilled with "
+            "nowhere to use it. In all four places people do the same kinds of "
+            "things. What people do cannot be argued with.",
+            "Seventeen chapters, each ending with one thing to do today, and each "
+            "leaving one thing unresolved. The last chapter closes on a question "
+            "with nothing written after it.",
+        ]),
 }
 
 CREAM = "#F4F1EA"
@@ -501,6 +549,106 @@ def draw_front_dialog(d, ox, oy, w, h, spec):
            font=font(f_serif, 60 * s), fill=CREAM)
 
 
+# 빼기 — 칸이 열이고, 왼쪽에서 오른쪽으로 쌓인 것이 하나씩 빠진다.
+# 맨 오른쪽 칸에는 쌓인 것이 하나도 없다. 그런데 바닥의 점은 열 칸에 다 있다.
+# 그 점이 이 책이고, 그래서 바닥 줄만 안 끊긴다.
+SUBTRACT_N = 10
+
+
+def draw_front_subtract(d, ox, oy, w, h, spec):
+    """쌓인 것을 하나씩 빼는 그림을 쓰는 앞표지.
+
+    위는 계단처럼 내려가서 끝에는 아무것도 안 남고, 아래 한 줄은 어느 칸에서도
+    안 빠진다. 위가 쓸모고 아래가 사람이다. 제목이 그 아래 줄을 가리킨다.
+    """
+    f_serif, f_serif_r, f_sans_b = faces(spec)
+    warm = spec["accent"]
+    cool = spec["accent2"]
+    s = w / 1600.0
+    pad = w * 0.08125
+    inner = w - pad * 2
+    L = ox + pad
+    R = ox + w - pad
+
+    # 위쪽 가는 선과 다섯 부 표시
+    d.rectangle([L, oy + h * 0.0586, R, oy + h * 0.0586 + 4 * s], fill=warm)
+    ey = oy + h * 0.0781
+
+    size_eye, sp = 34 * s, 5 * s
+    while size_eye >= 20 * s:
+        f_eye = font(f_sans_b, size_eye)
+        left = track_width(d, spec["series"], f_eye, sp)
+        right = track_width(d, spec["volume"], f_eye, sp)
+        if left + right + inner * 0.06 <= inner:
+            break
+        if sp > 1 * s:
+            sp -= 1 * s
+        else:
+            size_eye -= 2 * s
+    track(d, (L, ey), spec["series"], f_eye, MUTED, sp)
+    vw = track_width(d, spec["volume"], f_eye, sp)
+    track(d, (R - vw, ey), spec["volume"], f_eye, cool, sp)
+
+    # 제목
+    size = 190 * s
+    while size >= 100 * s:
+        f_title = font(f_serif, size)
+        lines = wrap(d, spec.get("title_lines") or spec["title"], f_title, inner)
+        if len(lines) <= 3:
+            break
+        size -= 8 * s
+    step_t = size * 1.2
+    f_sub = font(f_serif_r, 56 * s)
+    sub_lines = wrap(d, spec["subtitle"], f_sub, inner)
+
+    TOP, BOTTOM = oy + h * 0.155, oy + h * 0.47
+    block = len(lines) * step_t + 46 * s + len(sub_lines) * 78 * s
+    y = TOP + max(0, (BOTTOM - TOP - block) / 2)
+    for line in lines:
+        d.text((L, y), line, font=f_title, fill=CREAM)
+        y += step_t
+    y += 46 * s
+    for line in sub_lines:
+        d.text((L + 4 * s, y), line, font=f_sub, fill=DIM)
+        y += 78 * s
+
+    # 쌓인 칸과 바닥의 점
+    top = oy + h * 0.515
+    bot = oy + h * 0.790
+    base = bot - (bot - top) * 0.20
+    step = inner / SUBTRACT_N
+    cw = step * 0.52
+    unit = (base - top) / (SUBTRACT_N - 1)
+    bh = unit * 0.58
+    dot = cw * 0.52
+    for i in range(SUBTRACT_N):
+        x0 = L + i * step
+        for k in range(SUBTRACT_N - 1 - i):
+            y1 = base - 10 * s - k * unit
+            d.rectangle([x0, y1 - bh, x0 + cw, y1], fill=warm)
+        dy = base + 16 * s
+        d.rectangle([x0, dy, x0 + cw, dy + dot], fill=cool)
+
+    # 바닥선 — 위와 아래를 가르는 자리
+    d.rectangle([L, base, R, base + 2 * s], fill="#2A3238")
+
+    # 두 쪽의 이름
+    f_lab = font(f_sans_b, 28 * s)
+    ly = base + 16 * s + dot + 26 * s
+    track(d, (L, ly), spec["curve_labels"][0], f_lab, warm, 5 * s)
+    w2 = track_width(d, spec["curve_labels"][1], f_lab, 5 * s)
+    track(d, (R - w2, ly), spec["curve_labels"][1], f_lab, cool, 5 * s)
+
+    if spec.get("motif_note"):
+        f_note = font(f_serif_r, 36 * s)
+        d.text((L, ly + 52 * s), spec["motif_note"], font=f_note, fill=MUTED)
+
+    # 아래쪽 지은이
+    d.rectangle([L, oy + h * 0.895, L + 120 * s, oy + h * 0.895 + 4 * s], fill=warm)
+    d.text((L, oy + h * 0.920), spec.get("author", "Jaehyuk Choi"),
+           font=font(f_serif, 60 * s), fill=CREAM)
+
+
 def draw_front(d, ox, oy, w, h, spec):
     """앞표지를 (ox, oy) 에서 시작하는 w x h 영역에 그린다.
 
@@ -511,6 +659,8 @@ def draw_front(d, ox, oy, w, h, spec):
         return draw_front_curve(d, ox, oy, w, h, spec)
     if spec.get("motif") == "dialog":
         return draw_front_dialog(d, ox, oy, w, h, spec)
+    if spec.get("motif") == "subtract":
+        return draw_front_subtract(d, ox, oy, w, h, spec)
     accent = spec["accent"]
     s = w / 1600.0                      # 글자 크기는 폭에 맞춘다
     pad = w * 0.08125
