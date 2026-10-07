@@ -256,9 +256,15 @@ python3 tools/voice.py person
 4. **「A가 아니라 B」가 열아홉입니다.** 한 권에 스무 번 아래가 기준이라
    한 칸 남았습니다. 고칠 때 이 틀을 새로 넣지 마세요
 
-**제목이 아직 확정이 아닙니다.** 후보가 셋이고 기획서에 적혀 있습니다.
-바꾸면 `tools/person.py` · `tools/cover.py` · `tools/pack.py` 를 같이 고칩니다.
+**제목은 정해졌습니다.** 『사람을 사람으로 보는 법』 / `How to See a Person`.
+8장이 갈라서는 그 책(`How to Win Friends and Influence People`)과 같은
+생김새로 두어 같은 선반에 놓이게 한 것입니다. 바꾸면 `tools/person.py` ·
+`tools/cover.py` · `tools/pack.py` · `업로드-사람책.md` 네 군데를 같이 고칩니다.
 **KDP 는 발행 뒤에 제목을 못 바꿉니다.**
+
+올리는 데 필요한 것은 **`업로드-사람책.md`(md/html) 하나에 다 있습니다.**
+쪽수에 매인 숫자에는 ⚠ 를 붙여 뒀습니다. 장면이 채워져 쪽수가 정해지면
+그 문서의 「쪽수가 정해지면」 대로 하면 됩니다.
 
 ---
 

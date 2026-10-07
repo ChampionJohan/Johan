@@ -1,0 +1,193 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>업로드 묶음 — 11 How to See a Person · 12 사람을 사람으로 보는 법</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>먼저 — 아직 올릴 수 없습니다</h1>
+<p><strong>작가님이 채우실 자리 열여덟 개가 비어 있습니다.</strong> <code>--stat</code> 이 그걸 세고 있고, 0 이 되기 전에는 발행 단계로 못 갑니다.</p>
+<pre><code>$ python3 tools/person.py --stat
+확인 18건, TODO 0건. 둘 다 0 이어야 발행할 수 있습니다.</code></pre>
+<p>이 문서는 <strong>그 자리가 채워진 다음에 그대로 따라가시면 되도록</strong> 미리 써 둔 것입니다. 제목·부제·설명·분류·키워드는 <strong>지금 그대로 복사해서 붙이시면 되는 상태</strong>입니다.</p>
+<p><strong>다만 쪽수에 매인 숫자는 아직 못 박습니다.</strong> 장면 열여덟이 들어가면 쪽수가 늘고, 쪽수가 늘면 값과 표지 폭이 같이 바뀝니다. 그 자리에는 ⚠ 를 붙여 뒀고 아래 「쪽수가 정해지면」에 계산하는 법을 적었습니다.</p>
+<hr>
+<h1>제목을 정했습니다</h1>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>한국어</strong></td><td><strong>『사람을 사람으로 보는 법』</strong></td></tr><tr><td><strong>영어</strong></td><td><strong><code>How to See a Person</code></strong></td></tr><tr><td>부제 (한)</td><td>쓸모를 빼고 사람을 보는 법</td></tr><tr><td>부제 (영)</td><td><code>What Is Left When Usefulness Is Taken Away</code></td></tr></tbody></table></div>
+<p>후보가 셋이었습니다. 『값은 어디서 오나』와 『빼고 보면』을 놓고 이쪽으로 왔습니다.</p>
+<p><strong>이유 하나입니다.</strong> 8장이 갈라서는 그 책이 <code>How to Win Friends and Influence People</code> 이고, 제목이 같은 생김새라 <strong>서점에서 그 옆에 놓입니다.</strong> 이 책이 찾는 독자가 서 있는 자리가 거기입니다.</p>
+<p>『값은 어디서 오나』도 셌습니다. 책의 마지막 줄이 제목이 되니까요. 그런데 마지막 줄을 표지에 적으면 <strong>읽기 전에 질문을 받는 셈</strong>이라 17장이 약해집니다.</p>
+<p><strong>KDP 는 발행 뒤에 제목을 못 바꿉니다.</strong> 바꾸시려면 올리기 전이 마지막입니다. 바꾸면 <code>tools/person.py</code> · <code>tools/cover.py</code> · <code>tools/pack.py</code> 와 이 문서를 같이 고칩니다.</p>
+<hr>
+<h1>한눈에 — 네 번 올립니다</h1>
+<div class="table-wrap"><table><thead><tr><th></th><th>무엇</th><th>쪽·크기</th><th>값</th></tr></thead><tbody><tr><td><strong>1</strong></td><td>영어 전자책 <code>How to See a Person</code></td><td>0.4MB쯤</td><td><strong>$5.99</strong></td></tr><tr><td><strong>2</strong></td><td>영어 종이책</td><td>⚠ 쪽수 미정</td><td><strong>$11.99</strong></td></tr><tr><td><strong>3</strong></td><td>한국어 전자책 『사람을 사람으로 보는 법』</td><td>0.40MB</td><td><strong>$5.99</strong></td></tr><tr><td><strong>4</strong></td><td>한국어 종이책</td><td>⚠ 150쪽쯤</td><td><strong>$11.99</strong></td></tr></tbody></table></div>
+<p><strong>순서를 지키세요.</strong> 1번이 살아나야(보통 몇 시간~하루) 2번을 같은 책에 붙일 수 있습니다. 3번은 1번과 <strong>별개의 새 책</strong>입니다. 아마존은 언어판을 묶어 주지 않습니다.</p>
+<p><strong>영어판은 아직 원고가 없습니다.</strong> 한국어가 끝난 뒤에 만듭니다. 한국어만 먼저 내시려면 3번·4번만 하시면 되고, 그때는 3번이 첫 번째가 됩니다.</p>
+<hr>
+<h1>올릴 파일</h1>
+<pre><code>release/covers/      표지 JPG 두 장        (전자책용)
+release/ebook/       EPUB 두 장
+release/paperback/   본문·표지 PDF 네 장    (종이책용)</code></pre>
+<div class="table-wrap"><table><thead><tr><th></th><th>영어판</th><th>한국어판</th></tr></thead><tbody><tr><td><strong>전자책 표지</strong></td><td><code>11_How-to-See-a-Person-cover.jpg</code></td><td><code>12_사람을-사람으로-보는-법-cover.jpg</code></td></tr><tr><td><strong>전자책 본문</strong></td><td><code>How to See a Person.epub</code></td><td><code>사람을 사람으로 보는 법.epub</code></td></tr><tr><td><strong>종이책 본문</strong></td><td><code>11_…_interior-⚠p.pdf</code></td><td><code>12_…_본문-⚠p.pdf</code></td></tr><tr><td><strong>종이책 표지</strong></td><td><code>11_…_cover-⚠p-cream.pdf</code></td><td><code>12_…_표지-⚠p-미색.pdf</code></td></tr></tbody></table></div>
+<p><strong>전자책 표지는 JPG, 종이책 표지는 PDF 입니다.</strong> 서로 바꿔 올리면 거부됩니다.</p>
+<p>묶는 것은 손으로 하지 마세요. 한 줄이면 됩니다.</p>
+<pre><code>python3 tools/pack.py person</code></pre>
+<p>쪽수와 표지 폭이 안 맞으면 <strong>묶지 않고 어디가 틀렸는지 알려 줍니다.</strong> 05·07번에서 당한 자리가 거기라 거기서 막게 해 뒀습니다.</p>
+<hr>
+<h1>네 번 다 틀리면 안 되는 네 칸</h1>
+<p><strong>표지를 의심하기 전에 이 네 칸을 먼저 보세요.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>탭</th><th>칸</th><th>값</th><th>어디에</th></tr></thead><tbody><tr><td>Details</td><td>Categories 의 <strong>저내용(low-content) 체크</strong></td><td><strong>끔</strong></td><td>네 번 다</td></tr><tr><td>Content</td><td><strong>Print ISBN</strong></td><td><strong>Get a free KDP ISBN</strong></td><td>종이책만</td></tr><tr><td>Content</td><td><strong>Ink and Paper Type</strong></td><td><strong>cream paper</strong></td><td>종이책만</td></tr><tr><td>Content</td><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td><td>종이책만</td></tr></tbody></table></div>
+<p><strong>셋째를 틀리면 책등이 어긋납니다.</strong> 표지는 미색 두께(쪽당 0.0025in)로 계산합니다. 흰 종이를 고르면 책등이 얇아져 글자가 앞표지로 넘어갑니다.</p>
+<p><strong>넷째를 켜면 "valid barcode 를 못 찾겠다" 로 막힙니다.</strong> 우리 표지에는 바코드가 없고 <strong>흰 자리만</strong> 있습니다. 아마존이 거기에 자기 것을 찍습니다.</p>
+<hr>
+<h1>1 · 영어 전자책</h1>
+<p><code>Create</code> → <code>Kindle eBook</code></p>
+<h2>Details 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Language</td><td><code>English</code></td></tr><tr><td>Book Title</td><td><code>How to See a Person</code></td></tr><tr><td>Subtitle</td><td><code>What Is Left When Usefulness Is Taken Away</code></td></tr><tr><td>Series</td><td><strong>비움</strong></td></tr><tr><td>Edition Number</td><td><code>1</code></td></tr><tr><td>Author</td><td>First <code>Jaehyuk</code> / Last <code>Choi</code></td></tr><tr><td>Publishing Rights</td><td><code>I own the copyright…</code></td></tr><tr><td>Sexually Explicit</td><td><code>No</code></td></tr><tr><td>Reading age</td><td><strong>비움</strong></td></tr><tr><td>Primary marketplace</td><td><code>Amazon.com</code></td></tr><tr><td>저내용(low-content)</td><td><strong>끔</strong></td></tr></tbody></table></div>
+<h3>Description</h3>
+<p>에디터 오른쪽 <strong><code>Source</code></strong> 버튼을 먼저 누르고 붙여 넣으세요. 안 누르고 붙이면 태그가 글자로 보입니다.</p>
+<pre><code class="language-html">&lt;h4&gt;I started to write that a person has worth, and stopped.&lt;/h4&gt;
+&lt;p&gt;I stopped because the sentence cannot be argued with. Nobody thinks in front of a sentence like that. They read it, agree, and turn the page. A book made of sentences like that is pleasant to read and leaves nothing behind.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;So I dropped the argument and went to the places where usefulness really does fall to zero.&lt;/b&gt; Five parts, seventeen chapters.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;When the counting started&lt;/b&gt; &amp;mdash; four Latin words from 1785, and only the bottom one is comparative. It does not say what you are. It says who you are worse than&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Take it away and look&lt;/b&gt; &amp;mdash; someone who cannot do anything yet, someone stopped for a while, someone handing back one ability at a time, someone skilled with nowhere to use it&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;So how do you look&lt;/b&gt; &amp;mdash; four things to do. The same actions a famous book recommends, with a different reason underneath, and a chapter about whether the reason changes anything&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Between two people&lt;/b&gt; &amp;mdash; the place those four fail hardest is in front of the person you love most&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;After the machines&lt;/b&gt; &amp;mdash; competing on usefulness is a contest whose loser is decided in advance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Every chapter ends with &lt;b&gt;one thing to do today&lt;/b&gt;. Sixteen of them, all small, none taking more than a day. And every chapter leaves one thing unresolved &amp;mdash; a question I do not have an answer to, written down as it is.&lt;/p&gt;
+&lt;p&gt;The last chapter closes on a question with &lt;b&gt;nothing written after it&lt;/b&gt;.&lt;/p&gt;</code></pre>
+<h3>Categories (최대 3개)</h3>
+<p><strong><code>kdp.amazon.com</code> 이 막혀 있어 분류 목록을 직접 못 봤습니다.</strong> 가까운 것으로 고르세요.</p>
+<ol><li><code>Self-Help</code> → <code>Personal Transformation</code></li><li><code>Politics &amp; Social Sciences</code> → <code>Philosophy</code> → <code>Ethics &amp; Morality</code></li><li><code>Business &amp; Money</code> → <code>Business Culture</code> → <code>Workplace Culture</code></li></ol>
+<p><strong>1번이 이 책이 팔릴 자리이고 2번이 이 책의 실제 자리입니다.</strong> 둘 다 거세요. 3번은 13장(평가표) 때문에 겁니다.</p>
+<h3>Keywords (7개)</h3>
+<pre><code>how to treat people with respect
+what makes a person valuable
+self worth beyond productivity
+how to listen without fixing
+human dignity in the workplace
+finding meaning when work ends
+seeing people as people</code></pre>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Manuscript</td><td><code>How to See a Person.epub</code></td></tr><tr><td>Book Cover</td><td><code>Upload a cover you already have</code> → <code>11_How-to-See-a-Person-cover.jpg</code></td></tr><tr><td>ISBN</td><td>전자책은 <strong>안 넣어도 됩니다</strong></td></tr><tr><td>DRM</td><td><strong>끄는 쪽</strong></td></tr><tr><td>AI 문항</td><td>Text <strong>Yes</strong> · Images <strong>Yes</strong> · Translation <strong>Yes</strong> · 정도는 <strong>전체</strong></td></tr><tr><td>Pre-order</td><td><code>I am ready to release my book now</code></td></tr></tbody></table></div>
+<h3>AI 문항 — 한 번만 적습니다</h3>
+<p><strong>이 책도 <code>AI-generated</code> 입니다.</strong> 초고를 제가 썼기 때문입니다. 작가님 장면 열여덟이 들어가도 그 답은 안 바뀝니다. 그 칸은 <strong>어떻게 읽히는가가 아니라 어떻게 만들었는가</strong>를 묻습니다.</p>
+<p>바꾸시려면 순서를 바꿔야 합니다 — 작가님이 초고를 쓰시고 제가 구조와 사실을 보는 쪽입니다. <code>CLAUDE.md</code> 4번에 그 순서가 적혀 있습니다.</p>
+<p><strong>이 답은 아마존 내부 기록용이고 상품 화면에는 안 나옵니다.</strong></p>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>KDP Select</td><td><strong>넣습니다</strong></td></tr><tr><td>Royalty</td><td><strong>70%</strong></td></tr><tr><td>List Price (Amazon.com)</td><td><strong>$5.99</strong></td></tr></tbody></table></div>
+<hr>
+<h1>2 · 영어 종이책</h1>
+<p><strong>1번이 살아난 뒤에</strong> 같은 책 화면에서 <code>Create paperback</code> 을 누릅니다. 제목·설명·분류·키워드는 전자책에서 복사됩니다. <strong>그대로 두세요.</strong></p>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td><strong>Print ISBN</strong></td><td><strong><code>Get a free KDP ISBN</code></strong></td></tr><tr><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td></tr><tr><td>Print Options</td><td><code>Black &amp; white interior with cream paper</code></td></tr><tr><td>Trim Size</td><td><code>6 x 9 in</code></td></tr><tr><td>Bleed</td><td><code>No bleed</code></td></tr><tr><td>Paperback cover finish</td><td><code>Matte</code></td></tr><tr><td>Manuscript</td><td><code>11_How-to-See-a-Person_interior-⚠p.pdf</code></td></tr><tr><td>Book Cover</td><td><code>11_…_cover-⚠p-cream.pdf</code></td></tr></tbody></table></div>
+<p><strong>전자책 ISBN 과 다른 번호를 받습니다.</strong> 같은 걸 쓰면 안 됩니다.</p>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Expanded Distribution</td><td><strong>켭니다</strong></td></tr><tr><td>List Price (Amazon.com)</td><td><strong>$11.99</strong></td></tr></tbody></table></div>
+<hr>
+<h1>3 · 한국어 전자책</h1>
+<p><code>Create</code> → <code>Kindle eBook</code>. <strong>1번과 별개의 새 책입니다.</strong></p>
+<h2>Details 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Language</td><td><code>Korean</code></td></tr><tr><td>Book Title</td><td><code>사람을 사람으로 보는 법</code></td></tr><tr><td>Subtitle</td><td><code>쓸모를 빼고 사람을 보는 법</code></td></tr><tr><td>Series</td><td><strong>비움</strong></td></tr><tr><td>Edition Number</td><td><code>1</code></td></tr><tr><td>Author</td><td><code>최재혁</code> (나누라고 하면 First <code>재혁</code> / Last <code>최</code>)</td></tr><tr><td>Reading age</td><td><strong>비움</strong></td></tr><tr><td>Primary marketplace</td><td><code>Amazon.com</code></td></tr><tr><td>저내용(low-content)</td><td><strong>끔</strong></td></tr></tbody></table></div>
+<h3>Description</h3>
+<p><strong><code>Source</code></strong> 버튼을 누르고 붙여 넣으세요.</p>
+<pre><code class="language-html">&lt;h4&gt;사람에게 값이 있다고 쓰려다 그만뒀습니다.&lt;/h4&gt;
+&lt;p&gt;반박할 수 없는 문장이라서 그만뒀습니다. 반박할 수 없는 문장 앞에서 사람은 생각을 멈춥니다. 좋은 말이네, 하고 다음 쪽으로 넘어갑니다. 그런 문장으로 책을 채우면 읽을 때는 좋고 다 읽고 나면 아무것도 안 남습니다.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;그래서 주장을 버리고, 쓸모가 실제로 0이 되는 자리로 갔습니다.&lt;/b&gt; 다섯 부에 열일곱 장입니다.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;언제부터 세기 시작했나&lt;/b&gt; &amp;mdash; 1785년에 적힌 네 낱말 중 맨 아래만 비교급입니다. 어떤 사람인지를 말하지 않고 누구보다 못한지를 말하는 이름입니다&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;빼 보면 보인다&lt;/b&gt; &amp;mdash; 아직 아무것도 못 하는 사람, 한동안 멈춘 사람, 할 수 있던 것을 하나씩 돌려주는 사람, 할 줄 아는데 쓸 데가 없어진 사람&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;그래서 어떻게 보나&lt;/b&gt; &amp;mdash; 할 것 네 가지. 1936년의 그 책과 같은 행동을 권하면서 다른 이유를 붙일 수 있는지를 봅니다&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;둘 사이&lt;/b&gt; &amp;mdash; 그 네 가지가 제일 안 되는 자리는 제일 가까운 사람 앞입니다&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;기계가 생긴 다음&lt;/b&gt; &amp;mdash; 쓸모로 겨루면 지는 쪽이 미리 정해져 있습니다&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;장마다 &lt;b&gt;오늘 할 것&lt;/b&gt;이 하나씩 붙어 있습니다. 열여섯 개가 다 작고 하루를 안 넘깁니다. 그리고 장마다 하나는 안 풀고 끝냅니다. 답을 못 가진 질문을 그대로 적어 두었습니다.&lt;/p&gt;
+&lt;p&gt;마지막 장은 질문 하나로 닫고 &lt;b&gt;그 뒤에 한 줄도 없습니다.&lt;/b&gt;&lt;/p&gt;</code></pre>
+<blockquote><p><strong>09·10번이 이미 올라가 있으면</strong> 설명 끝에 이 한 줄을 붙이세요. 아직이면 넣지 마세요. 없는 책을 가리키게 됩니다.</p>
+<p><code>&lt;p&gt;『기계가 말하지 못한 것』의 뒷면입니다. 저쪽이 기계를 보는 책이고, 이쪽이 사람을 보는 책입니다.&lt;/p&gt;</code></p></blockquote>
+<h3>Categories</h3>
+<p>한국어책은 분류가 영어판과 다르게 나옵니다. 가장 가까운 것으로 고르세요.</p>
+<ol><li><code>Self-Help</code></li><li><code>Politics &amp; Social Sciences</code> → <code>Philosophy</code></li><li><code>Business &amp; Money</code></li></ol>
+<h3>Keywords</h3>
+<pre><code>사람을 대하는 법
+인간관계 심리
+쓸모와 사람의 값
+경청하는 법
+평가와 사람
+일이 없어진 사람
+교양 심리학</code></pre>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Manuscript</td><td><code>사람을 사람으로 보는 법.epub</code></td></tr><tr><td>Book Cover</td><td><code>12_사람을-사람으로-보는-법-cover.jpg</code></td></tr><tr><td>DRM</td><td><strong>끄는 쪽</strong></td></tr><tr><td>AI 문항</td><td>영어판과 같습니다</td></tr><tr><td>Pre-order</td><td><code>I am ready to release my book now</code></td></tr></tbody></table></div>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>KDP Select</td><td><strong>넣습니다</strong></td></tr><tr><td>Royalty</td><td><strong>70%</strong></td></tr><tr><td>List Price</td><td><strong>$5.99</strong></td></tr></tbody></table></div>
+<hr>
+<h1>4 · 한국어 종이책</h1>
+<p><strong>이것 하나만 먼저 확인하셔야 합니다.</strong></p>
+<blockquote><p>전자책은 한국어를 받지만, <strong>인쇄본 지원 언어에 한국어가 없다</strong>는 자료가 여럿입니다. <code>kdp.amazon.com</code> 이 막혀 있어 제가 직접 확인하지 못했습니다.</p></blockquote>
+<p><code>Create paperback</code> 을 누르고 <strong><code>Language</code> 칸에 Korean 이 있는지</strong> 보세요. 없으면 한국어 종이책은 국내 인쇄로 가야 합니다. 파일은 그대로 쓸 수 있습니다.</p>
+<h2>Content 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td><strong>Print ISBN</strong></td><td><strong><code>Get a free KDP ISBN</code></strong></td></tr><tr><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td></tr><tr><td>Print Options</td><td><code>Black &amp; white interior with cream paper</code></td></tr><tr><td>Trim Size</td><td><code>6 x 9 in</code></td></tr><tr><td>Bleed</td><td><code>No bleed</code></td></tr><tr><td>Cover finish</td><td><code>Matte</code></td></tr><tr><td>Manuscript</td><td><code>12_사람을-사람으로-보는-법_본문-⚠p.pdf</code></td></tr><tr><td>Book Cover</td><td><code>12_…_표지-⚠p-미색.pdf</code></td></tr></tbody></table></div>
+<h2>Pricing 탭</h2>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th>값</th></tr></thead><tbody><tr><td>Expanded Distribution</td><td><strong>켭니다</strong></td></tr><tr><td>List Price</td><td><strong>$11.99</strong></td></tr></tbody></table></div>
+<hr>
+<h1>쪽수가 정해지면</h1>
+<p><strong>장면 열여덟이 들어간 뒤에 한 번만 하시면 됩니다.</strong></p>
+<pre><code>python3 tools/person.py --stat      # 확인 0 인지 본다
+python3 tools/pdf.py person --trim 6x9</code></pre>
+<p>나온 쪽수를 N 이라고 하면 나머지가 다 따라옵니다.</p>
+<div class="table-wrap"><table><thead><tr><th>무엇</th><th>계산</th></tr></thead><tbody><tr><td>표지 폭</td><td><code>0.125 + 6 + (N x 0.0025) + 6 + 0.125</code> in</td></tr><tr><td>책등</td><td><code>N x 0.0025</code> in</td></tr><tr><td>인쇄비</td><td><code>$1.00 + (N x $0.012)</code></td></tr><tr><td>최소 정가</td><td>인쇄비 ÷ 0.6</td></tr><tr><td>권당 수익</td><td><code>정가 x 0.6 − 인쇄비</code></td></tr></tbody></table></div>
+<pre><code>python3 tools/wrap_cover.py person N</code></pre>
+<p>그리고 <strong><code>tools/pack.py</code> 의 <code>person</code> 칸에 있는 네 줄의 쪽수를 고치세요.</strong> 안 고치면 <code>pack.py</code> 가 묶기를 거부하면서 어디가 틀렸는지 알려 줍니다. 그게 거기 있는 이유입니다.</p>
+<h2>쪽수별 숫자 — 미리 재 둡니다</h2>
+<p>지금 원고(장면 전)가 <strong>131쪽</strong>이고, 장면 열여덟이 들어가면 <strong>150쪽쯤</strong> 됩니다.</p>
+<div class="table-wrap"><table><thead><tr><th>쪽</th><th>인쇄비</th><th>최소 정가</th><th>책등</th><th>$9.99</th><th>$11.99</th><th><strong>$12.99</strong></th></tr></thead><tbody><tr><td>131</td><td>$2.57</td><td>$4.29</td><td>0.3275 in</td><td>$3.42</td><td>$4.62</td><td>$5.22</td></tr><tr><td>140</td><td>$2.68</td><td>$4.47</td><td>0.3500 in</td><td>$3.31</td><td>$4.51</td><td>$5.11</td></tr><tr><td><strong>150</strong></td><td><strong>$2.80</strong></td><td><strong>$4.67</strong></td><td><strong>0.3750 in</strong></td><td><strong>$3.19</strong></td><td><strong>$4.39</strong></td><td><strong>$4.99</strong></td></tr><tr><td>160</td><td>$2.92</td><td>$4.87</td><td>0.4000 in</td><td>$3.07</td><td>$4.27</td><td>$4.87</td></tr><tr><td>170</td><td>$3.04</td><td>$5.07</td><td>0.4250 in</td><td>$2.95</td><td>$4.15</td><td>$4.75</td></tr></tbody></table></div>
+<hr>
+<h1>값을 왜 이렇게 잡았나</h1>
+<h2>전자책 — $5.99</h2>
+<p><strong>$2.99 ~ $9.99 사이에서만 70%를 받습니다.</strong> 그 밖은 전부 35%입니다. 70% 구간에서는 <strong>1MB당 $0.15 전송료</strong>가 빠지는데, 0.40MB라 6센트입니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>정가</th><th>전송료</th><th><strong>권당 수익</strong></th></tr></thead><tbody><tr><td>한국어판</td><td>$5.99</td><td>$0.06</td><td><strong>$4.13</strong></td></tr><tr><td>영어판</td><td>$5.99</td><td>$0.06쯤</td><td><strong>$4.13</strong></td></tr></tbody></table></div>
+<p>09·10번($4.99)보다 한 칸 위로 잡았습니다. <strong>그 책은 107쪽이고 이 책은 150쪽쯤</strong>입니다. <strong>$2.99 밑으로 내리지 마세요.</strong> 70% 구간에서 떨어집니다.</p>
+<h2>종이책 — $11.99</h2>
+<p>150쪽 기준으로 $11.99 면 권당 <strong>$4.39</strong> 가 남습니다.</p>
+<p>$9.99 로 내리면 $3.19 입니다. <strong>$2 내리는데 수익이 1.2달러 빠집니다.</strong> 그리고 이 책은 09·10번보다 40쪽쯤 두꺼워서 손에 들었을 때 $9.99 로 안 보입니다.</p>
+<p>$12.99 도 됩니다($4.99). 다만 <strong>첫 책이 아니라 열 번째 책</strong>이라도 자기계발 칸에서 $12.99 는 한 번 더 생각하게 만드는 값입니다. <strong>$11.99 를 권하고, 안 팔리면 내리는 쪽이 올리는 쪽보다 쉽습니다.</strong></p>
+<p><em>60% 구간과 $9.99 문턱은 <code>kdp.amazon.com</code> 이 막혀 있어 재확인하지 못했습니다. 문턱이 있든 없든 $9.99 이상이 유리하다는 결론은 같습니다.</em></p>
+<h2>전자책과 종이책의 간격</h2>
+<p><strong>2배입니다.</strong> 09·10번과 같은 비율입니다.</p>
+<hr>
+<h1>다 올린 뒤 볼 것</h1>
+<p><strong>하나. 종이책 미리보기에서 책등을 보세요.</strong> 글자가 앞표지나 뒤표지로 넘어가 있으면 종이 종류가 틀린 것입니다. <code>cream</code> 인지 다시 보세요.</p>
+<p><strong>둘. 전자책은 실제 기기에서 마지막 장까지 넘겨 보세요.</strong> <strong>17장 뒤에 아무것도 없는 것이 맞습니다.</strong> 뭔가 더 붙어 있으면 그게 잘못된 것입니다.</p>
+<p><strong>셋. 영어판과 한국어판은 서로 연결되지 않습니다.</strong> 각각 따로 삽니다.</p>
+<hr>
+<h1>번호에 대해</h1>
+<p><code>release/</code> 의 파일 번호가 01부터 10까지 와 있습니다. 이 책이 <strong>11(영어판)과 12(한국어판)</strong> 이고, 작가님의 <strong>열 번째 책</strong>입니다.</p>
+<hr>
+<h1>아직 안 끝난 것</h1>
+<div class="table-wrap"><table><thead><tr><th></th><th>무엇</th></tr></thead><tbody><tr><td><strong>1. 작가님 자리 열여덟</strong></td><td>제일 급한 것은 2부의 넷입니다. 사례가 그 자리라 비면 2부가 일반론이 됩니다</td></tr><tr><td>2. 원문 확인</td><td>9장 1984년 논문 · 13장 『베니티 페어』 · 3장 판결문 · 16장 마리엔탈. 따옴표를 단 글 전부</td></tr><tr><td>3. 영어판 원고</td><td>한국어가 끝난 뒤에</td></tr><tr><td>4. 05·07번</td><td>05번은 Print ISBN 과 cream, 07번은 바코드 체크 끄기. 아직 그대로입니다</td></tr></tbody></table></div>
+</div></body></html>
