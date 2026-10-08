@@ -260,6 +260,66 @@ BOOKS = {
             "leaving one thing unresolved. The last chapter closes on a question "
             "with nothing written after it.",
         ]),
+
+    # ── 13~18번. 사랑 세 권. 선 하나를 세 권에 나눠 그린다.
+    # 나란히 놓아야 한 줄이 된다. 그게 셋을 같이 사게 만드는 자리다.
+    "love1": dict(
+        title="먼저 와 있던 것",
+        title_lines=["먼저 와", "있던 것"],
+        subtitle="내가 요청한 적 없는데 이미 있던 것",
+        series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
+        volume="첫째 권",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=1, lang="ko", author="최재혁",
+        curve_labels=["바깥에서", "나에게"],
+        motif_note="시작이 화면 밖에 있다",
+        back_head="나는 받고 시작했다.",
+        back=[
+            "태어나는 일에 동의한 사람은 없다. 그런데 이름은 이미 지어져 있었고 "
+            "옷도 자리도 준비되어 있었다. 요청한 적 없는 것이 먼저 와 있었다.",
+            "받은 것의 대부분은 기억에 없다. 업어 준 등도, 수천 번 말을 가르쳐 준 "
+            "입도 기억나지 않는다. 기억 안 나는 쪽이 사람을 만든다.",
+            "열두 장이고 장마다 떠오르는 사람 한 명을 묻는다. 답은 책이 아니라 "
+            "읽는 사람 쪽에 있다.",
+        ]),
+
+    "love2": dict(
+        title="값을 안 묻고",
+        title_lines=["값을", "안 묻고"],
+        subtitle="돌아올 것이 없는 쪽으로",
+        series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
+        volume="둘째 권",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=2, lang="ko", author="최재혁",
+        curve_labels=["나에게서", "모르는 쪽으로"],
+        motif_note="끝에 아무도 없어도 간다",
+        back_head="조건이 붙으면 거래가 된다.",
+        back=[
+            "잘하면, 착하면. 그 냄새를 아이들이 제일 먼저 안다. 자격을 따지기 "
+            "시작하면 줄이 생기고, 줄이 생기면 아래쪽이 생긴다.",
+            "다시 볼 일 없는 사람에게 가는 것이 있다. 이름을 안 밝히고 가는 것도 "
+            "있다. 셈이 안 맞는데 계속되는 자리가 있다.",
+            "둘째 권이다. 첫째 권이 받은 이야기였고 이쪽은 흘려보내는 이야기다.",
+        ]),
+
+    "love3": dict(
+        title="끝까지 가는 것",
+        title_lines=["끝까지", "가는 것"],
+        subtitle="상대가 몰라도 계속되는 것",
+        series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
+        volume="셋째 권",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=3, lang="ko", author="최재혁",
+        curve_labels=["끊긴 적 없이", "계속"],
+        motif_note="세 권을 나란히 놓으면 한 줄이다",
+        back_head="알아보지 못하는 사람 곁을 지키는 일이 있다.",
+        back=[
+            "돌아오는 것이 없어도 계속되는 자리가 있다. 매일 같은 일을 하는 "
+            "돌봄이 있고, 올지 안 올지 모르는 것을 기다리는 자리가 있다.",
+            "준 사람이 없어진 뒤에도 안 끝난다. 유품과 습관과 말투로 남아서 "
+            "다음 사람에게 간다. 세대를 건너뛰기도 한다.",
+            "셋째 권이고 마지막 장은 질문 하나로 닫는다. 그 뒤에 한 줄도 없다.",
+        ]),
 }
 
 CREAM = "#F4F1EA"
@@ -649,6 +709,107 @@ def draw_front_subtract(d, ox, oy, w, h, spec):
            font=font(f_serif, 60 * s), fill=CREAM)
 
 
+# 실 — 세 권에 걸쳐 선 하나가 간다. thread_phase 가 1·2·3 이다.
+# 1권은 바깥에서 들어와 한 점에 닿고, 2권은 그 점에서 표시 없는 쪽으로 나가고,
+# 3권은 양쪽 가장자리를 다 넘어간다. 세 권을 나란히 놓아야 한 줄이 된다.
+def draw_front_thread(d, ox, oy, w, h, spec):
+    """세 권에 나눠 그리는 선 하나를 쓰는 앞표지."""
+    f_serif, f_serif_r, f_sans_b = faces(spec)
+    warm = spec["accent"]
+    cool = spec["accent2"]
+    s = w / 1600.0
+    pad = w * 0.08125
+    inner = w - pad * 2
+    L = ox + pad
+    R = ox + w - pad
+
+    d.rectangle([L, oy + h * 0.0586, R, oy + h * 0.0586 + 4 * s], fill=warm)
+    ey = oy + h * 0.0781
+
+    size_eye, sp = 34 * s, 5 * s
+    while size_eye >= 20 * s:
+        f_eye = font(f_sans_b, size_eye)
+        left = track_width(d, spec["series"], f_eye, sp)
+        right = track_width(d, spec["volume"], f_eye, sp)
+        if left + right + inner * 0.06 <= inner:
+            break
+        if sp > 1 * s:
+            sp -= 1 * s
+        else:
+            size_eye -= 2 * s
+    track(d, (L, ey), spec["series"], f_eye, MUTED, sp)
+    vw = track_width(d, spec["volume"], f_eye, sp)
+    track(d, (R - vw, ey), spec["volume"], f_eye, cool, sp)
+
+    size = 190 * s
+    while size >= 100 * s:
+        f_title = font(f_serif, size)
+        lines = wrap(d, spec.get("title_lines") or spec["title"], f_title, inner)
+        if len(lines) <= 3:
+            break
+        size -= 8 * s
+    step_t = size * 1.2
+    f_sub = font(f_serif_r, 52 * s)
+    sub_lines = wrap(d, spec["subtitle"], f_sub, inner)
+
+    TOP, BOTTOM = oy + h * 0.155, oy + h * 0.47
+    block = len(lines) * step_t + 46 * s + len(sub_lines) * 72 * s
+    y = TOP + max(0, (BOTTOM - TOP - block) / 2)
+    for line in lines:
+        d.text((L, y), line, font=f_title, fill=CREAM)
+        y += step_t
+    y += 46 * s
+    for line in sub_lines:
+        d.text((L + 4 * s, y), line, font=f_sub, fill=DIM)
+        y += 72 * s
+
+    # 선 하나
+    phase = spec.get("thread_phase", 1)
+    ty = oy + h * 0.600
+    th = max(3, int(7 * s))
+    dot = 26 * s
+
+    if phase == 1:
+        x0, x1 = ox, L + inner * 0.70
+        d.rectangle([x0, ty - th / 2, x1, ty + th / 2], fill=warm)
+        d.ellipse([x1 - dot, ty - dot, x1 + dot, ty + dot], fill=cool)
+    elif phase == 2:
+        x0, x1 = L + inner * 0.14, ox + w
+        d.ellipse([x0 - dot, ty - dot, x0 + dot, ty + dot], fill=cool)
+        d.rectangle([x0, ty - th / 2, x1, ty + th / 2], fill=warm)
+        gap = (x1 - x0) * 0.22
+        r = dot * 0.72
+        x = x0 + gap
+        while x < x1 - dot * 0.4:
+            e = max(2, int(4 * s))
+            d.ellipse([x - r, ty - r, x + r, ty + r], outline=cool, width=e)
+            x += gap
+            gap *= 1.18
+            r *= 0.82
+    else:
+        d.rectangle([ox, ty - th / 2, ox + w, ty + th / 2], fill=warm)
+        n = 6
+        step_d = w / (n + 1.0)
+        for i in range(1, n + 1):
+            x = step_d * i
+            d.ellipse([x - dot * 0.8, ty - dot * 0.8,
+                       x + dot * 0.8, ty + dot * 0.8], fill=cool)
+
+    f_lab = font(f_sans_b, 28 * s)
+    ly = ty + 60 * s
+    track(d, (L, ly), spec["curve_labels"][0], f_lab, warm, 5 * s)
+    w2 = track_width(d, spec["curve_labels"][1], f_lab, 5 * s)
+    track(d, (R - w2, ly), spec["curve_labels"][1], f_lab, cool, 5 * s)
+
+    if spec.get("motif_note"):
+        f_note = font(f_serif_r, 36 * s)
+        d.text((L, ly + 52 * s), spec["motif_note"], font=f_note, fill=MUTED)
+
+    d.rectangle([L, oy + h * 0.895, L + 120 * s, oy + h * 0.895 + 4 * s], fill=warm)
+    d.text((L, oy + h * 0.920), spec.get("author", "Jaehyuk Choi"),
+           font=font(f_serif, 60 * s), fill=CREAM)
+
+
 def draw_front(d, ox, oy, w, h, spec):
     """앞표지를 (ox, oy) 에서 시작하는 w x h 영역에 그린다.
 
@@ -661,6 +822,8 @@ def draw_front(d, ox, oy, w, h, spec):
         return draw_front_dialog(d, ox, oy, w, h, spec)
     if spec.get("motif") == "subtract":
         return draw_front_subtract(d, ox, oy, w, h, spec)
+    if spec.get("motif") == "thread":
+        return draw_front_thread(d, ox, oy, w, h, spec)
     accent = spec["accent"]
     s = w / 1600.0                      # 글자 크기는 폭에 맞춘다
     pad = w * 0.08125
