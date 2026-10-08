@@ -284,8 +284,8 @@ BOOKS = {
         ]),
 
     "love2": dict(
-        title="값을 묻지 않는 사람",
-        title_lines=["값을 묻지", "않는 사람"],
+        title="아무것도 묻지 않는 사람",
+        title_lines=["아무것도", "묻지 않는 사람"],
         subtitle="돌아올 것이 없는 쪽으로 가는 사람",
         series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
         volume="둘째 권",
