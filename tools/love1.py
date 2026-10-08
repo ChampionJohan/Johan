@@ -16,9 +16,9 @@ import book as m
 
 m.MANUSCRIPT = os.path.join(m.ROOT, "love1", "manuscript")
 m.SITE = os.path.join(m.ROOT, "love1", "site")
-m.TITLE = "먼저 와 있던 것"
-m.SUBTITLE = "내가 요청한 적 없는데 이미 있던 것"
-m.SERIES = "사랑 세 권 · 첫째 권"
+m.TITLE = "먼저 와 있던 사람"
+m.SUBTITLE = "내가 요청한 적 없는데 이미 있던 사람"
+m.SERIES = "떠오르는 사람 · 첫째 권"
 m.AUTHOR = "최재혁"
 m.TRIM = "6x9"
 m.TARGET = 21000

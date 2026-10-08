@@ -264,9 +264,9 @@ BOOKS = {
     # ── 13~18번. 사랑 세 권. 선 하나를 세 권에 나눠 그린다.
     # 나란히 놓아야 한 줄이 된다. 그게 셋을 같이 사게 만드는 자리다.
     "love1": dict(
-        title="먼저 와 있던 것",
-        title_lines=["먼저 와", "있던 것"],
-        subtitle="내가 요청한 적 없는데 이미 있던 것",
+        title="먼저 와 있던 사람",
+        title_lines=["먼저 와", "있던 사람"],
+        subtitle="내가 요청한 적 없는데 이미 있던 사람",
         series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
         volume="첫째 권",
         accent="#E3A765", accent2="#C7604A", ink="#16110F",
@@ -284,9 +284,9 @@ BOOKS = {
         ]),
 
     "love2": dict(
-        title="값을 안 묻고",
-        title_lines=["값을", "안 묻고"],
-        subtitle="돌아올 것이 없는 쪽으로",
+        title="값을 묻지 않는 사람",
+        title_lines=["값을 묻지", "않는 사람"],
+        subtitle="돌아올 것이 없는 쪽으로 가는 사람",
         series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
         volume="둘째 권",
         accent="#E3A765", accent2="#C7604A", ink="#16110F",
@@ -303,9 +303,9 @@ BOOKS = {
         ]),
 
     "love3": dict(
-        title="끝까지 가는 것",
-        title_lines=["끝까지", "가는 것"],
-        subtitle="상대가 몰라도 계속되는 것",
+        title="끝까지 남은 사람",
+        title_lines=["끝까지", "남은 사람"],
+        subtitle="상대가 몰라도 곁에 있는 사람",
         series="먼저 간다 · 값을 안 묻는다 · 끝까지 간다",
         volume="셋째 권",
         accent="#E3A765", accent2="#C7604A", ink="#16110F",
