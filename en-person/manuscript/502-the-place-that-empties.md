@@ -67,10 +67,29 @@ Then what was it that I missed? Which of the five it was, I have still not manag
 to name. There was definitely one, and it would not come into focus then and it does
 not now.
 
+## Looking Into That Contradiction
+
+Having decided not to clear it away, look once more. The word usefulness is being
+used for two things.
+
+The usefulness used for measuring and the sense of being used are different
+things. The first makes a ranking: it produces where you come in the order. The
+second makes no ranking. There is no ranking in putting a meal on a table, and
+none in the feeling that somebody is waiting for you.
+
+So what this book was trying to say cannot be *throw usefulness away.* Throw it
+away and the fourth of those five goes with it. **Only the ranking-making kind is
+being set down.**
+
+Whether the two can be cleanly separated, though, I do not know. The sense of
+being needed turns into a ranking as soon as you start counting it, and the
+moment it becomes how many people need you it is the same ruler again, and where
+that crossing happens is something I could not put my finger on.
+
 ## Ninety Years Later, Another Country
 
 There is a study from 2019. It looked at American regions where manufacturing
-declined between 1990 and 2014 and recorded what **moved together** on the side of
+declined between 1990 and 2014 and recorded what moved together on the side of
 young men.
 
 Employment and income fell. The share doing nothing rose. Early deaths rose.

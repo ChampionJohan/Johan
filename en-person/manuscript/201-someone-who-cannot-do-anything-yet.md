@@ -56,6 +56,26 @@ center has not moved.
 
 So the explanation is wrong. Investment does not explain that room.
 
+## A Baby Does Not Apologize
+
+Line the four people of Part Two up in advance and something catches.
+**Only the baby does not apologize.**
+
+Someone laid up ill apologizes to the person who came to visit. Someone old who
+has stopped being able to do things says they are nothing but a burden. Someone
+whose work has gone explains, without being asked, what they used to do. In all
+three the receiving side hands something over.
+
+The baby hands nothing over. It receives and does not apologize, and nobody
+calls that shameless.
+
+Which raises a question. **When do we learn to apologize for receiving?**
+Something absent at birth appears at some point; there is a day on which a
+person learns that receiving carries a price, and I do not know when that day
+is, but after it the thing runs for life.
+
+The other three chapters of Part Two are the story of paying that price.
+
 ## Then Why Only There
 
 This is where I cannot answer.

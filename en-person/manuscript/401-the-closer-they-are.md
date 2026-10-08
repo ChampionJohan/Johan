@@ -53,7 +53,7 @@ is a little different and still a measuring question. Did you take your medicine
 Did you get to the hospital.
 
 Not one of them is wrong. All of them come out of worry, and without worry nobody
-asks. But worry always worries about **one box.** The score box, the results box,
+asks. But worry always worries about one box. The score box, the results box,
 the body box. So while worrying you keep asking about that box, and after some
 years the questions asked about that person have narrowed to the one.
 

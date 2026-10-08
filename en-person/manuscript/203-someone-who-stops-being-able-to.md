@@ -35,6 +35,26 @@ place where something was handed back does not refill.
 
 And every time something is handed back, it gets counted.
 
+## While It Is Still Hidden
+
+Handing things back one at a time has a stage before it. The hiding.
+
+At first it is concealed. To avoid being caught out of breath on the stairs they
+rest a step and then go on, and when a name will not come they steer the
+conversation somewhere that name is not needed, and once the handwriting starts
+to shake they reduce the occasions for writing. What is *cannot* gets made to
+look like *does not.*
+
+That stage runs quite long, and it is the loneliest part. The surroundings do not
+know, so nobody helps, and the person spends the whole day braced against being
+found out. Neither having handed it back nor still holding it, they carry it
+alone.
+
+Then comes the day of being found out. **For them that is the second loss.** One
+loss was the day they stopped being able to and another is the day it was seen,
+and the surroundings count the day it was seen as the first one. The long stretch
+before it is counted by nobody.
+
 ## This Time the Person Counts Themselves
 
 That is what is different here from the two chapters before. **The person doing

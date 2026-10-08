@@ -69,6 +69,26 @@ This is what a person learns while ill. Which of the things around them was
 attached to them and which was attached to their work. Ordinarily you cannot tell,
 because the two arrive together. They only separate when the work stops.
 
+## The One Receiving Apologizes
+
+One thing should be written down here. The sick person apologizes.
+
+Go to visit and the one lying down says sorry first. Sorry to make you come when
+you are busy. Sorry I cannot get up. Sorry the place is a mess. The person whose
+body hurts apologizes to the person whose body does not.
+
+It is a strange arrangement and nobody finds it strange; if anything, the absence
+of the apology is what stands out.
+
+Why does it happen? Because the position of only receiving is hard to bear.
+Something has to be handed over for the books to balance and there is nothing to
+hand over, so an apology gets handed over instead. An apology is the only thing
+that can be produced by a body that will not move.
+
+So an ill person is doing two things at once, getting better and being sorry, and
+the second one costs something too, and what it costs is written down nowhere.
+The baby in chapter four does not do it.
+
 ## About the Ones Who Stay
 
 Here is where I have no answer.

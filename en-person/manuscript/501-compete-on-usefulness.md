@@ -14,7 +14,7 @@ loser is decided.
 
 For fourteen chapters this book has not once talked about machines. Here it does
 for the first time. But what this chapter looks at is less what the machine did
-than **the person who was standing there.**
+than the person who was standing there.
 
 ## It Was Not a Small Job
 

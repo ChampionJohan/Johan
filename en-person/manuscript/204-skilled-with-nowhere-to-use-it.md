@@ -52,6 +52,27 @@ that the two were not tied together simply shows.
 
 That is why Part Two ends here.
 
+## How Long the Word "Unchanged" Stays True
+
+This chapter stands on the word *unchanged.* Then it is only fair to write down
+how long that word stays true.
+
+Unused, it rusts. Hands do and speech does. With no place to use it for several
+years a person really does get duller, and once they are duller it becomes
+impossible to sort out whether the original drop in worth was about ability or
+not, because by then the two are mixed together.
+
+The person starts to doubt it too. Nobody is using me, so have I actually lost it
+— and once that doubt arrives, trying becomes frightening. Not trying means no
+confirmation, and with no confirmation the doubt is the only thing that grows.
+
+So the *unchanged* in this chapter is true only for a while at the start. **The
+worth falls first, inside that while.** Later the ability comes down after it
+until the gap is no longer visible, and from that point the fall in worth can be
+charged to ability.
+
+To see it you have to look early.
+
 ## They Start Explaining Without Being Asked
 
 A habit develops in a person standing there.
@@ -79,7 +100,7 @@ There is a thing people say to someone in this position.
 It is said with good intent, and it overlaps with what this book has been trying to say throughout, but there is one place where it catches for the person
 receiving it.
 
-**It is the "even so."**
+It is the "even so."
 
 *Even so* means something in front of it has fallen away. It is continuing a
 sentence with both parties knowing what fell. So that one phrase carries comfort
@@ -102,9 +123,15 @@ The four places Part Two looked at.
 | Cannot do anything yet | Nothing | Nobody counts | We know how to not count |
 | Cannot for a while | Stopped | The surroundings count | What was attached to me |
 | Stops being able to | Shrinking | They count themselves | Comfort uses the same ruler |
-| Skilled, nowhere to use it | **Unchanged** | Everyone counts | Worth was not hanging on ability |
+| Skilled, nowhere to use it | Unchanged | Everyone counts | Worth was not hanging on ability |
 
 The bottom row holds up the three above it from behind.
+
+Read the four rows downward and one more thing shows. **The receiving side hands
+something over.** The ill person hands over an apology, the old person hands over
+concealment, the person out of work hands over an explanation, and all three are
+things a body that will not move can still produce. The only one of the four who
+hands nothing over is the baby, and the baby is the only one nobody asks it of.
 
 ## Today
 
