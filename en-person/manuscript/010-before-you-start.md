@@ -25,18 +25,18 @@ argued with. It is simply there.
 | One · When the Counting Started | The day a number got attached to a person, and what numbers do |
 | Two · Take It Away and Look | Four places where usefulness is zero. No outside material in this part |
 | Three · So How Do You Look | Four things to do |
-| Four · Between Two People | Where those four fail hardest — home, work, the street |
+| Four · Between Two People | Where those four fail hardest — home, work, the mouth, the street |
 | Five · After the Machines | Where competing on usefulness is a contest already decided |
 
 ## Two Things Are Attached to Every Chapter
 
 **One is "Today."** Every chapter has one, except the last. Read only, and this
-book becomes a sermon. Do them, and it becomes a book. All sixteen are small.
+book becomes a sermon. Do them, and it becomes a book. All seventeen are small.
 Not one of them takes more than a day.
 
 **One is a place left unresolved.** Every chapter has one of those too. A
 question I do not have an answer to, written down as it is. It is not an
-oversight. If I could have written seventeen chapters that close cleanly, that
+oversight. If I could have written eighteen chapters that close cleanly, that
 would have been a different book.
 
 ## How the Facts Are Handled

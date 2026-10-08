@@ -6,7 +6,7 @@ order: 500
 status: draft
 ---
 
-**For fourteen chapters this book has not once talked about machines.** Here it
+**For fifteen chapters this book has not once talked about machines.** Here it
 does, for the first time.
 
 There is a reason for that order. Bring machines in early and everything after

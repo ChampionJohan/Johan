@@ -1,5 +1,5 @@
 ---
-title: 15 · Compete on Usefulness and You Lose
+title: 16 · Compete on Usefulness and You Lose
 part: Part Five
 kind: chapter
 order: 501
@@ -12,7 +12,7 @@ The conclusion first. A person who has made usefulness the reason they hold thei
 place gives that place up on the day something more useful appears, and it is not the kind of contest you survive by trying harder. The moment you agree to compete, the
 loser is decided.
 
-For fourteen chapters this book has not once talked about machines. Here it does
+For fifteen chapters this book has not once talked about machines. Here it does
 for the first time. But what this chapter looks at is less what the machine did
 than the person who was standing there.
 

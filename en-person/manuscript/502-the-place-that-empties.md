@@ -1,5 +1,5 @@
 ---
-title: 16 · The Place That Empties Out
+title: 17 · The Place That Empties Out
 part: Part Five
 kind: chapter
 order: 502
@@ -51,7 +51,7 @@ receiving them. Receiving without knowing, when it is cut you are left empty
 without knowing what was cut.
 
 Look at the fourth line again. The sense of being useful to someone. This book has
-spent fourteen chapters saying not to measure people by usefulness, and there it is inside what a person out of work misses, and the contradiction is written down rather than cleared away.
+spent fifteen chapters saying not to measure people by usefulness, and there it is inside what a person out of work misses, and the contradiction is written down rather than cleared away.
 
 I was out of work once. Six months.
 
@@ -107,7 +107,7 @@ that far is what can be done.
 Writing that nothing changed in ninety years is not allowed. The countries differ,
 the times differ, the methods differ. Moving into a village and writing it down and
 cross-reading regional statistics are not the same kind of material. Chapters nine
-and fourteen passed the same place, and this is the third.
+and fifteen passed the same place, and this is the third.
 
 The same shape was seen separately in different places. That far. That is heavy
 enough on its own.

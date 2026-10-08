@@ -150,7 +150,7 @@ There are no outside facts in this chapter either. That is true of all four
 chapters in Part Two.
 
 What actually happens in a place where work disappears has been studied with
-numbers, and that is used in chapter sixteen, and it is not used here because Part
+numbers, and that is used in chapter seventeen, and it is not used here because Part
 Two is the place for looking at one person at a time. Also it would mean telling
 the same story twice.
 

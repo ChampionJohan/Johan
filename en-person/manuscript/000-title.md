@@ -10,4 +10,4 @@ status: draft
 
 ### What Is Left When Usefulness Is Taken Away
 
-**Seventeen chapters. One thing to do today in each.**
+**Eighteen chapters. One thing to do today in each.**

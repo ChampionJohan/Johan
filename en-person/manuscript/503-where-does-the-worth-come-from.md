@@ -1,19 +1,19 @@
 ---
-title: 17 · Then Where Does the Worth Come From
+title: 18 · Then Where Does the Worth Come From
 part: Part Five
 kind: chapter
 order: 503
 status: draft
 ---
 
-## What Was Asked Sixteen Chapters Ago
+## What Was Asked Seventeen Chapters Ago
 
 This book began with one question.
 
 > If a person's worth comes from usefulness, does a person with no usefulness left
 > have no worth?
 
-Sixteen chapters have gone by. Part One looked at when we began counting people,
+Seventeen chapters have gone by. Part One looked at when we began counting people,
 Part Two at four people standing where usefulness had been taken away, Part Three
 set down four things to do, Part Four looked at how we measure at home and at work
 and on the street, and Part Five at the place where competing means losing and the
@@ -60,16 +60,17 @@ it at the time.
 
 ## There Is No Answer in This Book
 
-But it is not as though sixteen chapters did nothing.
+But it is not as though seventeen chapters did nothing.
 
 Each chapter had one *Today* at the end of it. Saying a name once more. Counting
 the places you wanted to cut in. Having a conversation without asking about work.
 Swallowing the solution. Not asking a family member what they did today. Finding
-something a coworker's review form has no box for and saying it. Saying one more
-thing to someone you meet only as a role. Writing down three things besides money.
+something a coworker's review form has no box for and saying it. Talking about a
+person with the adjectives left out. Saying one more thing to someone you meet
+only as a role. Writing down three things besides money.
 
-All sixteen are small. Not one of them is an answer. And a person who has done all
-sixteen comes to see the person in front of them differently. It happens without
+All seventeen are small. Not one of them is an answer. And a person who has done
+all seventeen comes to see the person in front of them differently. It happens without
 the grounds ever being produced.
 
 This is all I know. I do not know where the worth comes from, and **even not
@@ -84,8 +85,8 @@ from the next line on it is a sermon.
 ## Where This Chapter Comes From
 
 There are no outside facts in this chapter. No case material either. It stands on
-what the sixteen chapters brought. This is the only chapter with no *Today.*
-Sixteen have one and only this one does not. It is not a space left blank for lack
+what the seventeen chapters brought. This is the only chapter with no *Today.*
+Seventeen have one and only this one does not. It is not a space left blank for lack
 of anything to put there. The question below takes that place.
 
 ## Last

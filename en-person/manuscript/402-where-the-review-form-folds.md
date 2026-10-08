@@ -63,18 +63,9 @@ people who had been inside those boxes, and their several years cannot be return
 by an email.
 
 I have almost never written a rating on a review form. I have received them
-several times. What I received were not numbers. They were words.
-
-> Naive. Does not know how the world works. Kind.
-
-None of the three is an insult. The first two are not compliments either. They are
-words you are not sure which box to put in, and when you receive one you quickly
-learn that the vague word is itself the box, and in chapter three I wrote that the
-thing my resume has no box for is purity. **The same thing gets written down here
-as a fault.** On one side there is no box to write it in and on the other side
-there is. The side with the box always wins.
-
-I would still like to live purely.
+several times, and what I received were not numbers but words. Naive. Does not
+know how the world works. Kind. They last far longer than any grade does, and
+that story belongs to the next chapter.
 
 ## What It Means to Be Folded
 
@@ -135,5 +126,5 @@ Only one date is used. The years in which other companies dropped it differ acro
 sources, so they are handled as *followed*, and company names appear only where they are necessary, because if this chapter reads as a story about one company, the reader
 concludes it is not about theirs.
 
-The next chapter is about strangers. At home and at work we know the person and
-measure them; the people we pass in a day go by without even that.
+The next chapter is the same folding with no paper in it. A review form folds
+once a year. Folding with the mouth happens every day.
