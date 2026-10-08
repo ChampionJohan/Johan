@@ -26,6 +26,9 @@ ai-book/site/
 en-ai-book/site/
 person/site/
 en-person/site/
+love1/site/
+love2/site/
+love3/site/
 
 # 업로드 묶음은 tools/pack.py 로 언제든 되만든다. 안에 든 것이 전부 이미 저장소에 있다.
 release/*-업로드.zip

@@ -32,6 +32,7 @@ BOOKS = {
     "en-bestseller": "en-bestseller",
     "ai-book": "ai-book", "en-ai-book": "en-ai-book",
     "person": "person", "en-person": "en-person",
+    "love1": "love1", "love2": "love2", "love3": "love3",
 }
 
 
@@ -40,7 +41,16 @@ BOOKS = {
 WATCH = {
     "person": (5, ["존엄", "가치", "소중", "귀하"]),
     "en-person": (5, ["dignity", "inherent worth", "precious", "sacred"]),
+
+    # 사랑 세 권 — 이쪽은 아껴 쓰는 말이 아니라 안 쓰는 말이다. 기준이 영 번이다.
+    # 이 샘을 드러내지 않는 것이 세 권 전체의 설계라, 한 번이라도 새면 막는다.
+    # 「기도」는 그냥 세면 「~기도 하다」에 걸린다. 걸리는 꼴로만 센다.
+    "love1": (0, ["하나님", "하느님", "창조주", "예수", "그리스도",
+                  "성경", "교회", "신앙", "은혜", "아가페",
+                  "주님", "찬양", "묵상", "기도하", "기도드", "기도를"]),
 }
+WATCH["love2"] = WATCH["love1"]
+WATCH["love3"] = WATCH["love1"]
 
 
 def body(path):
@@ -94,7 +104,12 @@ def measure(key):
     if not os.path.isdir(d):
         raise SystemExit("원고 폴더가 없습니다: %s" % d)
     files = sorted(glob.glob(os.path.join(d, "*.md")))
-    chapters = [f for f in files if re.search(r"/[1-9]\d[1-9]-", f)]
+    # 장 파일만 고른다. 앞글은 0 으로 시작하고(000·010·020) 부 여는 글은
+    # 00 으로 끝난다(100·200). 그 둘만 뺀다. 예전 규칙은 110·210 처럼
+    # 0 으로 끝나는 열째 장을 통째로 빼먹었다.
+    chapters = [f for f in files
+                if re.search(r"/[1-9]\d\d-", f)
+                and not re.search(r"/[1-9]00-", f)]
     en = key.startswith("en-")
     text = "".join(body(f) for f in chapters)
     sent = (split_en if en else split_ko)(text)

@@ -41,7 +41,8 @@ OVERLAY = {"en-book": "en_book", "en-book2": "en_book2",
            "en-teen3": "en_teen3",
            "ai-book": "aibook", "aibook": "aibook",
            "en-ai-book": "en_aibook", "en-aibook": "en_aibook",
-           "person": "person", "en-person": "en_person"}
+           "person": "person", "en-person": "en_person",
+           "love1": "love1", "love2": "love2", "love3": "love3"}
 ACCENT = {"en-book": "#8A2E2E", "en-book2": "#1F4E5F",
           "en-teen": "#E85D2F", "en-teen2": "#2E7D52",
           "book2": "#1F4E5F", "book-teen": "#E85D2F", "teen": "#E85D2F",
@@ -51,7 +52,8 @@ ACCENT = {"en-book": "#8A2E2E", "en-book2": "#1F4E5F",
           "en-teen3": "#B5542F",
           "ai-book": "#2E4756", "aibook": "#2E4756",
           "en-ai-book": "#2E4756", "en-aibook": "#2E4756",
-          "person": "#C2563C", "en-person": "#C2563C"}
+          "person": "#C2563C", "en-person": "#C2563C",
+          "love1": "#E3A765", "love2": "#E3A765", "love3": "#E3A765"}
 
 
 def load_module(which):
