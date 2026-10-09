@@ -259,6 +259,29 @@ const badge = (t, w) => { rect({ x:W-M-w, y:0.6, w, h:0.36, fill:C.deep, radius:
   note('파운데이션부터 공학까지 학비가 올라가는 순서로 읽으십시오. 공학이 4년이라는 점이 1차 자료에서 확인됐습니다.');
 }
 
+/* ── 10. 공학 학위, 무엇이 다른가 ── */
+{
+  slide(false);
+  head('ENGINEERING DEGREES','공학 학위, 무엇이 다른가','네 학교 모두 본과 4년제입니다 · 다른 것은 "어느 나라 학제를 따르는가"입니다');
+  tableEl({ x:M, y:2.0, w:CW, rowH:0.68, size:11,
+    colW:[2.5, 1.1, 3.3, 5.033],
+    rows:[
+      ['대학','본과 학제','수여 학위','특징'],
+      ['모나쉬 말레이시아\n(2편)','4년','Bachelor of Engineering\n(Honours)','호주 학제를 따릅니다. Honours가 과정 안에 포함된 4년제이며, 호주 자격체계(AQF) 8등급 — 학사 중 가장 높은 등급입니다.'],
+      ['노팅엄 말레이시아\n(2편)','4년','MEng (Hons)\n석사통합 학위','영국 학제를 따릅니다. 학사(BEng)가 아니라 석사통합(MEng)이며, 2+2 또는 3+1로 영국 본교 이동이 가능합니다.'],
+      ['테일러스\n(1편)','4년','Bachelor of ○○ Engineering\nwith Honours','말레이시아 공학인증위원회(EAC/BEM) 인정 학위입니다. 워싱턴 어코드 가입국이라 호주·영국·캐나다·미국에서 재인증 없이 전문기술사 등록이 가능합니다.'],
+      ['선웨이\n(1편)','4년','BEng (Hons)\n+ 랭커스터 MEng (Hons)','선웨이 BEng 학위와 함께 영국 랭커스터대의 MEng (Hons) 학위가 복수로 수여됩니다. 네 학교 중 유일하게 학위증 두 장이 나옵니다.'],
+    ]});
+  rect({ x:M, y:5.52, w:5.86, h:0.86, fill:C.brickSoft, radius:0.08 });
+  text({ t:'AQF 8등급은 석사가 아닙니다', x:M+0.3, y:5.62, w:5.26, h:0.26, size:12.5, bold:true, color:C.brick });
+  text({ t:'호주 자격체계에서 학사 우등(Honours)은 8등급, 석사는 9등급, 박사는 10등급입니다. "석사에 버금간다"는 안내는 정확하지 않습니다.', x:M+0.3, y:5.9, w:5.26, h:0.44, size:11, color:C.text, lh:1.35 });
+  rect({ x:M+6.07, y:5.52, w:5.86, h:0.86, fill:C.goldSoft, radius:0.08 });
+  text({ t:'학위 이름보다 인증(Accreditation)을 보십시오', x:M+6.37, y:5.62, w:5.26, h:0.26, size:12.5, bold:true, color:C.gold });
+  text({ t:'엔지니어 등록과 해외 취업을 가르는 것은 학위 명칭이 아니라 EAC/BEM · IET · IChemE 인증과 워싱턴 어코드 가입 여부입니다.', x:M+6.37, y:5.9, w:5.26, h:0.44, size:11, color:C.text, lh:1.35 });
+  bottom('출처: Monash UG Prospectus 2027 p.8 (Bachelor of Engineering (Honours)) · UNM 브로셔 p.18 (MEng (Hons)) · 테일러스 School of Engineering · 선웨이 Faculty of Engineering and Technology · 호주 자격체계(AQF) 등급표');
+  note('표의 마지막 열만 읽으셔도 됩니다. 넷 다 4년제이고, 선웨이만 학위증이 두 장입니다. AQF 8등급을 석사라고 설명하면 나중에 문제가 됩니다.');
+}
+
 /* ── 10. 모나쉬 vs 노팅엄 ── */
 {
   slide(false);
