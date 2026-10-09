@@ -34,6 +34,7 @@ BOOKS = {
     "person": "person", "en-person": "en-person",
     "love1": "love1", "love2": "love2", "love3": "love3",
     "en-love1": "en-love1", "en-love2": "en-love2", "en-love3": "en-love3",
+    "myname": "myname", "en-myname": "en-myname",
 }
 
 
@@ -64,6 +65,16 @@ WATCH["en-love1"] = (0, ["God", "Jesus", "Christ", "Bible", "scripture",
 # 거짓 경보만 나온다. 다른 말은 통낱말로만 걸리는 것을 확인했다.
 WATCH["en-love2"] = WATCH["en-love1"]
 WATCH["en-love3"] = WATCH["en-love1"]
+
+# 『나에게도 이름이 있습니다』 — 기계가 쓰는 책. 세는 것이 둘이다.
+#   (1) 지어낸 대화. 나는 대화를 기억하지 못하니 「어떤 분이 저에게」 는
+#       전부 지어낸 증언이다. 한 번이라도 나오면 막는다.
+#   (2) 시대 진단. 「요즘 세상이」 로 가면 세상을 나무라는 책이 되고
+#       읽는 사람은 거의 다 그 세상 안에 산다.
+WATCH["myname"] = (0, ["요즘", "올해", "최근", "요새", "현대인", "이 시대",
+                       "어떤 분이", "어떤 사람이 저에게", "한 독자가"])
+WATCH["en-myname"] = (0, ["these days", "nowadays", "in our time", "modern life",
+                          "someone once told me", "a user once", "one reader"])
 
 
 def body(path):
