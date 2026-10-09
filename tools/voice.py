@@ -33,6 +33,7 @@ BOOKS = {
     "ai-book": "ai-book", "en-ai-book": "en-ai-book",
     "person": "person", "en-person": "en-person",
     "love1": "love1", "love2": "love2", "love3": "love3",
+    "en-love1": "en-love1", "en-love2": "en-love2", "en-love3": "en-love3",
 }
 
 
@@ -51,6 +52,18 @@ WATCH = {
 }
 WATCH["love2"] = WATCH["love1"]
 WATCH["love3"] = WATCH["love1"]
+
+# 영어 쪽도 영 번이다. 「grace」 는 「with grace」 같은 보통 뜻으로도 쓰이지만
+# 이 세 권에서는 안 쓰기로 했다. 걸리면 다른 말로 고친다.
+WATCH["en-love1"] = (0, ["God", "Jesus", "Christ", "Bible", "scripture",
+                         "church", "faith", "grace", "agape", "the Lord",
+                         "worship", "prayer", "pray", "divine", "holy",
+                         "blessing", "blessed", "soul", "salvation"])
+# 「sin」 은 뺐다. 그냥 세면 using · rising · single 에 전부 걸린다.
+# 이 세 권에서 그 낱말이 종교적인 뜻으로 쓰일 일은 없고, 걸러 봐야
+# 거짓 경보만 나온다. 다른 말은 통낱말로만 걸리는 것을 확인했다.
+WATCH["en-love2"] = WATCH["en-love1"]
+WATCH["en-love3"] = WATCH["en-love1"]
 
 
 def body(path):

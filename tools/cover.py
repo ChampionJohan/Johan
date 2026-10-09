@@ -320,6 +320,72 @@ BOOKS = {
             "다음 사람에게 간다. 세대를 건너뛰기도 한다.",
             "셋째 권이고 마지막 장은 질문 하나로 닫는다. 그 뒤에 한 줄도 없다.",
         ]),
+
+    # 영어판 셋. 한국어판과 같은 선, 같은 색, 같은 단계다.
+    "en-love1": dict(
+        title="The One Who Was Already There",
+        title_lines=["The One Who Was", "Already There"],
+        subtitle="Already there before I ever asked",
+        series="GOES FIRST · NEVER ASKS · DOES NOT STOP",
+        volume="BOOK ONE",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=1, lang="en", author="Jaehyuk Choi",
+        curve_labels=["FROM OUTSIDE", "TO ME"],
+        motif_note="the line begins off the page",
+        back_head="I started out having received.",
+        back=[
+            "No one consented to being born. And yet the name was already chosen, "
+            "the clothes bought, the place made ready. What was never asked for "
+            "had arrived first.",
+            "Most of what we received is not in memory. Not the back that carried "
+            "us, not the mouth that taught us words a thousand times over. The part "
+            "we cannot remember is the part that made us.",
+            "Twelve chapters. Each one ends with a box called Someone Comes to Mind. "
+            "Not something to do. Someone to remember.",
+        ]),
+
+    "en-love2": dict(
+        title="The One Who Never Asked",
+        title_lines=["The One Who", "Never Asked"],
+        subtitle="Going where nothing comes back",
+        series="GOES FIRST · NEVER ASKS · DOES NOT STOP",
+        volume="BOOK TWO",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=2, lang="en", author="Jaehyuk Choi",
+        curve_labels=["FROM ME", "TO SOMEONE UNKNOWN"],
+        motif_note="it goes even with no one at the end",
+        back_head="Attach a condition and it becomes a trade.",
+        back=[
+            "If you do well. If you are good. Children smell that first. Once you "
+            "start weighing who deserves it, a line forms, and a line has a bottom.",
+            "Some things go to people we will never see again. Some go without a "
+            "name attached. There are places where the arithmetic does not work and "
+            "people keep going anyway.",
+            "Book two. The first was about receiving. This one is about what passes "
+            "through.",
+        ]),
+
+    "en-love3": dict(
+        title="The One Who Stayed",
+        title_lines=["The One", "Who Stayed"],
+        subtitle="It goes on even when they do not know",
+        series="GOES FIRST · NEVER ASKS · DOES NOT STOP",
+        volume="BOOK THREE",
+        accent="#E3A765", accent2="#C7604A", ink="#16110F",
+        motif="thread", thread_phase=3, lang="en", author="Jaehyuk Choi",
+        curve_labels=["NEVER BROKEN", "STILL GOING"],
+        motif_note="set the three side by side and it is one line",
+        back_head="Some people sit beside someone who no longer knows them.",
+        back=[
+            "There are places that continue with nothing coming back. Care that is "
+            "the same thing done again tomorrow. A chair where someone waits for "
+            "what may never arrive.",
+            "It does not end when the giver is gone. It stays as an object, a habit, "
+            "a turn of phrase, and goes to the next person. Sometimes it skips a "
+            "generation.",
+            "Book three. The last chapter closes on one question, and nothing is "
+            "written after it.",
+        ]),
 }
 
 CREAM = "#F4F1EA"
