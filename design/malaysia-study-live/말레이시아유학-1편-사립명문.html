@@ -1,0 +1,526 @@
+<title>말레이시아 유학 1편 — 사립 명문</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+<style>
+/* 레이아웃 — 설명회 진행 순서를 따르는 단일 열 문서 · 좌측 고정 목차 · 표는 각자 가로 스크롤 */
+:root{
+  --paper:#FCFCFB; --surface:#F1EDE4; --surface-2:#FFFFFF;
+  --ink:#0C2E2C; --body:#1B2426; --muted:#5E6E6C; --line:#DCD6C9;
+  --deep:#134744; --mid:#1F6B66; --gold:#8A5F14; --gold-ink:#C08A2E; --gold-soft:#F4EBD9;
+  --brick:#8E3523; --brick-soft:#F7EBE6;
+  --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+  --display:"Noto Serif KR",Georgia,"맑은 고딕","Malgun Gothic",serif;
+  --sans:"Noto Sans KR","맑은 고딕","Malgun Gothic",system-ui,sans-serif;
+  --maxw:72rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1817; --surface:#13231F; --surface-2:#0F1E1C;
+    --ink:#EAF0ED; --body:#D5DEDB; --muted:#93A6A3; --line:#28403B;
+    --deep:#1B5B56; --mid:#2E8C85; --gold:#E0AC55; --gold-ink:#E0AC55; --gold-soft:#241E12;
+    --brick:#E08268; --brick-soft:#2A1712;
+    --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1817; --surface:#13231F; --surface-2:#0F1E1C;
+  --ink:#EAF0ED; --body:#D5DEDB; --muted:#93A6A3; --line:#28403B;
+  --deep:#1B5B56; --mid:#2E8C85; --gold:#E0AC55; --gold-ink:#E0AC55; --gold-soft:#241E12;
+  --brick:#E08268; --brick-soft:#2A1712;
+  --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.72;
+  -webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:20px;padding-block:0}
+
+/* ── 표지 ── */
+.cover{background:var(--deep);color:var(--on-deep);padding-block:clamp(2.5rem,7vw,4.5rem)}
+:root[data-theme="dark"] .cover,:root:not([data-theme="light"]) .cover{border-bottom:1px solid var(--line)}
+.kicker{font-size:.76rem;letter-spacing:.22em;font-weight:700;color:var(--gold-ink);margin:0 0 .9rem}
+.cover h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,7vw,3.9rem);line-height:1.12;
+  margin:0;color:#fff;text-wrap:balance;letter-spacing:-.01em}
+.cover .sub{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--on-deep-mute);margin:1rem 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  margin-top:2.4rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.facts div{background:var(--deep);padding:.95rem 1.1rem;min-width:0}
+.facts dt{font-size:.78rem;color:var(--on-deep-mute);margin:0 0 .2rem}
+.facts dd{margin:0;font-weight:700;color:#fff;font-size:1.02rem}
+.stamp{margin-top:2rem;font-size:.84rem;color:var(--on-deep-mute)}
+
+/* ── 목차 ── */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:.3rem;overflow-x:auto;padding-block:.55rem;scrollbar-width:thin}
+nav.toc a{flex:0 0 auto;font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .62rem;
+  border-radius:999px;white-space:nowrap}
+nav.toc a:hover{color:var(--ink);background:var(--surface)}
+nav.toc a:focus-visible{outline:2px solid var(--mid);outline-offset:2px}
+
+/* ── 섹션 ── */
+section{padding-block:clamp(2.2rem,5vw,3.4rem);border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.eyebrow{display:flex;align-items:baseline;gap:.75rem;margin:0 0 .35rem}
+.num{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--gold);
+  border:1px solid var(--line);border-radius:4px;padding:.05rem .45rem;flex:0 0 auto}
+.en{font-size:.72rem;letter-spacing:.18em;font-weight:700;color:var(--mid)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.25;
+  color:var(--ink);margin:.2rem 0 .5rem;text-wrap:balance;letter-spacing:-.01em}
+h3{font-family:var(--sans);font-weight:700;font-size:1.02rem;color:var(--ink);margin:2rem 0 .7rem}
+h3:first-of-type{margin-top:1.6rem}
+.lede{color:var(--muted);margin:0 0 1.5rem;max-width:62ch}
+p{margin:0 0 1rem;max-width:68ch}
+strong{color:var(--ink);font-weight:700}
+
+/* ── 표 ── */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px;margin:0 0 1.2rem}
+table{border-collapse:collapse;width:100%;min-width:38rem;font-size:.9rem;background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:.6rem .85rem}
+th,td{padding:.62rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--deep);color:#fff;font-weight:700;font-size:.82rem;letter-spacing:.02em;
+  border-bottom:0;position:sticky;top:0}
+tbody tr:nth-child(even) td{background:var(--surface)}
+tbody tr:last-child td{border-bottom:0}
+td.num-cell,th.num-cell{text-align:right;white-space:nowrap}
+tbody th{font-weight:500;color:var(--ink);background:var(--surface)}
+
+/* ── 강조 블록 ── */
+.callout{background:var(--gold-soft);border-left:3px solid var(--gold-ink);padding:1rem 1.2rem;margin:0 0 1.3rem}
+.callout.warn{background:var(--brick-soft);border-left-color:var(--brick)}
+.callout p{margin:0 0 .5rem;max-width:none}
+.callout p:last-child{margin:0}
+.callout .head{font-weight:700;color:var(--ink);font-size:.95rem;display:block;margin-bottom:.35rem}
+.callout.warn .head{color:var(--brick)}
+.banner{background:var(--deep);color:var(--on-deep);padding:1.4rem 1.5rem;margin:0 0 1.4rem;border-radius:3px}
+.banner .big{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,4.4vw,2.1rem);
+  color:var(--gold-ink);margin:0;line-height:1.2}
+.banner .cap{font-size:.84rem;color:var(--on-deep-mute);margin:.35rem 0 0}
+.banner p{color:var(--on-deep);margin:.9rem 0 0;max-width:none;font-size:.93rem}
+
+/* ── 2열 ── */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1.1rem;margin:0 0 1.3rem}
+.panel{background:var(--surface);padding:1.1rem 1.25rem;min-width:0;border-radius:3px}
+.panel h4{margin:0 0 .5rem;font-size:.98rem;color:var(--ink);font-weight:700}
+.panel .tag{font-size:.74rem;letter-spacing:.14em;font-weight:700;color:var(--mid);display:block;margin-bottom:.3rem}
+.panel p{margin:0 0 .6rem;font-size:.9rem;max-width:none}
+.panel p:last-child{margin:0}
+.panel .src{font-size:.78rem;color:var(--muted)}
+
+/* ── 경로 다이어그램 ── */
+.lanes{display:flex;flex-direction:column;gap:.6rem;margin:0 0 1.3rem}
+.lane{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,1.4fr) minmax(10rem,1fr);
+  gap:.55rem;align-items:stretch}
+@media (max-width:640px){.lane{grid-template-columns:1fr}}
+.lane>*{padding:.7rem .9rem;border-radius:3px;min-width:0;font-size:.88rem}
+.lane .from{background:var(--mid);color:#fff}
+.lane .from.alt{background:var(--brick);color:#fff}
+.lane .from.opt{background:var(--gold-soft);color:var(--ink);border:1px solid var(--gold-ink)}
+.lane .from b{display:block;font-size:.94rem;margin-bottom:.15rem}
+.lane .from span{font-size:.78rem;opacity:.9}
+.lane .from.opt span{opacity:1;color:var(--muted)}
+.lane .via{background:var(--surface);border:1px solid var(--line)}
+.lane .to{background:var(--deep);color:#fff;font-weight:700}
+
+/* ── 일정 ── */
+ol.steps{margin:0;padding-left:1.25rem}
+ol.steps li{margin-bottom:.4rem;font-size:.9rem}
+ul.plain{margin:0 0 1rem;padding-left:1.15rem}
+ul.plain li{margin-bottom:.35rem;font-size:.92rem}
+
+footer{padding-block:2.2rem 3rem;color:var(--muted);font-size:.84rem}
+footer h3{margin-top:0}
+footer ul{padding-left:1.1rem;margin:0}
+footer li{margin-bottom:.4rem}
+a{color:var(--mid)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<header class="cover">
+  <div class="wrap">
+    <p class="kicker">말레이시아 유학 1편</p>
+    <h1>말레이시아 사립 명문</h1>
+    <p class="sub">테일러스 대학교 &middot; 선웨이 대학교</p>
+    <dl class="facts">
+      <div><dt>본과 직행</dt><dd>계열에 따라 가능</dd></div>
+      <div><dt>입학 조건</dt><dd>검정고시 평균 80점 이상</dd></div>
+      <div><dt>해외 학위</dt><dd>듀얼디그리 · 트위닝 · ADTP</dd></div>
+      <div><dt>환율 기준</dt><dd>RM 1 &asymp; 339원</dd></div>
+    </dl>
+    <p class="stamp">필리핀 IM해외선교본부 &middot; 말레이시아 지부 &nbsp;|&nbsp; 2026~2027 공식 자료 기준</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <div class="wrap">
+    <a href="#what">1편은 어떤 학교인가</a>
+    <a href="#glance">두 대학</a>
+    <a href="#entry">입학 조건</a>
+    <a href="#ways">입학 경로</a>
+    <a href="#routes">세 가지 길</a>
+    <a href="#taylors">테일러스 학비</a>
+    <a href="#sunway">선웨이 학비</a>
+    <a href="#versus">비교</a>
+    <a href="#budget">총 예산</a>
+    <a href="#timeline">지원 일정</a>
+    <a href="#which">어느 쪽인가</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="what">
+  <div class="eyebrow"><span class="num">01</span><span class="en">WHAT IS DIFFERENT</span></div>
+  <h2>1편은 어떤 학교인가?</h2>
+  <p class="lede">말레이시아 대학이 해외 대학과 손잡는 구조입니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">1편 — 말레이시아 사립 명문</th><th scope="col">2편 — 해외 직영 캠퍼스</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">해당 학교</th><td>테일러스 &middot; 선웨이</td><td>모나쉬 말레이시아 &middot; 노팅엄 말레이시아</td></tr>
+        <tr><th scope="row">학위 주체</th><td>자체 학위 + 해외대 연계</td><td>호주 모나쉬 &middot; 영국 노팅엄 본교</td></tr>
+        <tr><th scope="row">해외 학위</th><td>듀얼디그리 &middot; 트위닝 &middot; ADTP로 취득</td><td>입학 순간부터 본교 학위 과정</td></tr>
+        <tr><th scope="row">파운데이션</th><td><strong>계열에 따라 직행 가능</strong></td><td>검정고시는 계열 무관하게 필수</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <span class="head">1편의 강점</span>
+    <p>본과 직행이 열려 있습니다. 호텔·경영·인문 계열이면 <strong>파운데이션 1년과 그 학비</strong>를 아낄 수 있습니다.</p>
+  </div>
+</section>
+
+<section id="glance">
+  <div class="eyebrow"><span class="num">02</span><span class="en">AT A GLANCE</span></div>
+  <h2>두 대학 한눈에</h2>
+  <p class="lede">전공부터 물으십시오. 호텔·디자인이면 테일러스, 회계·금융·컴퓨터면 선웨이로 답이 좁혀집니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">테일러스 대학교</th><th scope="col">선웨이 대학교</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">위치</th><td>수방자야 레이크사이드</td><td>선웨이시티(반다르선웨이) &middot; 몰·병원·경전철 도보권</td></tr>
+        <tr><th scope="row">설립</th><td>1969</td><td>칼리지 1987 &rarr; 대학 2011</td></tr>
+        <tr><th scope="row">QS 2027 세계</th><td><strong>272위</strong></td><td><strong>354위</strong> (전년 대비 +50)</td></tr>
+        <tr><th scope="row">강세</th><td><strong>호텔·관광 세계 26위</strong>, 디자인, 마케팅</td><td>회계·금융, 계리학, 컴퓨터과학</td></tr>
+        <tr><th scope="row">전공 폭</th><td>12개 계열 (공연예술·역사까지)</td><td>비즈니스 &middot; CS &middot; STEM 중심</td></tr>
+        <tr><th scope="row">해외 학위</th><td>ADTP(1996) &middot; UWE 브리스톨 &middot; QUT</td><td><strong>랭커스터 복수학위(추가비 없음)</strong> &middot; ASU &middot; ADTP(1987)</td></tr>
+        <tr><th scope="row">학제</th><td>3년 &middot; 공학 4년</td><td>3년 &middot; 공학 4년</td></tr>
+      </tbody>
+      <caption>미국 편입 과정은 선웨이가 테일러스보다 9년 앞섭니다 (1987 vs 1996).</caption>
+    </table>
+  </div>
+</section>
+
+<section id="entry">
+  <div class="eyebrow"><span class="num">03</span><span class="en">ENTRY REQUIREMENTS</span></div>
+  <h2>입학 조건 — 검정고시 &middot; 공인 영어</h2>
+  <p class="lede">두 학교 모두 "고교 졸업 또는 검정고시"를 학력 조건으로 명시합니다.</p>
+  <div class="banner">
+    <p class="big">검정고시 평균 80점 이상</p>
+    <p class="cap">IM 말레이시아 지원 자격 기준</p>
+    <p>인가 고교 12학년 졸업자는 내신 평균 70점 이상입니다. <strong style="color:#fff">2편(모나쉬 · 노팅엄)을 함께 지망한다면 90점 이상</strong>을 보셔야 합니다.</p>
+  </div>
+
+  <h3>공인 영어 — 파운데이션 입학</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">시험</th><th scope="col">테일러스</th><th scope="col">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">IELTS (Academic)</th><td><strong>5.0 ~ 5.5</strong></td><td><strong>5.0 ~ 5.5</strong></td></tr>
+        <tr><th scope="row">TOEFL iBT</th><td><strong>60 이상 권장</strong></td><td><strong>60 이상 권장</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>공인 영어 — 학사(본과) 직행</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">시험</th><th scope="col">테일러스</th><th scope="col">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">IELTS (Academic)</th><td><strong>6.0</strong></td><td><strong>6.0</strong></td></tr>
+        <tr><th scope="row">TOEFL iBT</th><td><strong>70점대 권장</strong></td><td><strong>70점대 권장</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div class="panel">
+      <h4 style="color:var(--brick)">TOEFL 60점은 하한선입니다</h4>
+      <p>TOEFL iBT 60점은 IELTS 6.0의 하한선이라 전공에 따라 미달될 수 있습니다. 본과 직행이 목표라면 70점대를 잡으십시오.</p>
+    </div>
+    <div class="panel">
+      <h4>미달해도 길이 있습니다</h4>
+      <p>두 학교 모두 교내 어학 과정(English Intensive)을 선이수한 뒤 본과로 올라가는 경로를 운영합니다. 성적 유효기간은 2년입니다.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p>IM 지원 자격의 영어 조건은 <strong>IELTS 5.5~6.0 또는 TOEFL iBT 60점 이상</strong>입니다. 영어 점수가 지원 과정에서 가장 큰 변수입니다.</p>
+  </div>
+</section>
+
+<section id="ways">
+  <div class="eyebrow"><span class="num">04</span><span class="en">WAYS IN</span></div>
+  <h2>입학 경로 — 직행이냐 파운데이션이냐</h2>
+  <p class="lede">1편의 핵심입니다. 전공에 따라 1년과 학비가 갈립니다.</p>
+  <div class="lanes">
+    <div class="lane">
+      <div class="from"><b>본과 직행</b><span>호텔·관광 &middot; 경영 &middot; 인문사회</span></div>
+      <div class="via">추가 과정 없음<br>(테일러스 호텔·경영 / 선웨이 BA·BSc 경영)</div>
+      <div class="to">학사 1학년 직행<br>총 3년</div>
+    </div>
+    <div class="lane">
+      <div class="from alt"><b>파운데이션 필수</b><span>공학(BEng) &middot; 이학(BSc) &middot; 약학</span></div>
+      <div class="via">파운데이션 1년<br>(테일러스 FIS / 선웨이 FIA·FIST)</div>
+      <div class="to">학사 1학년<br>총 4~5년</div>
+    </div>
+    <div class="lane">
+      <div class="from opt"><b>모나쉬로 가는 길</b><span>모나쉬 말레이시아가 목표인 경우</span></div>
+      <div class="via">MUFY 1년<br>(선웨이 칼리지가 운영)</div>
+      <div class="to">모나쉬 학부 1학년<br>&rarr; 2편 참조</div>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="head">직행이 되면 1년과 학비를 통째로 아낍니다</span>
+    <p>테일러스 호텔경영·경영 계열, 선웨이 인문사회·경영 계열은 검정고시로도 본과 1학년 직행이 가능합니다. 파운데이션이 붙으면 테일러스는 <strong>1,490만 원</strong>, 선웨이는 <strong>610만~990만 원</strong>이 더 듭니다.</p>
+  </div>
+  <div class="cols">
+    <div class="panel">
+      <h4>직행 가능 계열</h4>
+      <p><strong>테일러스</strong> — 호텔경영·관광 (QS 세계 26위), 경영학 계열 전체</p>
+      <p><strong>선웨이</strong> — BA 인문사회과학 전반, BSc 경영학 &middot; 호텔경영학</p>
+    </div>
+    <div class="panel">
+      <h4 style="color:var(--brick)">파운데이션 필수 계열</h4>
+      <p><strong>테일러스</strong> — BEng 공학사(기계·화학 등), BSc 이학사(약학·데이터사이언스 등)</p>
+      <p><strong>선웨이</strong> — BEng 공학사(전자·화학 등), BSc 컴퓨터공학 &middot; 바이오메디컬 &middot; 순수과학</p>
+    </div>
+  </div>
+</section>
+
+<section id="routes">
+  <div class="eyebrow"><span class="num">05</span><span class="en">THREE ROUTES</span></div>
+  <h2>해외 학위로 가는 세 가지 길</h2>
+  <p class="lede">차이는 두 가지뿐입니다 — 어디서 공부하는가, 학위증을 몇 장 받는가.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">구분</th><th scope="col">① 듀얼 디그리</th><th scope="col">② 트위닝</th><th scope="col">③ ADTP (미국 편입)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">공부하는 곳</th><td>말레이시아에서 전 과정</td><td>말레이시아 + 해외 본교</td><td>말레이시아 1~2년 + 미국 2~3년</td></tr>
+        <tr><th scope="row">받는 학위증</th><td><strong>2장</strong> (말레이시아 + 해외)</td><td>1장 (해외 본교)</td><td>1장 (편입한 미국 대학)</td></tr>
+        <tr><th scope="row">해외 체류</th><td>없음 (선택 가능)</td><td>1~2년</td><td>2~3년</td></tr>
+        <tr><th scope="row">비용</th><td>가장 낮음</td><td>중간</td><td>가장 높음</td></tr>
+        <tr><th scope="row">대표 사례</th><td>선웨이 × 랭커스터(영국)<br>테일러스 × UWE &middot; QUT</td><td>2+1 &middot; 1+2 형태<br>테일러스 호주·영국 파트너대</td><td>선웨이 1987년 개설<br>테일러스 1996년 개설</td></tr>
+      </tbody>
+      <caption>듀얼디그리·트위닝을 운영하는 학과는 전 학과가 아닙니다. 지망 학과가 해당되는지 반드시 확인하십시오.</caption>
+    </table>
+  </div>
+  <div class="cols">
+    <div class="panel">
+      <h4>선웨이 × 랭커스터는 추가 비용이 없습니다</h4>
+      <p>2006년부터 이어온 영국–말레이시아 최대 규모 파트너십입니다. 7,000명 이상이 31개 학위 과정에서 공부했고, 같은 학비로 영국 학위증을 함께 받습니다.</p>
+    </div>
+    <div class="panel">
+      <h4>미국 편입 과정은 선웨이가 9년 앞섭니다</h4>
+      <p>선웨이 1987년(39년) &middot; 테일러스 1996년(30년). 선웨이는 미국 웨스턴미시간대 트위닝으로 출발해 2010~2012년 Transfer 방식으로 전환했습니다.</p>
+    </div>
+  </div>
+</section>
+
+<section id="taylors">
+  <div class="eyebrow"><span class="num">06</span><span class="en">TAYLOR'S FEES</span></div>
+  <h2>테일러스 — 학과와 학비</h2>
+  <p class="lede">국제학생 기준 &middot; 모든 학비에 6% 서비스세(SST) 별도.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">과정</th><th scope="col">기간</th><th scope="col" class="num-cell">총 학비 (RM)</th><th scope="col" class="num-cell">총 학비 (원화)</th><th scope="col" class="num-cell">연간 (원화)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">파운데이션</th><td>1년</td><td class="num-cell">44,044</td><td class="num-cell">약 1,490만</td><td class="num-cell">약 1,490만</td></tr>
+        <tr><th scope="row">국제호텔경영 (<strong>직행 가능</strong>)</th><td>3년</td><td class="num-cell">133,146</td><td class="num-cell">약 4,510만</td><td class="num-cell">약 1,500만</td></tr>
+        <tr><th scope="row">기계공학 (파운데이션 필수)</th><td>4년</td><td class="num-cell">200,736</td><td class="num-cell">약 6,810만</td><td class="num-cell">약 1,700만</td></tr>
+        <tr><th scope="row">파운데이션 + 기계공학</th><td>5년</td><td class="num-cell">244,780</td><td class="num-cell">약 8,300만</td><td class="num-cell">약 1,660만</td></tr>
+      </tbody>
+      <caption>입학 시기 — 학사 2 &middot; 4 &middot; 9월 | 파운데이션 2 &middot; 4 &middot; 8월</caption>
+    </table>
+  </div>
+  <div class="callout warn">
+    <span class="head">달러 표기를 받으셨다면 참고용입니다</span>
+    <p>테일러스는 국제학생용 USD 요금표를 별도 발행하지만 <strong>"USD는 reference only, 납부는 RM"</strong>으로 명시돼 있습니다. 지시환율 USD 1 = RM 4.00~4.5이며 환율 변동·은행 수수료 차액은 학생 부담입니다.</p>
+  </div>
+</section>
+
+<section id="sunway">
+  <div class="eyebrow"><span class="num">07</span><span class="en">SUNWAY FEES</span></div>
+  <h2>선웨이 — 학과와 학비</h2>
+  <p class="lede">국제학생 기준 &middot; 모든 학비에 6% 서비스세(SST) 별도.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">과정</th><th scope="col">기간</th><th scope="col" class="num-cell">총 학비 (RM)</th><th scope="col" class="num-cell">총 학비 (원화)</th><th scope="col" class="num-cell">연간 (원화)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">파운데이션 (FIA &middot; FIST)</th><td>1년</td><td class="num-cell">17,850 ~ 29,350</td><td class="num-cell">약 610만 ~ 990만</td><td class="num-cell">약 610만 ~ 990만</td></tr>
+        <tr><th scope="row">경영계열 (<strong>직행 가능</strong>)</th><td>3년</td><td class="num-cell">80,400 ~ 114,150</td><td class="num-cell">약 2,730만 ~ 3,870만</td><td class="num-cell">약 910만 ~ 1,290만</td></tr>
+        <tr><th scope="row">공학계열 (파운데이션 필수)</th><td>4년</td><td class="num-cell">153,568</td><td class="num-cell">약 5,210만</td><td class="num-cell">약 1,300만</td></tr>
+        <tr><th scope="row">파운데이션 + 공학</th><td>5년</td><td class="num-cell">171,418 ~ 182,918</td><td class="num-cell">약 5,810만 ~ 6,200만</td><td class="num-cell">약 1,160만 ~ 1,240만</td></tr>
+      </tbody>
+      <caption>입학 시기 — 학사 1 &middot; 4 &middot; 9월 | FIA &middot; FIST 1 &middot; 4 &middot; 8월 | MUFY 1 &middot; 7 &middot; 8월</caption>
+    </table>
+  </div>
+  <div class="cols">
+    <div class="panel">
+      <h4>랭커스터 복수 학위는 추가 비용이 없습니다</h4>
+      <p>위 금액 그대로 영국 랭커스터대 학위증을 함께 받습니다.</p>
+    </div>
+    <div class="panel">
+      <h4>선웨이 칼리지가 모나쉬 MUFY도 운영합니다</h4>
+      <p>선웨이에서 공부하다 모나쉬로 가는 경로가 여기서 열립니다. 자세한 내용은 2편을 보십시오.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p>경영계열은 입학처가 달러(연 USD 6,820~9,091)로 안내한 금액을 환산한 값입니다. 청구 시 학교 지시환율에 따라 링깃 금액이 달라질 수 있습니다.</p>
+  </div>
+</section>
+
+<section id="versus">
+  <div class="eyebrow"><span class="num">08</span><span class="en">SIDE BY SIDE</span></div>
+  <h2>테일러스 vs 선웨이</h2>
+  <p class="lede">어느 쪽이 좋은 학교인가가 아니라, 어느 쪽이 이 학생에게 맞는가.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">기준</th><th scope="col">테일러스</th><th scope="col">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">설립</th><td>1969</td><td>칼리지 1987 &rarr; 대학 2011</td></tr>
+        <tr><th scope="row">QS 2027 세계</th><td>272위</td><td>354위 (전년 대비 +50)</td></tr>
+        <tr><th scope="row">강세 전공</th><td>호텔·관광 세계 26위, 디자인, 마케팅</td><td>회계·금융, 계리학, 컴퓨터과학</td></tr>
+        <tr><th scope="row">전공 폭</th><td>12개 계열 (공연예술·역사까지)</td><td>비즈니스 &middot; CS &middot; STEM 중심</td></tr>
+        <tr><th scope="row">직행 가능 계열</th><td>호텔경영·관광, 경영학 전체</td><td>BA 인문사회 전반, BSc 경영·호텔경영</td></tr>
+        <tr><th scope="row">해외 학위</th><td>ADTP(1996) &middot; UWE 브리스톨 &middot; QUT</td><td>랭커스터 복수학위(추가비 없음) &middot; ASU &middot; ADTP(1987)</td></tr>
+        <tr><th scope="row">학사 입학</th><td>2월 &middot; 4월 &middot; 9월</td><td>1월 &middot; 4월 &middot; 9월</td></tr>
+        <tr><th scope="row">파운데이션 학비</th><td>RM 44,044 &middot; 약 1,490만 원</td><td>RM 17,850~29,350 &middot; 약 610만~990만 원</td></tr>
+        <tr><th scope="row">파운데이션 + 공학 5년</th><td>약 8,300만 원</td><td>약 5,810만~6,200만 원</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>학비만 놓고 보면 <strong>선웨이가 낮습니다.</strong> 다만 강세 전공이 다릅니다 — 호텔·디자인이면 테일러스, 회계·금융·CS면 선웨이입니다.</p>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="eyebrow"><span class="num">09</span><span class="en">TOTAL BUDGET</span></div>
+  <h2>졸업까지 총 예산</h2>
+  <p class="lede">입학비는 공동체 입회 시 1회만 납부합니다 — 3년이든 5년이든 동일합니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">항목</th><th scope="col" class="num-cell">선웨이 경영 3년 (직행)</th><th scope="col" class="num-cell">테일러스 호텔경영 3년 (직행)</th><th scope="col" class="num-cell">선웨이 파운데이션 + 공학 5년</th><th scope="col" class="num-cell">테일러스 파운데이션 + 공학 5년</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1년차 학비</th><td class="num-cell">910 ~ 1,290만</td><td class="num-cell">약 1,505만</td><td class="num-cell">파운데이션 800만</td><td class="num-cell">파운데이션 1,493만</td></tr>
+        <tr><th scope="row">2년차 이후 학비 (연)</th><td class="num-cell">910 ~ 1,290만</td><td class="num-cell">1,505만</td><td class="num-cell">공학 1,301만</td><td class="num-cell">공학 1,701만</td></tr>
+        <tr><th scope="row">학생비자 갱신 (연)</th><td class="num-cell">140만</td><td class="num-cell">140만</td><td class="num-cell">140만</td><td class="num-cell">140만</td></tr>
+        <tr><th scope="row">IM 공동체 운영비 (연)</th><td class="num-cell">1,440만</td><td class="num-cell">1,440만</td><td class="num-cell">1,440만</td><td class="num-cell">1,440만</td></tr>
+        <tr><th scope="row">입학비 — 입회 시 1회</th><td class="num-cell">500만</td><td class="num-cell">500만</td><td class="num-cell">500만</td><td class="num-cell">500만</td></tr>
+        <tr><th scope="row"><strong>1년차 소계 (입학비 제외)</strong></th><td class="num-cell"><strong>2,490 ~ 2,870만</strong></td><td class="num-cell"><strong>약 3,085만</strong></td><td class="num-cell"><strong>약 2,380만</strong></td><td class="num-cell"><strong>약 3,073만</strong></td></tr>
+        <tr><th scope="row">1년차 소계 (입학비 포함)</th><td class="num-cell">2,990 ~ 3,370만</td><td class="num-cell">약 3,585만</td><td class="num-cell">약 2,880만</td><td class="num-cell">약 3,573만</td></tr>
+        <tr><th scope="row">2년차 이후 (연)</th><td class="num-cell">2,490 ~ 2,870만</td><td class="num-cell">약 3,085만</td><td class="num-cell">약 2,881만</td><td class="num-cell">약 3,281만</td></tr>
+        <tr><th scope="row"><strong>졸업까지 총액</strong></th><td class="num-cell"><strong>7,970 ~ 9,110만</strong></td><td class="num-cell"><strong>약 9,755만</strong></td><td class="num-cell"><strong>약 1억 4,406만</strong></td><td class="num-cell"><strong>약 1억 6,697만</strong></td></tr>
+      </tbody>
+      <caption>환율 RM 1 &asymp; 339원 &middot; 6% 서비스세와 생활비·항공·보험 별도 &middot; 장학금 미반영</caption>
+    </table>
+  </div>
+  <div class="callout">
+    <span class="head">직행이면 1년차와 2년차가 같고, 파운데이션이 붙으면 2년차부터 뜁니다</span>
+    <p>직행 경로는 1학년부터 학부 학비라 매년 금액이 같습니다. 파운데이션 경로는 1년차가 싸고 2년차부터 학부 학비로 올라갑니다.</p>
+  </div>
+  <div class="callout warn">
+    <p><strong>공대·약대 지망자는 반드시 5년 예산으로 잡으십시오.</strong> 3년 직행 과정과 총액이 두 배 가까이 차이 납니다. 입학비는 1년차에만 들어가며 이전 공동체 입학금을 최대 200만 원까지 인정합니다.</p>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="eyebrow"><span class="num">10</span><span class="en">TIMELINE</span></div>
+  <h2>지원 일정 — 파운데이션 입학 기준</h2>
+  <p class="lede">우리 학생은 대부분 검정고시 출신입니다. 직행 계열은 학사 인테이크를 보시면 됩니다.</p>
+
+  <h3>파운데이션 인테이크</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">테일러스 파운데이션</th><th scope="col">선웨이 FIA &middot; FIST</th><th scope="col">선웨이 MUFY (모나쉬행)</th></tr></thead>
+      <tbody><tr><td><strong>2월 &middot; 4월 &middot; 8월</strong></td><td><strong>1월 &middot; 4월 &middot; 8월</strong></td><td><strong>1월 &middot; 7월 &middot; 8월</strong></td></tr></tbody>
+      <caption>학사 직행 인테이크 — 테일러스 2 &middot; 4 &middot; 9월 | 선웨이 1 &middot; 4 &middot; 9월</caption>
+    </table>
+  </div>
+
+  <div class="cols">
+    <div class="panel">
+      <span class="tag">그해 안에 입학 &middot; 권장</span>
+      <h4>A안 — 검정고시 1회 (4월 응시)</h4>
+      <ol class="steps">
+        <li><strong>2~3월</strong> 검정고시 1회 원서 접수 &middot; 시험 대비</li>
+        <li><strong>4월 초</strong> 응시 &rarr; 5월 중 합격 발표</li>
+        <li><strong>5~6월</strong> 영문 증명서 + 번역공증 + 영사확인 (2~3주)</li>
+        <li><strong>5~7월</strong> IELTS 확보 (파운데이션 5.0~5.5 &middot; 직행 6.0)</li>
+        <li><strong>5~7월</strong> 원서 접수 &rarr; EMGS 비자 심사 4~8주</li>
+      </ol>
+      <p style="margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--line);font-weight:700;color:var(--ink)">입학 — 파운데이션 8월 &middot; 학사 직행 9월</p>
+    </div>
+    <div class="panel">
+      <span class="tag" style="color:var(--brick)">이듬해 입학 &middot; 일정 여유 있음</span>
+      <h4>B안 — 검정고시 2회 (8월 응시)</h4>
+      <ol class="steps">
+        <li><strong>6~7월</strong> 검정고시 2회 원서 접수 &middot; 시험 대비</li>
+        <li><strong>8월</strong> 응시 &rarr; 9월 초 합격 발표</li>
+        <li><strong>9~10월</strong> 영문 증명서 + 번역공증 + 영사확인 (2~3주)</li>
+        <li><strong>9~11월</strong> IELTS 확보 (파운데이션 5.0~5.5 &middot; 직행 6.0)</li>
+        <li><strong>10~11월</strong> 원서 접수 &rarr; EMGS 비자 심사 4~8주</li>
+      </ol>
+      <p style="margin-top:.8rem;padding-top:.7rem;border-top:1px solid var(--line);font-weight:700;color:var(--ink)">입학 — 선웨이 1월 &middot; 테일러스 2월 &middot; 양교 4월</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <span class="head">서류 인증은 아포스티유가 아니라 영사확인입니다</span>
+    <p>말레이시아는 헤이그 아포스티유 협약 <strong>비가입국</strong>입니다. 검정고시 합격증명서·성적증명서는 <strong>영문 번역공증 + 영사확인</strong>(외교부 &rarr; 주한 말레이시아 대사관)을 밟아야 하며, 이 절차에만 2~3주가 추가로 듭니다.</p>
+  </div>
+  <p style="font-size:.84rem;color:var(--muted)">※ 원서는 개강 12~16주 전 접수가 기준입니다. EMGS 신청은 학교가 대행합니다 (학생 직접 신청 불가).</p>
+</section>
+
+<section id="which">
+  <div class="eyebrow"><span class="num">11</span><span class="en">WHICH ONE</span></div>
+  <h2>1편과 2편, 어느 쪽인가</h2>
+  <p class="lede">학교 이름이 아니라 전공과 예산으로 답하십시오.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">이 학생이라면</th><th scope="col">추천</th><th scope="col">이유</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">호텔·관광 &middot; 디자인이 목표다</th><td><strong>테일러스 (1편)</strong></td><td>호텔경영 QS 세계 26위 &middot; 직행 가능</td></tr>
+        <tr><th scope="row">회계·금융 &middot; 컴퓨터과학이 목표다</th><td><strong>선웨이 (1편)</strong></td><td>강세 전공 &middot; 학비가 가장 낮음</td></tr>
+        <tr><th scope="row">해외에 안 나가고 영국 학위를 원한다</th><td><strong>선웨이 × 랭커스터 (1편)</strong></td><td>복수 학위에 추가 비용 없음</td></tr>
+        <tr><th scope="row">미국 학위가 목표다</th><td><strong>ADTP (1편)</strong></td><td>선웨이 1987년 &middot; 테일러스 1996년 개설</td></tr>
+        <tr><th scope="row">호주·영국 본교 학위 자체가 목표다</th><td><strong>모나쉬 &middot; 노팅엄 (2편)</strong></td><td>입학 순간부터 본교 학위 과정</td></tr>
+        <tr><th scope="row">예산을 최대한 아껴야 한다</th><td><strong>선웨이 경영 3년 직행 (1편)</strong></td><td>졸업까지 약 7,970만~9,110만 원</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>상담의 순서는 <strong>전공 &rarr; 목표 학위 국가 &rarr; 예산</strong>입니다. 학교 이름부터 꺼내지 마십시오.</p>
+  </div>
+</section>
+
+<footer>
+  <h3>확인이 필요한 항목</h3>
+  <ul>
+    <li><strong>지망 학과별 학비</strong> — 위 금액은 대표 과정 기준이며 전공별 편차가 큽니다</li>
+    <li><strong>선웨이 경영계열 적용 환율</strong> — 입학처 안내는 달러. 청구 시 학교 지시환율 확인</li>
+    <li><strong>듀얼디그리·트위닝 운영 학과 목록</strong> — 전 학과가 아닙니다</li>
+    <li><strong>검정고시로 각 경로에 진입 가능한지</strong> 서면 회신 확보</li>
+    <li><strong>장학금 적용 조건과 감면 폭</strong> — 오퍼레터 단계에서 확인</li>
+  </ul>
+  <h3>출처</h3>
+  <ul>
+    <li>IM 말레이시아 입학안내문 2027 — 환율 RM 1 &asymp; 339원, 공동체 운영비 &middot; 입학비 &middot; 지원 자격</li>
+    <li>테일러스 &middot; 선웨이 공식 학비 안내 및 입학처 안내</li>
+    <li>선웨이 × 랭커스터 파트너십 &middot; 선웨이 ADTP 연혁(1987) &middot; 테일러스 ADTP(1996)</li>
+    <li>말레이시아 서비스세(SST) 개정 안내 — 2025년 7월 시행, 외국인 학비 6%</li>
+  </ul>
+</footer>
+
+</main>

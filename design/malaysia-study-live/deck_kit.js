@@ -86,7 +86,7 @@ function createDeck(title, size){
     cur.s.addTable(rows, { x:o.x, y:o.y, w:o.w, colW:o.colW, rowH:o.rowH || 0.32,
       border:{ type:'solid', color:C.line, pt:0.5 }, autoPage:false });
     const tw = o.colW.reduce((a,b)=>a+b,0);
-    cur.h.els.push(`<table data-tb style="position:absolute;left:${px(o.x)};top:${px(o.y)};width:${px(tw)};border-collapse:collapse;font-size:${((o.size||11.5)*96/72).toFixed(1)}px;table-layout:fixed">${o.rows.map((r,ri)=>`<tr>${r.map((c,ci)=>`<td style="width:${px(o.colW[ci])};height:${px(o.rowH||0.32)};border:0.5px solid #${C.line};padding:4px 7px;background:#${ri===0?C.deep:(ri%2?C.paper:C.sand)};color:#${ri===0?C.paper:C.text};font-weight:${ri===0?700:400};vertical-align:middle;box-sizing:border-box">${esc(c)}</td>`).join('')}</tr>`).join('')}</table>`);
+    cur.h.els.push(`<table data-tb style="position:absolute;left:${px(o.x)};top:${px(o.y)};width:${px(tw)};border-collapse:collapse;font-size:${((o.size||11.5)*96/72).toFixed(1)}px;table-layout:fixed">${o.rows.map((r,ri)=>`<tr>${r.map((c,ci)=>`<td style="width:${px(o.colW[ci])};height:${px(o.rowH||0.32)};border:0.5px solid #${C.line};padding:4px 7px;background:#${ri===0?C.deep:(ri%2?C.paper:C.sand)};color:#${ri===0?C.paper:C.text};font-weight:${ri===0?700:400};vertical-align:middle;box-sizing:border-box">${esc(c).replace(/\n/g,'<br>')}</td>`).join('')}</tr>`).join('')}</table>`);
   }
   function title_(t, sub, dark){
     text({ t, x:M, y:0.42, w:W-2*M, h:0.55, size:29, bold:true, color:dark?C.onDark:C.ink, lh:1.1 });
