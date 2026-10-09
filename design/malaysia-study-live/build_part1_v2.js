@@ -233,6 +233,29 @@ const badge = (t, w) => { rect({ x:W-M-w, y:0.6, w, h:0.36, fill:C.deep, radius:
   note('선웨이의 결정적 장점은 랭커스터 복수 학위에 추가 비용이 없다는 점입니다. 그리고 MUFY를 선웨이가 운영합니다.');
 }
 
+/* ── 9. 공학 학위, 무엇이 다른가 ── */
+{
+  slide(false);
+  head('ENGINEERING DEGREES','공학 학위, 무엇이 다른가','네 학교 모두 본과 4년제입니다 · 다른 것은 "어느 나라 학제를 따르는가"입니다');
+  tableEl({ x:M, y:2.0, w:CW, rowH:0.68, size:11,
+    colW:[2.5, 1.1, 3.3, 5.033],
+    rows:[
+      ['대학','본과 학제','수여 학위','특징'],
+      ['테일러스\n(1편)','4년','Bachelor of ○○ Engineering\nwith Honours','말레이시아 공학인증위원회(EAC/BEM) 인정 학위입니다. 워싱턴 어코드 가입국이라 호주·영국·캐나다·미국에서 재인증 없이 전문기술사 등록이 가능합니다.'],
+      ['선웨이\n(1편)','4년','BEng (Hons)\n+ 랭커스터 MEng (Hons)','선웨이 BEng 학위와 함께 영국 랭커스터대의 MEng (Hons) 학위가 복수로 수여됩니다. 네 학교 중 유일하게 학위증 두 장이 나옵니다.'],
+      ['모나쉬 말레이시아\n(2편)','4년','Bachelor of Engineering\n(Honours)','호주 학제를 따릅니다. Honours가 과정 안에 포함된 4년제이며, 호주 자격체계(AQF) 8등급 — 학사 중 가장 높은 등급입니다.'],
+      ['노팅엄 말레이시아\n(2편)','4년','MEng (Hons)\n석사통합 학위','영국 학제를 따릅니다. 학사(BEng)가 아니라 석사통합(MEng)이며, 2+2 또는 3+1로 영국 본교 이동이 가능합니다.'],
+    ]});
+  rect({ x:M, y:5.52, w:5.86, h:0.86, fill:C.goldSoft, radius:0.08 });
+  text({ t:'1편의 결론 — 선웨이만 학위증이 두 장입니다', x:M+0.3, y:5.62, w:5.26, h:0.26, size:12.5, bold:true, color:C.gold });
+  text({ t:'같은 4년, 같은 학비로 선웨이 BEng와 영국 랭커스터 MEng를 함께 받습니다. 공학 지망이면서 예산이 빠듯하다면 가장 유리한 선택지입니다.', x:M+0.3, y:5.9, w:5.26, h:0.44, size:11, color:C.text, lh:1.35 });
+  rect({ x:M+6.07, y:5.52, w:5.86, h:0.86, fill:C.brickSoft, radius:0.08 });
+  text({ t:'학위 이름보다 인증(Accreditation)을 보십시오', x:M+6.37, y:5.62, w:5.26, h:0.26, size:12.5, bold:true, color:C.brick });
+  text({ t:'엔지니어 등록과 해외 취업을 가르는 것은 학위 명칭이 아니라 EAC/BEM · IET · IChemE 인증과 워싱턴 어코드 가입 여부입니다.', x:M+6.37, y:5.9, w:5.26, h:0.44, size:11, color:C.text, lh:1.35 });
+  bottom('출처: 테일러스 School of Engineering (화학·전기전자·기계 EAC/BEM 인정 — 메카트로닉스는 별도 확인 필요) · 선웨이 Faculty of Engineering and Technology · Monash UG Prospectus 2027 p.8 · UNM 브로셔 p.18  |  호주 자격체계(AQF)는 학사 우등 8등급 · 석사 9등급 · 박사 10등급입니다.');
+  note('1편 기준이라 테일러스·선웨이를 먼저 뒀습니다. 선웨이만 학위증이 두 장이라는 점이 공학 상담의 결정타입니다.');
+}
+
 /* ── 9. 테일러스 vs 선웨이 ── */
 {
   slide(false);
