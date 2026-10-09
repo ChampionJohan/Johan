@@ -324,7 +324,7 @@ BOOKS = {
     # 영어판 셋. 한국어판과 같은 선, 같은 색, 같은 단계다.
     "en-love1": dict(
         title="The One Who Was Already There",
-        title_lines=["The One Who Was", "Already There"],
+        title_lines=["The One Who", "Was Already", "There"],
         subtitle="Already there before I ever asked",
         series="GOES FIRST · NEVER ASKS · DOES NOT STOP",
         volume="BOOK ONE",

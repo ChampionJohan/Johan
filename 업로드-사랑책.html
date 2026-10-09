@@ -30,20 +30,25 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 </style></head><body><div class="wrap">
 <h1>먼저 — 아직 올리면 안 됩니다</h1>
 <p><strong>비운 자리 열하나가 남아 있습니다.</strong> <code>--stat</code> 의 확인이 0 이 아니라 <code>pack.py</code> 가 묶기를 거부합니다. 일부러 그렇게 만들어 둔 것입니다.</p>
-<div class="table-wrap"><table><thead><tr><th></th><th>막는 것</th><th>누가</th></tr></thead><tbody><tr><td>1</td><td>비운 자리 열하나</td><td>작가님 — <code>사랑책-빈자리.md</code></td></tr><tr><td>2</td><td>영어판 세 권</td><td>제가 — 아직 안 썼습니다</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th></th><th>막는 것</th><th>누가</th></tr></thead><tbody><tr><td>1</td><td>비운 자리 열하나</td><td>작가님 — <code>사랑책-빈자리.md</code></td></tr><tr><td><del>2</del></td><td><del>영어판 세 권</del></td><td><strong>10월 9일에 끝났습니다</strong></td></tr></tbody></table></div>
+<p><strong>이제 작가님 자리 열하나만 남았습니다.</strong></p>
 <p><strong>이 문서는 그 둘이 끝났을 때 그대로 쓰시도록 미리 적어 둔 것입니다.</strong> 값과 분류와 설명문은 지금 확정해 두어도 안 바뀝니다.</p>
 <hr>
 <h1>정해진 꼴 — 전자책 셋, 종이책 셋</h1>
 <p>작가님이 고르셨습니다. <strong>합본을 안 만들고 세 권을 따로 냅니다.</strong></p>
 <blockquote><h2>『떠오르는 사람』 / <code>Someone Comes to Mind</code></h2></blockquote>
-<div class="table-wrap"><table><thead><tr><th>권</th><th>한국어</th><th>영어</th><th>쪽</th></tr></thead><tbody><tr><td>1</td><td>『먼저 와 있던 사람』</td><td><code>The One Who Was Already There</code></td><td>67쪽</td></tr><tr><td>2</td><td>『아무것도 묻지 않는 사람』</td><td><code>The One Who Never Asked</code></td><td>68쪽</td></tr><tr><td>3</td><td>『끝까지 남은 사람』</td><td><code>The One Who Stayed</code></td><td>71쪽</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>권</th><th>한국어</th><th>쪽</th><th>영어</th><th>쪽</th></tr></thead><tbody><tr><td>1</td><td>『먼저 와 있던 사람』</td><td>67쪽</td><td><code>The One Who Was Already There</code></td><td>73쪽</td></tr><tr><td>2</td><td>『아무것도 묻지 않는 사람』</td><td>68쪽</td><td><code>The One Who Never Asked</code></td><td>73쪽</td></tr><tr><td>3</td><td>『끝까지 남은 사람』</td><td>71쪽</td><td><code>The One Who Stayed</code></td><td>76쪽</td></tr></tbody></table></div>
+<p><strong>쪽수는 작가님 자리가 채워지면 늘어납니다.</strong> 열한 자리에 두세 줄씩만 들어가도 권당 두세 쪽이 붙습니다. 그러면 <code>pdf.py</code> → <code>wrap_cover.py</code> 를 다시 돌려야 하고, 안 돌리면 <code>pack.py</code> 가 막아 줍니다.</p>
 <p><strong>KDP 에 올리는 건 열두 번입니다.</strong> 세 권 × (영어 전자책 · 영어 종이책 · 한국어 전자책 · 한국어 종이책). 한 권이 네 번이고 그게 세 번 되풀이됩니다.</p>
 <p>한국어만 먼저 내셔도 됩니다. 그러면 여섯 번입니다.</p>
 <h2>책등은 비어 있습니다</h2>
 <p><strong>이게 이 선택의 값입니다.</strong> 67~71쪽이라 책등 두께가 4.3mm 안팎이고, 이 저장소에 적어 둔 바로는 KDP 가 100쪽부터 책등에 글자를 넣게 해 줍니다. <code>wrap_cover.py</code> 도 그 아래에서는 글자를 안 넣습니다.</p>
-<pre><code>love1-wrap-67p.pdf   12.418 x 9.250 in · 책등 0.1675 in  (100쪽 미만이라 책등 글자 없음)
-love2-wrap-68p.pdf   12.420 x 9.250 in · 책등 0.1700 in
-love3-wrap-71p.pdf   12.428 x 9.250 in · 책등 0.1775 in</code></pre>
+<pre><code>love1-wrap-67p.pdf      12.418 x 9.250 in · 책등 0.1675 in  (100쪽 미만이라 책등 글자 없음)
+love2-wrap-68p.pdf      12.420 x 9.250 in · 책등 0.1700 in
+love3-wrap-71p.pdf      12.428 x 9.250 in · 책등 0.1775 in
+en-love1-wrap-73p.pdf   12.432 x 9.250 in · 책등 0.1825 in
+en-love2-wrap-73p.pdf   12.432 x 9.250 in · 책등 0.1825 in
+en-love3-wrap-76p.pdf   12.440 x 9.250 in · 책등 0.1900 in</code></pre>
 <p>책꽂이에 세워 놓으면 세 권인 줄 모릅니다. <strong>앞표지를 보이게 놓는 자리에서만 세 권이 됩니다.</strong> 전자책에서는 아무 문제가 없고, 전자책이 이 시리즈의 본판입니다.</p>
 <p><code>kdp.amazon.com</code> 이 막혀 있어서 그 100쪽 기준을 지금 직접 확인하지는 못했습니다. <strong>확인 못 한 것은 확인 못 했다고 적습니다.</strong></p>
 <hr>
