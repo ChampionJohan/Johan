@@ -126,6 +126,64 @@ Content 탭의 Book Cover 칸 아래에 이 줄이 있습니다.
 
 ---
 
+# 07번에 같은 오류가 또 왔습니다 (2026-10-09)
+
+07번(`Everyone Had One.` · 255쪽)이 **이번에는 저내용·ISBN 쪽으로 막혔습니다.**
+05번이 받은 것과 글자까지 같은 문구입니다.
+
+> low-content checkbox ... was checked while submitting your book, since your book
+> is not low-content **we removed the checkmark for you** ... please 1) return to the
+> "Edit Paperback/Hardcover Content" tab, 2) **update the "Print ISBN" option**,
+> and 3) re-submit your book.
+
+미리보기 바코드 아래 숫자가 이것이었습니다.
+
+```
+M0D2095041759
+```
+
+05번 때의 `M0D2094829711` 과 같은 꼴입니다. **ISBN 이 아니라 아마존 내부
+번호**이고, 지금 이 책도 ISBN 없이 줄 서 있다는 뜻입니다.
+
+## 그러니 07번은 두 번 걸린 것입니다
+
+| 때 | 오류 | 고친 곳 |
+|---|---|---|
+| 2026-10-02 | valid barcode 를 못 찾겠다 | Content 탭 · **"내 표지에 바코드가 있다" 체크를 끔** |
+| **2026-10-09** | **저내용 체크 → ISBN 선택** | Content 탭 · **Print ISBN → Get a free KDP ISBN** |
+
+**둘은 다른 문제입니다.** 지난번에 바코드 체크를 끈 것은 맞았고, 그것 때문에
+이번 오류가 난 것이 아닙니다. 저내용 체크가 그때도 켜져 있었는데 바코드
+검사에서 먼저 막혀 이쪽까지 못 간 것으로 보입니다.
+
+## 미리보기에서 확인된 것 하나
+
+이번 미리보기에는 **아마존 바코드가 흰 자리 안에 깔끔하게 찍혀 있습니다.**
+책등 글자도 제자리입니다.
+
+> **표지는 문제가 없습니다.** 이걸로 한 번 더 확인됐습니다.
+
+표지를 의심하지 마세요. 2026-10-02 에 두 번 고쳤다가 둘 다 헛수고였고,
+이번 미리보기가 그 결론을 다시 보여 줍니다.
+
+## 고치는 순서 (07번)
+
+미리보기 화면은 `view-only` 라 거기서는 못 고칩니다. **`Exit Print Previewer`
+를 먼저 누르세요.**
+
+1. `Details` 탭 · Categories → **저내용 체크가 꺼져 있는지 눈으로 확인**
+2. `Edit Paperback Content` 탭 · **`Print ISBN` → `Get a free KDP ISBN`**
+3. 같은 탭에서 **`Ink and Paper Type` 이 cream 인지**,
+   **"Yes, my cover has a barcode" 가 꺼져 있는지** 같이 확인
+4. `Publish` / `Submit for review`
+
+**파일은 다시 안 올립니다.** 이미 올라간 본문과 표지를 그대로 씁니다.
+
+3번을 꼭 같이 보세요. 255쪽에서 흰 종이를 고르면 책등이 **1.6 mm** 어긋나고,
+그건 인쇄본이 나와야 보입니다.
+
+---
+
 # 여덟 권 전부 확인하세요
 
 저내용 체크는 한 번 실수하면 **다음 책을 올릴 때 그대로 따라오는 경우**가 있습니다.
@@ -138,7 +196,7 @@ Content 탭의 Book Cover 칸 아래에 이 줄이 있습니다.
 | 04 | I Started. So Why Isn't It Working? | 〃 |
 | 05 | Why Is This Still Here? | **지금 막혀 있음** |
 | 06 | 베스트셀러 & 스테디셀러 | 〃 |
-| 07 | Everyone Had One. | **지난번 바코드 오류** |
+| 07 | Everyone Had One. | **두 번 걸림** — 바코드 체크(10-02) · 저내용·ISBN(10-09) |
 | 08 | 다들 갖고 있었잖아. | 아직 안 올림 |
 
 **이미 발행된 책에서 바코드 아래 숫자가 `978`·`979` 로 시작하지 않으면

@@ -76,9 +76,28 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <p><strong>05번과 07번은 서로 다른 문제입니다.</strong></p>
 <div class="table-wrap"><table><thead><tr><th>책</th><th>원인</th><th>고치는 곳</th></tr></thead><tbody><tr><td>05</td><td>저내용 체크 → ISBN 선택이 비어 있음</td><td>Content 탭 · <strong>Print ISBN</strong></td></tr><tr><td>07</td><td><strong>"내 표지에 바코드가 있다" 체크가 켜짐</strong></td><td>Content 탭 · <strong>Book Cover 아래 체크 상자</strong></td></tr></tbody></table></div>
 <hr>
+<h1>07번에 같은 오류가 또 왔습니다 (2026-10-09)</h1>
+<p>07번(<code>Everyone Had One.</code> · 255쪽)이 <strong>이번에는 저내용·ISBN 쪽으로 막혔습니다.</strong> 05번이 받은 것과 글자까지 같은 문구입니다.</p>
+<blockquote><p>low-content checkbox ... was checked while submitting your book, since your book is not low-content <strong>we removed the checkmark for you</strong> ... please 1) return to the "Edit Paperback/Hardcover Content" tab, 2) <strong>update the "Print ISBN" option</strong>, and 3) re-submit your book.</p></blockquote>
+<p>미리보기 바코드 아래 숫자가 이것이었습니다.</p>
+<pre><code>M0D2095041759</code></pre>
+<p>05번 때의 <code>M0D2094829711</code> 과 같은 꼴입니다. <strong>ISBN 이 아니라 아마존 내부 번호</strong>이고, 지금 이 책도 ISBN 없이 줄 서 있다는 뜻입니다.</p>
+<h2>그러니 07번은 두 번 걸린 것입니다</h2>
+<div class="table-wrap"><table><thead><tr><th>때</th><th>오류</th><th>고친 곳</th></tr></thead><tbody><tr><td>2026-10-02</td><td>valid barcode 를 못 찾겠다</td><td>Content 탭 · <strong>"내 표지에 바코드가 있다" 체크를 끔</strong></td></tr><tr><td><strong>2026-10-09</strong></td><td><strong>저내용 체크 → ISBN 선택</strong></td><td>Content 탭 · <strong>Print ISBN → Get a free KDP ISBN</strong></td></tr></tbody></table></div>
+<p><strong>둘은 다른 문제입니다.</strong> 지난번에 바코드 체크를 끈 것은 맞았고, 그것 때문에 이번 오류가 난 것이 아닙니다. 저내용 체크가 그때도 켜져 있었는데 바코드 검사에서 먼저 막혀 이쪽까지 못 간 것으로 보입니다.</p>
+<h2>미리보기에서 확인된 것 하나</h2>
+<p>이번 미리보기에는 <strong>아마존 바코드가 흰 자리 안에 깔끔하게 찍혀 있습니다.</strong> 책등 글자도 제자리입니다.</p>
+<blockquote><p><strong>표지는 문제가 없습니다.</strong> 이걸로 한 번 더 확인됐습니다.</p></blockquote>
+<p>표지를 의심하지 마세요. 2026-10-02 에 두 번 고쳤다가 둘 다 헛수고였고, 이번 미리보기가 그 결론을 다시 보여 줍니다.</p>
+<h2>고치는 순서 (07번)</h2>
+<p>미리보기 화면은 <code>view-only</code> 라 거기서는 못 고칩니다. <strong><code>Exit Print Previewer</code> 를 먼저 누르세요.</strong></p>
+<ol><li><code>Details</code> 탭 · Categories → <strong>저내용 체크가 꺼져 있는지 눈으로 확인</strong></li><li><code>Edit Paperback Content</code> 탭 · <strong><code>Print ISBN</code> → <code>Get a free KDP ISBN</code></strong></li><li>같은 탭에서 <strong><code>Ink and Paper Type</code> 이 cream 인지</strong>, <strong>"Yes, my cover has a barcode" 가 꺼져 있는지</strong> 같이 확인</li><li><code>Publish</code> / <code>Submit for review</code></li></ol>
+<p><strong>파일은 다시 안 올립니다.</strong> 이미 올라간 본문과 표지를 그대로 씁니다.</p>
+<p>3번을 꼭 같이 보세요. 255쪽에서 흰 종이를 고르면 책등이 <strong>1.6 mm</strong> 어긋나고, 그건 인쇄본이 나와야 보입니다.</p>
+<hr>
 <h1>여덟 권 전부 확인하세요</h1>
 <p>저내용 체크는 한 번 실수하면 <strong>다음 책을 올릴 때 그대로 따라오는 경우</strong>가 있습니다.</p>
-<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>볼 곳</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>Categories 저내용 · Print ISBN</td></tr><tr><td>02</td><td>The Fourth Box</td><td>〃</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>〃</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>〃</td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td><strong>지금 막혀 있음</strong></td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>〃</td></tr><tr><td>07</td><td>Everyone Had One.</td><td><strong>지난번 바코드 오류</strong></td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>아직 안 올림</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>볼 곳</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>Categories 저내용 · Print ISBN</td></tr><tr><td>02</td><td>The Fourth Box</td><td>〃</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>〃</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>〃</td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td><strong>지금 막혀 있음</strong></td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>〃</td></tr><tr><td>07</td><td>Everyone Had One.</td><td><strong>두 번 걸림</strong> — 바코드 체크(10-02) · 저내용·ISBN(10-09)</td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>아직 안 올림</td></tr></tbody></table></div>
 <p><strong>이미 발행된 책에서 바코드 아래 숫자가 <code>978</code>·<code>979</code> 로 시작하지 않으면 그 책도 ISBN 없이 나간 것입니다.</strong></p>
 <p>발행된 뒤에는 ISBN을 붙이기 어려울 수 있습니다. <strong>그 경우에는 그냥 두셔도 됩니다.</strong> 아마존에서 파는 데는 지장이 없습니다. ISBN이 없으면 서점·도서관 유통이 안 될 뿐입니다.</p>
 <hr>
