@@ -1,0 +1,427 @@
+<title>말레이시아 간호학 진학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap">
+<style>
+/* 레이아웃 — 설명회 진행 순서를 따르는 단일 열 문서 · 좌측 고정 목차 · 표는 각자 가로 스크롤 */
+:root{
+  --paper:#FCFCFB; --surface:#F1EDE4; --surface-2:#FFFFFF;
+  --ink:#0C2E2C; --body:#1B2426; --muted:#5E6E6C; --line:#DCD6C9;
+  --deep:#134744; --mid:#1F6B66; --gold:#8A5F14; --gold-ink:#C08A2E; --gold-soft:#F4EBD9;
+  --brick:#8E3523; --brick-soft:#F7EBE6;
+  --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+  --display:"Noto Serif KR",Georgia,"맑은 고딕","Malgun Gothic",serif;
+  --sans:"Noto Sans KR","맑은 고딕","Malgun Gothic",system-ui,sans-serif;
+  --maxw:72rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A1817; --surface:#13231F; --surface-2:#0F1E1C;
+    --ink:#EAF0ED; --body:#D5DEDB; --muted:#93A6A3; --line:#28403B;
+    --deep:#1B5B56; --mid:#2E8C85; --gold:#E0AC55; --gold-ink:#E0AC55; --gold-soft:#241E12;
+    --brick:#E08268; --brick-soft:#2A1712;
+    --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A1817; --surface:#13231F; --surface-2:#0F1E1C;
+  --ink:#EAF0ED; --body:#D5DEDB; --muted:#93A6A3; --line:#28403B;
+  --deep:#1B5B56; --mid:#2E8C85; --gold:#E0AC55; --gold-ink:#E0AC55; --gold-soft:#241E12;
+  --brick:#E08268; --brick-soft:#2A1712;
+  --on-deep:#EFEDE6; --on-deep-mute:#A9C0BD;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--body);font-family:var(--sans);font-size:15px;line-height:1.72;
+  -webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:20px;padding-block:0}
+
+/* ── 표지 ── */
+.cover{background:var(--deep);color:var(--on-deep);padding-block:clamp(2.5rem,7vw,4.5rem)}
+:root[data-theme="dark"] .cover,:root:not([data-theme="light"]) .cover{border-bottom:1px solid var(--line)}
+.kicker{font-size:.76rem;letter-spacing:.22em;font-weight:700;color:var(--gold-ink);margin:0 0 .9rem}
+.cover h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,7vw,3.9rem);line-height:1.12;
+  margin:0;color:#fff;text-wrap:balance;letter-spacing:-.01em}
+.cover .sub{font-size:clamp(1rem,2.4vw,1.2rem);color:var(--on-deep-mute);margin:1rem 0 0}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;
+  margin-top:2.4rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14)}
+.facts div{background:var(--deep);padding:.95rem 1.1rem;min-width:0}
+.facts dt{font-size:.78rem;color:var(--on-deep-mute);margin:0 0 .2rem}
+.facts dd{margin:0;font-weight:700;color:#fff;font-size:1.02rem}
+.stamp{margin-top:2rem;font-size:.84rem;color:var(--on-deep-mute)}
+
+/* ── 목차 ── */
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);
+  border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:.3rem;overflow-x:auto;padding-block:.55rem;scrollbar-width:thin}
+nav.toc a{flex:0 0 auto;font-size:.8rem;color:var(--muted);text-decoration:none;padding:.3rem .62rem;
+  border-radius:999px;white-space:nowrap}
+nav.toc a:hover{color:var(--ink);background:var(--surface)}
+nav.toc a:focus-visible{outline:2px solid var(--mid);outline-offset:2px}
+
+/* ── 섹션 ── */
+section{padding-block:clamp(2.2rem,5vw,3.4rem);border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.eyebrow{display:flex;align-items:baseline;gap:.75rem;margin:0 0 .35rem}
+.num{font-family:var(--display);font-weight:700;font-size:.95rem;color:var(--gold);
+  border:1px solid var(--line);border-radius:4px;padding:.05rem .45rem;flex:0 0 auto}
+.en{font-size:.72rem;letter-spacing:.18em;font-weight:700;color:var(--mid)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.25;
+  color:var(--ink);margin:.2rem 0 .5rem;text-wrap:balance;letter-spacing:-.01em}
+h3{font-family:var(--sans);font-weight:700;font-size:1.02rem;color:var(--ink);margin:2rem 0 .7rem}
+h3:first-of-type{margin-top:1.6rem}
+.lede{color:var(--muted);margin:0 0 1.5rem;max-width:62ch}
+p{margin:0 0 1rem;max-width:68ch}
+strong{color:var(--ink);font-weight:700}
+
+/* ── 표 ── */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px;margin:0 0 1.2rem}
+table{border-collapse:collapse;width:100%;min-width:38rem;font-size:.9rem;background:var(--surface-2)}
+caption{caption-side:bottom;text-align:left;font-size:.8rem;color:var(--muted);padding:.6rem .85rem}
+th,td{padding:.62rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+thead th{background:var(--deep);color:#fff;font-weight:700;font-size:.82rem;letter-spacing:.02em;
+  border-bottom:0;position:sticky;top:0}
+tbody tr:nth-child(even) td{background:var(--surface)}
+tbody tr:last-child td{border-bottom:0}
+td.num-cell,th.num-cell{text-align:right;white-space:nowrap}
+tbody th{font-weight:500;color:var(--ink);background:var(--surface)}
+
+/* ── 강조 블록 ── */
+.callout{background:var(--gold-soft);border-left:3px solid var(--gold-ink);padding:1rem 1.2rem;margin:0 0 1.3rem}
+.callout.warn{background:var(--brick-soft);border-left-color:var(--brick)}
+.callout p{margin:0 0 .5rem;max-width:none}
+.callout p:last-child{margin:0}
+.callout .head{font-weight:700;color:var(--ink);font-size:.95rem;display:block;margin-bottom:.35rem}
+.callout.warn .head{color:var(--brick)}
+.banner{background:var(--deep);color:var(--on-deep);padding:1.4rem 1.5rem;margin:0 0 1.4rem;border-radius:3px}
+.banner .big{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,4.4vw,2.1rem);
+  color:var(--gold-ink);margin:0;line-height:1.2}
+.banner .cap{font-size:.84rem;color:var(--on-deep-mute);margin:.35rem 0 0}
+.banner p{color:var(--on-deep);margin:.9rem 0 0;max-width:none;font-size:.93rem}
+
+/* ── 2열 ── */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1.1rem;margin:0 0 1.3rem}
+.panel{background:var(--surface);padding:1.1rem 1.25rem;min-width:0;border-radius:3px}
+.panel h4{margin:0 0 .5rem;font-size:.98rem;color:var(--ink);font-weight:700}
+.panel .tag{font-size:.74rem;letter-spacing:.14em;font-weight:700;color:var(--mid);display:block;margin-bottom:.3rem}
+.panel p{margin:0 0 .6rem;font-size:.9rem;max-width:none}
+.panel p:last-child{margin:0}
+.panel .src{font-size:.78rem;color:var(--muted)}
+
+/* ── 경로 다이어그램 ── */
+.lanes{display:flex;flex-direction:column;gap:.6rem;margin:0 0 1.3rem}
+.lane{display:grid;grid-template-columns:minmax(10rem,1fr) minmax(12rem,1.4fr) minmax(10rem,1fr);
+  gap:.55rem;align-items:stretch}
+@media (max-width:640px){.lane{grid-template-columns:1fr}}
+.lane>*{padding:.7rem .9rem;border-radius:3px;min-width:0;font-size:.88rem}
+.lane .from{background:var(--mid);color:#fff}
+.lane .from.alt{background:var(--brick);color:#fff}
+.lane .from.opt{background:var(--gold-soft);color:var(--ink);border:1px solid var(--gold-ink)}
+.lane .from b{display:block;font-size:.94rem;margin-bottom:.15rem}
+.lane .from span{font-size:.78rem;opacity:.9}
+.lane .from.opt span{opacity:1;color:var(--muted)}
+.lane .via{background:var(--surface);border:1px solid var(--line)}
+.lane .to{background:var(--deep);color:#fff;font-weight:700}
+
+/* ── 일정 ── */
+ol.steps{margin:0;padding-left:1.25rem}
+ol.steps li{margin-bottom:.4rem;font-size:.9rem}
+ul.plain{margin:0 0 1rem;padding-left:1.15rem}
+ul.plain li{margin-bottom:.35rem;font-size:.92rem}
+
+footer{padding-block:2.2rem 3rem;color:var(--muted);font-size:.84rem}
+footer h3{margin-top:0}
+footer ul{padding-left:1.1rem;margin:0}
+footer li{margin-bottom:.4rem}
+a{color:var(--mid)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<header class="cover">
+  <div class="wrap">
+    <p class="kicker">말레이시아 유학 · 간호학</p>
+    <h1>간호학 학사 진학</h1>
+    <p class="sub">선웨이 대학교 &middot; IMU (International Medical University)</p>
+    <dl class="facts">
+      <div><dt>파운데이션</dt><dd>필수 · 학사 직행 불가</dd></div>
+      <div><dt>과학 미이수 학생</dt><dd>인문 예과(FIA) 경로</dd></div>
+      <div><dt>총 기간</dt><dd>5년 (예과 1 + 학사 4)</dd></div>
+      <div><dt>환율 기준</dt><dd>RM 1 &asymp; 365원</dd></div>
+    </dl>
+    <p class="stamp">필리핀 IM해외선교본부 &middot; 말레이시아 지부 &nbsp;|&nbsp; 학생 조건: 고교 과학 미이수 · 수학 95점 · TOEFL iBT 80 &nbsp;|&nbsp; 기준일 2026.9.25</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <div class="wrap">
+    <a href="#key">핵심 요약</a>
+    <a href="#glance">두 대학</a>
+    <a href="#found">파운데이션 종류</a>
+    <a href="#why">왜 IMU인가</a>
+    <a href="#road">5년 로드맵</a>
+    <a href="#imu-fee">IMU 학비</a>
+    <a href="#sun-fee">선웨이 학비</a>
+    <a href="#budget">총 예산</a>
+    <a href="#confirm">확인할 것</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="key">
+  <div class="eyebrow"><span class="num">01</span><span class="en">KEY POINTS</span></div>
+  <h2>핵심 요약 — 네 가지</h2>
+  <p class="lede">학생 조건: 고교 과학 미이수 &middot; 수학 95점 &middot; TOEFL iBT 80</p>
+  <div class="cols">
+    <div class="panel">
+      <span class="tag">01</span>
+      <h4>파운데이션은 필수입니다</h4>
+      <p>한국 고교 졸업생은 두 학교 모두 간호학 학사로 바로 입학할 수 없습니다. 1년 파운데이션(예과)을 반드시 거쳐야 합니다.</p>
+    </div>
+    <div class="panel">
+      <span class="tag">02</span>
+      <h4>과학 예과(FIST · FIS)는 입학 불가</h4>
+      <p>선웨이 FIST와 IMU FIS 모두 고교 과학 과목 이수를 입학 조건으로 요구합니다. 과학 미이수라면 두 학교 다 <strong>인문 예과(FIA)</strong>가 유일한 문입니다.</p>
+    </div>
+    <div class="panel">
+      <span class="tag">03</span>
+      <h4>IMU FIA가 가장 확실합니다</h4>
+      <p>IMU는 FIA &rarr; 간호학 진학 시 고교 과학 이수를 요구하지 않습니다. 선웨이는 과학 1과목 크레딧을 추가로 요구합니다.</p>
+    </div>
+    <div class="panel">
+      <span class="tag">04</span>
+      <h4>총 5년, 2032년 졸업</h4>
+      <p>예과 1년 + 학사 4년입니다. 2027년 예과 입학 &rarr; 2028년 학사 입학 &rarr; 2032년 졸업이 현실적입니다.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p><strong>TOEFL iBT 80점은 이미 충분합니다</strong> — 학사 기준 iBT 46, FIA 기준 iBT 40입니다. 영어는 변수가 아니고 <strong>과학 과목이 변수</strong>입니다.</p>
+  </div>
+  <div class="callout warn">
+    <p>1편(테일러스·선웨이)·2편(모나쉬·노팅엄)은 <strong>RM 1 = 339원</strong> 기준이고 이 자료는 <strong>365원</strong> 기준입니다. 총액을 직접 비교하지 마십시오.</p>
+  </div>
+</section>
+
+<section id="glance">
+  <div class="eyebrow"><span class="num">02</span><span class="en">AT A GLANCE</span></div>
+  <h2>두 대학 한눈에</h2>
+  <p class="lede">간호학 학사(Bachelor of Nursing) 기준</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">IMU (추천)</th><th scope="col">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">성격</th><td>의학·보건 계열 특화 사립대학</td><td>종합 사립대학 &middot; QS 2027 세계 354위</td></tr>
+        <tr><th scope="row">위치</th><td>쿠알라룸푸르 부킷자릴</td><td>선웨이시티(반다르선웨이)</td></tr>
+        <tr><th scope="row">학위</th><td>Bachelor of Nursing</td><td>Bachelor of Nursing (Hons)</td></tr>
+        <tr><th scope="row">학제</th><td>예과 1년 + 학사 4년</td><td>예과 1년 + 학사 4년</td></tr>
+        <tr><th scope="row">FIA 입학</th><td><strong>4월 &middot; 7월 &middot; 9월</strong></td><td><strong>1월 &middot; 4월 &middot; 8월</strong></td></tr>
+        <tr><th scope="row">학사 입학</th><td><strong>매년 9월</strong> (연 1회)</td><td><strong>매년 10월</strong> (연 1회)</td></tr>
+        <tr><th scope="row">FIA &rarr; 간호학</th><td><strong>고교 과학 요구 없음</strong></td><td>고교 과학 1과목 크레딧 필요</td></tr>
+        <tr><th scope="row">총 학비</th><td>약 <strong>5,637만 원</strong> (부대비 포함)</td><td>약 <strong>4,296만 원</strong> (추정 · 조건 충족 시)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>선웨이가 학비는 약 <strong>1,340만 원</strong> 낮지만, 과학 조건을 충족해야 진학이 가능합니다. 이 조건이 이번 선택의 핵심입니다.</p>
+  </div>
+</section>
+
+<section id="found">
+  <div class="eyebrow"><span class="num">03</span><span class="en">FOUNDATION TYPES</span></div>
+  <h2>파운데이션 종류 확인 — FIA vs FIST &middot; FIS</h2>
+  <p class="lede">과학 예과와 인문 예과는 입학 조건부터 다릅니다. 이 표가 이 자료의 핵심입니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">학교</th><th scope="col">파운데이션</th><th scope="col">예과 입학 조건</th><th scope="col">예과 &rarr; 간호학 진학 조건</th><th scope="col">이 학생</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">선웨이</th><td><strong>FIST</strong><br>(과학기술 예과)</td><td>고교 이과 계열, 수학 포함 5과목 크레딧 (과학 2과목 포함)</td><td>예과 CGPA 2.50</td><td style="color:var(--brick)"><strong>✕ 입학 불가</strong><br>(과학 미이수)</td></tr>
+        <tr><th scope="row">선웨이</th><td><strong>FIA</strong><br>(인문 예과)</td><td>고교 5과목 크레딧</td><td>예과 CGPA 2.50 + 고교 수학·과학 각 1과목 크레딧 + 면접·건강검진</td><td style="color:var(--brick)"><strong>△ 조건부</strong><br>(통합과학 인정 시)</td></tr>
+        <tr><th scope="row">IMU</th><td><strong>FIS</strong><br>(과학 예과)</td><td>수학·영어·과학 2과목(생물/화학/물리) 포함 5과목 C 이상</td><td>예과 cGPA 2.50 + 고교 수학·과학 2과목</td><td style="color:var(--brick)"><strong>✕ 입학 불가</strong><br>(과학 미이수)</td></tr>
+        <tr><th scope="row">IMU</th><td><strong>FIA</strong><br>(인문 예과)</td><td>고교 5과목 C 이상 (유학생은 MQA 동등성 기준)</td><td>예과 cGPA 2.50 + 고교 5과목 C 이상 <strong>(과학 요구 없음)</strong></td><td><strong>○ 가능 (추천)</strong></td></tr>
+      </tbody>
+      <caption>출처: 선웨이 FIA 2026 Student Guide · 선웨이 FIST 2025 Guide · IMU Foundation in Arts · IMU Foundation in Science</caption>
+    </table>
+  </div>
+  <div class="callout">
+    <p>IMU FIA는 2학기 선택과목으로 <strong>General Science</strong>를 운영하므로 본과 전 과학 기초를 보완할 수 있습니다. IMU 간호학과 재학생 중 FIA 출신 사례가 공식 홈페이지에 소개되어 있습니다.</p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="eyebrow"><span class="num">04</span><span class="en">WHY IMU</span></div>
+  <h2>왜 IMU FIA가 가장 확실한가</h2>
+  <p class="lede">같은 FIA라도 간호학으로 올라가는 조건이 다릅니다.</p>
+  <div class="cols">
+    <div class="panel">
+      <span class="tag">IMU FIA</span>
+      <h4>과학 조건이 없습니다</h4>
+      <p>FIA 수료 후 간호학 진학 조건은 예과 cGPA 2.50과 고교 5과목 C 이상뿐입니다. 고교에서 과학을 듣지 않아도 진학이 막히지 않습니다.</p>
+      <p>2학기 선택과목으로 General Science를 들어 본과 전에 과학 기초를 보완할 수 있습니다.</p>
+    </div>
+    <div class="panel">
+      <span class="tag" style="color:var(--brick)">선웨이 FIA</span>
+      <h4>과학 1과목 크레딧이 추가로 필요합니다</h4>
+      <p>FIA 입학 자체는 고교 5과목 크레딧이면 됩니다. 문제는 간호학으로 올라갈 때입니다 — 예과 CGPA 2.50에 더해 <strong>고교 수학·과학 각 1과목 크레딧과 면접·건강검진</strong>을 요구합니다.</p>
+      <p>한국 고교 <strong>"통합과학"</strong>이 이 과학 1과목으로 인정되는지가 관건입니다.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="head">영어는 이미 충족했습니다</span>
+    <p>학사 기준 TOEFL iBT 46 &middot; FIA 기준 iBT 40입니다. 보유 중인 iBT 80점은 두 기준을 모두 여유 있게 넘습니다. 수학 95점도 어느 경로에서든 문제가 되지 않습니다.</p>
+  </div>
+  <div class="callout warn">
+    <span class="head">결론</span>
+    <p>선웨이는 "통합과학 인정" 서면 회신을 받기 전까지 확정할 수 없습니다. <strong>IMU FIA는 지금 조건으로 바로 지원할 수 있습니다.</strong></p>
+  </div>
+</section>
+
+<section id="road">
+  <div class="eyebrow"><span class="num">05</span><span class="en">ROADMAP</span></div>
+  <h2>5년 로드맵 — 입학부터 졸업까지</h2>
+  <p class="lede">예과 1년 + 학사 4년. 두 학교 모두 동일한 구조입니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">① 예과 입학</th><th scope="col">② 예과 수료</th><th scope="col">③ 학사 입학</th><th scope="col">④ 졸업</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">IMU (추천)</th><td><strong>2027년 7월</strong><br>FIA 1년(3학기)<br>연 3회 4·7·9월</td><td>2028년 중<br>cGPA 2.50 이상</td><td><strong>2028년 9월</strong><br>간호학 4년<br>매년 9월 개강</td><td><strong>2032년 여름</strong><br>Bachelor of Nursing</td></tr>
+        <tr><th scope="row">선웨이</th><td><strong>2027년 8월</strong><br>FIA 1년(3학기)<br>연 3회 1·4·8월</td><td>2028년 중<br>CGPA 2.50 + 과학 조건</td><td><strong>2028년 10월</strong><br>간호학 4년<br>매년 10월 개강</td><td><strong>2032년 가을</strong><br>Bachelor of Nursing (Hons)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cols">
+    <div class="panel">
+      <h4>1년을 앞당길 수 있습니다</h4>
+      <p>2026년 9월 IMU FIA 학기에 추가 등록이 가능하면 학사 입학이 <strong>2027년 9월</strong>로 당겨집니다. 즉시 문의할 가치가 있습니다.</p>
+    </div>
+    <div class="panel">
+      <h4 style="color:var(--brick)">선웨이는 8월 입학이 공백이 가장 짧습니다</h4>
+      <p>FIA는 1·4·8월에 들어갈 수 있지만 학사가 10월에만 개강합니다. 1월·4월에 들어가면 수료 후 대기 기간이 생깁니다.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <p>학사 개강이 IMU는 9월, 선웨이는 10월로 <strong>연 1회뿐</strong>입니다. 예과 수료 시점을 여기에 맞춰 역산하십시오.</p>
+  </div>
+</section>
+
+<section id="imu-fee">
+  <div class="eyebrow"><span class="num">06</span><span class="en">IMU FEES</span></div>
+  <h2>IMU — 학비 상세</h2>
+  <p class="lede">FIA &rarr; 간호학 학사 &middot; 환율 RM 1 &asymp; 365원</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">항목</th><th scope="col" class="num-cell">MYR</th><th scope="col" class="num-cell">원화</th><th scope="col">비고</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">FIA 수업료 (3학기)</th><td class="num-cell">34,344</td><td class="num-cell">약 1,254만 원</td><td>RM 10,800/학기 + SST 6%</td></tr>
+        <tr><th scope="row">간호학 학사 수업료 (8학기)</th><td class="num-cell">110,240</td><td class="num-cell">약 4,024만 원</td><td>RM 13,000/학기 + SST 6%</td></tr>
+        <tr><th scope="row">수업료 소계</th><td class="num-cell">144,584</td><td class="num-cell">약 5,277만 원</td><td>—</td></tr>
+        <tr><th scope="row">부대비 (지원·등록·유학생 행정비)</th><td class="num-cell">약 9,860</td><td class="num-cell">약 360만 원</td><td>학사 지원비는 FIA 수료생 면제</td></tr>
+        <tr><th scope="row"><strong>총계 (예치금 제외)</strong></th><td class="num-cell"><strong>약 154,444</strong></td><td class="num-cell"><strong>약 5,637만 원</strong></td><td>환불 예치금 RM 2,000 별도</td></tr>
+        <tr><th scope="row">장학 (적격자)</th><td class="num-cell">-10,000</td><td class="num-cell">약 -365만 원</td><td>IMU 간호학 bursary</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p><strong>학사 지원비가 면제됩니다.</strong> FIA를 IMU에서 수료하면 학사 과정 지원비를 다시 내지 않습니다. 같은 학교에서 올라가는 이점입니다.</p>
+  </div>
+</section>
+
+<section id="sun-fee">
+  <div class="eyebrow"><span class="num">07</span><span class="en">SUNWAY FEES</span></div>
+  <h2>선웨이 — 학비 상세</h2>
+  <p class="lede">FIA &rarr; 간호학 학사 &middot; 환율 RM 1 &asymp; 365원</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">항목</th><th scope="col" class="num-cell">MYR</th><th scope="col" class="num-cell">원화</th><th scope="col">비고</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">FIA 1년</th><td class="num-cell">약 27,450</td><td class="num-cell">약 1,002만 원</td><td>중개사이트 기준 <strong>추정</strong> — 학교 확인 필요</td></tr>
+        <tr><th scope="row">간호학 학사 4년</th><td class="num-cell">약 90,000</td><td class="num-cell">약 3,294만 원</td><td>공식 연 USD 5,756 × 4년 (USD 1 &asymp; RM 3.92)</td></tr>
+        <tr><th scope="row"><strong>총계</strong></th><td class="num-cell"><strong>약 117,450</strong></td><td class="num-cell"><strong>약 4,296만 원</strong></td><td>SST·유학생 행정비 포함 여부 확인 필요</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn">
+    <span class="head">이 금액은 확정액이 아닙니다</span>
+    <p>FIA 유학생 학비는 중개사이트 기준 추정치이고, 학사 학비는 학교가 달러로 안내한 금액을 링깃으로 환산한 값입니다. 6% 서비스세와 유학생 행정비가 포함돼 있는지도 확인되지 않았습니다. <strong>학교 견적서를 받기 전에는 예산의 기준으로 쓰시면 안 됩니다.</strong></p>
+  </div>
+  <div class="callout">
+    <p>그래도 선웨이가 약 <strong>1,340만 원</strong> 저렴합니다 — IMU 약 5,637만 원 대비 선웨이 약 4,296만 원. 다만 이 금액을 얻으려면 "통합과학 인정"이라는 조건을 먼저 통과해야 합니다.</p>
+  </div>
+</section>
+
+<section id="budget">
+  <div class="eyebrow"><span class="num">08</span><span class="en">TOTAL BUDGET</span></div>
+  <h2>졸업까지 총 예산 (5년)</h2>
+  <p class="lede">두 가지 기준으로 나눠 보셔야 합니다. 섞어서 계산하지 마십시오.</p>
+
+  <h3>기준 A — 학비 + 생활비 (개인 유학)</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">항목</th><th scope="col" class="num-cell">IMU</th><th scope="col" class="num-cell">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">학비 총액 (5년)</th><td class="num-cell">약 5,637만</td><td class="num-cell">약 4,296만</td></tr>
+        <tr><th scope="row">생활비 (5년)</th><td class="num-cell">4,380만 ~ 5,256만</td><td class="num-cell">4,380만 ~ 5,256만</td></tr>
+        <tr><th scope="row"><strong>졸업까지 총액</strong></th><td class="num-cell"><strong>1억 17만 ~ 1억 893만</strong></td><td class="num-cell"><strong>8,676만 ~ 9,552만</strong></td></tr>
+      </tbody>
+      <caption>생활비는 IMU 인근 기준 월 RM 2,000 ~ 2,400 (연 약 876만~1,051만 원). 유학생 비자 행정비 최대 RM 3,500 + 매년 갱신비 별도.</caption>
+    </table>
+  </div>
+
+  <h3>기준 B — IM 공동체 과정으로 들어갈 경우</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col">항목</th><th scope="col" class="num-cell">IMU</th><th scope="col" class="num-cell">선웨이</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">학비 총액 (5년)</th><td class="num-cell">약 5,637만</td><td class="num-cell">약 4,296만</td></tr>
+        <tr><th scope="row">공동체 운영비 · 비자 · 입학비</th><td class="num-cell">약 8,400만</td><td class="num-cell">약 8,400만</td></tr>
+        <tr><th scope="row"><strong>졸업까지 총액</strong></th><td class="num-cell"><strong>약 1억 4,037만</strong></td><td class="num-cell"><strong>약 1억 2,696만</strong></td></tr>
+      </tbody>
+      <caption>공동체 운영비 1,440만/년 × 5년 = 7,200만 + 학생비자 갱신 140만/년 × 5년 = 700만 + 입학비 500만(입회 시 1회).</caption>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <p>공동체 운영비에 <strong>숙식이 포함</strong>되므로 기준 A의 생활비와 중복 계산하지 마십시오. 환율 민감도 — RM 1이 10원 오르면 IMU 총 학비가 약 150만 원 늘어납니다. 장학금(IMU bursary RM 10,000 · 약 365만 원)은 반영하지 않았습니다.</p>
+  </div>
+</section>
+
+<section id="confirm">
+  <div class="eyebrow"><span class="num">09</span><span class="en">TO CONFIRM</span></div>
+  <h2>학교에 서면으로 확인할 것</h2>
+  <p class="lede">다섯 가지입니다. 선웨이 두 건이 가장 급합니다.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th scope="col"></th><th scope="col">대상</th><th scope="col">확인 사항</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">1</th><td style="color:var(--brick)"><strong>선웨이</strong></td><td>한국 고교 <strong>"통합과학"</strong>이 간호학 진학 조건의 과학 1과목 크레딧으로 인정되는가 — <strong>이 답 하나로 선웨이 경로의 가부가 결정됩니다</strong></td></tr>
+        <tr><th scope="row">2</th><td style="color:var(--brick)"><strong>선웨이</strong></td><td>FIA 유학생 학비 확정액과 학사 과정의 SST · 유학생 행정비 포함 여부</td></tr>
+        <tr><th scope="row">3</th><td><strong>IMU</strong></td><td>2026년 9월 FIA 학기 추가 등록이 가능한가 — 가능하면 전체 일정이 1년 짧아집니다</td></tr>
+        <tr><th scope="row">4</th><td><strong>IMU</strong></td><td>한국 고교 성적의 MQA 동등성 인정 — FIA 입학 및 간호학 조건부 오퍼 발급</td></tr>
+        <tr><th scope="row">5</th><td>공통</td><td>영어 요건 재확인 — 학사 TOEFL iBT 46 · FIA iBT 40 (보유 iBT 80으로 충족, 유효기간만 확인)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p><strong>1·2번 답이 오기 전까지는 IMU를 기본안으로 두고 준비하십시오.</strong> 기다리다 인테이크를 놓치는 것이 가장 큰 손해입니다.</p>
+  </div>
+</section>
+
+<footer>
+  <h3>출처</h3>
+  <ul>
+    <li>선웨이 간호학 학사 — Bachelor of Nursing (Honours) 공식 페이지</li>
+    <li>선웨이 FIA 2026 Student Guide (PDF) &middot; 선웨이 FIST 2025 Student Guide (PDF)</li>
+    <li>IMU 간호학 학사 — Bachelor of Nursing 공식 페이지</li>
+    <li>IMU Foundation in Arts (FIA) &middot; Foundation in Science (FIS)</li>
+  </ul>
+  <h3>이 자료의 전제</h3>
+  <ul>
+    <li>학생 조건 — 고교 과학 미이수 &middot; 수학 95점 &middot; TOEFL iBT 80</li>
+    <li>환율 RM 1 &asymp; 365원 (1·2편은 339원 기준)</li>
+    <li>기준일 2026년 9월 25일</li>
+    <li>선웨이 금액은 추정치 — 견적서로 확정 필요</li>
+    <li>학비는 매년 인상될 수 있음</li>
+  </ul>
+  <p>모든 학비는 입학 전 학교 공식 <strong>견적서(Offer Letter)</strong>로 최종 확인해야 합니다. 특히 선웨이는 유학생 학비가 공개돼 있지 않아 이 자료의 금액이 바뀔 수 있습니다.</p>
+</footer>
+
+</main>
