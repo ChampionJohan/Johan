@@ -1,0 +1,409 @@
+<title>말레이시아 4개 대학 카드뉴스</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Archivo:wght@600;700;800&display=swap">
+
+<style>
+:root{
+  --navy:#0F2D5E;
+  --navy-deep:#0A2147;
+  --navy-soft:#1B4486;
+  --red:#E23B2E;
+  --ink:#16233A;
+  --muted:#5B6B86;
+  --faint:#8C99AE;
+  --paper:#EEF2F8;
+  --surface:#FFFFFF;
+  --surface-2:#F4F7FC;
+  --rule:#DCE4F0;
+  --rule-soft:#E8EDF5;
+  --f-display:"Black Han Sans","IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-num:"Archivo","IBM Plex Sans KR",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E8EEF8; --muted:#A3B1C9; --faint:#7E8CA4;
+    --paper:#070C16; --surface:#101828; --surface-2:#182133;
+    --rule:#2A3650; --rule-soft:#222C42;
+    --navy:#17386E; --navy-deep:#112A54; --navy-soft:#2A5796; --red:#FF6B5C;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E8EEF8; --muted:#A3B1C9; --faint:#7E8CA4;
+  --paper:#070C16; --surface:#101828; --surface-2:#182133;
+  --rule:#2A3650; --rule-soft:#222C42;
+  --navy:#17386E; --navy-deep:#112A54; --navy-soft:#2A5796; --red:#FF6B5C;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; word-break:keep-all;
+}
+.page{max-width:1040px; margin:0 auto; padding-inline:16px; padding-block:26px 64px; display:flex; flex-direction:column; gap:26px}
+
+.intro{display:flex; flex-direction:column; gap:8px; padding-block:4px 2px}
+.intro h1{font-family:var(--f-display); font-size:clamp(24px,4.4vw,34px); margin:0; letter-spacing:-.01em; color:var(--ink); text-wrap:balance}
+.intro p{margin:0; color:var(--muted); font-size:13.5px; max-width:66ch; line-height:1.72}
+.intro .rate{font-family:var(--f-num); font-size:12px; color:var(--faint); letter-spacing:.02em}
+
+/* ───────── card ───────── */
+.card{
+  background:var(--surface); border-radius:6px; overflow:hidden;
+  border:1px solid var(--rule);
+  box-shadow:0 1px 2px rgba(15,45,94,.06), 0 18px 46px -26px rgba(15,45,94,.45);
+  scroll-margin-top:20px;
+}
+
+/* header */
+.hd{position:relative; background:var(--navy); color:#fff; display:grid; grid-template-columns:1.25fr 1fr; min-height:210px}
+.hd-l{padding:26px 26px 24px; display:flex; flex-direction:column; justify-content:center; gap:3px; position:relative; z-index:2}
+.crest{display:flex; align-items:center; gap:11px; margin-bottom:13px}
+.crest-mark{width:40px; height:40px; border-radius:5px; display:grid; place-items:center; flex:none}
+.crest-mark svg{width:23px; height:23px; display:block}
+.crest-txt{display:flex; flex-direction:column; line-height:1.2}
+.crest-txt b{font-family:var(--f-num); font-size:14.5px; font-weight:700; letter-spacing:.01em}
+.crest-txt span{font-size:9.5px; letter-spacing:.17em; color:rgba(255,255,255,.62); font-weight:600}
+.hd h2{font-family:var(--f-display); font-size:clamp(28px,4.6vw,40px); line-height:1.16; margin:0; letter-spacing:-.01em}
+.hd h2 em{font-style:normal}
+.hd .en{font-family:var(--f-num); font-size:12.5px; font-weight:600; letter-spacing:.1em; color:rgba(255,255,255,.78); margin-top:7px}
+.hd .tag{font-size:12.5px; font-style:italic; color:rgba(255,255,255,.6); margin-top:5px}
+
+.hd-r{position:relative; display:grid; place-items:center; padding:20px; background:var(--navy-deep); overflow:hidden}
+.hd-r::before{content:""; position:absolute; inset:0; background:
+  radial-gradient(420px 220px at 78% 18%, rgba(255,255,255,.10), transparent 70%)}
+.hd-r svg.motif{position:absolute; inset:0; width:100%; height:100%; opacity:.26}
+.rankbig{position:relative; z-index:2; text-align:center; line-height:1}
+.rankbig .cap{font-size:10.5px; font-weight:700; letter-spacing:.14em; color:rgba(255,255,255,.72); display:block; margin-bottom:9px}
+.rankbig .n{font-family:var(--f-num); font-weight:800; font-size:clamp(44px,8vw,66px); letter-spacing:-.03em; display:inline-block; position:relative; padding-bottom:7px}
+.rankbig .n::after{content:""; position:absolute; left:6%; right:6%; bottom:0; height:4px; background:var(--red); border-radius:2px}
+.rankbig .sub{display:block; margin-top:11px; font-size:11.5px; color:rgba(255,255,255,.76); line-height:1.5}
+.hd-cut{position:absolute; top:0; bottom:0; left:calc(55.5% - 34px); width:70px; background:var(--navy); transform:skewX(-11deg); z-index:1}
+
+/* body grid */
+.bd{display:grid; grid-template-columns:1fr 1.32fr; gap:1px; background:var(--rule-soft)}
+.pane{background:var(--surface); padding:20px 22px 22px}
+.ttl{display:flex; align-items:center; gap:9px; margin:0 0 14px}
+.ttl .ic{width:26px; height:26px; border-radius:5px; display:grid; place-items:center; flex:none}
+.ttl .ic svg{width:15px; height:15px; display:block}
+.ttl h3{margin:0; font-size:15px; font-weight:700; letter-spacing:-.01em; color:var(--ink)}
+
+/* basics list */
+.basics{list-style:none; margin:0; padding:0; display:flex; flex-direction:column}
+.basics li{display:grid; grid-template-columns:24px 1fr; gap:11px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.basics li:last-child{border-bottom:none; padding-bottom:0}
+.basics .bi{width:22px; height:22px; display:grid; place-items:center; margin-top:1px}
+.basics .bi svg{width:16px; height:16px; display:block}
+.basics b{display:block; font-size:13px; font-weight:700; color:var(--ink); margin-bottom:2px}
+.basics span{display:block; font-size:12px; color:var(--muted); line-height:1.6}
+
+/* rank strip */
+.rankrow{display:grid; grid-template-columns:1fr 1fr; gap:14px; background:var(--surface-2); border:1px solid var(--rule); border-radius:5px; padding:15px 16px; margin-bottom:18px}
+.rankrow > div{text-align:center; display:flex; flex-direction:column; gap:5px; justify-content:center}
+.rankrow > div + div{border-left:1px solid var(--rule); padding-left:14px}
+.rankrow .k{font-family:var(--f-num); font-size:11.5px; font-weight:700; color:var(--navy-soft); line-height:1.35}
+.rankrow .v{font-family:var(--f-num); font-weight:800; font-size:30px; letter-spacing:-.02em; color:var(--ink); line-height:1; position:relative; display:inline-block; align-self:center; padding-bottom:5px}
+.rankrow .v::after{content:""; position:absolute; left:4%; right:4%; bottom:0; height:3px; background:var(--red); border-radius:2px}
+.rankrow .v.small{font-size:20px}
+.rankrow .s{font-size:11px; color:var(--muted); line-height:1.5}
+
+/* subjects */
+.subs{display:grid; grid-template-columns:1fr 1fr; gap:0 18px}
+.subs table{width:100%; border-collapse:collapse; font-size:12.5px}
+.subs th{text-align:left; font-size:11px; font-weight:700; color:var(--faint); letter-spacing:.04em; padding:0 0 7px; border-bottom:1px solid var(--rule)}
+.subs th:last-child{text-align:right}
+.subs td{padding:8px 0; border-bottom:1px solid var(--rule-soft); color:var(--ink); line-height:1.4}
+.subs td:last-child{text-align:right; font-family:var(--f-num); font-weight:700; white-space:nowrap; padding-left:8px}
+.subs tr:last-child td{border-bottom:none}
+.subnote{margin:12px 0 0; font-size:11.5px; color:var(--muted); line-height:1.6}
+
+/* why band */
+.why{padding:20px 22px 22px; color:#fff}
+.why .ttl h3{color:#fff}
+.whygrid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.whygrid > div{display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:start}
+.wic{width:38px; height:38px; border-radius:50%; display:grid; place-items:center; background:rgba(255,255,255,.14)}
+.wic svg{width:19px; height:19px; display:block}
+.whygrid b{display:block; font-size:14px; font-weight:700; margin-bottom:3px; line-height:1.35}
+.whygrid span{display:block; font-size:11.5px; color:rgba(255,255,255,.78); line-height:1.6}
+
+/* caution */
+.caution{padding:14px 22px 16px; background:#FDF0EC; border-top:1px solid #F2C9BC; display:grid; grid-template-columns:20px 1fr; gap:11px}
+.caution svg{width:17px; height:17px; margin-top:2px}
+.caution p{margin:0; font-size:11.5px; color:#7F3017; line-height:1.68}
+.caution b{color:#B83A17}
+:root[data-theme="dark"] .caution{background:#331711; border-top-color:#5E2A1C}
+:root[data-theme="dark"] .caution p{color:#F0BDAC}
+:root[data-theme="dark"] .caution b{color:#FF9478}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .caution{background:#331711; border-top-color:#5E2A1C}
+  :root:not([data-theme="light"]) .caution p{color:#F0BDAC}
+  :root:not([data-theme="light"]) .caution b{color:#FF9478}
+}
+
+/* summary card */
+.sum{background:var(--surface); border:1px solid var(--rule); border-radius:6px; overflow:hidden; box-shadow:0 1px 2px rgba(15,45,94,.06), 0 18px 46px -26px rgba(15,45,94,.45)}
+.sum-hd{background:var(--navy); color:#fff; padding:22px 24px}
+.sum-hd h2{font-family:var(--f-display); font-size:clamp(23px,4vw,31px); margin:0; line-height:1.2}
+.sum-hd p{margin:7px 0 0; font-size:12.5px; color:rgba(255,255,255,.72)}
+.tw{overflow-x:auto}
+.sum table{width:100%; border-collapse:collapse; font-size:12.5px; min-width:760px}
+.sum th,.sum td{padding:10px 12px; text-align:left; border-bottom:1px solid var(--rule-soft); vertical-align:top; line-height:1.5}
+.sum thead th{background:var(--surface-2); font-size:11.5px; font-weight:700; color:var(--ink); border-bottom:1px solid var(--rule); white-space:nowrap}
+.sum tbody th{font-weight:700; color:var(--ink); white-space:nowrap}
+.sum td.n{font-family:var(--f-num); font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap}
+.sum tr:last-child td,.sum tr:last-child th{border-bottom:none}
+.dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:7px; vertical-align:1px}
+
+footer.fin{font-size:11.5px; color:var(--faint); line-height:1.75; text-align:center; padding-top:4px}
+footer.fin a{color:var(--navy-soft)}
+
+@media (max-width:760px){
+  .hd{grid-template-columns:1fr; min-height:0}
+  .hd-cut{display:none}
+  .hd-r{padding:22px}
+  .bd{grid-template-columns:1fr}
+  .subs{grid-template-columns:1fr}
+  .whygrid{grid-template-columns:1fr}
+  .rankrow{grid-template-columns:1fr}
+  .rankrow > div + div{border-left:none; border-top:1px solid var(--rule); padding-left:0; padding-top:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+@media print{
+  @page{size:A4 portrait; margin:10mm}
+  body{background:#fff}
+  .card,.sum{break-inside:avoid; break-after:page; box-shadow:none}
+  .intro{break-after:avoid}
+}
+</style>
+
+<div class="page">
+
+  <header class="intro">
+    <h1>말레이시아 대학 카드뉴스 — 4개교</h1>
+    <p>노팅엄 말레이시아 캠퍼스 안내문과 동일한 형식으로 <strong>테일러스 · 선웨이 · 모나쉬 말레이시아 · IMU</strong> 네 곳을 정리했습니다. 순위는 QS World University Rankings 2027과 QS World University Rankings by Subject 2026 기준입니다.</p>
+    <p class="rate">환율 1링깃(RM) ≈ 339원 · 2026년 10월 기준 · 학비는 국제학생 기준이며 6% 서비스세 별도</p>
+  </header>
+
+  <div id="cards"></div>
+
+  <footer class="fin">
+    순위 · 학비 · 입학 조건은 대학이 연 단위로 개정하므로, 최종 지원 전 각 대학 공식 입학처에서 반드시 재확인하시기 바랍니다.<br>
+    모나쉬 말레이시아의 순위는 모나쉬 대학교(호주 본교) 기준이며, 말레이시아 캠퍼스는 동일 기관으로 순위를 공유합니다.
+  </footer>
+</div>
+
+<script>
+const ICON = {
+  link:'<path d="M9.5 14.5 14.5 9.5M10 6.5 11.8 4.7a3.3 3.3 0 0 1 4.7 4.7l-1.8 1.8M14 17.5l-1.8 1.8a3.3 3.3 0 0 1-4.7-4.7l1.8-1.8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>',
+  cal:'<rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="7" y="12.5" width="3" height="3" rx=".7" fill="currentColor"/>',
+  bld:'<path d="M4 20.5V7.5l7-4 7 4v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M2.5 20.5h19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="8" y="10" width="2.6" height="2.6" rx=".6" fill="currentColor"/><rect x="12.4" y="10" width="2.6" height="2.6" rx=".6" fill="currentColor"/><rect x="9.6" y="15.5" width="3.8" height="5" rx=".7" fill="currentColor"/>',
+  pin:'<path d="M12 21.5s7-6.1 7-11.1A7 7 0 0 0 5 10.4c0 5 7 11.1 7 11.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10.2" r="2.6" fill="currentColor"/>',
+  cap:'<path d="M12 4 22 9l-10 5L2 9l10-5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 11.2v4.6c0 1.6 2.7 3.2 6 3.2s6-1.6 6-3.2v-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  ppl:'<circle cx="9" cy="8.4" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-3.3 2.7-5.4 6-5.4s6 2.1 6 5.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16.2 6.1a3.2 3.2 0 0 1 0 6M17.4 14.9c2.1.6 3.6 2.4 3.6 5.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  coin:'<circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.4 8.6 12 15l3.6-6.4M8.6 12.4h6.8M8.6 14.6h6.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+  globe:'<circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/><ellipse cx="12" cy="12" rx="3.7" ry="8.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.6 12h16.8" stroke="currentColor" stroke-width="1.6"/>',
+  cup:'<path d="M7 3.8h10v5.4a5 5 0 0 1-10 0V3.8Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M7 5.4H4.4v1.4A3.2 3.2 0 0 0 7 9.9M17 5.4h2.6v1.4A3.2 3.2 0 0 1 17 9.9M12 14.5v3.4M8.4 20.4h7.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  chart:'<path d="M3.6 20.4h16.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="5" y="12" width="3.4" height="6" rx=".8" fill="currentColor"/><rect x="10.3" y="7.6" width="3.4" height="10.4" rx=".8" fill="currentColor"/><rect x="15.6" y="10" width="3.4" height="8" rx=".8" fill="currentColor"/>',
+  star:'<path d="m12 3.4 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.7l6-.8L12 3.4Z" fill="currentColor"/>',
+  bank:'<path d="M3 9.6 12 4l9 5.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.6 9.9v8.4M9.5 9.9v8.4M14.5 9.9v8.4M19.4 9.9v8.4M2.6 20.4h18.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  warn:'<path d="M12 3.6 21.4 20H2.6L12 3.6Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9.6v4.6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="17" r="1.15" fill="currentColor"/>',
+  plane:'<path d="M3 13.2 21 5l-4.4 8.4L21 19l-7.6-2.6L9 20.4l.4-4.6L3 13.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+  book:'<path d="M4 4.6h5.2c1.6 0 2.8 1 2.8 2.4v12c0-1.1-1.1-1.9-2.5-1.9H4V4.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M20 4.6h-5.2c-1.6 0-2.8 1-2.8 2.4v12c0-1.1 1.1-1.9 2.5-1.9H20V4.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>',
+  pill:'<rect x="2.9" y="8.6" width="18.2" height="6.8" rx="3.4" transform="rotate(-42 12 12)" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.6 15.4 15.4 8.6" stroke="currentColor" stroke-width="1.8"/>'
+};
+const svg = (k,cls) => '<svg viewBox="0 0 24 24" aria-hidden="true"' + (cls?' class="'+cls+'"':'') + '>' + ICON[k] + '</svg>';
+
+const MOTIF = `<svg class="motif" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g fill="none" stroke="#ffffff" stroke-width="1.1" opacity=".55">
+    <circle cx="320" cy="56" r="52"/><circle cx="320" cy="56" r="34"/>
+    <path d="M-10 196h420M-10 214h420"/>
+  </g>
+  <g fill="#ffffff" opacity=".5">
+    <rect x="24" y="150" width="34" height="62" rx="2"/>
+    <rect x="68" y="124" width="26" height="88" rx="2"/>
+    <rect x="104" y="162" width="40" height="50" rx="2"/>
+    <rect x="154" y="106" width="22" height="106" rx="2"/>
+    <rect x="186" y="146" width="36" height="66" rx="2"/>
+    <rect x="232" y="132" width="24" height="80" rx="2"/>
+    <rect x="266" y="166" width="44" height="46" rx="2"/>
+    <rect x="320" y="142" width="26" height="70" rx="2"/>
+    <rect x="356" y="160" width="32" height="52" rx="2"/>
+  </g>
+</svg>`;
+
+const DATA = [
+{
+  accent:"#E85D1F", accentSoft:"rgba(232,93,31,.16)",
+  crest:"bld", crestEn:"Taylor's University", crestSub:"MALAYSIA · SINCE 1969",
+  kr:'테일러스 대학교', krHi:'레이크사이드 캠퍼스', en:"TAYLOR'S UNIVERSITY", tag:'Hospitality, World #26',
+  rankCap:'QS WORLD UNIVERSITY RANKINGS 2027', rankN:'#272',
+  rankSub:'말레이시아 사립대 2위<br>(UTP #261 · UCSI #282 · 선웨이 #354)',
+  basics:[
+   ['link','말레이시아 현지 사립대학교','영국·호주 분교가 아닌 말레이시아 자체 대학입니다. 1969년 테일러스 칼리지로 출발했습니다.'],
+   ['pin','레이크사이드 캠퍼스','수방자야(Subang Jaya), 슬랑오르 — 쿠알라룸푸르 남서쪽 약 25km'],
+   ['cap','자체 학위 + 복수 학위','테일러스 학위에 더해 UWE Bristol(영국) · QUT(호주) · UT2J(프랑스) 복수 학위. 전 과정 영어'],
+   ['cal','입학 시기','학사 2월 · 4월 · 9월 / 파운데이션 1월 · 3월 · 8월'],
+   ['coin','연간 학비 (국제학생)','호텔경영 약 1,500만 원 · 공학 약 1,430만~1,700만 원 · 파운데이션 약 1,490만 원'],
+   ['chart','QS 전공별 랭킹 20개','2026년 기준 20개 전공이 랭크 — 동남아 사립대 최다']
+  ],
+  rr:[['QS World 2027','#272','말레이시아 사립대 2위'],['QS Subject 2026','20개','전공 랭크 · 동남아 사립대 최다',true]],
+  subs:[
+   [['Hospitality & Leisure Mgmt','#26'],['Art & Design','#61'],['Business & Management','#144']],
+   [['Law','신규 진입'],['Biological Sciences','신규 진입'],['English Lang. & Literature','신규 진입']]
+  ],
+  subnote:'호텔·관광(Hospitality & Leisure Management)은 <b>세계 #26위, 동남아 1위</b>로 7년 연속 상위권을 유지하고 있습니다.',
+  why:[['cup','호텔·관광 세계 #26위','동남아 1위. 테일러스의 결정적 차별점입니다.'],
+       ['globe','복수 학위 3개국','UWE Bristol(영국) · QUT(호주) · UT2J(프랑스) — 학위증 2장'],
+       ['plane','트위닝 1+2 · 2+2','경영·컴퓨터·공학 전공에서 영국·호주 본교 이수 경로']]
+},
+{
+  accent:"#D99400", accentSoft:"rgba(245,179,1,.18)",
+  crest:"bank", crestEn:"Sunway University", crestSub:"MALAYSIA · SINCE 1987",
+  kr:'선웨이 대학교', krHi:'랭커스터 복수 학위', en:'SUNWAY UNIVERSITY', tag:'Two Degrees, One Fee',
+  rankCap:'QS WORLD UNIVERSITY RANKINGS 2027', rankN:'#354',
+  rankSub:'전년 약 #410위에서 50계단 이상 상승<br>THE 2026 기준으로는 #303위',
+  basics:[
+   ['link','말레이시아 현지 사립대학교','Jeffrey Cheah 재단이 지원합니다. 90개국 이상의 다국적 학생이 재학 중입니다.'],
+   ['pin','반다르 선웨이 캠퍼스','Bandar Sunway, 슬랑오르 — 모나쉬 말레이시아와 같은 교육단지'],
+   ['cap','영국 랭커스터 복수 학위','졸업 시 선웨이 · 랭커스터 학위증 2장. 추가 비용 없이 기본 등록금에 포함'],
+   ['cal','입학 시기','학사 1월 · 4월 · 9월 / 파운데이션 1월 · 4월 · 8월'],
+   ['coin','연간 학비 (국제학생)','경영 약 910만~1,290만 원 · 공학 약 1,300만 원 · 파운데이션 약 610만~990만 원'],
+   ['ppl','미국 ASU 공식 파트너','Cintana Alliance 파트너 · 20개 이상 패스웨이 · 최대 90학점 이전']
+  ],
+  rr:[['QS World 2027','#354','전년 대비 50계단 이상 상승'],['THE 2026','#303','QS와 다른 평가기관 기준',false]],
+  subs:[
+   [['Hospitality & Leisure Mgmt','#51–100'],['Business & Management','#201–250']],
+   [['Accounting & Finance','#251–300'],['Economics & Econometrics','#501–550']]
+  ],
+  subnote:'호텔경영이 <b>처음으로 세계 Top 100</b>에 진입했고, 경영학은 2025년 #451–500에서 <b>#201–250으로 크게 상승</b>했습니다. Economics는 2025년 기준입니다.',
+  why:[['coin','학비 가성비 최상','테일러스 대비 연 500만~600만 원 저렴. 파운데이션은 40~65% 수준'],
+       ['globe','랭커스터 복수 학위 $0','학위증 2장, 추가 비용 없음. 3+0로 해외 체류 없이 영국 학위 취득'],
+       ['plane','빅토리아대(호주) 3+0 / 2+1','Sunway College가 말레이시아 유일 파트너(1994년~)']]
+},
+{
+  accent:"#006DAE", accentSoft:"rgba(0,109,174,.16)",
+  crest:"cap", crestEn:'Monash University', crestSub:'AUSTRALIA · MALAYSIA CAMPUS',
+  kr:'모나쉬 대학교', krHi:'말레이시아 캠퍼스', en:'MONASH UNIVERSITY MALAYSIA', tag:'Go8 Degree, Asian Campus',
+  rankCap:'QS WORLD UNIVERSITY RANKINGS 2027', rankN:'#31',
+  rankSub:'모나쉬 대학교 역대 최고 순위<br>전년 공동 #36위에서 5계단 상승',
+  basics:[
+   ['link','호주 모나쉬 대학교의 정식 분교','노팅엄 말레이시아와 같은 해외 직영 캠퍼스 형태입니다. 호주 본교와 동일한 기준이 적용됩니다.'],
+   ['cal','1998년 개교','말레이시아 최초의 외국 대학 캠퍼스이자 모나쉬의 세 번째로 큰 캠퍼스'],
+   ['pin','반다르 선웨이','Bandar Sunway, 슬랑오르 — 약 13,800명 재학, 91개국 출신'],
+   ['cap','호주 명문대 연합 Go8 소속','Group of Eight(Go8) 회원 — 노팅엄의 러셀 그룹에 대응하는 호주 최상위 대학 연합. 전 과정 영어, 자체 인증(self-accrediting) 권한 보유'],
+   ['bld','8개 단과대학','예술사회과학 · 경영 · 공학 · IT · Jeffrey Cheah 의과학 · 약학 · 과학 · Pathways'],
+   ['coin','연간 학비 (국제학생)','경영·예술 약 RM 49,920~51,840 · 공학 RM 51,840~64,800 · 의학 RM 134,880~138,720']
+  ],
+  rr:[['QS World 2027','#31','4개교 중 유일한 세계 Top 50'],['Pharmacy & Pharmacology','#2','QS 전공별 2026 · 세계 2위',true]],
+  subs:[
+   [['Pharmacy & Pharmacology','#2'],['Mineral & Mining Eng.','#11'],['Education & Training','#18']],
+   [['Nursing','#19'],['Life Sciences & Medicine','#26'],['Social Sciences & Mgmt','#34']]
+  ],
+  subnote:'위 순위는 <b>모나쉬 대학교(호주 본교) 기준</b>이며, 말레이시아 캠퍼스는 동일 기관으로 순위를 공유합니다. 전공별로 호주 캠퍼스에서만 개설되는 과정이 있으므로 개설 여부를 확인하십시오.',
+  why:[['star','세계 #31위','4개교 중 유일하게 세계 Top 50에 듭니다.'],
+       ['pill','약학 세계 2위','Pharmacy & Pharmacology 세계 #2 — 전년 4위에서 상승'],
+       ['plane','호주 본교 이수 가능','생명의공학 등은 말레이시아 2년 + 클레이턴 캠퍼스 2년 구조']]
+},
+{
+  accent:"#0E8A7D", accentSoft:"rgba(14,138,125,.16)",
+  crest:"pill", crestEn:'IMU University', crestSub:'MALAYSIA · SINCE 1992',
+  kr:'IMU 대학교', krHi:'의·보건 특화', en:'IMU UNIVERSITY', tag:'Partner Medical School Pathway',
+  rankCap:'QS WORLD UNIVERSITY RANKINGS 2027', rankN:'951–1000',
+  rankSub:'2027년 QS 세계 순위 첫 진입<br>전공별 랭킹에서는 치의학 세계 #100',
+  basics:[
+   ['link','말레이시아 현지 사립대학교 (의·보건 특화)','1992년 International Medical University로 설립, 1999년 대학 승격. 현 교명 IMU University'],
+   ['pin','부킷 잘릴 캠퍼스','Bukit Jalil, 쿠알라룸푸르 — 말레이시아 최대 규모의 사립 의과대학'],
+   ['globe','파트너 대학 35개 이상','호주 · 캐나다 · 중국 · 유럽 · 아일랜드 · 뉴질랜드 · 영국 · 미국 (2026 브로슈어 기준 45개 이상)'],
+   ['plane','Partner Medical School 제도','IMU에서 2.5년 이수 후 해외 파트너 의대에서 3년 — 파트너 대학 학위 취득'],
+   ['book','영어 조건','IMU 완주 과정 IELTS 6.5 / 파트너 스쿨 진학 시 IELTS 7.0'],
+   ['coin','학비 (국제학생, 총액)','MBBS 5년 약 RM 543,500~615,690 · 약학 4년 RM 140,000~180,000 · 간호 4년 RM 90,000~110,000']
+  ],
+  rr:[['QS World 2027','951–1000','세계 순위 첫 진입',true],['Dentistry 2026','#100','말레이시아 사립대 최초 진입'],],
+  subs:[
+   [['Dentistry','#100'],['Pharmacy & Pharmacology','Top 200']],
+   [['Medicine','#551–600'],['치의학 피인용 점수','말레이시아 1위']]
+  ],
+  subnote:'치의학은 <b>말레이시아 사립대 최초</b>로 QS 전공별 랭킹에 진입했고, 약학은 <b>말레이시아 사립대 1위</b>로 3년 연속 세계 Top 200을 유지하고 있습니다.',
+  why:[['pill','치의학 세계 #100','말레이시아 사립대 최초의 QS 치의학 랭킹 진입'],
+       ['book','약학 세계 Top 200','말레이시아 사립대 1위 · 3년 연속'],
+       ['plane','해외 의대 편입 경로','IMU 2.5년 + 파트너 의대 3년 — 영국·아일랜드·호주 등']],
+  caution:'<b>Partner Medical School 주의 3가지.</b> ① 파트너 국가의 시민·영주권자는 그 나라 파트너 스쿨에 배정될 수 없습니다(호주·뉴질랜드, 영국·아일랜드·EU, 캐나다가 각각 블록으로 묶입니다). ② 전학비가 학기당 RM 6,000 별도로 붙습니다. ③ 해외 파트너 구간 학비는 영국 연 £49,000~75,000, 아일랜드 연 €55,000 수준으로, 말레이시아 구간과 비교가 되지 않습니다. 실제 총비용은 파트너 국가에서 결정됩니다.'
+}
+];
+
+function card(d){
+  const basics = d.basics.map(b =>
+    `<li><span class="bi" style="color:${d.accent}">${svg(b[0])}</span><div><b>${b[1]}</b><span>${b[2]}</span></div></li>`).join('');
+  const rr = d.rr.map(r =>
+    `<div><span class="k">${r[0]}</span><span class="v${String(r[1]).length>5?' small':''}">${r[1]}</span><span class="s">${r[2]}</span></div>`).join('');
+  const col = rows => `<table><thead><tr><th>학과</th><th>순위</th></tr></thead><tbody>` +
+    rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('') + `</tbody></table>`;
+  const why = d.why.map(w =>
+    `<div><span class="wic">${svg(w[0])}</span><div><b>${w[1]}</b><span>${w[2]}</span></div></div>`).join('');
+  const caution = d.caution ? `<div class="caution" style="--c:${d.accent}"><span style="color:#B83A17">${svg('warn')}</span><p>${d.caution}</p></div>` : '';
+
+  return `<article class="card">
+    <div class="hd">
+      <span class="hd-cut" aria-hidden="true"></span>
+      <div class="hd-l">
+        <div class="crest">
+          <span class="crest-mark" style="background:${d.accent}">${svg(d.crest)}</span>
+          <span class="crest-txt"><b>${d.crestEn}</b><span>${d.crestSub}</span></span>
+        </div>
+        <h2>${d.kr}<br><em style="color:${d.accent}">${d.krHi}</em></h2>
+        <div class="en">${d.en}</div>
+        <div class="tag">${d.tag}</div>
+      </div>
+      <div class="hd-r">
+        ${MOTIF}
+        <div class="rankbig">
+          <span class="cap">${d.rankCap}</span>
+          <span class="n">${d.rankN}</span>
+          <span class="sub">${d.rankSub}</span>
+        </div>
+      </div>
+    </div>
+    <div class="bd">
+      <section class="pane">
+        <div class="ttl"><span class="ic" style="background:${d.accentSoft};color:${d.accent}">${svg('bank')}</span><h3>대학 기본 정보</h3></div>
+        <ul class="basics">${basics}</ul>
+      </section>
+      <section class="pane">
+        <div class="ttl"><span class="ic" style="background:${d.accentSoft};color:${d.accent}">${svg('cup')}</span><h3>최신 전체 순위</h3></div>
+        <div class="rankrow">${rr}</div>
+        <div class="ttl"><span class="ic" style="background:${d.accentSoft};color:${d.accent}">${svg('chart')}</span><h3>QS 세계 대학 학과별 순위 (2026)</h3></div>
+        <div class="subs">${col(d.subs[0])}${col(d.subs[1])}</div>
+        <p class="subnote">${d.subnote}</p>
+      </section>
+    </div>
+    <div class="why" style="background:${d.accent}">
+      <div class="ttl"><span class="ic" style="background:rgba(255,255,255,.18);color:#fff">${svg('star')}</span><h3>왜 ${d.kr.replace(' 대학교','')}인가?</h3></div>
+      <div class="whygrid">${why}</div>
+    </div>
+    ${caution}
+  </article>`;
+}
+
+const SUM = `<section class="sum">
+  <div class="sum-hd">
+    <h2>한눈에 비교 — 5개교</h2>
+    <p>노팅엄 말레이시아를 포함한 5개교 요약 · QS World 2027 / QS Subject 2026 기준</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>대학</th><th>유형</th><th>QS 2027</th><th>간판 전공</th><th>연간 학비 (국제학생)</th><th>해외 학위 경로</th></tr></thead>
+    <tbody>
+      <tr><th><span class="dot" style="background:#1B4486"></span>노팅엄 말레이시아</th><td>영국 분교</td><td class="n">#97</td><td>약학 #12</td><td>확인 필요</td><td>영국 본교와 동일 학위</td></tr>
+      <tr><th><span class="dot" style="background:#006DAE"></span>모나쉬 말레이시아</th><td>호주 분교</td><td class="n">#31</td><td>약학 #2</td><td class="n">RM 50,000~65,000</td><td>호주 본교 동일 학위 · 2+2</td></tr>
+      <tr><th><span class="dot" style="background:#E85D1F"></span>테일러스</th><td>현지 사립</td><td class="n">#272</td><td>호텔·관광 #26</td><td class="n">RM 42,000~50,000</td><td>복수 학위 3개국 · 1+2 / 2+2</td></tr>
+      <tr><th><span class="dot" style="background:#D99400"></span>선웨이</th><td>현지 사립</td><td class="n">#354</td><td>호텔경영 #51–100</td><td class="n">RM 27,000~38,000</td><td>랭커스터 3+0 · 추가비용 $0</td></tr>
+      <tr><th><span class="dot" style="background:#0E8A7D"></span>IMU</th><td>현지 사립 (의·보건)</td><td class="n">951–1000</td><td>치의학 #100</td><td class="n">MBBS 총 RM 543,500~</td><td>파트너 의대 2.5+3</td></tr>
+    </tbody>
+  </table></div>
+</section>`;
+
+document.getElementById('cards').innerHTML =
+  DATA.map(card).join('<div style="height:26px"></div>') + '<div style="height:26px"></div>' + SUM;
+</script>
