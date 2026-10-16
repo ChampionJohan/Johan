@@ -29,17 +29,6 @@ turn out. **A wish laid in advance on someone who has not yet done anything.**
 And the wish has no condition on it. No household says do this and then you get
 the name. It is given first.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 3장과 같은 자리입니다.
-     작가님이 아이 이름을 정하던 자리입니다.
-
-     어느 아이여도 됩니다. 들어가야 하는 것 둘.
-     (1) 왜 그 이름이었는지 (2) 다른 후보가 있었다면 그것도
-     망설이신 기간이 들어가면 더 좋습니다.
-
-     한국어로 주시면 제가 영어로 옮깁니다. 이름의 뜻이 한자나 우리말에
-     기대어 있으면 영어판에는 설명을 한 줄 붙여야 하니, 그 뜻을 풀어서
-     적어 주시면 좋습니다. -->
-
 ## Every Time It Is Called, the Wish Goes By
 
 There is something a name does that nobody notices. Every time it is spoken,
@@ -89,6 +78,3 @@ naming a child is written at the range anyone would recognize, with no research
 behind it. I considered a passage on how naming differs between countries and
 cut it. That direction turns the chapter into a piece about custom, and what it
 is looking at is those few months of having made a name and waiting.
-
-The blank in the middle is for the author to fill. Empty, this chapter is a
-thing anyone could have written.

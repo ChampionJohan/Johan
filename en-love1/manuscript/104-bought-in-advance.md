@@ -6,23 +6,17 @@ order: 104
 status: draft
 ---
 
-## One Drawer
+## The Smallest Size
 
-Most houses have one of those drawers, and it holds the belongings of a person
-who has not arrived, and everything in it is small, everything is new, nothing
-has been used. And the one who filled that drawer has never seen the face of
-the one who will use it. Measuring sizes and picking colors and thinking about
-which season it will be, all for a face nobody has seen, resembles no other
-transaction in the world.
+Baby clothes carry sizes marked in months. Newborn, three months, six months.
+The smallest of them is the one worn least. It is outgrown in a few weeks. The
+thing chosen after the longest look is the thing used for the shortest time.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 4장과 같은 자리입니다.
-     작가님이 **아이가 오기 전에 미리 준비해 두신 것** 하나입니다.
-
-     물건 하나면 됩니다. 어디서 샀는지, 왜 그걸 골랐는지, 어디에
-     두었는지. 그리고 **그걸 준비하면서 무슨 생각을 하셨는지.**
-     아무 생각 없이 사신 거면 그렇게 적어 주셔도 됩니다.
-
-     한국어로 주시면 제가 영어로 옮깁니다. -->
+There is one place in the house where those clothes sit, and everything in it
+is small, everything is new, nothing has been used. And the one who filled that
+place has never seen the face of the one who will use it. Guessing sizes and
+picking colors and thinking about which season it will be, all for a face
+nobody has seen, resembles no other transaction in the world.
 
 ## Preparing Is a Bet
 
@@ -91,5 +85,3 @@ There is probably research on what households prepare before a birth and what
 it costs. I did not look. A figure turns this into a chapter about spending, and
 then the unworn clothes at the bottom of the drawer become unsold stock. The
 unsold stock is what the chapter is looking at.
-
-The blank in the middle is for the author to fill.

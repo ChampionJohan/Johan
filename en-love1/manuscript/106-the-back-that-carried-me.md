@@ -14,16 +14,6 @@ went somewhere, and on the way you fell asleep, and when you woke you were
 somewhere else, and the road is missing from the memory of the one carried while
 the weight stays in the body of the one who carried.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 6장과 같은 자리입니다.
-     **업은 쪽이어도 되고 업힌 쪽이어도 됩니다.**
-
-     업은 쪽이면 — 누구를 어디까지 업으셨는지, 그때 무슨 생각을 하셨는지.
-     업힌 쪽이면 — 누구 등이었는지, 그걸 어떻게 아셨는지.
-     (업힌 기억은 대개 들은 이야기입니다. 오히려 그쪽이 이 장에 맞습니다.)
-
-     업는 일은 무게가 한쪽에만 실리는 일이라, 그 무게가 보이게 적어 주세요.
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## The Weight Is All on One Side
 
 That is the shape of carrying. The weight goes on one side only.
@@ -96,5 +86,3 @@ I considered writing about how carrying differs between countries, or how far
 back the practice goes, and cut it. That direction turns the chapter into a
 piece about custom, and what it is looking at is the structure where the weight
 lands on one side only.
-
-The blank in the middle is for the author to fill.

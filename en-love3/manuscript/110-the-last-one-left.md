@@ -31,21 +31,6 @@ Why that person they cannot explain either. They say it just ended up being them
 They say they did it because nobody else was. **The one who stays is not the one
 who chose to. It is the one who did not leave.**
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 10장과 같은 자리입니다.
-     이 장은 아픈 장입니다.
-
-     작가님이 보신 **끝까지 남은 한 사람**이 있을 겁니다.
-     작가님 자신일 수도 있고, 옆에서 본 분일 수도 있습니다.
-
-     누구였는지, 둘레가 어떻게 줄어들었는지, 그리고 **그 사람이
-     그때 무슨 일을 했는지** 하나만요. 대단한 일이 아니었을 겁니다.
-     대단하지 않은 쪽을 적어 주세요.
-
-     작가님이 그 한 사람이셨으면 그렇게 적어 주셔도 됩니다.
-     그 경우에는 잘한 이야기로 안 쓰겠습니다.
-     아무도 안 와서 혼자 있었다는 쪽으로 쓰겠습니다.
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## What Happens to the One Who Stays
 
 Look at what happens on the side of the one who stayed.
@@ -103,5 +88,3 @@ There is material on what happens to families during a long illness. I did not
 use it. Put numbers in and a person currently in that position starts looking for
 their own household in the table, and having found it, it starts to feel like
 that is what will happen to them. I decided not to write that kind of thing.
-
-The blank in the middle is for the author to fill.

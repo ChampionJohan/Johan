@@ -31,18 +31,6 @@ And the child on the side where it is working out feels slighted too. They feel
 nobody comes their way. Both feel slighted and the look is on one side.
 **Nobody is at fault and all three of them are hurt.**
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 2장과 같은 자리입니다.
-     이 장은 아픈 장입니다.
-
-     작가님 눈이 **더 오래 가 있던 쪽**이 있으셨을 겁니다.
-     어느 아이였는지, 왜 그쪽이었는지요.
-
-     그리고 하나만 더 — **다른 아이가 그걸 어떻게 받아들였는지.**
-     아셨으면 적어 주시고, 모르셨으면 몰랐다고 적어 주세요.
-
-     잘 쓰려고 하지 마세요. 이 자리는 잘 쓰면 오히려 안 읽힙니다.
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## The Arithmetic Stands Backwards
 
 There is one thing to set down in this chapter. **The arithmetic of love stands
@@ -91,5 +79,3 @@ studied. I did not use it. Bring that material here and those people become
 case studies, and this chapter is not looking at cases but inside that house,
 and that the material exists is worth recording, so that anyone who wants more
 can find it.
-
-The blank in the middle is for the author to fill.

@@ -30,21 +30,6 @@ Then there is a third. The one who received turns around and resents you, and
 they say they never asked you to do it, that their life came out this way
 because of it. That one hurts most. And it is more common than people expect.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 9장과 같은 자리입니다.
-     이 장은 아픈 장입니다.
-
-     작가님이 해 주신 일을 두고 그 사람이 고맙다고 하지 않았던
-     자리가 있으셨을 겁니다. 셋 가운데 어느 쪽이었는지요.
-
-     원망까지 돌아온 자리였으면 그걸 적어 주셔도 좋습니다.
-     다만 지금도 아프시면 넘기셔도 됩니다.
-
-     그리고 한 가지만 더 — **그 뒤에도 계속하셨습니까.**
-     하셨으면 왜 하셨는지는 안 적어도 됩니다.
-     계속했다는 사실만으로 이 장이 섭니다.
-
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## What Thank You Does
 
 I have wondered why that sentence gets waited for so badly.
@@ -98,5 +83,3 @@ them, because they were talking about their families.
 There is probably research on the person being cared for coming to resent the
 person caring. I did not look. Put it in and the chapter becomes how to handle
 such cases, and that is not what this chapter is for.
-
-The blank in the middle is for the author to fill.

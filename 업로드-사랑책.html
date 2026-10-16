@@ -28,17 +28,18 @@ ul.checklist input{margin-right:.5em}
 hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 .meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
 </style></head><body><div class="wrap">
-<h1>먼저 — 아직 올리면 안 됩니다</h1>
-<p><strong>비운 자리 열하나가 남아 있습니다.</strong> <code>--stat</code> 의 확인이 0 이 아니라 <code>pack.py</code> 가 묶기를 거부합니다. 일부러 그렇게 만들어 둔 것입니다.</p>
-<div class="table-wrap"><table><thead><tr><th></th><th>막는 것</th><th>누가</th></tr></thead><tbody><tr><td>1</td><td>비운 자리 열하나</td><td>작가님 — <code>사랑책-빈자리.md</code></td></tr><tr><td><del>2</del></td><td><del>영어판 세 권</del></td><td><strong>10월 9일에 끝났습니다</strong></td></tr></tbody></table></div>
-<p><strong>이제 작가님 자리 열하나만 남았습니다.</strong></p>
-<p><strong>이 문서는 그 둘이 끝났을 때 그대로 쓰시도록 미리 적어 둔 것입니다.</strong> 값과 분류와 설명문은 지금 확정해 두어도 안 바뀝니다.</p>
+<h1>올릴 수 있습니다</h1>
+<p>여섯 권 다 <code>--stat</code> 의 확인·TODO 가 0 이고 <code>pack.py</code> 가 세 묶음을 만들었습니다.</p>
+<pre><code>release/13-14_먼저-와-있던-사람-업로드.zip
+release/15-16_아무것도-묻지-않는-사람-업로드.zip
+release/17-18_끝까지-남은-사람-업로드.zip</code></pre>
+<p><strong>작가님 자리 열하나는 비워 둔 채로 닫았습니다.</strong> 지어내지 않고 뺐습니다. 무엇이 빠졌고 되돌리는 법은 <code>사랑책-닫은-자리.md</code> 에 있습니다. 나중에 장면을 주시면 그 자리에 붙이고 쪽수만 다시 돌립니다.</p>
 <hr>
 <h1>정해진 꼴 — 전자책 셋, 종이책 셋</h1>
 <p>작가님이 고르셨습니다. <strong>합본을 안 만들고 세 권을 따로 냅니다.</strong></p>
 <blockquote><h2>『떠오르는 사람』 / <code>Someone Comes to Mind</code></h2></blockquote>
-<div class="table-wrap"><table><thead><tr><th>권</th><th>한국어</th><th>쪽</th><th>영어</th><th>쪽</th></tr></thead><tbody><tr><td>1</td><td>『먼저 와 있던 사람』</td><td>67쪽</td><td><code>The One Who Was Already There</code></td><td>73쪽</td></tr><tr><td>2</td><td>『아무것도 묻지 않는 사람』</td><td>68쪽</td><td><code>The One Who Never Asked</code></td><td>73쪽</td></tr><tr><td>3</td><td>『끝까지 남은 사람』</td><td>71쪽</td><td><code>The One Who Stayed</code></td><td>76쪽</td></tr></tbody></table></div>
-<p><strong>쪽수는 작가님 자리가 채워지면 늘어납니다.</strong> 열한 자리에 두세 줄씩만 들어가도 권당 두세 쪽이 붙습니다. 그러면 <code>pdf.py</code> → <code>wrap_cover.py</code> 를 다시 돌려야 하고, 안 돌리면 <code>pack.py</code> 가 막아 줍니다.</p>
+<div class="table-wrap"><table><thead><tr><th>권</th><th>한국어</th><th>쪽</th><th>영어</th><th>쪽</th></tr></thead><tbody><tr><td>1</td><td>『먼저 와 있던 사람』</td><td>67쪽</td><td><code>The One Who Was Already There</code></td><td>71쪽</td></tr><tr><td>2</td><td>『아무것도 묻지 않는 사람』</td><td>68쪽</td><td><code>The One Who Never Asked</code></td><td>73쪽</td></tr><tr><td>3</td><td>『끝까지 남은 사람』</td><td>71쪽</td><td><code>The One Who Stayed</code></td><td>75쪽</td></tr></tbody></table></div>
+<p><strong>나중에 장면을 넣으시면 쪽수가 늘어납니다.</strong> 두세 줄씩만 들어가도 권당 두세 쪽이 붙습니다. 그러면 <code>pdf.py</code> → <code>wrap_cover.py</code> 를 다시 돌려야 하고, 안 돌리면 <code>pack.py</code> 가 막아 줍니다.</p>
 <p><strong>KDP 에 올리는 건 열두 번입니다.</strong> 세 권 × (영어 전자책 · 영어 종이책 · 한국어 전자책 · 한국어 종이책). 한 권이 네 번이고 그게 세 번 되풀이됩니다.</p>
 <p>한국어만 먼저 내셔도 됩니다. 그러면 여섯 번입니다.</p>
 <h2>책등은 비어 있습니다</h2>
@@ -46,9 +47,9 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <pre><code>love1-wrap-67p.pdf      12.418 x 9.250 in · 책등 0.1675 in  (100쪽 미만이라 책등 글자 없음)
 love2-wrap-68p.pdf      12.420 x 9.250 in · 책등 0.1700 in
 love3-wrap-71p.pdf      12.428 x 9.250 in · 책등 0.1775 in
-en-love1-wrap-73p.pdf   12.432 x 9.250 in · 책등 0.1825 in
+en-love1-wrap-71p.pdf   12.428 x 9.250 in · 책등 0.1775 in
 en-love2-wrap-73p.pdf   12.432 x 9.250 in · 책등 0.1825 in
-en-love3-wrap-76p.pdf   12.440 x 9.250 in · 책등 0.1900 in</code></pre>
+en-love3-wrap-75p.pdf   12.438 x 9.250 in · 책등 0.1875 in</code></pre>
 <p>책꽂이에 세워 놓으면 세 권인 줄 모릅니다. <strong>앞표지를 보이게 놓는 자리에서만 세 권이 됩니다.</strong> 전자책에서는 아무 문제가 없고, 전자책이 이 시리즈의 본판입니다.</p>
 <p><code>kdp.amazon.com</code> 이 막혀 있어서 그 100쪽 기준을 지금 직접 확인하지는 못했습니다. <strong>확인 못 한 것은 확인 못 했다고 적습니다.</strong></p>
 <hr>
@@ -111,5 +112,5 @@ Family &amp; Relationships &gt; Love &amp; Romance          ← 안 씁니다. �
 python3 tools/wrap_cover.py love1 &lt;새 쪽수&gt;
 python3 tools/pack.py love1</code></pre>
 <p><strong>표지를 안 다시 만들면 <code>pack.py</code> 가 막아 줍니다.</strong> 05·07번에서 책등이 어긋났던 자리이고, 그건 인쇄본이 나와야 보입니다.</p>
-<p><code>pack.py</code> 의 <code>BUNDLES</code> 에는 세 권을 <strong>아직 등록하지 않았습니다.</strong> 비운 자리가 0 이 아니고 영어판이 없어서, 지금 등록하면 막히는 것만 보시게 됩니다. 둘이 끝나면 한 줄씩 넣겠습니다.</p>
+<p><code>pack.py</code> 의 <code>BUNDLES</code> 에 <strong>세 권을 등록했습니다.</strong> 쪽수가 파일 이름에 들어 있으니 쪽수가 바뀌면 <code>BUNDLES</code> 의 그 권 네 줄도 같이 고칩니다. 세 묶음 다 <strong>장 수 검사까지 받습니다</strong> — 표지 뒷면의 「열두 장」과 <code>Twelve chapters</code> 를 원고에서 세어 맞춰 봅니다.</p>
 </div></body></html>

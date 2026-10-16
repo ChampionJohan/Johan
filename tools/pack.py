@@ -91,12 +91,87 @@ BUNDLES = {
         manuscripts=["person/manuscript", "en-person/manuscript"],
         cover_keys=["person", "en-person"],
     ),
+
+    # 13~18번. 『떠오르는 사람』 세 권이라 묶음이 셋이다. 합본을 안 만든다.
+    # 업로드 문서는 하나이고 세 묶음이 같은 것을 들고 간다.
+    #
+    # 한 권이 67~75쪽이라 책등에 글자가 없다. 그건 작가가 알고 고른 것이다.
+    "love1": dict(
+        name="13-14_먼저-와-있던-사람",
+        docs=["업로드-사랑책.md", "업로드-사랑책.html"],
+        steps=[
+            ("1-영어-전자책", [
+                "release/ebook/The One Who Was Already There.epub",
+                "release/covers/13_The-One-Who-Was-Already-There-cover.jpg"]),
+            ("2-영어-종이책", [
+                "release/paperback/13_The-One-Who-Was-Already-There_interior-71p.pdf",
+                "release/paperback/13_The-One-Who-Was-Already-There_cover-71p-cream.pdf"]),
+            ("3-한국어-전자책", [
+                "release/ebook/먼저 와 있던 사람.epub",
+                "release/covers/14_먼저-와-있던-사람-cover.jpg"]),
+            ("4-한국어-종이책", [
+                "release/paperback/14_먼저-와-있던-사람_본문-67p.pdf",
+                "release/paperback/14_먼저-와-있던-사람_표지-67p-미색.pdf"]),
+        ],
+        spare=[],
+        pages={"영어": 71, "한국어": 67},
+        manuscripts=["love1/manuscript", "en-love1/manuscript"],
+        cover_keys=["love1", "en-love1"],
+    ),
+
+    "love2": dict(
+        name="15-16_아무것도-묻지-않는-사람",
+        docs=["업로드-사랑책.md", "업로드-사랑책.html"],
+        steps=[
+            ("1-영어-전자책", [
+                "release/ebook/The One Who Never Asked.epub",
+                "release/covers/15_The-One-Who-Never-Asked-cover.jpg"]),
+            ("2-영어-종이책", [
+                "release/paperback/15_The-One-Who-Never-Asked_interior-73p.pdf",
+                "release/paperback/15_The-One-Who-Never-Asked_cover-73p-cream.pdf"]),
+            ("3-한국어-전자책", [
+                "release/ebook/아무것도 묻지 않는 사람.epub",
+                "release/covers/16_아무것도-묻지-않는-사람-cover.jpg"]),
+            ("4-한국어-종이책", [
+                "release/paperback/16_아무것도-묻지-않는-사람_본문-68p.pdf",
+                "release/paperback/16_아무것도-묻지-않는-사람_표지-68p-미색.pdf"]),
+        ],
+        spare=[],
+        pages={"영어": 73, "한국어": 68},
+        manuscripts=["love2/manuscript", "en-love2/manuscript"],
+        cover_keys=["love2", "en-love2"],
+    ),
+
+    "love3": dict(
+        name="17-18_끝까지-남은-사람",
+        docs=["업로드-사랑책.md", "업로드-사랑책.html"],
+        steps=[
+            ("1-영어-전자책", [
+                "release/ebook/The One Who Stayed.epub",
+                "release/covers/17_The-One-Who-Stayed-cover.jpg"]),
+            ("2-영어-종이책", [
+                "release/paperback/17_The-One-Who-Stayed_interior-75p.pdf",
+                "release/paperback/17_The-One-Who-Stayed_cover-75p-cream.pdf"]),
+            ("3-한국어-전자책", [
+                "release/ebook/끝까지 남은 사람.epub",
+                "release/covers/18_끝까지-남은-사람-cover.jpg"]),
+            ("4-한국어-종이책", [
+                "release/paperback/18_끝까지-남은-사람_본문-71p.pdf",
+                "release/paperback/18_끝까지-남은-사람_표지-71p-미색.pdf"]),
+        ],
+        spare=[],
+        pages={"영어": 75, "한국어": 71},
+        manuscripts=["love3/manuscript", "en-love3/manuscript"],
+        cover_keys=["love3", "en-love3"],
+    ),
 }
 
 # 장 수를 적을 때 쓰는 말. 검사는 이 말들만 본다.
-CH_KO = {15: "열다섯", 16: "열여섯", 17: "열일곱", 18: "열여덟",
+CH_KO = {11: "열한", 12: "열두", 13: "열세", 14: "열네",
+         15: "열다섯", 16: "열여섯", 17: "열일곱", 18: "열여덟",
          19: "열아홉", 20: "스물", 21: "스물한"}
-CH_EN = {15: "fifteen", 16: "sixteen", 17: "seventeen", 18: "eighteen",
+CH_EN = {11: "eleven", 12: "twelve", 13: "thirteen", 14: "fourteen",
+         15: "fifteen", 16: "sixteen", 17: "seventeen", 18: "eighteen",
          19: "nineteen", 20: "twenty", 21: "twenty-one"}
 
 

@@ -18,18 +18,6 @@ down what they did in that time, there is nothing to write.
 And that time is the longest time that person has. And anyone who has sat in that
 chair **knows that sitting there is the work.**
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 3장과 같은 자리입니다.
-
-     작가님이 **밤을 새워 가며 기다린 자리**가 있으셨을 겁니다.
-     어디였는지, 몇 시간이었는지, 그 의자가 어떻게 생겼었는지요.
-
-     그 시간에 무슨 생각을 하셨는지는 안 적어도 됩니다.
-     **그 자리에 있었다는 것만으로 이 장이 섭니다.**
-
-     하나만 부탁드리면 — 그때 **창문이 있었는지, 몇 시였는지**
-     같은 것을 하나 적어 주세요. 그런 게 들어가야 복도가 복도가 됩니다.
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## The Waiting Side Has No Power
 
 Waiting has one property. The one waiting can do nothing.
@@ -78,12 +66,8 @@ how many hours they sat. You may remember that there was nothing in their hands.
 
 ## Where This Chapter Came From
 
-The corridor in this chapter is a general scene and not a particular place,
-and the blank in the middle is where the place the author actually sat will
-go.
+The corridor in this chapter is a general scene and not a particular place.
 
 There is material on families waiting for relatives who went missing. I did not
 use it. Using their waiting to make the argument of this chapter would turn that
 waiting into my raw material. I decided against it.
-
-The blank in the middle is for the author to fill.

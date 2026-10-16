@@ -91,6 +91,3 @@ The near-absence of outside material here is for the same reason as the first
 book. There were several places where material existed and it was left out.
 Putting it in makes the person in that place a case study, and the decision
 was taken each time and the trace of it is at the end of each chapter.
-
-Two blanks are for the author to fill. The eye in the second chapter and the
-person in the ninth.

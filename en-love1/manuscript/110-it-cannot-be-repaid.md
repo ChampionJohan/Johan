@@ -36,16 +36,6 @@ return it they are old.** It looks like giving back to the same person, and the
 one who gave and the one receiving the return are not the same person. Time went
 through the middle.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 10장과 같은 자리입니다.
-     작가님이 **갚을 수 없다고 느끼신 날**입니다.
-
-     부모님이어도 되고 다른 분이어도 됩니다. 무엇을 해 드렸는데도
-     모자란다고 느끼신 자리면 제일 좋습니다. 그리고 하나만 —
-     **그때 그분이 뭐라고 하셨는지.** 아마 「됐다」 쪽이었을 겁니다.
-     그 말이 다음 절로 넘어갑니다.
-
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## The Other Side Will Not Take It
 
 Here is the oddest part of this place. Try to repay and the other side refuses.
@@ -98,5 +88,3 @@ Nothing in this chapter was brought in from outside.
 There is certainly research, country by country, on what people give their
 parents. I did not use it. Once a figure appears the chapter becomes arithmetic,
 and this chapter is looking at the side where the arithmetic does not close.
-
-The blank in the middle is for the author to fill.

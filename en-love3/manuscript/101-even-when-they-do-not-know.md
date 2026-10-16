@@ -31,19 +31,6 @@ tomorrow's will not, and what it is like to do something daily that does not
 accumulate I do not know, not having done it. Ask people who have and the
 answers are short.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 1장과 같은 자리입니다.
-     이 권의 첫 장이고 아픈 장입니다.
-
-     작가님 주변에 **당신을 알아보지 못하게 된 분**이 계셨으면
-     그 자리를 적어 주세요. 어느 날, 어느 방, 무슨 말을 들으셨는지요.
-     **처음 못 알아보신 그 한 번**만 적어 주셔도 이 장이 섭니다.
-
-     그리고 그 뒤에도 가셨는지요. 가셨으면 가셨다고만 적어 주세요.
-
-     지금도 아프시면 넘기셔도 됩니다. 넘기시면 이 장은
-     알아보지 못하는 쪽을 보는 장으로만 두겠습니다.
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## So Who Is It For
 
 An uncomfortable question comes up here. Who is that act for.
@@ -98,5 +85,3 @@ I know there is research in this direction. I saw in public sources that
 emotional memory persists separately, and I could not read the material properly,
 so it is not in the text. Summarizing what you have not read produces errors.
 That was the thing I most wanted in this chapter, and it is not here.
-
-The blank in the middle is for the author to fill.

@@ -35,18 +35,6 @@ It is not a large change. Nobody becomes a different person overnight. Only, at
 every place where you are about to weigh something, there is now one beat. That
 one beat is everything this book has to offer.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 이 권의 마지막 자리입니다.
-     한국어판 12장과 같은 자리입니다.
-
-     작가님이 **「나는 받고 시작했다」를 알게 되신 날**입니다.
-     깨달음을 적지 마시고 **그날의 장면**을 적어 주세요.
-     어디에 계셨고 무엇을 보고 계셨는지요.
-
-     아마 누군가를 위해 무언가를 하고 계시던 중이었을 겁니다.
-     짧아도 됩니다. 이 권에서 제일 짧아도 됩니다.
-
-     한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## And It Does Not End Here
 
 This book ties no knot.
@@ -95,7 +83,3 @@ were several places a number could have propped something up, and a number
 turns the person in that place into a statistic. Where to put one and where
 not to was a decision taken each time, and the trace of each decision is at
 the end of each chapter.
-
-Five blanks are for the author to fill. The name in the third chapter, the
-drawer in the fourth, the back in the sixth, the day in the tenth, and this
-one.

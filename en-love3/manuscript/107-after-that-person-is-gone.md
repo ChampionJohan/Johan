@@ -30,20 +30,6 @@ Thinking about why, it seems to be because that person's body touched the object
 The place their hand went is still there. The worn patch on that bowl was made by
 their hand, and it cannot be made again.
 
-<!-- 확인: 겪은 일 — 이 자리에 장면 하나. 한국어판 7장과 같은 자리입니다.
-     이 장은 아픈 장입니다.
-
-     작가님에게 **먼저 가신 분**이 계셨을 겁니다. 할머님이든 다른
-     분이든요. 그분이 남기고 간 것 가운데 **지금도 가지고 계신 것
-     하나**를 적어 주세요. 값나가는 것은 아닐 겁니다.
-
-     그리고 하나만 더 — **그분의 말투나 습관 가운데 작가님이
-     아직 쓰고 있는 것**이 있으면 그걸 적어 주세요.
-     그게 이 장에서 제일 중요한 한 줄입니다.
-
-     모르시겠으면 가족에게 물어보셔도 됩니다. 본인은 잘 안 보이고
-     옆에서는 보입니다. 한국어로 주시면 제가 영어로 옮깁니다. -->
-
 ## What Continues on the Remaining Side
 
 This book is about what does not end. Here is the clearest instance of it. One
@@ -98,5 +84,3 @@ and then they are grading their own grief. Better left out, I thought.
 
 Whether there is research on being unable to throw away a keepsake I did not look
 for.
-
-The blank in the middle is for the author to fill.
