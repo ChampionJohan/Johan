@@ -95,6 +95,28 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <p><strong>파일은 다시 안 올립니다.</strong> 이미 올라간 본문과 표지를 그대로 씁니다.</p>
 <p>3번을 꼭 같이 보세요. 255쪽에서 흰 종이를 고르면 책등이 <strong>1.6 mm</strong> 어긋나고, 그건 인쇄본이 나와야 보입니다.</p>
 <hr>
+<h1>11번 — ISBN 은 붙었고 바코드 자리가 좁았습니다 (2026-10-16)</h1>
+<p>11번(<code>How to See a Person</code> · 180쪽)에서 같은 저내용·ISBN 오류가 났고, 네 칸을 고치니 <strong>ISBN 이 제대로 붙었습니다.</strong></p>
+<pre><code>9798162837541  →  979-8-162-83754-1</code></pre>
+<p>열세 자리이고 <code>979</code> 로 시작하고 <strong>검사 숫자까지 맞습니다.</strong> <code>979-8</code> 이 KDP 무료 ISBN 이 쓰는 자리입니다. 앞서 05·07번에서 봤던 <code>M0D…</code> 꼴이 아니라 진짜 ISBN 입니다.</p>
+<blockquote><p><strong>바코드 아래 숫자가 <code>978</code>·<code>979</code> 로 시작하면 ISBN 이 붙은 것입니다.</strong> 이게 제일 빠른 확인법입니다.</p></blockquote>
+<h2>그런데 바코드가 흰 자리를 넘어갔습니다</h2>
+<p>미리보기를 보니 아마존이 얹은 바코드가 <strong>우리가 비워 둔 흰 네모보다 컸습니다.</strong></p>
+<p>아마존 바코드는 셋이 붙어 있습니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>위</td><td><code>ISBN 9798162837541</code> 숫자 한 줄</td></tr><tr><td>가운데</td><td>EAN-13 바코드</td></tr><tr><td>오른쪽</td><td>다섯 자리 덧바코드 <code>90000</code> (값 안 적음이라는 뜻)</td></tr></tbody></table></div>
+<p>셋을 합치면 <strong>2.0 인치에 안 들어갑니다.</strong> 넘어간 쪽이 어두운 바탕에 얹히면 스캔이 안 될 수 있습니다.</p>
+<p><code>wrap_cover.py</code> 의 흰 자리를 넓혔습니다.</p>
+<pre><code>BARCODE_W, BARCODE_H = 2.0, 1.2   →   2.6, 1.5</code></pre>
+<p><strong>아마존이 쓰는 정확한 크기는 확인 못 했습니다.</strong> <code>kdp.amazon.com</code> 이 막혀 있습니다. 그래서 재지 않고 넉넉하게 잡았습니다. <strong>흰 자리는 커서 손해 볼 것이 없습니다.</strong></p>
+<h2>다시 만든 것과 안 만든 것</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>다시 만들었습니다</td><td>09 · 10 · 11 · 12 · 사랑 여섯 권 — <strong>아직 안 낸 책들</strong></td></tr><tr><td>안 건드렸습니다</td><td><strong>01~08 — 이미 낸 책들</strong></td></tr></tbody></table></div>
+<p>이미 낸 책은 <code>CLAUDE.md</code> 6번대로 안 건드립니다. 그 책들의 흰 자리는 <code>2.0 x 1.2</code> 그대로이고, 지금까지 그걸로 통과했습니다.</p>
+<h2>「non-printable markup 을 지웠다」는 알림</h2>
+<p>같은 화면에 이 줄이 같이 나왔습니다.</p>
+<blockquote><p>We've removed non-printable markup from your document. Check these pages to confirm… <strong>2 3</strong></p></blockquote>
+<p><strong>오류가 아닙니다.</strong> 2·3쪽은 <strong>차례</strong>이고, 거기 걸린 <strong>링크 스무 개</strong>를 아마존이 인쇄용에서 뺀 것입니다. 우리 본문 PDF 는 HTML 에서 뽑아서 차례에 누르는 링크가 들어 있습니다.</p>
+<p><strong>인쇄본에서는 링크가 아무 일도 안 하고, 쪽 번호는 글자라 그대로 남습니다.</strong> 2·3쪽을 한 번 넘겨보시고 차례가 멀쩡하면 넘어가시면 됩니다.</p>
+<hr>
 <h1>여덟 권 전부 확인하세요</h1>
 <p>저내용 체크는 한 번 실수하면 <strong>다음 책을 올릴 때 그대로 따라오는 경우</strong>가 있습니다.</p>
 <div class="table-wrap"><table><thead><tr><th>#</th><th>책</th><th>볼 곳</th></tr></thead><tbody><tr><td>01</td><td>Who's Actually Paying?</td><td>Categories 저내용 · Print ISBN</td></tr><tr><td>02</td><td>The Fourth Box</td><td>〃</td></tr><tr><td>03</td><td>It's Free. So How Are They Rich?</td><td>〃</td></tr><tr><td>04</td><td>I Started. So Why Isn't It Working?</td><td>〃</td></tr><tr><td>05</td><td>Why Is This Still Here?</td><td><strong>지금 막혀 있음</strong></td></tr><tr><td>06</td><td>베스트셀러 &amp; 스테디셀러</td><td>〃</td></tr><tr><td>07</td><td>Everyone Had One.</td><td><strong>두 번 걸림</strong> — 바코드 체크(10-02) · 저내용·ISBN(10-09)</td></tr><tr><td>08</td><td>다들 갖고 있었잖아.</td><td>아직 안 올림</td></tr></tbody></table></div>
