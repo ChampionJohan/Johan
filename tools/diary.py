@@ -33,6 +33,7 @@ DOCS = (("책구상.md", "책구상.html", "책 구상"),)  # 일기가 아닌 �
 PASSAGE_ROW = re.compile(r"^\|\s*말씀\s*\|\s*([^|]+?)\s*\|")
 PASSAGE_HEAD = re.compile(r"^##\s*말씀\s*[-\u2013\u2014]\s*(.+?)\s*$")
 NUMBERS = re.compile(r"\d+")
+SEGMENT_SPLIT = re.compile(r"[,·;]")  # '레위기 27장, 민수기 1~2장' 처럼 두 권을 함께 읽은 날
 
 TEMPLATE = """---
 title: {day} 기록
@@ -126,7 +127,30 @@ def passage_parts(text):
     if not nums:
         return None
     book = text[:text.index(str(nums[0]))].strip(" ,.") or "(권 미상)"
-    return book, nums[0], nums[-1]
+    start, end = nums[0], nums[-1]
+    if end < start:
+        end = start
+    return book, start, end
+
+
+def passage_segments(text):
+    """'레위기 27장, 민수기 1~2장' -> [('레위기',27,27), ('민수기',1,2)].
+
+    쉼표로 나뉜 각 조각을 따로 읽는다. 권 이름이 빠진 조각은 앞 조각의 권으로 본다.
+    """
+    segments = []
+    for chunk in SEGMENT_SPLIT.split(text):
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        parts = passage_parts(chunk)
+        if not parts:
+            continue
+        book, start, end = parts
+        if book == "(권 미상)" and segments:
+            book = segments[-1][0]
+        segments.append((book, start, end))
+    return segments
 
 
 def passage_note(body):
@@ -167,16 +191,19 @@ def reading_rows():
         text = passage_of(meta, body)
         if not text:
             continue
-        parts = passage_parts(text)
-        if not parts:
+        segments = passage_segments(text)
+        if not segments:
             continue
-        book, start, end = parts
-        flow = flow_of(book, start, end, previous)
-        previous = (book, end)
-        chapters.setdefault(book, set()).update(range(start, end + 1))
+        first_book, first_start, first_end = segments[0]
+        flow = flow_of(first_book, first_start, first_end, previous)
+        count = 0
+        for book, start, end in segments:
+            chapters.setdefault(book, set()).update(range(start, end + 1))
+            count += end - start + 1
+        previous = (segments[-1][0], segments[-1][2])
         rows.append({
             "day": day, "weekday": meta.get("weekday", ""), "text": text,
-            "count": end - start + 1, "flow": flow, "note": passage_note(body),
+            "count": count, "flow": flow, "note": passage_note(body),
         })
     return rows, chapters
 
