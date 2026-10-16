@@ -234,7 +234,7 @@ BOOKS = {
             "아직 아무것도 못 하는 사람, 한동안 멈춘 사람, 할 수 있던 것을 "
             "하나씩 돌려주는 사람, 할 줄 아는데 쓸 데가 없어진 사람. 그 네 자리에서 "
             "사람들이 하는 일이 서로 닮아 있다. 행동은 반박이 안 된다.",
-            "열일곱 장이고 장마다 오늘 할 것 하나가 붙어 있다. 그리고 장마다 "
+            "열여덟 장이고 장마다 오늘 할 것 하나가 붙어 있다. 그리고 장마다 "
             "하나는 안 풀고 끝낸다. 마지막 장은 질문 하나로 닫고 그 뒤에 한 줄도 없다.",
         ]),
 
@@ -256,7 +256,7 @@ BOOKS = {
             "Someone handing back one ability at a time. Someone skilled with "
             "nowhere to use it. In all four places people do the same kinds of "
             "things. What people do cannot be argued with.",
-            "Seventeen chapters, each ending with one thing to do today, and each "
+            "Eighteen chapters, each ending with one thing to do today, and each "
             "leaving one thing unresolved. The last chapter closes on a question "
             "with nothing written after it.",
         ]),

@@ -6,13 +6,19 @@
 
 폴더 이름의 번호가 그대로 올리는 순서다. 1번부터 차례로 열면 된다.
 
-묶기 전에 두 가지를 검사한다. 둘 다 전에 실제로 당한 것들이다.
+묶기 전에 세 가지를 검사한다. 셋 다 전에 실제로 당한 것들이다.
 
   1. 본문 PDF 의 쪽수가 파일 이름의 쪽수와 같은가
   2. 표지 PDF 의 폭이 그 쪽수로 계산한 폭과 같은가
+  3. 표지 뒷면 글과 설명문에 적힌 장 수가 실제 장 수와 같은가
 
 둘째가 중요하다. 쪽수가 바뀌었는데 표지를 다시 안 만들면 책등이 어긋나고,
 그건 인쇄본이 나와야 보인다. 여기서 막는다.
+
+셋째는 11번에서 당했다. 14장을 새로 넣어 열일곱 장이 열여덟 장이 됐는데
+표지 뒷면 글과 설명문의 숫자를 같이 안 고쳤다. 앞띠는 18 CHAPTERS 인데
+뒷면은 Seventeen chapters 인 표지가 검수까지 올라갔다. 사람이 세는 숫자를
+손으로 적어 두면 원고가 바뀌어도 안 따라온다. 그래서 여기서 센다.
 """
 
 import io
@@ -81,8 +87,17 @@ BUNDLES = {
         ],
         spare=[],
         pages={"영어": 180, "한국어": 158},
+        # 장 수를 손으로 안 적는다. 여기 적힌 폴더를 세어서 쓴다.
+        manuscripts=["person/manuscript", "en-person/manuscript"],
+        cover_keys=["person", "en-person"],
     ),
 }
+
+# 장 수를 적을 때 쓰는 말. 검사는 이 말들만 본다.
+CH_KO = {15: "열다섯", 16: "열여섯", 17: "열일곱", 18: "열여덟",
+         19: "열아홉", 20: "스물", 21: "스물한"}
+CH_EN = {15: "fifteen", 16: "sixteen", 17: "seventeen", 18: "eighteen",
+         19: "nineteen", 20: "twenty", 21: "twenty-one"}
 
 
 def pages_of(path):
@@ -123,6 +138,79 @@ def check(step_files):
             bad.append("%s — %d쪽이면 폭이 %.4f in 이어야 하는데 %.4f in 이다. "
                        "표지를 다시 만들 것"
                        % (os.path.basename(cpath), real, want, got))
+    return bad
+
+
+def chapters_of(folder):
+    """장 파일만 센다. 앞글(0 으로 시작)과 부 여는 글(00 으로 끝)은 뺀다."""
+    import glob
+    import re
+    files = glob.glob(os.path.join(ROOT, folder, "*.md"))
+    return len([f for f in files
+                if re.search(r"[/\\][1-9]\d\d-", f)
+                and not re.search(r"[/\\][1-9]00-", f)])
+
+
+def check_chapters(spec):
+    """표지 뒷면 글과 설명문에 적힌 장 수가 실제와 같은가.
+
+    사람이 손으로 적어 둔 숫자는 원고가 바뀌어도 안 따라온다.
+    11번이 그래서 앞띠와 뒷면의 숫자가 다른 채로 검수까지 갔다.
+
+    보는 데는 두 군데뿐이다. 다른 데까지 보면 다른 책의 숫자와
+    지난 일을 적어 둔 줄까지 걸려서 거짓 경보만 난다.
+
+      1. cover.py 의 이 책 항목 — back_head 와 back
+      2. 업로드 문서의 ```html 블록 — 실제로 붙여 넣는 글
+    """
+    import re
+    folders = spec.get("manuscripts")
+    if not folders:
+        return []
+
+    counts = {f: chapters_of(f) for f in folders}
+    real = set(counts.values())
+    bad = []
+    if len(real) > 1:
+        bad.append("원고 폴더마다 장 수가 다르다 — %s"
+                   % " · ".join("%s %d장" % (f, n) for f, n in counts.items()))
+        return bad
+    n = real.pop()
+
+    texts = {}
+
+    for key in spec.get("cover_keys", []):
+        try:
+            import cover
+        except Exception:
+            break
+        d = cover.BOOKS.get(key)
+        if not d:
+            continue
+        texts["표지 뒷면 · %s" % key] = " ".join(
+            [d.get("back_head", "")] + list(d.get("back", [])))
+
+    for doc in spec.get("docs", []):
+        if not doc.endswith(".md"):
+            continue
+        path = os.path.join(ROOT, doc)
+        if not os.path.exists(path):
+            continue
+        blocks = re.findall(r"```html\n(.*?)```",
+                            io.open(path, encoding="utf-8").read(), flags=re.S)
+        if blocks:
+            texts["설명문 · %s" % doc] = "\n".join(blocks)
+
+    for where, text in texts.items():
+        low = text.lower()
+        for k, word in CH_KO.items():
+            if k != n and re.search(word + r"\s*장", text):
+                bad.append("%s — 「%s 장」이라고 적혀 있는데 실제는 %d장"
+                           % (where, word, n))
+        for k, word in CH_EN.items():
+            if k != n and re.search(word + r"\s+chapters", low):
+                bad.append("%s — 「%s chapters」라고 적혀 있는데 실제는 %d장"
+                           % (where, word, n))
     return bad
 
 
@@ -178,6 +266,13 @@ def make(key):
     # 없는 파일이 있으면 묶지 않는다. 반쯤 든 zip 이 제일 나쁘다.
     wanted = [f for _, fs in spec["steps"] for f in fs]
     wanted += spec.get("spare", []) + spec["docs"]
+    wrong = check_chapters(spec)
+    if wrong:
+        print("장 수가 안 맞습니다. 묶지 않았습니다.")
+        for w in wrong:
+            print("   %s" % w)
+        return 1
+
     missing = [f for f in wanted if not os.path.exists(os.path.join(ROOT, f))]
     if missing:
         print("없는 파일이 있습니다. 묶지 않았습니다.")
