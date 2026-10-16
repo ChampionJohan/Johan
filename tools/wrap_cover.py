@@ -44,11 +44,23 @@ PAPER = {"cream": 0.0025, "white": 0.002252, "color": 0.002347}
 #
 # 아마존이 쓰는 정확한 크기는 확인 못 했다. kdp.amazon.com 이 막혀 있다.
 # 그래서 재지 않고 넉넉하게 잡았다. 흰 자리는 커서 손해 볼 것이 없다.
-BARCODE_W, BARCODE_H = 2.6, 1.5
+#
+# 2026-10-16 두 번째: 넓히고도 또 넘어갔다. 이번에는 크기가 아니라
+# 자리였다. 아마존은 우리가 비워 둔 데보다 더 구석에 찍는다.
+# 그래서 3.0 x 1.9 로 더 넓히고, 아래는 BARCODE_PAD 를 0 으로 두어
+# 도련까지 흰 자리를 뺀다. 재단이 조금 밀려도 흰 자리가 종이 끝까지
+# 간다. 두 번 고쳐 올리게 했으니 이번에는 재지 말고 확실하게 간다.
+BARCODE_W, BARCODE_H = 3.0, 1.9
 
-# 바코드 자리를 재단선에서 얼마나 띄울지. KDP 요구는 0.25 이상인데
-# 딱 0.25 로 두면 저쪽 검사에서 반올림으로 모자라게 읽힐 수 있어 넉넉히 준다.
-BARCODE_PAD = 0.375
+# 바코드 자리를 재단선에서 얼마나 띄울지.
+#
+# 0 이다. 띄우지 않고 도련 끝까지 흰 자리를 뺀다.
+#
+# 0.25 는 글자를 안쪽에 두라는 요구이고 흰 바탕에는 해당이 없다.
+# 0.375 로 띄워 뒀더니 아마존 바코드가 그 바깥에 찍혀서 어두운 바탕에
+# 걸쳤다. 흰 바탕이 종이 끝까지 가 있으면 아마존이 어디에 찍든
+# 흰 데 위에 앉는다. 이쪽이 스캔에 안전하다.
+BARCODE_PAD = 0.0
 
 # 그 자리에 무엇을 둘지.
 #   white — 흰 바탕을 깐다 (기본값). 아마존이 그 안에 자기 바코드를 찍는다.
@@ -106,10 +118,15 @@ def draw_back(d, ox, oy, w, h, spec):
         track(d, (L, y + 20 * s), spec["age"].upper(), f_age, accent, 6 * s)
 
     # 바코드 자리 — 비워 두는 것이 기본이다. 위의 BARCODE_FILL 설명을 볼 것.
+    #
+    # 아래로는 도련 끝까지 뺀다. 재단선에서 끊어 두면 재단이 바깥으로
+    # 밀렸을 때 흰 자리 밑에 어두운 띠가 생긴다. 도련까지 가 있으면
+    # 어디서 잘려도 흰 자리가 종이 끝까지 간다.
     if BARCODE_FILL == "white":
         bx = ox + w - px(BARCODE_PAD) - px(BARCODE_W)
         by = oy + h - px(BARCODE_PAD) - px(BARCODE_H)
-        d.rectangle([bx, by, bx + px(BARCODE_W), by + px(BARCODE_H)], fill="#FFFFFF")
+        bottom = oy + h + px(BLEED)
+        d.rectangle([bx, by, bx + px(BARCODE_W), bottom], fill="#FFFFFF")
 
 
 def draw_spine(d, ox, oy, w, h, spec, pages):

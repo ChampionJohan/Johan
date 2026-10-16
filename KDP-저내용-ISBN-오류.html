@@ -107,7 +107,15 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <p>셋을 합치면 <strong>2.0 인치에 안 들어갑니다.</strong> 넘어간 쪽이 어두운 바탕에 얹히면 스캔이 안 될 수 있습니다.</p>
 <p><code>wrap_cover.py</code> 의 흰 자리를 넓혔습니다.</p>
 <pre><code>BARCODE_W, BARCODE_H = 2.0, 1.2   →   2.6, 1.5</code></pre>
-<p><strong>아마존이 쓰는 정확한 크기는 확인 못 했습니다.</strong> <code>kdp.amazon.com</code> 이 막혀 있습니다. 그래서 재지 않고 넉넉하게 잡았습니다. <strong>흰 자리는 커서 손해 볼 것이 없습니다.</strong></p>
+<p><strong>아마존이 쓰는 정확한 크기는 확인 못 했습니다.</strong> <code>kdp.amazon.com</code> 이 막혀 있습니다.</p>
+<h2>넓히고도 또 넘어갔습니다 — 크기가 아니라 자리였습니다</h2>
+<p>2.6 x 1.5 로 올렸는데 미리보기에서 <strong>또 넘어갔습니다.</strong> 이번에는 크기가 아니라 <strong>자리</strong>였습니다. 아마존은 <strong>우리가 비워 둔 데보다 더 구석에</strong> 찍습니다. 우리는 재단선에서 0.375 인치를 띄워 뒀는데 아마존 바코드는 그 바깥에 앉았습니다.</p>
+<p><strong>0.25 인치 안쪽 규칙은 글자에 해당하는 것이고 흰 바탕에는 해당이 없습니다.</strong> 띄울 이유가 없었습니다.</p>
+<pre><code>BARCODE_W, BARCODE_H = 2.0, 1.2   →   2.6, 1.5   →   3.0, 1.9
+BARCODE_PAD          = 0.375      →   0.375      →   0.0</code></pre>
+<p>그리고 <strong>아래쪽은 도련 끝까지 뺐습니다.</strong> 재단선에서 끊어 두면 재단이 바깥으로 밀렸을 때 흰 자리 밑에 어두운 띠가 생깁니다. 도련까지 가 있으면 어디서 잘려도 흰 자리가 종이 끝까지 갑니다.</p>
+<p><strong>이제 뒤표지 오른쪽 아래 모서리가 통째로 흰 자리입니다.</strong> 재단 뒤에 보이는 크기가 3.0 x 1.9 인치이고, 책등 접히는 데와 아래 재단선에 둘 다 닿습니다. <strong>아마존이 재단선 안쪽 어디에 찍든 흰 데 위에 앉습니다.</strong></p>
+<p>두 번 고쳐 올리게 했습니다. 다음부터는 <strong>재지 말고 모서리까지 빼는 쪽</strong>으로 갑니다. 흰 자리는 커서 손해 볼 것이 없습니다.</p>
 <h2>다시 만든 것과 안 만든 것</h2>
 <div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>다시 만들었습니다</td><td>09 · 10 · 11 · 12 · 사랑 여섯 권 — <strong>아직 안 낸 책들</strong></td></tr><tr><td>안 건드렸습니다</td><td><strong>01~08 — 이미 낸 책들</strong></td></tr></tbody></table></div>
 <p>이미 낸 책은 <code>CLAUDE.md</code> 6번대로 안 건드립니다. 그 책들의 흰 자리는 <code>2.0 x 1.2</code> 그대로이고, 지금까지 그걸로 통과했습니다.</p>
