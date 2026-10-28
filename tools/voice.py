@@ -35,6 +35,8 @@ BOOKS = {
     "love1": "love1", "love2": "love2", "love3": "love3",
     "en-love1": "en-love1", "en-love2": "en-love2", "en-love3": "en-love3",
     "myname": "myname", "en-myname": "en-myname",
+    "view1": "view1", "view2": "view2",
+    "view3": "view3", "view4": "view4",
 }
 
 
@@ -53,6 +55,21 @@ WATCH = {
 }
 WATCH["love2"] = WATCH["love1"]
 WATCH["love3"] = WATCH["love1"]
+
+# 『어디서 보았니』 네 권도 같다. 기준 영 번이다.
+# 사자·양·소·독수리가 어디서 왔는지는 네쪽책-기획.md 에만 적혀 있고
+# 본문에는 성경 구절이 한 줄도 안 들어간다. CLAUDE.md 5-5 절.
+#
+# 「동화가 달아지는 말」 을 뒤에 붙였다. 동화라고 생각하면 글이 저절로
+# 달아지는데, 달면 어른이 못 읽는다. 기준은 영 번이 아니라 **다섯 번**
+# 이어야 맞지만 voice.py 가 목록당 기준을 하나만 받아서 우선 영 번으로
+# 두고 센다. 걸리면 세어 보고 다섯 아래면 넘어간다.
+WATCH["view1"] = (0, WATCH["love1"][1] + [
+    "반짝이", "살며시", "포근", "따스한 햇살", "속삭이",
+    "아름다운 마음", "소중한 추억", "작은 기적"])
+WATCH["view2"] = WATCH["view1"]
+WATCH["view3"] = WATCH["view1"]
+WATCH["view4"] = WATCH["view1"]
 
 # 영어 쪽도 영 번이다. 「grace」 는 「with grace」 같은 보통 뜻으로도 쓰이지만
 # 이 세 권에서는 안 쓰기로 했다. 걸리면 다른 말로 고친다.
