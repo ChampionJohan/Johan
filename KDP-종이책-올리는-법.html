@@ -1,0 +1,194 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KDP 종이책 올리는 법 — 우리가 막혔던 자리를 적어 둔 것</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>이 문서는 무엇인가</h1>
+<p><strong>아마존 KDP 에 종이책(페이퍼백)을 올리는 법입니다.</strong></p>
+<p>열여덟 권을 만들면서 <strong>같은 자리에서 네 번 막혔습니다.</strong> 표지를 두 번 다시 만들고 세 번 다시 올린 일도 있습니다. 그때마다 원인이 표지가 아니라 <strong>체크 상자 하나</strong>였습니다.</p>
+<p>그 자리들을 적어 둔 것이고, <strong>이 문서대로 하시면 그 네 번을 안 겪습니다.</strong></p>
+<p>이 글은 특정한 도구를 쓰지 않습니다. 파일 둘만 있으면 됩니다.</p>
+<hr>
+<h1>먼저 — 종이책은 전자책과 다른 물건입니다</h1>
+<p>같은 책이라도 <strong>올리는 자리가 다르고 파일이 다릅니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th>전자책</th><th>종이책</th></tr></thead><tbody><tr><td>본문</td><td>EPUB (흐르는 글)</td><td><strong>PDF</strong> (쪽이 고정된 글)</td></tr><tr><td>표지</td><td>앞면만, 이미지</td><td><strong>앞·책등·뒤가 이어진 한 장, PDF</strong></td></tr><tr><td>쪽수</td><td>없음</td><td><strong>있고, 표지 크기가 거기서 나옵니다</strong></td></tr></tbody></table></div>
+<p><strong>둘째 줄이 제일 중요합니다.</strong> 종이책 표지는 앞면 그림이 아닙니다. 뒤표지 + 책등 + 앞표지가 <strong>한 장으로 펼쳐진</strong> 것이고, 그 폭이 <strong>쪽수에 따라 달라집니다.</strong></p>
+<hr>
+<h1>준비할 파일 둘</h1>
+<h2>1. 본문 PDF</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>판형</td><td>책에 맞게 고르되 <strong>정하면 끝까지 같은 것</strong></td></tr><tr><td>글꼴</td><td><strong>PDF 안에 넣으세요</strong>(embed). 안 넣으면 다른 글꼴로 찍힙니다</td></tr><tr><td>쪽 번호</td><td>넣으세요</td></tr><tr><td>쪽수</td><td><strong>이 숫자를 적어 두세요.</strong> 표지 계산에 씁니다</td></tr></tbody></table></div>
+<p><strong>쪽수는 짝수로 맞추는 쪽이 낫습니다.</strong> 홀수면 마지막에 빈 쪽이 하나 붙습니다. 막히지는 않습니다.</p>
+<h2>2. 감싸는 표지 PDF</h2>
+<p><strong>한 장입니다.</strong> 뒤 · 책등 · 앞이 왼쪽에서 오른쪽으로 이어집니다.</p>
+<pre><code>┌──────────────┬──┬──────────────┐
+│              │책│              │
+│   뒤표지      │등│   앞표지      │
+│              │  │              │
+└──────────────┴──┴──────────────┘
+   ← 여기 오른쪽 아래에 바코드 자리</code></pre>
+<p>크기를 <strong>계산해서</strong> 만들어야 합니다. 다음 절입니다.</p>
+<hr>
+<h1>표지 크기 — 이 식 그대로</h1>
+<pre><code>폭  = 0.125 + (판형 가로) + 책등 + (판형 가로) + 0.125
+높이 = 0.125 + (판형 세로) + 0.125
+
+책등 = 쪽수 × 종이 두께</code></pre>
+<p>앞뒤의 <code>0.125</code> 는 <strong>도련(bleed)</strong> 입니다. 재단할 때 잘려 나가는 여유분이고, 빼먹으면 가장자리에 흰 줄이 생깁니다.</p>
+<h2>종이 두께 — 쪽당 인치</h2>
+<div class="table-wrap"><table><thead><tr><th>종이</th><th>두께</th></tr></thead><tbody><tr><td><strong>미색(cream)</strong></td><td><strong>0.0025</strong></td></tr><tr><td>흰색(white)</td><td>0.002252</td></tr><tr><td>컬러</td><td>0.002347</td></tr></tbody></table></div>
+<h2>6×9 인치로 200쪽이면</h2>
+<pre><code>책등 = 200 × 0.0025 = 0.5
+폭   = 0.125 + 6 + 0.5 + 6 + 0.125 = 12.75
+높이 = 0.125 + 9 + 0.125 = 9.25</code></pre>
+<p><strong>12.75 × 9.25 인치짜리 PDF 한 장</strong>이 답입니다.</p>
+<h2>글자는 재단선에서 0.25 안쪽에</h2>
+<p>바깥쪽 <code>0.125</code> 는 잘려 나가고, 그 안쪽 <code>0.125</code> 도 재단이 밀리면 위험합니다. <strong>가장자리에서 0.25 인치 안쪽</strong>에 글자를 두세요.</p>
+<p><strong>책등 글자는 100쪽부터 넣을 수 있습니다.</strong> 그 아래면 책등이 너무 얇아 글자가 안 들어갑니다.</p>
+<blockquote><p><code>kdp.amazon.com</code> 을 직접 못 열어서 이 100쪽 기준은 <strong>확인하지 못했습니다.</strong> 저희가 쓰고 있는 값입니다.</p></blockquote>
+<hr>
+<h1>바코드 자리 — 여기서 세 번 다시 올렸습니다</h1>
+<p><strong>아마존이 뒤표지 오른쪽 아래에 바코드를 직접 찍습니다.</strong> 우리가 바코드를 그려 넣는 것이 아니라, <strong>그 자리를 비워 두는 것</strong>입니다.</p>
+<p>흰 네모 하나를 거기 놓으면 됩니다. 값은 이렇습니다.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>흰 네모 크기</strong></td><td><strong>2.0 × 1.2 인치</strong></td></tr><tr><td><strong>자리</strong></td><td>책등 쪽에서 <strong>0.25</strong> · 아래 재단선에서 <strong>0.25</strong></td></tr></tbody></table></div>
+<p><strong>미리보기 그림을 픽셀로 재서 나온 값입니다</strong>(2026년 10월 16일).</p>
+<h2>여기서 겪은 일</h2>
+<p>처음에 <code>2.0 × 1.2</code> 로 만들고 띄우는 값을 <code>0.375</code> 로 뒀습니다. <strong>바코드가 흰 자리를 넘어갔습니다.</strong></p>
+<p>크기가 작은 줄 알고 <code>2.6 × 1.5</code> 로 넓혔습니다. <strong>또 넘어갔습니다.</strong></p>
+<p><code>3.0 × 1.9</code> 에 모서리까지 붙였더니 들어가기는 하는데 <strong>흰 자리가 너무 커서 표지가 보기 싫어졌습니다.</strong></p>
+<p>그제서야 미리보기를 재 봤습니다. <strong>처음 크기가 맞았습니다.</strong> 틀린 것은 <strong>띄우는 값 하나</strong>였습니다. <code>0.375</code> 로 띄우면 우리 네모가 아마존 자리보다 <code>0.125</code> 안쪽에 있어서 바코드 오른쪽과 아래가 밖으로 나갑니다.</p>
+<blockquote><p><strong>짐작하지 말고 미리보기 그림을 재세요.</strong> 세 번 올린 값이 그 한 줄이었습니다.</p></blockquote>
+<p><strong>바코드 위에 ISBN 숫자가 한 줄 붙고 오른쪽에 다섯 자리 덧바코드가 또 붙습니다.</strong> 아마존이 그걸 <strong>자기 흰 상자에 담아</strong> 찍기 때문에 우리 네모가 딱 맞아도 됩니다.</p>
+<hr>
+<h1>KDP 화면에서 틀리면 막히는 네 칸</h1>
+<p><strong>여기가 이 문서의 알맹이입니다.</strong> 네 칸 다 기본값이 틀린 쪽입니다.</p>
+<div class="table-wrap"><table><thead><tr><th>탭</th><th>칸</th><th>맞는 값</th></tr></thead><tbody><tr><td>Details</td><td>Categories 의 <strong>저내용(low-content) 체크</strong></td><td><strong>끔</strong></td></tr><tr><td>Content</td><td><strong>Print ISBN</strong></td><td><strong>Get a free KDP ISBN</strong></td></tr><tr><td>Content</td><td><strong>Ink and Paper Type</strong></td><td><strong>cream paper</strong></td></tr><tr><td>Content</td><td><strong>"Yes, my cover has a barcode"</strong></td><td><strong>끔</strong></td></tr></tbody></table></div>
+<h2>① 저내용 체크 — 끄세요</h2>
+<p><strong>저내용(low-content)은 공책·일기장·색칠북입니다.</strong> 글이 있는 책은 아닙니다.</p>
+<p>이걸 켜 두면 <strong>ISBN 을 못 받습니다.</strong> 저내용 책은 ISBN 없이 내는 것이 기본이라 KDP 가 그 칸을 막아 버립니다. 그리고 분류도 이상한 데로 갑니다.</p>
+<p><strong>저희 05번이 여기서 막혔습니다.</strong> 표지를 두 번 고쳤는데 둘 다 헛수고였고, 원인은 이 체크 하나였습니다.</p>
+<h2>② Print ISBN — 무료 ISBN 을 받으세요</h2>
+<p><strong><code>Get a free KDP ISBN</code> 을 고르세요.</strong> 공짜입니다.</p>
+<p>ISBN 을 따로 사서 넣을 수도 있는데, 처음이면 그럴 이유가 없습니다. 무료 ISBN 은 <strong>아마존 전용</strong>이라 다른 데서 그 번호로 못 내지만, 어차피 다른 데 낼 거면 그때 따로 받으면 됩니다.</p>
+<p><strong>받은 번호가 <code>979-8</code> 로 시작하면 정상입니다.</strong> 그게 KDP 무료 ISBN 대역입니다.</p>
+<h2>③ 종이 — 표지를 계산한 종이와 같은 것을 고르세요</h2>
+<p><strong>이게 제일 무섭습니다. 안 막히고 그냥 넘어갑니다.</strong></p>
+<p>표지는 종이 두께로 계산해서 만듭니다. 미색으로 계산해 놓고 화면에서 흰색을 고르면 <strong>책등 두께가 달라집니다.</strong></p>
+<p>333쪽이면 <strong>2.1 mm 가 밀립니다.</strong> 책등에 넣은 글자가 앞표지로 넘어갑니다.</p>
+<p><strong>그런데 화면에서는 안 보입니다. 인쇄본이 나와야 보입니다.</strong></p>
+<blockquote><p>표지를 미색으로 계산했으면 화면에서도 <strong>cream</strong> 입니다. 둘을 반드시 같게 두세요.</p></blockquote>
+<h2>④ "내 표지에 바코드가 있다" — 끄세요</h2>
+<p><strong>우리 표지에는 바코드가 없습니다. 흰 자리만 있습니다.</strong></p>
+<p>이걸 켜 두면 KDP 가 표지에서 바코드를 찾습니다. 못 찾으면 <strong>「valid barcode 를 찾을 수 없다」</strong>며 막습니다.</p>
+<p><strong>저희 07번이 이 오류였습니다.</strong> 표지가 잘못된 줄 알고 한참 뜯어봤습니다.</p>
+<hr>
+<h1>표지를 의심하기 전에 이 네 칸을 보세요</h1>
+<p><strong>이게 저희가 배운 것 가운데 제일 쓸모 있는 한 줄입니다.</strong></p>
+<p>막혔을 때 사람은 표지부터 의심합니다. 그런데 저희가 겪은 네 번 가운데 <strong>표지가 원인이었던 적이 한 번도 없습니다.</strong></p>
+<p>판별법이 하나 있습니다.</p>
+<blockquote><p><strong>같은 코드로 만든 다른 책의 표지가 통과했으면, 표지가 원인이 아닙니다.</strong></p></blockquote>
+<hr>
+<h1>쪽수가 바뀌면 표지를 반드시 다시 만드세요</h1>
+<p><strong>원고를 한 줄만 고쳐도 쪽수가 바뀔 수 있습니다.</strong> 쪽수가 바뀌면 책등 두께가 바뀌고, <strong>표지 폭이 틀려집니다.</strong></p>
+<pre><code>쪽수 바뀜 → 본문 PDF 다시 → 표지 다시 → 올리기</code></pre>
+<p><strong>가운데를 빼먹는 것이 제일 흔한 실수입니다.</strong> 그리고 이것도 <strong>인쇄본이 나와야 보입니다.</strong></p>
+<p>저희는 묶기 전에 기계가 검사하게 해 뒀습니다.</p>
+<ol><li>본문 PDF 의 <strong>실제 쪽수</strong>가 파일 이름에 적힌 쪽수와 같은가</li><li><strong>표지 PDF 의 폭</strong>이 그 쪽수로 계산한 폭과 같은가</li></ol>
+<p><strong>둘 다 사람이 세면 틀립니다.</strong> 파일에서 직접 읽게 하세요.</p>
+<hr>
+<h1>뒷면 글에 적은 숫자를 조심하세요</h1>
+<p><strong>열한 번째 책에서 당했습니다.</strong></p>
+<p>장을 하나 더 넣어 열일곱 장이 열여덟 장이 됐는데, <strong>표지 뒷면 글의 숫자를 같이 안 고쳤습니다.</strong> 앞띠에는 <code>18 CHAPTERS</code>, 뒷면에는 <code>Seventeen chapters</code> 인 표지가 검수까지 올라갔습니다.</p>
+<blockquote><p><strong>사람이 세어 손으로 적어 둔 숫자는 원고가 바뀌어도 안 따라옵니다.</strong></p></blockquote>
+<p>장 수, 부 수, 쪽수 — 글 안에 숫자를 적으셨으면 <strong>원고를 고칠 때마다 그 숫자를 다시 보세요.</strong> 아니면 저희처럼 기계가 세게 하세요.</p>
+<hr>
+<h1>올리는 순서</h1>
+<pre><code>1. 전자책을 먼저 올린다
+2. 전자책이 Live 가 된다            (몇 시간 ~ 하루)
+3. 그 책에 종이책을 붙인다           ← Bookshelf 의 「+ Create paperback」
+4. 본문 PDF 와 표지 PDF 를 올린다
+5. 미리보기(Previewer)를 끝까지 넘겨 본다
+6. 발행</code></pre>
+<p><strong>3번이 핵심입니다.</strong> 따로 새 책으로 만들지 마세요. 전자책 옆의 <strong><code>+ Create paperback</code></strong> 을 눌러야 둘이 한 상품으로 묶입니다. 따로 만들면 독자에게 <strong>다른 책 두 권</strong>으로 보입니다.</p>
+<p><strong>이미 만든 종이책이 있으면 <code>Link existing paperback</code></strong> 으로 붙입니다.</p>
+<h2>언어판은 안 묶입니다</h2>
+<p>한국어판과 영어판은 <strong>아마존이 안 묶어 줍니다.</strong> 별개의 새 책입니다. 묶이는 것은 <code>Series</code> 칸뿐입니다.</p>
+<h2>미리보기는 반드시 끝까지</h2>
+<p><strong>Previewer 에서 넘겨 보는 것이 마지막 방어선입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>볼 것</th><th></th></tr></thead><tbody><tr><td>책등 글자</td><td>앞뒤로 넘어가지 않았는지</td></tr><tr><td>바코드 자리</td><td>흰 네모가 오른쪽 아래에 있는지</td></tr><tr><td>쪽 번호</td><td>빠진 쪽이 없는지</td></tr><tr><td>글꼴</td><td>이상한 글꼴로 바뀌지 않았는지</td></tr></tbody></table></div>
+<hr>
+<h1>설명문은 HTML 로, <code>Source</code> 버튼을 누르고</h1>
+<p>설명문 칸은 HTML 을 받습니다. <strong>에디터 오른쪽의 <code>Source</code> 버튼을 먼저 누르고</strong> 붙여 넣으세요.</p>
+<p><strong>안 누르고 붙이면 태그가 글자로 보입니다.</strong> <code>&lt;p&gt;</code> 같은 것이 독자에게 그대로 보입니다.</p>
+<p>쓸 수 있는 것은 <code>&lt;h4&gt;</code> <code>&lt;p&gt;</code> <code>&lt;b&gt;</code> <code>&lt;i&gt;</code> <code>&lt;ul&gt;</code> <code>&lt;li&gt;</code> <code>&lt;br&gt;</code> 정도입니다.</p>
+<hr>
+<h1>AI 문항</h1>
+<p><strong>만든 방법을 묻는 칸이지 글이 좋은지 묻는 칸이 아닙니다.</strong> <strong>독자에게 안 보입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>칸</th><th></th></tr></thead><tbody><tr><td>AI-generated <strong>Text</strong></td><td>썼으면 <code>Yes</code></td></tr><tr><td>어느 정도 고쳤나</td><td><code>Minimal</code> / <code>Some</code> / <code>Extensive</code></td></tr><tr><td>AI-generated <strong>Images</strong></td><td>표지 그림에 썼으면 <code>Yes</code></td></tr><tr><td>AI-generated <strong>Translation</strong></td><td>옮기는 데 썼으면 <code>Yes</code></td></tr></tbody></table></div>
+<p><strong>솔직하게 적으세요.</strong> 이 칸은 판매에 영향이 없고, 틀리게 적는 쪽이 계정에 위험합니다.</p>
+<hr>
+<h1>값</h1>
+<h2>인세</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>종이책</td><td><strong>60%</strong> — 여기서 인쇄비를 뺍니다</td></tr><tr><td>전자책</td><td><strong>70%</strong> ($2.99~$12.99) 또는 35%</td></tr></tbody></table></div>
+<p><strong>종이책은 인쇄비가 먼저 빠집니다.</strong> 그래서 얇은 책은 값을 낮게 잡기 어렵습니다.</p>
+<p><strong>KDP 가 최저가를 화면에 보여 줍니다.</strong> 그보다 낮으면 안 받아 줍니다. 막히면 거기 적힌 숫자를 쓰시면 됩니다.</p>
+<blockquote><p>종이책 60% 구간에 <code>$9.99</code> 문턱이 있다는 이야기가 있는데 <strong>확인하지 못했습니다.</strong></p></blockquote>
+<p><strong>전자책 70% 구간은 2026년 7월 7일에 <code>$9.99</code> 에서 <code>$12.99</code> 로 넓어졌습니다.</strong> 예전 글을 보고 $9.99 로 잡아 두신 책이 있으면 한 번 보세요.</p>
+<hr>
+<h1>확인 못 한 것</h1>
+<p><code>kdp.amazon.com</code> 을 직접 열 수 없어서 아래 셋은 <strong>공개 자료를 대조한 수준이고 1차 자료가 아닙니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td>100쪽부터 책등 글자</td><td>저희가 쓰는 값입니다</td></tr><tr><td>종이책 60% 의 <code>$9.99</code> 문턱</td><td>확인 못 했습니다</td></tr><tr><td>종이 두께 값 셋</td><td>KDP 공표값으로 알고 쓰는 값이고, 저희 책에서는 맞았습니다</td></tr></tbody></table></div>
+<p><strong>확인 못 한 것은 확인 못 했다고 적는 쪽이 낫습니다.</strong> 얼버무린 문장을 읽는 사람은 사실로 받아들입니다.</p>
+<hr>
+<h1>한 장 요약</h1>
+<p>올리기 전에 이것만 보세요.</p>
+<pre><code>파일 둘
+  □ 본문 PDF — 글꼴을 넣었는가 · 쪽수를 적어 뒀는가
+  □ 표지 PDF — 한 장인가 · 폭이 계산과 같은가
+
+표지
+  □ 도련 0.125 를 사방에 넣었는가
+  □ 글자가 재단선에서 0.25 안쪽인가
+  □ 바코드 흰 네모 2.0 × 1.2 · 띄우기 0.25
+  □ 책등 글자는 100쪽부터
+
+KDP 화면 네 칸
+  □ 저내용(low-content) 체크 ────── 끔
+  □ Print ISBN ─────────────────── Get a free KDP ISBN
+  □ Ink and Paper Type ─────────── 표지를 계산한 그 종이
+  □ "내 표지에 바코드가 있다" ───── 끔
+
+숫자
+  □ 쪽수를 고쳤으면 표지를 다시 만들었는가
+  □ 뒷면 글의 장 수가 실제와 같은가
+
+마지막
+  □ 전자책에 「+ Create paperback」 으로 붙였는가
+  □ 미리보기를 끝까지 넘겨 봤는가
+  □ 설명문을 Source 버튼 누르고 붙였는가</code></pre>
+<p><strong>막히면 표지를 고치기 전에 네 칸부터 보세요.</strong></p>
+</div></body></html>
