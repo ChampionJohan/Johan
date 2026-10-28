@@ -58,8 +58,17 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <blockquote><p>전자책이 KDP Select 에 있으면 그 책의 오디오북도 Select 에 들어가고 Kindle+ 에 자동으로 포함된다.</p></blockquote>
 <p><strong>읽고 나서 할 일이 없습니다.</strong> 저절로 된다는 말이니까요. 만드는 법은 <code>Getting started with audiobooks with virtual voice</code> 쪽입니다.</p>
 <h2>2번 — 단추가 없으면</h2>
-<p><strong>그 책은 아직 자격이 안 되는 것입니다.</strong> 안내문에는 초대받은 계정만 된다는 이야기도 있고, 작가님이 받으신 메일은 누구나 되는 것처럼 적혀 있습니다. <strong>둘이 어긋나서 저는 어느 쪽인지 모릅니다.</strong></p>
-<p>단추가 없으면 기다리는 것 말고 할 수 있는 게 없습니다. 여섯 권 가운데 하나라도 있으면 그 책으로 한 번 해 보시는 게 제일 빠릅니다.</p>
+<p><strong>초대받은 계정만 됩니다.</strong> 베타 안내문에 두 번 적혀 있습니다 (10월 28일에 작가님이 그 페이지를 보내 주셔서 확인했습니다).</p>
+<blockquote><p>At this time, this is an invite-only beta for eligible KDP eBooks.</p></blockquote>
+<p>그래서 자격이 되는 책이어도 <strong>초대를 안 받았으면 단추가 안 생깁니다.</strong> 아마존은 「차차 넓힐 계획」이라고만 적어 두었고 언제인지는 안 적었습니다.</p>
+<p><strong>할 수 있는 일이 하나 있습니다.</strong> 초대를 그 메일로 보내기 때문에, KDP 의 소식·제품 안내 메일을 받도록 켜 두는 것입니다. 안내문의 답변 둘째가 그 이야기이고, 거기 설정 페이지 링크가 붙어 있습니다.</p>
+<p><strong>단추가 생겼는데 안 눌리는 것과 아예 없는 것은 다릅니다.</strong> 아예 없으면 초대 아니면 자격이고, 자격 쪽은 고칠 수 있습니다. 고치면 <strong>전자책이 다시 <code>Live</code> 가 된 뒤에</strong> 단추가 생긴다고 적혀 있습니다.</p>
+<h2>목차는 이미 됩니다</h2>
+<p>자격 가운데 하나가 <strong>목차</strong>입니다. 아마존이 원고에서 NCX 목차를 만들어 오디오북의 장 이동에 쓰는데, 그게 안 되면 자격에서 걸립니다.</p>
+<p><strong>이 저장소의 EPUB 은 그 조건을 이미 맞춥니다.</strong> <code>epub.py</code> 가 <code>nav.xhtml</code> 과 <code>toc.ncx</code> 를 둘 다 넣고, 장마다 navPoint 를 답니다. 1권 영어판으로 열어 보면 열다섯 개가 들어 있습니다.</p>
+<pre><code>OEBPS/nav.xhtml
+OEBPS/toc.ncx          navPoint 15개</code></pre>
+<p><strong>그러니 목차 때문에 걸릴 일은 없습니다.</strong> 걸리면 초대 쪽입니다.</p>
 <h2>3번 — 목소리</h2>
 <p>여든 개쯤 된다고 적혀 있습니다. 미국 영어 · 남부 미국 영어 · 호주 영어 · 영국 영어가 있습니다.</p>
 <p><strong>장마다 다른 목소리로도 됩니다.</strong> Virtual Voice Studio 에서 「Change voice」 → 「Choose Chapter Voice」입니다.</p>
@@ -99,7 +108,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
 <hr>
 <h1>확인 못 한 것</h1>
 <p><code>kdp.amazon.com</code> 이 막혀 있어서 KDP 도움말을 직접 못 열었습니다. <strong>아래는 공개 자료를 대조한 것이고, 확인 못 한 것은 확인 못 했다고 적습니다.</strong></p>
-<div class="table-wrap"><table><thead><tr><th></th><th>상태</th></tr></thead><tbody><tr><td>한국어 지원</td><td><strong>안 된다고 봤습니다.</strong> 네 언어 목록에 없습니다</td></tr><tr><td>초대제인가</td><td><strong>어긋납니다.</strong> 작가님 메일과 안내문이 다릅니다</td></tr><tr><td>Kindle+ 쪽당 단가</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>쪽수 아래 기준</td><td><strong>확인 못 했습니다.</strong> 글자 수 위쪽 한계만 봤습니다</td></tr><tr><td>「이 장의 출처」를 Studio 에서 뺄 수 있나</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>저내용(low-content) 책이 빠지나</td><td><strong>확인 못 했습니다.</strong> 그렇다는 말을 못 찾았습니다</td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th></th><th>상태</th></tr></thead><tbody><tr><td>한국어 지원</td><td><strong>안 된다고 봤습니다.</strong> 네 언어 목록에 없습니다</td></tr><tr><td><del>초대제인가</del></td><td><strong>초대제가 맞습니다.</strong> 10월 28일에 안내문으로 확인했습니다</td></tr><tr><td><del>미국만인가</del></td><td><strong>미국만 맞습니다.</strong> 같은 안내문에 있습니다</td></tr><tr><td><del>목차 조건</del></td><td><strong>우리 EPUB 은 통과합니다.</strong> NCX 가 들어 있습니다</td></tr><tr><td>Kindle+ 쪽당 단가</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>쪽수 아래 기준</td><td><strong>확인 못 했습니다.</strong> 글자 수 위쪽 한계만 봤습니다</td></tr><tr><td>「이 장의 출처」를 Studio 에서 뺄 수 있나</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>저내용(low-content) 책이 빠지나</td><td><strong>확인 못 했습니다.</strong> 그렇다는 말을 못 찾았습니다</td></tr><tr><td>초대를 언제 넓히나</td><td><strong>안 적혀 있습니다.</strong> 「차차」라고만 되어 있습니다</td></tr></tbody></table></div>
 <p><strong>Bookshelf 를 여시는 것이 저 여섯 줄보다 빠릅니다.</strong> 단추가 있나 없나, 값 칸이 얼마부터인가, 목소리가 몇 개인가 — 다 그 화면에 적혀 있습니다. 화면을 보여 주시면 여기 적어 두겠습니다.</p>
 <hr>
 <h1>대조한 자료</h1>
