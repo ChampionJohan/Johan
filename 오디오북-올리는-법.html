@@ -1,0 +1,103 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>오디오북 — 아마존에서 만드는 법</title><style>
+:root{--ink:#1a1a1a;--muted:#666;--rule:#e2e2e2;--accent:#E85D2F;--bg:#fdfdfc;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--ink:#e8e6e3;--muted:#9a9a9a;--rule:#333;--accent:#f0a080;--bg:#16181a;--card:#1d2022}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+ line-height:1.75;font-size:16px}
+.wrap{max-width:800px;margin:0 auto;padding:48px 24px 96px}
+h1{font-size:1.9rem;line-height:1.3;margin:2.4em 0 .6em;padding-bottom:.3em;border-bottom:2px solid var(--accent)}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.25rem;margin:2em 0 .5em;color:var(--accent)}
+h3{font-size:1.05rem;margin:1.6em 0 .4em}
+p{margin:.8em 0}
+blockquote{margin:1.2em 0;padding:.8em 1.2em;border-left:3px solid var(--accent);
+ background:var(--card);border-radius:0 6px 6px 0;color:var(--muted)}
+blockquote strong{color:var(--ink)}
+table{border-collapse:collapse;width:100%;margin:1.2em 0;font-size:.94rem;display:block;overflow-x:auto}
+th,td{border:1px solid var(--rule);padding:.5em .7em;text-align:left;vertical-align:top}
+th{background:var(--card);font-weight:700}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:6px;
+ padding:1em 1.2em;overflow-x:auto;font-size:.9rem;line-height:1.7;
+ font-family:"Nanum Barun Gothic","Apple SD Gothic Neo",monospace;white-space:pre-wrap}
+code{background:var(--card);padding:.1em .35em;border-radius:3px;font-size:.9em}
+pre code{background:none;padding:0}
+ul,ol{padding-left:1.3em} li{margin:.35em 0}
+ul.checklist{list-style:none;padding-left:.2em}
+ul.checklist input{margin-right:.5em}
+hr{border:0;border-top:1px solid var(--rule);margin:2.5em 0}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:2.5em}
+</style></head><body><div class="wrap">
+<h1>먼저 알아야 할 것 하나</h1>
+<p><strong>한국어는 안 됩니다. 영어판만 됩니다.</strong></p>
+<p>아마존의 virtual voice 가 읽어 주는 언어는 <strong>영어 · 스페인어 · 프랑스어 · 이탈리아어</strong> 넷입니다. 일본어는 안 된다고 도움말에 적혀 있고, 한국어가 된다는 말은 어디에도 없습니다.</p>
+<p>그래서 이 글은 <strong>영어판 이야기입니다.</strong> 한국어판 여덟 권은 지금 오디오북으로 못 만듭니다.</p>
+<p><strong>이건 공개 자료를 대조해서 본 것입니다.</strong> <code>kdp.amazon.com</code> 이 막혀 있어서 KDP 도움말을 직접 못 열었습니다. 작가님이 Bookshelf 를 여시면 그 책에 단추가 있는지 없는지로 바로 확인됩니다.</p>
+<hr>
+<h1>길이 둘입니다</h1>
+<div class="table-wrap"><table><thead><tr><th></th><th>virtual voice</th><th>ACX</th></tr></thead><tbody><tr><td>누가 읽나</td><td><strong>아마존의 기계 목소리</strong></td><td>사람 성우</td></tr><tr><td>돈</td><td><strong>지금은 공짜</strong></td><td>성우 값(Pay for Production)</td></tr><tr><td>걸리는 시간</td><td>몇 시간</td><td>몇 주</td></tr><tr><td>언어</td><td>영어 · 스페인어 · 프랑스어 · 이탈리아어</td><td>성우가 읽는 언어</td></tr></tbody></table></div>
+<p><strong>작가님께는 virtual voice 쪽입니다.</strong> 공짜고, 이미 낸 영어판 여섯 권에 바로 걸 수 있습니다. ACX 는 성우를 구해서 녹음값을 치르는 길이라 지금 할 일이 아닙니다.</p>
+<hr>
+<h1>막는 것 하나 — 전자책이 먼저 나가 있어야 합니다</h1>
+<p><strong>오디오북은 전자책에 붙는 것입니다.</strong> 따로 올리는 것이 아닙니다.</p>
+<div class="table-wrap"><table><thead><tr><th>전자책 상태</th><th>오디오북</th></tr></thead><tbody><tr><td><strong>Live</strong></td><td>만들 수 있습니다</td></tr><tr><td>Publishing(검수 중)</td><td>안 됩니다</td></tr><tr><td>예약 판매(pre-order)</td><td>안 됩니다</td></tr><tr><td>초고(Draft)</td><td>안 됩니다</td></tr></tbody></table></div>
+<p><strong>그래서 09~18번은 지금 못 합니다.</strong> 아직 안 올렸으니까요. <code>release/</code> 의 zip 다섯 장을 먼저 올리고, Live 가 된 다음 일입니다.</p>
+<p><strong>지금 바로 할 수 있는 것은 이미 낸 영어판 여섯 권입니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>책</th></tr></thead><tbody><tr><td>01</td><td><code>Who's Actually Paying?</code></td></tr><tr><td>02</td><td><code>The Fourth Box</code></td></tr><tr><td>03</td><td><code>It's Free. So How Are They Rich?</code></td></tr><tr><td>04</td><td><code>I Started. So Why Isn't It Working?</code></td></tr><tr><td>05</td><td><code>Why Is This Still Here?</code></td></tr><tr><td>07</td><td><code>Everyone Had One. Where Did They All Go?</code></td></tr></tbody></table></div>
+<p>06·08번은 한국어라 빠집니다.</p>
+<hr>
+<h1>만드는 순서 다섯</h1>
+<pre><code>1. KDP Bookshelf 를 엽니다
+2. 영어 전자책 옆의 「Add Audible audiobook with virtual voice」를 누릅니다
+3. 목소리를 고릅니다
+4. 값을 넣습니다  ($3.99 ~ $14.99)
+5. Virtual Voice Studio 에서 들어 보고 고칩니다 → 발행</code></pre>
+<h2>2번 — 단추가 없으면</h2>
+<p><strong>그 책은 아직 자격이 안 되는 것입니다.</strong> 안내문에는 초대받은 계정만 된다는 이야기도 있고, 작가님이 받으신 메일은 누구나 되는 것처럼 적혀 있습니다. <strong>둘이 어긋나서 저는 어느 쪽인지 모릅니다.</strong></p>
+<p>단추가 없으면 기다리는 것 말고 할 수 있는 게 없습니다. 여섯 권 가운데 하나라도 있으면 그 책으로 한 번 해 보시는 게 제일 빠릅니다.</p>
+<h2>3번 — 목소리</h2>
+<p>여든 개쯤 된다고 적혀 있습니다. 미국 영어 · 남부 미국 영어 · 호주 영어 · 영국 영어가 있습니다.</p>
+<p><strong>장마다 다른 목소리로도 됩니다.</strong> Virtual Voice Studio 에서 「Change voice」 → 「Choose Chapter Voice」입니다.</p>
+<p>작가님 책 가운데 <strong>09·10번은 이게 쓸 데가 있습니다.</strong> 사람 하나와 기계 하나의 대화편이니, 말차례마다 목소리를 갈라 두면 책의 생김새가 소리로도 섭니다. 다만 그건 09번이 Live 가 된 다음 일입니다.</p>
+<h2>4번 — 값</h2>
+<p><strong>$3.99 ~ $14.99 안에서 고릅니다.</strong> 이건 오디오북 값이고 전자책 값과 따로입니다. 전자책을 $2.99 에 두셨어도 오디오북은 $3.99 부터입니다.</p>
+<h2>5번 — 반드시 들어 보세요</h2>
+<p><strong>기계는 적힌 대로 읽습니다.</strong> 그래서 글로는 안 걸리던 것이 소리로는 걸립니다. 이 저장소의 책에서 걸릴 만한 자리를 꼽아 보면 셋쯤입니다.</p>
+<div class="table-wrap"><table><thead><tr><th>걸릴 자리</th><th>왜</th></tr></thead><tbody><tr><td>표와 목록</td><td>소리로는 칸이 안 보입니다</td></tr><tr><td>「이 장의 출처」</td><td>각 장 끝마다 나와서 되풀이로 들립니다</td></tr><tr><td>굵은 글씨</td><td>소리에는 굵기가 없습니다</td></tr></tbody></table></div>
+<p>둘째가 제일 큽니다. <strong>종이에서는 각 장 끝의 출처가 이 책들의 제일 좋은 대목인데</strong>, 소리로 들으면 열두 번 똑같은 꼴로 지나갑니다. Studio 에서 지울 수 있는지는 제가 확인 못 했습니다.</p>
+<hr>
+<h1>Kindle+ 와는 어떻게 되나</h1>
+<p>작가님이 받으신 메일의 알맹이가 이것입니다.</p>
+<div class="table-wrap"><table><thead><tr><th>전</th><th>후</th></tr></thead><tbody><tr><td>Kindle Unlimited</td><td><strong>Kindle+</strong> (이름만 바뀜)</td></tr><tr><td>전자책만 들어감</td><td><strong>오디오북도 들어감</strong> (미국만)</td></tr></tbody></table></div>
+<p><strong>전자책이 KDP Select 에 있으면 그 책의 virtual voice 오디오북은 저절로 Kindle+ 에 들어갑니다.</strong> 따로 할 일이 없습니다.</p>
+<p>이 저장소는 <strong>KDP Select 를 켜는 쪽으로 정해 두었습니다</strong> (<code>KDP-체크리스트.md</code>). 그러니 오디오북을 만들면 그대로 Kindle+ 와 Audible Plus 에 들어갑니다.</p>
+<p><strong>듣기도 쪽수로 계산해서 줍니다.</strong> 읽기와 같은 방식이고, 아마존이 그 몫만큼 기금을 더 넣는다고 적어 보냈습니다. <strong>쪽당 얼마인지는 확인 못 했습니다</strong> — 이 저장소에 전부터 확인 못 한 채로 남아 있는 그 숫자입니다.</p>
+<h2>보고서에서 보는 자리</h2>
+<div class="table-wrap"><table><thead><tr><th>보는 것</th><th>어디</th></tr></thead><tbody><tr><td>읽힌 쪽 · 들린 쪽 (따로)</td><td>KENP 보고서</td></tr><tr><td>Kindle+ 인세 (합쳐서)</td><td>Prior Month's Royalties</td></tr><tr><td>Audible Plus 듣기</td><td>같은 보고서의 Audible 칸</td></tr></tbody></table></div>
+<hr>
+<h1>KDP Select 가 묶는 조건</h1>
+<p>오디오북 이야기가 아니라 <strong>전자책 이야기</strong>인데, 같이 붙어 있어서 적어 둡니다.</p>
+<ul><li><strong>90일 독점입니다.</strong> 그동안 그 전자책은 KDP 와 공공 도서관 말고는 어디에도 못 냅니다</li><li><strong>종이책은 상관없습니다.</strong> 인쇄본은 다른 데도 낼 수 있습니다</li><li><strong>자동 갱신입니다.</strong> 끄지 않으면 90일마다 다시 걸립니다</li><li><strong>취소는 시작 뒤 3일 안에만</strong> 됩니다</li></ul>
+<p><strong>전자책을 Select 에서 빼면 오디오북도 Kindle+ 와 Audible Plus 에서 빠집니다.</strong> 둘이 한 묶음입니다.</p>
+<hr>
+<h1>AI 문항은 어떻게 되나</h1>
+<p><strong>이건 걱정 안 하셔도 됩니다.</strong> virtual voice 로 만든 오디오북은 아마존이 상품 쪽에 <strong>「Virtual Voice」로 알아서 표시합니다.</strong> 그 전용 진열 자리까지 따로 있습니다.</p>
+<p>그러니 숨기는 것도 아니고 작가님이 적어 넣을 것도 없습니다. <strong>낭독이 기계라는 것과 원고를 누가 썼느냐는 따로 묻는 칸입니다.</strong> 원고 쪽 답은 오디오북을 만들어도 안 바뀝니다.</p>
+<hr>
+<h1>그래서 뭘 먼저 하면 되나</h1>
+<pre><code>1. release/ 의 zip 다섯 장을 올린다        ← 이게 먼저다
+2. 영어 전자책이 Live 가 되기를 기다린다
+3. Bookshelf 에서 단추가 있는지 본다
+4. 이미 낸 01~05 · 07 가운데 하나로 먼저 해 본다
+5. 들어 보고 괜찮으면 나머지에 돌린다</code></pre>
+<p><strong>4번을 먼저 하시는 게 낫습니다.</strong> 이미 낸 책이라 잘못돼도 잃을 게 적고, 소리가 어떤지 한 번 들어 보셔야 나머지에 걸지 말지 정하실 수 있습니다. 09~18번 영어판 다섯에 한꺼번에 걸어 놓고 나중에 소리가 마음에 안 들면 열 번을 고치게 됩니다.</p>
+<hr>
+<h1>확인 못 한 것</h1>
+<p><code>kdp.amazon.com</code> 이 막혀 있어서 KDP 도움말을 직접 못 열었습니다. <strong>아래는 공개 자료를 대조한 것이고, 확인 못 한 것은 확인 못 했다고 적습니다.</strong></p>
+<div class="table-wrap"><table><thead><tr><th></th><th>상태</th></tr></thead><tbody><tr><td>한국어 지원</td><td><strong>안 된다고 봤습니다.</strong> 네 언어 목록에 없습니다</td></tr><tr><td>초대제인가</td><td><strong>어긋납니다.</strong> 작가님 메일과 안내문이 다릅니다</td></tr><tr><td>Kindle+ 쪽당 단가</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>쪽수 아래 기준</td><td><strong>확인 못 했습니다.</strong> 글자 수 위쪽 한계만 봤습니다</td></tr><tr><td>「이 장의 출처」를 Studio 에서 뺄 수 있나</td><td><strong>확인 못 했습니다</strong></td></tr><tr><td>저내용(low-content) 책이 빠지나</td><td><strong>확인 못 했습니다.</strong> 그렇다는 말을 못 찾았습니다</td></tr></tbody></table></div>
+<p><strong>Bookshelf 를 여시는 것이 저 여섯 줄보다 빠릅니다.</strong> 단추가 있나 없나, 값 칸이 얼마부터인가, 목소리가 몇 개인가 — 다 그 화면에 적혀 있습니다. 화면을 보여 주시면 여기 적어 두겠습니다.</p>
+<hr>
+<h1>대조한 자료</h1>
+<ul><li><a href="https://kdp.amazon.com/en_US/help/topic/GMPQGZAZJH6FF456">Beta: Audiobooks with virtual voice</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GFAQU3LUEHCRB8KD">Getting started with audiobooks with virtual voice</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GJSXT4GZLP4PL62B">Audiobooks with virtual voice eligibility and troubleshooting</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GWHSFAK69P2537YR">Terms and Conditions for the Beta Version of Audiobooks with Virtual Voice</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GD9Q8CV6JDEZ4KQV">Virtual voice audio samples</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GLD3SMMB6B99D5FW">Edit audio in the Virtual Voice Studio</a></li><li><a href="https://kdp.amazon.com/en_US/help/topic/GD9PMU58BV24QFZ7">KDP Select Enrollment</a></li><li><a href="https://www.kdpcommunity.com/s/article/Kindle-Unlimited-is-now-Kindle-KDP-audiobooks-now-included?language=en_US">Kindle Unlimited is now Kindle+, KDP audiobooks now included</a></li><li><a href="https://www.writtenwordmedia.com/kindle-plus-for-authors/">Kindle Unlimited Is Now Kindle+: What Authors Need to Know</a></li><li><a href="https://www.bookarc.ai/blog/turn-your-ebook-into-an-audiobook">KDP Virtual Voice: your ebook as an AI audiobook</a></li><li><a href="https://www.getresponse.com/blog/virtual-voice-audible-audiobooks">Virtual Voice Audible Audiobooks: A Complete Guide For Authors</a></li><li><a href="https://www.amazon.com/b?ie=UTF8&amp;amp;node=207913759011">Virtual-Voice: Audible Books &amp; Originals</a></li></ul>
+<p><strong>링크의 kdp.amazon.com 쪽은 제가 열지 못했습니다.</strong> 작가님은 열리실 겁니다. 셋째와 넷째가 자격과 값을 적어 둔 자리입니다.</p>
+</div></body></html>
