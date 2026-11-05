@@ -24,37 +24,28 @@ const prayers = [
   ['10', '말레이시아 부흥의 새로운 세대', '원주민 청소년들이 기도하는 자, 예배하는 자, 전도하는 자, 선교하는 자로 일어나 말레이시아와 열방의 부흥을 이끄는 세대가 되게 하소서.'],
 ];
 const group = (a, b) => prayers.slice(a, b).map(([n, t, x]) => `<div class="pr"><div class="num">${n}</div><div><h3>${t}</h3><p>${x}</p></div></div>`).join('');
-const T = 11;
+const T = 5;
+const short = prayers.map(([n,t])=>`<div class="row"><div class="num sm">${n}</div><div class="rt">${t}</div></div>`).join('');
 const cards = [
   card(1, T, `<div class="center"><div class="pill">PRAYER CARD NEWS</div>
 <div class="small">말레이시아 원주민 마을</div><h1>청소년 컨퍼런스를<br>위한 기도</h1>
 <div class="brush">그리스도 안에 뿌리를 내리고<br>믿음 위에 세움을 받으라</div>
 <div class="date">2026년 11월 6일 – 8일</div></div>${roots}`, 'cover'),
   card(2, T, `<div class="center"><div class="label">주제 말씀 · 골로새서 2:7</div>
-<div class="quote">“</div><p class="verse">그 안에 뿌리를 박으며<br>세움을 받아 교훈을 받은 대로<br><b>믿음에 굳게 서서</b><br>감사함을 넘치게 하라.</p>
-<div class="ref">Colossians 2:7</div></div>${roots}`, 'verse'),
-  card(3, T, `<div class="head"><span>기도 제목</span><b>01 – 03</b></div>${group(0, 3)}`),
-  card(4, T, `<div class="head"><span>기도 제목</span><b>04 – 06</b></div>${group(3, 6)}`),
-  card(5, T, `<div class="head"><span>기도 제목</span><b>07 – 08</b></div>${group(6, 8)}`, 'two'),
-  card(6, T, `<div class="head"><span>기도 제목</span><b>09 – 10</b></div>${group(8, 10)}`, 'two'),
-  card(7, T, `<div class="head"><span>특별 중보기도문</span><b>1</b></div><h2 class="sub">원주민 마을에서 시작되는<br>다음 세대의 부흥</h2>
-<p class="body"><b>사랑과 은혜가 풍성하신 하나님 아버지!</b> 11월 6일부터 8일까지 말레이시아 원주민 마을에서 열리는 청소년 컨퍼런스를 주님의 손에 올려드립니다.</p>
-<p class="body">이번 컨퍼런스가 단순한 행사가 아니라 하나님의 임재를 경험하고 인생이 변화되는 <b>거룩한 만남의 자리</b>가 되게 하소서.</p>
-<p class="body">참석하는 모든 청소년의 마음을 열어 주시고, 예수 그리스도를 구주와 주님으로 영접하게 하소서. 골로새서 2장 7절의 말씀처럼 그리스도 안에 깊이 뿌리를 내리고 믿음 위에 굳게 서게 하소서.</p>`),
-  card(8, T, `<div class="head"><span>특별 중보기도문</span><b>2</b></div>
-<p class="body">성령 하나님, 모든 찬양과 예배와 말씀과 기도 가운데 역사하여 주옵소서. 상처받은 마음을 치유하시고, 절망 가운데 있는 청소년들에게 <b>새로운 꿈과 비전</b>을 허락하여 주옵소서.</p>
-<p class="body">특별히 원주민 마을의 다음 세대를 일으켜 주옵소서. 이들이 더 이상 세상의 유혹과 어둠에 머물지 않고 하나님의 영광을 나타내는 세대가 되게 하소서.</p>
-<p class="body">섬기는 모든 강사와 목회자와 선교사와 봉사자들에게 성령의 충만함과 하나님의 사랑을 더하여 주시고, 모든 이동과 일정과 숙박과 식사를 지켜 주옵소서.</p>
-<p class="body">이번 컨퍼런스를 통해 마을마다 <b>기도의 불</b>이 타오르고, <b>예배의 제단</b>이 세워지며, 말레이시아 부흥의 새로운 역사가 시작되게 하소서.</p>
-<p class="amen">예수 그리스도의 이름으로 기도드립니다. 아멘!</p>`),
-  card(9, T, `<div class="head"><span>3일간의 영적 선포</span><b>3 DAYS</b></div>
+<p class="verse">“그 안에 뿌리를 박으며 세움을 받아<br>교훈을 받은 대로 <b>믿음에 굳게 서서</b><br>감사함을 넘치게 하라.”</p></div>
+<div class="days">
 <div class="day"><div class="d">11.6</div><div><h3>예수님을 만나는 날</h3><p>요한복음 3:3</p></div></div>
 <div class="day"><div class="d">11.7</div><div><h3>믿음에 뿌리를 내리는 날</h3><p>골로새서 2:7</p></div></div>
-<div class="day"><div class="d">11.8</div><div><h3>부르심과 사명으로 일어나는 날</h3><p>이사야 6:8</p></div></div>`, 'days'),
-  card(10, T, `<div class="center"><div class="brush big">원주민 마을마다<br>기도의 불이 타오르게 하소서</div>
-<p class="body c">원주민 청소년들이 기도하는 자, 예배하는 자, 전도하는 자, 선교하는 자로 일어나 말레이시아와 열방의 부흥을 이끄는 세대가 되게 하소서.</p></div>${roots}`, 'verse'),
-  card(11, T, `<div class="center"><div class="pill">함께 기도해 주세요</div><h1 class="mid">11월 6일 – 8일<br>3일간의 은혜의 자리</h1>
-<p class="body c">이 카드를 나누고<br>한 사람이라도 더 기도에 동참하게 해 주세요.</p><div class="brush">예수 그리스도의 이름으로 기도드립니다. 아멘!</div></div>${roots}`, 'cover'),
+<div class="day"><div class="d">11.8</div><div><h3>부르심과 사명으로 일어나는 날</h3><p>이사야 6:8</p></div></div></div>`, 'two2'),
+  card(3, T, `<div class="head"><span>10가지 기도 제목</span><b>PRAY</b></div><div class="rows">${short}</div>`, 'list'),
+  card(4, T, `<div class="head"><span>특별 중보기도문</span><b>다음 세대의 부흥</b></div>
+<p class="body"><b>사랑과 은혜가 풍성하신 하나님 아버지!</b> 이번 컨퍼런스가 단순한 행사가 아니라 하나님의 임재를 경험하고 인생이 변화되는 <b>거룩한 만남의 자리</b>가 되게 하소서.</p>
+<p class="body">모든 청소년이 예수 그리스도를 구주와 주님으로 영접하고, 그리스도 안에 깊이 뿌리를 내려 믿음 위에 굳게 서게 하소서.</p>
+<p class="body">원주민 마을마다 <b>기도의 불</b>이 타오르고, <b>예배의 제단</b>이 세워지며, 말레이시아 부흥의 새로운 역사가 시작되게 하소서.</p>
+<p class="amen">예수 그리스도의 이름으로 기도드립니다. 아멘!</p>`),
+  card(5, T, `<div class="center"><div class="brush big">원주민 마을마다<br>기도의 불이 타오르게 하소서</div>
+<div class="pill">함께 기도해 주세요</div>
+<p class="body c">11월 6일 – 8일, 3일간의 은혜의 자리를 위해<br>이 카드를 나누고 기도에 동참해 주세요.</p></div>${roots}`, 'cover'),
 ];
 const html = `<!doctype html><meta charset="utf-8"><style>
 @font-face{font-family:S;src:url(NotoSansKR.ttf);font-weight:100 900}
@@ -93,6 +84,9 @@ h1.mid{font-size:84px}
 .day{display:flex;gap:40px;align-items:center;background:rgba(255,255,255,.07);border-radius:28px;padding:44px 44px;position:relative;z-index:1}
 .d{font-family:Se;font-weight:900;font-size:80px;color:#f2c14e;min-width:190px}
 .day h3{font-size:42px;font-weight:800;line-height:1.35}.day p{font-size:36px;color:#ffe29a;margin-top:10px}
+.days{display:flex;flex-direction:column;gap:22px;position:relative;z-index:1}.two2 .day{padding:34px 40px}.two2 .verse{font-size:56px}
+.rows{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}.row{display:flex;align-items:center;gap:28px;background:rgba(255,255,255,.07);border-radius:20px;padding:12px 28px}.num.sm{width:56px;height:56px;font-size:28px}.rt{font-size:38px;font-weight:700;color:#fff8e7}
+.list{justify-content:flex-start;padding-top:100px;gap:28px}
 </style><body>${cards.join('')}`;
 fs.writeFileSync('cards.html', html);
 (async () => {
