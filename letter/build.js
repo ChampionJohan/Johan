@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
-const photo = fs.existsSync('photo.jpg') ? 'photo.jpg' : null;
+const photo = 'photo_a.jpg';
 const bg = photo
   ? `<img class="photo" src="${photo}">`
   : `<svg class="photo" viewBox="0 0 1080 1350" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6c76b"/><stop offset=".45" stop-color="#e58a4b"/><stop offset="1" stop-color="#2d5a3d"/></linearGradient></defs>
@@ -16,7 +16,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>
 @font-face{font-family:B;src:url(NanumBrushScript-Regular.ttf)}
 *{box-sizing:border-box;margin:0}
 .card{width:1080px;height:1350px;position:relative;overflow:hidden;color:#fff8e7;background:#10261a;padding:90px 96px 120px;display:flex;flex-direction:column;justify-content:center;gap:30px}
-.photo{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(9px) saturate(.9);opacity:.8}
+.photo{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(12px) saturate(.9);opacity:.85}
 .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,22,40,.6),rgba(8,22,40,.5) 45%,rgba(8,22,40,.78))}
 .card:before{content:"";position:absolute;inset:34px;border:2px solid rgba(242,193,78,.5);border-radius:28px;z-index:2}
 .in{position:relative;z-index:3;display:flex;flex-direction:column;gap:22px}

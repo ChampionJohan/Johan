@@ -7,9 +7,9 @@ const roots = `<svg class="roots" viewBox="0 0 1080 360" preserveAspectRatio="no
 <path d="M540 140 C610 170 700 200 760 260 C800 300 840 330 900 350" stroke-width="9"/>
 <path d="M540 200 C560 250 600 290 640 350" stroke-width="7"/>
 <path d="M330 250 C300 280 300 310 270 350" stroke-width="5"/><path d="M760 260 C790 290 780 320 810 350" stroke-width="5"/></g></svg>`;
-const hasPhoto = fs.existsSync('photo.jpg');
+const photos=['photo_a.jpg','photo_c.jpg','photo_b.jpg','photo_c.jpg','photo_a.jpg'];
 function card(n, total, inner, cls = '') {
-  return `<section class="card ${cls}">${hasPhoto ? '<img class="photo" src="photo.jpg"><div class="shade"></div>' : ''}<div class="glow"></div>${inner}
+  return `<section class="card ${cls}"><img class="photo" src="${photos[n-1]}"><div class="shade"></div><div class="glow"></div>${inner}
   <div class="foot"><span>${FOOT}</span><span>${String(n).padStart(2, '0')} / ${String(total).padStart(2, '0')}</span></div></section>`;
 }
 const prayers = [
@@ -88,7 +88,7 @@ h1.mid{font-size:84px}
 .days{display:flex;flex-direction:column;gap:22px;position:relative;z-index:1}.two2 .day{padding:34px 40px}.two2 .verse{font-size:56px}
 .rows{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}.row{display:flex;align-items:center;gap:28px;background:rgba(255,255,255,.07);border-radius:20px;padding:12px 28px}.num.sm{width:56px;height:56px;font-size:28px}.rt{font-size:38px;font-weight:700;color:#fff8e7}
 .list{justify-content:flex-start;padding-top:100px;gap:28px}
-.photo{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(9px) saturate(.9);opacity:.75}
+.photo{position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(12px) saturate(.9);opacity:.8}
 .shade{position:absolute;inset:0;background:linear-gradient(165deg,rgba(10,29,74,.72),rgba(13,59,102,.6) 55%,rgba(14,90,107,.7))}
 </style><body>${cards.join('')}`;
 fs.writeFileSync('cards.html', html);
