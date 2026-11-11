@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>IM 말레이시아 입학안내문</title>
+<style>
+@font-face{font-family:"Pretendard";src:url("assets/PretendardVariable.woff2") format("woff2");font-weight:100 900;}
+:root{
+  --blue:#0B63F6; --blue-d:#0747B8; --navy:#0B1B3F; --orange:#FF6A13;
+  --ink:#111827; --sub:#5B6577; --line:#DCE3EF; --soft:#F3F6FB; --tint:#E8F0FE; --otint:#FFF1E7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:1123px 794px;margin:0}
+html,body{background:#fff}
+body{font-family:"Pretendard",sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;word-break:keep-all}
+.page{width:1123px;height:794px;position:relative;overflow:hidden;page-break-after:always;background:#fff;padding:52px 64px 0}
+.page:last-child{page-break-after:auto}
+
+/* shared header / footer */
+.ph{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--navy);padding-bottom:16px}
+.ph .l{display:flex;align-items:center;gap:16px}
+.chip{background:var(--orange);color:#fff;font-weight:800;font-size:17px;letter-spacing:.04em;border-radius:999px;padding:7px 16px}
+.ph h2{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--navy)}
+.ph h2 em{font-style:normal;color:var(--blue)}
+.ph h2 em.o{color:var(--orange)}
+.ph p{font-size:15px;color:var(--sub);font-weight:500;text-align:right;line-height:1.5}
+.pf{position:absolute;left:64px;right:64px;bottom:22px;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#8A93A6;font-weight:600;letter-spacing:.06em}
+.pf b{color:var(--blue);font-weight:800}
+.pf .no{color:var(--navy);font-weight:800;font-size:13px}
+.note{font-size:13px;color:var(--sub);line-height:1.65}
+.credit{font-size:9.5px;color:#9AA3B5;letter-spacing:0;font-weight:500}
+.star{position:absolute;fill:var(--tint)}
+
+/* 1 cover */
+.cover{padding:0;background:var(--blue)}
+.cover svg.bg{position:absolute;inset:0}
+.cover .brand{position:absolute;left:64px;top:52px;color:#fff;font-weight:900;font-size:22px;letter-spacing:.14em}
+.cover .brand span{color:#FFD43B}
+.cover .year{position:absolute;left:64px;bottom:52px;color:#fff;font-size:14px;font-weight:600;letter-spacing:.08em;opacity:.9;line-height:1.7}
+.cover .tt{position:absolute;right:64px;bottom:64px;text-align:right;color:#fff}
+.cover .tt p{font-size:21px;font-weight:700;line-height:1.6;border-top:1.5px solid rgba(255,255,255,.6);border-bottom:1.5px solid rgba(255,255,255,.6);padding:12px 0;margin-bottom:18px}
+.cover .tt h1{font-size:92px;line-height:1.08;font-weight:900;letter-spacing:-.03em}
+.cover .go{display:inline-flex;align-items:center;gap:14px;margin-top:26px;background:var(--blue);color:#fff;font-weight:800;font-size:20px;border-radius:999px;padding:13px 28px;box-shadow:0 6px 18px rgba(11,27,63,.25)}
+
+/* 2 contents */
+.contents{display:grid;grid-template-columns:400px 1fr;gap:48px;margin-top:40px;align-items:center}
+.flagbox{background:var(--soft);border-radius:28px;height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.flagbox svg{border-radius:8px;box-shadow:0 14px 34px rgba(11,27,63,.22)}
+.flagbox p{font-size:15px;color:var(--sub);font-weight:600;text-align:center;line-height:1.7}
+.toc{list-style:none;display:flex;flex-direction:column;gap:14px}
+.toc li{display:flex;align-items:center;gap:20px;background:var(--soft);border-radius:16px;padding:0 24px;height:78px;font-size:23px;font-weight:700;color:var(--navy)}
+.toc li i{font-style:normal;flex:none;width:40px;height:40px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center}
+
+/* 3 why */
+.why{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:24px 190px;margin-top:40px}
+.why .c{background:var(--soft);border-radius:20px;padding:30px 30px;height:214px;border-top:5px solid var(--blue)}
+.why .c h3{font-size:27px;font-weight:800;color:var(--navy);margin-bottom:12px}
+.why .c p{font-size:17px;line-height:1.7;color:#3B4557;font-weight:500}
+.why .flag{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:210px;height:210px;border-radius:50%;border:9px solid var(--blue);overflow:hidden;background:#fff;box-shadow:0 12px 30px rgba(11,27,63,.2)}
+.pills{display:flex;gap:18px;justify-content:center;margin-top:40px}
+.pills span{background:var(--orange);color:#fff;font-weight:800;font-size:23px;border-radius:999px;padding:17px 50px}
+
+/* 4 table */
+table.cmp{width:100%;border-collapse:separate;border-spacing:0;margin-top:26px;font-size:16.5px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.cmp th,.cmp td{padding:0 10px;height:63px;text-align:center;border-bottom:1px solid var(--line);border-right:1px solid var(--line);line-height:1.4}
+.cmp tr>*:last-child{border-right:0}.cmp tr:last-child>*{border-bottom:0}
+.cmp thead th{background:var(--tint);color:var(--blue-d);font-weight:800;font-size:16px;height:72px}
+.cmp thead th small{display:block;font-size:13px;font-weight:600;color:var(--sub)}
+.cmp thead th:first-child{background:var(--blue);color:#fff}
+.cmp thead th.my{background:var(--navy);color:#fff}.cmp thead th.my small{color:#C9D6F2}
+.cmp tbody th{background:var(--soft);font-weight:700;color:var(--navy);width:190px}
+.cmp td.my{background:#F7FAFF;font-weight:700;color:var(--blue-d)}
+.cmp td.s{font-size:14px}
+.cmp tr.tot>*{background:var(--otint);font-weight:800;font-size:19px;color:var(--navy)}
+.cmp tr.tot td.my{color:var(--orange);background:#FFE6D3}
+
+/* 5 types */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.type{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 8px 24px rgba(11,27,63,.07)}
+.type .ph2{height:290px;background-size:cover;background-position:center;position:relative}
+.type .ph2::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,27,63,0) 45%,rgba(11,27,63,.75))}
+.type .tag{position:absolute;left:18px;top:18px;z-index:1;background:var(--blue);color:#fff;font-weight:800;font-size:16px;border-radius:999px;padding:8px 18px}
+.type.o .tag{background:var(--orange)}
+.type .un{position:absolute;left:22px;bottom:18px;z-index:1;color:#fff;font-weight:800;font-size:21px;letter-spacing:.02em}
+.type .tx{padding:26px 26px 28px;height:226px}
+.type h3{font-size:20px;line-height:1.4;font-weight:800;color:var(--navy);padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.type li{list-style:none;font-size:17px;color:#3B4557;font-weight:500;line-height:1.5;padding:5px 0 5px 20px;position:relative}
+.type li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.type.o li::before{background:var(--orange)}
+
+/* 6-7 recommended */
+.rec{display:grid;grid-template-columns:410px 1fr;gap:34px;margin-top:24px;height:574px}
+.rec .pic{border-radius:24px;overflow:hidden;position:relative;background-size:cover;background-position:center;box-shadow:0 10px 28px rgba(11,27,63,.16)}
+.rec .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,27,63,0) 48%,rgba(11,27,63,.88))}
+.rec .cap{position:absolute;left:26px;right:26px;bottom:24px;z-index:1;color:#fff}
+.rec .cap b{display:block;font-size:24px;font-weight:800;letter-spacing:.03em}
+.rec .cap span{display:block;font-size:15px;font-weight:600;margin-top:5px;opacity:.92}
+.rec .badge{position:absolute;left:22px;top:22px;z-index:1;background:var(--orange);color:#fff;font-size:14px;font-weight:800;border-radius:999px;padding:7px 16px;letter-spacing:.04em}
+.rec .info{display:flex;flex-direction:column}
+.rec h3{font-size:38px;font-weight:900;color:var(--blue);letter-spacing:-.01em;line-height:1.1}
+.rec .desc{font-size:15.5px;line-height:1.65;color:#3B4557;font-weight:500;margin:10px 0 14px}
+.rows{display:flex;flex-direction:column;gap:8px;flex:1}
+.row{display:grid;grid-template-columns:118px 1fr;border:1px solid var(--line);border-radius:12px;overflow:hidden;flex:1}
+.rows.compact .row{flex:none;height:42px}.rows.compact .row.two{height:58px}.rows.compact .row.big{flex:1;height:auto}.rows.compact dd{font-size:14.5px}.rows.compact .big dd{font-size:13.5px;line-height:1.5}
+.row dt{background:var(--blue);color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;text-align:center}
+.row dd{padding:4px 18px;font-size:15.5px;line-height:1.55;color:var(--ink);font-weight:500;display:flex;flex-direction:column;justify-content:center}
+.row dd b{color:var(--blue-d);font-weight:800}
+.row dd b.o{color:var(--orange)}
+.row dd span{padding-left:14px;color:#3B4557}
+
+/* 8 eligibility */
+.elig{margin-top:34px;display:flex;flex-direction:column;gap:16px}
+.elig .e{display:flex;align-items:center;gap:26px;background:var(--soft);border-radius:18px;padding:22px 32px;height:112px}
+.elig .e i{font-style:normal;flex:none;width:52px;height:52px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:23px;display:flex;align-items:center;justify-content:center}
+.elig h3{font-size:25px;font-weight:800;color:var(--navy)}
+.elig p{font-size:17px;color:var(--sub);font-weight:500;margin-top:5px}
+.must{margin-top:20px;background:var(--navy);color:#fff;border-radius:16px;padding:19px 30px;font-size:20px;font-weight:700;text-align:center}
+.must em{font-style:normal;color:#FFB07A}
+
+/* 9 steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.step{background:var(--soft);border-radius:20px;padding:30px 24px;height:284px;text-align:center;border-top:5px solid var(--blue)}
+.step .n{display:inline-block;font-size:15px;font-weight:800;letter-spacing:.1em;color:#fff;background:var(--blue);border-radius:999px;padding:5px 14px}
+.step h3{font-size:23px;font-weight:800;color:var(--navy);line-height:1.4;margin:14px 0;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.step p{font-size:16px;color:#3B4557;line-height:1.7;font-weight:500}
+
+/* 10 visa */
+.visa{margin-top:92px;display:flex;flex-direction:column;gap:48px}
+.vr{display:flex;justify-content:center;gap:17px}
+.v{width:185px;height:185px;border-radius:50%;background:#fff;border:6px solid var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 13px;position:relative;box-shadow:0 8px 20px rgba(11,27,63,.08)}
+.v:nth-child(even){border-color:#B9D0FB;background:var(--soft)}
+.v i{font-style:normal;width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
+.v p{font-size:15px;line-height:1.42;font-weight:700;color:var(--navy)}
+.v+.v::before{content:"";position:absolute;left:-23px;top:50%;border:7px solid transparent;border-left:9px solid var(--orange);transform:translateY(-50%)}
+
+/* 11 cost */
+.costs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.cost{background:var(--soft);border-radius:22px;padding:32px 24px;height:566px;text-align:center}
+.cost .t{display:inline-block;background:var(--blue);color:#fff;font-weight:800;font-size:22px;border-radius:999px;padding:9px 26px;margin-bottom:22px}
+.cost.o .t{background:var(--orange)}
+.cost .lead{font-size:18px;font-weight:700;color:var(--navy);line-height:1.65}
+.cost .big{white-space:nowrap;font-size:25px;font-weight:900;color:var(--navy)}
+.cost .big em{font-style:normal;color:var(--orange)}
+.cost p{font-size:16px;line-height:1.7;color:#3B4557;font-weight:500}
+.cost hr{border:0;border-top:1.5px dashed #C3CDDD;margin:24px 0}
+.cost ul{list-style:none;text-align:left}
+.cost ul li{font-size:15.5px;line-height:1.65;color:#3B4557;font-weight:500;padding-left:14px;position:relative;margin-bottom:8px}
+.cost ul li::before{content:"·";position:absolute;left:2px;font-weight:900;color:var(--blue)}
+.cost .box{background:#fff;border-radius:14px;padding:18px 12px;margin:18px 0}
+.cost h4{font-size:17px;font-weight:800;color:var(--blue-d);margin-bottom:8px;letter-spacing:.02em}
+</style>
+</head>
+<body>
+
+<!-- reusable flag -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="flag" viewBox="0 0 280 140">
+      <rect width="280" height="140" fill="#fff"/>
+      <g fill="#CC0001"><rect y="0" width="280" height="10"/><rect y="20" width="280" height="10"/><rect y="40" width="280" height="10"/><rect y="60" width="280" height="10"/><rect y="80" width="280" height="10"/><rect y="100" width="280" height="10"/><rect y="120" width="280" height="10"/></g>
+      <rect width="140" height="80" fill="#010066"/>
+      <circle cx="50" cy="40" r="26" fill="#FFCC00"/><circle cx="57" cy="40" r="23" fill="#010066"/>
+      <polygon class="mstar" fill="#FFCC00"/>
+    </symbol>
+    <symbol id="st" viewBox="0 0 100 100"><polygon points="50,2 61,37 98,37 68,59 79,95 50,73 21,95 32,59 2,37 39,37"/></symbol>
+  </defs>
+</svg>
+
+<!-- 1 COVER -->
+<section class="page cover">
+  <svg class="bg" width="1123" height="794" viewBox="0 0 1123 794">
+    <polygon fill="#FF6A13" points="1123,0 880,0 880,95 780,95 780,205 675,205 675,315 570,315 570,425 465,425 465,535 360,535 360,645 255,645 255,794 1123,794"/>
+    <g fill="#fff">
+      <use href="#st" x="-70" y="150" width="210" height="210" transform="rotate(-12 35 255)"/>
+      <use href="#st" x="120" y="560" width="120" height="120" transform="rotate(14 180 620)"/>
+      <use href="#st" x="500" y="120" width="64" height="64" transform="rotate(10 532 152)"/>
+      <use href="#st" x="930" y="-30" width="230" height="230" transform="rotate(16 1045 85)"/>
+      <use href="#st" x="330" y="330" width="46" height="46" transform="rotate(-8 353 353)" opacity=".9"/>
+    </g>
+  </svg>
+  <div class="brand"><span>★</span> IM MALAYSIA</div>
+  <div class="year">ADMISSION GUIDE<br>말레이시아 유학 · 입학 안내</div>
+  <div class="tt">
+    <p>성경적 세계관을 가진 한 사람을 세상의 빛으로!<br>새로운 차원으로의 도약! 새로운 세계로의 도약!</p>
+    <h1>IM말레이시아<br>입학안내문</h1>
+    <div class="go">Go to IM MALAYSIA
+      <svg width="54" height="18" viewBox="0 0 54 18"><path d="M0 9h48M40 2l9 7-9 7" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- 2 CONTENTS -->
+<section class="page">
+  <svg class="star" style="right:-40px;top:250px" width="150" height="150"><use href="#st" width="150" height="150"/></svg>
+  <header class="ph">
+    <div class="l"><h2 style="font-size:54px;color:var(--blue);font-weight:900;letter-spacing:-.01em">CONTENTS</h2></div>
+    <p>IM 말레이시아는 인투젠을 통한 유학생 사역을 중심으로<br>말레이시아와 열방 선교를 향해 나아갑니다.</p>
+  </header>
+  <div class="contents">
+    <div class="flagbox">
+      <svg width="300" height="150"><use href="#flag" width="300" height="150"/></svg>
+      <p>MALAYSIA<br>새로운 세계로의 도약</p>
+    </div>
+    <ol class="toc">
+      <li><i>1</i>왜 말레이시아인가요?</li>
+      <li><i>2</i>말레이시아 대학 유형 및 추천 대학 소개</li>
+      <li><i>3</i>IM 말레이시아 지원 자격</li>
+      <li><i>4</i>IM 말레이시아 입학 절차 및 비자 발급 방법</li>
+      <li><i>5</i>IM 말레이시아 공간 안내</li>
+      <li><i>6</i>IM 말레이시아 비용 안내</li>
+    </ol>
+  </div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">02</span></footer>
+</section>
+
+<!-- 3 WHY -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">01</span><h2>왜 <em>말레이시아</em>인가요?</h2></div>
+    <p>영어 환경 · 다양한 프로그램 · 합리적인 비용</p>
+  </header>
+  <div class="why">
+    <div class="c"><h3>영어 환경</h3><p>대부분의 말레이시아 사립대는 영어를 사용, 공식 비즈니스 언어 또한 영어.<br>영미권 국가 교육기관과 연계.</p></div>
+    <div class="c"><h3>경제적인 유학비용</h3><p>연간 학비 약 700~1200만원 수준으로 국내 대학과 비슷하며 해외프로그램도 본교 대비 저렴한 금액으로 취득 가능.</p></div>
+    <div class="c"><h3>다양한 대학 선택의 옵션</h3><p>말레이시아 자체 학위 과정<br>다양한 해외대학 프로그램<br>(트위닝 / 트랜스퍼 / 듀얼디그리)</p></div>
+    <div class="c"><h3>유학생활 적응 쉬움</h3><p>아시아 국가이자 다양한 인종이 있고, 한국인에 대한 선호도가 높음.<br>비교적 한국인들이 적응하기 쉬움.</p></div>
+    <div class="flag"><svg width="192" height="192" viewBox="42 0 140 140" preserveAspectRatio="xMidYMid slice"><use href="#flag" width="280" height="140"/></svg></div>
+  </div>
+  <div class="pills"><span>우수한 교육 환경</span><span>다양한 대학 프로그램</span><span>경제적이고 효율적</span></div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">03</span></footer>
+</section>
+
+<!-- 4 TUITION -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">01</span><h2>한국과 말레이시아 <em>대학 학비 비교</em></h2></div>
+    <p>한국 대학과 말레이시아 사립대학의<br>비용 구조를 비교한 참고 자료입니다.</p>
+  </header>
+  <table class="cmp">
+    <thead><tr>
+      <th>구분</th>
+      <th>한양대<small>한국 사립대</small></th>
+      <th>한동대<small>한국 사립대</small></th>
+      <th>전남대<small>한국 국립대</small></th>
+      <th class="my">테일러 대학교<small>말레이시아 사립대</small></th>
+    </tr></thead>
+    <tbody>
+      <tr><th>등록금 (연간)</th><td>900만원</td><td>800만원</td><td>500만원</td><td class="my">약 1,900만원*</td></tr>
+      <tr><th>입학금</th><td>-</td><td>-</td><td>-</td><td class="my">별도 비용 확인</td></tr>
+      <tr><th>1년 생활비</th><td>1,800만원</td><td>1,440만원</td><td>1,440만원</td><td class="my">약 1,680만원</td></tr>
+      <tr><th>총 생활비 (3년)</th><td>5,400만원</td><td>4,320만원</td><td>4,320만원</td><td class="my">약 5,040만원</td></tr>
+      <tr><th>입학 조건</th><td class="s">내신 상위 10%<br>수능 1등급 중반</td><td class="s">수시 3등급 이상</td><td class="s">수시 평균 1~2등급<br>수능 최저 6등급</td><td class="my s">과정별 상이<br>학력·영어 요건</td></tr>
+      <tr><th>총 학비 (3년)</th><td>3,600만원</td><td>3,200만원</td><td>2,000만원</td><td class="my">약 5,700만원*</td></tr>
+      <tr class="tot"><th>총액 (학비+생활비)</th><td>9,000만원</td><td>7,520만원</td><td>6,320만원</td><td class="my">약 1억 740만원*</td></tr>
+    </tbody>
+  </table>
+  <p class="note" style="margin-top:16px">*테일러 대학교 예시: 2026년 국제학생 Bachelor of Business 총 수업료 USD 42,309 기준(환율 약 1,350원/USD 적용).<br>생활비는 월 RM 2,500 수준의 참고 추정치이며, 전공·환율·세금·비자·보험·숙소에 따라 달라집니다.</p>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">04</span></footer>
+</section>
+
+<!-- 5 TYPES -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">02</span><h2>말레이시아 <em>대학 유형</em></h2></div>
+    <p>국립대학교 · 사립대학교 · 해외 직영 캠퍼스</p>
+  </header>
+  <div class="types">
+    <article class="type">
+      <div class="ph2" style="background-image:url(assets/um.jpg);background-position:center 40%"><span class="tag">국립대학교</span><span class="un">UNIVERSITY OF MALAYA</span></div>
+      <div class="tx"><h3>정부가 설립·운영하는 공립대학</h3><ul><li>상대적으로 낮은 등록금</li><li>입학 경쟁률이 높은 편</li></ul></div>
+    </article>
+    <article class="type o">
+      <div class="ph2" style="background-image:url(assets/taylors.jpg);background-position:72% center"><span class="tag">사립대학교</span><span class="un">TAYLOR’S UNIVERSITY</span></div>
+      <div class="tx"><h3>말레이시아 대표 사립 종합대학교</h3><ul><li>다양한 전공과 국제학생 지원</li><li>해외 대학 편입·교류 기회</li></ul></div>
+    </article>
+    <article class="type">
+      <div class="ph2" style="background-image:url(assets/monash.jpg);background-position:80% center"><span class="tag">해외 직영 캠퍼스</span><span class="un">MONASH UNIVERSITY</span></div>
+      <div class="tx"><h3>해외 본교가 말레이시아에 설립한 캠퍼스</h3><ul><li>본교와 연계된 교육과정</li><li>국제적인 학습 환경</li></ul></div>
+    </article>
+  </div>
+  <p class="note" style="margin-top:22px">※ 대학별 입학 요건·학비·지원 시기는 전공 및 지원 연도에 따라 달라집니다.</p>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문 <span class="credit">&nbsp;&nbsp;사진: Wikimedia Commons — *angys*(UM), Yewvie(Taylor’s), Cmglee(Monash) / CC BY-SA 4.0</span></span><span class="no">05</span></footer>
+</section>
+
+<!-- 6 TAYLOR'S -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">02</span><h2>IM 말레이시아 <em>추천 대학교</em></h2></div>
+    <p>추천 대학 01 · 테일러 대학교</p>
+  </header>
+  <div class="rec">
+    <div class="pic" style="background-image:url(assets/taylors.jpg);background-position:74% center">
+      <span class="badge">추천 대학 01</span>
+      <div class="cap"><b>LAKESIDE CAMPUS</b><span>SUBANG JAYA · 말레이시아 셀랑고르</span></div>
+    </div>
+    <div class="info">
+      <h3>TAYLOR’S UNIVERSITY</h3>
+      <p class="desc">1969년 설립된 말레이시아의 대표 사립대학교로, 수업은 영어로 진행되며 다양한 국제 교육과정을 제공합니다. 2026 QS 세계대학순위 253위, QS 아시아 순위 32위(2027)로 소개되고 있습니다.</p>
+      <dl class="rows">
+        <div class="row"><dt>주요 전공</dt><dd>경영, 회계·금융, 컴퓨터과학, 공학, 건축, 호텔관광·조리, 디자인, 커뮤니케이션 등</dd></div>
+        <div class="row"><dt>입학 경로</dt><dd>Foundation, Diploma, 학사(Degree), 대학원 과정</dd></div>
+        <div class="row"><dt>입학 시기</dt><dd>전공별 상이하며 대표적으로 2월·4월·9월</dd></div>
+        <div class="row"><dt>학비 예시</dt><dd>Bachelor of Business 국제학생 총 수업료 USD 42,309 (2026년 안내 기준, 3년 과정)</dd></div>
+        <div class="row"><dt>국제학생 안내</dt><dd>영어 성적 및 학력 요건은 지원 전공별로 확인<br>비자·보험·기타 비용은 별도 발생 가능</dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="note" style="margin-top:14px">※ 공식 학비는 매년 변경될 수 있으므로 지원 전 최신 Fee Schedule 확인이 필요합니다.</p>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문 <span class="credit">&nbsp;&nbsp;사진: Wikimedia Commons — Yewvie / CC BY-SA 4.0</span></span><span class="no">06</span></footer>
+</section>
+
+<!-- 7 SUNWAY -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">02</span><h2>IM 말레이시아 <em>추천 대학교</em></h2></div>
+    <p>추천 대학 02 · 선웨이 대학교</p>
+  </header>
+  <div class="rec">
+    <div class="pic" style="background-image:url(assets/sunway.jpg);background-position:52% center">
+      <span class="badge">추천 대학 02</span>
+      <div class="cap"><b>SUNWAY CAMPUS</b><span>BANDAR SUNWAY · 말레이시아 셀랑고르</span></div>
+    </div>
+    <div class="info">
+      <h3>SUNWAY UNIVERSITY</h3>
+      <p class="desc" style="font-size:14.5px;line-height:1.6">1987년에 설립된 선웨이 대학교는 말레이시아에서 가장 큰 규모의 캠퍼스와 시설을 갖추고 있으며, 최고의 사립 대학 중 하나입니다. 90개국 이상의 다국적 학생들이 재학하고 있습니다. 글로벌 표준에서는 상대적으로 신생 대학이지만 이미 세계 대학의 상위 2%와 아시아 대학 상위 1.5%에 속해 있습니다.</p>
+      <dl class="rows compact">
+        <div class="row"><dt>주요 전공</dt><dd>경영학, 기술 공학, 생명과학 및 의학, Arts 등</dd></div>
+        <div class="row"><dt>순위</dt><dd>전세계 601~650위 (한국 기준 : 건국대 601위)</dd></div>
+        <div class="row two"><dt>입학 조건</dt><dd>검정고시 평균 80점 이상, IELTS 5.5~6.0 이상 또는<br>TOEFL 60점 이상</dd></div>
+        <div class="row"><dt>학비</dt><dd>900~1200만원 (전공에 따라 상이) / 연간</dd></div>
+        <div class="row big"><dt>프로그램</dt><dd>
+          <b>▶ 트위닝 / 트랜스퍼 프로그램</b>
+          <span>호주 빅토리아대학교 3+0, 2+1 : 예비과정 필요</span>
+          <span>미국 또는 캐나다 (4년제) 3+1, 2.5+1.5</span>
+          <b class="o">▶ 복수 학위 프로그램 (듀얼디그리 / 공동 학위)</b>
+          <span>Lancaster University (세계 122위, 영국 11위) : 80% 다수 학부 가능 (전공별 확인 필요)</span>
+          <span>프랑스 Le Cordon Bleu : 호텔, 관광, 조리학</span>
+          <b>▶ 입교 조건 : 예비 과정 CIMP(1년) 필수, IELTS 6.0 이상</b>
+        </dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="note" style="margin-top:14px">※ 순위·학비·입학 조건은 매년 변경될 수 있으므로 지원 전 학교 공식 안내 확인이 필요합니다.</p>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문 <span class="credit">&nbsp;&nbsp;사진: Wikimedia Commons — *angys* / CC BY-SA 4.0</span></span><span class="no">07</span></footer>
+</section>
+
+<!-- 8 ELIGIBILITY -->
+<section class="page">
+  <svg class="star" style="right:-30px;top:120px" width="130" height="130"><use href="#st" width="130" height="130"/></svg>
+  <header class="ph">
+    <div class="l"><span class="chip">03</span><h2>IM 말레이시아 <em>지원 자격</em></h2></div>
+    <p>아래 4가지 조건을 모두 충족해야 합니다.</p>
+  </header>
+  <div class="elig">
+    <div class="e"><i>1</i><div><h3>리뉴젠 공동체에서 6개월 이상 훈련 받은 자</h3><p>각 공동체의 디렉터 추천서 제출</p></div></div>
+    <div class="e"><i>2</i><div><h3>고등과정 학력 이수자</h3><p>인가된 고등학교 졸업 또는 이에 준하는 학력</p></div></div>
+    <div class="e"><i>3</i><div><h3>영어 공인 점수 취득자</h3><p>IELTS 5.5~6.0 이상 또는 TOEFL iBT 60점 이상</p></div></div>
+    <div class="e"><i>4</i><div><h3>필 인투 파이널존 코스 수료자</h3></div></div>
+  </div>
+  <div class="must">위 <em>모든 조건</em>이 준비된 학생만 지원 가능합니다.</div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">08</span></footer>
+</section>
+
+<!-- 9 STEPS -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">04</span><h2>IM 말레이시아 및 <em>대학 입학 절차</em></h2></div>
+    <p>상담부터 비자 진행까지 6단계</p>
+  </header>
+  <div class="steps">
+    <div class="step"><span class="n">STEP 1</span><h3>디렉터와 상담 후<br>입학 시기 결정</h3><p>학생 개개인의 학력 조건에 맞추어 지망 학교와 학과를 설정합니다.</p></div>
+    <div class="step"><span class="n">STEP 2</span><h3>필 인투 파이널존<br>유학 과정</h3><p>필리핀에 위치한 IM 해외선교본부 필 인투 파이널존 과정을 통해 유학을 준비합니다.</p></div>
+    <div class="step"><span class="n">STEP 3</span><h3>IM 말레이시아<br>입학 신청</h3><p>IM 말레이시아에 필요한 서류를 준비하여 신청합니다.</p></div>
+    <div class="step"><span class="n">STEP 4</span><h3>유학 서류 준비 및<br>학교 원서 접수</h3><p>각 학교 제출 기준에 맞추어 서류를 준비한 후 입학 지원 절차에 따라 원서를 접수합니다.</p></div>
+    <div class="step"><span class="n">STEP 5</span><h3>입학허가서<br>(Offer letter) 수령</h3><p>학교 심사 후 입학허가서를 수령합니다. 학교별 심사 기간은 다를 수 있습니다.</p></div>
+    <div class="step"><span class="n">STEP 6</span><h3>비자 신청 및<br>입국비자 진행</h3><p>입학허가서 수령 후 학생비자 절차를 학교 안내에 따라 진행합니다.</p></div>
+  </div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">09</span></footer>
+</section>
+
+<!-- 10 VISA -->
+<section class="page">
+  <svg class="star" style="left:-40px;top:560px" width="140" height="140"><use href="#st" width="140" height="140"/></svg>
+  <header class="ph">
+    <div class="l"><span class="chip">04</span><h2>IM 말레이시아 <em class="o">비자 발급</em> 절차</h2></div>
+    <p>입학허가서 수령부터 비자 스티커 수령까지 9단계</p>
+  </header>
+  <div class="visa">
+    <div class="vr">
+      <div class="v"><i>1</i><p>입학허가서<br>수령 및 서명 후<br>제출</p></div>
+      <div class="v"><i>2</i><p>학교에서 서포팅레터 첨부 후 EMGS에서 비자신청서 제출 및 비용 납부</p></div>
+      <div class="v"><i>3</i><p>EMGS에서<br>비자 서류<br>심사 진행</p></div>
+      <div class="v"><i>4</i><p>이민국에서<br>최종 승인 여부<br>결정</p></div>
+      <div class="v"><i>5</i><p>이민국에서<br>최종 승인 후<br>비자허가서 (eVAL)<br>발급</p></div>
+    </div>
+    <div class="vr">
+      <div class="v"><i>6</i><p>항공권 구매 후<br>입국 비자<br>(SEV 혹 eVisa)<br>신청</p></div>
+      <div class="v"><i>7</i><p>입국 비자<br>승인 후 입국</p></div>
+      <div class="v"><i>8</i><p>입국 후<br>일주일 이내<br>현지 신체 검사<br>진행 후 여권 제출</p></div>
+      <div class="v"><i>9</i><p>비자 스티커가<br>붙은 여권 수령<br>(제출 후 약 2~4주<br>이내)</p></div>
+    </div>
+  </div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">10</span></footer>
+</section>
+
+<!-- 11 COST -->
+<section class="page">
+  <header class="ph">
+    <div class="l"><span class="chip">06</span><h2>IM 말레이시아 <em>비용 안내</em></h2></div>
+    <p>대학 학비 · IM MALAYSIA · 예치금/용돈</p>
+  </header>
+  <div class="costs">
+    <div class="cost">
+      <span class="t">대학 학비</span>
+      <p class="lead">대학 학비는 학교별, 학과별 상이하며<br>학교에 개별적으로 납부합니다.</p>
+      <hr>
+      <div class="box">
+        <h4>납부 내용</h4>
+        <p>대학 입학금<br>학기별 학비 (1년 기준 3학기)<br>학생 비자 : 매해 갱신 필요 (1000달러)</p>
+      </div>
+    </div>
+    <div class="cost o">
+      <span class="t">IM MALAYSIA</span>
+      <p class="big">입학금 <em>500만원</em></p>
+      <p style="margin-top:8px">* 이전 공동체 입학금액은 최대 200만원까지 입학금으로 인정이 되어지며 나머지 금액만 납부하시면 됩니다.</p>
+      <hr>
+      <p class="big">공동체 운영비 <em>120만원</em>/월</p>
+      <div class="box"><p><b>숙비 40 · 식비 40 · 공동체 훈련비 40</b></p></div>
+      <p>식사는 아침, 저녁만 제공되며,<br>식비에 점심 비용은 포함되지 않는 금액입니다.</p>
+    </div>
+    <div class="cost">
+      <span class="t">예치금/용돈 안내</span>
+      <p class="lead">주일 헌금, 점심 식사비, 교통비, 활동비 등으로 사용됩니다.</p>
+      <div class="box"><p><b>공용물품비<br>매달 50링깃 (한화 20,000원)</b></p></div>
+      <ul>
+        <li>환전의 어려움으로 용돈 사용을 권장합니다.</li>
+        <li>학기 시작 후 1달 후부터 말레이시아 현지 은행에 개인 구좌 생성 후 부모님들께서 입금하시는 방식으로 사용할 수 있습니다.</li>
+        <li>공동체의 안전과 재정 훈련을 위하여 모든 사용 내역을 주 1회 점검받습니다.</li>
+      </ul>
+    </div>
+  </div>
+  <footer class="pf"><span><b>IM MALAYSIA</b> · 입학안내문</span><span class="no">11</span></footer>
+</section>
+
+<script>
+// 14-point star of the Malaysian flag
+(function(){
+  var cx=88,cy=40,R=19,r=8.5,p=[];
+  for(var i=0;i<28;i++){var a=Math.PI*i/14-Math.PI/2,q=i%2?r:R;p.push((cx+q*Math.cos(a)).toFixed(2)+","+(cy+q*Math.sin(a)).toFixed(2));}
+  document.querySelectorAll(".mstar").forEach(function(e){e.setAttribute("points",p.join(" "));});
+})();
+</script>
+</body>
+</html>
