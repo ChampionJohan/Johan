@@ -5,7 +5,6 @@ const pptxgen = require("pptxgenjs");
 const { applyTheme } = require(process.argv[2]);
 const CONTENT = require("./content.js");
 
-const A = (f) => path.join(__dirname, "assets", f);
 const W = 13.33;
 const MX = 0.6;
 const CW = W - 2 * MX;
@@ -112,7 +111,7 @@ async function build(lang) {
     D.contents.items.forEach((it, i) => {
       const y = 1.6 + i * 1.02;
       card(s, MX, y, CW, 0.86);
-      txt(s, String(i + 1).padStart(2, "0"), { x: MX + 0.3, y, w: 0.9, h: 0.86, fontSize: 28, bold: true, color: i === 2 || i === 3 ? ORANGE : GREEN, valign: "middle" });
+      txt(s, String(i + 1).padStart(2, "0"), { x: MX + 0.3, y, w: 0.9, h: 0.86, fontSize: 28, bold: true, color: i >= 2 ? ORANGE : GREEN, valign: "middle" });
       txt(s, it[0], { x: MX + 1.3, y, w: 4.6, h: 0.86, fontSize: 20, bold: true, color: NAVY, valign: "middle" });
       txt(s, it[1], { x: MX + 6.0, y, w: 5.9, h: 0.86, fontSize: 14, color: MUTED, valign: "middle" });
     });
@@ -158,6 +157,33 @@ async function build(lang) {
     txt(s, D.journey.note, { x: MX + 1.5, y: 5.25, w: CW - 1.9, h: 1.4, fontSize: 16, valign: "middle" });
   }
 
+  // ---------- Why the next generation ----------
+  {
+    const s = content(D.ng.title);
+    const wL = 5.0;
+    card(s, MX, 1.5, wL, 5.24, NAVY, "Verse card");
+    txt(s, D.ng.verseLabel, { x: MX + 0.4, y: 1.85, w: wL - 0.8, h: 0.35, fontSize: 12, bold: true, color: AMBER, charSpacing: 2 });
+    txt(s, D.ng.verse, { x: MX + 0.4, y: 2.35, w: wL - 0.8, h: 3.0, fontSize: 18, italic: true, color: WHITE });
+    txt(s, D.ng.verseRef, { x: MX + 0.4, y: 5.95, w: wL - 0.8, h: 0.4, fontSize: 13, bold: true, color: WHITE });
+    const xR = MX + wL + 0.3, wR = W - MX - xR, cw = (wR - 0.7) / 2;
+    D.ng.cards.forEach((c, i) => {
+      const x = xR + i * (cw + 0.7);
+      card(s, x, 1.5, cw, 3.3, i ? C.accent6 : TINT);
+      txt(s, c[0], { x: x + 0.3, y: 1.75, w: cw - 0.6, h: 0.35, fontSize: 12, bold: true, color: i ? GREEN : MUTED, charSpacing: 2 });
+      txt(s, c[1], { x: x + 0.3, y: 2.15, w: cw - 0.6, h: 0.85, fontSize: 20, bold: true, color: NAVY });
+      txt(s, c[2], { x: x + 0.3, y: 3.1, w: cw - 0.6, h: 1.55, fontSize: 14 });
+    });
+    s.addShape(pres.shapes.CHEVRON, { x: xR + cw + 0.2, y: 2.95, w: 0.3, h: 0.45, fill: { color: ORANGE }, line: { type: "none" }, objectName: "Arrow" });
+    txt(s, D.ng.howLabel, { x: xR, y: 5.05, w: wR, h: 0.35, fontSize: 14, bold: true, color: NAVY });
+    const hw = (wR - 0.4) / 3;
+    D.ng.how.forEach((h, i) => {
+      const x = xR + i * (hw + 0.2);
+      badge(s, x, 5.55, 0.5, i + 1, [ORANGE, GREEN, BLUE][i], 14);
+      txt(s, h[0], { x: x + 0.62, y: 5.55, w: hw - 0.62, h: 0.5, fontSize: 15, bold: true, color: NAVY, valign: "middle" });
+      txt(s, h[1], { x, y: 6.15, w: hw, h: 0.6, fontSize: 12 });
+    });
+  }
+
   // ---------- 5. Four core ministries ----------
   newSection(D.sections[1]);
   {
@@ -170,20 +196,21 @@ async function build(lang) {
       txt(s, c[0], { x: x + 0.95, y: y + 0.25, w: w - 1.15, h: 0.55, fontSize: 17, bold: true, color: NAVY, valign: "middle" });
       txt(s, c[1], { x: x + 0.25, y: y + 1.0, w: w - 0.5, h: h - 1.15, fontSize: 14 });
     });
-    const x = 8.3, wR = W - MX - 8.3;
-    s.addImage({ path: A("vision.jpg"), x, y: 1.5, w: wR, h: wR * 263 / 596, altText: "IM camp gathering" });
-    const yT = 1.5 + wR * 263 / 596 + 0.2;
-    card(s, x, yT, wR, 6.74 - yT, NAVY, "Center card");
-    txt(s, D.core.centerLabel, { x: x + 0.3, y: yT + 0.25, w: wR - 0.6, h: 0.4, fontSize: 16, bold: true, color: AMBER });
-    txt(s, D.core.center, { x: x + 0.3, y: yT + 0.75, w: wR - 0.6, h: 6.74 - yT - 0.9, fontSize: 14, color: WHITE });
+    const x = 8.3, wR = W - MX - 8.3, cx = x + wR / 2, cy = 3.35;
+    card(s, x, 1.5, wR, 5.24, NAVY, "Hub card");
+    s.addShape(pres.shapes.OVAL, { x: cx - 1.55, y: cy - 1.55, w: 3.1, h: 3.1, fill: { type: "none" }, line: { color: WHITE, width: 1.5, transparency: 55 }, objectName: "Hub ring" });
+    s.addShape(pres.shapes.OVAL, { x: cx - 0.95, y: cy - 0.95, w: 1.9, h: 1.9, fill: { color: WHITE }, line: { type: "none" }, objectName: "Hub center" });
+    txt(s, D.triple.name, { x: cx - 0.85, y: cy - 0.5, w: 1.7, h: 1.0, fontSize: 15, bold: true, color: NAVY, align: "center", valign: "middle" });
+    [[0, -1], [1, 0], [0, 1], [-1, 0]].forEach((d, i) => badge(s, cx + d[0] * 1.55 - 0.3, cy + d[1] * 1.55 - 0.3, 0.6, "0" + (i + 1), cols[i], 13));
+    txt(s, D.core.centerLabel, { x: x + 0.3, y: 5.3, w: wR - 0.6, h: 0.35, fontSize: 15, bold: true, color: AMBER });
+    txt(s, D.core.center, { x: x + 0.3, y: 5.7, w: wR - 0.6, h: 0.95, fontSize: 13, color: WHITE });
   }
 
   // ---------- 6. Triple School ----------
   {
     const s = content(D.triple.title);
-    const imgH = 5.24, imgW = imgH * 913 / 960, imgX = W - MX - imgW;
-    s.addImage({ path: A("map.jpg"), x: imgX, y: 1.5, w: imgW, h: imgH, altText: "Triple School Map" });
-    const w = imgX - MX - 0.3, h = 1.6, cols = [ORANGE, AMBER, GREEN];
+    const wR = 4.95, xR = W - MX - wR;
+    const w = xR - MX - 0.3, h = 1.6, cols = [ORANGE, AMBER, GREEN];
     D.triple.rows.forEach((r, i) => {
       const y = 1.5 + i * (h + 0.22);
       card(s, MX, y, w, h);
@@ -191,6 +218,17 @@ async function build(lang) {
       txt(s, r[0], { x: MX + 1.5, y: y + 0.18, w: w - 1.7, h: 0.4, fontSize: 18, bold: true, color: NAVY });
       txt(s, r[1], { x: MX + 1.5, y: y + 0.62, w: w - 1.7, h: 0.35, fontSize: 14, bold: true, color: MUTED });
       txt(s, r[2], { x: MX + 1.5, y: y + 1.02, w: w - 1.7, h: 0.5, fontSize: 14 });
+    });
+    // staircase: three steps rising to the fullness of Christ
+    card(s, xR, 1.5, wR, 5.24, NAVY, "Staircase card");
+    txt(s, D.triple.goalLabel, { x: xR + 0.35, y: 1.75, w: wR - 0.7, h: 0.3, fontSize: 12, bold: true, color: AMBER, charSpacing: 2 });
+    txt(s, D.triple.goal, { x: xR + 0.35, y: 2.1, w: wR - 0.7, h: 0.75, fontSize: 18, bold: true, color: WHITE });
+    const sw = (wR - 0.7) / 3, base = 6.4;
+    D.triple.steps.forEach((st, i) => {
+      const sh = 0.95 + i * 0.85, x = xR + 0.35 + i * sw;
+      s.addShape(pres.shapes.RECTANGLE, { x, y: base - sh, w: sw, h: sh, fill: { color: cols[i] }, line: { type: "none" }, objectName: "Step " + (i + 1) });
+      txt(s, "STEP " + (i + 1), { x, y: base - sh + 0.12, w: sw, h: 0.3, fontSize: 11, bold: true, color: i === 1 ? INK : WHITE, align: "center" });
+      txt(s, st, { x: x + 0.05, y: base - sh + 0.42, w: sw - 0.1, h: 0.5, fontSize: 13, bold: true, color: i === 1 ? INK : WHITE, align: "center" });
     });
   }
 
@@ -200,11 +238,14 @@ async function build(lang) {
     const wL = 5.4;
     txt(s, D.train.mechLabel, { x: MX, y: 1.5, w: wL, h: 0.4, fontSize: 18, bold: true, color: GREEN });
     D.train.mech.forEach((m, i) => {
-      const y = 2.1 + i * 1.55;
+      const y = 2.05 + i * 1.2;
       badge(s, MX, y, 0.6, i + 1, GREEN, 16);
       txt(s, m[0], { x: MX + 0.8, y, w: wL - 0.8, h: 0.6, fontSize: 16, bold: true, color: NAVY, valign: "middle" });
       txt(s, m[1], { x: MX + 0.8, y: y + 0.62, w: wL - 0.8, h: 0.8, fontSize: 14 });
     });
+    card(s, MX, 5.7, wL, 1.04, NAVY, "Modes card");
+    txt(s, D.train.modesLabel, { x: MX + 0.3, y: 5.78, w: wL - 0.6, h: 0.35, fontSize: 14, bold: true, color: AMBER });
+    txt(s, D.train.modes, { x: MX + 0.3, y: 6.15, w: wL - 0.6, h: 0.5, fontSize: 12, color: WHITE });
     const xR = 6.5, wR = W - MX - xR, w = (wR - 0.2) / 2, h = 2.26;
     txt(s, D.train.areaLabel, { x: xR, y: 1.5, w: wR, h: 0.4, fontSize: 18, bold: true, color: BLUE });
     D.train.areas.forEach((a, i) => {
@@ -216,21 +257,76 @@ async function build(lang) {
     });
   }
 
+  // ---------- Faith community (house) ----------
+  {
+    const s = content(D.house.title);
+    const hx = MX, hw = 5.6;
+    card(s, hx, 1.5, hw, 5.24, TINT, "House card");
+    const bx = hx + 0.6, bw = hw - 1.2;
+    s.addShape(pres.shapes.ISOSCELES_TRIANGLE, { x: bx - 0.25, y: 1.75, w: bw + 0.5, h: 1.45, fill: { color: ORANGE }, line: { type: "none" }, objectName: "Roof" });
+    txt(s, D.house.roof, { x: bx + 0.9, y: 2.45, w: bw - 1.8, h: 0.7, fontSize: 13, bold: true, color: WHITE, align: "center", valign: "middle" });
+    [0, 1].forEach((k) => s.addShape(pres.shapes.RECTANGLE, { x: bx + k * (bw - 0.75), y: 3.3, w: 0.75, h: 2.15, fill: { color: GREEN }, line: { type: "none" }, objectName: "Pillar" }));
+    txt(s, D.house.pillar, { x: bx + 0.9, y: 3.4, w: bw - 1.8, h: 0.4, fontSize: 13, bold: true, color: GREEN, align: "center", valign: "middle" });
+    const iw = (bw - 1.9) / 2;
+    D.house.inside.forEach((t, i) => {
+      const x = bx + 0.95 + (i % 2) * (iw + 0.1), y = 3.9 + Math.floor(i / 2) * 0.75;
+      s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w: iw, h: 0.65, rectRadius: 0.08, fill: { color: WHITE }, line: { type: "none" }, objectName: "Room" });
+      txt(s, t, { x, y, w: iw, h: 0.65, fontSize: 14, bold: true, color: NAVY, align: "center", valign: "middle" });
+    });
+    s.addShape(pres.shapes.RECTANGLE, { x: bx - 0.25, y: 5.55, w: bw + 0.5, h: 0.8, fill: { color: AMBER }, line: { type: "none" }, objectName: "Foundation" });
+    txt(s, D.house.base, { x: bx - 0.25, y: 5.55, w: bw + 0.5, h: 0.8, fontSize: 14, bold: true, color: INK, align: "center", valign: "middle" });
+    const xR = hx + hw + 0.3, wR = W - MX - xR, cw = (wR - 0.2) / 2;
+    D.house.modes.forEach((m, i) => {
+      const x = xR + i * (cw + 0.2);
+      card(s, x, 1.5, cw, 2.5, i ? NAVY : TINT);
+      txt(s, m[0], { x: x + 0.3, y: 1.7, w: cw - 0.6, h: 0.5, fontSize: 22, bold: true, color: i ? AMBER : BLUE, valign: "middle" });
+      txt(s, m[1], { x: x + 0.3, y: 2.3, w: cw - 0.6, h: 1.6, fontSize: 14, color: i ? WHITE : INK });
+    });
+    txt(s, D.house.fruitLabel, { x: xR, y: 4.3, w: wR, h: 0.4, fontSize: 16, bold: true, color: NAVY });
+    D.house.fruit.forEach((f, i) => {
+      const x = xR + (i % 2) * (cw + 0.2), y = 4.85 + Math.floor(i / 2) * 0.98;
+      card(s, x, y, cw, 0.85);
+      badge(s, x + 0.18, y + 0.17, 0.5, i + 1, [GREEN, BLUE, ORANGE, GREEN][i], 14);
+      txt(s, f, { x: x + 0.85, y, w: cw - 1.0, h: 0.85, fontSize: 14, bold: true, color: NAVY, valign: "middle" });
+    });
+  }
+
+  // ---------- Missionary identity ----------
+  {
+    const s = content(D.idn.title);
+    txt(s, D.idn.lead, { x: MX, y: 1.5, w: CW, h: 0.6, fontSize: 16, color: MUTED });
+    const w = (CW - 0.6) / 4, cols = [GREEN, BLUE, AMBER, ORANGE];
+    D.idn.cards.forEach((c, i) => {
+      const x = MX + i * (w + 0.2), y = 2.3, h = 3.0;
+      card(s, x, y, w, h);
+      badge(s, x + 0.25, y + 0.25, 0.8, i + 1, cols[i], 24);
+      txt(s, c[0], { x: x + 0.25, y: y + 1.2, w: w - 0.5, h: 0.7, fontSize: 17, bold: true, color: NAVY, valign: "middle" });
+      txt(s, c[1], { x: x + 0.25, y: y + 2.0, w: w - 0.5, h: 0.9, fontSize: 13 });
+    });
+    card(s, MX, 5.55, CW, 1.19, NAVY, "True Christian band");
+    txt(s, D.idn.bandLabel, { x: MX + 0.35, y: 5.55, w: 3.0, h: 1.19, fontSize: 16, bold: true, color: AMBER, valign: "middle" });
+    txt(s, D.idn.band, { x: MX + 3.4, y: 5.55, w: CW - 3.75, h: 1.19, fontSize: 14, color: WHITE, valign: "middle" });
+  }
+
   // ---------- 8. Camp ministry ----------
   {
     const s = content(D.camp.title);
-    const w = (CW - 0.6) / 4, h = 2.85;
+    const w = (CW - 0.6) / 4, h = 3.05, cols = [GREEN, BLUE, ORANGE, NAVY];
+    const cxs = D.camp.cards.map((c, i) => MX + i * (w + 0.2) + w / 2);
     D.camp.cards.forEach((c, i) => {
       const x = MX + i * (w + 0.2), y = 1.5;
       card(s, x, y, w, h);
-      txt(s, c[0], { x: x + 0.22, y: y + 0.18, w: w - 0.44, h: 0.6, fontSize: 26, bold: true, color: [GREEN, BLUE, ORANGE, NAVY][i], valign: "middle" });
+      txt(s, c[0], { x: x + 0.22, y: y + 0.18, w: w - 0.44, h: 0.6, fontSize: 26, bold: true, color: cols[i], valign: "middle" });
       txt(s, c[1], { x: x + 0.22, y: y + 0.82, w: w - 0.44, h: 0.35, fontSize: 16, bold: true, color: NAVY });
       txt(s, c[3], { x: x + 0.22, y: y + 1.17, w: w - 0.44, h: 0.3, fontSize: 11, bold: true, color: MUTED });
       txt(s, c[2], { x: x + 0.22, y: y + 1.6, w: w - 0.44, h: h - 1.7, fontSize: 14 });
     });
-    const pw = (CW - 0.4) / 3, ph = 2.1;
-    ["camp1.jpg", "camp2.jpg", "camp3.jpg"].forEach((f, i) => {
-      s.addImage({ path: A(f), x: MX + i * (pw + 0.2), y: 4.6, w: pw, h: ph, sizing: { type: "cover", w: pw, h: ph }, altText: "Camp photo" });
+    // depth pathway: circles grow with the length of the camp
+    const ly = 5.55;
+    s.addShape(pres.shapes.LINE, { x: cxs[0], y: ly, w: cxs[3] - cxs[0], h: 0, line: { color: "C9D2DF", width: 3 } });
+    [0.55, 0.55, 0.9, 1.35].forEach((d, i) => {
+      s.addShape(pres.shapes.OVAL, { x: cxs[i] - d / 2, y: ly - d / 2, w: d, h: d, fill: { color: cols[i] }, line: { type: "none" }, objectName: "Depth dot" });
+      txt(s, D.camp.path[i], { x: cxs[i] - w / 2, y: 6.3, w, h: 0.4, fontSize: 14, bold: true, color: NAVY, align: "center", valign: "middle" });
     });
   }
 
@@ -318,15 +414,13 @@ async function build(lang) {
     D.stages.forEach((st, i) => {
       const x = MX + i * (w + 0.2);
       s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y: 1.8, w, h: 0.95, rectRadius: 0.12, fill: { color: STAGE[i] }, line: { type: "none" }, objectName: "Stage header" });
-      txt(s, [{ text: T(D.labels.stage) + " " + (i + 1) + "  ", options: { fontSize: 11, bold: true } }, { text: T(st.name), options: { fontSize: 15, bold: true } }],
-        { x: x + 0.2, y: 1.85, w: w - 0.4, h: 0.45, color: i === 2 ? INK : WHITE, valign: "middle" });
-      txt(s, D.ms.periods[i], { x: x + 0.2, y: 2.3, w: w - 0.4, h: 0.38, fontSize: 12, color: i === 2 ? INK : WHITE, valign: "middle" });
+      txt(s, T(D.labels.stage) + " " + (i + 1), { x: x + 0.2, y: 1.88, w: w - 0.4, h: 0.3, fontSize: 11, bold: true, color: i === 2 ? INK : WHITE, valign: "middle" });
+      txt(s, st.name, { x: x + 0.2, y: 2.18, w: w - 0.4, h: 0.48, fontSize: 20, bold: true, color: i === 2 ? INK : WHITE, valign: "middle" });
       D.ms.items[i].forEach((m, k) => {
-        const y = 2.95 + k * 1.83, n = i * 2 + k + 1;
-        card(s, x, y, w, 1.68);
-        txt(s, "M" + n, { x: x + 0.2, y: y + 0.15, w: 0.7, h: 0.35, fontSize: 14, bold: true, color: STAGE[i] === AMBER ? ORANGE : STAGE[i] });
-        txt(s, m[0], { x: x + 0.9, y: y + 0.15, w: w - 1.1, h: 0.35, fontSize: 12, bold: true, color: MUTED, align: "right" });
-        txt(s, m[1], { x: x + 0.2, y: y + 0.58, w: w - 0.4, h: 1.0, fontSize: 13 });
+        const y = 2.95 + k * 1.93, n = i * 2 + k + 1;
+        card(s, x, y, w, 1.78);
+        txt(s, "M" + n, { x: x + 0.2, y: y + 0.15, w: 1.0, h: 0.45, fontSize: 20, bold: true, color: STAGE[i] === AMBER ? ORANGE : STAGE[i] });
+        txt(s, m, { x: x + 0.2, y: y + 0.68, w: w - 0.4, h: 1.0, fontSize: 14 });
       });
     });
   }
