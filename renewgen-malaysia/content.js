@@ -137,7 +137,7 @@ module.exports = {
     areas: [
       ["3S", ["신앙 (Faith)", "Faith", "信仰 (Faith)"], ["복음학교, 제자학교, 소명학교", "Gospel, Disciple and Calling School", "福音学校、门徒学校、呼召学校"]],
       ["3C", ["삶 (Life)", "Life", "生活 (Life)"], ["실력(Competence), 헌신(Commitment), 소통(Communication)", "Competence, Commitment, Communication", "实力 (Competence)、委身 (Commitment)、沟通 (Communication)"]],
-      ["3A", ["학업 (Academy)", "Academy", "学业 (Academy)"], ["IM, WCS, 한미교육센터", "IM, WCS, Korean-American Education Center", "IM、WCS、韩美教育中心"]],
+      ["3A", ["학업 (Academy)", "Academy", "学业 (Academy)"], ["SOT, IGCSE, GED (아베카 등), 각자 학교 커리큘럼", "SOT, IGCSE, GED (Abeka and others), each school's own curriculum", "SOT、IGCSE、GED（Abeka 等）、各学校自己的课程"]],
       ["3D", ["선교 (Mission)", "Mission", "宣教 (Mission)"], ["지역교회, 직업 현장, 세계 선교", "Local church, career field, world mission", "地方教会、职场、世界宣教"]],
     ],
   },
@@ -178,7 +178,7 @@ module.exports = {
   },
 
   camp: {
-    path: [["찾아감", "We go", "走出去"], ["찾아옴", "They come", "请进来"], ["회복", "Restoration", "恢复"], ["훈련", "Training", "培训"]],
+    path: [["복음 들고 찾아감", "Going with the gospel", "带着福音走出去"], ["복음으로 찾아옴", "Coming for the gospel", "因福音而来"], ["복음으로 회복", "Restored by the gospel", "因福音得恢复"], ["복음으로 훈련", "Trained in the gospel", "以福音受训"]],
     title: ["캠프 사역: 하루 캠프에서 한 달 훈련까지", "Camp ministry: from a one-day camp to a month", "营会事工：从一日营到一个月培训"],
     cards: [
       [["1일", "1 day", "1 天"], ["고비 캠프", "Govi Camp", "Govi 营会"], ["다음세대 팀이 지역교회를 찾아가는 하루 캠프", "A one-day camp where the next generation team visits local churches", "下一代团队走进地方教会的一日营"], ["Going Vision", "Going Vision", "Going Vision"]],
@@ -202,8 +202,8 @@ module.exports = {
   why: {
     title: ["말레이시아: 교회와 함께 다음세대를 세울 현장", "Malaysia: raising the next generation with the church", "马来西亚：与教会一同建立下一代的禾场"],
     stats: [
-      ["32.4M", ["말레이시아 인구 (2020년 인구총조사, 약 3,240만 명)", "Population of Malaysia (2020 census)", "马来西亚人口（2020 年人口普查，约 3240 万）"]],
-      ["9.1%", ["기독교 인구 비율 (약 300만 명)", "Share of the population that is Christian (about 3 million people)", "基督徒占人口比例（约 300 万人）"]],
+      ["34.4M", ["말레이시아 인구 (2026년 통계청 추계, 약 3,440만 명)", "Population of Malaysia (2026 official estimate)", "马来西亚人口（2026 年官方估计，约 3440 万）"]],
+      ["9.1%", ["기독교 인구 비율 (2020년 인구총조사, 최신 종교 통계)", "Christian share of the population (2020 census, the latest religion data)", "基督徒占人口比例（2020 年人口普查，最新宗教统计）"]],
       ["6", ["리뉴젠이 세워지는 여섯 번째 나라", "Malaysia becomes the sixth ReNewGen nation", "马来西亚成为第六个 ReNewGen 国家"]],
     ],
     approachLabel: ["말레이시아 사역 접근 원칙", "How we will approach Malaysia", "马来西亚事工原则"],
@@ -214,9 +214,9 @@ module.exports = {
       [["현지 법규·문화 존중", "Respect for law and culture", "尊重当地法规与文化"], ["현지 법규와 문화를 지키며 파트너 교회의 안내를 따릅니다.", "We keep local laws and culture, guided by our partner churches.", "遵守当地法规与文化，听从伙伴教会的引导。"]],
     ],
     source: [
-      "출처: 말레이시아 통계청(DOSM), 2020년 인구주택총조사",
-      "Source: Department of Statistics Malaysia (DOSM), Population and Housing Census 2020",
-      "资料来源：马来西亚统计局 (DOSM)，2020 年人口与房屋普查",
+      "출처: 말레이시아 통계청(DOSM) 2026년 현재인구추계(2026.7.31. 발표), 2020년 인구주택총조사",
+      "Source: DOSM, Current Population Estimates 2026 (released 31 July 2026); Population and Housing Census 2020",
+      "资料来源：马来西亚统计局 (DOSM)《2026 年当前人口估计》（2026 年 7 月 31 日发布）；2020 年人口与房屋普查",
     ],
   },
 
@@ -343,10 +343,10 @@ module.exports = {
     steps: [
       [["고비 · 컴비 캠프", "Govi and Comvi camps", "Govi · Comvi 营会"], ["캠프로 교회와 다음세대를 만남", "Meet churches and the next generation", "借营会与教会和下一代相遇"]],
       [["사역 컨퍼런스", "Ministry conference", "事工研讨会"], ["목회자·교사와 비전 공유", "Share the vision with pastors and teachers", "与牧者、教师分享异象"]],
-      [["CBUP · 부모학교 수료", "CBUP and Parents School", "CBUP · 父母学校结业"], ["CBUP 24강, 부모학교 42강", "CBUP 24 lectures; Parents School 42 lectures", "CBUP 24 讲，父母学校 42 讲"]],
-      [["인큐베이팅 (12주)", "Incubating (12 weeks)", "孵化培训（12 周）"], ["교회 리더와 교사를 훈련", "Train church leaders and teachers", "培训教会领袖与教师"]],
-      [["WCS 입학", "WCS enrollment", "WCS 入学"], ["다음세대가 학업 과정에 참여", "The next generation joins the academy", "下一代进入学业课程"]],
-      [["리뉴젠 공동체 파트너십", "ReNewGen community partnership", "ReNewGen 共同体伙伴关系"], ["교회가 공동체 파트너로 동역", "The church serves as a community partner", "教会成为共同体伙伴同工"]],
+      [["CBUP 강의 수료", "CBUP course completed", "完成 CBUP 课程"], ["교회 리더와 교사가 강의를 수료", "Church leaders and teachers complete the course", "教会领袖与教师完成课程"]],
+      [["리뉴젠 공동체 파트너십 (MOU)", "ReNewGen community partnership (MOU)", "ReNewGen 共同体伙伴关系 (MOU)"], ["MOU를 맺고 공동체 파트너로 동역", "Sign the MOU and serve as a community partner", "签署 MOU，成为共同体伙伴同工"]],
+      [["인큐베이팅 시작 (4주)", "Incubating starts (4 weeks)", "开始孵化培训（4 周）"], ["교회 리더와 교사를 4주간 훈련", "Four weeks of training for church leaders and teachers", "为教会领袖与教师提供 4 周培训"]],
+      [["트리플스쿨과 정기 리더 교육", "Triple School and regular leader education", "三重学校与定期领袖教育"], ["다음세대는 트리플스쿨, 리더는 정기 교육", "Triple School for students; regular education for leaders", "下一代学习三重学校，领袖接受定期教育"]],
       [["무빙스쿨", "Moving school", "移动学校"], ["여러 나라 공동체에서 배우는 학교", "Learning in communities around the world", "在各国共同体中学习的学校"]],
       [["단기 선교", "Mission trip", "短期宣教"], ["이웃 나라 선교 현장 경험", "Mission experience in a neighboring nation", "在邻国体验宣教禾场"]],
       [["세계 선교", "World mission", "世界宣教"], ["미전도 지역을 향한 선교", "Mission to unreached countries", "向未得之地宣教"]],
@@ -376,7 +376,7 @@ module.exports = {
       ["비전과 각 주체의 역할 합의", "Shared vision and each party's role", "共同异象与各方角色"],
       ["교재·커리큘럼 사용 범위", "Use of books and curriculum", "教材与课程的使用范围"],
       ["인큐베이팅과 캠프 지원 내용", "Incubating and camp support", "孵化培训与营会支援内容"],
-      ["정기 점검과 소통 방법", "Regular review and communication", "定期检视与沟通方式"],
+      ["정기 리더 교육과 멘토링", "Regular leader education and mentoring", "定期领袖教育与辅导"],
     ],
   },
 
