@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smile Bank — 웃음 적립</title>
+<meta name="description" content="Smile at the camera, bank the seconds, turn them into credits. Face tracking runs entirely on your device and nothing is uploaded.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-apple-180.png">
+<meta name="theme-color" content="#e8590c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root{--bg:#fffaf0;--card:#ffffff;--ink:#2b2418;--sub:#7a6e5a;--line:#eadfc8;--accent:#f5a623;--accent2:#e8590c;--good:#2f9e44;--bad:#c92a2a;--soft:#fff3d6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.5}
+.app{max-width:480px;margin:0 auto;padding:0 14px 90px}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 0 8px}
+header h1{font-size:18px;margin:0}
+.chip{background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.card h2{font-size:15px;margin:0 0 8px}
+.big{font-size:36px;font-weight:800;color:var(--accent2);line-height:1.1}
+.sub{font-size:12px;color:var(--sub)}
+.bar{height:10px;background:#f0e6d0;border-radius:999px;overflow:hidden;margin:6px 0}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .2s}
+button{font:inherit;cursor:pointer}
+.btn{width:100%;padding:13px;border:0;border-radius:12px;background:var(--accent2);color:#fff;font-weight:700;font-size:16px}
+.btn.alt{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:8px 6px;font-size:13px;border-radius:10px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px}.row>*{flex:1}
+input[type=number]{font:inherit;padding:11px;border:1px solid var(--line);border-radius:12px;width:100%;background:#fff}
+nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center}
+nav .in{display:flex;max-width:480px;width:100%}
+nav button{flex:1;padding:12px 4px;border:0;background:none;color:var(--sub);font-size:13px}
+nav button.on{color:var(--accent2);font-weight:700}
+.stage{position:relative;background:#1f1a10;border-radius:14px;overflow:hidden;aspect-ratio:4/3}
+.stage video,.stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mir{transform:scaleX(-1)}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eee;color:#555}
+.pill.s{background:#d3f9d8;color:#1b6e2b}.pill.r{background:#ffe3a3;color:#8a4b00}.pill.l{background:#ffd8d8;color:#a61e1e}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.grid3 b{display:block;font-size:20px}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.htile{border-radius:14px;padding:12px 8px;text-align:center;border:2px solid transparent}
+.htile.up{background:#ebfbee;border-color:#b2f2bb}
+.htile.down{background:#e7f5ff;border-color:#a5d8ff}
+.hic{font-size:34px;line-height:1.1}
+.hname{font-weight:700;font-size:15px;margin-top:2px}
+.harrow{font-size:30px;line-height:1.1;margin-top:4px}
+.htile.up .harrow,.htile.up .hword{color:var(--good)}
+.htile.down .harrow,.htile.down .hword{color:#1971c2}
+.hword{font-weight:800;font-size:14px}
+.hsci{font-size:11px;color:var(--sub);margin-top:2px}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.srow:last-child{border-bottom:0}
+label.sl{display:block;font-size:13px;margin:8px 0 2px}
+input[type=range]{width:100%}
+.msg{font-size:13px;color:var(--sub);margin:6px 0}
+.warn{background:#fff0f0;border:1px solid #ffc9c9;color:#a61e1e;border-radius:10px;padding:8px 10px;font-size:13px}
+.lv{position:absolute;left:0;right:0;top:0;padding:8px 10px;text-align:center;background:rgba(232,89,12,.92);color:#fff;font-weight:700;font-size:13px;display:none}
+.count{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:56px;font-weight:800;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.7);display:none;pointer-events:none;line-height:1}
+.count.big{font-size:110px}
+.fun{position:absolute;right:6px;top:46px;width:46%;text-align:center;display:none;pointer-events:none}
+.fun .em{font-size:64px;line-height:1.1;display:inline-block}
+.fun.big .em{font-size:84px}
+.fun .em.a1{animation:wob .45s ease-in-out infinite alternate}
+.fun .em.a2{animation:bnc .4s ease-in-out infinite alternate}
+.fun .em.a3{animation:shk .25s ease-in-out infinite alternate}
+.fun .cap{display:inline-block;background:#fff;color:#2b2418;border-radius:12px;padding:4px 8px;font-size:12px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+@keyframes wob{from{transform:rotate(-14deg) scale(1)}to{transform:rotate(14deg) scale(1.12)}}
+@keyframes bnc{from{transform:translateY(0)}to{transform:translateY(-14px) scale(1.1)}}
+@keyframes shk{from{transform:translateX(-8px) rotate(-6deg)}to{transform:translateX(8px) rotate(6deg)}}
+.shop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.shop .ic{font-size:28px}
+.don{padding:12px 14px}
+.don .top{display:flex;align-items:center;gap:10px}
+.don .ic{font-size:30px}
+.don .btns{display:flex;gap:6px;margin-top:8px}
+.levelup{background:linear-gradient(90deg,#fff3bf,#ffd8a8);border:2px solid #f5a623;border-radius:12px;padding:10px;text-align:center;font-weight:800;margin-bottom:10px}
+.lvrow{display:flex;align-items:center;gap:12px}
+.lvic{font-size:42px;line-height:1}
+.tchips{display:flex;flex-wrap:wrap;gap:6px}
+.tchips button{flex:1 1 auto;width:auto}
+.cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:6px}
+.ct{border:2px solid transparent;border-radius:10px;padding:2px;background:#2a2316;cursor:pointer;text-align:center;font:inherit;color:#fff}
+.ct.sel{border-color:var(--accent2);background:#4a3414}
+.ct canvas{width:100%;display:block;border-radius:8px}
+.ct span{font-size:9px;display:block;line-height:1.15;padding:2px 0}
+.ct.auto{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;min-height:60px}
+.btn.sel{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gal .ph{position:relative;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:1/1}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal .dt{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);color:#fff;font-size:10px;padding:2px 4px}
+.gal .x{position:absolute;right:2px;top:2px;border:0;background:rgba(0,0,0,.55);color:#fff;border-radius:50%;width:22px;height:22px;font-size:12px;line-height:1;padding:0}
+.tag{font-size:11px;padding:2px 8px;border-radius:999px;white-space:nowrap;background:#fff3bf;color:#7a5b00}
+table{width:100%;border-collapse:collapse;font-size:13px}
+td{padding:6px 4px;border-bottom:1px solid var(--line)}td:last-child{text-align:right;font-weight:600}
+</style>
+</head>
+<body>
+<div class="app">
+<header><h1>😄 Smile Bank</h1><div class="chip" id="chipCredit">0 credits</div></header>
+
+<!-- Home -->
+<section class="view on" id="v-home">
+  <div class="card">
+    <h2>My Smile Bank</h2>
+    <div id="ageShow">
+      <div class="big" id="ageTotal">–</div>
+      <div class="sub" id="ageSub"></div>
+      <div class="msg">A score you build by smiling. It is not a health measurement.</div>
+    </div>
+  </div>
+  <div class="card" id="lvCard">
+    <h2>My Level</h2>
+    <div class="lvrow"><div class="lvic" id="lvIcon">🙂</div><div style="flex:1"><div style="font-weight:800;font-size:17px" id="lvName">Lv 1</div><div class="bar"><i id="lvBar"></i></div><div class="sub" id="lvNext"></div></div></div>
+    <div class="msg" id="lvPerk"></div>
+  </div>
+  <div class="card">
+    <h2>Today's Smile Credits</h2>
+    <div><b id="todayCredit">0</b> / <span id="capCredit">10</span> credits</div>
+    <div class="bar"><i id="barCredit"></i></div>
+    <div class="grid3" style="margin-top:10px">
+      <div><b id="sessCnt">0/3</b><span class="sub">Sessions today</span></div>
+      <div><b id="streak">0 d</b><span class="sub">Daily streak</span></div>
+      <div><b id="bonusPct">+0%</b><span class="sub">Streak bonus</span></div>
+    </div>
+  </div>
+  <button class="btn" id="goSession">😁 Start smiling</button>
+  <div class="card"><h2>My smile gallery</h2><div class="gal" id="gallery"></div><div class="msg" id="galMsg"></div></div>
+  <div class="card"><h2>What happens when you laugh</h2><div id="hormoneHome"></div></div>
+</section>
+
+<!-- Session -->
+<section class="view" id="v-session">
+  <div class="stage" id="stage">
+    <video id="video" class="mir" playsinline muted style="display:none"></video>
+    <canvas id="cv" class="mir" width="640" height="480"></canvas>
+    <div class="lv" id="lvBox"></div>
+    <div class="fun" id="fun"><div class="em" id="funEm"></div><br><div class="cap" id="funCap"></div></div>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="card">
+    <div id="gStage" style="font-weight:700;margin-bottom:6px">Ready</div>
+    <div class="row" style="align-items:center">
+      <div>Match <b id="gMatch">0</b>%</div>
+      <div id="gType"><span class="pill">Waiting</span></div>
+      <div style="text-align:right"><b id="gTime">–</b> s left</div>
+    </div>
+    <div class="bar"><i id="barMatch"></i></div>
+    <div class="row" style="align-items:center"><div>Session score <b id="gScore">0</b> / <span id="gCap">100</span></div><div style="text-align:right" class="sub" id="gLaugh"></div></div>
+  </div>
+  <div class="row" style="margin-bottom:8px">
+    <button class="btn alt" id="modeCam">📷 Camera mode</button>
+    <button class="btn alt" id="modeDemo">🎛 Demo mode</button>
+  </div>
+  <div class="msg" id="modeMsg">Choose a mode, then press Start. The design processes camera video on your device only.</div>
+  <div class="card" id="demoCtl" style="display:none">
+    <h2>Demo controls (simulated expression)</h2>
+    <div class="sub">Pick a character (34) or use Auto. Characters appear in Demo mode.</div>
+    <div class="cgrid" id="cgrid"></div>
+    <label class="sl">Mouth corners raised <span id="o1">0</span></label><input type="range" id="sSmile" min="0" max="100" value="0">
+    <label class="sl">Eye smile (squint) <span id="o2">0</span></label><input type="range" id="sEye" min="0" max="100" value="0">
+    <label class="sl">Mouth open <span id="o3">0</span></label><input type="range" id="sJaw" min="0" max="100" value="0">
+    <div class="row" style="margin-top:10px">
+      <button class="btn alt" data-p="smile">Smile</button>
+      <button class="btn alt" data-p="real">Eye smile</button>
+      <button class="btn alt" data-p="laugh">Big laugh</button>
+    </div>
+    <button class="btn alt" id="turnBtn" style="margin-top:8px">↔ Turn head (simulated)</button>
+  </div>
+  <div class="card">
+    <h2>📸 Smile photo</h2>
+    <div class="sub" id="photoHelp">Take a selfie of your best smile. It opens your phone's camera. Photos stay on this device only.</div>
+    <input type="file" id="photoFile" accept="image/*" capture="user" style="display:none">
+    <button class="btn alt" id="photoBtn" style="margin-top:8px">📸 Take smile photo</button>
+    <div class="msg" id="photoMsg"></div>
+  </div>
+  <div class="card"><h2>🎨 Season theme</h2>
+    <div class="sub">Colorful backgrounds and falling petals, leaves or snow. Works in Demo and Camera mode.</div>
+    <div class="tchips" id="tchips" style="margin-top:8px"></div>
+  </div>
+  <div class="card"><h2>5 stages</h2><div class="sub" id="stageList"></div></div>
+  <button class="btn" id="startBtn">▶ Start</button>
+</section>
+
+<!-- Result -->
+<section class="view" id="v-result">
+  <div class="card" id="resultBox"></div>
+  <div class="card"><h2>What happens when you laugh</h2><div id="hormoneRes"></div></div>
+  <div class="row"><button class="btn alt" id="toHome">Home</button><button class="btn" id="again">Go again</button></div>
+</section>
+
+<!-- Shop -->
+<section class="view" id="v-shop">
+  <div class="card"><h2>Shop</h2>
+    <div class="sub">Donate your Smile Credits to a cause. This is a demo: no real donation is made yet. Real donations will start with sponsor and foundation partners.</div>
+    <div style="margin-top:8px">Your credits: <b id="shopCredit">0</b></div>
+  </div>
+  <h2 style="font-size:15px;margin:14px 2px 0">💝 Donate</h2>
+  <div class="card don"><div class="top"><div class="ic">🧒</div><div style="flex:1"><b>Children's Foundation</b><div class="sub">Support for children in need · donated: <b id="d-children">0</b></div></div></div>
+    <div class="btns"><button class="btn alt sm" data-d="children" data-n="1">Give 1</button><button class="btn alt sm" data-d="children" data-n="5">Give 5</button><button class="btn alt sm" data-d="children" data-n="10">Give 10</button></div></div>
+  <div class="card don"><div class="top"><div class="ic">🌍</div><div style="flex:1"><b>Global Aid Foundation</b><div class="sub">Overseas relief and education · donated: <b id="d-global">0</b></div></div></div>
+    <div class="btns"><button class="btn alt sm" data-d="global" data-n="1">Give 1</button><button class="btn alt sm" data-d="global" data-n="5">Give 5</button><button class="btn alt sm" data-d="global" data-n="10">Give 10</button></div></div>
+  <div class="card don"><div class="top"><div class="ic">👵</div><div style="flex:1"><b>Senior Care Foundation</b><div class="sub">Care and companionship for older adults · donated: <b id="d-seniors">0</b></div></div></div>
+    <div class="btns"><button class="btn alt sm" data-d="seniors" data-n="1">Give 1</button><button class="btn alt sm" data-d="seniors" data-n="5">Give 5</button><button class="btn alt sm" data-d="seniors" data-n="10">Give 10</button></div></div>
+  <div class="msg" id="donMsg">Foundation names are placeholders. Partner organizations will be confirmed later.</div>
+  <h2 style="font-size:15px;margin:14px 2px 0">🎁 Rewards <span class="tag">Coming soon</span></h2>
+  <div class="card shop"><div class="ic">☕</div><div style="flex:1"><b>Partner café voucher</b><div class="sub">Sponsor reward (placeholder)</div></div><button class="btn alt" style="width:auto" disabled>Soon</button></div>
+  <div class="card shop"><div class="ic">🍊</div><div style="flex:1"><b>Smile goods &amp; partner products</b><div class="sub">Sponsor reward (placeholder)</div></div><button class="btn alt" style="width:auto" disabled>Soon</button></div>
+</section>
+
+<!-- Policy -->
+<section class="view" id="v-policy">
+  <div class="card"><h2>Current settings</h2><table id="cfgTable"></table></div>
+  <div class="card"><h2>Notes</h2>
+    <div class="sub">
+      · Smile Bank days are a game score. They are not a medical measurement, and smiling is not claimed to change your age or health.<br>
+      · The body-change cards are general information about laughter and are not medical advice.<br>
+      · In this prototype, records stay in this device's browser and are not sent to any server.<br>
+      · Smile Credits have no cash value at this stage. Donations and rewards will be offered only within sponsor-funded budgets.
+    </div>
+    <button class="btn alt" id="resetBtn" style="margin-top:10px">Reset my data</button>
+  </div>
+</section>
+</div>
+
+<nav><div class="in">
+  <button data-v="home" class="on">🏠 Home</button>
+  <button data-v="session">😁 Smile</button>
+  <button data-v="shop">🎁 Shop</button>
+  <button data-v="policy">📋 Rules</button>
+</div></nav>
+
+<script>
+// ===== ENGINE-START =====
+const CONFIG = {
+  dailyCreditCap: 10,      // max credits per person per day
+  scorePerCredit: 30,      // 30 smile points = 1 credit
+  sessionScoreCap: 100,
+  dailySessionLimit: 3,
+  matchThreshold: 70,      // scoring starts at 70% match
+  baseRate: 1,             // points per second
+  laughRate: 2,            // points per second during a big laugh
+  realSmileMult: 1.5,      // bonus when mouth corners + eyes both react
+  laughStartSec: 5,        // continuous seconds needed to count as a big laugh
+  targetSmile: 0.6, targetEye: 0.35,
+  laughSmile: 0.6, laughJaw: 0.35,
+  streakBonuses: [[30, 0.3], [7, 0.1]],
+  smileDaysPer100: 0.1,    // 100 points = 0.1 day (for fun)
+  daysPerYear: 365.25
+};
+const STAGES = [
+  { key: 'smile', name: 'Smile Match', type: 'match', seconds: 10, pass: 5, early: true,
+    help: 'Match the dashed guide. Hold it for 5 of 10 seconds.' },
+  { key: 'live', name: 'Identity Check', type: 'turn', seconds: 8,
+    help: 'Turn your head to one side, then look straight ahead.' },
+  { key: 'clown', name: 'Funny Clown', type: 'match', seconds: 10, pass: 3, funny: 'clown', every: 2,
+    help: 'Funny Clown! Laugh along. Match the guide for 3 of 10 seconds.' },
+  { key: 'pets', name: 'Silly Pets', type: 'match', seconds: 10, pass: 3, funny: 'pets', every: 2,
+    help: 'Silly Pets! Try not to laugh. (You will.) Match the guide for 3 of 10 seconds.' },
+  { key: 'laugh', name: 'BIG LAUGH FINALE', type: 'laugh', seconds: 30, funny: 'parade', every: 1.5,
+    help: 'BIG LAUGH! Keep laughing until the clock reaches 0.' }
+];
+function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+function newSessionState() { return { score: 0, laughTime: 0, grace: 0 }; }
+function calcFrame(sig, dt, st, C) {
+  const smileN = Math.min(sig.smile / C.targetSmile, 1);
+  const eyeN = Math.min(sig.eye / C.targetEye, 1);
+  const match = Math.round(100 * (0.6 * smileN + 0.4 * eyeN));
+  const real = smileN >= 0.8 && eyeN >= 0.6;
+  const laughCond = sig.smile >= C.laughSmile && sig.jaw >= C.laughJaw;
+  if (laughCond) { st.laughTime += dt; st.grace = 0; }
+  else { st.grace += dt; if (st.grace > 0.5) st.laughTime = 0; }
+  const laughActive = st.laughTime >= C.laughStartSec;
+  let add = 0;
+  if (match >= C.matchThreshold) {
+    const rate = laughActive ? C.laughRate : C.baseRate;
+    add = rate * (real ? C.realSmileMult : 1) * dt;
+  }
+  st.score = Math.min(C.sessionScoreCap, st.score + add);
+  return { match, real, laughActive, add };
+}
+function isLaughing(sig, C) { return sig.smile >= C.laughSmile && sig.jaw >= C.laughJaw; }
+function streakBonus(streak, C) {
+  for (const [d, b] of C.streakBonuses) if (streak >= d) return b;
+  return 0;
+}
+function creditsForDay(dailyScore, bonus, C) {
+  return Math.min(C.dailyCreditCap, Math.floor(dailyScore * (1 + bonus) / C.scorePerCredit));
+}
+function smileDays(score, C) { return score / 100 * C.smileDaysPer100; }
+
+/* "Smile days" are a game score, nothing more. An earlier version subtracted
+   them from the player's real age and showed the result as their "Smile Age".
+   That framing was dropped on purpose: there is no evidence that smiling
+   changes biological age, the FaceAge work found that looking younger does
+   not mean being biologically younger, and one study even finds people rate
+   a smiling face as slightly older. Presenting a number as years removed from
+   a life would have been a health claim we cannot support — and one that app
+   stores and advertising rules both treat as a claim. So the same number is
+   now simply banked, and it is never put next to an age. */
+function bankedShort(days) { return days.toFixed(2) + ' days banked'; }
+function bankedLong(days, C) {
+  if (days < 1) return days.toFixed(2) + ' days';
+  const w = Math.floor(days);
+  return w + (w === 1 ? ' day ' : ' days ') + ((days - w) * 24).toFixed(0) + ' h';
+}
+const LEVELS = [
+  { lv: 1, name: 'Grinner', icon: '🙂', xp: 0, unlock: 'Clown & Pets funny packs' },
+  { lv: 2, name: 'Giggler', icon: '😄', xp: 100, unlock: 'Kitchen Chaos pack 🍕' },
+  { lv: 3, name: 'Chuckler', icon: '😆', xp: 300, unlock: 'Space Aliens pack 👽' },
+  { lv: 4, name: 'Cackler', icon: '😹', xp: 700, unlock: 'Party Animals pack 🦄' },
+  { lv: 5, name: 'Laugh Master', icon: '🤣', xp: 1300, unlock: 'Costume Party pack 🎃' },
+  { lv: 6, name: 'Joy Maker', icon: '🌟', xp: 2100, unlock: 'Bigger Smile Bank boost' },
+  { lv: 7, name: 'Giggle Hero', icon: '🦸', xp: 3200, unlock: 'Dino & Friends pack 🦖' },
+  { lv: 8, name: 'Happiness Guru', icon: '🧘', xp: 4600, unlock: 'Bigger Smile Bank boost' },
+  { lv: 9, name: 'Joy Legend', icon: '👑', xp: 6400, unlock: 'Royal Fireworks pack 🎆' },
+  { lv: 10, name: 'Smile Sage', icon: '🌈', xp: 8600, unlock: 'Maximum boost' }
+];
+const PACKS = [
+  { level: 2, name: 'Kitchen Chaos', items: [['🍕', 'Pizza says hi!'], ['🥞', 'Pancake flip fail!'], ['🍳', 'Egg-cellent joke!']] },
+  { level: 3, name: 'Space Aliens', items: [['👽', 'Take me to your giggle!'], ['🛸', 'Zoom zoom!'], ['🌝', 'Even the moon is laughing']] },
+  { level: 4, name: 'Party Animals', items: [['🦄', 'Sparkle toot!'], ['🦆', 'Quack attack!'], ['🥳', 'Party time!']] },
+  { level: 5, name: 'Costume Party', items: [['🎃', 'Boo-hoo-ha!'], ['🤖', 'LOL.exe loading…'], ['🧙', 'Abra-cadabra-HA!']] },
+  { level: 7, name: 'Dino & Friends', items: [['🦖', 'Tiny arms, big laugh!'], ['🐙', 'Eight arms, eight giggles!'], ['🦥', 'Slooow joke…']] },
+  { level: 9, name: 'Royal Fireworks', items: [['👑', 'Royal giggle!'], ['🎆', 'Fireworks of fun!'], ['🎉', 'Confetti time!']] }
+];
+function levelFor(xp) {
+  let cur = LEVELS[0];
+  for (const L of LEVELS) if (xp >= L.xp) cur = L;
+  const next = LEVELS[cur.lv] || null;
+  const progress = next ? (xp - cur.xp) / (next.xp - cur.xp) : 1;
+  return { cur, next, progress };
+}
+function ageBoost(lv) { return 1 + 0.05 * (lv - 1); }            // +5% banked days per level (game score only)
+function xpForSession(passedCount, finished) { return 10 * passedCount + (finished ? 20 : 0); }
+function unlockedPacks(lv) { return PACKS.filter(p => p.level <= lv); }
+// ===== ENGINE-END =====
+
+// ---------- Storage ----------
+const KEY = 'smileAgeProto_v2';
+let mem = null;
+/* `reducedDays` keeps its old name so saves from earlier builds still load;
+   it now means "days banked", and nothing is subtracted from anything. */
+function fresh() { return { photos: [], xp: 0, reducedDays: 0, totalScore: 0, totalCredits: 0, streak: 0, lastDay: '', days: {}, donated: { children: 0, global: 0, seniors: 0 } }; }
+function load() {
+  try { const r = localStorage.getItem(KEY); if (r) { const o = JSON.parse(r); o.donated = o.donated || { children: 0, global: 0, seniors: 0 }; if (o.xp === undefined) o.xp = 0; if (!o.photos) o.photos = []; if (o.reducedDays === undefined) o.reducedDays = smileDays(o.totalScore || 0, CONFIG); return o; } } catch (e) {}
+  return mem || fresh();
+}
+function save(s) { mem = s; try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {} }
+function ymd(d) { const z = n => String(n).padStart(2, '0'); return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate()); }
+function today() { return ymd(new Date()); }
+function yesterday() { const d = new Date(); d.setDate(d.getDate() - 1); return ymd(d); }
+let S = load();
+function dayRec() { return S.days[today()] || { score: 0, sessions: 0, credits: 0, reduced: 0 }; }
+
+// ---------- Common UI ----------
+const $ = id => document.getElementById(id);
+const HORMONES = [
+  ['😰', 'Stress', 'Cortisol', 'down'],
+  ['😬', 'Tension', 'Epinephrine', 'down'],
+  ['😊', 'Happiness', 'Endorphins', 'up'],
+  ['🌈', 'Joy & Mood', 'Dopamine · Serotonin', 'up']
+];
+function hormoneHTML() {
+  return '<div class="hgrid">' + HORMONES.map(h =>
+    '<div class="htile ' + h[3] + '">' +
+      '<div class="hic">' + h[0] + '</div>' +
+      '<div class="hname">' + h[1] + '</div>' +
+      '<div class="harrow">' + (h[3] === 'up' ? '▲' : '▼') + '</div>' +
+      '<div class="hword">' + (h[3] === 'up' ? 'Increases' : 'Decreases') + '</div>' +
+      '<div class="hsci">' + h[2] + '</div>' +
+    '</div>').join('') + '</div>' +
+    '<div class="sub" style="margin-top:8px">For fun and general information only.</div>';
+}
+function ageHTML() {
+  const banked = S.reducedDays || 0;
+  const d = dayRec();
+  $('ageTotal').textContent = bankedShort(banked);
+  $('ageSub').textContent = 'Today you added ' + (d.reduced || 0).toFixed(2) + ' days'
+    + (banked >= 1 ? ' · ' + bankedLong(banked, CONFIG) + ' banked so far' : '');
+}
+function levelHTML() {
+  const xp = S.xp || 0, L = levelFor(xp), lv = L.cur.lv;
+  $('lvIcon').textContent = L.cur.icon;
+  $('lvName').textContent = 'Lv ' + lv + ' · ' + L.cur.name + '  (' + xp + ' XP)';
+  $('lvBar').style.width = Math.round(L.progress * 100) + '%';
+  $('lvNext').textContent = L.next ? (L.next.xp - xp) + ' XP to Lv ' + L.next.lv + ' · unlocks: ' + L.next.unlock : 'Max level reached! 👑';
+  $('lvPerk').textContent = 'Smile Bank boost +' + Math.round((ageBoost(lv) - 1) * 100) + '% · Funny packs: Clown, Pets' + unlockedPacks(lv).map(p => ', ' + p.name).join('') + '. Earn XP by passing stages: the more you play, the more you unlock.';
+}
+function refreshHome() {
+  const d = dayRec();
+  const bonus = streakBonus(S.streak, CONFIG);
+  { const L = levelFor(S.xp || 0).cur; $('chipCredit').textContent = L.icon + ' Lv ' + L.lv + ' · ' + S.totalCredits + (S.totalCredits === 1 ? ' credit' : ' credits'); }
+  levelHTML(); renderGallery();
+  ageHTML();
+  $('todayCredit').textContent = d.credits;
+  $('capCredit').textContent = CONFIG.dailyCreditCap;
+  $('barCredit').style.width = (100 * d.credits / CONFIG.dailyCreditCap) + '%';
+  $('sessCnt').textContent = d.sessions + '/' + CONFIG.dailySessionLimit;
+  $('streak').textContent = S.streak + ' d';
+  $('bonusPct').textContent = '+' + Math.round(bonus * 100) + '%';
+  $('shopCredit').textContent = S.totalCredits;
+  ['children', 'global', 'seniors'].forEach(k => { $('d-' + k).textContent = S.donated[k] || 0; });
+  document.querySelectorAll('[data-d]').forEach(b => { b.disabled = S.totalCredits < Number(b.dataset.n); });
+  $('hormoneHome').innerHTML = hormoneHTML();
+}
+function show(v) {
+  document.querySelectorAll('.view').forEach(e => e.classList.remove('on'));
+  $('v-' + v).classList.add('on');
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+  window.scrollTo(0, 0);
+  if (v === 'home' || v === 'shop') refreshHome();
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => show(b.dataset.v));
+$('goSession').onclick = () => show('session');
+$('toHome').onclick = () => show('home');
+$('again').onclick = () => show('session');
+
+// The app no longer asks for the player's age: nothing is computed from it
+// any more, and not collecting a personal detail we have no use for is the
+// better default. (A store age rating still applies at the listing level.)
+
+// Donations (demo)
+document.querySelectorAll('[data-d]').forEach(b => b.onclick = () => {
+  const n = Number(b.dataset.n), k = b.dataset.d;
+  if (S.totalCredits < n) { $('donMsg').innerHTML = '<span style="color:#a61e1e">Not enough credits.</span>'; return; }
+  S.totalCredits -= n; S.donated[k] = (S.donated[k] || 0) + n; save(S); refreshHome();
+  $('donMsg').textContent = 'Thank you! You pledged ' + n + (n === 1 ? ' credit' : ' credits') + ' (demo: no real donation was made).';
+});
+
+// Rules + stage list
+(function () {
+  const rows = [
+    ['Credit cash value', 'None at this stage'],
+    ['Daily maximum per person', CONFIG.dailyCreditCap + ' credits'],
+    ['Earning rate', CONFIG.scorePerCredit + ' points = 1 credit'],
+    ['Sessions', 'Up to ' + CONFIG.dailySessionLimit + ' per day, 5 stages each'],
+    ['Session score cap', CONFIG.sessionScoreCap + ' points'],
+    ['Scoring starts at', CONFIG.matchThreshold + '% match'],
+    ['Smile / big laugh', CONFIG.baseRate + ' / ' + CONFIG.laughRate + ' points per second'],
+    ['Genuine smile bonus', '×' + CONFIG.realSmileMult],
+    ['Streak bonus', '7 days +10%, 30 days +30% (daily cap still applies)'],
+    ['Smile Bank conversion', '100 points = ' + CONFIG.smileDaysPer100 + ' day (game score)'],
+    ['Levels', '10 levels. XP: 10 per stage passed, +20 for finishing the finale'],
+    ['Level perks', 'New funny packs, Smile Bank boost +5% per level (max +45%)'],
+    ['Donations', 'Demo only for now'],
+    ['Cash-out', 'Not offered (to be reviewed later)']
+  ];
+  STAGES.forEach((s, i) => rows.push(['Stage ' + (i + 1), s.name + ' · ' + s.seconds + ' s']));
+  $('cfgTable').innerHTML = rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('');
+  $('gCap').textContent = CONFIG.sessionScoreCap;
+  $('stageList').innerHTML = STAGES.map((s, i) => (i + 1) + '. <b>' + s.name + '</b> (' + s.seconds + ' s)' + (s.type === 'laugh' ? ' · countdown 30, 29, 28 …' : '')).join('<br>');
+})();
+$('resetBtn').onclick = () => { S = fresh(); save(S); refreshHome(); };
+
+// ---------- Funny images ----------
+const FUNNY = {
+  clown: [['🤡', 'Honk honk! Big shoes coming through!'], ['🎈', 'This balloon is smarter than me.'], ['🤹', 'I can juggle... one thing. Mostly.'], ['🍌', 'Who put a banana there?!'], ['🥧', 'Pie incoming!']],
+  pets: [['🐶', 'Woof?! Why is my tongue out? 😛'], ['🐱', 'I knocked your cup off the table. Again.'], ['🐹', 'Cheeks: fully loaded.'], ['🐸', 'Ribbit. Judging you.'], ['🐷', 'Oink! Zoomies time!']],
+  parade: [['🤡', 'HONK!'], ['🐶', 'Zoomies!'], ['🐱', 'Hehehe!'], ['🤪', 'Wheee!'], ['🐸', 'Ribbit hahaha!'], ['🐷', 'Snort-laugh!'], ['🙈', 'Oops!']]
+};
+const PARADE_BASE = FUNNY.parade.slice();
+function buildParade(lv) { let a = PARADE_BASE.slice(); unlockedPacks(lv).forEach(p => { a = a.concat(p.items); }); return a; }
+let funnyKey = '';
+function updateFunny(stage, idx, el) {
+  const box = $('fun');
+  const set = stage.funny ? FUNNY[stage.funny] : null;
+  if (!set) { box.style.display = 'none'; funnyKey = ''; return; }
+  const i = Math.floor(el / stage.every) % set.length;
+  const key = idx + ':' + i;
+  box.style.display = 'block';
+  box.className = 'fun' + (stage.type === 'laugh' ? ' big' : '');
+  if (key !== funnyKey) {
+    funnyKey = key;
+    $('funEm').textContent = set[i][0];
+    $('funEm').className = 'em a' + (i % 3 + 1);
+    $('funCap').textContent = set[i][1];
+  }
+}
+
+// ---------- Session ----------
+const cv = $('cv'), ctx = cv.getContext('2d');
+let mode = 'demo';           // 'demo' | 'cam'
+let landmarker = null, camStream = null;
+let running = false, sig = { smile: 0, eye: 0, jaw: 0 };
+let demoTurned = false, camTurnedOut = false;
+
+
+// ---------- Mascots (demo mode): 30 characters ----------
+const CHAR_LABEL = {
+  cat: '🐱 Cat', rabbit: '🐰 Rabbit', clown: '🤡 Clown', drool: '🤤 Drooler', cake: '🎂 Cake face', nori: '😁 Seaweed teeth',
+  puppy: '🐶 Puppy', pig: '🐷 Piggy', frog: '🐸 Froggy', bear: '🐻 Bear', panda: '🐼 Panda', fox: '🦊 Fox',
+  monkey: '🐵 Monkey', lion: '🦁 Lion', octopus: '🐙 Octo', alien: '👽 Alien', robot: '🤖 Robot', ghost: '👻 Ghost',
+  wizard: '🧙 Wizard', pumpkin: '🎃 Pumpkin', pizza: '🍕 Pizza face', banana: '🍌 Banana', melon: '🍉 Melon', snowman: '☃️ Snowman',
+  unicorn: '🦄 Unicorn', dino: '🦖 Dino', chick: '🐥 Chick', mustache: '👨 Mustache', nerd: '🤓 Nerd', sneeze: '🤧 Sneezer',
+  reindeer: '🦌 Reindeer', flower: '🌸 Flower', sun: '🌞 Sunny', maple: '🍁 Maple'
+};
+const CHARS = Object.keys(CHAR_LABEL);
+const THEMES = {
+  spring: { n: '🌸 Spring', c0: '#ffd1dc', c1: '#7fc97f' },
+  summer: { n: '☀️ Summer', c0: '#ffe680', c1: '#2f9fe0' },
+  autumn: { n: '🍂 Autumn', c0: '#f6ad5a', c1: '#8a4b1f' },
+  winter: { n: '❄️ Winter', c0: '#e6f1fb', c1: '#4f76a3' }
+};
+let themeChoice = 'auto';
+function currentTheme() {
+  if (themeChoice !== 'auto') return themeChoice;
+  const m = new Date().getMonth() + 1;
+  return m >= 3 && m <= 5 ? 'spring' : m >= 6 && m <= 8 ? 'summer' : m >= 9 && m <= 11 ? 'autumn' : 'winter';
+}
+function drawSeasonFx(W, H, t) {
+  const th = currentTheme();
+  ctx.save();
+  if (th === 'summer') {
+    ctx.translate(58, 58);
+    ctx.fillStyle = 'rgba(255,212,59,.95)'; ctx.beginPath(); ctx.arc(0, 0, 30, 0, 7); ctx.fill();
+    ctx.strokeStyle = 'rgba(255,170,0,.9)'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6 + t * 0.6; ctx.beginPath(); ctx.moveTo(Math.cos(a) * 40, Math.sin(a) * 40); ctx.lineTo(Math.cos(a) * 56, Math.sin(a) * 56); ctx.stroke(); }
+    ctx.translate(-58, -58);
+    for (let i = 0; i < 10; i++) { const x = (i * 71) % W, y = H - ((t * (20 + i % 4 * 8) + i * 47) % H); ctx.strokeStyle = 'rgba(255,255,255,.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x + Math.sin(t * 2 + i) * 6, y, 5 + i % 3 * 2, 0, 7); ctx.stroke(); }
+  } else {
+    for (let i = 0; i < 24; i++) {
+      const sway = Math.sin(t * 1.5 + i) * 18;
+      const x = ((i * 97 + t * (10 + i % 5 * 5)) % (W + 40)) - 20 + sway, y = (i * 53 + t * (28 + i % 4 * 12)) % (H + 20) - 10;
+      ctx.save(); ctx.translate(x, y); ctx.rotate(t * (1 + i % 3) + i);
+      if (th === 'spring') { ctx.fillStyle = i % 2 ? '#ffb3c7' : '#ffffff'; ctx.beginPath(); ctx.ellipse(0, 0, 8, 4, 0, 0, 7); ctx.fill(); }
+      else if (th === 'autumn') { ctx.fillStyle = ['#d9480f', '#f08c00', '#c92a2a', '#e8a317'][i % 4]; ctx.beginPath(); ctx.ellipse(0, 0, 10, 5, 0, 0, 7); ctx.fill(); ctx.strokeStyle = 'rgba(90,40,0,.6)'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(-10, 0); ctx.lineTo(10, 0); ctx.stroke(); }
+      else { ctx.fillStyle = 'rgba(255,255,255,.92)'; ctx.beginPath(); ctx.arc(0, 0, 2.5 + i % 3, 0, 7); ctx.fill(); }
+      ctx.restore();
+    }
+  }
+  ctx.restore();
+}
+let mascotChoice = 'auto', curStageKey = '', forcedChar = null, fixedT = null, thumbMode = false;
+function currentChar(t) {
+  if (forcedChar) return forcedChar;
+  if (mascotChoice !== 'auto') return mascotChoice;
+  if (curStageKey === 'clown') return 'clown';
+  if (curStageKey === 'pets') return ['cat', 'rabbit', 'puppy', 'pig'][Math.floor(t / 3) % 4];
+  if (curStageKey === 'laugh') return CHARS[Math.floor(t / 4) % CHARS.length];
+  if (curStageKey === '') return CHARS[Math.floor(t / 3) % CHARS.length];
+  return 'cat';
+}
+const SKIN = {
+  cat: ['#ffc857', '#fff1c9'], rabbit: ['#f3ece6', '#ffffff'], clown: ['#fff7ee', '#fff7ee'],
+  drool: ['#9be28f', '#e6ffe0'], cake: ['#ffd9a8', '#ffeccf'], nori: ['#ffc9a0', '#ffe4cf']
+};
+function blob(x, y, r, fill, stroke) { ctx.fillStyle = fill; ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill(); if (stroke) { ctx.strokeStyle = typeof stroke === 'string' ? stroke : ctx.strokeStyle; ctx.lineWidth = 2.5; ctx.stroke(); } }
+function ell(x, y, rx, ry, fill, stroke, rot) { ctx.fillStyle = fill; ctx.beginPath(); ctx.ellipse(x, y, rx, ry, rot || 0, 0, 7); ctx.fill(); if (stroke) { if (typeof stroke === 'string') ctx.strokeStyle = stroke; ctx.stroke(); } }
+function tri(x1, y1, x2, y2, x3, y3, fill, stroke) { ctx.fillStyle = fill; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.lineTo(x3, y3); ctx.closePath(); ctx.fill(); if (stroke) { if (typeof stroke === 'string') ctx.strokeStyle = stroke; ctx.stroke(); } }
+
+// Original characters (hooks: back = behind head, pre = over head before eyes, nose, post = over mouth)
+const DEFS = {
+  puppy: { skin: '#ead2ad', line: '#7a4e2d', muzzle: '#fff3e0',
+    back(K) { [-1, 1].forEach(s => { ctx.save(); ctx.translate(s * 118, -55); ctx.rotate(s * (0.25 + Math.sin(K.t * 6) * 0.05 * (0.3 + K.sm))); ell(0, 35, 32, 66, '#9c6b43', true); ctx.restore(); }); },
+    pre() { ell(-55, -30, 42, 44, 'rgba(140,90,52,.55)'); },
+    nose() { ell(0, 12, 19, 13, '#2b2118', true); blob(-6, 8, 4, '#fff', null); },
+    post(K) { if (K.jwE <= 0.08) { ctx.lineWidth = 3; ctx.strokeStyle = '#3b2400'; ell(K.mw * 0.25, K.my + 22, 20, 18, '#ff6f86', true); } } },
+  pig: { skin: '#ffb3c1', line: '#a8506a',
+    back() { [-1, 1].forEach(s => tri(s * 70, -118, s * 135, -150, s * 128, -80, '#ff8fa3', true)); },
+    nose() { ell(0, 10, 28, 18, '#ff8fa3', true); ell(-9, 10, 4.5, 7, '#a8506a', false); ell(9, 10, 4.5, 7, '#a8506a', false); } },
+  frog: { skin: '#7ed957', line: '#2c6b2f', head: 'wide', muzzle: '#d8f5a2', eyes: { x: 62, y: -108, k: 1.1, style: 'normal' },
+    back() { [-1, 1].forEach(s => ell(s * 62, -108, 42, 40, '#7ed957', true)); },
+    nose() { blob(-10, 6, 3.5, '#2c6b2f', null); blob(10, 6, 3.5, '#2c6b2f', null); } },
+  bear: { skin: '#a9744f', line: '#5a3a22', muzzle: '#e8c9a4',
+    back() { [-1, 1].forEach(s => { blob(s * 105, -105, 36, '#a9744f', '#5a3a22'); blob(s * 105, -105, 18, '#d9a679', null); }); },
+    nose() { ell(0, 14, 17, 12, '#2b2118', true); } },
+  panda: { skin: '#ffffff', line: '#333', arc: '#ffffff',
+    back() { [-1, 1].forEach(s => blob(s * 108, -105, 38, '#222', '#222')); },
+    pre() { [-1, 1].forEach(s => ell(s * 52, -28, 34, 42, '#222', false, s * 0.35)); },
+    nose() { ell(0, 12, 15, 10, '#222', false); } },
+  fox: { skin: '#ff9f43', line: '#8a3b00',
+    back(K) { [-1, 1].forEach(s => { tri(s * 60, -112, s * 140, -205 - 4 * K.sm * Math.sin(K.t * 8), s * 135, -70, '#ff9f43', true); tri(s * 85, -110, s * 128, -172, s * 125, -88, '#3b2a20', false); }); },
+    pre() { [-1, 1].forEach(s => ell(s * 66, 52, 66, 56, '#fff6ea', false, s * 0.15)); },
+    nose() { ell(0, 10, 10, 8, '#222', false); } },
+  monkey: { skin: '#b5835a', line: '#5a3a22',
+    back() { [-1, 1].forEach(s => { blob(s * 140, -8, 44, '#b5835a', '#5a3a22'); blob(s * 140, -8, 26, '#f1c9a5', null); }); },
+    pre() { ell(0, 40, 92, 78, '#f3d7b5', false); [-1, 1].forEach(s => blob(s * 50, -30, 46, '#f3d7b5', null)); },
+    nose() { blob(-8, 12, 3.5, '#5a3a22', null); blob(8, 12, 3.5, '#5a3a22', null); },
+    post() { ctx.save(); ctx.translate(100, 112); ctx.rotate(-0.5); ctx.fillStyle = '#ffe066'; ctx.strokeStyle = '#8a6d00'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-50, 0); ctx.quadraticCurveTo(0, 40, 50, -10); ctx.quadraticCurveTo(10, 18, -50, -14); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore(); } },
+  lion: { skin: '#ffc857', line: '#8a4b00', muzzle: '#fff1c9',
+    back(K) { for (let i = 0; i < 14; i++) { const a = i / 14 * Math.PI * 2 + K.t * 0.3 * K.sm; blob(Math.cos(a) * 156, Math.sin(a) * 141, 44, '#c9792b', '#7a3f0a'); } ell(0, 0, 158, 142, '#c9792b', false); [-1, 1].forEach(s => blob(s * 92, -125, 24, '#ffc857', '#8a4b00')); },
+    nose() { tri(-10, 6, 10, 6, 0, 18, '#ff7a8a', false); } },
+  octopus: { skin: '#b27cf0', line: '#5b2f9e', head: 'tall',
+    back(K) { [-1, 1].forEach(s => [0, 1].forEach(j => { const bx = s * (110 + j * 20), sway = Math.sin(K.t * 5 + j + s) * 12 * (0.4 + K.sm); ctx.strokeStyle = '#5b2f9e'; ctx.lineWidth = 30; ctx.beginPath(); ctx.moveTo(bx * 0.8, 40); ctx.quadraticCurveTo(bx + s * 40 + sway, 130, bx + s * 10 + sway * 1.5, 200 - j * 30); ctx.stroke(); ctx.strokeStyle = '#b27cf0'; ctx.lineWidth = 22; ctx.stroke(); })); },
+    pre() { [[-60, -95, 9], [-20, -110, 7], [40, -100, 10], [75, -80, 7], [10, -85, 6]].forEach(d => blob(d[0], d[1], d[2], '#9b5de5', null)); },
+    nose() { blob(0, 12, 5, '#5b2f9e', null); } },
+  alien: { skin: '#a7e66e', line: '#3d7a1f', head: 'tall', eyes: { x: 58, y: -15, k: 1.25, style: 'black' },
+    back(K) { [-1, 1].forEach(s => { const ty = -215 + Math.sin(K.t * 6 + s) * 6; ctx.strokeStyle = '#3d7a1f'; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(s * 40, -140); ctx.quadraticCurveTo(s * 60, -190, s * 78, ty); ctx.stroke(); blob(s * 78, ty, 13, '#ffd43b', '#8a6d00'); }); },
+    nose() { blob(-6, 22, 3, '#3d7a1f', null); blob(6, 22, 3, '#3d7a1f', null); } },
+  robot: { skin: '#bcc6d4', line: '#4a5568', head: 'square', cheek: 'rgba(255,140,60,', arc: '#0b3d4d', eyes: { x: 52, y: -30, k: 1, style: 'square' },
+    back(K) { ctx.strokeStyle = '#4a5568'; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(0, -125); ctx.lineTo(0, -185); ctx.stroke(); blob(0, -195, 13, Math.sin(K.t * 8) > 0 ? '#ff5252' : '#ffa8a8', '#7a1f1f'); [-1, 1].forEach(s => { ctx.fillStyle = '#8795a8'; ctx.beginPath(); ctx.rect(s * 140 - (s > 0 ? 0 : 24), -35, 24, 70); ctx.fill(); ctx.stroke(); }); },
+    pre() { [[-118, -98], [118, -98], [-118, 98], [118, 98]].forEach(q => blob(q[0], q[1], 7, '#8795a8', '#4a5568')); },
+    nose() { } },
+  ghost: { skin: '#f4f7ff', line: '#8b9dc3', head: 'ghost',
+    nose() { ell(0, 10, 8, 6, '#8b9dc3', false); },
+    post(K) { [-1, 1].forEach(s => ell(s * 150, 50 + Math.sin(K.t * 6 + s) * 10, 24, 14, '#f4f7ff', true, s * 0.5)); } },
+  wizard: { skin: '#ffd9b8', line: '#8a4b00',
+    back() { ctx.fillStyle = '#f5f5f5'; ctx.strokeStyle = '#999'; ctx.beginPath(); ctx.moveTo(-110, 40); ctx.bezierCurveTo(-130, 180, -40, 250, 0, 260); ctx.bezierCurveTo(40, 250, 130, 180, 110, 40); ctx.closePath(); ctx.fill(); ctx.stroke(); },
+    pre(K) { ctx.fillStyle = '#5f3dc4'; ctx.strokeStyle = '#3b2490'; ctx.beginPath(); ctx.moveTo(-80, -100); ctx.quadraticCurveTo(-30, -190, 35, -265 + Math.sin(K.t * 3) * 4); ctx.quadraticCurveTo(40, -180, 80, -100); ctx.closePath(); ctx.fill(); ctx.stroke(); ell(0, -100, 125, 22, '#5f3dc4', true); [[-10, -150, 6], [30, -190, 5], [-35, -120, 4]].forEach(d => blob(d[0], d[1], d[2], '#ffd43b', null)); },
+    nose() { blob(0, 10, 14, '#ff8a8a', '#8a4b00'); },
+    post() { ctx.lineWidth = 3; ctx.strokeStyle = '#999'; ell(-32, 20, 36, 13, '#fff', true, 0.25); ell(32, 20, 36, 13, '#fff', true, -0.25); } },
+  pumpkin: { skin: '#ff922b', line: '#8a3b00',
+    back() { ctx.fillStyle = '#2f9e44'; ctx.strokeStyle = '#1b6e2b'; ctx.beginPath(); ctx.rect(-13, -172, 26, 44); ctx.fill(); ctx.stroke(); ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(13, -165); ctx.quadraticCurveTo(50, -170, 48, -140); ctx.stroke(); },
+    pre() { ctx.strokeStyle = 'rgba(138,59,0,.45)'; ctx.lineWidth = 4; [95, 48].forEach(x => { ctx.beginPath(); ctx.ellipse(0, 0, x, 133, 0, 0, 7); ctx.stroke(); }); },
+    nose() { tri(-9, 4, 9, 4, 0, 18, '#a84c00', false); },
+    post(K) { if (K.jwE > 0.08) { ctx.fillStyle = '#fff3bf'; ctx.strokeStyle = '#3b2400'; ctx.lineWidth = 3; [-30, 18].forEach(x => { ctx.beginPath(); ctx.rect(x, K.topY - 1, 16, 16); ctx.fill(); ctx.stroke(); }); } } },
+  pizza: { skin: '#ffd166', line: '#a45a00',
+    pre() { ctx.strokeStyle = '#e9a64a'; ctx.lineWidth = 20; ctx.beginPath(); ctx.ellipse(0, 0, 138, 123, 0, 0, 7); ctx.stroke(); [[-85, -50, 24], [92, -58, 20], [-68, 66, 18], [70, 86, 22]].forEach(d => { blob(d[0], d[1], d[2], '#d9480f', '#8a2b00'); blob(d[0] - 5, d[1] - 5, d[2] * 0.3, '#ff8a65', null); }); [[60, 50], [-30, -90]].forEach(d => { blob(d[0], d[1], 9, '#222', null); blob(d[0], d[1], 4, '#ffd166', null); }); },
+    nose() { blob(0, 10, 9, '#e03131', '#8a1c1c'); },
+    post(K) { ctx.fillStyle = '#ffe066'; ctx.strokeStyle = '#d9a400'; ctx.lineWidth = 3; const L = 26 + 16 * Math.sin(K.t * 2.5), x = K.mw * 0.3; ctx.beginPath(); ctx.moveTo(x, K.sy); ctx.quadraticCurveTo(x + 8, K.sy + L * 0.6, x, K.sy + L + 10); ctx.quadraticCurveTo(x - 14, K.sy + L * 0.6, x - 10, K.sy); ctx.closePath(); ctx.fill(); ctx.stroke(); } },
+  banana: { skin: '#ffe066', line: '#8a6d00', head: 'tall',
+    back() { ctx.fillStyle = '#7a5a2a'; ctx.beginPath(); ctx.rect(-12, -175, 24, 40); ctx.fill(); ctx.stroke(); },
+    pre() { [[-70, -60, 4], [80, -30, 4], [-85, 50, 5], [60, 90, 4], [20, -100, 3]].forEach(d => blob(d[0], d[1], d[2], '#a5802a', null)); },
+    nose() { blob(-6, 12, 3, '#8a6d00', null); blob(6, 12, 3, '#8a6d00', null); } },
+  melon: { skin: '#ff6b6b', line: '#c92a2a',
+    back() { ell(0, 0, 166, 150, '#2f9e44', true); ell(0, 0, 158, 142, '#b2f2bb', false); },
+    pre() { [[-60, -80, 0.3], [50, -95, -0.3], [-100, -20, 0.9], [105, -10, -0.9], [-20, -105, 0.1]].forEach(d => ell(d[0], d[1], 7, 12, '#222', false, d[2])); },
+    nose() { ell(0, 10, 7, 10, '#222', false); } },
+  snowman: { skin: '#ffffff', line: '#6b8cae', cheek: 'rgba(120,180,255,',
+    pre() { ctx.fillStyle = '#222'; ctx.strokeStyle = '#000'; ctx.beginPath(); ctx.rect(-62, -215, 124, 112); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#e03131'; ctx.fillRect(-62, -135, 124, 20); ell(0, -103, 102, 18, '#222', true); },
+    nose() { tri(-4, 6, 70, 22, -4, 28, '#ff922b', true); } },
+  unicorn: { skin: '#fff0f6', line: '#a64d79', muzzle: '#ffd6e7',
+    back(K) { ['#ff6b6b', '#ffa94d', '#ffe066', '#69db7c', '#4dabf7', '#da77f2'].forEach((c, i) => blob(-120 + Math.sin(K.t * 4 + i) * 5, -80 + i * 30, 34, c, '#7a3f5a')); [-1, 1].forEach(s => tri(s * 60, -118, s * 100, -185, s * 115, -95, '#fff0f6', true)); },
+    pre() { ctx.fillStyle = '#ffd43b'; ctx.strokeStyle = '#a67c00'; ctx.beginPath(); ctx.moveTo(-18, -122); ctx.lineTo(0, -240); ctx.lineTo(18, -122); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.lineWidth = 3; [-150, -175, -200].forEach(y => { const w = (y + 240) / 118 * 18; ctx.beginPath(); ctx.moveTo(-w, y); ctx.lineTo(w, y + 10); ctx.stroke(); }); },
+    nose() { blob(-9, 16, 3.5, '#a64d79', null); blob(9, 16, 3.5, '#a64d79', null); } },
+  dino: { skin: '#69db7c', line: '#2b8a3e', muzzle: '#d3f9d8',
+    back() { [-80, -40, 0, 40, 80].forEach(x => tri(x - 22, -118 + Math.abs(x) * 0.25, x, -178 + Math.abs(x) * 0.35, x + 22, -118 + Math.abs(x) * 0.25, '#ff922b', true)); },
+    nose() { blob(-12, 12, 4, '#2b8a3e', null); blob(12, 12, 4, '#2b8a3e', null); },
+    post(K) { if (K.jwE > 0.08) { ctx.lineWidth = 2; ctx.strokeStyle = '#2b8a3e'; [-28, 20].forEach(x => tri(x, K.topY, x + 10, K.topY + 16, x + 20, K.topY, '#fff', true)); } } },
+  chick: { skin: '#ffe066', line: '#d9a400', cheek: 'rgba(255,140,60,',
+    back() { [-1, 1].forEach(s => ell(s * 150, 45, 26, 40, '#ffd43b', true, s * 0.5)); },
+    pre() { [-14, 0, 14].forEach((x, i) => { ctx.strokeStyle = '#d9a400'; ctx.lineWidth = 5; ctx.beginPath(); ctx.moveTo(x * 0.6, -132); ctx.quadraticCurveTo(x * 1.2, -168 - (i % 2) * 10, x * 2, -160); ctx.stroke(); }); },
+    nose() { tri(-22, 2, 22, 2, 0, 28, '#ff922b', '#c2570a'); } },
+  mustache: { skin: '#ffd9b8', line: '#8a4b00',
+    back() { [-1, 1].forEach(s => blob(s * 140, -38, 24, '#5a3a22', '#3b2410')); },
+    pre() { ctx.strokeStyle = '#5a3a22'; ctx.lineWidth = 13; [-1, 1].forEach(s => { ctx.beginPath(); ctx.moveTo(s * 30, -80); ctx.lineTo(s * 78, -84); ctx.stroke(); }); },
+    nose() { blob(0, 12, 18, '#ffb08a', '#8a4b00'); },
+    post() { ctx.fillStyle = '#5a3a22'; ctx.strokeStyle = '#3b2410'; ctx.lineWidth = 3; [-1, 1].forEach(s => { ctx.save(); ctx.translate(s * 44, 22); ctx.rotate(-s * 0.25); ctx.beginPath(); ctx.ellipse(0, 0, 56, 19, 0, 0, 7); ctx.fill(); ctx.stroke(); ctx.restore(); blob(s * 98, 8, 13, '#5a3a22', '#3b2410'); }); } },
+  nerd: { skin: '#ffe0bd', line: '#8a4b00',
+    pre() { ctx.fillStyle = '#3b2a20'; ctx.beginPath(); ctx.moveTo(-148, -30); ctx.quadraticCurveTo(-130, -150, 0, -142); ctx.quadraticCurveTo(110, -150, 148, -30); ctx.quadraticCurveTo(100, -100, 20, -95); ctx.quadraticCurveTo(-60, -100, -148, -30); ctx.closePath(); ctx.fill(); ctx.stroke(); },
+    nose() { blob(0, 12, 8, '#ffb08a', null); },
+    post(K) { ctx.strokeStyle = '#222'; ctx.lineWidth = 7; [-1, 1].forEach(s => { ctx.beginPath(); ctx.arc(s * 52, -30, 40, 0, 7); ctx.fillStyle = 'rgba(180,220,255,.25)'; ctx.fill(); ctx.stroke(); }); ctx.beginPath(); ctx.moveTo(-12, -32); ctx.lineTo(12, -32); ctx.stroke(); ctx.lineWidth = 4; [-1, 1].forEach(s => { ctx.beginPath(); ctx.moveTo(s * 92, -34); ctx.lineTo(s * 146, -46); ctx.stroke(); });
+      if (K.jwE > 0.08) { const th = 16 + 10 * K.jwE, w = K.mw * 1.4; ctx.fillStyle = '#fff'; ctx.strokeStyle = '#3b2400'; ctx.lineWidth = 3; ctx.beginPath(); ctx.rect(-K.mw * 0.7, K.topY - 1, w, th); ctx.fill(); ctx.stroke(); ctx.strokeStyle = '#8d99ae'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(-K.mw * 0.7, K.topY + th * 0.4); ctx.lineTo(K.mw * 0.7, K.topY + th * 0.4); ctx.stroke(); ctx.fillStyle = '#8d99ae'; for (let i = 0; i < 6; i++) ctx.fillRect(-K.mw * 0.7 + 8 + i * (w - 16) / 5 - 3, K.topY + th * 0.4 - 5, 7, 10); } } },
+  reindeer: { skin: '#b9814f', line: '#5a3a22', muzzle: '#f1d9b8',
+    back(K) { ctx.strokeStyle = '#6b4423'; ctx.lineCap = 'round'; ctx.lineWidth = 11;
+      [-1, 1].forEach(s => { ctx.beginPath(); ctx.moveTo(s * 62, -118); ctx.quadraticCurveTo(s * 95, -165, s * 88, -215); ctx.moveTo(s * 80, -160); ctx.lineTo(s * 128, -178); ctx.moveTo(s * 88, -192); ctx.lineTo(s * 52, -222); ctx.stroke();
+        ell(s * 128, -92, 26, 14, '#b9814f', '#5a3a22', s * 0.5); }); },
+    nose() { blob(0, 12, 15, '#3b2a20', '#2b1d12'); blob(-5, 7, 4, '#fff', null); },
+    post(K) { ctx.lineWidth = 3; ctx.strokeStyle = '#8a1c1c';
+      ctx.fillStyle = '#e03131'; ctx.beginPath(); ctx.moveTo(-115, 92); ctx.quadraticCurveTo(0, 175, 115, 92); ctx.lineTo(108, 122); ctx.quadraticCurveTo(0, 205, -108, 122); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#fff'; [-70, -30, 10, 50, 88].forEach((x, i) => { ctx.beginPath(); ctx.ellipse(x, 130 + Math.abs(x) * 0.15 + 8 - (i % 2) * 2, 9, 5, 0.1 * x / 50, 0, 7); ctx.fill(); });
+      blob(70, 150, 13, '#ffd43b', '#a67c00'); } },
+  flower: { skin: '#ffe066', line: '#c2410c',
+    back(K) { for (let i = 0; i < 10; i++) { ctx.save(); ctx.rotate(i * Math.PI / 5 + K.t * 0.25 * K.sm); ell(0, -165, 34, 62, i % 2 ? '#ff8fab' : '#ffb3c7', true); ctx.restore(); } },
+    nose() { blob(0, 12, 6, '#c2410c', null); } },
+  sun: { skin: '#ffd43b', line: '#c97a00',
+    back(K) { for (let i = 0; i < 12; i++) { ctx.save(); ctx.rotate(i * Math.PI / 6 + K.t * 0.5); tri(-16, -150, 0, -215 - 8 * Math.sin(K.t * 5 + i), 16, -150, '#ff922b', true); ctx.restore(); } },
+    nose() { blob(0, 12, 6, '#c97a00', null); },
+    post(K) { if (K.sq <= 0.5) { ctx.fillStyle = '#111'; ctx.strokeStyle = '#000'; ctx.lineWidth = 6; [-1, 1].forEach(s => ell(s * 52, -30, 40, 28, '#111', true)); ctx.beginPath(); ctx.moveTo(-12, -32); ctx.lineTo(12, -32); ctx.stroke(); blob(-64, -40, 6, '#fff', null); blob(40, -40, 6, '#fff', null); } } },
+  maple: { skin: '#f08c00', line: '#9c3d00', head: 'leaf',
+    back() { ctx.fillStyle = '#6b4423'; ctx.beginPath(); ctx.rect(-9, 110, 18, 60); ctx.fill(); ctx.stroke(); },
+    pre() { ctx.strokeStyle = 'rgba(156,61,0,.4)'; ctx.lineWidth = 4; for (let i = 0; i < 5; i++) { const a = i * Math.PI * 2 / 5 - Math.PI / 2; ctx.beginPath(); ctx.moveTo(0, 20); ctx.lineTo(Math.cos(a) * 105, 20 + Math.sin(a) * 95); ctx.stroke(); } },
+    nose() { blob(0, 12, 6, '#9c3d00', null); } },
+  sneeze: { skin: '#ffd9b8', line: '#8a4b00', cheek: 'rgba(255,70,70,',
+    nose() { blob(-4, 14, 15, '#ff6b6b', '#c92a2a'); },
+    post(K) { const r = 14 + 24 * (0.5 + 0.5 * Math.sin(K.t * 2)); ctx.fillStyle = 'rgba(160,220,255,.55)'; ctx.strokeStyle = '#5aa9e6'; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(-40 - r * 0.3, 22 + r * 0.4, r, 0, 7); ctx.fill(); ctx.stroke(); blob(-40 - r * 0.6, 22 + r * 0.1, r * 0.22, '#fff', null); } }
+};
+function headShape(kind) {
+  ctx.beginPath();
+  if (kind === 'tall') ctx.ellipse(0, 0, 128, 152, 0, 0, 7);
+  else if (kind === 'wide') ctx.ellipse(0, 5, 160, 122, 0, 0, 7);
+  else if (kind === 'square') { const x = -140, y = -128, w = 280, hh = 256, r = 44; ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + hh - r); ctx.quadraticCurveTo(x + w, y + hh, x + w - r, y + hh); ctx.lineTo(x + r, y + hh); ctx.quadraticCurveTo(x, y + hh, x, y + hh - r); ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath(); }
+  else if (kind === 'leaf') { for (let i = 0; i <= 120; i++) { const a = i / 120 * Math.PI * 2, r = 118 + 30 * Math.cos(5 * (a + Math.PI / 2)), x = r * Math.cos(a) * 1.1, y = r * Math.sin(a); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); } ctx.closePath(); }
+  else if (kind === 'ghost') { ctx.moveTo(-135, 110); ctx.bezierCurveTo(-170, -60, -100, -140, 0, -140); ctx.bezierCurveTo(100, -140, 170, -60, 135, 110); for (let i = 0; i < 5; i++) { const x1 = 135 - 54 * i; ctx.quadraticCurveTo(x1 - 27, i % 2 ? 100 : 150, x1 - 54, 110); } ctx.closePath(); }
+  else ctx.ellipse(0, 0, 150, 135, 0, 0, 7);
+  ctx.fill(); ctx.stroke();
+}
+
+function drawMascot(W, H) {
+  const t = fixedT !== null ? fixedT : performance.now() / 1000;
+  const ch = currentChar(t), D = DEFS[ch] || null;
+  const sm = Math.min(sig.smile / CONFIG.targetSmile, 1);
+  const sq = Math.min(sig.eye / CONFIG.targetEye, 1);
+  const jw = Math.min(sig.jaw / 0.6, 1);
+  const laugh = sm > 0.8 && jw > 0.5;
+  const TH = THEMES[currentTheme()];
+  const g = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, W * 0.65);
+  g.addColorStop(0, TH.c0); g.addColorStop(1, TH.c1);
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  if (laugh) { const g2 = ctx.createRadialGradient(W / 2, H / 2, 20, W / 2, H / 2, W * 0.5); g2.addColorStop(0, 'rgba(255,255,255,.55)'); g2.addColorStop(1, 'rgba(255,255,255,0)'); ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H); }
+  if (sm > 0.5) {
+    const cols = ['#ff6b6b', '#ffd43b', '#69db7c', '#4dabf7', '#da77f2'];
+    for (let i = 0; i < 18; i++) {
+      const x = (i * 83 + t * 40 * (1 + i % 3)) % W, y = (i * 47 + t * 70 * (1 + i % 2)) % H;
+      ctx.fillStyle = cols[i % 5]; ctx.save(); ctx.translate(x, y); ctx.rotate(t * 3 + i); ctx.fillRect(-4, -2, 8, 4); ctx.restore();
+    }
+  }
+  const bounce = Math.sin(t * (laugh ? 14 : 4)) * (laugh ? 10 : 3) * (0.3 + sm);
+  const shake = laugh ? Math.sin(t * 30) * 4 : 0;
+  const cx = W / 2 + shake, cy = H / 2 + 22 + bounce;
+  const skin = D ? D.skin : SKIN[ch][0], belly = D ? (D.muzzle || D.skin) : SKIN[ch][1];
+  const line = D ? D.line : (ch === 'rabbit' ? '#8a6a6a' : ch === 'clown' ? '#7a2a2a' : ch === 'drool' ? '#2c6b2f' : '#8a4b00');
+  const K = { t, sm, sq, jw, laugh };
+  const hook = f => { if (f) { ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = line; ctx.lineWidth = 5; f(K); ctx.restore(); } };
+  ctx.save();
+  ctx.translate(cx, cy); ctx.rotate(Math.sin(t * 6) * 0.04 * (0.2 + sm)); ctx.scale(0.88 + 0.04 * jw, 0.88 - 0.03 * jw);
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = line; ctx.lineWidth = 5;
+
+  // ---- behind the head ----
+  if (D) hook(D.back);
+  else if (ch === 'cat') {
+    [-1, 1].forEach(s => { ctx.fillStyle = skin; ctx.beginPath(); ctx.moveTo(s * 70, -120); ctx.lineTo(s * 125, -185 - 6 * sm * Math.sin(t * 8)); ctx.lineTo(s * 125, -75); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#ff9aa8'; ctx.beginPath(); ctx.moveTo(s * 90, -115); ctx.lineTo(s * 117, -158); ctx.lineTo(s * 117, -92); ctx.closePath(); ctx.fill(); });
+  } else if (ch === 'rabbit') {
+    [-1, 1].forEach(s => { ctx.save(); ctx.translate(s * 60, -120); ctx.rotate(s * 0.18 + Math.sin(t * 5 + s) * 0.06 * (0.3 + sm));
+      ctx.fillStyle = skin; ctx.beginPath(); ctx.ellipse(0, -75, 30, 88, 0, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#ffb3c1'; ctx.beginPath(); ctx.ellipse(0, -72, 15, 66, 0, 0, 7); ctx.fill(); ctx.restore(); });
+  } else if (ch === 'clown') {
+    blob(-128, -35, 44, '#ff6b6b', line); blob(128, -35, 44, '#ff6b6b', line); blob(-112, -92, 34, '#ffa94d', line); blob(112, -92, 34, '#ffa94d', line);
+    blob(-135, 20, 30, '#4dabf7', line); blob(135, 20, 30, '#4dabf7', line);
+  } else {
+    [-1, 1].forEach(s => { ctx.fillStyle = skin; ctx.beginPath(); ctx.arc(s * 108, -105, 32, 0, 7); ctx.fill(); ctx.stroke(); });
+  }
+  // ---- head ----
+  ctx.fillStyle = skin; headShape(D ? D.head : 'round');
+  if (D) { if (D.muzzle) { ctx.fillStyle = belly; ctx.beginPath(); ctx.ellipse(0, 55, 85, 55, 0, 0, 7); ctx.fill(); } }
+  else if (ch === 'clown') {
+    ctx.fillStyle = '#4dabf7'; ctx.beginPath(); ctx.moveTo(-62, -112); ctx.lineTo(62, -112); ctx.lineTo(0, -232); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#ffd43b'; [-30, 0, 30].forEach(x => { ctx.beginPath(); ctx.arc(x, -130 - Math.abs(x) * 0.5, 7, 0, 7); ctx.fill(); });
+    blob(0, -234, 15, '#ff6b6b', line);
+  } else if (ch === 'cat' || ch === 'rabbit') {
+    ctx.fillStyle = belly; ctx.beginPath(); ctx.ellipse(0, 55, 85, 55, 0, 0, 7); ctx.fill();
+  }
+  if (D) hook(D.pre);
+  // cheeks
+  const chk = (D && D.cheek) || 'rgba(255,100,120,';
+  ctx.fillStyle = ch === 'clown' ? 'rgba(255,60,80,' + (0.5 + 0.4 * sm) + ')' : chk + (0.35 + 0.45 * sm) + ')';
+  [-1, 1].forEach(s => { ctx.beginPath(); ctx.ellipse(s * 95, 25, (ch === 'clown' ? 30 : 24) + 8 * sm, (ch === 'clown' ? 22 : 15) + 5 * sm, 0, 0, 7); ctx.fill(); });
+  // eyes
+  const E = (D && D.eyes) || { x: 52, y: -30, k: 1, style: 'normal' }, arcCol = (D && D.arc) || '#3b2400';
+  [-1, 1].forEach(s => {
+    const ex = s * E.x, ey = E.y, k = E.k;
+    if (ch === 'clown') { ctx.fillStyle = '#4dabf7'; ctx.beginPath(); ctx.moveTo(ex, ey - 60); ctx.lineTo(ex + 22, ey - 32); ctx.lineTo(ex, ey - 6); ctx.lineTo(ex - 22, ey - 32); ctx.closePath(); ctx.fill(); }
+    if (sq > 0.5) { ctx.strokeStyle = arcCol; ctx.lineWidth = 9; ctx.beginPath(); ctx.arc(ex, ey + 14 * k, 22 * k, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }
+    else if (E.style === 'black') { ell(ex, ey, 30 * k * 0.8, 38 * k * 0.8, '#1b1b2f', false, s * 0.3); blob(ex + 8, ey - 10, 7, '#fff', null); }
+    else if (E.style === 'square') { ctx.fillStyle = '#7ee0ff'; ctx.strokeStyle = '#0b3d4d'; ctx.lineWidth = 5; ctx.beginPath(); ctx.rect(ex - 24, ey - 24, 48, 48); ctx.fill(); ctx.stroke(); ctx.fillStyle = '#0b3d4d'; ctx.fillRect(ex - 8 + Math.sin(t * 2) * 5, ey - 8, 16, 16); }
+    else {
+      const blink = (Math.sin(t * 1.7) > 0.985) ? 0.15 : 1;
+      ctx.fillStyle = '#fff'; ctx.strokeStyle = '#3b2400'; ctx.lineWidth = 5;
+      ctx.beginPath(); ctx.ellipse(ex, ey, 24 * k, 28 * k * blink, 0, 0, 7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#3b2400'; ctx.beginPath(); ctx.arc(ex + Math.sin(t * 2) * 4, ey + 2, 12 * k * blink, 0, 7); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(ex + 4, ey - 6, 4.5, 0, 7); ctx.fill();
+    }
+  });
+  ctx.strokeStyle = line; ctx.lineWidth = 3;
+  // nose / whiskers
+  if (D) hook(D.nose);
+  else if (ch === 'clown') { blob(0, 10, 19, '#ff3b3b', line); blob(-6, 3, 5, '#fff', null); }
+  else if (ch === 'cat' || ch === 'rabbit') { ctx.fillStyle = '#ff7a8a'; ctx.beginPath(); ctx.moveTo(-9, 6); ctx.lineTo(9, 6); ctx.lineTo(0, 18); ctx.closePath(); ctx.fill();
+    [-1, 1].forEach(s => [-6, 8].forEach(dy => { ctx.beginPath(); ctx.moveTo(s * 100, 8 + dy); ctx.lineTo(s * 150, 4 + dy * 1.8); ctx.stroke(); })); }
+  else { blob(0, 10, 11, ch === 'drool' ? '#2f9e44' : '#e8895a', line); }
+  // mouth
+  const jwE = (ch === 'nori') ? Math.max(jw, 0.3 * sm) : jw;
+  const my = 34, mw = 52 + 18 * sm, drop = 20 + 60 * jwE;
+  ctx.strokeStyle = ch === 'clown' ? '#c92a2a' : '#3b2400'; ctx.lineWidth = ch === 'clown' ? 9 : 6;
+  let sx, sy;
+  if (jwE > 0.08) {
+    ctx.fillStyle = '#7a1f2b'; ctx.beginPath(); ctx.moveTo(-mw, my - 6 * sm);
+    ctx.quadraticCurveTo(0, my + drop * 1.6, mw, my - 6 * sm); ctx.quadraticCurveTo(0, my + 6 * sm, -mw, my - 6 * sm); ctx.fill(); ctx.stroke();
+    ctx.save(); ctx.clip(); ctx.fillStyle = '#ff6f86'; ctx.beginPath(); ctx.ellipse(0, my + drop * 0.95, 30, 20 + 10 * jwE, 0, 0, 7); ctx.fill(); ctx.restore();
+    sx = mw * 0.5; sy = my - 4 * sm + 0.6 * drop;
+  } else {
+    ctx.beginPath(); ctx.moveTo(-mw, my - 8 * sm); ctx.quadraticCurveTo(0, my + 8 + 36 * sm, mw, my - 8 * sm); ctx.stroke();
+    sx = mw * 0.3; sy = my + 14 + 14 * sm;
+  }
+  const topY = my - 5 * sm;
+  Object.assign(K, { jwE, my, mw, drop, topY, sx, sy });
+  if (D) hook(D.post);
+  if (ch === 'rabbit') {
+    ctx.fillStyle = '#fff'; ctx.strokeStyle = '#8a6a6a'; ctx.lineWidth = 3;
+    const ty = jwE > 0.08 ? topY - 1 : my + 4 + 14 * sm;
+    [-14, 1].forEach(x => { ctx.beginPath(); ctx.rect(x, ty, 13, 20); ctx.fill(); ctx.stroke(); });
+  }
+  if (ch === 'nori') {
+    if (jwE > 0.08) {
+      const th = 16 + 14 * jwE;
+      ctx.fillStyle = '#fff'; ctx.strokeStyle = '#3b2400'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.rect(-mw * 0.78, topY - 1, mw * 1.56, th); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); for (let i = 1; i < 6; i++) { const x = -mw * 0.78 + i * (mw * 1.56 / 6); ctx.moveTo(x, topY - 1); ctx.lineTo(x, topY - 1 + th); } ctx.stroke();
+      const nx = -mw * 0.78 + 2 * (mw * 1.56 / 6);
+      ctx.fillStyle = '#16301c'; ctx.save(); ctx.translate(nx + 6, topY + th * 0.45); ctx.rotate(-0.15);
+      ctx.beginPath(); ctx.moveTo(-14, -8); ctx.lineTo(16, -6); ctx.lineTo(12, 9); ctx.lineTo(-8, 11); ctx.lineTo(-17, 2); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = '#2f9e44'; ctx.fillRect(-6, -3, 8, 3); ctx.restore();
+    } else { blob(0, my + 6, 5, '#16301c', null); }
+  }
+  if (ch === 'drool') {
+    if (jwE <= 0.08) { ctx.fillStyle = '#ff6f86'; ctx.strokeStyle = '#3b2400'; ctx.lineWidth = 3; ctx.beginPath(); ctx.ellipse(mw * 0.3, sy - 6, 20, 16, 0, 0, 7); ctx.fill(); ctx.stroke(); }
+    const L = 30 + 80 * (0.5 + 0.5 * Math.sin(t * 2.2)), wob = Math.sin(t * 3) * 4;
+    ctx.strokeStyle = '#8fd3ff'; ctx.lineWidth = 9; ctx.beginPath(); ctx.moveTo(sx, sy); ctx.quadraticCurveTo(sx + wob, sy + L * 0.5, sx + wob * 0.6, sy + L); ctx.stroke();
+    blob(sx + wob * 0.6, sy + L + 6, 11, '#8fd3ff', null); blob(sx + wob * 0.6 - 3, sy + L + 2, 3.5, '#fff', null);
+  }
+  if (ch === 'cake') {
+    const cream = '#fffaf0', e = '#f1b9cb';
+    [[-70, -88, 24], [-42, -104, 19], [-92, -66, 17], [-60, -62, 14]].forEach(c => blob(c[0], c[1], c[2], cream, e));
+    [[92, 40, 26], [112, 58, 18], [76, 62, 15]].forEach(c => blob(c[0], c[1], c[2], cream, e));
+    ctx.fillStyle = cream; ctx.strokeStyle = e; ctx.lineWidth = 2; [[-78, -60], [-52, -50]].forEach(d => { ctx.beginPath(); ctx.ellipse(d[0], d[1] + 12, 6, 16 + 4 * Math.sin(t * 2 + d[0]), 0, 0, 7); ctx.fill(); ctx.stroke(); });
+    blob(0, 5, 8, cream, e);
+    blob(28, -138, 15, '#e03131', '#8a1c1c'); ctx.strokeStyle = '#2f9e44'; ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(28, -152); ctx.quadraticCurveTo(38, -176, 56, -172); ctx.stroke();
+    ctx.fillStyle = '#ffd43b'; [[-20, -118], [10, -126], [-45, -128]].forEach(s => { ctx.fillRect(s[0], s[1], 5, 5); });
+  }
+  if (laugh) {
+    ctx.fillStyle = '#74c0fc';
+    [-1, 1].forEach(s => { const k = (t * 2) % 1; ctx.beginPath(); ctx.ellipse(s * 80 + s * 20 * k, -5 + 70 * k, 7, 11, 0, 0, 7); ctx.fill(); });
+    if (!thumbMode) { ctx.fillStyle = '#e8590c'; ctx.font = 'bold 34px sans-serif'; ctx.save(); ctx.scale(-1, 1);
+      ctx.fillText(Math.sin(t * 9) > 0 ? 'HA!' : 'HAHA', -190, -150); ctx.restore(); }
+  }
+  ctx.restore();
+  if (sm > 0.7 && !thumbMode) { ctx.fillStyle = '#fff'; ctx.font = '26px sans-serif'; ctx.save(); ctx.scale(-1, 1);
+    [[-80, 90], [-540, 130], [-110, 400], [-520, 380]].forEach((q, i) => { if (Math.sin(t * 5 + i * 2) > -0.2) ctx.fillText('✨', q[0], q[1]); }); ctx.restore(); }
+}
+
+function drawScene(match) {
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+  if (mode === 'demo') { drawMascot(W, H); }
+  drawSeasonFx(W, H, performance.now() / 1000);
+  const good = match >= CONFIG.matchThreshold;
+  const cx2 = W / 2, cy2 = H / 2 + 10;
+  const guide = () => { [-50, 50].forEach(dx => { ctx.beginPath(); ctx.arc(cx2 + dx, cy2 - 30, 20, Math.PI * 1.1, Math.PI * 1.9); ctx.stroke(); }); ctx.beginPath(); ctx.moveTo(cx2 - 70, cy2 + 45); ctx.quadraticCurveTo(cx2, cy2 + 105, cx2 + 70, cy2 + 45); ctx.stroke(); };
+  ctx.setLineDash([12, 10]); ctx.lineCap = 'round';
+  ctx.strokeStyle = 'rgba(0,0,0,.35)'; ctx.lineWidth = 9; guide();
+  ctx.strokeStyle = good ? '#69db7c' : 'rgba(255,255,255,.9)'; ctx.lineWidth = 5; guide();
+  ctx.setLineDash([]);
+}
+
+function updateGauges(r, st, timeLeft) {
+  $('gMatch').textContent = r.match;
+  $('barMatch').style.width = r.match + '%';
+  $('gScore').textContent = Math.floor(st.score);
+  $('gTime').textContent = Math.max(0, Math.ceil(timeLeft));
+  let t = '<span class="pill">Waiting</span>';
+  if (r.laughActive) t = '<span class="pill l">Big laugh 🤣</span>';
+  else if (r.match >= CONFIG.matchThreshold && r.real) t = '<span class="pill s">Genuine smile ✨</span>';
+  else if (r.match >= CONFIG.matchThreshold) t = '<span class="pill r">Smile 🙂</span>';
+  $('gType').innerHTML = t;
+  $('gLaugh').textContent = st.laughTime > 0 ? 'Laugh streak ' + st.laughTime.toFixed(1) + ' s' : '';
+}
+
+function canStart() {
+  const d = dayRec();
+  if (d.sessions >= CONFIG.dailySessionLimit) { $('modeMsg').innerHTML = '<div class="warn">You have used all ' + CONFIG.dailySessionLimit + ' sessions for today. See you tomorrow!</div>'; return false; }
+  return true;
+}
+
+function setStage(i) {
+  const s = STAGES[i]; curStageKey = s.key;
+  $('gStage').textContent = 'Stage ' + (i + 1) + '/' + STAGES.length + ' · ' + s.name;
+  const b = $('lvBox'); b.textContent = s.help; b.style.display = 'block';
+  b.style.background = s.type === 'laugh' ? 'rgba(201,42,42,.92)' : 'rgba(232,89,12,.92)';
+  const c = $('count'); c.style.display = 'block'; c.className = 'count' + (s.type === 'laugh' ? ' big' : '');
+}
+
+async function startSession() {
+  if (running || !canStart()) return;
+  if (mode === 'cam' && !landmarker) { $('modeMsg').textContent = 'Camera mode is not ready. Please press "Camera mode" first.'; return; }
+  running = true; demoTurned = false; camTurnedOut = false; funnyKey = '';
+  const startLv = levelFor(S.xp || 0).cur.lv;
+  FUNNY.parade = buildParade(startLv);
+  $('startBtn').disabled = true;
+  const st = newSessionState();
+  const ss = { startLv, idx: 0, matched: 0, results: STAGES.map(() => null), finaleHeld: 0, finaleBest: 0, outcome: '', failIdx: -1 };
+  let stageStart = performance.now(), last = stageStart;
+  let lastR = { match: 0, real: false, laughActive: false };
+  setStage(0);
+  function next(now) {
+    if (ss.idx + 1 >= STAGES.length) { ss.outcome = 'done'; return false; }
+    ss.idx += 1; stageStart = now; ss.matched = 0;
+    const t = STAGES[ss.idx].type;
+    if (t === 'turn') { camTurnedOut = false; demoTurned = false; }
+    st.laughTime = 0; st.grace = 0;
+    setStage(ss.idx);
+    return true;
+  }
+  function frame(now) {
+    if (!running) return;
+    const dt = Math.min(0.1, (now - last) / 1000); last = now;
+    if (mode === 'cam') readCam(now);
+    const stg = STAGES[ss.idx];
+    const el = (now - stageStart) / 1000;
+    if (stg.type === 'match') {
+      lastR = calcFrame(sig, dt, st, CONFIG);
+      if (lastR.match >= CONFIG.matchThreshold) ss.matched += dt;
+      if (stg.early && ss.matched >= stg.pass) { ss.results[ss.idx] = true; if (!next(now)) return finish(st, ss); }
+      else if (el >= stg.seconds) {
+        if (ss.matched >= stg.pass) { ss.results[ss.idx] = true; if (!next(now)) return finish(st, ss); }
+        else { ss.results[ss.idx] = false; ss.outcome = 'fail'; ss.failIdx = ss.idx; return finish(st, ss); }
+      }
+    } else if (stg.type === 'turn') {
+      const ok = mode === 'cam' ? camTurnedOut : demoTurned;
+      if (ok) { ss.results[ss.idx] = true; if (!next(now)) return finish(st, ss); }
+      else if (el >= stg.seconds) { ss.results[ss.idx] = false; ss.outcome = 'fail'; ss.failIdx = ss.idx; return finish(st, ss); }
+    } else {
+      lastR = calcFrame(sig, dt, st, CONFIG);
+      if (isLaughing(sig, CONFIG)) ss.finaleHeld += dt;
+      ss.finaleBest = Math.max(ss.finaleBest, st.laughTime);
+      if (el >= stg.seconds) { ss.results[ss.idx] = true; ss.outcome = 'done'; return finish(st, ss); }
+    }
+    const cur = STAGES[ss.idx];
+    const left = cur.seconds - (now - stageStart) / 1000;
+    $('count').textContent = Math.max(0, Math.ceil(left));
+    updateFunny(cur, ss.idx, (now - stageStart) / 1000);
+    drawScene(lastR.match);
+    updateGauges(lastR, st, left);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+function finish(st, ss) {
+  running = false; curStageKey = ''; $('lvBox').style.display = 'none'; $('count').style.display = 'none'; $('fun').style.display = 'none'; $('startBtn').disabled = false;
+  $('gStage').textContent = 'Ready'; $('gTime').textContent = '–';
+  const turnFail = ss.outcome === 'fail' && STAGES[ss.failIdx].type === 'turn';
+  const sessionScore = turnFail ? 0 : Math.floor(st.score);
+  const d = dayRec();
+  const prevCredits = d.credits;
+  if (S.lastDay !== today()) { S.streak = (S.lastDay === yesterday()) ? S.streak + 1 : 1; S.lastDay = today(); }
+  d.sessions += 1;
+  d.score = Math.min(CONFIG.dailySessionLimit * CONFIG.sessionScoreCap, d.score + sessionScore);
+  const bonus = streakBonus(S.streak, CONFIG);
+  const newCredits = creditsForDay(d.score, bonus, CONFIG);
+  const earned = Math.max(0, newCredits - prevCredits);
+  d.credits = Math.max(prevCredits, newCredits);
+  S.days[today()] = d;
+  S.totalScore += sessionScore;
+  S.totalCredits += earned;
+  const passedCount = ss.results.filter(r => r === true).length;
+  const xpGain = xpForSession(passedCount, ss.outcome === 'done');
+  const oldLv = levelFor(S.xp || 0).cur;
+  S.xp = (S.xp || 0) + xpGain;
+  const newLv = levelFor(S.xp).cur;
+  const boost = ageBoost(ss.startLv);
+  const reducedGain = smileDays(sessionScore, CONFIG) * boost;
+  S.reducedDays = (S.reducedDays || 0) + reducedGain;
+  d.reduced = (d.reduced || 0) + reducedGain;
+  S.days[today()] = d;
+  save(S);
+  const age = reducedGain;
+  const lvUp = newLv.lv > oldLv.lv
+    ? '<div class="levelup">LEVEL UP! 🎉 ' + newLv.icon + ' Lv ' + newLv.lv + ' · ' + newLv.name + '<div class="sub" style="font-weight:600">Unlocked: ' + newLv.unlock + ' · Smile Bank boost +' + Math.round((ageBoost(newLv.lv) - 1) * 100) + '%</div></div>'
+    : '';
+  const nxt = levelFor(S.xp).next;
+  const xpLine = '<div class="msg">+' + xpGain + ' XP · Lv ' + newLv.lv + ' ' + newLv.name + (nxt ? ' · ' + (nxt.xp - S.xp) + ' XP to Lv ' + nxt.lv : ' · Max level') + (boost > 1 ? ' · Smile Bank boost ×' + boost.toFixed(2) : '') + '</div>';
+  const row = (ok, label, note) => '<div class="srow"><span>' + (ok === null ? '⏭' : ok ? '✅' : '❌') + ' ' + label + '</span><span class="sub">' + note + '</span></div>';
+  const stages = STAGES.map((s, i) => {
+    const r = ss.results[i];
+    let note;
+    if (r === null) note = 'Not reached';
+    else if (s.type === 'match') note = r ? 'Passed' : 'Needed ' + s.pass + ' s of match';
+    else if (s.type === 'turn') note = r ? 'Passed' : 'Head turn not detected';
+    else note = 'Laughed ' + Math.round(ss.finaleHeld) + ' of ' + s.seconds + ' s · best streak ' + ss.finaleBest.toFixed(1) + ' s';
+    return row(r, 'Stage ' + (i + 1) + ' · ' + s.name, note);
+  }).join('');
+  const head = ss.outcome === 'done' ? 'All 5 stages complete! 🎉' : turnFail ? 'Identity check failed' : 'Session ended at Stage ' + (ss.failIdx + 1);
+  const bankLine = '<div class="msg">Smile Bank now: <b>' + bankedShort(S.reducedDays || 0) + '</b></div>';
+  $('resultBox').innerHTML = lvUp + '<h2>' + head + '</h2>' + stages +
+    (turnFail ? '<div class="warn" style="margin-top:8px">The head turn was not detected in time, so no points were awarded for this session.</div>' : '') +
+    '<div class="grid3" style="margin-top:12px"><div><b>' + sessionScore + '</b><span class="sub">Session score</span></div>' +
+    '<div><b>+' + earned + '</b><span class="sub">Smile Credits</span></div>' +
+    '<div><b>+' + age.toFixed(2) + ' d</b><span class="sub">Banked</span></div></div>' + bankLine +
+    xpLine + '<div class="msg">Today: ' + d.credits + ' / ' + CONFIG.dailyCreditCap + ' credits · Streak bonus +' + Math.round(bonus * 100) + '% · ' + S.streak + '-day streak</div>' +
+    '<div class="sub">Smile Bank is a game score, not a health measurement.</div>';
+  $('hormoneRes').innerHTML = hormoneHTML();
+  refreshHome();
+  show('result');
+}
+
+// ---------- Smile photos ----------
+function renderGallery() {
+  const ph = S.photos || [];
+  $('gallery').innerHTML = ph.map((x, i) => '<div class="ph"><img src="' + x.src + '" alt="smile photo"><div class="dt">' + x.date + '</div><button class="x" data-del="' + i + '">✕</button></div>').join('');
+  $('galMsg').textContent = ph.length ? 'Saved on this device only (max 6). Tap ✕ to delete.' : 'No photos yet. Go to Smile and take your first smile photo!';
+  document.querySelectorAll('[data-del]').forEach(b => b.onclick = () => { S.photos.splice(Number(b.dataset.del), 1); save(S); renderGallery(); });
+}
+function addPhoto(canvas, mirror) {
+  const W = 240, r = canvas.height / canvas.width, c = document.createElement('canvas');
+  c.width = W; c.height = Math.round(W * r);
+  const x = c.getContext('2d'); if (mirror) { x.translate(W, 0); x.scale(-1, 1); }
+  x.drawImage(canvas, 0, 0, c.width, c.height);
+  let src = ''; try { src = c.toDataURL('image/jpeg', 0.72); } catch (e) { $('photoMsg').textContent = 'Could not save the photo.'; return; }
+  S.photos = (S.photos || []); S.photos.unshift({ src, date: today() }); S.photos = S.photos.slice(0, 6);
+  save(S); renderGallery();
+  $('photoMsg').innerHTML = '<span style="color:#1b6e2b">Saved to My smile gallery on the Home screen! 😄</span>';
+}
+$('photoBtn').onclick = () => {
+  const v = $('video');
+  if (mode === 'cam' && camStream && v.readyState >= 2) {          // live capture
+    const c = document.createElement('canvas'); c.width = v.videoWidth; c.height = v.videoHeight;
+    c.getContext('2d').drawImage(v, 0, 0); addPhoto(c, true);
+  } else { $('photoFile').click(); }                                // phone camera app / file picker
+};
+$('photoFile').onchange = e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  const img = new Image(), url = URL.createObjectURL(f);
+  img.onload = () => { const c = document.createElement('canvas'); c.width = img.naturalWidth; c.height = img.naturalHeight; c.getContext('2d').drawImage(img, 0, 0); URL.revokeObjectURL(url); addPhoto(c, false); e.target.value = ''; };
+  img.onerror = () => { $('photoMsg').textContent = 'Could not read that photo.'; };
+  img.src = url;
+};
+
+// ---------- Camera mode ----------
+function readCam(now) {
+  const v = $('video');
+  if (!landmarker || v.readyState < 2) return;
+  const res = landmarker.detectForVideo(v, now);
+  if (!res.faceBlendshapes || !res.faceBlendshapes.length) { sig = { smile: 0, eye: 0, jaw: 0 }; return; }
+  const m = {}; res.faceBlendshapes[0].categories.forEach(c => m[c.categoryName] = c.score);
+  sig = {
+    smile: ((m.mouthSmileLeft || 0) + (m.mouthSmileRight || 0)) / 2,
+    eye: ((m.eyeSquintLeft || 0) + (m.eyeSquintRight || 0)) / 2,
+    jaw: m.jawOpen || 0
+  };
+  const lm = res.faceLandmarks[0];
+  const ratio = (lm[1].x - lm[234].x) / (lm[454].x - lm[234].x);
+  if (Math.abs(ratio - 0.5) > 0.15) camTurnedOut = true;
+}
+async function enableCam() {
+  $('modeMsg').textContent = 'Preparing camera mode...';
+  try {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('Camera is not available in this environment.');
+    camStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' }, audio: false });
+    const v = $('video'); v.srcObject = camStream; await v.play();
+    // MediaPipe is served from this app, not a CDN. Three reasons: the app keeps
+    // working with no network once installed, nothing about the user's session
+    // is revealed to a third-party host by the request itself, and the version
+    // can never shift under us. See vendor/mediapipe/VERSION.txt for provenance.
+    const vision = await import('./vendor/mediapipe/vision_bundle.mjs');
+    const fileset = await vision.FilesetResolver.forVisionTasks('./vendor/mediapipe/wasm');
+    landmarker = await vision.FaceLandmarker.createFromOptions(fileset, {
+      baseOptions: { modelAssetPath: './models/face_landmarker.task' },
+      runningMode: 'VIDEO', numFaces: 1, outputFaceBlendshapes: true
+    });
+    mode = 'cam'; v.style.display = 'block';
+    $('demoCtl').style.display = 'none';
+    $('modeMsg').textContent = 'Camera mode is ready. Center your face and press Start. Video is processed on this device only.';
+  } catch (e) {
+    if (camStream) { camStream.getTracks().forEach(t => t.stop()); camStream = null; }
+    landmarker = null; setDemo();
+    // Face tracking is bundled with the app, so a failure here is almost always
+    // the camera itself: permission denied, no camera, or an insecure origin.
+    $('modeMsg').innerHTML = '<div class="warn">Camera mode is unavailable, so Demo mode is on. (' + (e && e.message ? e.message : 'camera permission was refused') + ')<br>Camera access needs permission and a secure page (https:// or localhost).</div>';
+  }
+}
+function setDemo() {
+  mode = 'demo'; $('video').style.display = 'none'; $('demoCtl').style.display = 'block';
+  sig = { smile: 0, eye: 0, jaw: 0 }; syncSliders(); drawScene(0);
+}
+$('modeCam').onclick = enableCam;
+$('modeDemo').onclick = () => { setDemo(); $('modeMsg').textContent = 'Demo mode: use the sliders or buttons to simulate an expression. No real face recognition is used.'; };
+$('startBtn').onclick = startSession;
+
+// ---------- Demo controls ----------
+function syncSliders() {
+  $('sSmile').value = Math.round(sig.smile * 100); $('sEye').value = Math.round(sig.eye * 100); $('sJaw').value = Math.round(sig.jaw * 100);
+  $('o1').textContent = $('sSmile').value; $('o2').textContent = $('sEye').value; $('o3').textContent = $('sJaw').value;
+}
+function fromSliders() {
+  sig = { smile: $('sSmile').value / 100, eye: $('sEye').value / 100, jaw: $('sJaw').value / 100 };
+  $('o1').textContent = $('sSmile').value; $('o2').textContent = $('sEye').value; $('o3').textContent = $('sJaw').value;
+  if (!running) drawScene(0);
+}
+['sSmile', 'sEye', 'sJaw'].forEach(id => $(id).oninput = fromSliders);
+const PRESETS = { smile: { smile: 0.75, eye: 0.1, jaw: 0 }, real: { smile: 0.75, eye: 0.45, jaw: 0.1 }, laugh: { smile: 0.9, eye: 0.6, jaw: 0.6 } };
+document.querySelectorAll('[data-p]').forEach(b => b.onclick = () => { sig = Object.assign({}, PRESETS[b.dataset.p]); syncSliders(); if (!running) drawScene(0); });
+$('turnBtn').onclick = () => { demoTurned = true; };
+
+const thumbCtx = {};
+(function () {
+  const box = $('cgrid');
+  const mk = (k, label) => {
+    const b = document.createElement('button'); b.className = 'ct' + (k === 'auto' ? ' auto' : '') + (k === mascotChoice ? ' sel' : ''); b.dataset.k = k;
+    if (k === 'auto') b.textContent = '🎲 Auto';
+    else { const c = document.createElement('canvas'); c.width = 160; c.height = 120; b.appendChild(c); thumbCtx[k] = c.getContext('2d'); const s = document.createElement('span'); s.textContent = label; b.appendChild(s); }
+    b.onclick = () => { mascotChoice = k; box.querySelectorAll('.ct').forEach(x => x.classList.toggle('sel', x.dataset.k === k)); if (!running) drawScene(0); };
+    box.appendChild(b);
+  };
+  mk('auto');
+  CHARS.forEach(k => mk(k, CHAR_LABEL[k]));
+})();
+function renderThumbs() {
+  const keep = sig; sig = { smile: 0.9, eye: 0.6, jaw: 0.6 }; thumbMode = true; fixedT = 1.3;
+  CHARS.forEach(k => { forcedChar = k; ctx.clearRect(0, 0, 640, 480); drawMascot(640, 480); thumbCtx[k].drawImage(cv, 0, 0, 160, 120); });
+  thumbMode = false; fixedT = null; forcedChar = null; sig = keep;
+}
+(function () {
+  const box = $('tchips');
+  const opts = { auto: '🎲 Auto (by date)', spring: THEMES.spring.n, summer: THEMES.summer.n, autumn: THEMES.autumn.n, winter: THEMES.winter.n };
+  Object.keys(opts).forEach(k => {
+    const b = document.createElement('button'); b.className = 'btn alt sm' + (k === themeChoice ? ' sel' : ''); b.textContent = opts[k]; b.dataset.k = k;
+    b.onclick = () => { themeChoice = k; box.querySelectorAll('button').forEach(x => x.classList.toggle('sel', x.dataset.k === k)); renderThumbs(); if (!running) drawScene(0); };
+    box.appendChild(b);
+  });
+})();
+renderThumbs();
+setDemo();
+refreshHome();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* offline cache is a bonus, not a requirement */ });
+  });
+}
+</script>
+</body>
+</html>

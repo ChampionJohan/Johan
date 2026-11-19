@@ -1,0 +1,30 @@
+MediaPipe Tasks Vision — vendored copy
+=====================================
+
+Source   : npm package @mediapipe/tasks-vision
+Version  : 0.10.14   (pinned; do not bump without re-testing face tracking)
+Licence  : Apache-2.0 (Google LLC)
+Obtained : npm install @mediapipe/tasks-vision@0.10.14
+
+Files kept here
+---------------
+  vision_bundle.mjs                   0.13 MB   ES module entry point
+  wasm/vision_wasm_internal.wasm      8.99 MB   SIMD build (modern browsers)
+  wasm/vision_wasm_internal.js        0.20 MB   loader for the above
+  wasm/vision_wasm_nosimd_internal.wasm  8.86 MB   fallback for browsers without WASM SIMD
+  wasm/vision_wasm_nosimd_internal.js    0.20 MB   loader for the above
+
+FilesetResolver picks the SIMD or no-SIMD build at runtime, so both are
+shipped. WASM SIMD needs Chrome 91+, Firefox 89+ or Safari 16.4+; dropping
+the two no-SIMD files saves ~9 MB but silently loses anything older,
+including iOS 16.3 and below.
+
+The face model lives in ../../models/face_landmarker.task (3.58 MB), taken
+from Google's published model page:
+https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task
+
+Why these are vendored rather than loaded from a CDN
+----------------------------------------------------
+The app is meant to keep working with no network once installed, the
+request for a CDN asset would reveal use of the app to a third-party host,
+and a pinned local copy cannot change underneath a released build.
