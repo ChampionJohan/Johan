@@ -28,7 +28,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -42,6 +42,7 @@ WARN_POSTS = 10           # 글타래가 이보다 길어지면 경고 (너무 �
 LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
 NUM_RESERVE = 6           # 글타래 번호 "\n(1/2)" 를 붙일 여유 글자 수
 NUM_RESERVE_WIDE = 8      # 글이 10개 이상일 때 "\n(10/12)" 를 붙일 여유 글자 수
+KST = timezone(timedelta(hours=9))
 FOOTER_KO = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
 FOOTER_EN = "※ Not investment advice."
 SECTION_SPLIT = re.compile(r"^[ \t]*---[ \t]*$", re.M)   # 글 파일 안의 "---" 줄 = 글타래를 나누는 경계
@@ -290,6 +291,16 @@ def main():
             print("::warning::Threads 대기열이 비어 있습니다. 새 글을 추가해 주세요.")
             return 0
         post = queue[0]
+
+    # 예약 실행이 늦게 도착했더라도, 오늘 아침 게시 시간대(한국 시간 07:30 이후)에 이미 올렸다면 건너뛴다.
+    # (수동으로 먼저 올린 날 예약 실행이 뒤늦게 돌아 같은 날 두 개가 올라가는 것을 막는다)
+    if not args.file and not args.dry_run and os.environ.get("GITHUB_EVENT_NAME") == "schedule":
+        last = state.get("last_posted_at")
+        now = datetime.now(KST)
+        slot_start = now.replace(hour=7, minute=30, second=0, microsecond=0)
+        if last and datetime.fromisoformat(last).astimezone(KST) >= slot_start:
+            print(f"오늘 아침 게시 시간대에 이미 {state.get('last_posted')}번 글을 올려서 건너뜁니다.")
+            return 0
 
     chunks = build_chunks(post)
 
