@@ -1,24 +1,20 @@
 오늘의 투자 공부 | ISA 계좌
 
-ISA(개인종합자산관리계좌)는 한 계좌에서 예금·펀드·ETF·국내주식 등을 운용하고, 만기에 손익을 합산해 일정 금액까지 비과세, 초과분은 9.9%로 분리과세하는 절세 계좌입니다.
+ISA(개인종합자산관리계좌)는 한 계좌에서 예금·펀드·ETF·국내주식 등을 운용하고, 만기에 손익을 합산해 비과세 한도까지는 세금이 없고 초과분은 9.9%로 분리과세하는 절세 계좌입니다.
 
-(2024년 기준)
+핵심 조건
 • 의무 가입 기간 3년
-• 연 납입 한도 2,000만 원
-• 비과세 한도 일반형 200만 원, 서민형 400만 원
-
-한도와 세율은 개정될 수 있으니 가입 전에 최신 기준을 확인하세요.
+• 일반형과 서민형(총급여 5,000만 원 이하 등)으로 나뉘며, 서민형의 비과세 한도가 더 큽니다.
+• 납입 한도와 비과세 한도는 확대 개편이 논의되고 있어 자료마다 숫자가 다릅니다. 가입 전에 금융위원회·국세청의 최신 공지로 확인하세요.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
 
 ---
 Daily Investing Study | The ISA Account
 
-An ISA (Individual Savings Account) holds deposits, funds, ETFs, Korean stocks and more in one account. At maturity gains and losses are netted; gains up to a limit are tax-free, the excess taxed at a flat 9.9%.
+An ISA (Individual Savings Account) holds deposits, funds, ETFs, Korean stocks and more in one account. At maturity gains and losses are netted; gains up to a tax-free limit are untaxed and the excess is taxed at a flat 9.9%.
 
-(As of 2024)
+Key conditions
 • 3-year minimum holding period
-• KRW 20 million annual contribution limit
-• Tax-free limit: KRW 2 million (standard), KRW 4 million (low-income)
-
-Rules change, so check the latest ones.
+• Standard and low-income types (total pay up to KRW 50 million, etc.); the low-income type has a larger tax-free limit
+• Contribution and tax-free limits are under expansion talks, so figures differ by source. Check the latest notice from the FSC or the tax service before opening one.

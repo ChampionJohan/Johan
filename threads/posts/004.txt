@@ -1,10 +1,10 @@
 오늘의 투자 공부 | 4% 룰
 
-"4% 룰"은 은퇴 시점 자산의 4%를 첫해 생활비로 쓰고, 이후 물가만큼 늘려 가면 약 30년간 자산이 버틴다는 미국 과거 데이터 기반의 경험칙입니다.
+'4% 룰'은 은퇴 첫해에 자산의 4%를 쓰고, 이후 물가만큼 늘려 가면 약 30년간 자산이 버틴다는 미국 과거 데이터 기반의 경험칙입니다.
 
 예) 자산 10억 원 → 첫해 4,000만 원(월 약 333만 원)
 
-보장된 공식은 아닙니다. 수익률·물가·기간에 따라 달라지고, 한국은 3~3.5%가 더 안전하다는 의견도 있습니다.
+보장된 공식은 아닙니다. 모닝스타의 2026년 보고서는 미국 신규 은퇴자(30년, 성공 확률 90%)의 안전한 초기 인출률을 3.9%로 추정했습니다(전년 3.7%). 수익률·물가·기간에 따라 달라지고, 한국에 그대로 적용하기는 어렵습니다.
 
 핵심은 "원금을 헐지 않고 수익 안에서 쓰는 구조"를 만드는 것입니다.
 
@@ -17,6 +17,6 @@ A rule of thumb from past U.S. data: withdraw 4% of your portfolio in year one o
 
 Example: KRW 1 billion → KRW 40 million in year one (about KRW 3.33 million a month)
 
-Not guaranteed: results depend on returns, inflation and time horizon, and some suggest 3–3.5% for Korea.
+Not guaranteed. Morningstar's 2026 report puts the safe starting rate for new U.S. retirees (30 years, 90% success) at 3.9%, up from 3.7% a year earlier. It varies with returns, inflation and horizon, and doesn't transfer directly to Korea.
 
 Key idea: live off returns without eroding principal.

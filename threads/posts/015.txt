@@ -2,13 +2,13 @@
 
 연금저축은 노후 대비와 세액공제를 함께 주는 계좌입니다.
 
-(2024년 기준)
-• 연 납입 한도 600만 원
-• 세액공제율 총급여 5,500만 원 이하 16.5%, 초과 13.2%
-• 연금 수령 시 연금소득세 3.3~5.5%
-• 중도 해지 시 16.5% 기타소득세
+(2026년 기준)
+• 세액공제 대상 납입 한도: 연금저축 연 600만 원, IRP 합산 연 900만 원
+• 세액공제율: 총급여 5,500만 원(종합소득 4,500만 원) 이하 16.5%, 초과 13.2%
+• 연금 수령 시 연금소득세: 55~69세 5.5%, 70~79세 4.4%, 80세 이상 3.3%
+• 중도 해지(연금 외 수령) 시 16.5% 기타소득세
 
-계좌에 돈만 넣고 현금으로 두면 수익이 거의 없습니다. 최소한 MMF나 ETF 같은 운용 상품으로 채우세요. 한도와 공제율은 개정될 수 있으니 최신 기준을 확인하세요.
+현금으로만 두면 수익이 거의 없습니다. 최소한 MMF나 ETF 같은 운용 상품으로 채우세요. 실제 공제액은 본인의 결정세액 한도 안에서 적용됩니다.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
 
@@ -17,10 +17,10 @@ Daily Investing Study | Pension Savings
 
 Pension savings combine retirement saving with a tax credit.
 
-(As of 2024)
-• Annual limit: KRW 6 million
-• Tax credit: 16.5% if total pay is KRW 55 million or less, 13.2% above
-• Pension income tax on payout: 3.3–5.5%
-• Early withdrawal: 16.5% tax
+(As of 2026)
+• Creditable contributions: KRW 6 million a year for pension savings, KRW 9 million combined with IRP
+• Credit rate: 16.5% if total pay is KRW 55 million (income KRW 45 million) or less, 13.2% above
+• Pension income tax on payout: 5.5% at 55–69, 4.4% at 70–79, 3.3% at 80+
+• Early withdrawal: 16.5% other-income tax
 
-Cash earns almost nothing; put it into products like MMFs or ETFs. Limits and rates can change, so check current rules.
+Cash alone earns almost nothing; put it into MMFs or ETFs. The actual credit is capped by your tax liability.
