@@ -8,16 +8,16 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "게시하지 않고 내용만 출력"
+        description: "게시하지 않고 내용만 출력 (처음에는 체크 유지)"
         type: boolean
         default: true
-      lecture:
-        description: "특정 강만 처리 (비우면 state.json 의 다음 강)"
+      post:
+        description: "특정 글만 처리 (예: 001). 비우면 대기열의 다음 글"
         type: string
         default: ""
 
 permissions:
-  contents: write   # state.json 을 다음 강으로 갱신해 커밋하기 위함
+  contents: write   # state.json 을 갱신해 커밋하기 위함
 
 concurrency:
   group: threads-daily
@@ -34,19 +34,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 전 강의 분할 점검
-        run: python3 threads/post_threads.py --check-all
+      - name: 글 점검 (글자 수)
+        run: |
+          python3 threads/post_threads.py --check-all
+          python3 threads/post_threads.py --list
 
       - name: 게시
         env:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           DRY_RUN: ${{ inputs.dry_run }}
-          LECTURE: ${{ inputs.lecture }}
+          POST_NAME: ${{ inputs.post }}
         run: |
           args=()
           if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
-          if [ -n "$LECTURE" ]; then args+=(--lecture "$LECTURE"); fi
+          if [ -n "$POST_NAME" ]; then args+=(--file "$POST_NAME"); fi
           python3 threads/post_threads.py "${args[@]}"
 
       - name: 진행 상태(state.json) 커밋
@@ -58,5 +60,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add threads/state.json
-          git commit -m "threads: 다음 게시 강의로 진행"
+          git commit -m "threads: 게시 진행 상태 갱신"
           git push

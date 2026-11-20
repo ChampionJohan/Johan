@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""곰희스쿨 강의 요약을 하루 1강씩 Threads 에 글타래로 게시한다. 외부 의존성 없음 (Python 3.8+).
+"""threads/posts/*.txt 를 이름 순서대로 하루 1개씩 Threads 에 게시한다. 외부 의존성 없음 (Python 3.8+).
 
-    python3 threads/post_threads.py --dry-run            # 오늘 올릴 글 미리 보기 (게시 안 함)
-    python3 threads/post_threads.py                      # 실제 게시 후 state.json 을 다음 강으로 진행
-    python3 threads/post_threads.py --lecture 12 --dry-run   # 특정 강 미리 보기
-    python3 threads/post_threads.py --lecture 12         # 특정 강만 게시 (state.json 은 그대로)
-    python3 threads/post_threads.py --check-all          # 전 강의 분할 결과 / 글자 수 점검
-    python3 threads/post_threads.py --check-token        # 토큰 · 계정 확인
+글을 더 올리고 싶으면 posts 폴더에 다음 번호의 .txt 파일(예: 024.txt)을 추가하면 된다.
+이미 올린 글 다음 번호부터 자동으로 이어서 올라간다.
+
+    python3 threads/post_threads.py --list              # 대기열 확인 (다음 글, 남은 개수)
+    python3 threads/post_threads.py --dry-run           # 오늘 올릴 글 미리 보기 (게시 안 함)
+    python3 threads/post_threads.py                     # 실제 게시 후 state.json 갱신
+    python3 threads/post_threads.py --file 005 --dry-run   # 특정 글 미리 보기 (--file 만 쓰면 그 글만 게시, state 불변)
+    python3 threads/post_threads.py --check-all         # 전체 글 글자 수 점검
+    python3 threads/post_threads.py --check-token       # 토큰 · 계정 확인
+    python3 threads/post_threads.py --exchange-token    # 단기 토큰 → 장기(약 60일) 토큰 (THREADS_APP_SECRET 필요)
+    python3 threads/post_threads.py --refresh-token     # 장기 토큰 연장 (만료 전에)
 
 환경변수
-    THREADS_ACCESS_TOKEN   필수 (게시·토큰확인 시). 절대 코드나 저장소에 적지 말 것.
+    THREADS_ACCESS_TOKEN   필수 (게시·토큰 확인 시). 코드나 저장소에 절대 적지 말 것.
     THREADS_USER_ID        선택. 기본값 'me'.
+    THREADS_APP_SECRET     --exchange-token 할 때만 필요.
     THREADS_API_BASE       선택. 테스트용 (기본 https://graph.threads.net/v1.0).
 """
 import argparse
@@ -26,48 +32,48 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-LECTURES = HERE / "lectures"
+POSTS = HERE / "posts"
 STATE = HERE / "state.json"
-API = os.environ.get("THREADS_API_BASE", "https://graph.threads.net/v1.0")
+API = os.environ.get("THREADS_API_BASE", "https://graph.threads.net/v1.0").rstrip("/")
+API_ROOT = API.rsplit("/v", 1)[0] if re.search(r"/v\d+(\.\d+)?$", API) else API  # 토큰 교환/연장은 버전 없는 주소
 
-FIRST, LAST = 6, 28
 HARD_LIMIT = 500          # Threads 글 1개 한도
-LIMIT = 480               # 쪽수 표기 "(3/5)" 를 붙일 여유 20자
-WARN_POSTS = 10           # 글타래가 이보다 길면 경고
-FOOTER = "※ 곰희스쿨 영상을 개인이 정리한 요약이며, 투자 권유가 아닙니다. 투자 판단과 책임은 본인에게 있습니다."
+LIMIT = 480               # 긴 글을 나눌 때 쪽수 표기 "(3/5)" 를 붙일 여유
+WARN_POSTS = 5            # 한 글이 이보다 많은 조각으로 나뉘면 경고
+LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
+FOOTER = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
 
 
-# ---------- 상태 ----------
+# ---------- 대기열 / 상태 ----------
+def all_posts():
+    return sorted(POSTS.glob("*.txt"))
+
+
 def load_state():
     if STATE.exists():
         return json.loads(STATE.read_text(encoding="utf-8"))
-    return {"next": FIRST}
+    return {"last_posted": ""}
 
 
 def save_state(state):
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-# ---------- 마크다운 → Threads 평문 ----------
-def to_plain(md):
-    out = []
-    for line in md.strip().splitlines():
-        s = line.rstrip()
-        if s.startswith("# "):
-            s = s[2:].strip()
-            m = re.match(r"(\d+강)\s*·\s*(.+)", s)
-            s = f"【곰희스쿨 {m.group(1)}】 {m.group(2)}" if m else s
-        else:
-            s = re.sub(r"^\*\*(.+?)\*\*\s*$", r"■ \1", s)   # 단독 줄 소제목
-            s = re.sub(r"\*\*(.+?)\*\*", r"\1", s)
-            s = re.sub(r"^\s*[-*]\s+", "• ", s)
-        out.append(s)
-    return "\n".join(out)
+def pending(state):
+    last = state.get("last_posted", "")
+    return [p for p in all_posts() if p.stem > last]
 
 
-# ---------- 500자 단위 분할 ----------
+def find_post(name):
+    stem = Path(name).stem
+    for p in all_posts():
+        if p.stem == stem:
+            return p
+    raise SystemExit(f"글 파일이 없습니다: {POSTS / (stem + '.txt')}")
+
+
+# ---------- 본문 만들기 / 500자 분할 ----------
 def break_unit(unit, limit):
-    """limit 보다 긴 덩어리를 줄 → 문장 → 글자 순으로 쪼갠다."""
     if "\n" in unit:
         return pack(unit.split("\n"), limit, "\n")
     sentences = re.split(r"(?<=[.!?。])\s+", unit)
@@ -96,27 +102,27 @@ def pack(units, limit, sep):
     return chunks
 
 
-def lecture_chunks(n):
-    path = LECTURES / f"{n:02d}.md"
-    if not path.exists():
-        raise SystemExit(f"강의 파일이 없습니다: {path}")
-    text = to_plain(path.read_text(encoding="utf-8"))
-    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()] + [FOOTER]
+def build_chunks(path):
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        raise SystemExit(f"빈 글입니다: {path.name}")
+    if "※" not in text:
+        text += "\n\n" + FOOTER
+    if len(text) <= HARD_LIMIT:
+        return [text]
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
     chunks = pack(paragraphs, LIMIT, "\n\n")
     total = len(chunks)
-    if total > 1:
-        chunks = [f"{c}\n\n({i}/{total})" for i, c in enumerate(chunks, 1)]
-    return chunks
+    return [f"{c}\n\n({i}/{total})" for i, c in enumerate(chunks, 1)]
 
 
 # ---------- Threads API ----------
-def api(method, path, params, token, retries=3):
-    params = dict(params, access_token=token)
+def http(method, url, params, retries=3, label=""):
     data = urllib.parse.urlencode(params)
     if method == "GET":
-        req = urllib.request.Request(f"{API}/{path}?{data}")
+        req = urllib.request.Request(f"{url}?{data}")
     else:
-        req = urllib.request.Request(f"{API}/{path}", data=data.encode(), method="POST")
+        req = urllib.request.Request(url, data=data.encode(), method="POST")
     for attempt in range(1, retries + 1):
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
@@ -126,12 +132,16 @@ def api(method, path, params, token, retries=3):
             if e.code >= 500 and attempt < retries:
                 time.sleep(2 ** attempt)
                 continue
-            raise SystemExit(f"Threads API 오류 {e.code} ({path}): {body}")
+            raise SystemExit(f"Threads API 오류 {e.code} ({label}): {body}")
         except urllib.error.URLError as e:
             if attempt < retries:
                 time.sleep(2 ** attempt)
                 continue
-            raise SystemExit(f"네트워크 오류 ({path}): {e}")
+            raise SystemExit(f"네트워크 오류 ({label}): {e}")
+
+
+def api(method, path, params, token, retries=3):
+    return http(method, f"{API}/{path}", dict(params, access_token=token), retries, label=path)
 
 
 def post_thread(chunks, token, user, pause):
@@ -151,80 +161,134 @@ def post_thread(chunks, token, user, pause):
     return ids
 
 
+def need_env(name):
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise SystemExit(f"{name} 환경변수가 없습니다.")
+    return value
+
+
 # ---------- 명령 ----------
-def need_token():
-    token = os.environ.get("THREADS_ACCESS_TOKEN", "").strip()
-    if not token:
-        raise SystemExit("THREADS_ACCESS_TOKEN 환경변수가 없습니다.")
-    return token
+def cmd_list():
+    state = load_state()
+    posts, queue = all_posts(), pending(state)
+    print(f"전체 {len(posts)}개 / 게시 완료 {len(posts) - len(queue)}개 / 대기 {len(queue)}개")
+    if queue:
+        print(f"다음에 올라갈 글: {queue[0].name}")
+        for p in queue[:5]:
+            lines = [ln for ln in p.read_text(encoding="utf-8").splitlines() if ln.strip()]
+            print(f"  - {p.name}: {lines[0] if lines else '(빈 글)'}")
+    return 0
 
 
 def cmd_check_all():
     bad = 0
-    for n in range(FIRST, LAST + 1):
-        chunks = lecture_chunks(n)
+    for p in all_posts():
+        chunks = build_chunks(p)
         longest = max(len(c) for c in chunks)
         flag = ""
         if longest > HARD_LIMIT:
             flag, bad = "  ← 500자 초과!", bad + 1
         elif len(chunks) > WARN_POSTS:
-            flag = f"  ← 글타래가 {WARN_POSTS}개를 넘음"
-        print(f"{n:>2}강: 글 {len(chunks)}개, 최장 {longest}자{flag}")
+            flag = f"  ← 조각이 {len(chunks)}개 (너무 길어요)"
+        elif len(chunks) > 1:
+            flag = f"  (글타래 {len(chunks)}개로 나뉨)"
+        print(f"{p.name}: {sum(len(c) for c in chunks)}자{flag}")
     return 1 if bad else 0
 
 
 def cmd_check_token():
-    token = need_token()
+    token = need_env("THREADS_ACCESS_TOKEN")
     user = os.environ.get("THREADS_USER_ID", "me").strip() or "me"
     info = api("GET", user, {"fields": "id,username"}, token)
     print(f"토큰 정상: @{info.get('username')} (id={info.get('id')})")
     return 0
 
 
+def cmd_exchange_token():
+    short = need_env("THREADS_ACCESS_TOKEN")
+    secret = need_env("THREADS_APP_SECRET")
+    res = http("GET", f"{API_ROOT}/access_token",
+               {"grant_type": "th_exchange_token", "client_secret": secret, "access_token": short},
+               label="access_token")
+    if "access_token" not in res:
+        raise SystemExit(f"응답에 access_token 이 없습니다: {list(res)}")
+    days = int(res.get("expires_in", 0)) // 86400
+    print(f"장기 토큰 발급 완료 (유효 약 {days}일). 아래 값을 GitHub Secrets 의 THREADS_ACCESS_TOKEN 에 넣으세요.")
+    print(res["access_token"])
+    return 0
+
+
+def cmd_refresh_token():
+    token = need_env("THREADS_ACCESS_TOKEN")
+    res = http("GET", f"{API_ROOT}/refresh_access_token",
+               {"grant_type": "th_refresh_token", "access_token": token}, label="refresh_access_token")
+    if "access_token" not in res:
+        raise SystemExit(f"응답에 access_token 이 없습니다: {list(res)}")
+    days = int(res.get("expires_in", 0)) // 86400
+    print(f"토큰 연장 완료 (유효 약 {days}일). 아래 값을 GitHub Secrets 의 THREADS_ACCESS_TOKEN 에 다시 넣으세요.")
+    print(res["access_token"])
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dry-run", action="store_true", help="게시하지 않고 내용만 출력")
-    ap.add_argument("--lecture", type=int, help="특정 강만 처리 (state.json 은 바꾸지 않음)")
-    ap.add_argument("--check-all", action="store_true", help="전 강의 분할 점검")
+    ap.add_argument("--file", help="특정 글만 처리 (예: 005). state.json 은 바꾸지 않음")
+    ap.add_argument("--list", action="store_true", help="대기열 확인")
+    ap.add_argument("--check-all", action="store_true", help="전체 글 점검")
     ap.add_argument("--check-token", action="store_true", help="토큰 확인")
+    ap.add_argument("--exchange-token", action="store_true", help="단기 토큰을 장기 토큰으로 교환")
+    ap.add_argument("--refresh-token", action="store_true", help="장기 토큰 연장")
     ap.add_argument("--pause", type=float, default=3.0, help="API 호출 사이 대기 초 (기본 3)")
     args = ap.parse_args()
 
+    if args.list:
+        return cmd_list()
     if args.check_all:
         return cmd_check_all()
     if args.check_token:
         return cmd_check_token()
+    if args.exchange_token:
+        return cmd_exchange_token()
+    if args.refresh_token:
+        return cmd_refresh_token()
 
     state = load_state()
-    n = args.lecture or state["next"]
-    if n > LAST:
-        print(f"{LAST}강까지 모두 게시했습니다. 할 일이 없습니다.")
-        return 0
+    if args.file:
+        post = find_post(args.file)
+    else:
+        queue = pending(state)
+        if not queue:
+            print("올릴 글이 없습니다. threads/posts/ 에 다음 번호의 .txt 파일을 추가하세요.")
+            print("::warning::Threads 대기열이 비어 있습니다. 새 글을 추가해 주세요.")
+            return 0
+        post = queue[0]
 
-    chunks = lecture_chunks(n)
-    if len(chunks) > WARN_POSTS:
-        print(f"경고: 글타래가 {len(chunks)}개로 깁니다.", file=sys.stderr)
+    chunks = build_chunks(post)
 
     if args.dry_run:
-        print(f"[DRY-RUN] {n}강 — 글 {len(chunks)}개")
+        print(f"[DRY-RUN] {post.name} — 글 {len(chunks)}개")
         for i, c in enumerate(chunks, 1):
             print(f"\n----- {i}/{len(chunks)} ({len(c)}자) -----\n{c}")
         return 0
 
-    token = need_token()
+    token = need_env("THREADS_ACCESS_TOKEN")
     user = os.environ.get("THREADS_USER_ID", "me").strip() or "me"
-    print(f"{n}강 게시 시작 — 글 {len(chunks)}개")
+    print(f"{post.name} 게시 시작 — 글 {len(chunks)}개")
     ids = post_thread(chunks, token, user, args.pause)
 
-    if not args.lecture:
+    if not args.file:
         state.update({
-            "next": n + 1,
-            "last_posted": n,
+            "last_posted": post.stem,
             "last_posted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "last_root_post_id": ids[0],
         })
         save_state(state)
-        print(f"state.json 갱신: 다음 게시는 {n + 1}강")
+        remaining = len(pending(state))
+        print(f"state.json 갱신: 마지막 게시 {post.stem}, 남은 글 {remaining}개")
+        if remaining <= LOW_QUEUE:
+            print(f"::warning::남은 글이 {remaining}개입니다. 새 글을 추가해 주세요.")
     return 0
 
 
