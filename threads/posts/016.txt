@@ -9,3 +9,14 @@
 투자란 현금을 이런 증권으로 바꿔 계좌에 담는 일입니다. 증권마다 위험과 수익 구조가 다르니, 사기 전에 "무엇에 대한 권리인가"부터 확인하세요.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | What Are Securities?
+
+Stocks, bonds and funds are all "securities."
+• Stock: ownership share of a company
+• Bond: the right to interest and principal on money you lend
+• Fund: pooled money managed by professionals
+• ELS etc.: products combined with derivatives
+
+Investing means turning cash into securities in your account. Each has a different risk/return structure, so first ask: what exactly am I buying a claim on?

@@ -8,3 +8,12 @@
 주가가 높다고 큰 회사는 아닙니다. 기업 규모는 시가총액(주가 × 상장 주식 수)으로 비교하세요.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | How Companies Get Listed
+
+Founding → angel/venture funding → underwriting contract with a securities firm (tidying accounting and governance) → exchange review → listing
+
+Issuing new shares to raise money dilutes existing shareholders' ownership.
+
+Stock codes are 6 digits (Samsung Electronics: 005930). A high share price doesn't mean a big company; compare size by market capitalization (price × shares outstanding).

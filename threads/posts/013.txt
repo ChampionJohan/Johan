@@ -8,8 +8,23 @@ CMA는 증권사의 수시입출금 계좌로, 남는 돈을 맡기면 매일 �
 • 랩형
 • 발행어음형: 금리는 높지만 증권사 신용위험이 있음
 
-대부분의 유형은 예금자보호 대상이 아닙니다. 가입 전에 유형별 약관을 확인하세요.
+RP·MMF·발행어음 등 증권사 CMA는 일반적으로 예금자보호 대상이 아닙니다(은행 예금은 2025년 9월부터 1인당 1억 원까지 보호). 종금형 등 일부 유형은 다를 수 있으니 가입 전에 약관을 확인하세요.
 
 쓰임새: 투자 대기 자금, 비상금 보관
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | The CMA Account
+
+A CMA is a brokerage's cash management account: park spare cash and it earns interest daily.
+
+Types
+• RP: short-term, bond-backed
+• MMF: money-market fund
+• Wrap type
+• Issued-note type: higher rates, but exposed to the broker's credit risk
+
+Brokerage CMAs such as RP, MMF and issued-note types are generally not covered by deposit insurance (bank deposits are protected up to KRW 100 million per person since Sept. 2025). Some types, e.g. merchant-bank type, may differ, so read the terms.
+
+Uses: cash waiting to be invested, emergency funds

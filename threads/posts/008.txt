@@ -1,7 +1,7 @@
 오늘의 투자 공부 | 투자란 무엇인가
 
 투자는 "원금 손실 가능성을 받아들이고 더 높은 수익을 기대하며 자산을 사는 것"입니다.
-예금은 한도 내에서 원금이 보호되지만, 투자는 가격이 내려갈 수 있습니다.
+예금은 금융기관별 1인당 원금과 이자를 합쳐 1억 원까지 보호되지만(2025년 9월 1일부터), 투자는 가격이 내려갈 수 있습니다.
 
 시작 전 점검 3가지
 ① 3~5년 안에 쓸 돈이 아닌가
@@ -11,3 +11,15 @@
 하나라도 "아니오"라면 금액을 줄이거나 공부가 먼저입니다.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | What Investing Really Is
+
+Investing means buying assets while accepting the possibility of losing principal, in exchange for higher expected returns. Deposits are protected up to KRW 100 million per person per institution, principal plus interest (since Sept. 1, 2025); investments can fall.
+
+Before you start:
+① Is this money you won't need within 3–5 years?
+② Could you hold through a 20% drop without selling?
+③ Do you understand the product?
+
+If any answer is "no," reduce the amount or study first.

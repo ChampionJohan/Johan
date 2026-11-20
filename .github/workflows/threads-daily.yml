@@ -57,6 +57,7 @@ jobs:
           python3 threads/post_threads.py "${args[@]}"
 
       - name: 진행 상태(state.json) 커밋
+        if: always()   # 게시가 중간에 실패해도 어디까지 올렸는지는 저장해 다음에 이어서 올린다
         run: |
           if git diff --quiet -- threads/state.json; then
             echo "state.json 변경 없음"

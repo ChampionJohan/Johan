@@ -38,10 +38,13 @@ API = os.environ.get("THREADS_API_BASE", "https://graph.threads.net/v1.0").rstri
 API_ROOT = API.rsplit("/v", 1)[0] if re.search(r"/v\d+(\.\d+)?$", API) else API  # 토큰 교환/연장은 버전 없는 주소
 
 HARD_LIMIT = 500          # Threads 글 1개 한도
-LIMIT = 480               # 긴 글을 나눌 때 쪽수 표기 "(3/5)" 를 붙일 여유
-WARN_POSTS = 5            # 한 글이 이보다 많은 조각으로 나뉘면 경고
+WARN_POSTS = 10           # 글타래가 이보다 길어지면 경고 (너무 길면 읽기 힘들다)
 LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
-FOOTER = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
+NUM_RESERVE = 6           # 글타래 번호 "\n(1/2)" 를 붙일 여유 글자 수
+NUM_RESERVE_WIDE = 8      # 글이 10개 이상일 때 "\n(10/12)" 를 붙일 여유 글자 수
+FOOTER_KO = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
+FOOTER_EN = "※ Not investment advice."
+SECTION_SPLIT = re.compile(r"^[ \t]*---[ \t]*$", re.M)   # 글 파일 안의 "---" 줄 = 글타래를 나누는 경계
 
 
 # ---------- 대기열 / 상태 ----------
@@ -102,18 +105,37 @@ def pack(units, limit, sep):
     return chunks
 
 
-def build_chunks(path):
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        raise SystemExit(f"빈 글입니다: {path.name}")
+def section_chunks(text, reserve):
+    """한 구간(한국어 또는 영어)을 글 조각 목록으로 만든다.
+    500자를 넘으면 문단 → 줄 → 문장 순서로 끊어 여러 개로 나눈다(= 댓글로 이어 올림).
+    안내 문구는 구간 끝에 언어에 맞게 자동 부착."""
+    limit = HARD_LIMIT - reserve
+    text = text.strip()
     if "※" not in text:
-        text += "\n\n" + FOOTER
-    if len(text) <= HARD_LIMIT:
+        text += "\n\n" + (FOOTER_KO if re.search(r"[가-힣]", text) else FOOTER_EN)
+    if len(text) <= limit:
         return [text]
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    chunks = pack(paragraphs, LIMIT, "\n\n")
-    total = len(chunks)
-    return [f"{c}\n\n({i}/{total})" for i, c in enumerate(chunks, 1)]
+    return pack(paragraphs, limit, "\n\n")
+
+
+def build_chunks(path):
+    """파일을 '---' 줄 기준으로 구간별(한국어 / 영어)로 나눠 글타래의 글 목록을 만든다.
+    한 구간이 길면 여러 글로 나뉘고, 전체에 (1/N) 번호가 붙는다. 한국어 구간 → 영어 구간 순서로 이어진다."""
+    raw = path.read_text(encoding="utf-8").strip()
+    if not raw:
+        raise SystemExit(f"빈 글입니다: {path.name}")
+    sections = [s.strip() for s in SECTION_SPLIT.split(raw) if s.strip()]
+    for reserve in (NUM_RESERVE, NUM_RESERVE_WIDE):
+        chunks = []
+        for s in sections:
+            chunks.extend(section_chunks(s, reserve))
+        total = len(chunks)
+        if total < 10 or reserve == NUM_RESERVE_WIDE:
+            break   # 글이 10개 미만이면 "(1/9)" 형식으로 충분, 이상이면 더 넓은 여유로 다시 계산
+    if total > 1:
+        chunks = [f"{c}\n({i}/{total})" for i, c in enumerate(chunks, 1)]
+    return chunks
 
 
 # ---------- Threads API ----------
@@ -144,10 +166,12 @@ def api(method, path, params, token, retries=3):
     return http(method, f"{API}/{path}", dict(params, access_token=token), retries, label=path)
 
 
-def post_thread(chunks, token, user, pause):
-    prev, ids = None, []
-    for i, text in enumerate(chunks, 1):
-        params = {"media_type": "TEXT", "text": text}
+def post_thread(chunks, token, user, pause, start=0, prev=None, on_progress=None):
+    """chunks[start:] 를 순서대로 올린다. 첫 글은 새 글, 나머지는 바로 앞 글에 대한 답글(댓글).
+    start/prev 는 중간에 실패했던 글타래를 이어서 올릴 때 쓴다."""
+    ids = []
+    for i in range(start, len(chunks)):
+        params = {"media_type": "TEXT", "text": chunks[i]}
         if prev:
             params["reply_to_id"] = prev
         container = api("POST", f"{user}/threads", params, token)
@@ -156,7 +180,9 @@ def post_thread(chunks, token, user, pause):
         published = api("POST", f"{user}/threads_publish", {"creation_id": container["id"]}, token, retries=1)
         prev = published["id"]
         ids.append(prev)
-        print(f"  게시 {i}/{len(chunks)} 완료 (id={prev})")
+        print(f"  게시 {i + 1}/{len(chunks)} 완료 (id={prev})")
+        if on_progress:
+            on_progress(list(ids))   # 한 글 올릴 때마다 진행 상황 기록 (중간 실패 대비)
         time.sleep(pause)
     return ids
 
@@ -275,10 +301,28 @@ def main():
 
     token = need_env("THREADS_ACCESS_TOKEN")
     user = os.environ.get("THREADS_USER_ID", "me").strip() or "me"
-    print(f"{post.name} 게시 시작 — 글 {len(chunks)}개")
-    ids = post_thread(chunks, token, user, args.pause)
+
+    # 지난번에 이 글을 올리다 중간에 실패했다면, 이미 올라간 글은 건너뛰고 그 다음부터 이어서 올린다
+    done = []
+    partial = state.get("partial") if not args.file else None
+    if partial and partial.get("post") == post.stem:
+        done = list(partial.get("ids", []))
+    if done:
+        print(f"{post.name}: 이전에 {len(done)}/{len(chunks)}개까지 올라가 있어 이어서 올립니다.")
+    else:
+        print(f"{post.name} 게시 시작 — 글 {len(chunks)}개")
+
+    def remember(new_ids):
+        if args.file:
+            return
+        state["partial"] = {"post": post.stem, "ids": done + new_ids}
+        save_state(state)
+
+    ids = done + post_thread(chunks, token, user, args.pause, start=len(done),
+                             prev=done[-1] if done else None, on_progress=remember)
 
     if not args.file:
+        state.pop("partial", None)
         state.update({
             "last_posted": post.stem,
             "last_posted_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
