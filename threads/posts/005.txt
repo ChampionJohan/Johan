@@ -9,3 +9,14 @@
 예금·적금은 이자가 원금에 자동으로 합쳐지는지 상품마다 다릅니다. 가입 전에 약관의 단리/복리를 확인하세요.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Simple vs. Compound Interest
+
+KRW 10 million at 10% a year:
+• Simple: +KRW 1 million every year → KRW 20 million after 10 years
+• Compound: interest earns interest → about KRW 25.94 million after 10 years, about KRW 174 million after 30 years
+
+Time, more than the rate, makes the difference.
+
+Whether deposit interest is added to principal automatically varies by product. Check the terms (simple vs. compound) before you sign up.

@@ -9,3 +9,14 @@
 주문은 가격이 좋은 순서, 같은 가격이면 먼저 낸 순서로 체결됩니다. 매수·매도 호가 구조를 이해하고 주문하세요.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | How to Read Candlestick Charts
+
+One candle is one day, showing open, close, high and low.
+
+• In Korea, red means close above open, blue means below (many markets use the opposite colors)
+• A long body means a strong one-way move that day
+• A long wick means price moved and then came back
+
+Orders fill at the best price first, then in order of arrival. Understand the order book before you trade.

@@ -13,3 +13,18 @@ CMA는 증권사의 수시입출금 계좌로, 남는 돈을 맡기면 매일 �
 쓰임새: 투자 대기 자금, 비상금 보관
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | The CMA Account
+
+A CMA is a brokerage's cash management account: park spare cash and it earns interest daily.
+
+Types
+• RP: short-term, bond-backed
+• MMF: money-market fund
+• Wrap type
+• Issued-note type: higher rates, but exposed to the broker's credit risk
+
+Most types are not covered by deposit insurance. Read the terms for each type.
+
+Uses: cash waiting to be invested, emergency funds

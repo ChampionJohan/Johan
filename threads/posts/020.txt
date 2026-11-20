@@ -9,3 +9,14 @@
 단, 이런 장치는 "보관"을 지켜 줄 뿐 가격 하락으로 인한 손실까지 막아 주지는 않습니다.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Is My Stock Kept Safely?
+
+• If a broker fails, stocks and bonds are held at the Korea Securities Depository.
+• Fund assets are kept by a bank (the trustee), not the fund manager.
+• Listed companies are audited and publish financial statements on DART.
+
+Before investing, check DART for the audit opinion (is it "unqualified"?) and the debt ratio.
+
+These safeguards protect custody, not you from losses when prices fall.

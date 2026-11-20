@@ -41,7 +41,10 @@ HARD_LIMIT = 500          # Threads 글 1개 한도
 LIMIT = 480               # 긴 글을 나눌 때 쪽수 표기 "(3/5)" 를 붙일 여유
 WARN_POSTS = 5            # 한 글이 이보다 많은 조각으로 나뉘면 경고
 LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
-FOOTER = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
+NUM_RESERVE = 6           # 글타래 번호 "\n(1/2)" 를 붙일 여유 글자 수
+FOOTER_KO = "※ 정보 제공 목적이며 투자 권유가 아닙니다."
+FOOTER_EN = "※ Not investment advice."
+SECTION_SPLIT = re.compile(r"^[ \t]*---[ \t]*$", re.M)   # 글 파일 안의 "---" 줄 = 글타래를 나누는 경계
 
 
 # ---------- 대기열 / 상태 ----------
@@ -102,18 +105,31 @@ def pack(units, limit, sep):
     return chunks
 
 
-def build_chunks(path):
-    text = path.read_text(encoding="utf-8").strip()
-    if not text:
-        raise SystemExit(f"빈 글입니다: {path.name}")
+def section_chunks(text):
+    """한 구간(한국어 또는 영어)을 글 조각 목록으로 만든다. 안내 문구는 언어에 맞게 자동 부착."""
+    text = text.strip()
     if "※" not in text:
-        text += "\n\n" + FOOTER
-    if len(text) <= HARD_LIMIT:
+        text += "\n\n" + (FOOTER_KO if re.search(r"[가-힣]", text) else FOOTER_EN)
+    if len(text) <= HARD_LIMIT - NUM_RESERVE:
         return [text]
     paragraphs = [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
-    chunks = pack(paragraphs, LIMIT, "\n\n")
+    return pack(paragraphs, LIMIT, "\n\n")
+
+
+def build_chunks(path):
+    """파일을 '---' 줄 기준으로 구간별로 나눠, 각 구간을 글타래의 글로 만든다.
+    예) 한국어 구간 → 첫 글, 영어 구간 → 그 글에 대한 답글."""
+    raw = path.read_text(encoding="utf-8").strip()
+    if not raw:
+        raise SystemExit(f"빈 글입니다: {path.name}")
+    sections = [s.strip() for s in SECTION_SPLIT.split(raw) if s.strip()]
+    chunks = []
+    for s in sections:
+        chunks.extend(section_chunks(s))
     total = len(chunks)
-    return [f"{c}\n\n({i}/{total})" for i, c in enumerate(chunks, 1)]
+    if total > 1:   # 글타래 전체에 (1/2), (2/2) 번호를 붙인다
+        chunks = [f"{c}\n({i}/{total})" for i, c in enumerate(chunks, 1)]
+    return chunks
 
 
 # ---------- Threads API ----------
