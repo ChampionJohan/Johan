@@ -1,0 +1,62 @@
+name: threads-daily
+
+# 매일 오전 8시(KST) = 전날 23:00(UTC). GitHub 예약 실행은 부하에 따라 수 분~수십 분 늦어질 수 있다.
+# 주의: schedule 트리거는 저장소의 "기본 브랜치"에 이 파일이 있어야 동작한다.
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "게시하지 않고 내용만 출력"
+        type: boolean
+        default: true
+      lecture:
+        description: "특정 강만 처리 (비우면 state.json 의 다음 강)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write   # state.json 을 다음 강으로 갱신해 커밋하기 위함
+
+concurrency:
+  group: threads-daily
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 전 강의 분할 점검
+        run: python3 threads/post_threads.py --check-all
+
+      - name: 게시
+        env:
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          LECTURE: ${{ inputs.lecture }}
+        run: |
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ -n "$LECTURE" ]; then args+=(--lecture "$LECTURE"); fi
+          python3 threads/post_threads.py "${args[@]}"
+
+      - name: 진행 상태(state.json) 커밋
+        run: |
+          if git diff --quiet -- threads/state.json; then
+            echo "state.json 변경 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add threads/state.json
+          git commit -m "threads: 다음 게시 강의로 진행"
+          git push
