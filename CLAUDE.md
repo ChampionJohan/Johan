@@ -21,10 +21,10 @@
    - 적용점은 정확히 1개. 링크·한글·출처 사이트 언급 없음. 전체 470자 이하.
    - 마지막 줄 해시태그는 3개: `#TodaysBread #DailyDevotional` 고정 + 본문 성경 책 이름 1개 (예: `#Judges`, `#Matthew`, 띄어쓰기 없이 `#1Corinthians`).
 3. 저장 위치는 날짜로 정한다 (날짜는 캡처의 묵상 날짜, KST 기준).
-   - 게시 시각: 매일 **KST 02:02** (= 미국 동부 전날 12:02, 서머타임 중 13:02) — 미국 낮 시간대
-   - 기준 날짜는 **미국 동부(ET) 날짜**: KST 11/23 02:02 에는 ET 11/22 묵상이 올라간다
-   - **묵상 날짜가 ET 기준 이미 지난 게시 시각의 날짜면**(= 오늘 ET 날짜이고 그날 KST 02:02 게시가 지남, 또는 과거) → `threads/bread/queue/YYYY-MM-DD.txt` (push 즉시 게시)
-   - **그 외(아직 게시 시각 전)** → `threads/bread/scheduled/YYYY-MM-DD.txt` (예약)
+   - 게시 시각: 매일 **KST 02:02** (= 미국 동부 전날 정오 무렵)
+   - 기준 날짜는 **한국(KST) 날짜**: KST 11/22 02:02 에 11/22 묵상이 올라간다
+   - **묵상 날짜가 오늘(KST)이고 02:02 가 이미 지났거나, 과거 날짜면** → `threads/bread/queue/YYYY-MM-DD.txt` (push 즉시 게시)
+   - **그 외(미래 날짜)** → `threads/bread/scheduled/YYYY-MM-DD.txt` (예약)
    - 매일 게시 시각에 이 대화로 예약 알림이 오면: `git pull --no-edit` 후 `scheduled/` 에서 오늘 이하 날짜 파일을
      `git mv` 로 `queue/` 에 옮겨 push → 게시 → Actions 결과 확인 후 보고. 옮길 파일이 없으면 "오늘 예약 글 없음"만 짧게 알린다.
 4. `python3 threads/bread/daily_bread.py --check` 로 형식 검사 통과를 확인한다.
