@@ -1,0 +1,60 @@
+name: today-bread
+
+# 매일 오전 5시 47분(KST) = 전날 20:47(UTC). 정각을 피해 지연을 줄인다. GitHub 예약 실행은 수 분~수십 분 늦을 수 있다.
+# 주의: schedule 트리거는 저장소의 "기본 브랜치"에 이 파일이 있어야 동작한다.
+on:
+  schedule:
+    - cron: "47 20 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "게시하지 않고 요약만 출력 (처음에는 체크 유지)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write   # 게시 기록(state.json, posts/날짜.txt) 커밋
+
+concurrency:
+  group: today-bread
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install "anthropic>=2.12"
+
+      - name: 묵상 요약 · 게시
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          THREADS_BREAD_ACCESS_TOKEN: ${{ secrets.THREADS_BREAD_ACCESS_TOKEN }}
+          THREADS_BREAD_USER_ID: ${{ secrets.THREADS_BREAD_USER_ID }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY 시크릿이 없어 건너뜁니다. threads/bread/README.md 설정을 마무리하세요."; exit 0
+          fi
+          if [ -z "$THREADS_BREAD_ACCESS_TOKEN" ] && [ "$DRY_RUN" != "true" ]; then
+            echo "::warning::THREADS_BREAD_ACCESS_TOKEN 시크릿이 없어 게시를 건너뜁니다."; exit 0
+          fi
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python3 threads/bread/daily_bread.py "${args[@]}"
+
+      - name: 게시 기록 커밋
+        if: always()
+        run: |
+          git add threads/bread/state.json threads/bread/posts 2>/dev/null || true
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "today-bread: 게시 기록 갱신"
+          git push
