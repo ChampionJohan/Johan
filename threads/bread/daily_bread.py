@@ -38,6 +38,7 @@ TARGET = 470         # 여유를 두고 이 길이 이하로 쓰게 한다
 MODEL = "claude-opus-5-5"
 HEADER = "🍞 Today's Bread"
 APPLY = "👉 Today's step:"
+TAGS = "#TodaysBread #DailyDevotional"
 
 PROMPT = """Below is today's Korean daily devotional, extracted from a web page (it may include menu text — ignore that).
 
@@ -46,7 +47,8 @@ Write ONE short English Threads post that sums up its message. Rules:
 - Then a blank line, then the single key Bible verse of the devotional in a standard English translation, in double quotes, followed on the next line by "— Book Chapter:Verse".
 - Then a blank line and 1–3 short sentences in your own words: the core message. Warm, plain, encouraging. Do not translate the devotional sentence by sentence and do not copy its wording; summarise and re-express it.
 - Then a blank line and exactly ONE application line, starting with "{apply}" — one concrete, doable action for today drawn from this passage (one sentence). Exactly one application, never a list.
-- You may end the reflection with one fitting emoji. No hashtags, no Korean, no links, no mention of the source website.
+- Then a blank line and a final hashtag line: "{tags} #BookName" where BookName is the Bible book of the passage with no spaces (e.g. #Judges, #1Corinthians).
+- You may end the reflection with one fitting emoji. No other hashtags, no Korean, no links, no mention of the source website.
 - Total length must be under {target} characters including line breaks.
 Output only the post text, nothing else.
 
@@ -127,7 +129,7 @@ def summarize(text):
     import anthropic
 
     client = anthropic.Anthropic()
-    ask = PROMPT.format(header=HEADER, apply=APPLY, target=TARGET, text=text)
+    ask = PROMPT.format(header=HEADER, apply=APPLY, tags=TAGS, target=TARGET, text=text)
     messages = [{"role": "user", "content": ask}]
     for attempt in range(3):
         resp = client.beta.messages.create(
@@ -177,6 +179,8 @@ def validate(post):
         problems.append(f"적용점('{APPLY}')이 {post.count(APPLY)}개 (1개여야 함)")
     if len(post) > LIMIT:
         problems.append(f"{len(post)}자 (500자 이하여야 함)")
+    if not post.splitlines()[-1].startswith(TAGS):
+        problems.append(f"마지막 줄이 해시태그('{TAGS} #책이름')가 아님")
     if re.search(r"[가-힣]", post):
         problems.append("한글 포함")
     return problems

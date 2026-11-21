@@ -15,10 +15,13 @@
    핵심 메시지 1~3문장, 따뜻하고 쉬운 말 🕯️
 
    👉 Today's step: 오늘 실천할 적용점 딱 1개 (한 문장)
+
+   #TodaysBread #DailyDevotional #책이름
    ```
-   - 적용점은 정확히 1개. 해시태그·링크·한글·출처 사이트 언급 없음. 전체 470자 이하.
+   - 적용점은 정확히 1개. 링크·한글·출처 사이트 언급 없음. 전체 470자 이하.
+   - 마지막 줄 해시태그는 3개: `#TodaysBread #DailyDevotional` 고정 + 본문 성경 책 이름 1개 (예: `#Judges`, `#Matthew`, 띄어쓰기 없이 `#1Corinthians`).
 3. `threads/bread/queue/YYYY-MM-DD.txt` 로 저장한다.
 4. `python3 threads/bread/daily_bread.py --queue --dry-run` 으로 형식 검사 통과를 확인한다.
-5. 작업 브랜치에 commit 후 push 한다 (push 전 `git pull --no-edit` 로 봇 커밋을 먼저 받는다).
+5. 이 대화의 작업 브랜치(`claude/tender-dijkstra-kskir8`)에 commit 후 push 한다. 사용자는 기본 브랜치 머지 없이 이 대화에서만 쓴다 (push 전 `git pull --no-edit` 로 봇 커밋을 먼저 받는다).
    push 되면 `today-bread` 워크플로가 Threads(@jo.han.im)에 바로 게시한다.
 6. 몇 분 뒤 GitHub Actions 실행 결과(성공/실패)를 확인해 사용자에게 글 전문과 함께 알린다.

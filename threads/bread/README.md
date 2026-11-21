@@ -24,6 +24,8 @@ GitHub Actions(today-bread) 가 push 를 감지해 즉시 Threads(@jo.han.im)에
 핵심 메시지 1~3문장 (본문 번역이 아닌 요약·재구성) 🕯️
 
 👉 Today's step: 오늘 실천할 적용점 1개 (한 문장)
+
+#TodaysBread #DailyDevotional #책이름
 ```
 
 - 적용점은 **반드시 1개**. 0개이거나 2개 이상이면 자동으로 다시 쓰게 하고, 3번 실패하면 게시하지 않는다.
