@@ -1,7 +1,17 @@
 # Threads 자동 게시 — "🍞 Today's Bread" (@jo.han.im)
 
-매일 **오전 5시 47분(KST)** 에 묵상 페이지(<https://qt.swim.org/user_utf/food/user_print_web.php>)를 읽어
-**영어로만** 요약한 글 1개를 Threads `jo.han.im` 계정에 올린다.
+## 매일 하는 일: 캡처 1장 올리기
+
+```
+묵상 화면 캡처 → Claude 대화창에 붙여 넣기
+      │  Claude 가 영어 글 작성 (적용점 1개) → threads/bread/queue/날짜.txt 로 push
+      ▼
+GitHub Actions(today-bread) 가 push 를 감지해 즉시 Threads(@jo.han.im)에 게시 → posts/날짜.txt 로 보관
+```
+
+- 대화창에는 캡처만 올리면 된다. 처리 규칙은 저장소의 `CLAUDE.md` 에 있어 새 대화에서도 같은 방식으로 동작한다.
+- 이 방식은 **Claude API 키가 필요 없다.** (글은 대화 중인 Claude 가 직접 쓴다)
+- 참고: 사이트를 직접 읽어 요약하는 `auto` 모드도 남아 있다 (Actions → Run workflow → mode=auto, `ANTHROPIC_API_KEY` 필요).
 
 ## 글 형식 (매일 동일)
 
@@ -24,20 +34,18 @@
 ## 처음 한 번만 하는 설정
 
 1. **기본 브랜치에 머지** — 예약 실행은 기본 브랜치의 워크플로만 동작한다.
-2. **Claude API 키** — <https://console.anthropic.com> → API Keys 에서 발급.
-   (요약 1회 약 3~5천 토큰 → 하루 약 $0.02~0.05, 월 $1~2 수준 예상)
+2. (선택, auto 모드만) **Claude API 키** — <https://console.anthropic.com> → API Keys.
 3. **jo.han.im 계정의 Threads 토큰** — 투자 공부 계정(`digitalnomad27mm`)과 **다른 계정**이므로 토큰도 따로 필요하다.
    `threads/README.md` 2~3단계를 그대로 하되, Threads Tester 로 **jo.han.im** 을 추가하고 그 계정으로 토큰을 만든다.
    확인: `THREADS_BREAD_ACCESS_TOKEN="토큰" python3 threads/bread/daily_bread.py --check-token` → `@jo.han.im` 이면 성공.
 4. **GitHub Secrets** (Settings → Secrets and variables → Actions)
-   - `ANTHROPIC_API_KEY`
+   - `ANTHROPIC_API_KEY` (auto 모드를 쓸 때만)
    - `THREADS_BREAD_ACCESS_TOKEN`
    - `THREADS_BREAD_USER_ID` (선택)
-5. **시험** — Actions → **today-bread** → Run workflow (`dry_run` 체크 유지) → 로그에서 오늘 글 확인 →
-   체크 해제 후 다시 실행하면 실제 게시.
+5. **시험** — 캡처를 한 장 올려 보고, Actions → **today-bread** 실행 결과와 Threads 게시를 확인한다.
+   토큰이 없으면 실행이 빨간 X(실패)로 끝나고 글은 대기열에 남는다. 토큰 등록 후 Run workflow(mode=queue, dry_run 해제)로 올리면 된다.
 
 ## 운영 메모
 
-- 시각 변경: `.github/workflows/today-bread.yml` 의 `cron` (UTC 기준, KST −9시간).
 - 토큰은 약 60일마다 연장 필요: `THREADS_ACCESS_TOKEN="현재토큰" python3 threads/post_threads.py --refresh-token` 후 Secrets 갱신.
 - 묵상 페이지 구조가 바뀌어 본문(한글 200자 이상)을 못 찾으면 게시하지 않고 실패로 끝난다.

@@ -165,6 +165,59 @@ def normalize(post):
     return post
 
 
+# ---------- 캡처 대기열 (Claude 가 캡처를 보고 쓴 글) ----------
+QUEUE = HERE / "queue"
+
+
+def validate(post):
+    problems = []
+    if not post.startswith(HEADER):
+        problems.append(f"첫 줄이 '{HEADER}' 가 아님")
+    if post.count(APPLY) != 1:
+        problems.append(f"적용점('{APPLY}')이 {post.count(APPLY)}개 (1개여야 함)")
+    if len(post) > LIMIT:
+        problems.append(f"{len(post)}자 (500자 이하여야 함)")
+    if re.search(r"[가-힣]", post):
+        problems.append("한글 포함")
+    return problems
+
+
+def post_queue(dry_run, user):
+    """queue/YYYY-MM-DD.txt 중 아직 안 올린 글을 날짜 순으로 게시하고 posts/ 로 옮긴다."""
+    files = sorted(QUEUE.glob("*.txt"))
+    if not files:
+        print("대기열이 비어 있습니다.")
+        return 0
+    bad = 0
+    for f in files:
+        post = f.read_text(encoding="utf-8").strip()
+        problems = validate(post)
+        print(f"\n----- {f.name} ({len(post)}자) -----\n{post}")
+        if problems:
+            print(f"::error::{f.name} 형식 오류: {', '.join(problems)}")
+            bad += 1
+            continue
+        done = POSTS / f.name
+        if done.exists():
+            print(f"{f.name}: 이미 게시된 날짜라 대기열에서만 지웁니다.")
+            if not dry_run:
+                f.unlink()
+            continue
+        if dry_run:
+            print("[DRY-RUN] 게시하지 않았습니다.")
+            continue
+        ids = post_thread([post], need("THREADS_BREAD_ACCESS_TOKEN"), user, pause=3.0)
+        POSTS.mkdir(exist_ok=True)
+        done.write_text(post + "\n", encoding="utf-8")
+        f.unlink()
+        state = load_state()
+        state.update({"last_posted_date": f.stem, "last_post_id": ids[0],
+                      "last_posted_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        save_state(state)
+        print(f"게시 완료: {f.name} id={ids[0]}")
+    return 1 if bad else 0
+
+
 # ---------- 명령 ----------
 def need(name):
     v = os.environ.get(name, "").strip()
@@ -179,6 +232,7 @@ def main():
     ap.add_argument("--source", help="URL 대신 저장된 HTML 파일 사용 (시험용)")
     ap.add_argument("--force", action="store_true", help="오늘 이미 올렸어도 다시 게시")
     ap.add_argument("--check-token", action="store_true")
+    ap.add_argument("--queue", action="store_true", help="queue/ 의 캡처 기반 글을 게시")
     args = ap.parse_args()
 
     user = os.environ.get("THREADS_BREAD_USER_ID", "me").strip() or "me"
@@ -186,6 +240,9 @@ def main():
         info = api("GET", user, {"fields": "id,username"}, need("THREADS_BREAD_ACCESS_TOKEN"))
         print(f"토큰 정상: @{info.get('username')} (id={info.get('id')})")
         return 0
+
+    if args.queue:
+        return post_queue(args.dry_run, user)
 
     today = datetime.now(KST).strftime("%Y-%m-%d")
     state = load_state()
