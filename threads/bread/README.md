@@ -9,6 +9,8 @@
 GitHub Actions(today-bread) 가 push 를 감지해 즉시 Threads(@jo.han.im)에 게시 → posts/날짜.txt 로 보관
 ```
 
+- **미리 올리기:** 내일 이후 묵상 캡처를 미리 올리면 `scheduled/날짜.txt` 로 예약되고, 그날 **05:47(KST)** 에 게시된다.
+  (예약 알림이 이 대화로 와서 Claude 가 `queue/` 로 옮겨 push 한다. GitHub 예약 실행은 기본 브랜치에서만 돌기 때문)
 - 대화창에는 캡처만 올리면 된다. 처리 규칙은 저장소의 `CLAUDE.md` 에 있어 새 대화에서도 같은 방식으로 동작한다.
 - 이 방식은 **Claude API 키가 필요 없다.** (글은 대화 중인 Claude 가 직접 쓴다)
 - 참고: 사이트를 직접 읽어 요약하는 `auto` 모드도 남아 있다 (Actions → Run workflow → mode=auto, `ANTHROPIC_API_KEY` 필요).

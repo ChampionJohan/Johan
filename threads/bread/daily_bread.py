@@ -169,6 +169,7 @@ def normalize(post):
 
 # ---------- 캡처 대기열 (Claude 가 캡처를 보고 쓴 글) ----------
 QUEUE = HERE / "queue"
+SCHEDULED = HERE / "scheduled"   # 미리 써 둔 글. 예약 시각에 queue/ 로 옮겨지면 게시된다
 
 
 def validate(post):
@@ -188,7 +189,11 @@ def validate(post):
 
 def post_queue(dry_run, user):
     """queue/YYYY-MM-DD.txt 중 아직 안 올린 글을 날짜 순으로 게시하고 posts/ 로 옮긴다."""
-    files = sorted(QUEUE.glob("*.txt"))
+    today = datetime.now(KST).strftime("%Y-%m-%d")
+    files = [f for f in sorted(QUEUE.glob("*.txt")) if f.stem <= today]
+    for f in sorted(QUEUE.glob("*.txt")):
+        if f.stem > today:
+            print(f"{f.name}: 아직 날짜가 안 되어 기다립니다 (오늘 {today}).")
     if not files:
         print("대기열이 비어 있습니다.")
         return 0
@@ -222,6 +227,17 @@ def post_queue(dry_run, user):
     return 1 if bad else 0
 
 
+def check_all():
+    """queue/ 와 scheduled/ 의 모든 글 형식 검사 (게시 안 함)."""
+    bad = 0
+    for f in sorted(QUEUE.glob("*.txt")) + sorted(SCHEDULED.glob("*.txt")):
+        post = f.read_text(encoding="utf-8").strip()
+        problems = validate(post)
+        print(f"{f.parent.name}/{f.name}: {len(post)}자 " + ("OK" if not problems else "오류: " + ", ".join(problems)))
+        bad += bool(problems)
+    return 1 if bad else 0
+
+
 # ---------- 명령 ----------
 def need(name):
     v = os.environ.get(name, "").strip()
@@ -237,6 +253,7 @@ def main():
     ap.add_argument("--force", action="store_true", help="오늘 이미 올렸어도 다시 게시")
     ap.add_argument("--check-token", action="store_true")
     ap.add_argument("--queue", action="store_true", help="queue/ 의 캡처 기반 글을 게시")
+    ap.add_argument("--check", action="store_true", help="queue/ · scheduled/ 글 형식 검사")
     args = ap.parse_args()
 
     user = os.environ.get("THREADS_BREAD_USER_ID", "me").strip() or "me"
@@ -245,6 +262,8 @@ def main():
         print(f"토큰 정상: @{info.get('username')} (id={info.get('id')})")
         return 0
 
+    if args.check:
+        return check_all()
     if args.queue:
         return post_queue(args.dry_run, user)
 
