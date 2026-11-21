@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 국내 주식 시장 4가지
+#코스피
 
 ① 유가증권시장(코스피): 대형 우량 기업 중심
 ② 코스닥: 기술·성장 기업 중심
@@ -13,6 +14,7 @@
 
 ---
 Daily Investing Study | 4 Stock Markets in Korea
+#KOSPI
 
 ① KOSPI (main market): large established companies
 ② KOSDAQ: technology and growth companies

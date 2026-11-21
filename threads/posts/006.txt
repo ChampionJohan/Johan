@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 투자 계획은 순서가 중요합니다
+#재테크
 
 목표 금액부터 정하면 막힙니다. 순서를 바꿔 보세요.
 
@@ -15,6 +16,7 @@
 
 ---
 Daily Investing Study | Plan in the Right Order
+#Budgeting
 
 Starting from a target amount can stall you. Reverse the order:
 ① Set aside a fixed share of income (e.g., 30–50%) first

@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 수익을 갉아먹는 비용 3가지
+#ETF
 
 ① 수수료: 사고팔 때 증권사에 내는 비용
 ② 보수: 펀드·ETF를 보유하는 동안 매년 내는 비용
@@ -15,6 +16,7 @@
 
 ---
 Daily Investing Study | 3 Costs That Eat Your Returns
+#ETF
 
 ① Commissions: paid to a broker when you trade
 ② Fees: charged every year while you hold funds or ETFs

@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 아낀 돈은 계좌로 보내기
+#절약
 
 아낀 돈이 투자 계좌로 가지 않으면 절약은 지출 줄이기에 그칩니다.
 
@@ -13,6 +14,7 @@
 
 ---
 Daily Investing Study | Send What You Save to Your Account
+#SavingMoney
 
 Savings that never reach an investment account are just lower spending.
 

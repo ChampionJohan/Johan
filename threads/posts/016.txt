@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 증권이란?
+#투자기초
 
 주식·채권·펀드는 모두 "증권"입니다.
 • 주식: 회사 지분(소유권)
@@ -12,6 +13,7 @@
 
 ---
 Daily Investing Study | What Are Securities?
+#InvestingBasics
 
 Stocks, bonds and funds are all "securities."
 • Stock: ownership share of a company

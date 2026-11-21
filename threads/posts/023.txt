@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 꼭 알아둘 숫자 3가지
+#투자원칙
 
 ① 72의 법칙: 72 ÷ 연 수익률(%) = 원금이 2배 되는 햇수 (연 6% → 약 12년)
 ② 손실 회복: -50%가 되면 본전까지 +100%가 필요합니다. 손실이 클수록 회복은 훨씬 어렵습니다.
@@ -10,6 +11,7 @@
 
 ---
 Daily Investing Study | 3 Numbers Worth Knowing
+#InvestingRules
 
 ① Rule of 72: 72 ÷ annual return (%) = years to double (6% → about 12 years)
 ② Recovering losses: after a 50% loss you need +100% to break even. The bigger the loss, the harder the recovery.

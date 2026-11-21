@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 내 주식은 안전하게 보관될까
+#주식기초
 
 • 증권사가 망해도 주식·채권은 한국예탁결제원에 보관되어 보호됩니다.
 • 펀드는 운용사가 아니라 은행(수탁사)이 자산을 보관합니다.
@@ -12,6 +13,7 @@
 
 ---
 Daily Investing Study | Is My Stock Kept Safely?
+#InvestorProtection
 
 • If a broker fails, stocks and bonds are held at the Korea Securities Depository.
 • Fund assets are kept by a bank (the trustee), not the fund manager.
