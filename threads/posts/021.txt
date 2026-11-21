@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 기업은 어떻게 상장될까
+#상장
 
 창업 → 엔젤·벤처캐피탈 투자 → 증권사와 상장 주관 계약(회계·지배구조 정비) → 한국거래소 심사 → 상장
 
@@ -11,6 +12,7 @@
 
 ---
 Daily Investing Study | How Companies Get Listed
+#IPO
 
 Founding → angel/venture funding → underwriting contract with a securities firm (tidying accounting and governance) → exchange review → listing
 

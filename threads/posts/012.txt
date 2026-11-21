@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 아는 것에 투자하고, 반대로 보기
+#투자원칙
 
 ① 아는 것에 투자: 사업 모델과 돈 버는 구조를 두 문장으로 설명할 수 있는 기업만 고르세요.
 ② 남들과 반대로 보기: 모두가 낙관할 때는 비싸고, 비관할 때는 싸질 가능성이 높습니다.
@@ -9,6 +10,7 @@
 
 ---
 Daily Investing Study | Invest in What You Know, Think Contrarian
+#InvestingTips
 
 ① Invest in what you know: pick companies whose business model and profit source you can explain in two sentences.
 ② Think contrarian: when everyone is optimistic, prices tend to be high; when pessimistic, low.

@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 4% 룰
+#노후준비
 
 '4% 룰'은 은퇴 첫해에 자산의 4%를 쓰고, 이후 물가만큼 늘려 가면 약 30년간 자산이 버틴다는 미국 과거 데이터 기반의 경험칙입니다.
 
@@ -12,6 +13,7 @@
 
 ---
 Daily Investing Study | The 4% Rule
+#Retirement
 
 A rule of thumb from past U.S. data: withdraw 4% of your portfolio in year one of retirement, then raise it with inflation; historically it lasted about 30 years.
 

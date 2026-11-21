@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 캔들 차트 읽는 법
+#차트
 
 봉 하나는 하루이며, 시가·종가·고가·저가 4가지 가격이 담깁니다.
 
@@ -12,6 +13,7 @@
 
 ---
 Daily Investing Study | How to Read Candlestick Charts
+#Charts
 
 One candle is one day, showing open, close, high and low.
 

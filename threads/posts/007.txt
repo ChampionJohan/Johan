@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 내 투자 가능 금액 찾기
+#가계부
 
 지난달 카드·계좌 내역을 3가지로 나눠 합계를 내 보세요.
 ① 필수(주거·식비·통신·교통)
@@ -16,14 +17,15 @@
 
 ---
 Daily Investing Study | Find Your Investable Amount
+#Budgeting
 
 Sort last month's card and bank records into 3 groups:
 ① Essentials (housing, food, phone, transport)
 ② Discretionary (dining out, shopping, subscriptions)
 ③ Saving and investing
 
-Cut some of ②; that amount becomes your monthly investment.
+Cut some of ②; that becomes your monthly investment.
 
-Then fix a priority order (example): emergency fund → pension savings → ISA → general brokerage account.
+Then set a priority order (example): emergency fund → pension savings → ISA → brokerage account.
 
 Even a small amount works. What matters is starting and continuing.

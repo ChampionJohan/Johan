@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 자산과 소비재 구분하기
+#재테크
 
 자산은 시간이 지나도 가치를 유지하거나 오르는 것, 소비재는 쓰면서 가치가 줄어드는 것입니다.
 
@@ -16,6 +17,7 @@
 
 ---
 Daily Investing Study | Assets vs. Consumer Goods
+#PersonalFinance
 
 An asset keeps or grows its value over time; a consumer good loses value as you use it.
 
@@ -27,4 +29,4 @@ An asset keeps or grows its value over time; a consumer good loses value as you 
 
 Without ① and ②, it is closer to a consumer good. Cars and appliances are classic depreciating items.
 
-Note: an asset bought at a high price may not rise if future expectations are already priced in.
+Note: a high-priced asset may not rise if expectations are already priced in.

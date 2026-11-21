@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 단리 vs 복리
+#복리
 
 1,000만 원을 연 10%로 굴리면
 • 단리: 해마다 100만 원씩 늘어 10년 뒤 2,000만 원
@@ -12,6 +13,7 @@
 
 ---
 Daily Investing Study | Simple vs. Compound Interest
+#CompoundInterest
 
 KRW 10 million at 10% a year:
 • Simple: +KRW 1 million every year → KRW 20 million after 10 years
@@ -19,4 +21,4 @@ KRW 10 million at 10% a year:
 
 Time, more than the rate, makes the difference.
 
-Whether deposit interest is added to principal automatically varies by product. Check the terms (simple vs. compound) before you sign up.
+Whether deposit interest compounds varies by product. Check the terms (simple vs. compound) before you sign up.

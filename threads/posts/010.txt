@@ -1,4 +1,5 @@
 오늘의 투자 공부 | 분산투자의 진짜 의미
+#분산투자
 
 분산은 "여러 개 사기"가 아니라 "같이 안 빠지는 것을 섞기"입니다.
 삼성전자와 SK하이닉스는 둘 다 반도체라 비슷하게 움직입니다.
@@ -15,8 +16,9 @@
 
 ---
 Daily Investing Study | What Diversification Really Means
+#Diversification
 
-Diversifying isn't "owning many things"; it's "mixing things that don't fall together." Samsung Electronics and SK hynix both depend on semiconductors and tend to move together.
+Diversifying isn't "owning many things"; it's "mixing things that don't fall together." Samsung Electronics and SK hynix both rely on semiconductors and tend to move together.
 
 Three axes
 ① Assets: stocks, bonds, gold, cash

@@ -1,4 +1,5 @@
 오늘의 투자 공부 | ISA 계좌
+#ISA
 
 ISA(개인종합자산관리계좌)는 한 계좌에서 예금·펀드·ETF·국내주식 등을 운용하고, 만기에 손익을 합산해 비과세 한도까지는 세금이 없고 초과분은 9.9%로 분리과세하는 절세 계좌입니다.
 
@@ -11,6 +12,7 @@ ISA(개인종합자산관리계좌)는 한 계좌에서 예금·펀드·ETF·국
 
 ---
 Daily Investing Study | The ISA Account
+#TaxSavings
 
 An ISA (Individual Savings Account) holds deposits, funds, ETFs, Korean stocks and more in one account. At maturity gains and losses are netted; gains up to a tax-free limit are untaxed and the excess is taxed at a flat 9.9%.
 
