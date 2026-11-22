@@ -40,6 +40,7 @@ API_ROOT = API.rsplit("/v", 1)[0] if re.search(r"/v\d+(\.\d+)?$", API) else API 
 HARD_LIMIT = 500          # Threads 글 1개 한도
 WARN_POSTS = 10           # 글타래가 이보다 길어지면 경고 (너무 길면 읽기 힘들다)
 LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
+MIN_GAP_HOURS = 20        # 예약 실행: 마지막 게시 후 이 시간이 지나야 다음 글을 올린다 (하루 1개 보장)
 NUM_RESERVE = 6           # 글타래 번호 "\n(1/2)" 를 붙일 여유 글자 수
 NUM_RESERVE_WIDE = 8      # 글이 10개 이상일 때 "\n(10/12)" 를 붙일 여유 글자 수
 KST = timezone(timedelta(hours=9))
@@ -292,15 +293,16 @@ def main():
             return 0
         post = queue[0]
 
-    # 예약 실행이 늦게 도착했더라도, 오늘 아침 게시 시간대(한국 시간 07:30 이후)에 이미 올렸다면 건너뛴다.
-    # (수동으로 먼저 올린 날 예약 실행이 뒤늦게 돌아 같은 날 두 개가 올라가는 것을 막는다)
+    # 예약 실행은 여러 번 시도되므로, 마지막 게시 후 MIN_GAP_HOURS 시간이 지나지 않았다면 건너뛴다.
+    # (한 번 올라간 뒤 뒤늦게 도착한 예약 실행이나 수동으로 먼저 올린 날의 중복 게시를 막는다. 수동 실행은 항상 허용)
     if not args.file and not args.dry_run and os.environ.get("GITHUB_EVENT_NAME") == "schedule":
         last = state.get("last_posted_at")
-        now = datetime.now(KST)
-        slot_start = now.replace(hour=7, minute=30, second=0, microsecond=0)
-        if last and datetime.fromisoformat(last).astimezone(KST) >= slot_start:
-            print(f"오늘 아침 게시 시간대에 이미 {state.get('last_posted')}번 글을 올려서 건너뜁니다.")
-            return 0
+        if last:
+            gap = datetime.now(timezone.utc) - datetime.fromisoformat(last)
+            if gap < timedelta(hours=MIN_GAP_HOURS):
+                print(f"마지막 게시({state.get('last_posted')}번)가 {gap.total_seconds() / 3600:.1f}시간 전이라 건너뜁니다. "
+                      f"(예약 실행은 {MIN_GAP_HOURS}시간 이상 지나야 다음 글을 올립니다)")
+                return 0
 
     chunks = build_chunks(post)
 
