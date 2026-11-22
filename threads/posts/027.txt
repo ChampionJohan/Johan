@@ -1,0 +1,32 @@
+오늘의 투자 공부 | 주식 거래 원칙과 동시호가
+#주식거래
+
+주문이 체결되는 순서에는 정해진 원칙이 있습니다.
+• 가격 우선: 사려는 쪽은 높은 가격, 팔려는 쪽은 낮은 가격을 부른 주문이 먼저 체결됩니다.
+• 시간 우선: 가격이 같으면 먼저 낸 주문이 먼저입니다.
+
+동시호가(단일가매매): 장 시작 전 08:30~09:00과 마감 전 15:20~15:30에는 주문을 모아 같은 시각에 낸 것으로 보고 한 번에 체결합니다. 이때는 시간 우선이 적용되지 않습니다.
+• 08:30~09:00에 모인 주문으로 시가가 정해져서 전날 종가와 다른 가격에서 시작하기도 합니다(상한가로 시작하는 날도 있음).
+• 15:20 이후에 낸 주문은 바로 체결되지 않고 마감 때까지 기다립니다. 단기 매매가 아니라면 15:20 전에 주문하는 편이 편합니다.
+
+거래 절차: ① 계좌 입금 → ② 호가(시세) 확인 → ③ 주문 → ④ 체결 → ⑤ 결제. 체결 후 결제까지 시차가 있습니다(현재 체결일 +2영업일, 2028년 하반기 +1영업일 전환이 목표).
+
+(2026년 11월 기준 정규장 09:00~15:30, 2026년 9월 14일부터 KRX 애프터마켓 16:00~20:00도 열립니다.)
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | How Orders Are Matched
+#TradingBasics
+
+Orders are matched by set rules.
+• Price priority: for buyers the higher bid goes first; for sellers the lower ask goes first.
+• Time priority: at the same price, the earlier order goes first.
+
+Call auctions (single-price trading): from 08:30 to 09:00 and 15:20 to 15:30, orders are collected, treated as if placed at the same moment, and matched at one price. Time priority doesn't apply.
+• The 08:30–09:00 auction sets the opening price, so a stock can open away from the previous close (even at the upper limit).
+• Orders placed after 15:20 aren't matched right away; they wait for the closing auction. Unless you trade short term, place orders before 15:20.
+
+Steps: ① deposit ② check quotes ③ order ④ execution ⑤ settlement. Settlement comes after execution (currently T+2 business days; T+1 is targeted for the second half of 2028).
+
+(As of Nov 2026: regular hours 09:00–15:30; the KRX after-market, 16:00–20:00, opened Sept. 14, 2026.)

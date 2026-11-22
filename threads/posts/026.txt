@@ -1,0 +1,30 @@
+오늘의 투자 공부 | 액면가·자본금·주가·시가총액
+#주식용어
+
+주식 용어 4가지를 카페 하나로 이해해 봅시다.
+
+① 자본금: 회사를 세울 때 주주들이 처음 낸 돈. 예) 3명이 1억 원을 출자
+② 액면가: 주식 겉에 적힌 가격. 예) 1,000만 원짜리 10주를 발행해 자본금 1억 원
+③ 주가: 시장에서 실제로 거래되는 가격
+④ 시가총액: 주가 × 발행 주식 수. 시장 가격으로 본 회사 전체의 값
+
+1년 뒤 장사가 잘돼 현금 1억 원이 쌓이고(배당은 없다고 가정) 가게 가치는 그대로 1억 원이라면, 회사 가치는 2억 원이고 1주는 약 2,000만 원이 합리적입니다. 액면가(1,000만 원)와 주가(2,000만 원)는 다릅니다.
+
+액면가는 주식이 태어날 때만 의미가 있고 거래 가격과는 무관합니다. 액면가가 100원인 주식이 수만 원에 거래되기도 하는 이유입니다. 주식을 살 때 볼 것은 주가와 시가총액입니다.
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Par Value, Capital, Share Price, Market Cap
+#StockTerms
+
+Four terms, explained with one café.
+
+① Capital: the money shareholders first put in. Example: three people invest KRW 100 million.
+② Par value: the price printed on the share. Example: 10 shares at KRW 10 million each make KRW 100 million of capital.
+③ Share price: the price actually traded in the market.
+④ Market capitalization: share price × shares outstanding, the whole company's value at market prices.
+
+A year later the café has earned KRW 100 million in cash (assume no dividends) and the shop is still worth KRW 100 million. The company is worth KRW 200 million, so one share is about KRW 20 million. Par value (KRW 10 million) and price differ.
+
+Par value only matters at birth and has nothing to do with trading prices; a share with a par value of KRW 100 can trade for tens of thousands. When buying, look at share price and market cap.
