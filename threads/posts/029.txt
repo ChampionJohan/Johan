@@ -1,0 +1,30 @@
+오늘의 투자 공부 | 주식 거래 절차와 결제
+#주식결제
+
+주식 거래 흐름: 입금 → 호가창 확인 → 주문 → 체결 확인 → 결제
+
+• 입금: 은행 이체와 같습니다. 증권 계좌로 보내면 끝입니다.
+• 호가창: 사려는 가격과 팔려는 가격, 쌓인 주문 수량이 보입니다. 지정가 주문이 기본입니다.
+• 시장가보다 지정가: 시장가는 즉시 체결되지만 원하지 않는 가격에 체결될 수 있습니다. 소액을 꾸준히 사는 투자자는 한두 호가 차이가 크지 않습니다.
+• 미체결 주문: 당일 장 마감(15:30)까지 체결되지 않으면 소멸하므로 다음 날 다시 내야 합니다.
+
+체결과 결제는 다릅니다. 체결은 거래가 성립한 것이고, 결제는 대금과 주식이 실제로 오가는 것입니다. 현재 한국은 체결일 +2영업일입니다(T+2, 2028년 T+1 전환 목표). 하루에 수십 번 사고팔아도 순매수·순매도만 정산하기 때문에 효율적입니다.
+
+주의할 점: 결제 전에는 계좌에 돈이 남아 보여도 이미 쓴 돈입니다. 예수금 화면의 D+2 항목이 마이너스가 되면 미수로 이어져 강제로 팔리는 반대매매를 당할 수 있습니다. 증권사 앱에서 증거금률을 100%로 설정하면 보유 예수금 범위 안에서만 주문이 나갑니다.
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Trade Steps and Settlement
+#Settlement
+
+The flow: deposit → check the order book → place order → confirm execution → settlement.
+
+• Deposit: same as a bank transfer to your brokerage account.
+• Order book: shows bid and ask prices and queued quantities. Limit orders are the default.
+• Limit over market: a market order fills at once but may fill at an unwanted price. For small, regular buys, a tick or two rarely matters.
+• Unfilled orders: they expire at the 15:30 close, so re-enter them the next day.
+
+Execution and settlement differ. Execution means the trade is made; settlement is when cash and shares actually change hands. Korea is currently T+2 business days (T+1 targeted for 2028). Dozens of trades a day are netted, which is efficient.
+
+Caution: before settlement, cash in your account may look available but is already spent. If the D+2 cash line goes negative, it becomes a receivable and the broker may force-sell your shares (margin liquidation). Setting your margin rate to 100% in the app limits orders to the cash you hold.
