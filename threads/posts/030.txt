@@ -3,7 +3,7 @@
 
 주식 시장에는 급격한 변동을 막는 안전장치가 있습니다.
 
-① 가격제한폭: 하루에 오르내릴 수 있는 한도입니다. 한국은 전일 종가 대비 ±30%(2015년 확대, 이전은 ±15%)이고, 미국 등 일부 시장은 개별 종목 상하한가가 없습니다. 상한가로 시작해 그대로 끝나면 차트에 거래 없이 점 하나가 찍혀 '점상'이라 부릅니다.
+① 가격제한폭: 하루에 오르내릴 수 있는 한도입니다. 한국은 전일 종가 대비 ±30%(2015년 확대, 이전은 ±15%)이고, 미국 등 일부 시장은 개별 종목 상하한가가 없습니다.
 
 ② 서킷브레이커: 코스피 지수가 전일 대비 크게 떨어지면 시장 전체의 매매를 멈춥니다. 1단계는 8% 이상 하락이 1분간 이어질 때 20분 정지입니다. 2026년 6월 26일에도 이 기준으로 발동됐습니다. 이어서 15%, 20% 단계가 있고, 20% 단계에서는 그날 장을 종료합니다.
 
@@ -17,12 +17,12 @@
 Daily Investing Study | Price Limits and Circuit Breakers
 #CircuitBreaker
 
-Markets have safeguards against sudden swings.
+Markets have safeguards against sharp swings.
 
-① Daily price limit: the most a stock can move in a day. Korea allows ±30% of the previous close (widened in 2015 from ±15%); some markets, such as the US, have no per-stock limit. A stock that opens at the upper limit and stays there prints a single dot on the chart, called "jeomsang."
+① Daily price limit: the most a stock can move in a day. Korea allows ±30% of the previous close (widened from ±15% in 2015); some markets, such as the US, have no per-stock limit.
 
 ② Circuit breaker: if the KOSPI falls sharply from the previous close, trading halts market-wide. Stage 1 is an 8% drop lasting 1 minute, followed by a 20-minute halt (triggered this way on June 26, 2026). Stages 2 and 3 are 15% and 20%; at the 20% stage the market closes for the day.
 
 ③ Sidecar: if KOSPI 200 futures move 5% for 1 minute, program-trading order effects are suspended for 5 minutes.
 
-A halt gives investors time to pause; it cannot stop the decline itself.
+A halt gives time to pause, not a way to stop declines.

@@ -10,7 +10,6 @@
 기억할 점
 • 가격이 싸 보이는 것과 기업이 저평가된 것은 다릅니다.
 • 과거 주가를 볼 때는 분할 이후 수정 주가인지 확인하세요.
-• 반대인 액면병합(여러 주를 합침)은 드뭅니다.
 
 ※ 정보 제공 목적이며 투자 권유가 아닙니다.
 
@@ -27,4 +26,3 @@ Samsung Electronics is a famous case. In May 2018 it split 50-for-1: a share of 
 Remember
 • A lower price does not mean the company is undervalued.
 • When looking at past prices, check that they are split-adjusted.
-• The opposite, a reverse split (merging shares), is rare.
