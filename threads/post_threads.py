@@ -40,7 +40,7 @@ API_ROOT = API.rsplit("/v", 1)[0] if re.search(r"/v\d+(\.\d+)?$", API) else API 
 HARD_LIMIT = 500          # Threads 글 1개 한도
 WARN_POSTS = 10           # 글타래가 이보다 길어지면 경고 (너무 길면 읽기 힘들다)
 LOW_QUEUE = 3             # 남은 글이 이 이하이면 경고
-MIN_GAP_HOURS = 18        # 예약 실행: 마지막 게시 후 이 시간이 지나야 다음 글을 올린다 (하루 1개 보장)
+MIN_GAP_HOURS = 12        # 예약 실행: 마지막 게시 후 이 시간이 지나야 다음 글을 올린다 (하루 1개 보장)
 NUM_RESERVE = 6           # 글타래 번호 "\n(1/2)" 를 붙일 여유 글자 수
 NUM_RESERVE_WIDE = 8      # 글이 10개 이상일 때 "\n(10/12)" 를 붙일 여유 글자 수
 KST = timezone(timedelta(hours=9))
