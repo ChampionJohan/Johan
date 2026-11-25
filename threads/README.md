@@ -1,6 +1,6 @@
 # Threads 자동 게시 — "오늘의 투자 공부"
 
-매일 **오전 8시 17분(KST)** 무렵에 `threads/posts/` 의 글을 번호 순서대로 1개씩 Threads 계정에 올린다.
+매일 **새벽 2시 2분(KST)** 무렵에 `threads/posts/` 의 글을 번호 순서대로 1개씩 Threads 계정에 올린다.
 글은 모두 첫 줄이 `오늘의 투자 공부 | 주제` 로 시작하고, **한국어 글 + 영어 답글** 2개로 올라가며, 글타래 끝에 **(1/2), (2/2)** 번호와 짧은 안내 문구가 붙는다.
 
 ## 어떻게 돌아가나 (한 장 요약)
@@ -19,7 +19,7 @@ state.json 을 "방금 올린 번호"로 고쳐 저장  → 내일은 다음 번
 ```
 
 ```
-.github/workflows/threads-daily.yml   "매일 08:17 에 올리고, 늦으면 10:47 까지 30분 간격으로 6번 시도해라" 라는 예약표
+.github/workflows/threads-daily.yml   "매일 02:02 에 올리고, 늦으면 04:32 까지 30분 간격으로 6번 시도해라" 라는 예약표
 threads/post_threads.py               글을 골라 Threads 에 올리는 프로그램
 threads/posts/001.txt, 002.txt …      올릴 글 (그냥 글 내용을 그대로 적은 텍스트 파일)
 threads/state.json                    어디까지 올렸는지 기록
