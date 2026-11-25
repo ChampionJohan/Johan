@@ -1,0 +1,34 @@
+오늘의 투자 공부 | 차트와 이동평균선
+#이동평균선
+
+차트는 예측 도구가 아니라 지난 흐름을 기록한 일기입니다. 로봇과 알고리즘이 더 잘하는 영역이라, 차트 해석에 매달리기보다 기업과 산업을 이해하는 데 시간을 쓰는 편이 낫습니다.
+
+기본 용어
+• 일봉·주봉·월봉: 막대 하나가 하루·한 주·한 달입니다.
+• 이동평균선: 최근 N일 종가의 평균을 이어 만든 선입니다. 5일(1주), 20일(1달), 60일(3개월), 120일(6개월)이 흔히 쓰입니다. 기간이 길수록 천천히 움직입니다.
+
+보는 법
+• 정배열: 짧은 선이 위, 긴 선이 아래로 정렬돼 오랫동안 올라온 모양입니다.
+• 역배열: 반대로 긴 선이 위에 있는 하락 흐름입니다.
+• 중요한 것은 역배열이던 종목이 정배열로 바뀐 이유가 무엇인지 궁금해하는 일입니다.
+
+장기로 볼수록 노이즈가 줄어들어 흐름이 보입니다.
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Charts and Moving Averages
+#MovingAverage
+
+A chart is a diary of past movements, not a forecasting tool. Algorithms do this better than people, so spend your time understanding companies and industries rather than decoding charts.
+
+Basics
+• Daily, weekly, monthly candles: each bar covers one day, week or month.
+• Moving average: the average closing price of the last N days. Common ones: 5 days (1 week), 20 (1 month), 60 (3 months), 120 (6 months). Longer lines move more slowly.
+
+How to read
+• Bullish alignment: short lines above long lines, a long, steady uptrend.
+• Bearish alignment: long lines above short ones, a downtrend.
+• What matters is asking why a stock turned from bearish to bullish alignment.
+
+The longer the time frame, the less noise you see.
