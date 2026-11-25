@@ -1,0 +1,20 @@
+오늘의 투자 공부 | 무상증자와 유상증자
+#유상증자
+
+증자는 회사의 자본금을 늘리는 일입니다. 누구 돈으로 늘리느냐에 따라 둘로 나뉩니다.
+
+▶ 무상증자: 회사에 쌓인 돈(잉여금)으로 새 주식을 찍어 주주에게 공짜로 나눠 줍니다. 예) 1대 1이면 10주 보유자는 20주가 됩니다. 주식 수는 늘지만 회사 가치는 그대로라서 주가는 비례해 낮아집니다(액면분할과 비슷). 그래도 호재로 보는 이유는 "그만큼 돈이 쌓여 있다"는 신호이기 때문입니다.
+
+▶ 유상증자: 새 주식을 찍어 돈을 받고 파는 것으로, 회사가 자금을 조달하려는 목적입니다. 주식 수가 늘어 기존 주주의 지분 가치가 희석되므로 보통 악재로 반응합니다. 다만 성장 투자가 목적이면 호재로 받아들이기도 합니다.
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Bonus Issue vs Rights Issue
+#CapitalIncrease
+
+A capital increase raises a company's capital. The type depends on whose money is used.
+
+▶ Bonus issue (free): new shares are created from retained earnings and given to shareholders at no cost. Example: a 1-for-1 issue turns 10 shares into 20. The share count rises but company value does not, so the price falls proportionally (similar to a stock split). It is still seen as positive because it signals the company holds plenty of cash.
+
+▶ Paid-in capital increase: new shares are sold for cash to raise funds. More shares dilute existing holders, so it is usually read as negative news. It can be received well if the money funds growth.
