@@ -1,0 +1,25 @@
+오늘의 투자 공부 | 조심해야 할 종목들
+#투자주의
+
+상장했다고 안전한 것은 아닙니다. 아래 유형은 특히 조심하세요.
+
+• 동전주: 주가가 1,000원 미만인 종목. 주가가 낮다고 싼 게 아니라 작고 약한 회사일 수 있습니다. 2026년부터 동전주 상장폐지 요건이 신설되었습니다.
+• 관리종목: 상장폐지 위험을 알리려고 거래소가 지정합니다. 영상의 "3년 연속 적자" 기준은 과거 설명이고, 2026년에는 시가총액 기준이 상향되는 등 퇴출 요건이 강화되고 있습니다(시행 시점은 한국거래소 공지로 확인).
+• 공모주: 상장 전 청약하는 새내기주. 2023년 6월부터 상장 첫날 가격이 공모가의 60~400% 범위에서 움직입니다. 첫날 급등락이 크고 손실도 날 수 있습니다.
+• 스팩(SPAC): 비상장 기업과 합병하려고 먼저 상장한 서류상 회사. 합병 대상이 정해지기도 전에 급등한다면 과열 신호입니다.
+
+※ 정보 제공 목적이며 투자 권유가 아닙니다.
+
+---
+Daily Investing Study | Stocks to Watch Out For
+#StockWarning
+
+Listing is not a safety guarantee. Be careful with:
+
+• Penny stocks: priced under KRW 1,000. Low price is not cheap; the firm may be small and weak. Since 2026 a delisting rule for penny stocks has been added.
+
+• Designated issues: flagged by the exchange as at risk of delisting. The lecture's "three straight loss years" rule is dated; 2026 delisting standards are tighter (e.g., higher market-cap bars). Check KRX notices.
+
+• IPO stocks: new shares bought via subscription. Since June 2023 the first-day price can move between 60% and 400% of the offer price. Swings are big and losses are possible.
+
+• SPACs: shell firms listed to merge with an unlisted company later. A surge before any target is chosen signals overheating.
